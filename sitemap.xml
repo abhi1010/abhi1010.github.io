@@ -2,208 +2,208 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://localhost:1313/</loc>
+    <loc>http://abhi1010.github.io/</loc>
     <lastmod>2015-08-07T14:59:18+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://localhost:1313/blog/2015/08/07/docker-container-cleanup-on-elastic-beanstalk/</loc>
+    <loc>http://abhi1010.github.io/blog/2015/08/07/docker-container-cleanup-on-elastic-beanstalk/</loc>
     <lastmod>2015-08-07T14:59:18+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://localhost:1313/blog/2014/06/09/partition-linked-list-around-a-value-x/</loc>
+    <loc>http://abhi1010.github.io/blog/2014/06/09/partition-linked-list-around-a-value-x/</loc>
     <lastmod>2014-06-09T15:02:07+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://localhost:1313/blog/2014/06/08/find-the-kth-to-last-element-of-a-singly-linked-list/</loc>
+    <loc>http://abhi1010.github.io/blog/2014/06/08/find-the-kth-to-last-element-of-a-singly-linked-list/</loc>
     <lastmod>2014-06-08T07:49:47+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://localhost:1313/blog/2014/06/07/removing-duplicates-from-linked-list/</loc>
+    <loc>http://abhi1010.github.io/blog/2014/06/07/removing-duplicates-from-linked-list/</loc>
     <lastmod>2014-06-07T16:50:12+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://localhost:1313/blog/2014/06/07/deleting-a-node-from-singly-linked-list/</loc>
+    <loc>http://abhi1010.github.io/blog/2014/06/07/deleting-a-node-from-singly-linked-list/</loc>
     <lastmod>2014-06-07T10:49:17+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://localhost:1313/blog/2014/05/26/usage-of-typename/</loc>
+    <loc>http://abhi1010.github.io/blog/2014/05/26/usage-of-typename/</loc>
     <lastmod>2014-05-26T14:19:15+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://localhost:1313/blog/2014/05/19/setting-up-your-vim...-your-style/</loc>
+    <loc>http://abhi1010.github.io/blog/2014/05/19/setting-up-your-vim...-your-style/</loc>
     <lastmod>2014-05-19T15:51:51+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://localhost:1313/blog/2014/05/19/getting-a-group-of-lines-from-a-file/</loc>
+    <loc>http://abhi1010.github.io/blog/2014/05/19/getting-a-group-of-lines-from-a-file/</loc>
     <lastmod>2014-05-19T09:45:57+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://localhost:1313/blog/2014/04/15/32-bit-vs-64-bit/</loc>
+    <loc>http://abhi1010.github.io/blog/2014/04/15/32-bit-vs-64-bit/</loc>
     <lastmod>2014-04-15T02:40:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://localhost:1313/blog/2014/04/08/tokenize-a-string-using-c/</loc>
+    <loc>http://abhi1010.github.io/blog/2014/04/08/tokenize-a-string-using-c/</loc>
     <lastmod>2014-04-08T07:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://localhost:1313/blog/2014/03/19/heap-sort-vs-merge-sort-vs-insertion-sort-vs-radix-sort-vs-counting-sort-vs-quick-sort/</loc>
+    <loc>http://abhi1010.github.io/blog/2014/03/19/heap-sort-vs-merge-sort-vs-insertion-sort-vs-radix-sort-vs-counting-sort-vs-quick-sort/</loc>
     <lastmod>2014-03-19T05:42:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://localhost:1313/blog/2014/02/11/global-search-in-vim/</loc>
+    <loc>http://abhi1010.github.io/blog/2014/02/11/global-search-in-vim/</loc>
     <lastmod>2014-02-11T14:56:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://localhost:1313/blog/2013/11/09/reading-excel-in-c/</loc>
+    <loc>http://abhi1010.github.io/blog/2013/11/09/reading-excel-in-c/</loc>
     <lastmod>2013-11-09T23:51:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://localhost:1313/blog/2013/10/13/ideas-for-shared-memory-in-linux/</loc>
+    <loc>http://abhi1010.github.io/blog/2013/10/13/ideas-for-shared-memory-in-linux/</loc>
     <lastmod>2013-10-13T05:59:22+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://localhost:1313/blog/2013/09/22/oracle-sql-queries/</loc>
+    <loc>http://abhi1010.github.io/blog/2013/09/22/oracle-sql-queries/</loc>
     <lastmod>2013-09-22T08:48:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://localhost:1313/blog/2013/07/03/cvs-cheat-sheet/</loc>
+    <loc>http://abhi1010.github.io/blog/2013/07/03/cvs-cheat-sheet/</loc>
     <lastmod>2013-07-03T07:28:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://localhost:1313/blog/2013/06/11/cursor-control-in-vim-search/</loc>
+    <loc>http://abhi1010.github.io/blog/2013/06/11/cursor-control-in-vim-search/</loc>
     <lastmod>2013-06-11T07:05:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://localhost:1313/blog/2013/04/25/change-putty-window-title/</loc>
+    <loc>http://abhi1010.github.io/blog/2013/04/25/change-putty-window-title/</loc>
     <lastmod>2013-04-25T07:02:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://localhost:1313/blog/2012/10/23/multiple-inheritance/</loc>
+    <loc>http://abhi1010.github.io/blog/2012/10/23/multiple-inheritance/</loc>
     <lastmod>2012-10-23T14:21:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://localhost:1313/blog/2012/10/17/heap-sort/</loc>
+    <loc>http://abhi1010.github.io/blog/2012/10/17/heap-sort/</loc>
     <lastmod>2012-10-17T14:15:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://localhost:1313/blog/2012/10/06/merge-sort/</loc>
+    <loc>http://abhi1010.github.io/blog/2012/10/06/merge-sort/</loc>
     <lastmod>2012-10-06T14:26:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://localhost:1313/blog/2012/09/22/quick-sort/</loc>
+    <loc>http://abhi1010.github.io/blog/2012/09/22/quick-sort/</loc>
     <lastmod>2012-09-22T14:24:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://localhost:1313/blog/2012/09/17/insertion-sort/</loc>
+    <loc>http://abhi1010.github.io/blog/2012/09/17/insertion-sort/</loc>
     <lastmod>2012-09-17T16:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://localhost:1313/blog/2012/09/13/radix-sort/</loc>
+    <loc>http://abhi1010.github.io/blog/2012/09/13/radix-sort/</loc>
     <lastmod>2012-09-13T10:37:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://localhost:1313/blog/2012/09/11/counting-sort/</loc>
+    <loc>http://abhi1010.github.io/blog/2012/09/11/counting-sort/</loc>
     <lastmod>2012-09-11T10:03:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://localhost:1313/blog/2008/05/14/visual-studio-2008-crashes-while-adding-items/</loc>
+    <loc>http://abhi1010.github.io/blog/2008/05/14/visual-studio-2008-crashes-while-adding-items/</loc>
     <lastmod>2008-05-14T21:43:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://localhost:1313/blog/2008/04/06/google-analytics--swfaddress/</loc>
+    <loc>http://abhi1010.github.io/blog/2008/04/06/google-analytics--swfaddress/</loc>
     <lastmod>2008-04-06T05:32:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://localhost:1313/blog/2008/03/31/full-trust-on-mapped-drive/</loc>
+    <loc>http://abhi1010.github.io/blog/2008/03/31/full-trust-on-mapped-drive/</loc>
     <lastmod>2008-03-31T18:26:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://localhost:1313/blog/2008/03/31/tag-your-namespaces/</loc>
+    <loc>http://abhi1010.github.io/blog/2008/03/31/tag-your-namespaces/</loc>
     <lastmod>2008-03-31T08:23:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://localhost:1313/blog/2008/03/31/few-good-links-for-march-08/</loc>
+    <loc>http://abhi1010.github.io/blog/2008/03/31/few-good-links-for-march-08/</loc>
     <lastmod>2008-03-31T05:10:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://localhost:1313/blog/2008/03/11/how-to-protect-from-sql-injections-in-asp.net/</loc>
+    <loc>http://abhi1010.github.io/blog/2008/03/11/how-to-protect-from-sql-injections-in-asp.net/</loc>
     <lastmod>2008-03-11T07:55:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://localhost:1313/blog/2008/03/08/creating-custom-web-controls/</loc>
+    <loc>http://abhi1010.github.io/blog/2008/03/08/creating-custom-web-controls/</loc>
     <lastmod>2008-03-08T22:30:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://localhost:1313/blog/2008/03/08/stringbuilder-vs-string-joins/</loc>
+    <loc>http://abhi1010.github.io/blog/2008/03/08/stringbuilder-vs-string-joins/</loc>
     <lastmod>2008-03-08T13:55:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://localhost:1313/blog/2008/03/08/blogs-i-like/</loc>
+    <loc>http://abhi1010.github.io/blog/2008/03/08/blogs-i-like/</loc>
     <lastmod>2008-03-08T10:26:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://localhost:1313/blog/2008/03/04/recursively-read-directories-and-list-all-files-under-it/</loc>
+    <loc>http://abhi1010.github.io/blog/2008/03/04/recursively-read-directories-and-list-all-files-under-it/</loc>
     <lastmod>2008-03-04T07:49:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://localhost:1313/blog/2008/03/03/talk-to-my...-flash/</loc>
+    <loc>http://abhi1010.github.io/blog/2008/03/03/talk-to-my...-flash/</loc>
     <lastmod>2008-03-03T04:58:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://localhost:1313/blog/2008/02/06/membership-and-profiler-in-asp.net/</loc>
+    <loc>http://abhi1010.github.io/blog/2008/02/06/membership-and-profiler-in-asp.net/</loc>
     <lastmod>2008-02-06T19:34:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://localhost:1313/blog/2007/12/12/book-review-head-first-design-patterns/</loc>
+    <loc>http://abhi1010.github.io/blog/2007/12/12/book-review-head-first-design-patterns/</loc>
     <lastmod>2007-12-12T02:31:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://localhost:1313/blog/2007/11/23/dynamically-increase-label-size-autosize/</loc>
+    <loc>http://abhi1010.github.io/blog/2007/11/23/dynamically-increase-label-size-autosize/</loc>
     <lastmod>2007-11-23T07:52:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://localhost:1313/blog/2007/10/26/use-of-yield-statement/</loc>
+    <loc>http://abhi1010.github.io/blog/2007/10/26/use-of-yield-statement/</loc>
     <lastmod>2007-10-26T16:36:00+00:00</lastmod>
   </url>
   

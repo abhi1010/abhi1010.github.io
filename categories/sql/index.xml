@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Sql on Coders Digest</title>
-    <link>http://localhost:1313/categories/sql/</link>
+    <link>http://abhi1010.github.io/categories/sql/</link>
     <description>Recent content in Sql on Coders Digest</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 22 Sep 2013 08:48:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/categories/sql/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://abhi1010.github.io/categories/sql/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Oracle SQL Queries</title>
-      <link>http://localhost:1313/blog/2013/09/22/oracle-sql-queries/</link>
+      <link>http://abhi1010.github.io/blog/2013/09/22/oracle-sql-queries/</link>
       <pubDate>Sun, 22 Sep 2013 08:48:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/blog/2013/09/22/oracle-sql-queries/</guid>
+      <guid>http://abhi1010.github.io/blog/2013/09/22/oracle-sql-queries/</guid>
       <description>&lt;p&gt;Recently I found myself in a situation where I had to view all the tables in the Oracle Server.&lt;/p&gt;
 
 &lt;p&gt;I did some digging and came up with these helpful queries.&lt;/p&gt;
@@ -60,10 +60,10 @@
     
     <item>
       <title>Membership and Profiler in ASP.NET</title>
-      <link>http://localhost:1313/blog/2008/02/06/membership-and-profiler-in-asp.net/</link>
+      <link>http://abhi1010.github.io/blog/2008/02/06/membership-and-profiler-in-asp.net/</link>
       <pubDate>Wed, 06 Feb 2008 19:34:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/blog/2008/02/06/membership-and-profiler-in-asp.net/</guid>
+      <guid>http://abhi1010.github.io/blog/2008/02/06/membership-and-profiler-in-asp.net/</guid>
       <description>&lt;p&gt;Whenever you are using Sql Membership and Profiler classes - Trying to generate reports make sure your query&amp;rsquo;s WHERE clause is using &amp;ldquo;indexed&amp;rdquo; column names at least.&lt;/p&gt;
 
 &lt;p&gt;Let&amp;rsquo;s look at some of the more used tables. The index of some of the tables is given below:&lt;/p&gt;
