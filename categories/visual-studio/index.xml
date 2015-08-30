@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Visual Studio on Coders Digest</title>
+    <link>http://localhost:1313/categories/visual-studio/</link>
+    <description>Recent content in Visual Studio on Coders Digest</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 14 May 2008 21:43:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/categories/visual-studio/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Visual Studio 2008 crashes while adding items</title>
+      <link>http://localhost:1313/blog/2008/05/14/visual-studio-2008-crashes-while-adding-items/</link>
+      <pubDate>Wed, 14 May 2008 21:43:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/blog/2008/05/14/visual-studio-2008-crashes-while-adding-items/</guid>
+      <description>&lt;p&gt;Had this problem cropping up since months where I was trying to add items to Visual Studio 2008 Toolbox and it kept crashing.&lt;/p&gt;
+
+&lt;p&gt;Finally got a work around, you should start it in safe mode. Here&amp;rsquo;s the procedure:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;devenv /safemode
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Then use Choose Items on toolbox and run through each of the tabs. Once you
+accept any exceptions raised on loading controls, you can then open Visual
+Studio normally and add items.&lt;/p&gt;
+
+&lt;p&gt;The reason for this has to be pretty simple - I have installed way too many beta/refresh version on Visual Studio 2008, something had to give up. I can&amp;rsquo;t really complain.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

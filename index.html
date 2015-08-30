@@ -1,7 +1,521 @@
 <!DOCTYPE html>
-<html>
-<body>
-<h1>Hello World</h1>
-<p>abhi1010 is hosted with GitHub Pages.</p>
-</body>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>Coders Digest &middot; Abhishek Pandey</title>
+
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+  <link rel="stylesheet" href="http://localhost:1313/css/poole.css">
+  <link rel="stylesheet" href="http://localhost:1313/css/hyde.css">
+  <link rel="stylesheet" href="http://localhost:1313/css/poole-overrides.css">
+  <link rel="stylesheet" href="http://localhost:1313/css/hyde-overrides.css">
+  <link rel="stylesheet" href="http://localhost:1313/css/hyde-x.css">
+  <link rel="stylesheet" href="http://localhost:1313/css/highlight/sunburst.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://localhost:1313/touch-icon-144-precomposed.png">
+  <link href="http://localhost:1313/favicon.png" rel="icon">
+
+  
+  
+  
+  <link href="http://localhost:1313/index.xml" rel="alternate" type="application/rss+xml" title="Coders Digest &middot; Abhishek Pandey" />
+
+  <meta name="description" content="Your default page description">
+  <meta name="keywords" content="your,default,page,keywords">
+  
+</head>
+<body class="theme-base-aa">
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      
+      <h1>Abhishek Pandey</h1>
+      <p class="lead">Coders Digest&hellip;</p>
+    </div>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item"><a href="http://localhost:1313/">Blog</a></li>
+      
+      <li class="sidebar-nav-item"><a href="http://localhost:1313/about/">about hugo</a></li>
+      
+      <li class="sidebar-nav-item"><a href="http://localhost:1313/getting-started/">getting started</a></li>
+      
+    </ul>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item">
+      
+      
+      
+      
+      
+      
+      
+      
+      </li>
+    </ul>
+
+    
+
+  </div>
+</div>
+
+
+<div class="content container">
+  <div class="posts">
+    
+    
+    <div class="post">
+      <h1 class="post-title">
+        <a href="http://localhost:1313/blog/2015/08/07/docker-container-cleanup-on-elastic-beanstalk/">Docker Container cleanup on Elastic Beanstalk</a>
+      </h1>
+      <span class="post-date">Aug 7, 2015 &middot; 2 minute read
+      
+      <br/>
+      <a class="label" href="http://localhost:1313/categories/linux">Linux</a>
+      </span>
+      
+      <p>Sometimes you may notice that old containers are not cleaned up from Beanstalk environment. This may be due to your container still running as a ghost on the background. One way to find out about this is to quickly look into your
+<code>/var/lib/docker/vfs/dir</code> directory whether it has too many folders.</p>
+
+<p>Next, find out what container processes you have going on.
+<code>[root@ip dir]# docker ps -a</code></p>
+
+<p>You might see something like this:</p>
+
+<p><div class="highlight" style="background: #ffffff"><pre style="line-height: 125%">    CONTAINER ID        IMAGE                              COMMAND             CREATED             STATUS              PORTS               NAMES
+    1611e5ebe2c0        aws_beanstalk/staging-app:latest   <span style="color: #dd2200; background-color: #fff0f0">&quot;supervisord -n&quot;</span>    About an hour ago                                           boring_galileo
+    e59d0dd8bba1        aws_beanstalk/staging-app:latest   <span style="color: #dd2200; background-color: #fff0f0">&quot;supervisord -n&quot;</span>    About an hour ago                                           desperate_yalow
+    3844d0e18c47        aws_beanstalk/staging-app:latest   <span style="color: #dd2200; background-color: #fff0f0">&quot;supervisord -n&quot;</span>    <span style="color: #0000DD; font-weight: bold">2</span> hours ago         Up <span style="color: #0000DD; font-weight: bold">8</span> minutes        80/tcp              pensive_jang
+</pre></div>
+</p>
+
+<p>Ideally, we want to &ldquo;forcibly remove&rdquo; all images (and hence the folders from <code>/var/lib/docker/vfs/dir</code> directory) that are not in use anymore.
+Just run the following to test whether it works:
+<code>docker rmi -f</code>docker images -aq``</p>
+
+<p>You might run into trouble where docker says that all those images already have a container that is running them. This means those container are orphaned but not killed as we thought them to be. Let&rsquo;s remove the shared volumes if any, for each one of them.</p>
+
+<pre><code>docker rm -fv `docker ps -aq` 
+</code></pre>
+
+<p>This will</p>
+
+<ul>
+<li>kill the container</li>
+<li>unlink the volumes</li>
+</ul>
+
+<p>You should see a lot more space now on your beanstalk instance.
+<div class="highlight" style="background: #ffffff"><pre style="line-height: 125%">    [root@ip dir]<span style="color: #888888"># df -h</span>
+    Filesystem      Size  Used Avail Use% Mounted on
+    /dev/xvda1      7.8G  1.8G  5.9G  24% /
+    devtmpfs        490M   96K  490M   1% /dev
+    tmpfs           499M     0  499M   0% /dev/shm
+</pre></div>
+</p>
+
+      
+    </div>
+    
+    <div class="post">
+      <h1 class="post-title">
+        <a href="http://localhost:1313/blog/2014/06/09/partition-linked-list-around-a-value-x/">Partition Linked List around a Value X</a>
+      </h1>
+      <span class="post-date">Jun 9, 2014 &middot; 1 minute read
+      
+      <br/>
+      <a class="label" href="http://localhost:1313/categories/linux">Linux</a>
+      </span>
+      
+      
+
+<p>How do you partition a list around a value x, such that all nodes less than x come before all nodes greater than or equal to x?</p>
+
+<p>Well, there are some solutions possible. The solution, I came up with, is a bit convoluted but let me tell the idea behind it. You want to track the following:</p>
+
+<ul>
+<li><p>Two pointers to remember the beginning of the <em>lower</em> and <em>higher</em> series each</p></li>
+
+<li><p>One pointer (<em>current</em>) to iterate through the Linked List</p></li>
+
+<li><p>The list may itself start with higher or lower value compared to the <em>middleValue</em>. Thus we need to remember the beginning of the lower series (<em>lowerSeries</em>) as this is what we will send back</p></li>
+</ul>
+
+<p>Now that we have this out of the way, let&rsquo;s look at the code:</p>
+
+<!-- more -->
+
+<p><a href="https://gist.github.com/abhi1010/3ada1d15b5bda319a54c">https://gist.github.com/abhi1010/3ada1d15b5bda319a54c</a></p>
+
+<h3 id="code:8a20b19b0e16e5ac875728276c435d4c">Code</h3>
+
+<p>As usual the code is available <a href="https://github.com/abhi1010/Algorithms/blob/master/Algo_codes/Node.cpp">here</a>:</p>
+
+<p><a href="https://github.com/abhi1010/Algorithms">https://github.com/abhi1010/Algorithms</a></p>
+
+      
+    </div>
+    
+    <div class="post">
+      <h1 class="post-title">
+        <a href="http://localhost:1313/blog/2014/06/08/find-the-kth-to-last-element-of-a-singly-linked-list/">Find the Kth to Last Element of a Singly Linked List</a>
+      </h1>
+      <span class="post-date">Jun 8, 2014 &middot; 1 minute read
+      
+      <br/>
+      <a class="label" href="http://localhost:1313/categories/linux">Linux</a>
+      </span>
+      
+      <p>It is possible to a recursive solutions but I will use a simple runner logic. Recursive solutions are usually less optimal.</p>
+
+<p>Note here that, in our logic K=1 would return the last element in the linked list. Similarly, K=2 would return the second last element.</p>
+
+<p>The suggested solution here is to use two pointers:</p>
+
+<ul>
+<li>One pointer will first travel K items into the list</li>
+<li>Once that is done, both the pointers start travelling together, one item at a time</li>
+<li>They keep travelling until the end of linked list is found</li>
+<li>In that situation, the first pointer is at the end of the list, but the second pointer would have only reached till Kth element - this is what you want</li>
+</ul>
+
+<p>Let&rsquo;s have a look at the code:</p>
+
+<p><div class="highlight" style="background: #ffffff"><pre style="line-height: 125%">    
+Node* <span style="color: #0066bb; font-weight: bold">findKthToLastElement</span> (Node* node, <span style="color: #888888; font-weight: bold">unsigned</span> <span style="color: #888888; font-weight: bold">short</span> k)
+{
+    Node* secondRunner = node;
+    <span style="color: #008800; font-weight: bold">for</span>(<span style="color: #888888; font-weight: bold">unsigned</span> <span style="color: #888888; font-weight: bold">short</span> i = <span style="color: #0000DD; font-weight: bold">0</span>; i &lt; k; ++i)
+    {
+        <span style="color: #008800; font-weight: bold">if</span> (secondRunner-&gt;next != <span style="color: #003388">NULL</span>)
+            secondRunner = secondRunner-&gt;next;
+        <span style="color: #008800; font-weight: bold">else</span>
+            <span style="color: #008800; font-weight: bold">return</span> <span style="color: #003388">NULL</span>;
+    }
+    <span style="color: #008800; font-weight: bold">while</span> (secondRunner)
+    {
+        secondRunner = secondRunner-&gt;next;
+        node = node-&gt;next;
+    }
+    <span style="color: #008800; font-weight: bold">return</span> node;
+}
+</pre></div>
+</p>
+
+<p><a href="https://gist.github.com/abhi1010/43e289a9877fb9293680">https://gist.github.com/abhi1010/43e289a9877fb9293680</a></p>
+
+<p>As usual the code is available <a href="https://github.com/abhi1010/Algorithms/blob/master/Algo_codes/Node.cpp">here</a>:</p>
+
+<p><a href="https://github.com/abhi1010/Algorithms">https://github.com/abhi1010/Algorithms</a></p>
+
+      
+    </div>
+    
+    <div class="post">
+      <h1 class="post-title">
+        <a href="http://localhost:1313/blog/2014/06/07/removing-duplicates-from-linked-list/">Removing Duplicates from Linked List</a>
+      </h1>
+      <span class="post-date">Jun 7, 2014 &middot; 1 minute read
+      
+      <br/>
+      <a class="label" href="http://localhost:1313/categories/linux">Linux</a>
+      </span>
+      
+      
+
+<p>Duplicates can be removed in many ways:</p>
+
+<ul>
+<li><p>Create a new Linked List containing only unique items</p></li>
+
+<li><p>Iterate through the Linked List and keep removing items that are being repeated</p></li>
+</ul>
+
+<p>The internal structure itself for the algo can either be map or set based. When using map the Node itself can be saved thereby making your life easier if you are creating a new Linked List. However sets can be very useful if we are just iterating through the Linked List and simply deleting items that are being repetetive. This is also a great spacesaver. Hence we decided to go down this path.</p>
+
+<!-- more -->
+
+<h3 id="code:33d170712a3b1643edfc33b9f231740c">Code</h3>
+
+<p>As usual the <a href="https://github.com/abhi1010/Algorithms/blob/master/Algo_codes/Node.cpp">code</a> is available here:</p>
+
+<p><a href="https://github.com/abhi1010/Algorithms">https://github.com/abhi1010/Algorithms</a></p>
+
+<p>Here&rsquo;s a small sample as to how to do it:</p>
+
+<p><a href="https://gist.github.com/abhi1010/e2b7117c20d0f591896f">https://gist.github.com/abhi1010/e2b7117c20d0f591896f</a></p>
+
+      
+    </div>
+    
+    <div class="post">
+      <h1 class="post-title">
+        <a href="http://localhost:1313/blog/2014/06/07/deleting-a-node-from-singly-linked-list/">Deleting a Node from Singly Linked List</a>
+      </h1>
+      <span class="post-date">Jun 7, 2014 &middot; 1 minute read
+      
+      <br/>
+      <a class="label" href="http://localhost:1313/categories/linux">Linux</a>
+      </span>
+      
+      
+
+<p>Deleting a Node from Singly Linked List is rather straight forward.</p>
+
+<ul>
+<li><p>You have to know the head first of all</p></li>
+
+<li><p>Start by checking the head if that&rsquo;s the one you are looking for</p></li>
+
+<li><p>Keep moving forward and checking - always check for null pointers everywhere</p></li>
+</ul>
+
+<p>Before we talk about the code, let&rsquo;s see how Linked List is setup.
+&lt;!&ndash; more &ndash;&gt;</p>
+
+<p><a href="https://gist.github.com/abhi1010/33be440bf1012773b7e1">https://gist.github.com/abhi1010/33be440bf1012773b7e1</a></p>
+
+<p>Now, below is the code for it&hellip;.</p>
+
+<p><a href="https://gist.github.com/abhi1010/bf9dbb193b4ff84ba3af">https://gist.github.com/abhi1010/bf9dbb193b4ff84ba3af</a></p>
+
+<h3 id="code:ca5ee7b35fae15e9d7ea6b34351195c6">Code</h3>
+
+<p>As usual the code is available <a href="https://github.com/abhi1010/Algorithms/blob/master/Algo_codes/Node.cpp">here</a>:</p>
+
+<p><a href="https://github.com/abhi1010/Algorithms">https://github.com/abhi1010/Algorithms</a></p>
+
+      
+    </div>
+    
+    <div class="post">
+      <h1 class="post-title">
+        <a href="http://localhost:1313/blog/2014/05/26/usage-of-typename/">Usage of typename</a>
+      </h1>
+      <span class="post-date">May 26, 2014 &middot; 2 minute read
+      
+      <br/>
+      <a class="label" href="http://localhost:1313/categories/linux">Linux</a>
+      </span>
+      
+      <p>What is wrong with the following code?</p>
+
+<p><a href="https://gist.github.com/anonymous/f1f2246d04a935794e44">https://gist.github.com/anonymous/f1f2246d04a935794e44</a></p>
+
+<p>The issue is very simple but hard to notice. If you try to compile this, you will get the following errors:</p>
+
+<blockquote>main.cpp:24:5: error: need 'typename' before 'OuterStruct<T2>::InnerStruct' because 'OuterStruct<T2>' is a dependent scope
+OuterStruct<T2>::InnerStruct mUsingInner;
+^
+main.cpp: In function 'int main(int, char**)':
+main.cpp:34:13: error: 'struct InnerStruct_Wrapper<int>' has no member named 'mUsingInner'
+wrapper.mUsingInner = innerStrct;
+^</blockquote>
+
+<!-- more -->
+
+<p><strong>The Issue</strong></p>
+
+<p>At least it straight away tells you something is wrong with <code>InnerStruct_Wrapper</code>. Here&rsquo;s what is happening:</p>
+
+<ul>
+<li><p>The compiler does not know that mUsingInner in that line is actually a variable of type &ldquo;OuterStruct<T2>::InnerStruct&rdquo;</p></li>
+
+<li><p>InnerStruct will only be known later when it is being instantiated</p></li>
+
+<li><p>Compiler cannot figure out what InnerStruct means here. It could be a type or a member variable</p></li>
+</ul>
+
+<p><strong>The Fix</strong></p>
+
+<p>The only way here is to help the compiler by telling it beforehand that is going to be a class or struct type. The way to tell the compiler that something like this is supposed to be a type name is to throw in the keyword &ldquo;typename&rdquo;. The &ldquo;typename&rdquo; keyword has to be used everytime you want to tell the compiler that it should expect a Type in its place.</p>
+
+<p>One place where this is used quite a lot is when templates have to implement iterators.</p>
+
+<p><strong>Full Code</strong></p>
+
+<p><strong><em>The full sample code, along with the fix</em></strong> is provided on <a href="http://coliru.stacked-crooked.com/a/b0ab70c458370048">Stacked-Crooked</a>.</p>
+
+      
+    </div>
+    
+    <div class="post">
+      <h1 class="post-title">
+        <a href="http://localhost:1313/blog/2014/05/19/setting-up-your-vim...-your-style/">Setting up your VIM... Your Style</a>
+      </h1>
+      <span class="post-date">May 19, 2014 &middot; 1 minute read
+      
+      <br/>
+      <a class="label" href="http://localhost:1313/categories/linux">Linux</a>
+      </span>
+      
+      <p>Writing code using VIM can be a bit overwhelming but it helps creating a few shortcuts there to make your life easier. Here I will discuss a few.</p>
+
+<ul>
+<li>First of all, it is always a good idea to set up your tabs and spaces</li>
+<li>Set up a shortcut to:</li>
+<li>* Toggling of Auto-Indent while pasting source text; very useful in code (F2 in my provided script)
+
+<ul>
+<li>Toggling of Auto-Scroll of Split windows (F3 in my provided script)</li>
+<li>Macro for Folding functions within the source code (@q in my provided script)</li>
+<li>Smart case search - based on whether the input is in caps or not</li>
+<li>Toggling of Mouse Usage in VIM window - to allow quick selection of text (F12 in my provided script)</li>
+</ul></li>
+</ul>
+
+<p>Please see the provided script below to have a look.</p>
+
+<p><a href="https://gist.github.com/abhi1010/6f190c9f3afd42881ef5">https://gist.github.com/abhi1010/6f190c9f3afd42881ef5</a></p>
+
+      
+    </div>
+    
+    <div class="post">
+      <h1 class="post-title">
+        <a href="http://localhost:1313/blog/2014/05/19/getting-a-group-of-lines-from-a-file/">Getting a group of lines from a file</a>
+      </h1>
+      <span class="post-date">May 19, 2014 &middot; 1 minute read
+      
+      <br/>
+      <a class="label" href="http://localhost:1313/categories/linux">Linux</a>
+      </span>
+      
+      <p>I&rsquo;ve had this need quite a few times to pull out a section of logs that would begin with a particular line and end with another. grep is not exactly useful there because it only prints out sections based on line counters (using -A/B/C) lines based on a single search pattern.</p>
+
+<p>I came up with a script that can run at almost same speeds using <code>grep/cat/awk</code>. <code>awk</code> is used to decide whether the end of the section has been reached or not. Some features of the script are:</p>
+
+<ul>
+<li><p>Since <code>awk</code> script only toggles one variable it works seamlessly without delaying the actual work</p></li>
+
+<li><p>Works on gzip files as well</p></li>
+
+<li><p>If you do not want to depend on grep or are unsure how many lines may be between begin and end keyword then replace gunzip with zcat and grep with cat.</p></li>
+
+<li><p>Usage: <code>group filename printBeginKeyword printUntilKeyword NumOfLines</code></p></li>
+</ul>
+
+<p>Let&rsquo;s have a look at the script&hellip;.</p>
+
+<!-- more -->
+
+<p><a href="https://gist.github.com/abhi1010/924a5f12f3067ba0b3af">https://gist.github.com/abhi1010/924a5f12f3067ba0b3af</a></p>
+
+      
+    </div>
+    
+    <div class="post">
+      <h1 class="post-title">
+        <a href="http://localhost:1313/blog/2014/04/15/32-bit-vs-64-bit/">32 bit vs 64 bit</a>
+      </h1>
+      <span class="post-date">Apr 15, 2014 &middot; 1 minute read
+      
+      <br/>
+      <a class="label" href="http://localhost:1313/categories/.net">.NET</a><a class="label" href="http://localhost:1313/categories/linux">Linux</a>
+      </span>
+      
+      
+
+<h3 id="when-to-use-64-bit:781115a00a27c6c773035866d9644c43">When to use 64-bit?</h3>
+
+<p>If your application needs more than 2-4gb of data</p>
+
+<ul>
+<li>If your application intensively uses 64-bit arithmetic</li>
+<li>* 32-bit x86 compiled applications are restricted to x86 instruction set, even when run on on a 64-bit machine</li>
+<li>x64 supports 16 registers compared to just 8 in x86. If your code is computation intensive this may help a great deal</li>
+</ul>
+
+<h3 id="when-to-use-32-bit:781115a00a27c6c773035866d9644c43">When to use 32-bit?</h3>
+
+<p>After reading so many great things about 32 bit, why would anybody still want to code against 32-bit? Simple reason - code compiled in 32-bit takes lesser memory. For example, a pointer in 64-bit machine is 8 bytes compared to 4 bytes with 32-bit. Now imagine how many pointers do you have going around in your code?</p>
+
+<h3 id="when-to-not-use-64-bit:781115a00a27c6c773035866d9644c43">When to not use 64-bit?</h3>
+
+<p>Sometimes if your code is running on a machine that does not have too much of space then it is a never a great idea to use 64-bit compilation because the same task can probably be done much better using 32-bit version. L2 and L3 caches will be utilized a lot more in 64-bit code (and a lot earlier as well) compared to 32-bit; on such systems.</p>
+
+<h3 id="summary:781115a00a27c6c773035866d9644c43">Summary</h3>
+
+<p>Always benchmark your code and ensure that the application actually needs more than 2-4Gb of space.</p>
+
+      
+    </div>
+    
+    <div class="post">
+      <h1 class="post-title">
+        <a href="http://localhost:1313/blog/2014/04/08/tokenize-a-string-using-c/">Tokenize a String using C&#43;&#43;</a>
+      </h1>
+      <span class="post-date">Apr 8, 2014 &middot; 1 minute read
+      
+      <br/>
+      <a class="label" href="http://localhost:1313/categories/linux">Linux</a>
+      </span>
+      
+      <p>Here&rsquo;s a short snippet to split a string into multiple tokens; into a vector. As you will see that, if you run the code, boost version performs better because you can choose a number of delimiters to split your string instead of the vanilla version using the normal C++ code. Of course, you may also write your own code to do something like this but I was looking to do some short snippets.</p>
+
+<p><a href="https://gist.github.com/anonymous/0465925390f3442a7691">https://gist.github.com/anonymous/0465925390f3442a7691</a></p>
+
+<p>I have <strong>posted my code on <a href="http://coliru.stacked-crooked.com/a/01e1c68ffd0199cd">Stacked-Crooked</a></strong> which you can view along with the output as well. It shows C++ doesn&rsquo;t perform so well.</p>
+
+      
+    </div>
+    
+    
+    
+    <ul class="pagination">
+        
+        <li>
+            <a href="/" aria-label="First"><span aria-hidden="true">&laquo;&laquo;</span></a>
+        </li>
+        
+        <li
+        class="disabled">
+        <a href="" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
+        </li>
+        
+        <li
+        class="active"><a href="/">1</a></li>
+        
+        <li
+        ><a href="/page/2/">2</a></li>
+        
+        <li
+        ><a href="/page/3/">3</a></li>
+        
+        <li
+        ><a href="/page/4/">4</a></li>
+        
+        <li
+        >
+        <a href="/page/2/" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
+        </li>
+        
+        <li>
+            <a href="/page/4/" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+        </li>
+        
+    </ul>
+    
+  </div>
+</div>
+
+
+<script src="http://localhost:1313/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script data-no-instant>document.write('<script src="http://'
+        + (location.host || 'localhost').split(':')[0]
+		+ ':1313/livereload.js?mindelay=10"></'
+        + 'script>')</script></body>
 </html>
+

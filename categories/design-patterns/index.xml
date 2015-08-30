@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Design Patterns on Coders Digest</title>
+    <link>http://localhost:1313/categories/design-patterns/</link>
+    <description>Recent content in Design Patterns on Coders Digest</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 12 Dec 2007 02:31:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/categories/design-patterns/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Book Review: Head First Design Patterns</title>
+      <link>http://localhost:1313/blog/2007/12/12/book-review-head-first-design-patterns/</link>
+      <pubDate>Wed, 12 Dec 2007 02:31:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/blog/2007/12/12/book-review-head-first-design-patterns/</guid>
+      <description>&lt;p&gt;What an amazing book this is! It is a must read for any developer who wants to develop long term codes/projects.&lt;/p&gt;
+
+&lt;p&gt;The book looks at mostly the more important design patterns. The distinctive feature that stands out in this book is how it manages to make each pattern stand out against each other. It gives comparison between similar-looking patterns where necessary. It make the patterns &amp;ldquo;debate&amp;rdquo; against each other, get the birds-eye-view from &amp;ldquo;patterns guru and grasshopper discussion&amp;rdquo;, UML like &amp;ldquo;class diagrams with notes&amp;rdquo; to show how everything is gelling together.&lt;/p&gt;
+
+&lt;p&gt;It starts off every pattern with the basic situation and come up with a code how a normal developer would code - then give that situation a twist and show us mortal beings how to code again using a pattern! It is a perfect setup for even a novice to get it straight into his head.&lt;/p&gt;
+
+&lt;p&gt;The code for this book can be picked up at &lt;a href=&#34;http://www.wickedlysmart.com&#34;&gt;www.wickedlysmart.com&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Although this book is written for Java developers but it should suit C# and VB.NET. The website includes code for C# as well donated by a reader of the book.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

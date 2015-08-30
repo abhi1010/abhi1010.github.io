@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>Coders Digest &middot; Abhishek Pandey</title>
+
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+  <link rel="stylesheet" href="http://localhost:1313/css/poole.css">
+  <link rel="stylesheet" href="http://localhost:1313/css/hyde.css">
+  <link rel="stylesheet" href="http://localhost:1313/css/poole-overrides.css">
+  <link rel="stylesheet" href="http://localhost:1313/css/hyde-overrides.css">
+  <link rel="stylesheet" href="http://localhost:1313/css/hyde-x.css">
+  <link rel="stylesheet" href="http://localhost:1313/css/highlight/sunburst.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://localhost:1313/touch-icon-144-precomposed.png">
+  <link href="http://localhost:1313/favicon.png" rel="icon">
+
+  
+  
+  
+  <link href="http://localhost:1313/index.xml" rel="alternate" type="application/rss+xml" title="Coders Digest &middot; Abhishek Pandey" />
+
+  <meta name="description" content="Your default page description">
+  <meta name="keywords" content="your,default,page,keywords">
+  
+</head>
+<body class="theme-base-aa">
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      
+      <h1>Abhishek Pandey</h1>
+      <p class="lead">Coders Digest&hellip;</p>
+    </div>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item"><a href="http://localhost:1313/">Blog</a></li>
+      
+      <li class="sidebar-nav-item"><a href="http://localhost:1313/about/">about hugo</a></li>
+      
+      <li class="sidebar-nav-item"><a href="http://localhost:1313/getting-started/">getting started</a></li>
+      
+    </ul>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item">
+      
+      
+      
+      
+      
+      
+      
+      
+      </li>
+    </ul>
+
+    
+
+  </div>
+</div>
+
+
+<div class="content container">
+  <div class="posts">
+    
+    
+    <div class="post">
+      <h1 class="post-title">
+        <a href="http://localhost:1313/blog/2012/10/06/merge-sort/">Merge Sort</a>
+      </h1>
+      <span class="post-date">Oct 6, 2012 &middot; 1 minute read
+      
+      <br/>
+      <a class="label" href="http://localhost:1313/categories/linux">Linux</a>
+      </span>
+      
+      
+
+<p>Merge Sort</p>
+
+<ul>
+<li>Complexity is O(n log n)</li>
+<li>Needs more space to merge - proportional to the size of the array</li>
+<li>Stable Sort</li>
+<li>* Preserves the order of equal elements</li>
+<li>Merge Sort does about 39% lower comparisons, in worst case, compared to Quicksort&rsquo;s average case</li>
+<li>The algo almost always behaves in the same way; taking relatively the same amount of time, whether sorted or unsorted arrays
+&lt;!&ndash; more &ndash;&gt;</li>
+</ul>
+
+<h2 id="testing-notes:19e6e9293aeb00484ea655d2aac941c9">Testing Notes</h2>
+
+<ul>
+<li>Started testing the algo with two versions.</li>
+<li>* First version creates two temporary arrays
+
+<ul>
+<li>First version creates only one temporary array</li>
+</ul></li>
+<li>The sole difference between them is the one that makes second implementation better</li>
+</ul>
+
+<h2 id="code:19e6e9293aeb00484ea655d2aac941c9">Code</h2>
+
+<p>As usual the <a href="https://github.com/abhi1010/Algorithms/blob/master/Algo_codes/MergeSort.cpp">code</a> is available here:</p>
+
+<p><a href="https://github.com/abhi1010/Algorithms">https://github.com/abhi1010/Algorithms</a></p>
+
+<h2 id="numbers:19e6e9293aeb00484ea655d2aac941c9">Numbers</h2>
+
+<table style="border-bottom:lightblue solid;text-align:center;border-left:lightblue solid;background-color:#efefef;width:100%;border-collapse:collapse;border-top:lightblue solid;border-right:lightblue solid;" border="1" > <tbody > <tr >
+<td style="width:25%;" >
+
+### Merge Sort
+
+</td>
+<td style="width:25%;" >**# of Items in Array**
+</td>
+<td style="width:25%;" >**Time Taken**
+</td>
+<td style="width:25%;" >**Average for 100 numbers**
+</td> </tr> <tr >
+<td rowspan="3" >**Random**
+</td>
+<td >10
+</td>
+<td >0.047464
+</td>
+<td >0.47464
+</td> </tr> <tr >
+<td >1K
+</td>
+<td >5.41906
+</td>
+<td >0.541906
+</td> </tr> <tr >
+<td >1M
+</td>
+<td >8444.11
+</td>
+<td >0.844411
+</td> </tr> <tr >
+<td rowspan="3" >**Sorted**
+</td>
+<td >10
+</td>
+<td >0.027155
+</td>
+<td >0.27155
+</td> </tr> <tr >
+<td >1K
+</td>
+<td >4.47016
+</td>
+<td >0.447016
+</td> </tr> <tr >
+<td >1M
+</td>
+<td >6323.05
+</td>
+<td >0.632305
+</td> </tr> </tbody> </table>
+
+<table style="border-bottom:lightblue solid;text-align:center;border-left:lightblue solid;background-color:#efefef;width:100%;border-collapse:collapse;border-top:lightblue solid;border-right:lightblue solid;" border="1" > <tbody > <tr >
+<td style="width:25%;" >
+
+### Merge Sort 2
+
+</td>
+<td style="width:25%;" >**# of Items in Array**
+</td>
+<td style="width:25%;" >**Time Taken**
+</td>
+<td style="width:25%;" >**Average for 100 numbers**
+</td> </tr> <tr >
+<td rowspan="3" >**Random**
+</td>
+<td >10
+</td>
+<td >0.033668
+</td>
+<td >0.33668
+</td> </tr> <tr >
+<td >1K
+</td>
+<td >3.89374
+</td>
+<td >0.389374
+</td> </tr> <tr >
+<td >1M
+</td>
+<td >7076.04
+</td>
+<td >0.707604
+</td> </tr> <tr >
+<td rowspan="3" >**Sorted**
+</td>
+<td >10
+</td>
+<td >0.019034
+</td>
+<td >0.19034
+</td> </tr> <tr >
+<td >1K
+</td>
+<td >2.7833
+</td>
+<td >0.27833
+</td> </tr> <tr >
+<td >1M
+</td>
+<td >4664.16
+</td>
+<td >0.466416
+</td> </tr> </tbody> </table>
+
+      
+    </div>
+    
+    <div class="post">
+      <h1 class="post-title">
+        <a href="http://localhost:1313/blog/2012/09/22/quick-sort/">Quick Sort</a>
+      </h1>
+      <span class="post-date">Sep 22, 2012 &middot; 2 minute read
+      
+      <br/>
+      <a class="label" href="http://localhost:1313/categories/linux">Linux</a>
+      </span>
+      
+      
+
+<p>Quick Sort is an efficient divide and conquer algorithm performed in two phases - partition and sorting phase.</p>
+
+<p>Here are few pointers to remember about Quick Sort:</p>
+
+<ul>
+<li>Partitioning places all the elements less than the pivot in the left part of the array and greater elements in the right part</li>
+<li>Pivot element stays in its place</li>
+<li>After partitioning no element moves to the other side, of the pivot</li>
+<li>* This allows you to sort the elements, to the left or right of the pivot, independent of the other side</li>
+<li>Complexity is O(n log n)</li>
+<li>Often fast for small arrays with a few distinct values, repeated many times</li>
+<li>It is a conquer-and-divide algo; with most of the work happening during partitioning phase</li>
+<li>If you had to choose the optimum pivot then it should the median of the given array</li>
+<li>Not a stable sort
+&lt;!&ndash; more &ndash;&gt;</li>
+</ul>
+
+<h2 id="testing-notes:bc3cdebe8a50650a5fd63bed57e56314">Testing Notes</h2>
+
+<ul>
+<li>Currently we have only one version of the code. We may try to do another version that is not recursive because putting the functions on stack will take up some memory and time</li>
+<li>Another version could be trying to use the pivot from the middle and then compare how do the random numbers compare against the sorted numbers</li>
+</ul>
+
+<h2 id="code:bc3cdebe8a50650a5fd63bed57e56314">Code</h2>
+
+<p>As usual the <a href="https://github.com/abhi1010/Algorithms/blob/master/Algo_codes/QuickSort.cpp">code</a> is available here:</p>
+
+<p><a href="https://github.com/abhi1010/Algorithms">https://github.com/abhi1010/Algorithms</a></p>
+
+<h2 id="numbers:bc3cdebe8a50650a5fd63bed57e56314">Numbers</h2>
+
+<table style="border-bottom:lightblue solid;text-align:center;border-left:lightblue solid;background-color:#efefef;width:100%;border-collapse:collapse;border-top:lightblue solid;border-right:lightblue solid;" border="1" > <tbody > <tr >
+<td style="width:25%;" >
+</td>
+<td style="width:25%;" >**# of Items in Array**
+</td>
+<td style="width:25%;" >**Time Taken**
+</td>
+<td style="width:25%;" >**Average for 100 numbers**
+</td> </tr> <tr >
+<td rowspan="3" >**Random**
+</td>
+<td >10
+</td>
+<td >0.072972
+</td>
+<td >0.72972
+</td> </tr> <tr >
+<td >1K
+</td>
+<td >2.74698
+</td>
+<td >0.274698
+</td> </tr> <tr >
+<td >1M
+</td>
+<td >4640.77
+</td>
+<td >0.464077
+</td> </tr> <tr >
+<td rowspan="3" >**Sorted**
+</td>
+<td >10
+</td>
+<td >0.042773
+</td>
+<td >0.42773
+</td> </tr> <tr >
+<td >1K
+</td>
+<td >1.84335
+</td>
+<td >0.184335
+</td> </tr> <tr >
+<td >1M
+</td>
+<td >2473.42
+</td>
+<td >0.247342
+</td> </tr> </tbody> </table>
+
+      
+    </div>
+    
+    <div class="post">
+      <h1 class="post-title">
+        <a href="http://localhost:1313/blog/2012/09/17/insertion-sort/">Insertion Sort</a>
+      </h1>
+      <span class="post-date">Sep 17, 2012 &middot; 2 minute read
+      
+      <br/>
+      <a class="label" href="http://localhost:1313/categories/linux">Linux</a>
+      </span>
+      
+      
+
+<p>Insertion Sort has the following properties:</p>
+
+<ul>
+<li><p>It works by moving elements one at a time</p></li>
+
+<li><p>Works really well for small data sets</p></li>
+
+<li><p>Consider going with this when the input data may already be sorted or partially sorted</p></li>
+
+<li><ul>
+<li>The may not have to move the elements around, thereby saving precious cycles</li>
+</ul></li>
+
+<li><p>Stable sort</p></li>
+
+<li><ul>
+<li>Keeps the original order of elements with equal values</li>
+</ul></li>
+</ul>
+
+<!-- more -->
+
+<h2 id="testing-notes:a9ce6fa80f206d39e558f67e9cc61fdd">Testing Notes</h2>
+
+<ul>
+<li><p>Had a very interesting time testing my code. I knew that swapping takes time. std::swap takes particularly longer. I disabled that from the beginning itself</p></li>
+
+<li><p>Even more interesting was how I thought of fixing my code which was running slowly</p></li>
+
+<li><p>Initially even running an array of size 1K was taking about 4s so I just made a minor change to remove &ldquo;&ndash; insertIndex ;&rdquo; altogether and do the calculation in the previous line itself. That did the trick. Otherwise the code was taking hours and hours for 1M array size so I had to stop running it.</p></li>
+
+<li><p>I even tried improving the code a bit futher by ensuring that I do not call insertIndex-1 many a times but that didn&rsquo;t really help - in fact made it worse again</p></li>
+
+<li><p>Sorted runs will run much faster because there&rsquo;s no work to be done in those cases</p></li>
+
+<li><ul>
+<li>Would be a nice algo to use if your data is mostly sorted</li>
+</ul></li>
+</ul>
+
+<h2 id="code:a9ce6fa80f206d39e558f67e9cc61fdd">Code</h2>
+
+<p>As usual the <a href="https://github.com/abhi1010/Algorithms/blob/master/Algo_codes/InsertionSort.cpp">code</a> is available here:</p>
+
+<p><a href="https://github.com/abhi1010/Algorithms">https://github.com/abhi1010/Algorithms</a></p>
+
+<h2 id="numbers:a9ce6fa80f206d39e558f67e9cc61fdd">Numbers</h2>
+
+<table style="text-align:center;background-color:#efefef;width:100%;border-collapse:collapse;border:lightblue solid;" border="1" >
+<tbody >
+<tr >
+
+<td style="width:25%;" >
+</td>
+
+<td style="width:25%;" >**# of Items in Array**
+</td>
+
+<td style="width:25%;" >**Time Taken**
+</td>
+
+<td style="width:25%;" >**Average for 100 numbers**
+</td>
+</tr>
+<tr >
+
+<td rowspan="3" >**Random**
+</td>
+
+<td >10
+</td>
+
+<td >0.006095
+</td>
+
+<td >0.06095
+</td>
+</tr>
+<tr >
+
+<td >1K
+</td>
+
+<td >0.369859
+</td>
+
+<td >0.0369859
+</td>
+</tr>
+<tr >
+
+<td >1M
+</td>
+
+<td >323.878
+</td>
+
+<td >0.0323878
+</td>
+</tr>
+<tr >
+
+<td rowspan="3" >**Sorted**
+</td>
+
+<td >10
+</td>
+
+<td >0.005022
+</td>
+
+<td >0.05022
+</td>
+</tr>
+<tr >
+
+<td >1K
+</td>
+
+<td >0.11696
+</td>
+
+<td >0.011696
+</td>
+</tr>
+<tr >
+
+<td >1M
+</td>
+
+<td >122.427
+</td>
+
+<td >0.0122427
+</td>
+</tr>
+</tbody>
+</table>
+
+      
+    </div>
+    
+    <div class="post">
+      <h1 class="post-title">
+        <a href="http://localhost:1313/blog/2012/09/13/radix-sort/">Radix Sort</a>
+      </h1>
+      <span class="post-date">Sep 13, 2012 &middot; 1 minute read
+      
+      <br/>
+      <a class="label" href="http://localhost:1313/categories/linux">Linux</a>
+      </span>
+      
+      <p>It is a non-comparative <em>integer</em> sorting algorithm. It sorts data by grouping keys by the individual digits which share the same significant position and value. Think <em>Tens, Hundreds, Thousands</em> etc. Some pointers about Radix Sort:</p>
+
+<ul>
+<li>Even though it is an integer sorting algorithm, it is not restricted just to integers. Integers can also represent strings of characters</li>
+<li>Two types of radix sort are:
+
+<ul>
+<li>LSD (Least Significant Digit): Short keys come before long keys</li>
+<li>MSD (Most Significant Digit) Sorting: Lexicographic Order. Better for strings.</li>
+</ul></li>
+<li>Uses Counting Sort as Sub Routine (which takes extra memory)
+
+<ul>
+<li>If memory is not really a concern, forget about this issue</li>
+</ul></li>
+<li>Radix Sort, with at most d digits, takes O(d*(n+b)) time where b is the base</li>
+<li>Use Radix Sort over Counting Sort when the numbers range from 1 to n-square for example.
+&lt;!&ndash; more &ndash;&gt;</li>
+</ul>
+
+<p><strong>Numbers</strong></p>
+
+<p>Let&rsquo;s look at the stats from the algorithm:</p>
+
+<table style="border-bottom:lightblue solid;text-align:center;border-left:lightblue solid;background-color:#efefef;width:100%;border-collapse:collapse;border-top:lightblue solid;border-right:lightblue solid;" border="1" > <tbody > <tr >
+<td style="width:25%;" >
+</td>
+<td style="width:25%;" >**# of Items in Array**
+</td>
+<td style="width:25%;" >**Time Taken**
+</td>
+<td style="width:25%;" >**Average for 100 numbers**
+</td> </tr> <tr >
+<td rowspan="3" >**Random**
+</td>
+<td >10
+</td>
+<td >0.033351
+</td>
+<td >0.33351
+</td> </tr> <tr style="background-color:#efefef;color:#008000;" >
+<td >1K
+</td>
+<td >3.22004
+</td>
+<td >0.322004
+</td> </tr> <tr >
+<td >1M
+</td>
+<td >5650.9
+</td>
+<td >0.56509
+</td> </tr> <tr >
+<td rowspan="3" >**Sorted**
+</td>
+<td >10
+</td>
+<td >0.020659
+</td>
+<td >0.20659
+</td> </tr> <tr >
+<td >1K
+</td>
+<td >3.26273
+</td>
+<td >0.326273
+</td> </tr> <tr >
+<td >1M
+</td>
+<td >5683.91
+</td>
+<td >0.568391
+</td> </tr> </tbody> </table>
+
+<p><strong>Code</strong></p>
+
+<p>As always, the code is available at <a href="https://github.com/abhi1010/Algorithms">https://github.com/abhi1010/Algorithms</a> for easier access.</p>
+
+      
+    </div>
+    
+    <div class="post">
+      <h1 class="post-title">
+        <a href="http://localhost:1313/blog/2012/09/11/counting-sort/">Counting Sort</a>
+      </h1>
+      <span class="post-date">Sep 11, 2012 &middot; 2 minute read
+      
+      <br/>
+      <a class="label" href="http://localhost:1313/categories/linux">Linux</a>
+      </span>
+      
+      <p>Counting Sort is an integer sorting algorithm. It is not very famous when somebody talks about sorting algorithms but it is great when sorting integers. In fact, many a times it may even beat other Sorting Algorithms. The highlight of Counting Sort is that it creates a bucket array (to keep track of frequency of numbers) whose size is the maximum element in the provided array.</p>
+
+<p>We are looking to compare most of the sorting algorithms to find out which one performs better under different circumstances. One of the ways is to compare the complexity for each algorithm. The other way is to compare how well they perform based on the input they are all provided. I will post my code on Github but will start with Counting Sort here.</p>
+
+<p><em>Here are some pointers about Counting Sort:</em></p>
+
+<ul>
+<li><p>Linear sorting algo with O(n+k) when the elements range from 1 to k</p>
+
+<ul>
+<li>On</li>
+</ul></li>
+
+<li><p>It is really good when the numbers range from 1 to n which means the max between them is not going to be very high</p></li>
+</ul>
+
+<p><strong><em>How do we compare all Sorting Algorithms?</em></strong></p>
+
+<p>We are going to look at the following scenarios across all Sorting Algorithms:</p>
+
+<ul>
+<li><p>10 numbers - Random + Sorted</p></li>
+
+<li><p>1000 numbers (1K) - Random + Sorted</p></li>
+
+<li><p>1,000,000 numbers (1M) - Random + Sorted</p></li>
+
+<li><p>20000 iterations for each one of these scenarios</p></li>
+
+<li><p>For good measure we will look at the average time required to sort 100 numbers in each one of these cases</p>
+
+<ul>
+<li><p>This will allow us to compare all algorithms against each other by looking at the average times</p></li>
+
+<li><p>It means we will be multiplying the results of 10 numbers by 10 (to get the &ldquo;average&rdquo; for 100 numbers) and also</p></li>
+</ul></li>
+</ul>
+
+<!-- more -->
+
+<p><strong>Machine Setup</strong></p>
+
+<p>The setup of my machine is as follows:</p>
+
+<p>| Hardware: x86_64
+| Processor: 16 x Intel&reg; Xeon&reg; E5540 2.53 GHz
+| Compiler: gcc version 4.8.2 (GCC)
+| Redhat Version: Red Hat 5.3</p>
+
+<p><strong>The Source Code</strong></p>
+
+<p>I am trying to do this all together in a single place so that it is easy for anybody to pick up the code, either for their own testing or going through the Sorting Algos. All of the source code for this can be found here:</p>
+
+<p><a href="https://github.com/abhi1010/Algorithms">https://github.com/abhi1010/Algorithms</a></p>
+
+<p><strong>Numbers</strong></p>
+
+<p>Without further ado, let&rsquo;s delve into the numbers for Counting Sorts. Here&rsquo;s the result from the code:
+<table style="text-align:center;background-color:#efefef;width:100%;border-collapse:collapse;border:lightblue solid;" border="1" >
+<tbody >
+<tr ></p>
+
+<p><td style="width:25%;" >
+</td></p>
+
+<p><td style="width:25%;" ><strong># of Items in Array</strong>
+</td></p>
+
+<p><td style="width:25%;" ><strong>Time Taken</strong>
+</td></p>
+
+<p><td style="width:25%;" ><strong>Average for 100 numbers</strong>
+</td>
+</tr>
+<tr ></p>
+
+<p><td rowspan="3" ><strong>Random</strong>
+</td></p>
+
+<p><td >10
+</td></p>
+
+<p><td >0.022982
+</td></p>
+
+<p><td >0.22982
+</td>
+</tr>
+<tr style="background-color:#efefef;color:#008000;" ></p>
+
+<p><td >1K
+</td></p>
+
+<p><td >1.21822
+</td></p>
+
+<p><td >0.121822
+</td>
+</tr>
+<tr ></p>
+
+<p><td >1M
+</td></p>
+
+<p><td >1823.85
+</td></p>
+
+<p><td >0.182385
+</td>
+</tr>
+<tr ></p>
+
+<p><td rowspan="3" ><strong>Sorted</strong>
+</td></p>
+
+<p><td >10
+</td></p>
+
+<p><td >0.026815
+</td></p>
+
+<p><td >0.26815
+</td>
+</tr>
+<tr style="background-color:#efefef;color:#008000;" ></p>
+
+<p><td >1K
+</td></p>
+
+<p><td >1.19146
+</td></p>
+
+<p><td >0.119146
+</td>
+</tr>
+<tr ></p>
+
+<p><td >1M
+</td></p>
+
+<p><td >1612.58
+</td></p>
+
+<p><td >0.161258
+</td>
+</tr>
+</tbody>
+</table></p>
+
+      
+    </div>
+    
+    <div class="post">
+      <h1 class="post-title">
+        <a href="http://localhost:1313/blog/2008/05/14/visual-studio-2008-crashes-while-adding-items/">Visual Studio 2008 crashes while adding items</a>
+      </h1>
+      <span class="post-date">May 14, 2008 &middot; 1 minute read
+      
+      <br/>
+      <a class="label" href="http://localhost:1313/categories/.net">.NET</a><a class="label" href="http://localhost:1313/categories/visual-studio">Visual Studio</a>
+      </span>
+      
+      <p>Had this problem cropping up since months where I was trying to add items to Visual Studio 2008 Toolbox and it kept crashing.</p>
+
+<p>Finally got a work around, you should start it in safe mode. Here&rsquo;s the procedure:</p>
+
+<pre><code>devenv /safemode
+</code></pre>
+
+<p>Then use Choose Items on toolbox and run through each of the tabs. Once you
+accept any exceptions raised on loading controls, you can then open Visual
+Studio normally and add items.</p>
+
+<p>The reason for this has to be pretty simple - I have installed way too many beta/refresh version on Visual Studio 2008, something had to give up. I can&rsquo;t really complain.</p>
+
+      
+    </div>
+    
+    <div class="post">
+      <h1 class="post-title">
+        <a href="http://localhost:1313/blog/2008/04/06/google-analytics--swfaddress/">Google Analytics &amp; SWFAddress</a>
+      </h1>
+      <span class="post-date">Apr 6, 2008 &middot; 1 minute read
+      
+      <br/>
+      <a class="label" href="http://localhost:1313/categories/asp.net">ASP.NET</a>
+      </span>
+      
+      <p>Recently found a bug slash issue with Google Analytics new javscript software (post-urchin v5). I had written the internal documentation for the company standards and somehow when those standards were put into practice, SWFAddress feature of flash stopped working the moment google analytics feature was enabled. Worst of all, the web pages failed to load! To cap it off, the website was working perfectly fine on Firefox 2, 3 and IE 7!! It was having trouble only on IE6.</p>
+
+<p>I tried a lot of ways but none seem to worked. Finally found a blog that remotely talked about SWFAddress!</p>
+
+<p>Well, the problem turns out that SWFAddress uses <strong>ExternalInterface.call()</strong> instead of getUrl() function internally and they don&rsquo;t go well together if used together.</p>
+
+<p>The solution was simple, since flash is using SWFAddress feature, every getUrl should be replaced with ExternalInterface.call(). Needless to say, everything seemed perfect again.</p>
+
+      
+    </div>
+    
+    <div class="post">
+      <h1 class="post-title">
+        <a href="http://localhost:1313/blog/2008/03/31/full-trust-on-mapped-drive/">Full Trust on Mapped Drive</a>
+      </h1>
+      <span class="post-date">Mar 31, 2008 &middot; 1 minute read
+      
+      <br/>
+      <a class="label" href="http://localhost:1313/categories/.net">.NET</a>
+      </span>
+      
+      <p>Sometimes, when opening a web project from another mapped drive (not your own computer&rsquo;s hard disk) Visual Studio may complain something like this:</p>
+
+<pre><code>The project location is not trusted.
+
+
+
+
+Running the application may result in security exceptions when it
+attempts to perform actions which require full trust.
+</code></pre>
+
+<p>The problem here is that .Net does not want to fully adhere to all security policies as your hard disk to this mapped drive as well as it does not know what kind of data it might have. If you want it to fully trust this mapped drive then you will have to use caspol for this purpose. Here&rsquo;s how it is done:</p>
+
+<p><strong>c:&gt;caspol -q -machine -addgroup 1 -url file://W:/* FullTrust -name &ldquo;W Drive&rdquo;</strong></p>
+
+<p>Once this new code group is in place, any new .NET processes you start will give any assemblies on the W drive full trust<strong>.</strong></p>
+
+      
+    </div>
+    
+    <div class="post">
+      <h1 class="post-title">
+        <a href="http://localhost:1313/blog/2008/03/31/tag-your-namespaces/">Tag your namespaces</a>
+      </h1>
+      <span class="post-date">Mar 31, 2008 &middot; 1 minute read
+      
+      <br/>
+      <a class="label" href="http://localhost:1313/categories/.net">.NET</a>
+      </span>
+      
+      <p>Recently discovered a nifty little feature on .Net and though of sharing it.</p>
+
+<p>You can tag an assembly by giving it a name and then use this name throughout your class to access the classes inside this namespace.</p>
+
+<pre><code>&lt;span style=&quot;color:#0000ff;&quot;&gt;using&lt;/span&gt; asp=CompanyName.Data;
+</code></pre>
+
+<p>Now all the classes inside CompanyName.Data namespace can be accessed using the name asp (as if it was an instance of the namespace).</p>
+
+<p>One thing to note, however, is that the classes inside this namespace cannot be accessed directly and the word &ldquo;asp&rdquo; has to be used.</p>
+
+<p>Let&rsquo;s see an example to understand it.
+<a href="https://gist.github.com/abhi1010/ad4f3fc47ffa870a48f9">https://gist.github.com/abhi1010/ad4f3fc47ffa870a48f9</a></p>
+
+<p>This function, btw, is going through a namespace called &ldquo;Company.AspFunctions&rdquo; and we give it a tag &ldquo;asp&rdquo; to access all classes under it by its tag instead. Date_Format() fn is a static function inside Conn Class. Basically it takes your &ldquo;asp style&rdquo; datetime strings and returns you the correct date in &ldquo;yyyyMMdd&rdquo; format.</p>
+
+      
+    </div>
+    
+    <div class="post">
+      <h1 class="post-title">
+        <a href="http://localhost:1313/blog/2008/03/31/few-good-links-for-march-08/">Few Good Links for March 08</a>
+      </h1>
+      <span class="post-date">Mar 31, 2008 &middot; 1 minute read
+      
+      <br/>
+      <a class="label" href="http://localhost:1313/categories/.net">.NET</a><a class="label" href="http://localhost:1313/categories/asp.net">ASP.NET</a>
+      </span>
+      
+      <p><strong>GAX and GAT</strong></p>
+
+<p><a href="http://www.vsdotnet.be/blogs/tommer/2006/08/26/GuidanceOnTheQuotGuidanceAutomationToolkitquot.aspx">http://www.vsdotnet.be/blogs/tommer/2006/08/26/GuidanceOnTheQuotGuidanceAutomationToolkitquot.aspx</a></p>
+
+<p>Excellent place to get started.</p>
+
+<p><a href="http://www.microsoft.com/belux/msdn/nl/chopsticks/default.aspx?id=10">http://www.microsoft.com/belux/msdn/nl/chopsticks/default.aspx?id=10</a></p>
+
+<p><a href="http://jelle.druyts.net/CategoryView.aspx?category=Blog|Programming|.NET|GuidanceAutomation">http://jelle.druyts.net/CategoryView.aspx?category=Blog|Programming|.NET|GuidanceAutomation</a></p>
+
+<p><strong>ASP.NET AJAX Extender for multicolumn drag and drop</strong></p>
+
+<p><a href="http://www.codeproject.com/KB/ajax/MakingGoogleIG.aspx">http://www.codeproject.com/KB/ajax/MakingGoogleIG.aspx</a></p>
+
+<p><a href="http://www.codeproject.com/KB/ajax/multicolumndragdrop.aspx">http://www.codeproject.com/KB/ajax/multicolumndragdrop.aspx</a></p>
+
+<p><a href="http://msmvps.com/blogs/omar/archive/2007/03/22/asp-net-ajax-extender-for-multi-column-widget-drag-drop.aspx">http://msmvps.com/blogs/omar/archive/2007/03/22/asp-net-ajax-extender-for-multi-column-widget-drag-drop.aspx</a></p>
+
+<p><strong>Advanced ASP.NET AJAX Tips and Tricks</strong></p>
+
+<p><a href="http://www.codeproject.com/KB/ajax/aspnetajaxtips.aspx">http://www.codeproject.com/KB/ajax/aspnetajaxtips.aspx</a>****</p>
+
+<p><strong>Writing user defined functions for Excel in .NET</strong></p>
+
+<p><a href="http://blogs.msdn.com/eric_carter/archive/2004/12/01/writing-user-defined-functions-for-excel-in-net.aspx">http://blogs.msdn.com/eric_carter/archive/2004/12/01/writing-user-defined-functions-for-excel-in-net.aspx</a></p>
+
+<p>**Silverlight Tips, Tricks, Tutorials and Links Page **</p>
+
+<p><a href="http://weblogs.asp.net/scottgu/pages/silverlight-posts.aspx">http://weblogs.asp.net/scottgu/pages/silverlight-posts.aspx</a></p>
+
+      
+    </div>
+    
+    
+    
+    <ul class="pagination">
+        
+        <li>
+            <a href="/" aria-label="First"><span aria-hidden="true">&laquo;&laquo;</span></a>
+        </li>
+        
+        <li
+        >
+        <a href="/page/2/" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
+        </li>
+        
+        <li
+        ><a href="/">1</a></li>
+        
+        <li
+        ><a href="/page/2/">2</a></li>
+        
+        <li
+        class="active"><a href="/page/3/">3</a></li>
+        
+        <li
+        ><a href="/page/4/">4</a></li>
+        
+        <li
+        >
+        <a href="/page/4/" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
+        </li>
+        
+        <li>
+            <a href="/page/4/" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+        </li>
+        
+    </ul>
+    
+  </div>
+</div>
+
+
+<script src="http://localhost:1313/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script data-no-instant>document.write('<script src="http://'
+        + (location.host || 'localhost').split(':')[0]
+		+ ':1313/livereload.js?mindelay=10"></'
+        + 'script>')</script></body>
+</html>
+

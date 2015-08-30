@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>Merge Sort &middot; Abhishek Pandey</title>
+
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+  <link rel="stylesheet" href="http://localhost:1313/css/poole.css">
+  <link rel="stylesheet" href="http://localhost:1313/css/hyde.css">
+  <link rel="stylesheet" href="http://localhost:1313/css/poole-overrides.css">
+  <link rel="stylesheet" href="http://localhost:1313/css/hyde-overrides.css">
+  <link rel="stylesheet" href="http://localhost:1313/css/hyde-x.css">
+  <link rel="stylesheet" href="http://localhost:1313/css/highlight/sunburst.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://localhost:1313/touch-icon-144-precomposed.png">
+  <link href="http://localhost:1313/favicon.png" rel="icon">
+
+  
+  
+  
+  
+
+  <meta name="description" content="Your default page description">
+  <meta name="keywords" content="your,default,page,keywords">
+  
+</head>
+<body class="theme-base-aa">
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      
+      <h1>Abhishek Pandey</h1>
+      <p class="lead">Coders Digest&hellip;</p>
+    </div>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item"><a href="http://localhost:1313/">Blog</a></li>
+      
+      <li class="sidebar-nav-item"><a href="http://localhost:1313/about/">about hugo</a></li>
+      
+      <li class="sidebar-nav-item"><a href="http://localhost:1313/getting-started/">getting started</a></li>
+      
+    </ul>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item">
+      
+      
+      
+      
+      
+      
+      
+      
+      </li>
+    </ul>
+
+    
+
+  </div>
+</div>
+
+
+<div class="content container">
+  <div class="post">
+    <h1>Merge Sort</h1>
+    
+
+<p>Merge Sort</p>
+
+<ul>
+<li>Complexity is O(n log n)</li>
+<li>Needs more space to merge - proportional to the size of the array</li>
+<li>Stable Sort</li>
+<li>* Preserves the order of equal elements</li>
+<li>Merge Sort does about 39% lower comparisons, in worst case, compared to Quicksort&rsquo;s average case</li>
+<li>The algo almost always behaves in the same way; taking relatively the same amount of time, whether sorted or unsorted arrays
+&lt;!&ndash; more &ndash;&gt;</li>
+</ul>
+
+<h2 id="testing-notes:19e6e9293aeb00484ea655d2aac941c9">Testing Notes</h2>
+
+<ul>
+<li>Started testing the algo with two versions.</li>
+<li>* First version creates two temporary arrays
+
+<ul>
+<li>First version creates only one temporary array</li>
+</ul></li>
+<li>The sole difference between them is the one that makes second implementation better</li>
+</ul>
+
+<h2 id="code:19e6e9293aeb00484ea655d2aac941c9">Code</h2>
+
+<p>As usual the <a href="https://github.com/abhi1010/Algorithms/blob/master/Algo_codes/MergeSort.cpp">code</a> is available here:</p>
+
+<p><a href="https://github.com/abhi1010/Algorithms">https://github.com/abhi1010/Algorithms</a></p>
+
+<h2 id="numbers:19e6e9293aeb00484ea655d2aac941c9">Numbers</h2>
+
+<table style="border-bottom:lightblue solid;text-align:center;border-left:lightblue solid;background-color:#efefef;width:100%;border-collapse:collapse;border-top:lightblue solid;border-right:lightblue solid;" border="1" > <tbody > <tr >
+<td style="width:25%;" >
+
+### Merge Sort
+
+</td>
+<td style="width:25%;" >**# of Items in Array**
+</td>
+<td style="width:25%;" >**Time Taken**
+</td>
+<td style="width:25%;" >**Average for 100 numbers**
+</td> </tr> <tr >
+<td rowspan="3" >**Random**
+</td>
+<td >10
+</td>
+<td >0.047464
+</td>
+<td >0.47464
+</td> </tr> <tr >
+<td >1K
+</td>
+<td >5.41906
+</td>
+<td >0.541906
+</td> </tr> <tr >
+<td >1M
+</td>
+<td >8444.11
+</td>
+<td >0.844411
+</td> </tr> <tr >
+<td rowspan="3" >**Sorted**
+</td>
+<td >10
+</td>
+<td >0.027155
+</td>
+<td >0.27155
+</td> </tr> <tr >
+<td >1K
+</td>
+<td >4.47016
+</td>
+<td >0.447016
+</td> </tr> <tr >
+<td >1M
+</td>
+<td >6323.05
+</td>
+<td >0.632305
+</td> </tr> </tbody> </table>
+
+<table style="border-bottom:lightblue solid;text-align:center;border-left:lightblue solid;background-color:#efefef;width:100%;border-collapse:collapse;border-top:lightblue solid;border-right:lightblue solid;" border="1" > <tbody > <tr >
+<td style="width:25%;" >
+
+### Merge Sort 2
+
+</td>
+<td style="width:25%;" >**# of Items in Array**
+</td>
+<td style="width:25%;" >**Time Taken**
+</td>
+<td style="width:25%;" >**Average for 100 numbers**
+</td> </tr> <tr >
+<td rowspan="3" >**Random**
+</td>
+<td >10
+</td>
+<td >0.033668
+</td>
+<td >0.33668
+</td> </tr> <tr >
+<td >1K
+</td>
+<td >3.89374
+</td>
+<td >0.389374
+</td> </tr> <tr >
+<td >1M
+</td>
+<td >7076.04
+</td>
+<td >0.707604
+</td> </tr> <tr >
+<td rowspan="3" >**Sorted**
+</td>
+<td >10
+</td>
+<td >0.019034
+</td>
+<td >0.19034
+</td> </tr> <tr >
+<td >1K
+</td>
+<td >2.7833
+</td>
+<td >0.27833
+</td> </tr> <tr >
+<td >1M
+</td>
+<td >4664.16
+</td>
+<td >0.466416
+</td> </tr> </tbody> </table>
+
+  </div>
+</div>
+<script src="http://localhost:1313/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script data-no-instant>document.write('<script src="http://'
+        + (location.host || 'localhost').split(':')[0]
+		+ ':1313/livereload.js?mindelay=10"></'
+        + 'script>')</script></body>
+</html>

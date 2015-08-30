@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>CVS Cheat Sheet &middot; Abhishek Pandey</title>
+
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+  <link rel="stylesheet" href="http://localhost:1313/css/poole.css">
+  <link rel="stylesheet" href="http://localhost:1313/css/hyde.css">
+  <link rel="stylesheet" href="http://localhost:1313/css/poole-overrides.css">
+  <link rel="stylesheet" href="http://localhost:1313/css/hyde-overrides.css">
+  <link rel="stylesheet" href="http://localhost:1313/css/hyde-x.css">
+  <link rel="stylesheet" href="http://localhost:1313/css/highlight/sunburst.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://localhost:1313/touch-icon-144-precomposed.png">
+  <link href="http://localhost:1313/favicon.png" rel="icon">
+
+  
+  
+  
+  
+
+  <meta name="description" content="Your default page description">
+  <meta name="keywords" content="your,default,page,keywords">
+  
+</head>
+<body class="theme-base-aa">
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      
+      <h1>Abhishek Pandey</h1>
+      <p class="lead">Coders Digest&hellip;</p>
+    </div>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item"><a href="http://localhost:1313/">Blog</a></li>
+      
+      <li class="sidebar-nav-item"><a href="http://localhost:1313/about/">about hugo</a></li>
+      
+      <li class="sidebar-nav-item"><a href="http://localhost:1313/getting-started/">getting started</a></li>
+      
+    </ul>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item">
+      
+      
+      
+      
+      
+      
+      
+      
+      </li>
+    </ul>
+
+    
+
+  </div>
+</div>
+
+
+<div class="content container">
+  <div class="post">
+    <h1>CVS Cheat Sheet</h1>
+    <p>I&rsquo;ve worked on CVS for a long time now and figured out that I&rsquo;d save a lot of time if I started writing alias or functions for the numerous tasks that I did on them. I will put down some of them here so you may benefit from them.</p>
+
+<p><em>Silently update and inform about the status of the files (recursive)</em></p>
+
+<blockquote>cvs -q -n update
+> 
+> </blockquote>
+
+<p><em>Same as earlier but will only do so for the current folder</em></p>
+
+<blockquote>cvs -Q -n update -l
+> 
+> </blockquote>
+
+<p><em>Finds out the cv[s] [m]odified list of files while also indentating them nicely with only the important data pulled out</em></p>
+
+<blockquote>cvs -Q status | egrep "File: " -A 4 | egrep -v "Up-to-date" | egrep "File: " -A 3 | sed -e "s/ Status:/\t\tStatus:/" -e "s/,v$/\n-------------------------------------------------------------------------\n/" -e "s/.*${PWD##*/}\//Location:\t\t /" -e "s/Attic\///" | egrep "Location:|Repository|Status:|File:|--------
+> 
+> </blockquote>
+
+<p><em>Recursively add all files to CVS for committing from the current directory</em></p>
+
+<blockquote>find . -type d -print | grep -v CVS | xargs cvs add
+> 
+> </blockquote>
+
+<p><em>Doing a side by side diff (change the value of -W according to the width of the screen)</em></p>
+
+<blockquote>cvs -Q diff -t -y --suppress-common-lines -W 190 $*
+> 
+> </blockquote>
+
+<p><em>Merging code from one branch to another</em></p>
+
+<blockquote># Creates a command that you can use to "merge" your code from dev head to this current branch.   
+# Ideally you want to run this command from a folder where you want the code to merge to....   
+merge()   
+{   
+BRANCH=$(cat CVS/Tag | cut -c2-)   
+CMD=$(echo cvs update -j $BRANCH -j Version_2_17_dev .)   
+echo $CMD   
+}   
+
+> 
+> </blockquote>
+
+  </div>
+</div>
+<script src="http://localhost:1313/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script data-no-instant>document.write('<script src="http://'
+        + (location.host || 'localhost').split(':')[0]
+		+ ':1313/livereload.js?mindelay=10"></'
+        + 'script>')</script></body>
+</html>

@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>Coders Digest &middot; Abhishek Pandey</title>
+
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+  <link rel="stylesheet" href="http://localhost:1313/css/poole.css">
+  <link rel="stylesheet" href="http://localhost:1313/css/hyde.css">
+  <link rel="stylesheet" href="http://localhost:1313/css/poole-overrides.css">
+  <link rel="stylesheet" href="http://localhost:1313/css/hyde-overrides.css">
+  <link rel="stylesheet" href="http://localhost:1313/css/hyde-x.css">
+  <link rel="stylesheet" href="http://localhost:1313/css/highlight/sunburst.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://localhost:1313/touch-icon-144-precomposed.png">
+  <link href="http://localhost:1313/favicon.png" rel="icon">
+
+  
+  
+  
+  <link href="http://localhost:1313/index.xml" rel="alternate" type="application/rss+xml" title="Coders Digest &middot; Abhishek Pandey" />
+
+  <meta name="description" content="Your default page description">
+  <meta name="keywords" content="your,default,page,keywords">
+  
+</head>
+<body class="theme-base-aa">
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      
+      <h1>Abhishek Pandey</h1>
+      <p class="lead">Coders Digest&hellip;</p>
+    </div>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item"><a href="http://localhost:1313/">Blog</a></li>
+      
+      <li class="sidebar-nav-item"><a href="http://localhost:1313/about/">about hugo</a></li>
+      
+      <li class="sidebar-nav-item"><a href="http://localhost:1313/getting-started/">getting started</a></li>
+      
+    </ul>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item">
+      
+      
+      
+      
+      
+      
+      
+      
+      </li>
+    </ul>
+
+    
+
+  </div>
+</div>
+
+
+<div class="content container">
+  <div class="posts">
+    
+    
+    <div class="post">
+      <h1 class="post-title">
+        <a href="http://localhost:1313/blog/2008/03/11/how-to-protect-from-sql-injections-in-asp.net/">How to protect from SQL Injections in ASP.NET</a>
+      </h1>
+      <span class="post-date">Mar 11, 2008 &middot; 1 minute read
+      
+      <br/>
+      <a class="label" href="http://localhost:1313/categories/.net">.NET</a><a class="label" href="http://localhost:1313/categories/asp.net">ASP.NET</a>
+      </span>
+      
+      <p>Some good links to figure out how to save your code&rsquo;s ass from being thrashed by SQL Injections</p>
+
+<p><a href="http://msdn2.microsoft.com/en-us/library/ms998271.aspx#paght000002_step2">http://msdn2.microsoft.com/en-us/library/ms998271.aspx#paght000002_step2</a></p>
+
+<p><a href="http://msdn2.microsoft.com/en-us/library/bb355989.aspx#paght000003_step4">http://msdn2.microsoft.com/en-us/library/bb355989.aspx#paght000003_step4</a></p>
+
+      
+    </div>
+    
+    <div class="post">
+      <h1 class="post-title">
+        <a href="http://localhost:1313/blog/2008/03/08/creating-custom-web-controls/">Creating Custom Web Controls</a>
+      </h1>
+      <span class="post-date">Mar 8, 2008 &middot; 5 minute read
+      
+      <br/>
+      <a class="label" href="http://localhost:1313/categories/.net">.NET</a><a class="label" href="http://localhost:1313/categories/asp.net">ASP.NET</a>
+      </span>
+      
+      <p>How do you extend a control? Let&rsquo;s figure it out.</p>
+
+<p>**Why would you want to extend existing controls?<br />
+**Because some functionality may not exist exactly as you may need it. For example, let&rsquo;s take up ImageButton control example. It is a great control but it falls short when it comes to real world scenario. Mostly websites do a hover image clickable button where the text or background color of the button changes once you hover your mouse over it.</p>
+
+<p><strong>How to Extend?</strong></p>
+
+<p>_I assume that you use C# code but there is not going to be any difference even if you wanted to do in VB.Net. _</p>
+
+<p>Create a project for creating custom web control library. It automatically includes a C# class that says something like</p>
+
+<pre><code>&lt;span style=&quot;color:#0000ff;&quot;&gt;public&lt;/span&gt; &lt;span style=&quot;color:#0000ff;&quot;&gt;class&lt;/span&gt; WebCustomControl1 : WebControl
+</code></pre>
+
+<p>Now ask yourself, what do you want to extend? A GridView? Replace WebControl with GridView. Let&rsquo;s follow our example with Hover Image Button Control. If you recall .Net already has ImageButton control that accepts one url for the image to be shown for that button, let&rsquo;s extend that one to include two Images rather than just one. In that case I would replace WebControl with ImageButton since I am going to extend ImageButton control. Let&rsquo;s call it HoverImageButton. Hence, the line changes to some thing like this:</p>
+
+<pre><code>&lt;span style=&quot;color:#0000ff;&quot;&gt;public&lt;/span&gt; &lt;span style=&quot;color:#0000ff;&quot;&gt;class&lt;/span&gt; HoverImageButton : ImageButton
+</code></pre>
+
+<p>The class also includes a property called Text for you so that you can see that and figure out how to use properties in custom web controls. It also includes attributes that start off just before the property itself. It is used by Visual Studio for showing this property on Properties pane. It is definitely a very useful feature.</p>
+
+<p>You can change this property to anything you like. Since we are creating a HoverImageButton control we want a property to save another url for the hover image&rsquo;s source. Let&rsquo;s change Text to &ldquo;ImageHoverUrl&rdquo;. ImageButton already has a property called &ldquo;ImageUrl&rdquo; and it belongs to &ldquo;Appearance&rdquo; group in Visual Studio Properties window. Notice the similarity in &ldquo;ImageHoverUrl&rdquo; and ImageUrl so that they appear together in Properties window. Sometimes, little deeds go a long way.</p>
+
+<p><strong>Writing JS file</strong></p>
+
+<p>Now let&rsquo;s add a javascript file to the project. Add one function called &ldquo;ShowImageHoverButton()&rdquo; that takes in two parameters, the control&rsquo;s id and the new image to be shown for that control. The control image&rsquo;s source is changed everytime when this function is called. We can call this function on mouse out and on mouse over events.</p>
+
+<p>That&rsquo;s all you need to do for this control.</p>
+
+<p><strong>Linking JS and Custom Control them together</strong></p>
+
+<p>This is a very simple process. You have the javascript file and you know for sure that the control will be loaded into the webpage, so you need a mechanism inside the control so that you can tell that &ldquo;hey, include this javascript file whenever you have this control on a page&rdquo;.</p>
+
+<p>This is how you do that.</p>
+
+<p><a href="https://gist.github.com/abhi1010/bfb075b6787d2616fde6">https://gist.github.com/abhi1010/bfb075b6787d2616fde6</a></p>
+
+<p>Please note that the name of the javascript file is &ldquo;HoverImageButtonJS.js&rdquo;. ExtendedControls is the name of the project/assembly that I have created for this custom web control.</p>
+
+<p>How to assign javascript functions to the control?</p>
+
+<p>Now the next problem is how would you tell the control that call this javscript function function on &ldquo;mouseover&rdquo;? We use OnInit function for this process. We override the function and make use of the control&rsquo;s Attributes property.</p>
+
+<p>What is Attributes property for anyway? Well, it adds any extra &ldquo;property&rdquo; or &ldquo;style&rdquo; that you may want to add to the control when it is rendered to the client.</p>
+
+<p>Let&rsquo;s see how that&rsquo;s done.</p>
+
+<p><a href="https://gist.github.com/abhi1010/d0b66ef7b0f076e88042">https://gist.github.com/abhi1010/d0b66ef7b0f076e88042</a></p>
+
+<p>Over here, I have told the class to include &ldquo;onmouseover=ShowImageHoverButton(this, &lsquo;IMAGE_SOURCE&rsquo;)&rdquo; as a property.</p>
+
+<p>This is how it is rendered on the client browser:</p>
+
+<p><a href="https://gist.github.com/abhi1010/6df972bf94b736545419">https://gist.github.com/abhi1010/6df972bf94b736545419</a></p>
+
+<p><strong>Add the javascript file also to the AssemblyInfo.cs class</strong></p>
+
+<p>For the control library to properly include the js file, you have to add the js file in AssemblyInfo.cs class as well. This is how it is done:</p>
+
+<pre><code>[assembly: WebResource(&lt;span style=&quot;color:#006080;&quot;&gt;&quot;ExtendedControls.HoverImageButtonJS.js&quot;&lt;/span&gt;, &lt;span style=&quot;color:#006080;&quot;&gt;&quot;text/javascript&quot;&lt;/span&gt;)]
+</code></pre>
+
+<p><strong>Test Drive!</strong></p>
+
+<p>That&rsquo;s all. A few simple steps and your control is ready to be tested. Still, let&rsquo;s not rush and see the steps required:</p>
+
+<ul>
+<li><p>Add this control&rsquo;s library to any web project.</p></li>
+
+<li><p>Register the dll on web.config. This makes the control available automatically on all the pages.</p></li>
+</ul>
+
+<p><a href="https://gist.github.com/abhi1010/88222d3f94911fbec6f4">https://gist.github.com/abhi1010/88222d3f94911fbec6f4</a></p>
+
+<ul>
+<li>Go to the design view of any page. Open up the Toolbox pane and you will automatically see the name appear &ldquo;HoverImageButton&rdquo;. Double click and you are ready to go!!</li>
+</ul>
+
+<p><strong>Easy as it may sound but it may not be that smooth a ride for you.</strong></p>
+
+<p>Just take care of few pointers and you should be fine. Here they go:</p>
+
+<ul>
+<li><p>The JScript file that you have added sometimes doesn&rsquo;t get linked properly to the control. Right click on the js file and check it&rsquo;s properties. It&rsquo;s compile action should be &ldquo;Embed Content&rdquo; rather than anything else. That way everytime you compile this control, this js file gets &ldquo;embedded&rdquo; into the control&rsquo;s library.</p></li>
+
+<li><p>Take care of the naming convention for the js file.</p>
+
+<ul>
+<li>If your control&rsquo;s namespace is ExtendedControls, then while &ldquo;Registering&rdquo; it in the control&rsquo;s class you should give the JS file&rsquo;s name as &ldquo;ExtendedControls.CustomControl_JS.js&rdquo; where &ldquo;CustomControl_JS.js&rdquo; is the name of the javascript file. Basically, another shortcut to learn it is whatever is the name of the project/assembly that you are creating, you have to append that name before the file name. **Follow this logic strictly, otherwise you will be left high and dry. **</li>
+</ul></li>
+
+<li><p>You should also remember to register this name inside AssemblyInfo.cs class (&ldquo;ExtendedControls.CustomControl_JS.js&rdquo; as per our example here).</p></li>
+
+<li><p>If you want Visual Studio Design support then remember to add the attributes that define where can you see the custom properties of this control in the &ldquo;Properties&rdquo; pane.</p></li>
+
+<li><p>Whenever you are putting your code files inside some folder, try to keep the JS files in the root folder.</p>
+
+<ul>
+<li>When I tried putting them inside the folder it did not work, i took them out to the root folder and it worked instantly. I have not tried changing the JS file names but I am sure you can figure out some solution.</li>
+</ul></li>
+</ul>
+
+<p><strong>Here&rsquo;s all the code in case somebody needs it:</strong></p>
+
+<p><a href="https://gist.github.com/abhi1010/135e9bbf44f3d9a53cb8">https://gist.github.com/abhi1010/135e9bbf44f3d9a53cb8</a></p>
+
+      
+    </div>
+    
+    <div class="post">
+      <h1 class="post-title">
+        <a href="http://localhost:1313/blog/2008/03/08/stringbuilder-vs-string-joins/">StringBuilder vs String joins</a>
+      </h1>
+      <span class="post-date">Mar 8, 2008 &middot; 2 minute read
+      
+      <br/>
+      <a class="label" href="http://localhost:1313/categories/.net">.NET</a>
+      </span>
+      
+      <p>For those who do not want to waste their time, here&rsquo;s the gist for this whole article:
+<em>StringBuilder performs better but you should try to use it when there&rsquo;s lot of concatenation involved (normally more than 7 joins - start thinking about StringBuilder.</em></p>
+
+<p>Let&rsquo;s move on for the lesser mortals. There has been a lot of debate about using StringBuilder instead of adding string like</p>
+
+<pre><code>&lt;span style=&quot;color:#606060;&quot;&gt;   1:&lt;/span&gt; strVariable += &lt;span style=&quot;color:#006080;&quot;&gt;&quot; Add this string to my variable string&quot;&lt;/span&gt;;
+</code></pre>
+
+<p>What&rsquo;s the darn difference?</p>
+
+<p>If you remember your schooling concepts string objects are fixed, their values cannot be changed. So, how can you change the value of a string? Well, you do NOT change the value, you change the object altogether! Every time you assign a value a new object of type string is created with the given value and is returned to you. hence, you discard the old string and actually come up with a new string.</p>
+
+<p>On the other hand, when you use StringBuilder, it is the same object, that you are working on. It keeps appending to the same object and the heap is not changed. Then why don&rsquo;t you use it always? Because there are &ldquo;appending&rdquo; costs. Everytime you append something, it is checked against the buffer and if it falls short of space needed, a new buffer is allocated. Let&rsquo;s see how that works inside the dll:</p>
+
+<p>How about some proof?</p>
+
+<p>Fortunately somebody did the hard work for all of us and actually came up with the statistics. You can find all of that over here:</p>
+
+<p><a href="http://209.85.175.104/search?q=cache:k9R6UE-q2nMJ:www.heikniemi.net/hc/archives/000124.html+http://www.heikniemi.net/hc/archives/000124.html&amp;hl=en&amp;ct=clnk&amp;cd=1&amp;gl=sg&amp;client=firefox-a">http://www.heikniemi.net/hc/archives/000124.html</a></p>
+
+      
+    </div>
+    
+    <div class="post">
+      <h1 class="post-title">
+        <a href="http://localhost:1313/blog/2008/03/08/blogs-i-like/">Blogs I like</a>
+      </h1>
+      <span class="post-date">Mar 8, 2008 &middot; 1 minute read
+      
+      <br/>
+      <a class="label" href="http://localhost:1313/categories/.net">.NET</a><a class="label" href="http://localhost:1313/categories/asp.net">ASP.NET</a>
+      </span>
+      
+      <p>Two blogs i really like and follow many a times are:</p>
+
+<p><a href="SqlAuthority.com">SqlAuthority.com</a> - Excellent blog for Sql Server 2005. The guy has a very in-depth knowledge of Sql Server and I appreciate the way</p>
+
+<p><a href="http://weblogs.asp.net/scottgu">Scott&rsquo;s Blog</a> - Another great blog where Scott Guthrie talks quite a bit about ASP.NET and tells the latest details coming in from Microsoft.</p>
+
+<p>Just today I found another interesting blog. This guy talks about the interesting aspects in programming.</p>
+
+<p><a href="http://blogs.msdn.com/ericlippert/default.aspx">http://blogs.msdn.com/ericlippert/default.aspx</a></p>
+
+<p><a href="http://blogs.msdn.com/brada/">http://blogs.msdn.com/brada/</a></p>
+
+<p>Following is an interesting link that talks about a lot of topics.</p>
+
+<p><a href="http://weblogs.asp.net/scottgu/archive/2008/01/24/jan-24th-links-asp-net-asp-net-ajax-visual-studio-net-iis.aspx">http://weblogs.asp.net/scottgu/archive/2008/01/24/jan-24th-links-asp-net-asp-net-ajax-visual-studio-net-iis.aspx</a></p>
+
+      
+    </div>
+    
+    <div class="post">
+      <h1 class="post-title">
+        <a href="http://localhost:1313/blog/2008/03/04/recursively-read-directories-and-list-all-files-under-it/">Recursively read directories and list all files under it</a>
+      </h1>
+      <span class="post-date">Mar 4, 2008 &middot; 1 minute read
+      
+      <br/>
+      <a class="label" href="http://localhost:1313/categories/.net">.NET</a>
+      </span>
+      
+      <p><a href="https://gist.github.com/abhi1010/a1bcc60b383a0bc72d5f">https://gist.github.com/abhi1010/a1bcc60b383a0bc72d5f</a></p>
+
+      
+    </div>
+    
+    <div class="post">
+      <h1 class="post-title">
+        <a href="http://localhost:1313/blog/2008/03/03/talk-to-my...-flash/">Talk to my... Flash</a>
+      </h1>
+      <span class="post-date">Mar 3, 2008 &middot; 2 minute read
+      
+      <br/>
+      <a class="label" href="http://localhost:1313/categories/.net">.NET</a><a class="label" href="http://localhost:1313/categories/asp.net">ASP.NET</a>
+      </span>
+      
+      <p>According to normal acceptable behaviour it is not possible to let flash talk to the computer, be it on desktop or web browser.</p>
+
+<p>There are always ways around a problem and there&rsquo;s one in this case as well.</p>
+
+<p><strong>Windows Forms</strong></p>
+
+<p>If you wanted to access .net functions on windows form then probably a good way to do that would be through ShockWaveFlashObjects library. It wraps all the functions that are available in ShockWave Objects and makes them available to you in .Net type safe way.</p>
+
+<p>The easiest of ways to send data back and forth would be through
+&ldquo;fscommand&rdquo; function. The concept is to embed a flash file in windows form and then make use of fscommand function.</p>
+
+<p>Tip: Remember to remove the blue window bondary at the top so the flash appears as if its a standalone object and not embedded inside another form!</p>
+
+<p><strong>Websites</strong></p>
+
+<p>If you wanted to talk over a web page then an easy way out would be to use AMF.Net software. It is a freeware and very easy to use as well. In the words of its official <a href="http://amfnet.openmymind.net/overview/default.aspx">website</a>:</p>
+
+<p><em>&ldquo;AMF enables developers to build powerful flash-based applications driven by databases and rich business layers.
+AMF.NET is a .NET gateway sitting between a Flash movie and .NET code. The goal of AMF.NET is to promote proper N-Tier development by allowing your existing business layer (written in .NET) to be consumed by Flash without requiring any modification.&rdquo;</em></p>
+
+      
+    </div>
+    
+    <div class="post">
+      <h1 class="post-title">
+        <a href="http://localhost:1313/blog/2008/02/06/membership-and-profiler-in-asp.net/">Membership and Profiler in ASP.NET</a>
+      </h1>
+      <span class="post-date">Feb 6, 2008 &middot; 1 minute read
+      
+      <br/>
+      <a class="label" href="http://localhost:1313/categories/asp.net">ASP.NET</a><a class="label" href="http://localhost:1313/categories/sql">SQL</a>
+      </span>
+      
+      <p>Whenever you are using Sql Membership and Profiler classes - Trying to generate reports make sure your query&rsquo;s WHERE clause is using &ldquo;indexed&rdquo; column names at least.</p>
+
+<p>Let&rsquo;s look at some of the more used tables. The index of some of the tables is given below:</p>
+
+<p><strong><code>Table: aspnet_membership</code></strong></p>
+
+<ul>
+<li><p>Clustered Index = <code>ApplicationID</code>, <code>LoweredEmail</code></p></li>
+
+<li><p>NonClustered = UserID</p></li>
+</ul>
+
+<p><strong><code>Table: aspnet_users</code></strong></p>
+
+<ul>
+<li><p>Clustered Index = <code>ApplicationID</code>, <code>LoweredUserName</code></p></li>
+
+<li><p>NonClustered Index = <code>ApplicationID</code>, <code>LastActivityDate</code></p></li>
+
+<li><p>Primary Key = <code>UserID</code></p></li>
+</ul>
+
+<p><strong><code>Table: aspnet_Profile</code></strong></p>
+
+<ul>
+<li>Clustered Index = <code>UserID</code></li>
+</ul>
+
+<p><code>Bottomline - try to use ApplicationID in your queries otherwise your queries, for sure, will not run over the index at all and make it slow. This comes in effect if you are expecting high volume.</code></p>
+
+      
+    </div>
+    
+    <div class="post">
+      <h1 class="post-title">
+        <a href="http://localhost:1313/blog/2007/12/12/book-review-head-first-design-patterns/">Book Review: Head First Design Patterns</a>
+      </h1>
+      <span class="post-date">Dec 12, 2007 &middot; 1 minute read
+      
+      <br/>
+      <a class="label" href="http://localhost:1313/categories/design-patterns">Design Patterns</a>
+      </span>
+      
+      <p>What an amazing book this is! It is a must read for any developer who wants to develop long term codes/projects.</p>
+
+<p>The book looks at mostly the more important design patterns. The distinctive feature that stands out in this book is how it manages to make each pattern stand out against each other. It gives comparison between similar-looking patterns where necessary. It make the patterns &ldquo;debate&rdquo; against each other, get the birds-eye-view from &ldquo;patterns guru and grasshopper discussion&rdquo;, UML like &ldquo;class diagrams with notes&rdquo; to show how everything is gelling together.</p>
+
+<p>It starts off every pattern with the basic situation and come up with a code how a normal developer would code - then give that situation a twist and show us mortal beings how to code again using a pattern! It is a perfect setup for even a novice to get it straight into his head.</p>
+
+<p>The code for this book can be picked up at <a href="http://www.wickedlysmart.com">www.wickedlysmart.com</a>.</p>
+
+<p>Although this book is written for Java developers but it should suit C# and VB.NET. The website includes code for C# as well donated by a reader of the book.</p>
+
+      
+    </div>
+    
+    <div class="post">
+      <h1 class="post-title">
+        <a href="http://localhost:1313/blog/2007/11/23/dynamically-increase-label-size-autosize/">Dynamically increase Label size [AutoSize]</a>
+      </h1>
+      <span class="post-date">Nov 23, 2007 &middot; 1 minute read
+      
+      <br/>
+      <a class="label" href="http://localhost:1313/categories/.net">.NET</a>
+      </span>
+      
+      <p>Recently I had to work on a windows form where the Labels are added dynamically onto the form. Some of you may think that setting AutoSize to true would fix the problem but it works only when you already have added that Label control onto the form, not when you are adding it dynamically.</p>
+
+<p>Despair not, there&rsquo;s still a solution. Just create a label and set it&rsquo;s text first then call this function:</p>
+
+<p><a href="https://gist.github.com/abhi1010/e8390c5868a86998a7d5">https://gist.github.com/abhi1010/e8390c5868a86998a7d5</a></p>
+
+<p>If you do some testing it may not work on Compact Framework. Here&rsquo;s how to get around that issue again.</p>
+
+<p><a href="https://gist.github.com/abhi1010/f488949a5d79b6d86544">https://gist.github.com/abhi1010/f488949a5d79b6d86544</a></p>
+
+      
+    </div>
+    
+    <div class="post">
+      <h1 class="post-title">
+        <a href="http://localhost:1313/blog/2007/10/26/use-of-yield-statement/">Use of yield statement</a>
+      </h1>
+      <span class="post-date">Oct 26, 2007 &middot; 2 minute read
+      
+      <br/>
+      <a class="label" href="http://localhost:1313/categories/.net">.NET</a>
+      </span>
+      
+      <p>It might be a little late for this to appear but I have no qualms in accepting that I have finally embraced yield statement and see it as an excellent way of writing codes.</p>
+
+<p>I have had my fair share of writing small code fragments to read/process/write files and more often than that it is excel files. So I thought, there has to be an easier way than just creating common functions for Connections and processing functions - at that time yield statement came to the rescue. I have always had to read the excel file, one line after another - pretty much like a DataTable if you ask me.</p>
+
+<p>The best way to put the whole process of reading the excel file is to automate reading, iterating and closing of the excel files. It is done by yield statement as I can &ldquo;yield&rdquo; the data of the excel through DataReader (OdbcDataReader in my case).</p>
+
+<p><a href="https://gist.github.com/abhi1010/36ecc206fc5f61f4b4bc">https://gist.github.com/abhi1010/36ecc206fc5f61f4b4bc</a></p>
+
+<p>This way, the function is always common - it is always supposed to read the excel, iterate through it. The data that I need is always in the DataReader so I thought let&rsquo;s just return the data itself! The rest of the function is pretty much normal. The biggest gain is that I don&rsquo;t have to change the structure of the function. The same function can now be used for multiple excel sheets. Have a look at the code.</p>
+
+      
+    </div>
+    
+    
+    
+    <ul class="pagination">
+        
+        <li>
+            <a href="/" aria-label="First"><span aria-hidden="true">&laquo;&laquo;</span></a>
+        </li>
+        
+        <li
+        >
+        <a href="/page/3/" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
+        </li>
+        
+        <li
+        ><a href="/">1</a></li>
+        
+        <li
+        ><a href="/page/2/">2</a></li>
+        
+        <li
+        ><a href="/page/3/">3</a></li>
+        
+        <li
+        class="active"><a href="/page/4/">4</a></li>
+        
+        <li
+        class="disabled">
+        <a href="" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
+        </li>
+        
+        <li>
+            <a href="/page/4/" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+        </li>
+        
+    </ul>
+    
+  </div>
+</div>
+
+
+<script src="http://localhost:1313/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script data-no-instant>document.write('<script src="http://'
+        + (location.host || 'localhost').split(':')[0]
+		+ ':1313/livereload.js?mindelay=10"></'
+        + 'script>')</script></body>
+</html>
+

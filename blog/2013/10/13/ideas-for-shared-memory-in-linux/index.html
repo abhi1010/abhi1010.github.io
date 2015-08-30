@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>Ideas for Shared Memory in Linux &middot; Abhishek Pandey</title>
+
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+  <link rel="stylesheet" href="http://localhost:1313/css/poole.css">
+  <link rel="stylesheet" href="http://localhost:1313/css/hyde.css">
+  <link rel="stylesheet" href="http://localhost:1313/css/poole-overrides.css">
+  <link rel="stylesheet" href="http://localhost:1313/css/hyde-overrides.css">
+  <link rel="stylesheet" href="http://localhost:1313/css/hyde-x.css">
+  <link rel="stylesheet" href="http://localhost:1313/css/highlight/sunburst.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://localhost:1313/touch-icon-144-precomposed.png">
+  <link href="http://localhost:1313/favicon.png" rel="icon">
+
+  
+  
+  
+  
+
+  <meta name="description" content="Your default page description">
+  <meta name="keywords" content="your,default,page,keywords">
+  
+</head>
+<body class="theme-base-aa">
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      
+      <h1>Abhishek Pandey</h1>
+      <p class="lead">Coders Digest&hellip;</p>
+    </div>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item"><a href="http://localhost:1313/">Blog</a></li>
+      
+      <li class="sidebar-nav-item"><a href="http://localhost:1313/about/">about hugo</a></li>
+      
+      <li class="sidebar-nav-item"><a href="http://localhost:1313/getting-started/">getting started</a></li>
+      
+    </ul>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item">
+      
+      
+      
+      
+      
+      
+      
+      
+      </li>
+    </ul>
+
+    
+
+  </div>
+</div>
+
+
+<div class="content container">
+  <div class="post">
+    <h1>Ideas for Shared Memory in Linux</h1>
+    <p>I have been doing extensive research today regarding shared memory in linux before I embark on a new project in which shaving time off process communication latency is extremely important. I found some very interesting links as well. Let’s break them down:</p>
+
+<table style="border:thin solid lightblue;" >
+<tbody >
+<tr >
+
+<td width="133" >**Topic**
+</td>
+
+<td width="354" >**Description**
+</td>
+
+<td width="151" >**Link**
+</td>
+</tr>
+<tr >
+
+<td width="133" >Theory/Explanation
+</td>
+
+<td width="354" >Some articles that explain how to get started
+</td>
+
+<td width="151" >[open-std](http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2006/n2044.html)
+</td>
+</tr>
+<tr >
+
+<td width="133" >
+</td>
+
+<td width="354" >IPC Mechanisms – some recommendations. Mainly talks about softwares like Boost, dBus
+
+dBus used to work using kernel levels but lately have come up with a patch that bypasses kernels
+</td>
+
+<td width="151" >[Stackoverflow](http://stackoverflow.com/questions/1906166/inter-process-communication-recommendation)
+</td>
+</tr>
+<tr >
+
+<td width="133" >
+</td>
+
+<td width="354" >What every programmer should know about memory
+</td>
+
+<td width="151" >[LWN](http://lwn.net/Articles/255364/)
+</td>
+</tr>
+<tr >
+
+<td width="133" >
+</td>
+
+<td width="354" >Linux IPC
+</td>
+
+<td width="151" >[TLDP](http://www.tldp.org/LDP/tlk/ipc/ipc.html)
+</td>
+</tr>
+<tr >
+
+<td width="133" >
+</td>
+
+<td width="354" >Cache Friendly Code
+</td>
+
+<td width="151" >[Stackoverflow](http://stackoverflow.com/questions/16699247/what-is-cache-friendly-code/16699282#16699282)
+</td>
+</tr>
+<tr >
+
+<td width="133" >Helpful Articles
+</td>
+
+<td width="354" >Which linux IPC technique to use?
+</td>
+
+<td width="151" >[Stackoverflow](http://stackoverflow.com/questions/2281204/which-linux-ipc-technique-to-use)
+</td>
+</tr>
+<tr >
+
+<td width="133" >
+</td>
+
+<td width="354" >Inter process communication – talks about shared memory
+</td>
+
+<td width="151" >[ALP](http://www.advancedlinuxprogramming.com/alp-folder/alp-ch05-ipc.pdf)
+</td>
+</tr>
+<tr >
+
+<td width="133" >
+</td>
+
+<td width="354" >Linux Poll Events on Shared Memory
+</td>
+
+<td width="151" >[Stackoverflow](http://stackoverflow.com/questions/11470322/cause-a-linux-poll-event-on-a-shared-memory-file)
+</td>
+</tr>
+<tr >
+
+<td width="133" >
+</td>
+
+<td width="354" >Using semaphores in Shared Memory
+</td>
+
+<td width="151" >[Stackoverflow](http://stackoverflow.com/questions/10772860/semaphores-and-shared-memory-in-linux)
+</td>
+</tr>
+<tr >
+
+<td width="133" >
+</td>
+
+<td width="354" >Sharing semaphores between Shared Memory
+</td>
+
+<td width="151" >[Stackoverflow](http://stackoverflow.com/questions/8359322/how-to-share-semaphores-between-processes-using-shared-memory?rq=1)
+</td>
+</tr>
+<tr >
+
+<td width="133" >
+</td>
+
+<td width="354" >Sharing memory between processes
+</td>
+
+<td width="151" >[Stackoverflow](http://stackoverflow.com/questions/11583281/sharing-memory-between-two-processes)
+</td>
+</tr>
+<tr >
+
+<td width="133" >
+</td>
+
+<td width="354" >Reserving memory at kernel boot up (DMA)
+</td>
+
+<td width="151" >[Stackoverflow](http://stackoverflow.com/questions/647783/direct-memory-access-in-linux?rq=1)
+</td>
+</tr>
+<tr >
+
+<td width="133" >Extra
+</td>
+
+<td width="354" >IPC Shared memory samples
+</td>
+
+<td width="151" >[linuxgazette](http://linuxgazette.net/104/ramankutty.html)
+</td>
+</tr>
+</tbody>
+</table>
+
+  </div>
+</div>
+<script src="http://localhost:1313/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script data-no-instant>document.write('<script src="http://'
+        + (location.host || 'localhost').split(':')[0]
+		+ ':1313/livereload.js?mindelay=10"></'
+        + 'script>')</script></body>
+</html>

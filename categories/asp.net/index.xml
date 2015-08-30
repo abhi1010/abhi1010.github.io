@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Asp.Net on Coders Digest</title>
+    <link>http://localhost:1313/categories/asp/index.net/</link>
+    <description>Recent content in Asp.Net on Coders Digest</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 06 Apr 2008 05:32:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/categories/asp.net/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Google Analytics &amp; SWFAddress</title>
+      <link>http://localhost:1313/blog/2008/04/06/google-analytics--swfaddress/</link>
+      <pubDate>Sun, 06 Apr 2008 05:32:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/blog/2008/04/06/google-analytics--swfaddress/</guid>
+      <description>&lt;p&gt;Recently found a bug slash issue with Google Analytics new javscript software (post-urchin v5). I had written the internal documentation for the company standards and somehow when those standards were put into practice, SWFAddress feature of flash stopped working the moment google analytics feature was enabled. Worst of all, the web pages failed to load! To cap it off, the website was working perfectly fine on Firefox 2, 3 and IE 7!! It was having trouble only on IE6.&lt;/p&gt;
+
+&lt;p&gt;I tried a lot of ways but none seem to worked. Finally found a blog that remotely talked about SWFAddress!&lt;/p&gt;
+
+&lt;p&gt;Well, the problem turns out that SWFAddress uses &lt;strong&gt;ExternalInterface.call()&lt;/strong&gt; instead of getUrl() function internally and they don&amp;rsquo;t go well together if used together.&lt;/p&gt;
+
+&lt;p&gt;The solution was simple, since flash is using SWFAddress feature, every getUrl should be replaced with ExternalInterface.call(). Needless to say, everything seemed perfect again.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Few Good Links for March 08</title>
+      <link>http://localhost:1313/blog/2008/03/31/few-good-links-for-march-08/</link>
+      <pubDate>Mon, 31 Mar 2008 05:10:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/blog/2008/03/31/few-good-links-for-march-08/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;GAX and GAT&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://www.vsdotnet.be/blogs/tommer/2006/08/26/GuidanceOnTheQuotGuidanceAutomationToolkitquot.aspx&#34;&gt;http://www.vsdotnet.be/blogs/tommer/2006/08/26/GuidanceOnTheQuotGuidanceAutomationToolkitquot.aspx&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Excellent place to get started.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://www.microsoft.com/belux/msdn/nl/chopsticks/default.aspx?id=10&#34;&gt;http://www.microsoft.com/belux/msdn/nl/chopsticks/default.aspx?id=10&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://jelle.druyts.net/CategoryView.aspx?category=Blog|Programming|.NET|GuidanceAutomation&#34;&gt;http://jelle.druyts.net/CategoryView.aspx?category=Blog|Programming|.NET|GuidanceAutomation&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;ASP.NET AJAX Extender for multicolumn drag and drop&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://www.codeproject.com/KB/ajax/MakingGoogleIG.aspx&#34;&gt;http://www.codeproject.com/KB/ajax/MakingGoogleIG.aspx&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://www.codeproject.com/KB/ajax/multicolumndragdrop.aspx&#34;&gt;http://www.codeproject.com/KB/ajax/multicolumndragdrop.aspx&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://msmvps.com/blogs/omar/archive/2007/03/22/asp-net-ajax-extender-for-multi-column-widget-drag-drop.aspx&#34;&gt;http://msmvps.com/blogs/omar/archive/2007/03/22/asp-net-ajax-extender-for-multi-column-widget-drag-drop.aspx&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Advanced ASP.NET AJAX Tips and Tricks&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://www.codeproject.com/KB/ajax/aspnetajaxtips.aspx&#34;&gt;http://www.codeproject.com/KB/ajax/aspnetajaxtips.aspx&lt;/a&gt;****&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Writing user defined functions for Excel in .NET&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://blogs.msdn.com/eric_carter/archive/2004/12/01/writing-user-defined-functions-for-excel-in-net.aspx&#34;&gt;http://blogs.msdn.com/eric_carter/archive/2004/12/01/writing-user-defined-functions-for-excel-in-net.aspx&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;**Silverlight Tips, Tricks, Tutorials and Links Page **&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://weblogs.asp.net/scottgu/pages/silverlight-posts.aspx&#34;&gt;http://weblogs.asp.net/scottgu/pages/silverlight-posts.aspx&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>How to protect from SQL Injections in ASP.NET</title>
+      <link>http://localhost:1313/blog/2008/03/11/how-to-protect-from-sql-injections-in-asp.net/</link>
+      <pubDate>Tue, 11 Mar 2008 07:55:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/blog/2008/03/11/how-to-protect-from-sql-injections-in-asp.net/</guid>
+      <description>&lt;p&gt;Some good links to figure out how to save your code&amp;rsquo;s ass from being thrashed by SQL Injections&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://msdn2.microsoft.com/en-us/library/ms998271.aspx#paght000002_step2&#34;&gt;http://msdn2.microsoft.com/en-us/library/ms998271.aspx#paght000002_step2&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://msdn2.microsoft.com/en-us/library/bb355989.aspx#paght000003_step4&#34;&gt;http://msdn2.microsoft.com/en-us/library/bb355989.aspx#paght000003_step4&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Creating Custom Web Controls</title>
+      <link>http://localhost:1313/blog/2008/03/08/creating-custom-web-controls/</link>
+      <pubDate>Sat, 08 Mar 2008 22:30:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/blog/2008/03/08/creating-custom-web-controls/</guid>
+      <description>&lt;p&gt;How do you extend a control? Let&amp;rsquo;s figure it out.&lt;/p&gt;
+
+&lt;p&gt;**Why would you want to extend existing controls?&lt;br /&gt;
+**Because some functionality may not exist exactly as you may need it. For example, let&amp;rsquo;s take up ImageButton control example. It is a great control but it falls short when it comes to real world scenario. Mostly websites do a hover image clickable button where the text or background color of the button changes once you hover your mouse over it.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;How to Extend?&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;_I assume that you use C# code but there is not going to be any difference even if you wanted to do in VB.Net. _&lt;/p&gt;
+
+&lt;p&gt;Create a project for creating custom web control library. It automatically includes a C# class that says something like&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;span style=&amp;quot;color:#0000ff;&amp;quot;&amp;gt;public&amp;lt;/span&amp;gt; &amp;lt;span style=&amp;quot;color:#0000ff;&amp;quot;&amp;gt;class&amp;lt;/span&amp;gt; WebCustomControl1 : WebControl
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now ask yourself, what do you want to extend? A GridView? Replace WebControl with GridView. Let&amp;rsquo;s follow our example with Hover Image Button Control. If you recall .Net already has ImageButton control that accepts one url for the image to be shown for that button, let&amp;rsquo;s extend that one to include two Images rather than just one. In that case I would replace WebControl with ImageButton since I am going to extend ImageButton control. Let&amp;rsquo;s call it HoverImageButton. Hence, the line changes to some thing like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;span style=&amp;quot;color:#0000ff;&amp;quot;&amp;gt;public&amp;lt;/span&amp;gt; &amp;lt;span style=&amp;quot;color:#0000ff;&amp;quot;&amp;gt;class&amp;lt;/span&amp;gt; HoverImageButton : ImageButton
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The class also includes a property called Text for you so that you can see that and figure out how to use properties in custom web controls. It also includes attributes that start off just before the property itself. It is used by Visual Studio for showing this property on Properties pane. It is definitely a very useful feature.&lt;/p&gt;
+
+&lt;p&gt;You can change this property to anything you like. Since we are creating a HoverImageButton control we want a property to save another url for the hover image&amp;rsquo;s source. Let&amp;rsquo;s change Text to &amp;ldquo;ImageHoverUrl&amp;rdquo;. ImageButton already has a property called &amp;ldquo;ImageUrl&amp;rdquo; and it belongs to &amp;ldquo;Appearance&amp;rdquo; group in Visual Studio Properties window. Notice the similarity in &amp;ldquo;ImageHoverUrl&amp;rdquo; and ImageUrl so that they appear together in Properties window. Sometimes, little deeds go a long way.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Writing JS file&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Now let&amp;rsquo;s add a javascript file to the project. Add one function called &amp;ldquo;ShowImageHoverButton()&amp;rdquo; that takes in two parameters, the control&amp;rsquo;s id and the new image to be shown for that control. The control image&amp;rsquo;s source is changed everytime when this function is called. We can call this function on mouse out and on mouse over events.&lt;/p&gt;
+
+&lt;p&gt;That&amp;rsquo;s all you need to do for this control.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Linking JS and Custom Control them together&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;This is a very simple process. You have the javascript file and you know for sure that the control will be loaded into the webpage, so you need a mechanism inside the control so that you can tell that &amp;ldquo;hey, include this javascript file whenever you have this control on a page&amp;rdquo;.&lt;/p&gt;
+
+&lt;p&gt;This is how you do that.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://gist.github.com/abhi1010/bfb075b6787d2616fde6&#34;&gt;https://gist.github.com/abhi1010/bfb075b6787d2616fde6&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Please note that the name of the javascript file is &amp;ldquo;HoverImageButtonJS.js&amp;rdquo;. ExtendedControls is the name of the project/assembly that I have created for this custom web control.&lt;/p&gt;
+
+&lt;p&gt;How to assign javascript functions to the control?&lt;/p&gt;
+
+&lt;p&gt;Now the next problem is how would you tell the control that call this javscript function function on &amp;ldquo;mouseover&amp;rdquo;? We use OnInit function for this process. We override the function and make use of the control&amp;rsquo;s Attributes property.&lt;/p&gt;
+
+&lt;p&gt;What is Attributes property for anyway? Well, it adds any extra &amp;ldquo;property&amp;rdquo; or &amp;ldquo;style&amp;rdquo; that you may want to add to the control when it is rendered to the client.&lt;/p&gt;
+
+&lt;p&gt;Let&amp;rsquo;s see how that&amp;rsquo;s done.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://gist.github.com/abhi1010/d0b66ef7b0f076e88042&#34;&gt;https://gist.github.com/abhi1010/d0b66ef7b0f076e88042&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Over here, I have told the class to include &amp;ldquo;onmouseover=ShowImageHoverButton(this, &amp;lsquo;IMAGE_SOURCE&amp;rsquo;)&amp;rdquo; as a property.&lt;/p&gt;
+
+&lt;p&gt;This is how it is rendered on the client browser:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://gist.github.com/abhi1010/6df972bf94b736545419&#34;&gt;https://gist.github.com/abhi1010/6df972bf94b736545419&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Add the javascript file also to the AssemblyInfo.cs class&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;For the control library to properly include the js file, you have to add the js file in AssemblyInfo.cs class as well. This is how it is done:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[assembly: WebResource(&amp;lt;span style=&amp;quot;color:#006080;&amp;quot;&amp;gt;&amp;quot;ExtendedControls.HoverImageButtonJS.js&amp;quot;&amp;lt;/span&amp;gt;, &amp;lt;span style=&amp;quot;color:#006080;&amp;quot;&amp;gt;&amp;quot;text/javascript&amp;quot;&amp;lt;/span&amp;gt;)]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;Test Drive!&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;That&amp;rsquo;s all. A few simple steps and your control is ready to be tested. Still, let&amp;rsquo;s not rush and see the steps required:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Add this control&amp;rsquo;s library to any web project.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Register the dll on web.config. This makes the control available automatically on all the pages.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://gist.github.com/abhi1010/88222d3f94911fbec6f4&#34;&gt;https://gist.github.com/abhi1010/88222d3f94911fbec6f4&lt;/a&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Go to the design view of any page. Open up the Toolbox pane and you will automatically see the name appear &amp;ldquo;HoverImageButton&amp;rdquo;. Double click and you are ready to go!!&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Easy as it may sound but it may not be that smooth a ride for you.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Just take care of few pointers and you should be fine. Here they go:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;The JScript file that you have added sometimes doesn&amp;rsquo;t get linked properly to the control. Right click on the js file and check it&amp;rsquo;s properties. It&amp;rsquo;s compile action should be &amp;ldquo;Embed Content&amp;rdquo; rather than anything else. That way everytime you compile this control, this js file gets &amp;ldquo;embedded&amp;rdquo; into the control&amp;rsquo;s library.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Take care of the naming convention for the js file.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;If your control&amp;rsquo;s namespace is ExtendedControls, then while &amp;ldquo;Registering&amp;rdquo; it in the control&amp;rsquo;s class you should give the JS file&amp;rsquo;s name as &amp;ldquo;ExtendedControls.CustomControl_JS.js&amp;rdquo; where &amp;ldquo;CustomControl_JS.js&amp;rdquo; is the name of the javascript file. Basically, another shortcut to learn it is whatever is the name of the project/assembly that you are creating, you have to append that name before the file name. **Follow this logic strictly, otherwise you will be left high and dry. **&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;You should also remember to register this name inside AssemblyInfo.cs class (&amp;ldquo;ExtendedControls.CustomControl_JS.js&amp;rdquo; as per our example here).&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;If you want Visual Studio Design support then remember to add the attributes that define where can you see the custom properties of this control in the &amp;ldquo;Properties&amp;rdquo; pane.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Whenever you are putting your code files inside some folder, try to keep the JS files in the root folder.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;When I tried putting them inside the folder it did not work, i took them out to the root folder and it worked instantly. I have not tried changing the JS file names but I am sure you can figure out some solution.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Here&amp;rsquo;s all the code in case somebody needs it:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://gist.github.com/abhi1010/135e9bbf44f3d9a53cb8&#34;&gt;https://gist.github.com/abhi1010/135e9bbf44f3d9a53cb8&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Blogs I like</title>
+      <link>http://localhost:1313/blog/2008/03/08/blogs-i-like/</link>
+      <pubDate>Sat, 08 Mar 2008 10:26:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/blog/2008/03/08/blogs-i-like/</guid>
+      <description>&lt;p&gt;Two blogs i really like and follow many a times are:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;SqlAuthority.com&#34;&gt;SqlAuthority.com&lt;/a&gt; - Excellent blog for Sql Server 2005. The guy has a very in-depth knowledge of Sql Server and I appreciate the way&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://weblogs.asp.net/scottgu&#34;&gt;Scott&amp;rsquo;s Blog&lt;/a&gt; - Another great blog where Scott Guthrie talks quite a bit about ASP.NET and tells the latest details coming in from Microsoft.&lt;/p&gt;
+
+&lt;p&gt;Just today I found another interesting blog. This guy talks about the interesting aspects in programming.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://blogs.msdn.com/ericlippert/default.aspx&#34;&gt;http://blogs.msdn.com/ericlippert/default.aspx&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://blogs.msdn.com/brada/&#34;&gt;http://blogs.msdn.com/brada/&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Following is an interesting link that talks about a lot of topics.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://weblogs.asp.net/scottgu/archive/2008/01/24/jan-24th-links-asp-net-asp-net-ajax-visual-studio-net-iis.aspx&#34;&gt;http://weblogs.asp.net/scottgu/archive/2008/01/24/jan-24th-links-asp-net-asp-net-ajax-visual-studio-net-iis.aspx&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Talk to my... Flash</title>
+      <link>http://localhost:1313/blog/2008/03/03/talk-to-my...-flash/</link>
+      <pubDate>Mon, 03 Mar 2008 04:58:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/blog/2008/03/03/talk-to-my...-flash/</guid>
+      <description>&lt;p&gt;According to normal acceptable behaviour it is not possible to let flash talk to the computer, be it on desktop or web browser.&lt;/p&gt;
+
+&lt;p&gt;There are always ways around a problem and there&amp;rsquo;s one in this case as well.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Windows Forms&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;If you wanted to access .net functions on windows form then probably a good way to do that would be through ShockWaveFlashObjects library. It wraps all the functions that are available in ShockWave Objects and makes them available to you in .Net type safe way.&lt;/p&gt;
+
+&lt;p&gt;The easiest of ways to send data back and forth would be through
+&amp;ldquo;fscommand&amp;rdquo; function. The concept is to embed a flash file in windows form and then make use of fscommand function.&lt;/p&gt;
+
+&lt;p&gt;Tip: Remember to remove the blue window bondary at the top so the flash appears as if its a standalone object and not embedded inside another form!&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Websites&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;If you wanted to talk over a web page then an easy way out would be to use AMF.Net software. It is a freeware and very easy to use as well. In the words of its official &lt;a href=&#34;http://amfnet.openmymind.net/overview/default.aspx&#34;&gt;website&lt;/a&gt;:&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;&amp;ldquo;AMF enables developers to build powerful flash-based applications driven by databases and rich business layers.
+AMF.NET is a .NET gateway sitting between a Flash movie and .NET code. The goal of AMF.NET is to promote proper N-Tier development by allowing your existing business layer (written in .NET) to be consumed by Flash without requiring any modification.&amp;rdquo;&lt;/em&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Membership and Profiler in ASP.NET</title>
+      <link>http://localhost:1313/blog/2008/02/06/membership-and-profiler-in-asp.net/</link>
+      <pubDate>Wed, 06 Feb 2008 19:34:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/blog/2008/02/06/membership-and-profiler-in-asp.net/</guid>
+      <description>&lt;p&gt;Whenever you are using Sql Membership and Profiler classes - Trying to generate reports make sure your query&amp;rsquo;s WHERE clause is using &amp;ldquo;indexed&amp;rdquo; column names at least.&lt;/p&gt;
+
+&lt;p&gt;Let&amp;rsquo;s look at some of the more used tables. The index of some of the tables is given below:&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;Table: aspnet_membership&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Clustered Index = &lt;code&gt;ApplicationID&lt;/code&gt;, &lt;code&gt;LoweredEmail&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;NonClustered = UserID&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;Table: aspnet_users&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Clustered Index = &lt;code&gt;ApplicationID&lt;/code&gt;, &lt;code&gt;LoweredUserName&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;NonClustered Index = &lt;code&gt;ApplicationID&lt;/code&gt;, &lt;code&gt;LastActivityDate&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Primary Key = &lt;code&gt;UserID&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;Table: aspnet_Profile&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Clustered Index = &lt;code&gt;UserID&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;code&gt;Bottomline - try to use ApplicationID in your queries otherwise your queries, for sure, will not run over the index at all and make it slow. This comes in effect if you are expecting high volume.&lt;/code&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

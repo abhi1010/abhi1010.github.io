@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Sql on Coders Digest</title>
+    <link>http://localhost:1313/categories/sql/</link>
+    <description>Recent content in Sql on Coders Digest</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 22 Sep 2013 08:48:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/categories/sql/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Oracle SQL Queries</title>
+      <link>http://localhost:1313/blog/2013/09/22/oracle-sql-queries/</link>
+      <pubDate>Sun, 22 Sep 2013 08:48:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/blog/2013/09/22/oracle-sql-queries/</guid>
+      <description>&lt;p&gt;Recently I found myself in a situation where I had to view all the tables in the Oracle Server.&lt;/p&gt;
+
+&lt;p&gt;I did some digging and came up with these helpful queries.&lt;/p&gt;
+
+&lt;p&gt;&lt;table cellpadding=&#34;2&#34; cellspacing=&#34;0&#34; border=&#34;1&#34; width=&#34;1083&#34; &gt;&lt;tbody &gt;     &lt;tr &gt;&lt;br /&gt;
+&lt;td width=&#34;591&#34; valign=&#34;top&#34; &gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Query&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;/td&gt;&lt;br /&gt;
+&lt;td width=&#34;490&#34; valign=&#34;top&#34; &gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Remarks&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;/td&gt;     &lt;/tr&gt;      &lt;tr &gt;&lt;br /&gt;
+&lt;td width=&#34;591&#34; valign=&#34;top&#34; &gt;Select * from All_Tables
+&lt;/td&gt;&lt;br /&gt;
+&lt;td width=&#34;490&#34; valign=&#34;top&#34; &gt;View all the tables in the Oracle Server
+&lt;/td&gt;     &lt;/tr&gt;      &lt;tr &gt;&lt;br /&gt;
+&lt;td width=&#34;591&#34; valign=&#34;top&#34; &gt;Select * from all_Views
+&lt;/td&gt;&lt;br /&gt;
+&lt;td width=&#34;490&#34; valign=&#34;top&#34; &gt;View all the views in the Oracle Server
+&lt;/td&gt;     &lt;/tr&gt;            &lt;tr &gt;&lt;br /&gt;
+&lt;td width=&#34;591&#34; valign=&#34;top&#34; &gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;DESC &amp;lt;em&amp;gt;table&amp;lt;/em&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;/td&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;td width=&#34;490&#34; valign=&#34;top&#34; &gt;View all the columns of a given table.&lt;/p&gt;
+
+&lt;p&gt;This function is used instead of the previous one mostly, but when this one doesn&amp;rsquo;t work make sure you try the other one - I bet it will work.
+&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;&lt;/table&gt;&lt;/p&gt;
+
+&lt;p&gt;Here&amp;rsquo;s a short code for viewing all the columns of a given table.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://gist.github.com/abhi1010/11365686&#34;&gt;https://gist.github.com/abhi1010/11365686&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Membership and Profiler in ASP.NET</title>
+      <link>http://localhost:1313/blog/2008/02/06/membership-and-profiler-in-asp.net/</link>
+      <pubDate>Wed, 06 Feb 2008 19:34:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/blog/2008/02/06/membership-and-profiler-in-asp.net/</guid>
+      <description>&lt;p&gt;Whenever you are using Sql Membership and Profiler classes - Trying to generate reports make sure your query&amp;rsquo;s WHERE clause is using &amp;ldquo;indexed&amp;rdquo; column names at least.&lt;/p&gt;
+
+&lt;p&gt;Let&amp;rsquo;s look at some of the more used tables. The index of some of the tables is given below:&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;Table: aspnet_membership&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Clustered Index = &lt;code&gt;ApplicationID&lt;/code&gt;, &lt;code&gt;LoweredEmail&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;NonClustered = UserID&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;Table: aspnet_users&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Clustered Index = &lt;code&gt;ApplicationID&lt;/code&gt;, &lt;code&gt;LoweredUserName&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;NonClustered Index = &lt;code&gt;ApplicationID&lt;/code&gt;, &lt;code&gt;LastActivityDate&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Primary Key = &lt;code&gt;UserID&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;Table: aspnet_Profile&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Clustered Index = &lt;code&gt;UserID&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;code&gt;Bottomline - try to use ApplicationID in your queries otherwise your queries, for sure, will not run over the index at all and make it slow. This comes in effect if you are expecting high volume.&lt;/code&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
