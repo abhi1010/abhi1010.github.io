@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>Usage of typename &middot; Abhishek Pandey</title>
+
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+  <link rel="stylesheet" href="http://abhi1010.github.io/css/poole.css">
+  <link rel="stylesheet" href="http://abhi1010.github.io/css/hyde.css">
+  <link rel="stylesheet" href="http://abhi1010.github.io/css/poole-overrides.css">
+  <link rel="stylesheet" href="http://abhi1010.github.io/css/hyde-overrides.css">
+  <link rel="stylesheet" href="http://abhi1010.github.io/css/hyde-x.css">
+  <link rel="stylesheet" href="http://abhi1010.github.io/css/highlight/sunburst.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://abhi1010.github.io/touch-icon-144-precomposed.png">
+  <link href="http://abhi1010.github.io/favicon.png" rel="icon">
+
+  
+  
+  
+  
+
+  <meta name="description" content="Your default page description">
+  <meta name="keywords" content="your,default,page,keywords">
+  
+</head>
+<body class="theme-base-aa">
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      
+      <h1><a href="http://abhi1010.github.io/">Abhishek Pandey</a></h1>
+      <p class="lead">&hellip; lost in reverie</p>
+    </div>
+
+    <ul class="sidebar-nav">
+      
+      <li class="sidebar-nav-item"><a href="http://abhi1010.github.io/post/">Posts</a></li>
+      
+      <li class="sidebar-nav-item"><a href="http://abhi1010.github.io/tags/">Tags</a></li>
+      
+      <li class="sidebar-nav-item"><a href="http://abhi1010.github.io/categories/">Categories</a></li>
+      
+      <li class="sidebar-nav-item"><a href="http://abhi1010.github.io/about/">About Me</a></li>
+      
+    </ul>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item">
+      
+      
+      
+      
+      
+      
+      
+      
+      </li>
+    </ul>
+
+    
+
+  </div>
+</div>
+
+
+<div class="content container">
+  <div class="post">
+    <h1>Usage of typename</h1>
+    <span class="post-date" style="float:right;"><time>May 26, 2014</time></span>
+
+      
+          <a class="a_cat" href="http://abhi1010.github.io/categories/linux">Linux</a>
+      
+      
+        <a class="a_tag" href="http://abhi1010.github.io/tags/c"># c&#43;&#43;</a>
+      
+
+    <p>What is wrong with the following code?</p>
+
+<p><a href="https://gist.github.com/anonymous/f1f2246d04a935794e44">https://gist.github.com/anonymous/f1f2246d04a935794e44</a></p>
+
+<p>The issue is very simple but hard to notice. If you try to compile this, you will get the following errors:</p>
+
+<blockquote>main.cpp:24:5: error: need 'typename' before 'OuterStruct<T2>::InnerStruct' because 'OuterStruct<T2>' is a dependent scope
+OuterStruct<T2>::InnerStruct mUsingInner;
+^
+main.cpp: In function 'int main(int, char**)':
+main.cpp:34:13: error: 'struct InnerStruct_Wrapper<int>' has no member named 'mUsingInner'
+wrapper.mUsingInner = innerStrct;
+^</blockquote>
+
+<!-- more -->
+
+<p><strong>The Issue</strong></p>
+
+<p>At least it straight away tells you something is wrong with <code>InnerStruct_Wrapper</code>. Here&rsquo;s what is happening:</p>
+
+<ul>
+<li><p>The compiler does not know that mUsingInner in that line is actually a variable of type &ldquo;OuterStruct<T2>::InnerStruct&rdquo;</p></li>
+
+<li><p>InnerStruct will only be known later when it is being instantiated</p></li>
+
+<li><p>Compiler cannot figure out what InnerStruct means here. It could be a type or a member variable</p></li>
+</ul>
+
+<p><strong>The Fix</strong></p>
+
+<p>The only way here is to help the compiler by telling it beforehand that is going to be a class or struct type. The way to tell the compiler that something like this is supposed to be a type name is to throw in the keyword &ldquo;typename&rdquo;. The &ldquo;typename&rdquo; keyword has to be used everytime you want to tell the compiler that it should expect a Type in its place.</p>
+
+<p>One place where this is used quite a lot is when templates have to implement iterators.</p>
+
+<p><strong>Full Code</strong></p>
+
+<p><strong><em>The full sample code, along with the fix</em></strong> is provided on <a href="http://coliru.stacked-crooked.com/a/b0ab70c458370048">Stacked-Crooked</a>.</p>
+
+  </div>
+</div>
+<script src="http://abhi1010.github.io/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+</body>
+</html>
+

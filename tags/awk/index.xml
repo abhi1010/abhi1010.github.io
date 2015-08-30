@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Awk on Coders Digest</title>
+    <link>http://abhi1010.github.io/tags/awk/</link>
+    <description>Recent content in Awk on Coders Digest</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 19 May 2014 09:45:57 +0000</lastBuildDate>
+    <atom:link href="http://abhi1010.github.io/tags/awk/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Getting a group of lines from a file</title>
+      <link>http://abhi1010.github.io/post/getting-a-group-of-lines-from-a-file/</link>
+      <pubDate>Mon, 19 May 2014 09:45:57 +0000</pubDate>
+      
+      <guid>http://abhi1010.github.io/post/getting-a-group-of-lines-from-a-file/</guid>
+      <description>&lt;p&gt;I&amp;rsquo;ve had this need quite a few times to pull out a section of logs that would begin with a particular line and end with another. grep is not exactly useful there because it only prints out sections based on line counters (using -A/B/C) lines based on a single search pattern.&lt;/p&gt;
+
+&lt;p&gt;I came up with a script that can run at almost same speeds using &lt;code&gt;grep/cat/awk&lt;/code&gt;. &lt;code&gt;awk&lt;/code&gt; is used to decide whether the end of the section has been reached or not. Some features of the script are:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Since &lt;code&gt;awk&lt;/code&gt; script only toggles one variable it works seamlessly without delaying the actual work&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Works on gzip files as well&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;If you do not want to depend on grep or are unsure how many lines may be between begin and end keyword then replace gunzip with zcat and grep with cat.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Usage: &lt;code&gt;group filename printBeginKeyword printUntilKeyword NumOfLines&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Let&amp;rsquo;s have a look at the script&amp;hellip;.&lt;/p&gt;
+
+&lt;!-- more --&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://gist.github.com/abhi1010/924a5f12f3067ba0b3af&#34;&gt;https://gist.github.com/abhi1010/924a5f12f3067ba0b3af&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

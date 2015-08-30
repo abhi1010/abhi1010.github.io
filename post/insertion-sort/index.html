@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>Insertion Sort &middot; Abhishek Pandey</title>
+
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+  <link rel="stylesheet" href="http://abhi1010.github.io/css/poole.css">
+  <link rel="stylesheet" href="http://abhi1010.github.io/css/hyde.css">
+  <link rel="stylesheet" href="http://abhi1010.github.io/css/poole-overrides.css">
+  <link rel="stylesheet" href="http://abhi1010.github.io/css/hyde-overrides.css">
+  <link rel="stylesheet" href="http://abhi1010.github.io/css/hyde-x.css">
+  <link rel="stylesheet" href="http://abhi1010.github.io/css/highlight/sunburst.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://abhi1010.github.io/touch-icon-144-precomposed.png">
+  <link href="http://abhi1010.github.io/favicon.png" rel="icon">
+
+  
+  
+  
+  
+
+  <meta name="description" content="Your default page description">
+  <meta name="keywords" content="your,default,page,keywords">
+  
+</head>
+<body class="theme-base-aa">
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      
+      <h1><a href="http://abhi1010.github.io/">Abhishek Pandey</a></h1>
+      <p class="lead">&hellip; lost in reverie</p>
+    </div>
+
+    <ul class="sidebar-nav">
+      
+      <li class="sidebar-nav-item"><a href="http://abhi1010.github.io/post/">Posts</a></li>
+      
+      <li class="sidebar-nav-item"><a href="http://abhi1010.github.io/tags/">Tags</a></li>
+      
+      <li class="sidebar-nav-item"><a href="http://abhi1010.github.io/categories/">Categories</a></li>
+      
+      <li class="sidebar-nav-item"><a href="http://abhi1010.github.io/about/">About Me</a></li>
+      
+    </ul>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item">
+      
+      
+      
+      
+      
+      
+      
+      
+      </li>
+    </ul>
+
+    
+
+  </div>
+</div>
+
+
+<div class="content container">
+  <div class="post">
+    <h1>Insertion Sort</h1>
+    <span class="post-date" style="float:right;"><time>Sep 17, 2012</time></span>
+
+      
+          <a class="a_cat" href="http://abhi1010.github.io/categories/linux">Linux</a>
+      
+      
+        <a class="a_tag" href="http://abhi1010.github.io/tags/algo"># algo</a><a class="a_tag" href="http://abhi1010.github.io/tags/c"># c&#43;&#43;</a><a class="a_tag" href="http://abhi1010.github.io/tags/sorting"># sorting</a>
+      
+
+    
+
+<p>Insertion Sort has the following properties:</p>
+
+<ul>
+<li><p>It works by moving elements one at a time</p></li>
+
+<li><p>Works really well for small data sets</p></li>
+
+<li><p>Consider going with this when the input data may already be sorted or partially sorted</p></li>
+
+<li><ul>
+<li>The may not have to move the elements around, thereby saving precious cycles</li>
+</ul></li>
+
+<li><p>Stable sort</p></li>
+
+<li><ul>
+<li>Keeps the original order of elements with equal values</li>
+</ul></li>
+</ul>
+
+<!-- more -->
+
+<h2 id="testing-notes:a9ce6fa80f206d39e558f67e9cc61fdd">Testing Notes</h2>
+
+<ul>
+<li><p>Had a very interesting time testing my code. I knew that swapping takes time. std::swap takes particularly longer. I disabled that from the beginning itself</p></li>
+
+<li><p>Even more interesting was how I thought of fixing my code which was running slowly</p></li>
+
+<li><p>Initially even running an array of size 1K was taking about 4s so I just made a minor change to remove &ldquo;&ndash; insertIndex ;&rdquo; altogether and do the calculation in the previous line itself. That did the trick. Otherwise the code was taking hours and hours for 1M array size so I had to stop running it.</p></li>
+
+<li><p>I even tried improving the code a bit futher by ensuring that I do not call insertIndex-1 many a times but that didn&rsquo;t really help - in fact made it worse again</p></li>
+
+<li><p>Sorted runs will run much faster because there&rsquo;s no work to be done in those cases</p></li>
+
+<li><ul>
+<li>Would be a nice algo to use if your data is mostly sorted</li>
+</ul></li>
+</ul>
+
+<h2 id="code:a9ce6fa80f206d39e558f67e9cc61fdd">Code</h2>
+
+<p>As usual the <a href="https://github.com/abhi1010/Algorithms/blob/master/Algo_codes/InsertionSort.cpp">code</a> is available here:</p>
+
+<p><a href="https://github.com/abhi1010/Algorithms">https://github.com/abhi1010/Algorithms</a></p>
+
+<h2 id="numbers:a9ce6fa80f206d39e558f67e9cc61fdd">Numbers</h2>
+
+<table style="text-align:center;background-color:#efefef;width:100%;border-collapse:collapse;border:lightblue solid;" border="1" >
+<tbody >
+<tr >
+
+<td style="width:25%;" >
+</td>
+
+<td style="width:25%;" >**# of Items in Array**
+</td>
+
+<td style="width:25%;" >**Time Taken**
+</td>
+
+<td style="width:25%;" >**Average for 100 numbers**
+</td>
+</tr>
+<tr >
+
+<td rowspan="3" >**Random**
+</td>
+
+<td >10
+</td>
+
+<td >0.006095
+</td>
+
+<td >0.06095
+</td>
+</tr>
+<tr >
+
+<td >1K
+</td>
+
+<td >0.369859
+</td>
+
+<td >0.0369859
+</td>
+</tr>
+<tr >
+
+<td >1M
+</td>
+
+<td >323.878
+</td>
+
+<td >0.0323878
+</td>
+</tr>
+<tr >
+
+<td rowspan="3" >**Sorted**
+</td>
+
+<td >10
+</td>
+
+<td >0.005022
+</td>
+
+<td >0.05022
+</td>
+</tr>
+<tr >
+
+<td >1K
+</td>
+
+<td >0.11696
+</td>
+
+<td >0.011696
+</td>
+</tr>
+<tr >
+
+<td >1M
+</td>
+
+<td >122.427
+</td>
+
+<td >0.0122427
+</td>
+</tr>
+</tbody>
+</table>
+
+  </div>
+</div>
+<script src="http://abhi1010.github.io/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+</body>
+</html>
+

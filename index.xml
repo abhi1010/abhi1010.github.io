@@ -11,11 +11,15 @@
     
     <item>
       <title>Docker Container cleanup on Elastic Beanstalk</title>
-      <link>http://abhi1010.github.io/blog/2015/08/07/docker-container-cleanup-on-elastic-beanstalk/</link>
+      <link>http://abhi1010.github.io/post/docker-container-cleanup-on-elastic-beanstalk/</link>
       <pubDate>Fri, 07 Aug 2015 14:59:18 +0000</pubDate>
       
-      <guid>http://abhi1010.github.io/blog/2015/08/07/docker-container-cleanup-on-elastic-beanstalk/</guid>
-      <description>&lt;p&gt;Sometimes you may notice that old containers are not cleaned up from Beanstalk environment. This may be due to your container still running as a ghost on the background. One way to find out about this is to quickly look into your
+      <guid>http://abhi1010.github.io/post/docker-container-cleanup-on-elastic-beanstalk/</guid>
+      <description>&lt;p&gt;{% comment %}
+    These commments will not include inside the source.
+{% endcomment %}&lt;/p&gt;
+
+&lt;p&gt;Sometimes you may notice that old containers are not cleaned up from Beanstalk environment. This may be due to your container still running as a ghost on the background. One way to find out about this is to quickly look into your
 &lt;code&gt;/var/lib/docker/vfs/dir&lt;/code&gt; directory whether it has too many folders.&lt;/p&gt;
 
 &lt;p&gt;Next, find out what container processes you have going on.
@@ -59,10 +63,10 @@ Just run the following to test whether it works:
     
     <item>
       <title>Partition Linked List around a Value X</title>
-      <link>http://abhi1010.github.io/blog/2014/06/09/partition-linked-list-around-a-value-x/</link>
+      <link>http://abhi1010.github.io/post/partition-linked-list-around-a-value-x-such-that-all-nodes-x/</link>
       <pubDate>Mon, 09 Jun 2014 15:02:07 +0000</pubDate>
       
-      <guid>http://abhi1010.github.io/blog/2014/06/09/partition-linked-list-around-a-value-x/</guid>
+      <guid>http://abhi1010.github.io/post/partition-linked-list-around-a-value-x-such-that-all-nodes-x/</guid>
       <description>
 
 &lt;p&gt;How do you partition a list around a value x, such that all nodes less than x come before all nodes greater than or equal to x?&lt;/p&gt;
@@ -93,10 +97,10 @@ Just run the following to test whether it works:
     
     <item>
       <title>Find the Kth to Last Element of a Singly Linked List</title>
-      <link>http://abhi1010.github.io/blog/2014/06/08/find-the-kth-to-last-element-of-a-singly-linked-list/</link>
+      <link>http://abhi1010.github.io/post/find-the-kth-to-last-element-of-a-singly-linked-list/</link>
       <pubDate>Sun, 08 Jun 2014 07:49:47 +0000</pubDate>
       
-      <guid>http://abhi1010.github.io/blog/2014/06/08/find-the-kth-to-last-element-of-a-singly-linked-list/</guid>
+      <guid>http://abhi1010.github.io/post/find-the-kth-to-last-element-of-a-singly-linked-list/</guid>
       <description>&lt;p&gt;It is possible to a recursive solutions but I will use a simple runner logic. Recursive solutions are usually less optimal.&lt;/p&gt;
 
 &lt;p&gt;Note here that, in our logic K=1 would return the last element in the linked list. Similarly, K=2 would return the second last element.&lt;/p&gt;
@@ -143,10 +147,10 @@ Node* &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;findKthToLas
     
     <item>
       <title>Removing Duplicates from Linked List</title>
-      <link>http://abhi1010.github.io/blog/2014/06/07/removing-duplicates-from-linked-list/</link>
+      <link>http://abhi1010.github.io/post/removing-duplicates-from-linked-list/</link>
       <pubDate>Sat, 07 Jun 2014 16:50:12 +0000</pubDate>
       
-      <guid>http://abhi1010.github.io/blog/2014/06/07/removing-duplicates-from-linked-list/</guid>
+      <guid>http://abhi1010.github.io/post/removing-duplicates-from-linked-list/</guid>
       <description>
 
 &lt;p&gt;Duplicates can be removed in many ways:&lt;/p&gt;
@@ -175,10 +179,10 @@ Node* &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;findKthToLas
     
     <item>
       <title>Deleting a Node from Singly Linked List</title>
-      <link>http://abhi1010.github.io/blog/2014/06/07/deleting-a-node-from-singly-linked-list/</link>
+      <link>http://abhi1010.github.io/post/deleting-a-node-from-singly-linked-list/</link>
       <pubDate>Sat, 07 Jun 2014 10:49:17 +0000</pubDate>
       
-      <guid>http://abhi1010.github.io/blog/2014/06/07/deleting-a-node-from-singly-linked-list/</guid>
+      <guid>http://abhi1010.github.io/post/deleting-a-node-from-singly-linked-list/</guid>
       <description>
 
 &lt;p&gt;Deleting a Node from Singly Linked List is rather straight forward.&lt;/p&gt;
@@ -210,10 +214,10 @@ Node* &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;findKthToLas
     
     <item>
       <title>Usage of typename</title>
-      <link>http://abhi1010.github.io/blog/2014/05/26/usage-of-typename/</link>
+      <link>http://abhi1010.github.io/post/usage-of-typename/</link>
       <pubDate>Mon, 26 May 2014 14:19:15 +0000</pubDate>
       
-      <guid>http://abhi1010.github.io/blog/2014/05/26/usage-of-typename/</guid>
+      <guid>http://abhi1010.github.io/post/usage-of-typename/</guid>
       <description>&lt;p&gt;What is wrong with the following code?&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&#34;https://gist.github.com/anonymous/f1f2246d04a935794e44&#34;&gt;https://gist.github.com/anonymous/f1f2246d04a935794e44&lt;/a&gt;&lt;/p&gt;
@@ -256,10 +260,10 @@ wrapper.mUsingInner = innerStrct;
     
     <item>
       <title>Setting up your VIM... Your Style</title>
-      <link>http://abhi1010.github.io/blog/2014/05/19/setting-up-your-vim...-your-style/</link>
+      <link>http://abhi1010.github.io/post/setting-up-your-vim-your-style/</link>
       <pubDate>Mon, 19 May 2014 15:51:51 +0000</pubDate>
       
-      <guid>http://abhi1010.github.io/blog/2014/05/19/setting-up-your-vim...-your-style/</guid>
+      <guid>http://abhi1010.github.io/post/setting-up-your-vim-your-style/</guid>
       <description>&lt;p&gt;Writing code using VIM can be a bit overwhelming but it helps creating a few shortcuts there to make your life easier. Here I will discuss a few.&lt;/p&gt;
 
 &lt;ul&gt;
@@ -283,10 +287,10 @@ wrapper.mUsingInner = innerStrct;
     
     <item>
       <title>Getting a group of lines from a file</title>
-      <link>http://abhi1010.github.io/blog/2014/05/19/getting-a-group-of-lines-from-a-file/</link>
+      <link>http://abhi1010.github.io/post/getting-a-group-of-lines-from-a-file/</link>
       <pubDate>Mon, 19 May 2014 09:45:57 +0000</pubDate>
       
-      <guid>http://abhi1010.github.io/blog/2014/05/19/getting-a-group-of-lines-from-a-file/</guid>
+      <guid>http://abhi1010.github.io/post/getting-a-group-of-lines-from-a-file/</guid>
       <description>&lt;p&gt;I&amp;rsquo;ve had this need quite a few times to pull out a section of logs that would begin with a particular line and end with another. grep is not exactly useful there because it only prints out sections based on line counters (using -A/B/C) lines based on a single search pattern.&lt;/p&gt;
 
 &lt;p&gt;I came up with a script that can run at almost same speeds using &lt;code&gt;grep/cat/awk&lt;/code&gt;. &lt;code&gt;awk&lt;/code&gt; is used to decide whether the end of the section has been reached or not. Some features of the script are:&lt;/p&gt;
@@ -311,10 +315,10 @@ wrapper.mUsingInner = innerStrct;
     
     <item>
       <title>32 bit vs 64 bit</title>
-      <link>http://abhi1010.github.io/blog/2014/04/15/32-bit-vs-64-bit/</link>
+      <link>http://abhi1010.github.io/post/32-bit-vs-64-bit/</link>
       <pubDate>Tue, 15 Apr 2014 02:40:00 +0000</pubDate>
       
-      <guid>http://abhi1010.github.io/blog/2014/04/15/32-bit-vs-64-bit/</guid>
+      <guid>http://abhi1010.github.io/post/32-bit-vs-64-bit/</guid>
       <description>
 
 &lt;h3 id=&#34;when-to-use-64-bit:781115a00a27c6c773035866d9644c43&#34;&gt;When to use 64-bit?&lt;/h3&gt;
@@ -343,10 +347,10 @@ wrapper.mUsingInner = innerStrct;
     
     <item>
       <title>Tokenize a String using C&#43;&#43;</title>
-      <link>http://abhi1010.github.io/blog/2014/04/08/tokenize-a-string-using-c/</link>
+      <link>http://abhi1010.github.io/post/tokenize-a-string-using-c11/</link>
       <pubDate>Tue, 08 Apr 2014 07:00:00 +0000</pubDate>
       
-      <guid>http://abhi1010.github.io/blog/2014/04/08/tokenize-a-string-using-c/</guid>
+      <guid>http://abhi1010.github.io/post/tokenize-a-string-using-c11/</guid>
       <description>&lt;p&gt;Here&amp;rsquo;s a short snippet to split a string into multiple tokens; into a vector. As you will see that, if you run the code, boost version performs better because you can choose a number of delimiters to split your string instead of the vanilla version using the normal C++ code. Of course, you may also write your own code to do something like this but I was looking to do some short snippets.&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&#34;https://gist.github.com/anonymous/0465925390f3442a7691&#34;&gt;https://gist.github.com/anonymous/0465925390f3442a7691&lt;/a&gt;&lt;/p&gt;
@@ -357,10 +361,10 @@ wrapper.mUsingInner = innerStrct;
     
     <item>
       <title>Heap Sort vs Merge Sort vs Insertion Sort vs Radix Sort vs Counting Sort vs Quick Sort</title>
-      <link>http://abhi1010.github.io/blog/2014/03/19/heap-sort-vs-merge-sort-vs-insertion-sort-vs-radix-sort-vs-counting-sort-vs-quick-sort/</link>
+      <link>http://abhi1010.github.io/post/heap-sort-vs-merge-sort-vs-insertion-sort-vs-radix-sort-vs-counting-sort-vs-quick-sort/</link>
       <pubDate>Wed, 19 Mar 2014 05:42:00 +0000</pubDate>
       
-      <guid>http://abhi1010.github.io/blog/2014/03/19/heap-sort-vs-merge-sort-vs-insertion-sort-vs-radix-sort-vs-counting-sort-vs-quick-sort/</guid>
+      <guid>http://abhi1010.github.io/post/heap-sort-vs-merge-sort-vs-insertion-sort-vs-radix-sort-vs-counting-sort-vs-quick-sort/</guid>
       <description>
 
 &lt;p&gt;I had written about sorting algorithms (Tag: &lt;a href=&#34;http://codersdigest.wordpress.com/tag/sorting/&#34;&gt;Sorting&lt;/a&gt;) with details about what to look out for along with their code snippets but I wanted a do a quick comparison of all the algos together to see how do they perform when the same set of input is provided to them. Hence I started working on a simple implementation for each one of them. I have now put together all of them in a single project on GitHub. I ensured that they all have the same set of procedures during their run. Some of the items I wanted to ensure was:&lt;/p&gt;
@@ -1298,10 +1302,10 @@ wrapper.mUsingInner = innerStrct;
     
     <item>
       <title>Global Search in VIM</title>
-      <link>http://abhi1010.github.io/blog/2014/02/11/global-search-in-vim/</link>
+      <link>http://abhi1010.github.io/post/global-search/</link>
       <pubDate>Tue, 11 Feb 2014 14:56:00 +0000</pubDate>
       
-      <guid>http://abhi1010.github.io/blog/2014/02/11/global-search-in-vim/</guid>
+      <guid>http://abhi1010.github.io/post/global-search/</guid>
       <description>&lt;p&gt;You must be knowing about regular VIM search&lt;/p&gt;
 
 &lt;blockquote&gt;%s/SEARCH/REPLACE/CMD
@@ -1334,10 +1338,10 @@ wrapper.mUsingInner = innerStrct;
     
     <item>
       <title>Reading Excel in C#</title>
-      <link>http://abhi1010.github.io/blog/2013/11/09/reading-excel-in-c/</link>
+      <link>http://abhi1010.github.io/post/reading-excel-in-c/</link>
       <pubDate>Sat, 09 Nov 2013 23:51:00 +0000</pubDate>
       
-      <guid>http://abhi1010.github.io/blog/2013/11/09/reading-excel-in-c/</guid>
+      <guid>http://abhi1010.github.io/post/reading-excel-in-c/</guid>
       <description>&lt;p&gt;Recently had to work on an Excel and update its content when some events were triggered on a Bloomberg terminal. I couldn&amp;rsquo;t find any code for reading the excel file using C# so thought of putting that up.&lt;/p&gt;
 
 &lt;p&gt;There were a few things to learn:&lt;/p&gt;
@@ -1364,10 +1368,10 @@ wrapper.mUsingInner = innerStrct;
     
     <item>
       <title>Ideas for Shared Memory in Linux</title>
-      <link>http://abhi1010.github.io/blog/2013/10/13/ideas-for-shared-memory-in-linux/</link>
+      <link>http://abhi1010.github.io/post/ideas-for-shared-memory-in-linux/</link>
       <pubDate>Sun, 13 Oct 2013 05:59:22 +0000</pubDate>
       
-      <guid>http://abhi1010.github.io/blog/2013/10/13/ideas-for-shared-memory-in-linux/</guid>
+      <guid>http://abhi1010.github.io/post/ideas-for-shared-memory-in-linux/</guid>
       <description>&lt;p&gt;I have been doing extensive research today regarding shared memory in linux before I embark on a new project in which shaving time off process communication latency is extremely important. I found some very interesting links as well. Let’s break them down:&lt;/p&gt;
 
 &lt;table style=&#34;border:thin solid lightblue;&#34; &gt;
@@ -1535,10 +1539,10 @@ dBus used to work using kernel levels but lately have come up with a patch that 
     
     <item>
       <title>Oracle SQL Queries</title>
-      <link>http://abhi1010.github.io/blog/2013/09/22/oracle-sql-queries/</link>
+      <link>http://abhi1010.github.io/post/oracle-sql-queries/</link>
       <pubDate>Sun, 22 Sep 2013 08:48:00 +0000</pubDate>
       
-      <guid>http://abhi1010.github.io/blog/2013/09/22/oracle-sql-queries/</guid>
+      <guid>http://abhi1010.github.io/post/oracle-sql-queries/</guid>
       <description>&lt;p&gt;Recently I found myself in a situation where I had to view all the tables in the Oracle Server.&lt;/p&gt;
 
 &lt;p&gt;I did some digging and came up with these helpful queries.&lt;/p&gt;

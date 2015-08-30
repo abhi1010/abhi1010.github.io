@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>32 bit vs 64 bit &middot; Abhishek Pandey</title>
+
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+  <link rel="stylesheet" href="http://abhi1010.github.io/css/poole.css">
+  <link rel="stylesheet" href="http://abhi1010.github.io/css/hyde.css">
+  <link rel="stylesheet" href="http://abhi1010.github.io/css/poole-overrides.css">
+  <link rel="stylesheet" href="http://abhi1010.github.io/css/hyde-overrides.css">
+  <link rel="stylesheet" href="http://abhi1010.github.io/css/hyde-x.css">
+  <link rel="stylesheet" href="http://abhi1010.github.io/css/highlight/sunburst.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://abhi1010.github.io/touch-icon-144-precomposed.png">
+  <link href="http://abhi1010.github.io/favicon.png" rel="icon">
+
+  
+  
+  
+  
+
+  <meta name="description" content="Your default page description">
+  <meta name="keywords" content="your,default,page,keywords">
+  
+</head>
+<body class="theme-base-aa">
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      
+      <h1><a href="http://abhi1010.github.io/">Abhishek Pandey</a></h1>
+      <p class="lead">&hellip; lost in reverie</p>
+    </div>
+
+    <ul class="sidebar-nav">
+      
+      <li class="sidebar-nav-item"><a href="http://abhi1010.github.io/post/">Posts</a></li>
+      
+      <li class="sidebar-nav-item"><a href="http://abhi1010.github.io/tags/">Tags</a></li>
+      
+      <li class="sidebar-nav-item"><a href="http://abhi1010.github.io/categories/">Categories</a></li>
+      
+      <li class="sidebar-nav-item"><a href="http://abhi1010.github.io/about/">About Me</a></li>
+      
+    </ul>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item">
+      
+      
+      
+      
+      
+      
+      
+      
+      </li>
+    </ul>
+
+    
+
+  </div>
+</div>
+
+
+<div class="content container">
+  <div class="post">
+    <h1>32 bit vs 64 bit</h1>
+    <span class="post-date" style="float:right;"><time>Apr 15, 2014</time></span>
+
+      
+          <a class="a_cat" href="http://abhi1010.github.io/categories/.net">.NET</a><a class="a_cat" href="http://abhi1010.github.io/categories/linux">Linux</a>
+      
+      
+        <a class="a_tag" href="http://abhi1010.github.io/tags/c"># c&#43;&#43;</a>
+      
+
+    
+
+<h3 id="when-to-use-64-bit:781115a00a27c6c773035866d9644c43">When to use 64-bit?</h3>
+
+<p>If your application needs more than 2-4gb of data</p>
+
+<ul>
+<li>If your application intensively uses 64-bit arithmetic</li>
+<li>* 32-bit x86 compiled applications are restricted to x86 instruction set, even when run on on a 64-bit machine</li>
+<li>x64 supports 16 registers compared to just 8 in x86. If your code is computation intensive this may help a great deal</li>
+</ul>
+
+<h3 id="when-to-use-32-bit:781115a00a27c6c773035866d9644c43">When to use 32-bit?</h3>
+
+<p>After reading so many great things about 32 bit, why would anybody still want to code against 32-bit? Simple reason - code compiled in 32-bit takes lesser memory. For example, a pointer in 64-bit machine is 8 bytes compared to 4 bytes with 32-bit. Now imagine how many pointers do you have going around in your code?</p>
+
+<h3 id="when-to-not-use-64-bit:781115a00a27c6c773035866d9644c43">When to not use 64-bit?</h3>
+
+<p>Sometimes if your code is running on a machine that does not have too much of space then it is a never a great idea to use 64-bit compilation because the same task can probably be done much better using 32-bit version. L2 and L3 caches will be utilized a lot more in 64-bit code (and a lot earlier as well) compared to 32-bit; on such systems.</p>
+
+<h3 id="summary:781115a00a27c6c773035866d9644c43">Summary</h3>
+
+<p>Always benchmark your code and ensure that the application actually needs more than 2-4Gb of space.</p>
+
+  </div>
+</div>
+<script src="http://abhi1010.github.io/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+</body>
+</html>
+

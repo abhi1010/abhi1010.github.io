@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Excel on Coders Digest</title>
+    <link>http://abhi1010.github.io/tags/excel/</link>
+    <description>Recent content in Excel on Coders Digest</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 09 Nov 2013 23:51:00 +0000</lastBuildDate>
+    <atom:link href="http://abhi1010.github.io/tags/excel/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Reading Excel in C#</title>
+      <link>http://abhi1010.github.io/post/reading-excel-in-c/</link>
+      <pubDate>Sat, 09 Nov 2013 23:51:00 +0000</pubDate>
+      
+      <guid>http://abhi1010.github.io/post/reading-excel-in-c/</guid>
+      <description>&lt;p&gt;Recently had to work on an Excel and update its content when some events were triggered on a Bloomberg terminal. I couldn&amp;rsquo;t find any code for reading the excel file using C# so thought of putting that up.&lt;/p&gt;
+
+&lt;p&gt;There were a few things to learn:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Excel support is not available by default so make sure to add Microsoft.Office.Interop.Excel as a reference&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Sometime indexing to reference the Workbooks or Worksheets may not work so try out other values&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;ul&gt;
+&lt;li&gt;I remember this was not a problem with Visual Studio 2010 but something must have happened in Visual Studio 2012&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;It is also possible to try Workbook names to try and retrieve them&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Please follow the shortened code to read an Excel file after the break.&lt;/p&gt;
+
+&lt;!-- more --&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://gist.github.com/abhi1010/ee13f57720471c8feea2&#34;&gt;https://gist.github.com/abhi1010/ee13f57720471c8feea2&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

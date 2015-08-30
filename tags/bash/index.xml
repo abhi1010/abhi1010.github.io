@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Bash on Coders Digest</title>
+    <link>http://abhi1010.github.io/tags/bash/</link>
+    <description>Recent content in Bash on Coders Digest</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 19 May 2014 15:51:51 +0000</lastBuildDate>
+    <atom:link href="http://abhi1010.github.io/tags/bash/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Setting up your VIM... Your Style</title>
+      <link>http://abhi1010.github.io/post/setting-up-your-vim-your-style/</link>
+      <pubDate>Mon, 19 May 2014 15:51:51 +0000</pubDate>
+      
+      <guid>http://abhi1010.github.io/post/setting-up-your-vim-your-style/</guid>
+      <description>&lt;p&gt;Writing code using VIM can be a bit overwhelming but it helps creating a few shortcuts there to make your life easier. Here I will discuss a few.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;First of all, it is always a good idea to set up your tabs and spaces&lt;/li&gt;
+&lt;li&gt;Set up a shortcut to:&lt;/li&gt;
+&lt;li&gt;* Toggling of Auto-Indent while pasting source text; very useful in code (F2 in my provided script)
+
+&lt;ul&gt;
+&lt;li&gt;Toggling of Auto-Scroll of Split windows (F3 in my provided script)&lt;/li&gt;
+&lt;li&gt;Macro for Folding functions within the source code (@q in my provided script)&lt;/li&gt;
+&lt;li&gt;Smart case search - based on whether the input is in caps or not&lt;/li&gt;
+&lt;li&gt;Toggling of Mouse Usage in VIM window - to allow quick selection of text (F12 in my provided script)&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Please see the provided script below to have a look.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://gist.github.com/abhi1010/6f190c9f3afd42881ef5&#34;&gt;https://gist.github.com/abhi1010/6f190c9f3afd42881ef5&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Getting a group of lines from a file</title>
+      <link>http://abhi1010.github.io/post/getting-a-group-of-lines-from-a-file/</link>
+      <pubDate>Mon, 19 May 2014 09:45:57 +0000</pubDate>
+      
+      <guid>http://abhi1010.github.io/post/getting-a-group-of-lines-from-a-file/</guid>
+      <description>&lt;p&gt;I&amp;rsquo;ve had this need quite a few times to pull out a section of logs that would begin with a particular line and end with another. grep is not exactly useful there because it only prints out sections based on line counters (using -A/B/C) lines based on a single search pattern.&lt;/p&gt;
+
+&lt;p&gt;I came up with a script that can run at almost same speeds using &lt;code&gt;grep/cat/awk&lt;/code&gt;. &lt;code&gt;awk&lt;/code&gt; is used to decide whether the end of the section has been reached or not. Some features of the script are:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Since &lt;code&gt;awk&lt;/code&gt; script only toggles one variable it works seamlessly without delaying the actual work&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Works on gzip files as well&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;If you do not want to depend on grep or are unsure how many lines may be between begin and end keyword then replace gunzip with zcat and grep with cat.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Usage: &lt;code&gt;group filename printBeginKeyword printUntilKeyword NumOfLines&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Let&amp;rsquo;s have a look at the script&amp;hellip;.&lt;/p&gt;
+
+&lt;!-- more --&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://gist.github.com/abhi1010/924a5f12f3067ba0b3af&#34;&gt;https://gist.github.com/abhi1010/924a5f12f3067ba0b3af&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Global Search in VIM</title>
+      <link>http://abhi1010.github.io/post/global-search/</link>
+      <pubDate>Tue, 11 Feb 2014 14:56:00 +0000</pubDate>
+      
+      <guid>http://abhi1010.github.io/post/global-search/</guid>
+      <description>&lt;p&gt;You must be knowing about regular VIM search&lt;/p&gt;
+
+&lt;blockquote&gt;%s/SEARCH/REPLACE/CMD
+&gt; 
+&gt; &lt;/blockquote&gt;
+
+&lt;p&gt;However, sometimes you do not want to replace something but just see all instances of the a word or phrase. In such cases, global search is really useful when on vim. The syntax is simpler than normal search-replace:&lt;/p&gt;
+
+&lt;blockquote&gt;:[range]g[lobal]/{pattern}/[cmd]
+&gt; 
+&gt; &lt;/blockquote&gt;
+
+&lt;p&gt;This will show all instances of the &amp;ldquo;SEARCH&amp;rdquo; term within the VIM window. There&amp;rsquo;s another version of the same command which is as follows:&lt;/p&gt;
+
+&lt;blockquote&gt;:[range]g[lobal]!/{pattern}/[cmd]
+&gt; 
+&gt; &lt;/blockquote&gt;
+
+&lt;p&gt;This is similar to the previous command but the only difference is that this command contains &amp;ldquo;!&amp;rdquo; which signifies that the command will be executed on all lines &lt;code&gt;NOT&lt;/code&gt; matching the &lt;code&gt;pattern&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;One example here would be to delete all lines in a file containing a particular word:&lt;/p&gt;
+
+&lt;blockquote&gt;:g/deleteMe/d
+&gt; 
+&gt; &lt;/blockquote&gt;
+
+&lt;p&gt;There could be lot more actions (regular vim stuff) that you could do like yanking or indenting.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>CVS Cheat Sheet</title>
+      <link>http://abhi1010.github.io/post/cvs-cheat-sheet/</link>
+      <pubDate>Wed, 03 Jul 2013 07:28:00 +0000</pubDate>
+      
+      <guid>http://abhi1010.github.io/post/cvs-cheat-sheet/</guid>
+      <description>&lt;p&gt;I&amp;rsquo;ve worked on CVS for a long time now and figured out that I&amp;rsquo;d save a lot of time if I started writing alias or functions for the numerous tasks that I did on them. I will put down some of them here so you may benefit from them.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Silently update and inform about the status of the files (recursive)&lt;/em&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;cvs -q -n update
+&gt; 
+&gt; &lt;/blockquote&gt;
+
+&lt;p&gt;&lt;em&gt;Same as earlier but will only do so for the current folder&lt;/em&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;cvs -Q -n update -l
+&gt; 
+&gt; &lt;/blockquote&gt;
+
+&lt;p&gt;&lt;em&gt;Finds out the cv[s] [m]odified list of files while also indentating them nicely with only the important data pulled out&lt;/em&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;cvs -Q status | egrep &#34;File: &#34; -A 4 | egrep -v &#34;Up-to-date&#34; | egrep &#34;File: &#34; -A 3 | sed -e &#34;s/ Status:/\t\tStatus:/&#34; -e &#34;s/,v$/\n-------------------------------------------------------------------------\n/&#34; -e &#34;s/.*${PWD##*/}\//Location:\t\t /&#34; -e &#34;s/Attic\///&#34; | egrep &#34;Location:|Repository|Status:|File:|--------
+&gt; 
+&gt; &lt;/blockquote&gt;
+
+&lt;p&gt;&lt;em&gt;Recursively add all files to CVS for committing from the current directory&lt;/em&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;find . -type d -print | grep -v CVS | xargs cvs add
+&gt; 
+&gt; &lt;/blockquote&gt;
+
+&lt;p&gt;&lt;em&gt;Doing a side by side diff (change the value of -W according to the width of the screen)&lt;/em&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;cvs -Q diff -t -y --suppress-common-lines -W 190 $*
+&gt; 
+&gt; &lt;/blockquote&gt;
+
+&lt;p&gt;&lt;em&gt;Merging code from one branch to another&lt;/em&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;# Creates a command that you can use to &#34;merge&#34; your code from dev head to this current branch.   
+# Ideally you want to run this command from a folder where you want the code to merge to....   
+merge()   
+{   
+BRANCH=$(cat CVS/Tag | cut -c2-)   
+CMD=$(echo cvs update -j $BRANCH -j Version_2_17_dev .)   
+echo $CMD   
+}   
+
+&gt; 
+&gt; &lt;/blockquote&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Change Putty Window Title</title>
+      <link>http://abhi1010.github.io/post/change-putty-window-title/</link>
+      <pubDate>Thu, 25 Apr 2013 07:02:00 +0000</pubDate>
+      
+      <guid>http://abhi1010.github.io/post/change-putty-window-title/</guid>
+      <description>&lt;p&gt;How to modify the Putty window title to a specific string?&lt;/p&gt;
+
+&lt;p&gt;By default, you&amp;rsquo;d like to have the window title to give you the full path to the folder you are working from (working directory). PROMPT_COMMAND will help you with that.&lt;/p&gt;
+
+&lt;p&gt;However, if you have too many windows where you are on the same folder then it may become confusing. To set your own title you&amp;rsquo;d like to use the title() function provided here. It sets the name to whatever you say.&lt;/p&gt;
+
+&lt;p&gt;Please note that PS1 is only valid until you move your folders again. That is why the title() function also has to reset PROMPT_COMMAND.&lt;/p&gt;
+
+&lt;p&gt;Let&amp;rsquo;s have a look at the script needed. Maybe you wanna put them in your .bashrc file.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://gist.github.com/abhi1010/8eed9133ed91cbb42854&#34;&gt;https://gist.github.com/abhi1010/8eed9133ed91cbb42854&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

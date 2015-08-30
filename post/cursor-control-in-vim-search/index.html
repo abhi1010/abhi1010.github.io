@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>Cursor Control in VIM Search &middot; Abhishek Pandey</title>
+
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+  <link rel="stylesheet" href="http://abhi1010.github.io/css/poole.css">
+  <link rel="stylesheet" href="http://abhi1010.github.io/css/hyde.css">
+  <link rel="stylesheet" href="http://abhi1010.github.io/css/poole-overrides.css">
+  <link rel="stylesheet" href="http://abhi1010.github.io/css/hyde-overrides.css">
+  <link rel="stylesheet" href="http://abhi1010.github.io/css/hyde-x.css">
+  <link rel="stylesheet" href="http://abhi1010.github.io/css/highlight/sunburst.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://abhi1010.github.io/touch-icon-144-precomposed.png">
+  <link href="http://abhi1010.github.io/favicon.png" rel="icon">
+
+  
+  
+  
+  
+
+  <meta name="description" content="Your default page description">
+  <meta name="keywords" content="your,default,page,keywords">
+  
+</head>
+<body class="theme-base-aa">
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      
+      <h1><a href="http://abhi1010.github.io/">Abhishek Pandey</a></h1>
+      <p class="lead">&hellip; lost in reverie</p>
+    </div>
+
+    <ul class="sidebar-nav">
+      
+      <li class="sidebar-nav-item"><a href="http://abhi1010.github.io/post/">Posts</a></li>
+      
+      <li class="sidebar-nav-item"><a href="http://abhi1010.github.io/tags/">Tags</a></li>
+      
+      <li class="sidebar-nav-item"><a href="http://abhi1010.github.io/categories/">Categories</a></li>
+      
+      <li class="sidebar-nav-item"><a href="http://abhi1010.github.io/about/">About Me</a></li>
+      
+    </ul>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item">
+      
+      
+      
+      
+      
+      
+      
+      
+      </li>
+    </ul>
+
+    
+
+  </div>
+</div>
+
+
+<div class="content container">
+  <div class="post">
+    <h1>Cursor Control in VIM Search</h1>
+    <span class="post-date" style="float:right;"><time>Jun 11, 2013</time></span>
+
+      
+          <a class="a_cat" href="http://abhi1010.github.io/categories/linux">Linux</a>
+      
+      
+        <a class="a_tag" href="http://abhi1010.github.io/tags/tips"># tips</a><a class="a_tag" href="http://abhi1010.github.io/tags/vim"># vim</a>
+      
+
+    <p>Found a great way to search for keywords &amp;&amp; control the location of cursor in vim. It is excellent if you want to do a particular task multiple times. Usually if you search the cursor will straight away take you to the start of search. What if you want to go to the end of the word you are searching for?</p>
+
+<blockquote>  
+> 
+> /pattern/e
+> 
+> </blockquote>
+
+<p>This takes you to the END of the keyword you are looking for.</p>
+
+<p>That’s not all. What if you want to go the second letter in that keyword? Change the pattern to as follows:</p>
+
+<blockquote>  
+> 
+> /pattern/s+1
+> 
+> </blockquote>
+
+<p>That’s great. But what if I want to go to the end of the keyword?</p>
+
+<blockquote>  
+> 
+> /pattern/e
+> 
+> </blockquote>
+
+<p>Awesome. Let’s review it through examples. Let’s say our phrase is “the brown fox jumped over the lazy dog” and we originally want to search for “brown”.</p>
+
+<p><table cellpadding="2" cellspacing="0" border="1" width="947" ><tbody >     <tr ><br />
+<td width="185" valign="top" ></p>
+
+<p><strong>PATTERN</strong></p>
+
+<p></td><br />
+<td width="286" valign="top" ></p>
+
+<p><strong>CURSOR LOCATED AT BEGINNING OF</strong></p>
+
+<p></td><br />
+<td width="474" valign="top" ></p>
+
+<p><strong>DESCRIPTION</strong></p>
+
+<p></td>     </tr>      <tr ><br />
+<td width="185" valign="top" >/brown
+</td><br />
+<td width="286" valign="top" >brown fox….
+</td><br />
+<td width="474" valign="top" >search and start at “brown”
+</td>     </tr>      <tr ><br />
+<td width="185" valign="top" >/brown/s+2
+</td><br />
+<td width="286" valign="top" >own fox…
+</td><br />
+<td width="474" valign="top" >start at “brown” but move 2 letters from ‘start’
+</td>     </tr>      <tr ><br />
+<td width="185" valign="top" >/brown/s-4
+</td><br />
+<td width="286" valign="top" >the brown fox…
+</td><br />
+<td width="474" valign="top" >start at “brown” but move 4 letters to the left from ‘start’
+</td>     </tr>      <tr ><br />
+<td width="185" valign="top" >/brown/e
+</td><br />
+<td width="286" valign="top" >n fox….
+</td><br />
+<td width="474" valign="top" >search for “brown” but move to the end
+</td>     </tr>      <tr ><br />
+<td width="185" valign="top" >/brown/e+2
+</td><br />
+<td width="286" valign="top" >fox…
+</td><br />
+<td width="474" valign="top" >search for “brown” but move 2 letters from the ‘end’
+</td>     </tr>      <tr ><br />
+<td width="185" valign="top" >/brown/e-1
+</td><br />
+<td width="286" valign="top" >wn fox…
+</td><br />
+<td width="474" valign="top" >search for “brown” but move 1 letter to the left from the ‘end’
+</td>     </tr>   </tbody></table></p>
+
+  </div>
+</div>
+<script src="http://abhi1010.github.io/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+</body>
+</html>
+

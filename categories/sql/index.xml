@@ -11,10 +11,10 @@
     
     <item>
       <title>Oracle SQL Queries</title>
-      <link>http://abhi1010.github.io/blog/2013/09/22/oracle-sql-queries/</link>
+      <link>http://abhi1010.github.io/post/oracle-sql-queries/</link>
       <pubDate>Sun, 22 Sep 2013 08:48:00 +0000</pubDate>
       
-      <guid>http://abhi1010.github.io/blog/2013/09/22/oracle-sql-queries/</guid>
+      <guid>http://abhi1010.github.io/post/oracle-sql-queries/</guid>
       <description>&lt;p&gt;Recently I found myself in a situation where I had to view all the tables in the Oracle Server.&lt;/p&gt;
 
 &lt;p&gt;I did some digging and came up with these helpful queries.&lt;/p&gt;
@@ -60,10 +60,10 @@
     
     <item>
       <title>Membership and Profiler in ASP.NET</title>
-      <link>http://abhi1010.github.io/blog/2008/02/06/membership-and-profiler-in-asp.net/</link>
+      <link>http://abhi1010.github.io/post/membership-and-profiler-in-asp-net/</link>
       <pubDate>Wed, 06 Feb 2008 19:34:00 +0000</pubDate>
       
-      <guid>http://abhi1010.github.io/blog/2008/02/06/membership-and-profiler-in-asp.net/</guid>
+      <guid>http://abhi1010.github.io/post/membership-and-profiler-in-asp-net/</guid>
       <description>&lt;p&gt;Whenever you are using Sql Membership and Profiler classes - Trying to generate reports make sure your query&amp;rsquo;s WHERE clause is using &amp;ldquo;indexed&amp;rdquo; column names at least.&lt;/p&gt;
 
 &lt;p&gt;Let&amp;rsquo;s look at some of the more used tables. The index of some of the tables is given below:&lt;/p&gt;

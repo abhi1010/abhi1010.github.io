@@ -38,16 +38,19 @@
   <div class="container sidebar-sticky">
     <div class="sidebar-about">
       
-      <h1>Abhishek Pandey</h1>
-      <p class="lead">Coders Digest&hellip;</p>
+      <h1><a href="http://abhi1010.github.io/">Abhishek Pandey</a></h1>
+      <p class="lead">&hellip; lost in reverie</p>
     </div>
 
     <ul class="sidebar-nav">
-      <li class="sidebar-nav-item"><a href="http://abhi1010.github.io/">Blog</a></li>
       
-      <li class="sidebar-nav-item"><a href="http://abhi1010.github.io/about/">about hugo</a></li>
+      <li class="sidebar-nav-item"><a href="http://abhi1010.github.io/post/">Posts</a></li>
       
-      <li class="sidebar-nav-item"><a href="http://abhi1010.github.io/getting-started/">getting started</a></li>
+      <li class="sidebar-nav-item"><a href="http://abhi1010.github.io/tags/">Tags</a></li>
+      
+      <li class="sidebar-nav-item"><a href="http://abhi1010.github.io/categories/">Categories</a></li>
+      
+      <li class="sidebar-nav-item"><a href="http://abhi1010.github.io/about/">About Me</a></li>
       
     </ul>
 
@@ -70,112 +73,101 @@
 </div>
 
 
-<div class="content container">
-  <ul class="posts">
-  
-    <li><a href="http://abhi1010.github.io/blog/2014/04/15/32-bit-vs-64-bit/">32 bit vs 64 bit</a>
-    
-    &middot;
-    <a class="label" href="http://abhi1010.github.io/categories/.net">.NET</a><a class="label" href="http://abhi1010.github.io/categories/linux">Linux</a>
-    </span>
-    &middot; <time>Apr 15, 2014</time></li>
-  
-    <li><a href="http://abhi1010.github.io/blog/2013/11/09/reading-excel-in-c/">Reading Excel in C#</a>
-    
-    &middot;
-    <a class="label" href="http://abhi1010.github.io/categories/.net">.NET</a>
-    </span>
-    &middot; <time>Nov 9, 2013</time></li>
-  
-    <li><a href="http://abhi1010.github.io/blog/2008/05/14/visual-studio-2008-crashes-while-adding-items/">Visual Studio 2008 crashes while adding items</a>
-    
-    &middot;
-    <a class="label" href="http://abhi1010.github.io/categories/.net">.NET</a><a class="label" href="http://abhi1010.github.io/categories/visual-studio">Visual Studio</a>
-    </span>
-    &middot; <time>May 14, 2008</time></li>
-  
-    <li><a href="http://abhi1010.github.io/blog/2008/03/31/full-trust-on-mapped-drive/">Full Trust on Mapped Drive</a>
-    
-    &middot;
-    <a class="label" href="http://abhi1010.github.io/categories/.net">.NET</a>
-    </span>
-    &middot; <time>Mar 31, 2008</time></li>
-  
-    <li><a href="http://abhi1010.github.io/blog/2008/03/31/tag-your-namespaces/">Tag your namespaces</a>
-    
-    &middot;
-    <a class="label" href="http://abhi1010.github.io/categories/.net">.NET</a>
-    </span>
-    &middot; <time>Mar 31, 2008</time></li>
-  
-    <li><a href="http://abhi1010.github.io/blog/2008/03/31/few-good-links-for-march-08/">Few Good Links for March 08</a>
-    
-    &middot;
-    <a class="label" href="http://abhi1010.github.io/categories/.net">.NET</a><a class="label" href="http://abhi1010.github.io/categories/asp.net">ASP.NET</a>
-    </span>
-    &middot; <time>Mar 31, 2008</time></li>
-  
-    <li><a href="http://abhi1010.github.io/blog/2008/03/11/how-to-protect-from-sql-injections-in-asp.net/">How to protect from SQL Injections in ASP.NET</a>
-    
-    &middot;
-    <a class="label" href="http://abhi1010.github.io/categories/.net">.NET</a><a class="label" href="http://abhi1010.github.io/categories/asp.net">ASP.NET</a>
-    </span>
-    &middot; <time>Mar 11, 2008</time></li>
-  
-    <li><a href="http://abhi1010.github.io/blog/2008/03/08/creating-custom-web-controls/">Creating Custom Web Controls</a>
-    
-    &middot;
-    <a class="label" href="http://abhi1010.github.io/categories/.net">.NET</a><a class="label" href="http://abhi1010.github.io/categories/asp.net">ASP.NET</a>
-    </span>
-    &middot; <time>Mar 8, 2008</time></li>
-  
-    <li><a href="http://abhi1010.github.io/blog/2008/03/08/stringbuilder-vs-string-joins/">StringBuilder vs String joins</a>
-    
-    &middot;
-    <a class="label" href="http://abhi1010.github.io/categories/.net">.NET</a>
-    </span>
-    &middot; <time>Mar 8, 2008</time></li>
-  
-    <li><a href="http://abhi1010.github.io/blog/2008/03/08/blogs-i-like/">Blogs I like</a>
-    
-    &middot;
-    <a class="label" href="http://abhi1010.github.io/categories/.net">.NET</a><a class="label" href="http://abhi1010.github.io/categories/asp.net">ASP.NET</a>
-    </span>
-    &middot; <time>Mar 8, 2008</time></li>
-  
-    <li><a href="http://abhi1010.github.io/blog/2008/03/04/recursively-read-directories-and-list-all-files-under-it/">Recursively read directories and list all files under it</a>
-    
-    &middot;
-    <a class="label" href="http://abhi1010.github.io/categories/.net">.NET</a>
-    </span>
-    &middot; <time>Mar 4, 2008</time></li>
-  
-    <li><a href="http://abhi1010.github.io/blog/2008/03/03/talk-to-my...-flash/">Talk to my... Flash</a>
-    
-    &middot;
-    <a class="label" href="http://abhi1010.github.io/categories/.net">.NET</a><a class="label" href="http://abhi1010.github.io/categories/asp.net">ASP.NET</a>
-    </span>
-    &middot; <time>Mar 3, 2008</time></li>
-  
-    <li><a href="http://abhi1010.github.io/blog/2007/11/23/dynamically-increase-label-size-autosize/">Dynamically increase Label size [AutoSize]</a>
-    
-    &middot;
-    <a class="label" href="http://abhi1010.github.io/categories/.net">.NET</a>
-    </span>
-    &middot; <time>Nov 23, 2007</time></li>
-  
-    <li><a href="http://abhi1010.github.io/blog/2007/10/26/use-of-yield-statement/">Use of yield statement</a>
-    
-    &middot;
-    <a class="label" href="http://abhi1010.github.io/categories/.net">.NET</a>
-    </span>
-    &middot; <time>Oct 26, 2007</time></li>
-  
-  </ul>
-</div>
-<script src="http://abhi1010.github.io/js/highlight.pack.js"></script>
-<script>hljs.initHighlightingOnLoad();</script>
 
-</body>
-</html>
+   <div class="content container">
+       <h1 class="title">.Net</h1>
+   
+    
+    
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
 
+
+
+    <ul>
+    
+      <li>
+          <a href="http://abhi1010.github.io/post/32-bit-vs-64-bit/">32 bit vs 64 bit</a>
+          <span style="float:right;"><time>Apr 15, 2014</time></span>
+      </li>
+    
+      <li>
+          <a href="http://abhi1010.github.io/post/reading-excel-in-c/">Reading Excel in C#</a>
+          <span style="float:right;"><time>Nov 9, 2013</time></span>
+      </li>
+    
+      <li>
+          <a href="http://abhi1010.github.io/post/visual-studio-2008-crashes-while-adding-items/">Visual Studio 2008 crashes while adding items</a>
+          <span style="float:right;"><time>May 14, 2008</time></span>
+      </li>
+    
+      <li>
+          <a href="http://abhi1010.github.io/post/full-trust-on-mapped-drive/">Full Trust on Mapped Drive</a>
+          <span style="float:right;"><time>Mar 31, 2008</time></span>
+      </li>
+    
+      <li>
+          <a href="http://abhi1010.github.io/post/tag-your-namespaces/">Tag your namespaces</a>
+          <span style="float:right;"><time>Mar 31, 2008</time></span>
+      </li>
+    
+      <li>
+          <a href="http://abhi1010.github.io/post/few-good-links-for-march-08/">Few Good Links for March 08</a>
+          <span style="float:right;"><time>Mar 31, 2008</time></span>
+      </li>
+    
+      <li>
+          <a href="http://abhi1010.github.io/post/how-to-protect-from-sql-injections-in-asp-net/">How to protect from SQL Injections in ASP.NET</a>
+          <span style="float:right;"><time>Mar 11, 2008</time></span>
+      </li>
+    
+      <li>
+          <a href="http://abhi1010.github.io/post/creating-custom-web-controls/">Creating Custom Web Controls</a>
+          <span style="float:right;"><time>Mar 8, 2008</time></span>
+      </li>
+    
+      <li>
+          <a href="http://abhi1010.github.io/post/stringbuilder-vs-string-joins/">StringBuilder vs String joins</a>
+          <span style="float:right;"><time>Mar 8, 2008</time></span>
+      </li>
+    
+      <li>
+          <a href="http://abhi1010.github.io/post/blogs-i-like/">Blogs I like</a>
+          <span style="float:right;"><time>Mar 8, 2008</time></span>
+      </li>
+    
+      <li>
+          <a href="http://abhi1010.github.io/post/recursively-read-directories-and-list-all-files-under-it/">Recursively read directories and list all files under it</a>
+          <span style="float:right;"><time>Mar 4, 2008</time></span>
+      </li>
+    
+      <li>
+          <a href="http://abhi1010.github.io/post/talk-to-my-flash/">Talk to my... Flash</a>
+          <span style="float:right;"><time>Mar 3, 2008</time></span>
+      </li>
+    
+      <li>
+          <a href="http://abhi1010.github.io/post/dynamically-increase-label-size-autosize/">Dynamically increase Label size [AutoSize]</a>
+          <span style="float:right;"><time>Nov 23, 2007</time></span>
+      </li>
+    
+      <li>
+          <a href="http://abhi1010.github.io/post/use-of-yield-statement/">Use of yield statement</a>
+          <span style="float:right;"><time>Oct 26, 2007</time></span>
+      </li>
+    
+    </ul>
+
+  </div>

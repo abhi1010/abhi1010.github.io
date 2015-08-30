@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Linked List on Coders Digest</title>
+    <link>http://abhi1010.github.io/tags/linked-list/</link>
+    <description>Recent content in Linked List on Coders Digest</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 09 Jun 2014 15:02:07 +0000</lastBuildDate>
+    <atom:link href="http://abhi1010.github.io/tags/linked-list/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Partition Linked List around a Value X</title>
+      <link>http://abhi1010.github.io/post/partition-linked-list-around-a-value-x-such-that-all-nodes-x/</link>
+      <pubDate>Mon, 09 Jun 2014 15:02:07 +0000</pubDate>
+      
+      <guid>http://abhi1010.github.io/post/partition-linked-list-around-a-value-x-such-that-all-nodes-x/</guid>
+      <description>
+
+&lt;p&gt;How do you partition a list around a value x, such that all nodes less than x come before all nodes greater than or equal to x?&lt;/p&gt;
+
+&lt;p&gt;Well, there are some solutions possible. The solution, I came up with, is a bit convoluted but let me tell the idea behind it. You want to track the following:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Two pointers to remember the beginning of the &lt;em&gt;lower&lt;/em&gt; and &lt;em&gt;higher&lt;/em&gt; series each&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;One pointer (&lt;em&gt;current&lt;/em&gt;) to iterate through the Linked List&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;The list may itself start with higher or lower value compared to the &lt;em&gt;middleValue&lt;/em&gt;. Thus we need to remember the beginning of the lower series (&lt;em&gt;lowerSeries&lt;/em&gt;) as this is what we will send back&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Now that we have this out of the way, let&amp;rsquo;s look at the code:&lt;/p&gt;
+
+&lt;!-- more --&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://gist.github.com/abhi1010/3ada1d15b5bda319a54c&#34;&gt;https://gist.github.com/abhi1010/3ada1d15b5bda319a54c&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;code:8a20b19b0e16e5ac875728276c435d4c&#34;&gt;Code&lt;/h3&gt;
+
+&lt;p&gt;As usual the code is available &lt;a href=&#34;https://github.com/abhi1010/Algorithms/blob/master/Algo_codes/Node.cpp&#34;&gt;here&lt;/a&gt;:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/abhi1010/Algorithms&#34;&gt;https://github.com/abhi1010/Algorithms&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Find the Kth to Last Element of a Singly Linked List</title>
+      <link>http://abhi1010.github.io/post/find-the-kth-to-last-element-of-a-singly-linked-list/</link>
+      <pubDate>Sun, 08 Jun 2014 07:49:47 +0000</pubDate>
+      
+      <guid>http://abhi1010.github.io/post/find-the-kth-to-last-element-of-a-singly-linked-list/</guid>
+      <description>&lt;p&gt;It is possible to a recursive solutions but I will use a simple runner logic. Recursive solutions are usually less optimal.&lt;/p&gt;
+
+&lt;p&gt;Note here that, in our logic K=1 would return the last element in the linked list. Similarly, K=2 would return the second last element.&lt;/p&gt;
+
+&lt;p&gt;The suggested solution here is to use two pointers:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;One pointer will first travel K items into the list&lt;/li&gt;
+&lt;li&gt;Once that is done, both the pointers start travelling together, one item at a time&lt;/li&gt;
+&lt;li&gt;They keep travelling until the end of linked list is found&lt;/li&gt;
+&lt;li&gt;In that situation, the first pointer is at the end of the list, but the second pointer would have only reached till Kth element - this is what you want&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Let&amp;rsquo;s have a look at the code:&lt;/p&gt;
+
+&lt;p&gt;&lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;    
+Node* &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;findKthToLastElement&lt;/span&gt; (Node* node, &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;unsigned&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;short&lt;/span&gt; k)
+{
+    Node* secondRunner = node;
+    &lt;span style=&#34;color: #008800; font-weight: bold&#34;&gt;for&lt;/span&gt;(&lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;unsigned&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;short&lt;/span&gt; i = &lt;span style=&#34;color: #0000DD; font-weight: bold&#34;&gt;0&lt;/span&gt;; i &amp;lt; k; ++i)
+    {
+        &lt;span style=&#34;color: #008800; font-weight: bold&#34;&gt;if&lt;/span&gt; (secondRunner-&amp;gt;next != &lt;span style=&#34;color: #003388&#34;&gt;NULL&lt;/span&gt;)
+            secondRunner = secondRunner-&amp;gt;next;
+        &lt;span style=&#34;color: #008800; font-weight: bold&#34;&gt;else&lt;/span&gt;
+            &lt;span style=&#34;color: #008800; font-weight: bold&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color: #003388&#34;&gt;NULL&lt;/span&gt;;
+    }
+    &lt;span style=&#34;color: #008800; font-weight: bold&#34;&gt;while&lt;/span&gt; (secondRunner)
+    {
+        secondRunner = secondRunner-&amp;gt;next;
+        node = node-&amp;gt;next;
+    }
+    &lt;span style=&#34;color: #008800; font-weight: bold&#34;&gt;return&lt;/span&gt; node;
+}
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://gist.github.com/abhi1010/43e289a9877fb9293680&#34;&gt;https://gist.github.com/abhi1010/43e289a9877fb9293680&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;As usual the code is available &lt;a href=&#34;https://github.com/abhi1010/Algorithms/blob/master/Algo_codes/Node.cpp&#34;&gt;here&lt;/a&gt;:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/abhi1010/Algorithms&#34;&gt;https://github.com/abhi1010/Algorithms&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Removing Duplicates from Linked List</title>
+      <link>http://abhi1010.github.io/post/removing-duplicates-from-linked-list/</link>
+      <pubDate>Sat, 07 Jun 2014 16:50:12 +0000</pubDate>
+      
+      <guid>http://abhi1010.github.io/post/removing-duplicates-from-linked-list/</guid>
+      <description>
+
+&lt;p&gt;Duplicates can be removed in many ways:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Create a new Linked List containing only unique items&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Iterate through the Linked List and keep removing items that are being repeated&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The internal structure itself for the algo can either be map or set based. When using map the Node itself can be saved thereby making your life easier if you are creating a new Linked List. However sets can be very useful if we are just iterating through the Linked List and simply deleting items that are being repetetive. This is also a great spacesaver. Hence we decided to go down this path.&lt;/p&gt;
+
+&lt;!-- more --&gt;
+
+&lt;h3 id=&#34;code:33d170712a3b1643edfc33b9f231740c&#34;&gt;Code&lt;/h3&gt;
+
+&lt;p&gt;As usual the &lt;a href=&#34;https://github.com/abhi1010/Algorithms/blob/master/Algo_codes/Node.cpp&#34;&gt;code&lt;/a&gt; is available here:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/abhi1010/Algorithms&#34;&gt;https://github.com/abhi1010/Algorithms&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Here&amp;rsquo;s a small sample as to how to do it:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://gist.github.com/abhi1010/e2b7117c20d0f591896f&#34;&gt;https://gist.github.com/abhi1010/e2b7117c20d0f591896f&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Deleting a Node from Singly Linked List</title>
+      <link>http://abhi1010.github.io/post/deleting-a-node-from-singly-linked-list/</link>
+      <pubDate>Sat, 07 Jun 2014 10:49:17 +0000</pubDate>
+      
+      <guid>http://abhi1010.github.io/post/deleting-a-node-from-singly-linked-list/</guid>
+      <description>
+
+&lt;p&gt;Deleting a Node from Singly Linked List is rather straight forward.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;You have to know the head first of all&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Start by checking the head if that&amp;rsquo;s the one you are looking for&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Keep moving forward and checking - always check for null pointers everywhere&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Before we talk about the code, let&amp;rsquo;s see how Linked List is setup.
+&amp;lt;!&amp;ndash; more &amp;ndash;&amp;gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://gist.github.com/abhi1010/33be440bf1012773b7e1&#34;&gt;https://gist.github.com/abhi1010/33be440bf1012773b7e1&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Now, below is the code for it&amp;hellip;.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://gist.github.com/abhi1010/bf9dbb193b4ff84ba3af&#34;&gt;https://gist.github.com/abhi1010/bf9dbb193b4ff84ba3af&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;code:ca5ee7b35fae15e9d7ea6b34351195c6&#34;&gt;Code&lt;/h3&gt;
+
+&lt;p&gt;As usual the code is available &lt;a href=&#34;https://github.com/abhi1010/Algorithms/blob/master/Algo_codes/Node.cpp&#34;&gt;here&lt;/a&gt;:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/abhi1010/Algorithms&#34;&gt;https://github.com/abhi1010/Algorithms&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

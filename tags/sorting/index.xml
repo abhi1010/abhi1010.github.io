@@ -1,0 +1,1928 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Sorting on Coders Digest</title>
+    <link>http://abhi1010.github.io/tags/sorting/</link>
+    <description>Recent content in Sorting on Coders Digest</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 19 Mar 2014 05:42:00 +0000</lastBuildDate>
+    <atom:link href="http://abhi1010.github.io/tags/sorting/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Heap Sort vs Merge Sort vs Insertion Sort vs Radix Sort vs Counting Sort vs Quick Sort</title>
+      <link>http://abhi1010.github.io/post/heap-sort-vs-merge-sort-vs-insertion-sort-vs-radix-sort-vs-counting-sort-vs-quick-sort/</link>
+      <pubDate>Wed, 19 Mar 2014 05:42:00 +0000</pubDate>
+      
+      <guid>http://abhi1010.github.io/post/heap-sort-vs-merge-sort-vs-insertion-sort-vs-radix-sort-vs-counting-sort-vs-quick-sort/</guid>
+      <description>
+
+&lt;p&gt;I had written about sorting algorithms (Tag: &lt;a href=&#34;http://codersdigest.wordpress.com/tag/sorting/&#34;&gt;Sorting&lt;/a&gt;) with details about what to look out for along with their code snippets but I wanted a do a quick comparison of all the algos together to see how do they perform when the same set of input is provided to them. Hence I started working on a simple implementation for each one of them. I have now put together all of them in a single project on GitHub. I ensured that they all have the same set of procedures during their run. Some of the items I wanted to ensure was:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Same input array&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Same number of iterations. Each iteration having the same input&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Each algo being timed the exact same way as another&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Some of the algorithms being tested were:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;http://codersdigest.wordpress.com/2012/10/06/merge-sort/&#34;&gt;Heap Sort&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;http://codersdigest.wordpress.com/2012/10/06/merge-sort/&#34;&gt;Merge Sort&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;http://codersdigest.wordpress.com/2012/09/18/insertion-sort/&#34;&gt;Insertion Sort&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;http://codersdigest.wordpress.com/2012/09/13/radix-sort/&#34;&gt;Radix Sort&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;http://codersdigest.wordpress.com/2012/09/11/counting-sort/&#34;&gt;Counting Sort&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;http://codersdigest.wordpress.com/2012/09/22/quick-sort/&#34;&gt;Quick Sort&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;how-did-we-ensure-equality:6e1f05c125f850e9eb36735baf7184b1&#34;&gt;How did we ensure Equality?&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Created a simple base class for all algorithms: &lt;code&gt;AlgoStopwatch&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Responsible for benchmarking everything&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Provide a function called &lt;code&gt;doSort()&lt;/code&gt; that would allow derived classes to implement their algorithm&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Ensures that every algorithm has a name and description - to help us distinguish&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Another class to help manage the testing of all the algorithms: &lt;code&gt;AlgoDemo&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;All instances are created here for the algorithms&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;The input array is provided by this class to all algorithms&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;code:6e1f05c125f850e9eb36735baf7184b1&#34;&gt;Code&lt;/h2&gt;
+
+&lt;p&gt;As usual the code for the project is available here:&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;a href=&#34;https://github.com/abhi1010/Algorithms&#34;&gt;https://github.com/abhi1010/Algorithms&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;It can be run using Visual Studio without any changes.&lt;/p&gt;
+
+&lt;!-- more --&gt;
+
+&lt;h2 id=&#34;numbers:6e1f05c125f850e9eb36735baf7184b1&#34;&gt;Numbers&lt;/h2&gt;
+
+&lt;p&gt;Looking at the numbers below, it may be hard to compare the actual values. Hence I decided to &lt;code&gt;normalize&lt;/code&gt; them by calculating how much time will be required to sort &lt;code&gt;100 numbers&lt;/code&gt; using the same rate as the actual numbers. They are provided for all algorithms on the right-most column.
+&lt;table style=&#34;text-align:center;background-color:#efefef;width:100%;border-collapse:collapse;border:lightblue solid;&#34; border=&#34;1&#34; &gt;
+&lt;tbody &gt;
+&lt;tr &gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;td style=&#34;width:25%;&#34; &gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;merge-sort-http-codersdigest-wordpress-com-2012-10-06-merge-sort:6e1f05c125f850e9eb36735baf7184b1&#34;&gt;&lt;a href=&#34;http://codersdigest.wordpress.com/2012/10/06/merge-sort/&#34;&gt;Merge Sort&lt;/a&gt;&lt;/h3&gt;
+
+&lt;p&gt;&lt;/td&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;td style=&#34;width:25%;&#34; &gt;&lt;strong&gt;# of Items in Array&lt;/strong&gt;
+&lt;/td&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;td style=&#34;width:25%;&#34; &gt;&lt;strong&gt;Time Taken&lt;/strong&gt;
+&lt;/td&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;td style=&#34;width:25%;&#34; &gt;&lt;strong&gt;Average for 100 numbers&lt;/strong&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr &gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;td rowspan=&#34;3&#34; &gt;&lt;strong&gt;Random&lt;/strong&gt;
+&lt;/td&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;td &gt;10
+&lt;/td&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;td &gt;0.047464
+&lt;/td&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;td &gt;0.47464
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr &gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;td &gt;1K
+&lt;/td&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;td &gt;5.41906
+&lt;/td&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;td &gt;0.541906
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr &gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;td &gt;1M
+&lt;/td&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;td &gt;8444.11
+&lt;/td&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;td &gt;0.844411
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr &gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;td rowspan=&#34;3&#34; &gt;&lt;strong&gt;Sorted&lt;/strong&gt;
+&lt;/td&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;td &gt;10
+&lt;/td&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;td &gt;0.027155
+&lt;/td&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;td &gt;0.27155
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr &gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;td &gt;1K
+&lt;/td&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;td &gt;4.47016
+&lt;/td&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;td &gt;0.447016
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr &gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;td &gt;1M
+&lt;/td&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;td &gt;6323.05
+&lt;/td&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;td &gt;0.632305
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;&lt;/p&gt;
+
+&lt;table style=&#34;text-align:center;background-color:#efefef;width:100%;border-collapse:collapse;border:lightblue solid;&#34; border=&#34;1&#34; &gt;
+&lt;tbody &gt;
+&lt;tr &gt;
+
+&lt;td style=&#34;width:25%;&#34; &gt;
+
+
+### Merge Sort 2
+
+
+
+&lt;/td&gt;
+
+&lt;td style=&#34;width:25%;&#34; &gt;**# of Items in Array**
+&lt;/td&gt;
+
+&lt;td style=&#34;width:25%;&#34; &gt;**Time Taken**
+&lt;/td&gt;
+
+&lt;td style=&#34;width:25%;&#34; &gt;**Average for 100 numbers**
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr &gt;
+
+&lt;td rowspan=&#34;3&#34; &gt;**Random**
+&lt;/td&gt;
+
+&lt;td &gt;10
+&lt;/td&gt;
+
+&lt;td &gt;0.033668
+&lt;/td&gt;
+
+&lt;td &gt;0.33668
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr &gt;
+
+&lt;td &gt;1K
+&lt;/td&gt;
+
+&lt;td &gt;3.89374
+&lt;/td&gt;
+
+&lt;td &gt;0.389374
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr &gt;
+
+&lt;td &gt;1M
+&lt;/td&gt;
+
+&lt;td &gt;7076.04
+&lt;/td&gt;
+
+&lt;td &gt;0.707604
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr &gt;
+
+&lt;td rowspan=&#34;3&#34; &gt;**Sorted**
+&lt;/td&gt;
+
+&lt;td &gt;10
+&lt;/td&gt;
+
+&lt;td &gt;0.019034
+&lt;/td&gt;
+
+&lt;td &gt;0.19034
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr &gt;
+
+&lt;td &gt;1K
+&lt;/td&gt;
+
+&lt;td &gt;2.7833
+&lt;/td&gt;
+
+&lt;td &gt;0.27833
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr &gt;
+
+&lt;td &gt;1M
+&lt;/td&gt;
+
+&lt;td &gt;4664.16
+&lt;/td&gt;
+
+&lt;td &gt;0.466416
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;table style=&#34;text-align:center;background-color:#efefef;width:100%;border-collapse:collapse;border:lightblue solid;&#34; border=&#34;1&#34; &gt;
+&lt;tbody &gt;
+&lt;tr &gt;
+
+&lt;td style=&#34;width:25%;&#34; &gt;
+
+
+### [Insertion Sort](http://codersdigest.wordpress.com/2012/09/18/insertion-sort/)
+
+
+
+&lt;/td&gt;
+
+&lt;td style=&#34;width:25%;&#34; &gt;**# of Items in Array**
+&lt;/td&gt;
+
+&lt;td style=&#34;width:25%;&#34; &gt;**Time Taken**
+&lt;/td&gt;
+
+&lt;td style=&#34;width:25%;&#34; &gt;**Average for 100 numbers**
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr &gt;
+
+&lt;td rowspan=&#34;3&#34; &gt;**Random**
+&lt;/td&gt;
+
+&lt;td &gt;10
+&lt;/td&gt;
+
+&lt;td &gt;0.006095
+&lt;/td&gt;
+
+&lt;td &gt;0.06095
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr &gt;
+
+&lt;td &gt;1K
+&lt;/td&gt;
+
+&lt;td &gt;0.369859
+&lt;/td&gt;
+
+&lt;td &gt;0.0369859
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr &gt;
+
+&lt;td &gt;1M
+&lt;/td&gt;
+
+&lt;td &gt;323.878
+&lt;/td&gt;
+
+&lt;td &gt;0.0323878
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr &gt;
+
+&lt;td rowspan=&#34;3&#34; &gt;**Sorted**
+&lt;/td&gt;
+
+&lt;td &gt;10
+&lt;/td&gt;
+
+&lt;td &gt;0.005022
+&lt;/td&gt;
+
+&lt;td &gt;0.05022
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr &gt;
+
+&lt;td &gt;1K
+&lt;/td&gt;
+
+&lt;td &gt;0.11696
+&lt;/td&gt;
+
+&lt;td &gt;0.011696
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr &gt;
+
+&lt;td &gt;1M
+&lt;/td&gt;
+
+&lt;td &gt;122.427
+&lt;/td&gt;
+
+&lt;td &gt;0.0122427
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;table style=&#34;text-align:center;background-color:#efefef;width:100%;border-collapse:collapse;border:lightblue solid;&#34; border=&#34;1&#34; &gt;
+&lt;tbody &gt;
+&lt;tr &gt;
+
+&lt;td style=&#34;width:25%;&#34; &gt;
+
+
+### [Heap Sort 1](http://codersdigest.wordpress.com/2012/10/17/heap-sort/)
+
+
+
+&lt;/td&gt;
+
+&lt;td style=&#34;width:25%;&#34; &gt;**# of Items in Array**
+&lt;/td&gt;
+
+&lt;td style=&#34;width:25%;&#34; &gt;**Time Taken**
+&lt;/td&gt;
+
+&lt;td style=&#34;width:25%;&#34; &gt;**Average for 100 numbers**
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr &gt;
+
+&lt;td rowspan=&#34;3&#34; &gt;**Random**
+&lt;/td&gt;
+
+&lt;td &gt;10
+&lt;/td&gt;
+
+&lt;td &gt;0.013543
+&lt;/td&gt;
+
+&lt;td &gt;0.13543
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr &gt;
+
+&lt;td &gt;1K
+&lt;/td&gt;
+
+&lt;td &gt;3.22043
+&lt;/td&gt;
+
+&lt;td &gt;0.322043
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr &gt;
+
+&lt;td &gt;1M
+&lt;/td&gt;
+
+&lt;td &gt;4770.14
+&lt;/td&gt;
+
+&lt;td &gt;0.477014
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr &gt;
+
+&lt;td rowspan=&#34;3&#34; &gt;**Sorted**
+&lt;/td&gt;
+
+&lt;td &gt;10
+&lt;/td&gt;
+
+&lt;td &gt;0.007507
+&lt;/td&gt;
+
+&lt;td &gt;0.07507
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr &gt;
+
+&lt;td &gt;1K
+&lt;/td&gt;
+
+&lt;td &gt;0.625425
+&lt;/td&gt;
+
+&lt;td &gt;0.0625425
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr &gt;
+
+&lt;td &gt;1M
+&lt;/td&gt;
+
+&lt;td &gt;633.142
+&lt;/td&gt;
+
+&lt;td &gt;0.0633142
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;table style=&#34;text-align:center;background-color:#efefef;width:100%;border-collapse:collapse;border:lightblue solid;&#34; border=&#34;1&#34; &gt;
+&lt;tbody &gt;
+&lt;tr &gt;
+
+&lt;td style=&#34;width:25%;&#34; &gt;
+
+
+### [Heap Sort 2](http://codersdigest.wordpress.com/2012/10/17/heap-sort/)
+
+
+
+&lt;/td&gt;
+
+&lt;td style=&#34;width:25%;&#34; &gt;**# of Items in Array**
+&lt;/td&gt;
+
+&lt;td style=&#34;width:25%;&#34; &gt;**Time Taken**
+&lt;/td&gt;
+
+&lt;td style=&#34;width:25%;&#34; &gt;**Average for 100 numbers**
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr &gt;
+
+&lt;td rowspan=&#34;3&#34; &gt;**Random**
+&lt;/td&gt;
+
+&lt;td &gt;10
+&lt;/td&gt;
+
+&lt;td &gt;0.019352
+&lt;/td&gt;
+
+&lt;td &gt;0.19352
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr &gt;
+
+&lt;td &gt;1K
+&lt;/td&gt;
+
+&lt;td &gt;3.86284
+&lt;/td&gt;
+
+&lt;td &gt;0.386284
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr &gt;
+
+&lt;td &gt;1M
+&lt;/td&gt;
+
+&lt;td &gt;8914.22
+&lt;/td&gt;
+
+&lt;td &gt;0.891422
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr &gt;
+
+&lt;td rowspan=&#34;3&#34; &gt;**Sorted**
+&lt;/td&gt;
+
+&lt;td &gt;10
+&lt;/td&gt;
+
+&lt;td &gt;0.011289
+&lt;/td&gt;
+
+&lt;td &gt;0.11289
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr &gt;
+
+&lt;td &gt;1K
+&lt;/td&gt;
+
+&lt;td &gt;3.49712
+&lt;/td&gt;
+
+&lt;td &gt;0.349712
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr &gt;
+
+&lt;td &gt;1M
+&lt;/td&gt;
+
+&lt;td &gt;6661.45
+&lt;/td&gt;
+
+&lt;td &gt;0.666145
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;table style=&#34;text-align:center;background-color:#efefef;width:100%;border-collapse:collapse;margin-left:0;border:lightblue solid;&#34; border=&#34;1&#34; &gt;
+&lt;tbody &gt;
+&lt;tr &gt;
+
+&lt;td style=&#34;width:25%;&#34; &gt;
+
+
+### [Heap Sort 3](http://codersdigest.wordpress.com/2012/10/17/heap-sort/)
+
+
+
+&lt;/td&gt;
+
+&lt;td style=&#34;width:25%;&#34; &gt;**# of Items in Arraytrong&gt;**
+&lt;/td&gt;
+
+&lt;td style=&#34;width:25%;&#34; &gt;**Time Taken**
+&lt;/td&gt;
+
+&lt;td style=&#34;width:25%;&#34; &gt;**Average for 100 numbers**
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr &gt;
+
+&lt;td rowspan=&#34;3&#34; &gt;**Random**
+&lt;/td&gt;
+
+&lt;td &gt;10
+&lt;/td&gt;
+
+&lt;td &gt;0.016266
+&lt;/td&gt;
+
+&lt;td &gt;0.16266
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr &gt;
+
+&lt;td &gt;1K
+&lt;/td&gt;
+
+&lt;td &gt;0.968032
+&lt;/td&gt;
+
+&lt;td &gt;0.0968032
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr &gt;
+
+&lt;td &gt;1M
+&lt;/td&gt;
+
+&lt;td &gt;900.004
+&lt;/td&gt;
+
+&lt;td &gt;0.0900004
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr &gt;
+
+&lt;td rowspan=&#34;3&#34; &gt;**Sorted**
+&lt;/td&gt;
+
+&lt;td &gt;10
+&lt;/td&gt;
+
+&lt;td &gt;0.012845
+&lt;/td&gt;
+
+&lt;td &gt;0.12845
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr &gt;
+
+&lt;td &gt;1K
+&lt;/td&gt;
+
+&lt;td &gt;3.08637
+&lt;/td&gt;
+
+&lt;td &gt;0.308637
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr &gt;
+
+&lt;td &gt;1M
+&lt;/td&gt;
+
+&lt;td &gt;3839.23
+&lt;/td&gt;
+
+&lt;td &gt;0.383923
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;table style=&#34;text-align:center;background-color:#efefef;width:100%;border-collapse:collapse;border:lightblue solid;&#34; border=&#34;1&#34; &gt;
+&lt;tbody &gt;
+&lt;tr &gt;
+
+&lt;td style=&#34;width:25%;&#34; &gt;
+
+
+### [QuickSort](http://codersdigest.wordpress.com/2012/09/22/quick-sort/)
+
+
+
+&lt;/td&gt;
+
+&lt;td style=&#34;width:25%;&#34; &gt;**# of Items in Array**
+&lt;/td&gt;
+
+&lt;td style=&#34;width:25%;&#34; &gt;**Time Taken**
+&lt;/td&gt;
+
+&lt;td style=&#34;width:25%;&#34; &gt;**Average for 100 numbers**
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr &gt;
+
+&lt;td rowspan=&#34;3&#34; &gt;**Random**
+&lt;/td&gt;
+
+&lt;td &gt;10
+&lt;/td&gt;
+
+&lt;td &gt;0.072972
+&lt;/td&gt;
+
+&lt;td &gt;0.72972
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr &gt;
+
+&lt;td &gt;1K
+&lt;/td&gt;
+
+&lt;td &gt;2.74698
+&lt;/td&gt;
+
+&lt;td &gt;0.274698
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr &gt;
+
+&lt;td &gt;1M
+&lt;/td&gt;
+
+&lt;td &gt;4640.77
+&lt;/td&gt;
+
+&lt;td &gt;0.464077
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr &gt;
+
+&lt;td rowspan=&#34;3&#34; &gt;**Sorted**
+&lt;/td&gt;
+
+&lt;td &gt;10
+&lt;/td&gt;
+
+&lt;td &gt;0.042773
+&lt;/td&gt;
+
+&lt;td &gt;0.42773
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr &gt;
+
+&lt;td &gt;1K
+&lt;/td&gt;
+
+&lt;td &gt;1.84335
+&lt;/td&gt;
+
+&lt;td &gt;0.184335
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr &gt;
+
+&lt;td &gt;1M
+&lt;/td&gt;
+
+&lt;td &gt;2473.42
+&lt;/td&gt;
+
+&lt;td &gt;0.247342
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;table style=&#34;text-align:center;background-color:#efefef;width:100%;border-collapse:collapse;border:lightblue solid;&#34; border=&#34;1&#34; &gt;
+&lt;tbody &gt;
+&lt;tr &gt;
+
+&lt;td style=&#34;width:25%;&#34; &gt;
+
+
+### [Counting Sort](http://codersdigest.wordpress.com/2012/09/11/counting-sort/)
+
+
+
+&lt;/td&gt;
+
+&lt;td style=&#34;width:25%;&#34; &gt;**# of Items in Array**
+&lt;/td&gt;
+
+&lt;td style=&#34;width:25%;&#34; &gt;**Time Taken**
+&lt;/td&gt;
+
+&lt;td style=&#34;width:25%;&#34; &gt;**Average for 100 numbers**
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr &gt;
+
+&lt;td rowspan=&#34;3&#34; &gt;**Random**
+&lt;/td&gt;
+
+&lt;td &gt;10
+&lt;/td&gt;
+
+&lt;td &gt;0.022982
+&lt;/td&gt;
+
+&lt;td &gt;0.22982
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr style=&#34;background-color:#efefef;color:#008000;&#34; &gt;
+
+&lt;td &gt;1K
+&lt;/td&gt;
+
+&lt;td &gt;1.21822
+&lt;/td&gt;
+
+&lt;td &gt;0.121822
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr &gt;
+
+&lt;td &gt;1M
+&lt;/td&gt;
+
+&lt;td &gt;1823.85
+&lt;/td&gt;
+
+&lt;td &gt;0.182385
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr &gt;
+
+&lt;td rowspan=&#34;3&#34; &gt;**Sorted**
+&lt;/td&gt;
+
+&lt;td &gt;10
+&lt;/td&gt;
+
+&lt;td &gt;0.026815
+&lt;/td&gt;
+
+&lt;td &gt;0.26815
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr style=&#34;background-color:#efefef;color:#008000;&#34; &gt;
+
+&lt;td &gt;1K
+&lt;/td&gt;
+
+&lt;td &gt;1.19146
+&lt;/td&gt;
+
+&lt;td &gt;0.119146
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr &gt;
+
+&lt;td &gt;1M
+&lt;/td&gt;
+
+&lt;td &gt;1612.58
+&lt;/td&gt;
+
+&lt;td &gt;0.161258
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;table style=&#34;text-align:center;background-color:#efefef;width:100%;border-collapse:collapse;border:lightblue solid;&#34; border=&#34;1&#34; &gt;
+&lt;tbody &gt;
+&lt;tr &gt;
+
+&lt;td style=&#34;width:25%;&#34; &gt;
+
+
+### [Radix Sort](http://codersdigest.wordpress.com/2012/09/13/radix-sort/)
+
+
+
+&lt;/td&gt;
+
+&lt;td style=&#34;width:25%;&#34; &gt;**# of Items in Array**
+&lt;/td&gt;
+
+&lt;td style=&#34;width:25%;&#34; &gt;**Time Taken**
+&lt;/td&gt;
+
+&lt;td style=&#34;width:25%;&#34; &gt;**Average for 100 numbers**
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr &gt;
+
+&lt;td rowspan=&#34;3&#34; &gt;**Random**
+&lt;/td&gt;
+
+&lt;td &gt;10
+&lt;/td&gt;
+
+&lt;td &gt;0.033351
+&lt;/td&gt;
+
+&lt;td &gt;0.33351
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr style=&#34;background-color:#efefef;color:#008000;&#34; &gt;
+
+&lt;td &gt;1K
+&lt;/td&gt;
+
+&lt;td &gt;3.22004
+&lt;/td&gt;
+
+&lt;td &gt;0.322004
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr &gt;
+
+&lt;td &gt;1M
+&lt;/td&gt;
+
+&lt;td &gt;5650.9
+&lt;/td&gt;
+
+&lt;td &gt;0.56509
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr &gt;
+
+&lt;td rowspan=&#34;3&#34; &gt;**Sorted**
+&lt;/td&gt;
+
+&lt;td &gt;10
+&lt;/td&gt;
+
+&lt;td &gt;0.020659
+&lt;/td&gt;
+
+&lt;td &gt;0.20659
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr &gt;
+
+&lt;td &gt;1K
+&lt;/td&gt;
+
+&lt;td &gt;3.26273
+&lt;/td&gt;
+
+&lt;td &gt;0.326273
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr &gt;
+
+&lt;td &gt;1M
+&lt;/td&gt;
+
+&lt;td &gt;5683.91
+&lt;/td&gt;
+
+&lt;td &gt;0.568391
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Heap Sort</title>
+      <link>http://abhi1010.github.io/post/heap-sort/</link>
+      <pubDate>Wed, 17 Oct 2012 14:15:00 +0000</pubDate>
+      
+      <guid>http://abhi1010.github.io/post/heap-sort/</guid>
+      <description>
+
+&lt;p&gt;Heap Sort algo has the following properties:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;The top element (root) is always the next in order&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;This allows you to remove one element at a time (the root) and ensure that you are pulling out items in a sorted order&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Always takes O(n*log(n)) time - worst case or best case&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;ul&gt;
+&lt;li&gt;Pros and cons to both&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Simple implementations require additional space to hold heap of size n&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Hence space requirement is double of array size n&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Not included in big-O notation so something to keep in mind&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Not a stable sort&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;ul&gt;
+&lt;li&gt;Original order of equal values may not be maintained&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Let&amp;rsquo;s look at three versions of Heap Sort and see how they compare against each other. We will also find out what differentiates them from each other.&lt;/p&gt;
+
+&lt;!-- more --&gt;
+
+&lt;h2 id=&#34;testing-notes:e8a729abef3e1973716b8b8b10688a00&#34;&gt;Testing Notes&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;I compared three versions of of Heap Sort&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;First version (HeapSort_1) includes logic of sorting items while adding them one by one&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Second version (HeapSort_2) and third version (HeapSort_3) are very similar to each other with very minor differences but the performance is different. Still some improvements can be made but for now HeapSort_3 seems to be better&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;ul&gt;
+&lt;li&gt;There&amp;rsquo;s still scope for both the versions to be better&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Postincrement can be replaced with preincrement in most places which should improve the numbers even more&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;code:e8a729abef3e1973716b8b8b10688a00&#34;&gt;Code&lt;/h2&gt;
+
+&lt;p&gt;As usual the code is &lt;a href=&#34;https://github.com/abhi1010/Algorithms/blob/master/Algo_codes/HeapSort.cpp&#34;&gt;available&lt;/a&gt; here:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/abhi1010/Algorithms&#34;&gt;https://github.com/abhi1010/Algorithms&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;numbers:e8a729abef3e1973716b8b8b10688a00&#34;&gt;Numbers&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;HeapSort_1&lt;/strong&gt;
+&lt;table style=&#34;text-align:center;background-color:#efefef;width:100%;border-collapse:collapse;border:lightblue solid;&#34; border=&#34;1&#34; &gt;
+&lt;tbody &gt;
+&lt;tr &gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;td style=&#34;width:25%;&#34; &gt;
+&lt;/td&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;td style=&#34;width:25%;&#34; &gt;&lt;strong&gt;# of Items in Array&lt;/strong&gt;
+&lt;/td&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;td style=&#34;width:25%;&#34; &gt;&lt;strong&gt;Time Taken&lt;/strong&gt;
+&lt;/td&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;td style=&#34;width:25%;&#34; &gt;&lt;strong&gt;Average for 100 numbers&lt;/strong&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr &gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;td rowspan=&#34;3&#34; &gt;&lt;strong&gt;Random&lt;/strong&gt;
+&lt;/td&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;td &gt;10
+&lt;/td&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;td &gt;0.013543
+&lt;/td&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;td &gt;0.13543
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr &gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;td &gt;1K
+&lt;/td&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;td &gt;3.22043
+&lt;/td&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;td &gt;0.322043
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr &gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;td &gt;1M
+&lt;/td&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;td &gt;4770.14
+&lt;/td&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;td &gt;0.477014
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr &gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;td rowspan=&#34;3&#34; &gt;&lt;strong&gt;Sorted&lt;/strong&gt;
+&lt;/td&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;td &gt;10
+&lt;/td&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;td &gt;0.007507
+&lt;/td&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;td &gt;0.07507
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr &gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;td &gt;1K
+&lt;/td&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;td &gt;0.625425
+&lt;/td&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;td &gt;0.0625425
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr &gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;td &gt;1M
+&lt;/td&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;td &gt;633.142
+&lt;/td&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;td &gt;0.0633142
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;strong&gt;HeapSort_2&lt;/strong&gt;
+&lt;table style=&#34;text-align:center;background-color:#efefef;width:100%;border-collapse:collapse;border:lightblue solid;&#34; border=&#34;1&#34; &gt;
+&lt;tbody &gt;
+&lt;tr &gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;td style=&#34;width:25%;&#34; &gt;
+&lt;/td&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;td style=&#34;width:25%;&#34; &gt;&lt;strong&gt;# of Items in Array&lt;/strong&gt;
+&lt;/td&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;td style=&#34;width:25%;&#34; &gt;&lt;strong&gt;Time Taken&lt;/strong&gt;
+&lt;/td&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;td style=&#34;width:25%;&#34; &gt;&lt;strong&gt;Average for 100 numbers&lt;/strong&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr &gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;td rowspan=&#34;3&#34; &gt;&lt;strong&gt;Random&lt;/strong&gt;
+&lt;/td&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;td &gt;10
+&lt;/td&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;td &gt;0.019352
+&lt;/td&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;td &gt;0.19352
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr &gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;td &gt;1K
+&lt;/td&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;td &gt;3.86284
+&lt;/td&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;td &gt;0.386284
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr &gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;td &gt;1M
+&lt;/td&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;td &gt;8914.22
+&lt;/td&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;td &gt;0.891422
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr &gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;td rowspan=&#34;3&#34; &gt;&lt;strong&gt;Sorted&lt;/strong&gt;
+&lt;/td&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;td &gt;10
+&lt;/td&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;td &gt;0.011289
+&lt;/td&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;td &gt;0.11289
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr &gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;td &gt;1K
+&lt;/td&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;td &gt;3.49712
+&lt;/td&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;td &gt;0.349712
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr &gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;td &gt;1M
+&lt;/td&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;td &gt;6661.45
+&lt;/td&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;td &gt;0.666145
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;strong&gt;HeapSort_3&lt;/strong&gt;
+&lt;table style=&#34;text-align:center;background-color:#efefef;width:100%;border-collapse:collapse;border:lightblue solid;&#34; border=&#34;1&#34; &gt;
+&lt;tbody &gt;
+&lt;tr &gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;td style=&#34;width:25%;&#34; &gt;
+&lt;/td&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;td style=&#34;width:25%;&#34; &gt;&lt;strong&gt;# of Items in Array&lt;/strong&gt;
+&lt;/td&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;td style=&#34;width:25%;&#34; &gt;&lt;strong&gt;Time Taken&lt;/strong&gt;
+&lt;/td&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;td style=&#34;width:25%;&#34; &gt;&lt;strong&gt;Average for 100 numbers&lt;/strong&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr &gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;td rowspan=&#34;3&#34; &gt;&lt;strong&gt;Random&lt;/strong&gt;
+&lt;/td&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;td &gt;10
+&lt;/td&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;td &gt;0.016266
+&lt;/td&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;td &gt;0.16266
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr &gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;td &gt;1K
+&lt;/td&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;td &gt;0.968032
+&lt;/td&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;td &gt;0.0968032
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr &gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;td &gt;&lt;strong&gt;1M&lt;/strong&gt;
+&lt;/td&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;td &gt;&lt;strong&gt;900.004&lt;/strong&gt;
+&lt;/td&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;td &gt;&lt;strong&gt;0.0900004&lt;/strong&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr &gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;td rowspan=&#34;3&#34; &gt;&lt;strong&gt;Sorted&lt;/strong&gt;
+&lt;/td&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;td &gt;10
+&lt;/td&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;td &gt;0.012845
+&lt;/td&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;td &gt;0.12845
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr &gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;td &gt;1K
+&lt;/td&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;td &gt;3.08637
+&lt;/td&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;td &gt;0.308637
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr &gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;td &gt;1M
+&lt;/td&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;td &gt;3839.23
+&lt;/td&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;td &gt;0.383923
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Merge Sort</title>
+      <link>http://abhi1010.github.io/post/merge-sort/</link>
+      <pubDate>Sat, 06 Oct 2012 14:26:00 +0000</pubDate>
+      
+      <guid>http://abhi1010.github.io/post/merge-sort/</guid>
+      <description>
+
+&lt;p&gt;Merge Sort&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Complexity is O(n log n)&lt;/li&gt;
+&lt;li&gt;Needs more space to merge - proportional to the size of the array&lt;/li&gt;
+&lt;li&gt;Stable Sort&lt;/li&gt;
+&lt;li&gt;* Preserves the order of equal elements&lt;/li&gt;
+&lt;li&gt;Merge Sort does about 39% lower comparisons, in worst case, compared to Quicksort&amp;rsquo;s average case&lt;/li&gt;
+&lt;li&gt;The algo almost always behaves in the same way; taking relatively the same amount of time, whether sorted or unsorted arrays
+&amp;lt;!&amp;ndash; more &amp;ndash;&amp;gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;testing-notes:19e6e9293aeb00484ea655d2aac941c9&#34;&gt;Testing Notes&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Started testing the algo with two versions.&lt;/li&gt;
+&lt;li&gt;* First version creates two temporary arrays
+
+&lt;ul&gt;
+&lt;li&gt;First version creates only one temporary array&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;The sole difference between them is the one that makes second implementation better&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;code:19e6e9293aeb00484ea655d2aac941c9&#34;&gt;Code&lt;/h2&gt;
+
+&lt;p&gt;As usual the &lt;a href=&#34;https://github.com/abhi1010/Algorithms/blob/master/Algo_codes/MergeSort.cpp&#34;&gt;code&lt;/a&gt; is available here:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/abhi1010/Algorithms&#34;&gt;https://github.com/abhi1010/Algorithms&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;numbers:19e6e9293aeb00484ea655d2aac941c9&#34;&gt;Numbers&lt;/h2&gt;
+
+&lt;table style=&#34;border-bottom:lightblue solid;text-align:center;border-left:lightblue solid;background-color:#efefef;width:100%;border-collapse:collapse;border-top:lightblue solid;border-right:lightblue solid;&#34; border=&#34;1&#34; &gt; &lt;tbody &gt; &lt;tr &gt;
+&lt;td style=&#34;width:25%;&#34; &gt;
+
+### Merge Sort
+
+&lt;/td&gt;
+&lt;td style=&#34;width:25%;&#34; &gt;**# of Items in Array**
+&lt;/td&gt;
+&lt;td style=&#34;width:25%;&#34; &gt;**Time Taken**
+&lt;/td&gt;
+&lt;td style=&#34;width:25%;&#34; &gt;**Average for 100 numbers**
+&lt;/td&gt; &lt;/tr&gt; &lt;tr &gt;
+&lt;td rowspan=&#34;3&#34; &gt;**Random**
+&lt;/td&gt;
+&lt;td &gt;10
+&lt;/td&gt;
+&lt;td &gt;0.047464
+&lt;/td&gt;
+&lt;td &gt;0.47464
+&lt;/td&gt; &lt;/tr&gt; &lt;tr &gt;
+&lt;td &gt;1K
+&lt;/td&gt;
+&lt;td &gt;5.41906
+&lt;/td&gt;
+&lt;td &gt;0.541906
+&lt;/td&gt; &lt;/tr&gt; &lt;tr &gt;
+&lt;td &gt;1M
+&lt;/td&gt;
+&lt;td &gt;8444.11
+&lt;/td&gt;
+&lt;td &gt;0.844411
+&lt;/td&gt; &lt;/tr&gt; &lt;tr &gt;
+&lt;td rowspan=&#34;3&#34; &gt;**Sorted**
+&lt;/td&gt;
+&lt;td &gt;10
+&lt;/td&gt;
+&lt;td &gt;0.027155
+&lt;/td&gt;
+&lt;td &gt;0.27155
+&lt;/td&gt; &lt;/tr&gt; &lt;tr &gt;
+&lt;td &gt;1K
+&lt;/td&gt;
+&lt;td &gt;4.47016
+&lt;/td&gt;
+&lt;td &gt;0.447016
+&lt;/td&gt; &lt;/tr&gt; &lt;tr &gt;
+&lt;td &gt;1M
+&lt;/td&gt;
+&lt;td &gt;6323.05
+&lt;/td&gt;
+&lt;td &gt;0.632305
+&lt;/td&gt; &lt;/tr&gt; &lt;/tbody&gt; &lt;/table&gt;
+
+&lt;table style=&#34;border-bottom:lightblue solid;text-align:center;border-left:lightblue solid;background-color:#efefef;width:100%;border-collapse:collapse;border-top:lightblue solid;border-right:lightblue solid;&#34; border=&#34;1&#34; &gt; &lt;tbody &gt; &lt;tr &gt;
+&lt;td style=&#34;width:25%;&#34; &gt;
+
+### Merge Sort 2
+
+&lt;/td&gt;
+&lt;td style=&#34;width:25%;&#34; &gt;**# of Items in Array**
+&lt;/td&gt;
+&lt;td style=&#34;width:25%;&#34; &gt;**Time Taken**
+&lt;/td&gt;
+&lt;td style=&#34;width:25%;&#34; &gt;**Average for 100 numbers**
+&lt;/td&gt; &lt;/tr&gt; &lt;tr &gt;
+&lt;td rowspan=&#34;3&#34; &gt;**Random**
+&lt;/td&gt;
+&lt;td &gt;10
+&lt;/td&gt;
+&lt;td &gt;0.033668
+&lt;/td&gt;
+&lt;td &gt;0.33668
+&lt;/td&gt; &lt;/tr&gt; &lt;tr &gt;
+&lt;td &gt;1K
+&lt;/td&gt;
+&lt;td &gt;3.89374
+&lt;/td&gt;
+&lt;td &gt;0.389374
+&lt;/td&gt; &lt;/tr&gt; &lt;tr &gt;
+&lt;td &gt;1M
+&lt;/td&gt;
+&lt;td &gt;7076.04
+&lt;/td&gt;
+&lt;td &gt;0.707604
+&lt;/td&gt; &lt;/tr&gt; &lt;tr &gt;
+&lt;td rowspan=&#34;3&#34; &gt;**Sorted**
+&lt;/td&gt;
+&lt;td &gt;10
+&lt;/td&gt;
+&lt;td &gt;0.019034
+&lt;/td&gt;
+&lt;td &gt;0.19034
+&lt;/td&gt; &lt;/tr&gt; &lt;tr &gt;
+&lt;td &gt;1K
+&lt;/td&gt;
+&lt;td &gt;2.7833
+&lt;/td&gt;
+&lt;td &gt;0.27833
+&lt;/td&gt; &lt;/tr&gt; &lt;tr &gt;
+&lt;td &gt;1M
+&lt;/td&gt;
+&lt;td &gt;4664.16
+&lt;/td&gt;
+&lt;td &gt;0.466416
+&lt;/td&gt; &lt;/tr&gt; &lt;/tbody&gt; &lt;/table&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Quick Sort</title>
+      <link>http://abhi1010.github.io/post/quick-sort/</link>
+      <pubDate>Sat, 22 Sep 2012 14:24:00 +0000</pubDate>
+      
+      <guid>http://abhi1010.github.io/post/quick-sort/</guid>
+      <description>
+
+&lt;p&gt;Quick Sort is an efficient divide and conquer algorithm performed in two phases - partition and sorting phase.&lt;/p&gt;
+
+&lt;p&gt;Here are few pointers to remember about Quick Sort:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Partitioning places all the elements less than the pivot in the left part of the array and greater elements in the right part&lt;/li&gt;
+&lt;li&gt;Pivot element stays in its place&lt;/li&gt;
+&lt;li&gt;After partitioning no element moves to the other side, of the pivot&lt;/li&gt;
+&lt;li&gt;* This allows you to sort the elements, to the left or right of the pivot, independent of the other side&lt;/li&gt;
+&lt;li&gt;Complexity is O(n log n)&lt;/li&gt;
+&lt;li&gt;Often fast for small arrays with a few distinct values, repeated many times&lt;/li&gt;
+&lt;li&gt;It is a conquer-and-divide algo; with most of the work happening during partitioning phase&lt;/li&gt;
+&lt;li&gt;If you had to choose the optimum pivot then it should the median of the given array&lt;/li&gt;
+&lt;li&gt;Not a stable sort
+&amp;lt;!&amp;ndash; more &amp;ndash;&amp;gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;testing-notes:bc3cdebe8a50650a5fd63bed57e56314&#34;&gt;Testing Notes&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Currently we have only one version of the code. We may try to do another version that is not recursive because putting the functions on stack will take up some memory and time&lt;/li&gt;
+&lt;li&gt;Another version could be trying to use the pivot from the middle and then compare how do the random numbers compare against the sorted numbers&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;code:bc3cdebe8a50650a5fd63bed57e56314&#34;&gt;Code&lt;/h2&gt;
+
+&lt;p&gt;As usual the &lt;a href=&#34;https://github.com/abhi1010/Algorithms/blob/master/Algo_codes/QuickSort.cpp&#34;&gt;code&lt;/a&gt; is available here:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/abhi1010/Algorithms&#34;&gt;https://github.com/abhi1010/Algorithms&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;numbers:bc3cdebe8a50650a5fd63bed57e56314&#34;&gt;Numbers&lt;/h2&gt;
+
+&lt;table style=&#34;border-bottom:lightblue solid;text-align:center;border-left:lightblue solid;background-color:#efefef;width:100%;border-collapse:collapse;border-top:lightblue solid;border-right:lightblue solid;&#34; border=&#34;1&#34; &gt; &lt;tbody &gt; &lt;tr &gt;
+&lt;td style=&#34;width:25%;&#34; &gt;
+&lt;/td&gt;
+&lt;td style=&#34;width:25%;&#34; &gt;**# of Items in Array**
+&lt;/td&gt;
+&lt;td style=&#34;width:25%;&#34; &gt;**Time Taken**
+&lt;/td&gt;
+&lt;td style=&#34;width:25%;&#34; &gt;**Average for 100 numbers**
+&lt;/td&gt; &lt;/tr&gt; &lt;tr &gt;
+&lt;td rowspan=&#34;3&#34; &gt;**Random**
+&lt;/td&gt;
+&lt;td &gt;10
+&lt;/td&gt;
+&lt;td &gt;0.072972
+&lt;/td&gt;
+&lt;td &gt;0.72972
+&lt;/td&gt; &lt;/tr&gt; &lt;tr &gt;
+&lt;td &gt;1K
+&lt;/td&gt;
+&lt;td &gt;2.74698
+&lt;/td&gt;
+&lt;td &gt;0.274698
+&lt;/td&gt; &lt;/tr&gt; &lt;tr &gt;
+&lt;td &gt;1M
+&lt;/td&gt;
+&lt;td &gt;4640.77
+&lt;/td&gt;
+&lt;td &gt;0.464077
+&lt;/td&gt; &lt;/tr&gt; &lt;tr &gt;
+&lt;td rowspan=&#34;3&#34; &gt;**Sorted**
+&lt;/td&gt;
+&lt;td &gt;10
+&lt;/td&gt;
+&lt;td &gt;0.042773
+&lt;/td&gt;
+&lt;td &gt;0.42773
+&lt;/td&gt; &lt;/tr&gt; &lt;tr &gt;
+&lt;td &gt;1K
+&lt;/td&gt;
+&lt;td &gt;1.84335
+&lt;/td&gt;
+&lt;td &gt;0.184335
+&lt;/td&gt; &lt;/tr&gt; &lt;tr &gt;
+&lt;td &gt;1M
+&lt;/td&gt;
+&lt;td &gt;2473.42
+&lt;/td&gt;
+&lt;td &gt;0.247342
+&lt;/td&gt; &lt;/tr&gt; &lt;/tbody&gt; &lt;/table&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Insertion Sort</title>
+      <link>http://abhi1010.github.io/post/insertion-sort/</link>
+      <pubDate>Mon, 17 Sep 2012 16:00:00 +0000</pubDate>
+      
+      <guid>http://abhi1010.github.io/post/insertion-sort/</guid>
+      <description>
+
+&lt;p&gt;Insertion Sort has the following properties:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;It works by moving elements one at a time&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Works really well for small data sets&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Consider going with this when the input data may already be sorted or partially sorted&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;ul&gt;
+&lt;li&gt;The may not have to move the elements around, thereby saving precious cycles&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Stable sort&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;ul&gt;
+&lt;li&gt;Keeps the original order of elements with equal values&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;!-- more --&gt;
+
+&lt;h2 id=&#34;testing-notes:a9ce6fa80f206d39e558f67e9cc61fdd&#34;&gt;Testing Notes&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Had a very interesting time testing my code. I knew that swapping takes time. std::swap takes particularly longer. I disabled that from the beginning itself&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Even more interesting was how I thought of fixing my code which was running slowly&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Initially even running an array of size 1K was taking about 4s so I just made a minor change to remove &amp;ldquo;&amp;ndash; insertIndex ;&amp;rdquo; altogether and do the calculation in the previous line itself. That did the trick. Otherwise the code was taking hours and hours for 1M array size so I had to stop running it.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;I even tried improving the code a bit futher by ensuring that I do not call insertIndex-1 many a times but that didn&amp;rsquo;t really help - in fact made it worse again&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Sorted runs will run much faster because there&amp;rsquo;s no work to be done in those cases&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;ul&gt;
+&lt;li&gt;Would be a nice algo to use if your data is mostly sorted&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;code:a9ce6fa80f206d39e558f67e9cc61fdd&#34;&gt;Code&lt;/h2&gt;
+
+&lt;p&gt;As usual the &lt;a href=&#34;https://github.com/abhi1010/Algorithms/blob/master/Algo_codes/InsertionSort.cpp&#34;&gt;code&lt;/a&gt; is available here:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/abhi1010/Algorithms&#34;&gt;https://github.com/abhi1010/Algorithms&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;numbers:a9ce6fa80f206d39e558f67e9cc61fdd&#34;&gt;Numbers&lt;/h2&gt;
+
+&lt;table style=&#34;text-align:center;background-color:#efefef;width:100%;border-collapse:collapse;border:lightblue solid;&#34; border=&#34;1&#34; &gt;
+&lt;tbody &gt;
+&lt;tr &gt;
+
+&lt;td style=&#34;width:25%;&#34; &gt;
+&lt;/td&gt;
+
+&lt;td style=&#34;width:25%;&#34; &gt;**# of Items in Array**
+&lt;/td&gt;
+
+&lt;td style=&#34;width:25%;&#34; &gt;**Time Taken**
+&lt;/td&gt;
+
+&lt;td style=&#34;width:25%;&#34; &gt;**Average for 100 numbers**
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr &gt;
+
+&lt;td rowspan=&#34;3&#34; &gt;**Random**
+&lt;/td&gt;
+
+&lt;td &gt;10
+&lt;/td&gt;
+
+&lt;td &gt;0.006095
+&lt;/td&gt;
+
+&lt;td &gt;0.06095
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr &gt;
+
+&lt;td &gt;1K
+&lt;/td&gt;
+
+&lt;td &gt;0.369859
+&lt;/td&gt;
+
+&lt;td &gt;0.0369859
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr &gt;
+
+&lt;td &gt;1M
+&lt;/td&gt;
+
+&lt;td &gt;323.878
+&lt;/td&gt;
+
+&lt;td &gt;0.0323878
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr &gt;
+
+&lt;td rowspan=&#34;3&#34; &gt;**Sorted**
+&lt;/td&gt;
+
+&lt;td &gt;10
+&lt;/td&gt;
+
+&lt;td &gt;0.005022
+&lt;/td&gt;
+
+&lt;td &gt;0.05022
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr &gt;
+
+&lt;td &gt;1K
+&lt;/td&gt;
+
+&lt;td &gt;0.11696
+&lt;/td&gt;
+
+&lt;td &gt;0.011696
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr &gt;
+
+&lt;td &gt;1M
+&lt;/td&gt;
+
+&lt;td &gt;122.427
+&lt;/td&gt;
+
+&lt;td &gt;0.0122427
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Radix Sort</title>
+      <link>http://abhi1010.github.io/post/radix-sort/</link>
+      <pubDate>Thu, 13 Sep 2012 10:37:00 +0000</pubDate>
+      
+      <guid>http://abhi1010.github.io/post/radix-sort/</guid>
+      <description>&lt;p&gt;It is a non-comparative &lt;em&gt;integer&lt;/em&gt; sorting algorithm. It sorts data by grouping keys by the individual digits which share the same significant position and value. Think &lt;em&gt;Tens, Hundreds, Thousands&lt;/em&gt; etc. Some pointers about Radix Sort:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Even though it is an integer sorting algorithm, it is not restricted just to integers. Integers can also represent strings of characters&lt;/li&gt;
+&lt;li&gt;Two types of radix sort are:
+
+&lt;ul&gt;
+&lt;li&gt;LSD (Least Significant Digit): Short keys come before long keys&lt;/li&gt;
+&lt;li&gt;MSD (Most Significant Digit) Sorting: Lexicographic Order. Better for strings.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Uses Counting Sort as Sub Routine (which takes extra memory)
+
+&lt;ul&gt;
+&lt;li&gt;If memory is not really a concern, forget about this issue&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Radix Sort, with at most d digits, takes O(d*(n+b)) time where b is the base&lt;/li&gt;
+&lt;li&gt;Use Radix Sort over Counting Sort when the numbers range from 1 to n-square for example.
+&amp;lt;!&amp;ndash; more &amp;ndash;&amp;gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Numbers&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Let&amp;rsquo;s look at the stats from the algorithm:&lt;/p&gt;
+
+&lt;table style=&#34;border-bottom:lightblue solid;text-align:center;border-left:lightblue solid;background-color:#efefef;width:100%;border-collapse:collapse;border-top:lightblue solid;border-right:lightblue solid;&#34; border=&#34;1&#34; &gt; &lt;tbody &gt; &lt;tr &gt;
+&lt;td style=&#34;width:25%;&#34; &gt;
+&lt;/td&gt;
+&lt;td style=&#34;width:25%;&#34; &gt;**# of Items in Array**
+&lt;/td&gt;
+&lt;td style=&#34;width:25%;&#34; &gt;**Time Taken**
+&lt;/td&gt;
+&lt;td style=&#34;width:25%;&#34; &gt;**Average for 100 numbers**
+&lt;/td&gt; &lt;/tr&gt; &lt;tr &gt;
+&lt;td rowspan=&#34;3&#34; &gt;**Random**
+&lt;/td&gt;
+&lt;td &gt;10
+&lt;/td&gt;
+&lt;td &gt;0.033351
+&lt;/td&gt;
+&lt;td &gt;0.33351
+&lt;/td&gt; &lt;/tr&gt; &lt;tr style=&#34;background-color:#efefef;color:#008000;&#34; &gt;
+&lt;td &gt;1K
+&lt;/td&gt;
+&lt;td &gt;3.22004
+&lt;/td&gt;
+&lt;td &gt;0.322004
+&lt;/td&gt; &lt;/tr&gt; &lt;tr &gt;
+&lt;td &gt;1M
+&lt;/td&gt;
+&lt;td &gt;5650.9
+&lt;/td&gt;
+&lt;td &gt;0.56509
+&lt;/td&gt; &lt;/tr&gt; &lt;tr &gt;
+&lt;td rowspan=&#34;3&#34; &gt;**Sorted**
+&lt;/td&gt;
+&lt;td &gt;10
+&lt;/td&gt;
+&lt;td &gt;0.020659
+&lt;/td&gt;
+&lt;td &gt;0.20659
+&lt;/td&gt; &lt;/tr&gt; &lt;tr &gt;
+&lt;td &gt;1K
+&lt;/td&gt;
+&lt;td &gt;3.26273
+&lt;/td&gt;
+&lt;td &gt;0.326273
+&lt;/td&gt; &lt;/tr&gt; &lt;tr &gt;
+&lt;td &gt;1M
+&lt;/td&gt;
+&lt;td &gt;5683.91
+&lt;/td&gt;
+&lt;td &gt;0.568391
+&lt;/td&gt; &lt;/tr&gt; &lt;/tbody&gt; &lt;/table&gt;
+
+&lt;p&gt;&lt;strong&gt;Code&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;As always, the code is available at &lt;a href=&#34;https://github.com/abhi1010/Algorithms&#34;&gt;https://github.com/abhi1010/Algorithms&lt;/a&gt; for easier access.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Counting Sort</title>
+      <link>http://abhi1010.github.io/post/counting-sort/</link>
+      <pubDate>Tue, 11 Sep 2012 10:03:00 +0000</pubDate>
+      
+      <guid>http://abhi1010.github.io/post/counting-sort/</guid>
+      <description>&lt;p&gt;Counting Sort is an integer sorting algorithm. It is not very famous when somebody talks about sorting algorithms but it is great when sorting integers. In fact, many a times it may even beat other Sorting Algorithms. The highlight of Counting Sort is that it creates a bucket array (to keep track of frequency of numbers) whose size is the maximum element in the provided array.&lt;/p&gt;
+
+&lt;p&gt;We are looking to compare most of the sorting algorithms to find out which one performs better under different circumstances. One of the ways is to compare the complexity for each algorithm. The other way is to compare how well they perform based on the input they are all provided. I will post my code on Github but will start with Counting Sort here.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Here are some pointers about Counting Sort:&lt;/em&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Linear sorting algo with O(n+k) when the elements range from 1 to k&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;On&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;It is really good when the numbers range from 1 to n which means the max between them is not going to be very high&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;How do we compare all Sorting Algorithms?&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;We are going to look at the following scenarios across all Sorting Algorithms:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;10 numbers - Random + Sorted&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;1000 numbers (1K) - Random + Sorted&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;1,000,000 numbers (1M) - Random + Sorted&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;20000 iterations for each one of these scenarios&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;For good measure we will look at the average time required to sort 100 numbers in each one of these cases&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;This will allow us to compare all algorithms against each other by looking at the average times&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;It means we will be multiplying the results of 10 numbers by 10 (to get the &amp;ldquo;average&amp;rdquo; for 100 numbers) and also&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;!-- more --&gt;
+
+&lt;p&gt;&lt;strong&gt;Machine Setup&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;The setup of my machine is as follows:&lt;/p&gt;
+
+&lt;p&gt;| Hardware: x86_64
+| Processor: 16 x Intel&amp;reg; Xeon&amp;reg; E5540 2.53 GHz
+| Compiler: gcc version 4.8.2 (GCC)
+| Redhat Version: Red Hat 5.3&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;The Source Code&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;I am trying to do this all together in a single place so that it is easy for anybody to pick up the code, either for their own testing or going through the Sorting Algos. All of the source code for this can be found here:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/abhi1010/Algorithms&#34;&gt;https://github.com/abhi1010/Algorithms&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Numbers&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Without further ado, let&amp;rsquo;s delve into the numbers for Counting Sorts. Here&amp;rsquo;s the result from the code:
+&lt;table style=&#34;text-align:center;background-color:#efefef;width:100%;border-collapse:collapse;border:lightblue solid;&#34; border=&#34;1&#34; &gt;
+&lt;tbody &gt;
+&lt;tr &gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;td style=&#34;width:25%;&#34; &gt;
+&lt;/td&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;td style=&#34;width:25%;&#34; &gt;&lt;strong&gt;# of Items in Array&lt;/strong&gt;
+&lt;/td&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;td style=&#34;width:25%;&#34; &gt;&lt;strong&gt;Time Taken&lt;/strong&gt;
+&lt;/td&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;td style=&#34;width:25%;&#34; &gt;&lt;strong&gt;Average for 100 numbers&lt;/strong&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr &gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;td rowspan=&#34;3&#34; &gt;&lt;strong&gt;Random&lt;/strong&gt;
+&lt;/td&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;td &gt;10
+&lt;/td&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;td &gt;0.022982
+&lt;/td&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;td &gt;0.22982
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr style=&#34;background-color:#efefef;color:#008000;&#34; &gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;td &gt;1K
+&lt;/td&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;td &gt;1.21822
+&lt;/td&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;td &gt;0.121822
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr &gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;td &gt;1M
+&lt;/td&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;td &gt;1823.85
+&lt;/td&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;td &gt;0.182385
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr &gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;td rowspan=&#34;3&#34; &gt;&lt;strong&gt;Sorted&lt;/strong&gt;
+&lt;/td&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;td &gt;10
+&lt;/td&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;td &gt;0.026815
+&lt;/td&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;td &gt;0.26815
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr style=&#34;background-color:#efefef;color:#008000;&#34; &gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;td &gt;1K
+&lt;/td&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;td &gt;1.19146
+&lt;/td&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;td &gt;0.119146
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr &gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;td &gt;1M
+&lt;/td&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;td &gt;1612.58
+&lt;/td&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;td &gt;0.161258
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

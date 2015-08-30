@@ -351,6 +351,7 @@ a.label:focus {
 /* Brown */
 .theme-base-0f .label {
   background-color: #8f5536;
+  color: #fff;
 }
 
 .theme-base-0f .pagination > li > a,

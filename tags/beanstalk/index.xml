@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Beanstalk on Coders Digest</title>
+    <link>http://abhi1010.github.io/tags/beanstalk/</link>
+    <description>Recent content in Beanstalk on Coders Digest</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 07 Aug 2015 14:59:18 +0000</lastBuildDate>
+    <atom:link href="http://abhi1010.github.io/tags/beanstalk/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Docker Container cleanup on Elastic Beanstalk</title>
+      <link>http://abhi1010.github.io/post/docker-container-cleanup-on-elastic-beanstalk/</link>
+      <pubDate>Fri, 07 Aug 2015 14:59:18 +0000</pubDate>
+      
+      <guid>http://abhi1010.github.io/post/docker-container-cleanup-on-elastic-beanstalk/</guid>
+      <description>&lt;p&gt;{% comment %}
+    These commments will not include inside the source.
+{% endcomment %}&lt;/p&gt;
+
+&lt;p&gt;Sometimes you may notice that old containers are not cleaned up from Beanstalk environment. This may be due to your container still running as a ghost on the background. One way to find out about this is to quickly look into your
+&lt;code&gt;/var/lib/docker/vfs/dir&lt;/code&gt; directory whether it has too many folders.&lt;/p&gt;
+
+&lt;p&gt;Next, find out what container processes you have going on.
+&lt;code&gt;[root@ip dir]# docker ps -a&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;You might see something like this:&lt;/p&gt;
+
+&lt;p&gt;&lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;    CONTAINER ID        IMAGE                              COMMAND             CREATED             STATUS              PORTS               NAMES
+    1611e5ebe2c0        aws_beanstalk/staging-app:latest   &lt;span style=&#34;color: #dd2200; background-color: #fff0f0&#34;&gt;&amp;quot;supervisord -n&amp;quot;&lt;/span&gt;    About an hour ago                                           boring_galileo
+    e59d0dd8bba1        aws_beanstalk/staging-app:latest   &lt;span style=&#34;color: #dd2200; background-color: #fff0f0&#34;&gt;&amp;quot;supervisord -n&amp;quot;&lt;/span&gt;    About an hour ago                                           desperate_yalow
+    3844d0e18c47        aws_beanstalk/staging-app:latest   &lt;span style=&#34;color: #dd2200; background-color: #fff0f0&#34;&gt;&amp;quot;supervisord -n&amp;quot;&lt;/span&gt;    &lt;span style=&#34;color: #0000DD; font-weight: bold&#34;&gt;2&lt;/span&gt; hours ago         Up &lt;span style=&#34;color: #0000DD; font-weight: bold&#34;&gt;8&lt;/span&gt; minutes        80/tcp              pensive_jang
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Ideally, we want to &amp;ldquo;forcibly remove&amp;rdquo; all images (and hence the folders from &lt;code&gt;/var/lib/docker/vfs/dir&lt;/code&gt; directory) that are not in use anymore.
+Just run the following to test whether it works:
+&lt;code&gt;docker rmi -f&lt;/code&gt;docker images -aq``&lt;/p&gt;
+
+&lt;p&gt;You might run into trouble where docker says that all those images already have a container that is running them. This means those container are orphaned but not killed as we thought them to be. Let&amp;rsquo;s remove the shared volumes if any, for each one of them.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;docker rm -fv `docker ps -aq` 
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This will&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;kill the container&lt;/li&gt;
+&lt;li&gt;unlink the volumes&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;You should see a lot more space now on your beanstalk instance.
+&lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;    [root@ip dir]&lt;span style=&#34;color: #888888&#34;&gt;# df -h&lt;/span&gt;
+    Filesystem      Size  Used Avail Use% Mounted on
+    /dev/xvda1      7.8G  1.8G  5.9G  24% /
+    devtmpfs        490M   96K  490M   1% /dev
+    tmpfs           499M     0  499M   0% /dev/shm
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

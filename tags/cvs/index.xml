@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Cvs on Coders Digest</title>
+    <link>http://abhi1010.github.io/tags/cvs/</link>
+    <description>Recent content in Cvs on Coders Digest</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 03 Jul 2013 07:28:00 +0000</lastBuildDate>
+    <atom:link href="http://abhi1010.github.io/tags/cvs/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>CVS Cheat Sheet</title>
+      <link>http://abhi1010.github.io/post/cvs-cheat-sheet/</link>
+      <pubDate>Wed, 03 Jul 2013 07:28:00 +0000</pubDate>
+      
+      <guid>http://abhi1010.github.io/post/cvs-cheat-sheet/</guid>
+      <description>&lt;p&gt;I&amp;rsquo;ve worked on CVS for a long time now and figured out that I&amp;rsquo;d save a lot of time if I started writing alias or functions for the numerous tasks that I did on them. I will put down some of them here so you may benefit from them.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Silently update and inform about the status of the files (recursive)&lt;/em&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;cvs -q -n update
+&gt; 
+&gt; &lt;/blockquote&gt;
+
+&lt;p&gt;&lt;em&gt;Same as earlier but will only do so for the current folder&lt;/em&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;cvs -Q -n update -l
+&gt; 
+&gt; &lt;/blockquote&gt;
+
+&lt;p&gt;&lt;em&gt;Finds out the cv[s] [m]odified list of files while also indentating them nicely with only the important data pulled out&lt;/em&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;cvs -Q status | egrep &#34;File: &#34; -A 4 | egrep -v &#34;Up-to-date&#34; | egrep &#34;File: &#34; -A 3 | sed -e &#34;s/ Status:/\t\tStatus:/&#34; -e &#34;s/,v$/\n-------------------------------------------------------------------------\n/&#34; -e &#34;s/.*${PWD##*/}\//Location:\t\t /&#34; -e &#34;s/Attic\///&#34; | egrep &#34;Location:|Repository|Status:|File:|--------
+&gt; 
+&gt; &lt;/blockquote&gt;
+
+&lt;p&gt;&lt;em&gt;Recursively add all files to CVS for committing from the current directory&lt;/em&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;find . -type d -print | grep -v CVS | xargs cvs add
+&gt; 
+&gt; &lt;/blockquote&gt;
+
+&lt;p&gt;&lt;em&gt;Doing a side by side diff (change the value of -W according to the width of the screen)&lt;/em&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;cvs -Q diff -t -y --suppress-common-lines -W 190 $*
+&gt; 
+&gt; &lt;/blockquote&gt;
+
+&lt;p&gt;&lt;em&gt;Merging code from one branch to another&lt;/em&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;# Creates a command that you can use to &#34;merge&#34; your code from dev head to this current branch.   
+# Ideally you want to run this command from a folder where you want the code to merge to....   
+merge()   
+{   
+BRANCH=$(cat CVS/Tag | cut -c2-)   
+CMD=$(echo cvs update -j $BRANCH -j Version_2_17_dev .)   
+echo $CMD   
+}   
+
+&gt; 
+&gt; &lt;/blockquote&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
