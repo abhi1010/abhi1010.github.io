@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 
-  <title>404 Page not found &middot; abhishek pandey</title>
+  <title>Asp.Net &middot; abhishek pandey</title>
 
   
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
@@ -27,7 +27,7 @@
   
   
   
-  <link href="http://abhi1010.github.io/index.xml" rel="alternate" type="application/rss+xml" title="Coders Digest &middot; abhishek pandey" />
+  <link href="http://abhi1010.github.io/categories/asp.net/index.xml" rel="alternate" type="application/rss+xml" title="Coders Digest &middot; abhishek pandey" />
 
   <meta name="description" content="Your default page description">
   <meta name="keywords" content="your,default,page,keywords">
@@ -73,16 +73,66 @@
 </div>
 
 
-<div class="content container">
-  <div class="post">
-    <h1>404 Not Found</h1>
-    <p>What you're looking for isn't here, sorry!</p>
-    <p><a href="http://abhi1010.github.io/">&larr; Click here to go back home</a></p>
+
+   <div class="content container">
+       <h1 class="title">Asp.Net</h1>
+   
+    
+    
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+
+
+
+    <ul>
+    
+      <li>
+          <a href="http://abhi1010.github.io/post/google-analytics-swfaddress/">Google Analytics &amp; SWFAddress</a>
+          <span style="float:right;"><time>Apr 6, 2008</time></span>
+      </li>
+    
+      <li>
+          <a href="http://abhi1010.github.io/post/few-good-links-for-march-08/">Few Good Links for March 08</a>
+          <span style="float:right;"><time>Mar 31, 2008</time></span>
+      </li>
+    
+      <li>
+          <a href="http://abhi1010.github.io/post/how-to-protect-from-sql-injections-in-asp-net/">How to protect from SQL Injections in ASP.NET</a>
+          <span style="float:right;"><time>Mar 11, 2008</time></span>
+      </li>
+    
+      <li>
+          <a href="http://abhi1010.github.io/post/creating-custom-web-controls/">Creating Custom Web Controls</a>
+          <span style="float:right;"><time>Mar 8, 2008</time></span>
+      </li>
+    
+      <li>
+          <a href="http://abhi1010.github.io/post/blogs-i-like/">Blogs I like</a>
+          <span style="float:right;"><time>Mar 8, 2008</time></span>
+      </li>
+    
+      <li>
+          <a href="http://abhi1010.github.io/post/talk-to-my-flash/">Talk to my... Flash</a>
+          <span style="float:right;"><time>Mar 3, 2008</time></span>
+      </li>
+    
+      <li>
+          <a href="http://abhi1010.github.io/post/membership-and-profiler-in-asp-net/">Membership and Profiler in ASP.NET</a>
+          <span style="float:right;"><time>Feb 6, 2008</time></span>
+      </li>
+    
+    </ul>
+
   </div>
-</div>
-<script src="http://abhi1010.github.io/js/highlight.pack.js"></script>
-<script>hljs.initHighlightingOnLoad();</script>
-
-</body>
-</html>
-

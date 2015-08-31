@@ -302,6 +302,9 @@ a.a_cat:focus {
   background-color: #6ebdff;
   margin:1px;
 }
+.theme-base-aa .content a.a_tag:before {
+  content: "#";
+}
 a.a_tag:hover,
 a.a_tag:focus {
   color: #fff;
