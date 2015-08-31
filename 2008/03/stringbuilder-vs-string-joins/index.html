@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>StringBuilder vs String joins &middot; abhishek pandey</title>
+
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+  <link rel="stylesheet" href="http://abhi1010.github.io/css/poole.css">
+  <link rel="stylesheet" href="http://abhi1010.github.io/css/hyde.css">
+  <link rel="stylesheet" href="http://abhi1010.github.io/css/poole-overrides.css">
+  <link rel="stylesheet" href="http://abhi1010.github.io/css/hyde-overrides.css">
+  <link rel="stylesheet" href="http://abhi1010.github.io/css/hyde-x.css">
+  <link rel="stylesheet" href="http://abhi1010.github.io/css/highlight/sunburst.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://abhi1010.github.io/touch-icon-144-precomposed.png">
+  <link href="http://abhi1010.github.io/favicon.png" rel="icon">
+
+  
+  
+  
+  
+
+  <meta name="description" content="Your default page description">
+  <meta name="keywords" content="your,default,page,keywords">
+  
+</head>
+<body class="theme-base-aa">
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      
+      <h1><a href="http://abhi1010.github.io/">abhishek pandey</a></h1>
+      <p class="lead">&hellip; lost in reverie</p>
+    </div>
+
+    <ul class="sidebar-nav">
+      
+      <li class="sidebar-nav-item"><a href="http://abhi1010.github.io/post/">Posts</a></li>
+      
+      <li class="sidebar-nav-item"><a href="http://abhi1010.github.io/tags/">Tags</a></li>
+      
+      <li class="sidebar-nav-item"><a href="http://abhi1010.github.io/categories/">Categories</a></li>
+      
+      <li class="sidebar-nav-item"><a href="http://abhi1010.github.io/about/">About Me</a></li>
+      
+    </ul>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item">
+      
+      
+      
+      
+      
+      
+      
+      
+      </li>
+    </ul>
+
+    
+
+  </div>
+</div>
+
+
+<div class="content container">
+  <div class="post">
+    <h1>StringBuilder vs String joins</h1>
+    <span class="post-date">Mar 8, 2008  &middot; <a href="http://abhi1010.github.io/2008/03/stringbuilder-vs-string-joins/#disqus_thread">Comments</a>
+    
+    <br/>
+    <a class="label" href="http://abhi1010.github.io/categories/.net">.NET</a>
+    </span>
+    <p>For those who do not want to waste their time, here&rsquo;s the gist for this whole article:
+<em>StringBuilder performs better but you should try to use it when there&rsquo;s lot of concatenation involved (normally more than 7 joins - start thinking about StringBuilder.</em></p>
+
+<p>Let&rsquo;s move on for the lesser mortals. There has been a lot of debate about using StringBuilder instead of adding string like</p>
+
+<pre><code>&lt;span style=&quot;color:#606060;&quot;&gt;   1:&lt;/span&gt; strVariable += &lt;span style=&quot;color:#006080;&quot;&gt;&quot; Add this string to my variable string&quot;&lt;/span&gt;;
+</code></pre>
+
+<p>What&rsquo;s the darn difference?</p>
+
+<p>If you remember your schooling concepts string objects are fixed, their values cannot be changed. So, how can you change the value of a string? Well, you do NOT change the value, you change the object altogether! Every time you assign a value a new object of type string is created with the given value and is returned to you. hence, you discard the old string and actually come up with a new string.</p>
+
+<p>On the other hand, when you use StringBuilder, it is the same object, that you are working on. It keeps appending to the same object and the heap is not changed. Then why don&rsquo;t you use it always? Because there are &ldquo;appending&rdquo; costs. Everytime you append something, it is checked against the buffer and if it falls short of space needed, a new buffer is allocated. Let&rsquo;s see how that works inside the dll:</p>
+
+<p>How about some proof?</p>
+
+<p>Fortunately somebody did the hard work for all of us and actually came up with the statistics. You can find all of that over here:</p>
+
+<p><a href="http://209.85.175.104/search?q=cache:k9R6UE-q2nMJ:www.heikniemi.net/hc/archives/000124.html+http://www.heikniemi.net/hc/archives/000124.html&amp;hl=en&amp;ct=clnk&amp;cd=1&amp;gl=sg&amp;client=firefox-a">http://www.heikniemi.net/hc/archives/000124.html</a></p>
+
+  </div>
+  <div id="disqus_thread"></div>
+</div>
+
+
+<script type="text/javascript">
+var disqus_shortname = "abhi1010";
+(function () {
+    var s = document.createElement('script'); s.async = true;
+    s.type = 'text/javascript';
+    s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+}());
+</script>
+
+
+
+<script type="text/javascript">
+    var disqus_shortname = "abhi1010";
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+<script src="http://abhi1010.github.io/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+</body>
+</html>
+

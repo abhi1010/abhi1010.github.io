@@ -11,10 +11,10 @@
     
     <item>
       <title>Google Analytics &amp; SWFAddress</title>
-      <link>http://abhi1010.github.io/post/google-analytics-swfaddress/</link>
+      <link>http://abhi1010.github.io/2008/04/google-analytics--swfaddress/</link>
       <pubDate>Sun, 06 Apr 2008 05:32:00 +0000</pubDate>
       
-      <guid>http://abhi1010.github.io/post/google-analytics-swfaddress/</guid>
+      <guid>http://abhi1010.github.io/2008/04/google-analytics--swfaddress/</guid>
       <description>&lt;p&gt;Recently found a bug slash issue with Google Analytics new javscript software (post-urchin v5). I had written the internal documentation for the company standards and somehow when those standards were put into practice, SWFAddress feature of flash stopped working the moment google analytics feature was enabled. Worst of all, the web pages failed to load! To cap it off, the website was working perfectly fine on Firefox 2, 3 and IE 7!! It was having trouble only on IE6.&lt;/p&gt;
 
 &lt;p&gt;I tried a lot of ways but none seem to worked. Finally found a blog that remotely talked about SWFAddress!&lt;/p&gt;
@@ -27,10 +27,10 @@
     
     <item>
       <title>Few Good Links for March 08</title>
-      <link>http://abhi1010.github.io/post/few-good-links-for-march-08/</link>
+      <link>http://abhi1010.github.io/2008/03/few-good-links-for-march-08/</link>
       <pubDate>Mon, 31 Mar 2008 05:10:00 +0000</pubDate>
       
-      <guid>http://abhi1010.github.io/post/few-good-links-for-march-08/</guid>
+      <guid>http://abhi1010.github.io/2008/03/few-good-links-for-march-08/</guid>
       <description>&lt;p&gt;&lt;strong&gt;GAX and GAT&lt;/strong&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&#34;http://www.vsdotnet.be/blogs/tommer/2006/08/26/GuidanceOnTheQuotGuidanceAutomationToolkitquot.aspx&#34;&gt;http://www.vsdotnet.be/blogs/tommer/2006/08/26/GuidanceOnTheQuotGuidanceAutomationToolkitquot.aspx&lt;/a&gt;&lt;/p&gt;
@@ -65,10 +65,10 @@
     
     <item>
       <title>How to protect from SQL Injections in ASP.NET</title>
-      <link>http://abhi1010.github.io/post/how-to-protect-from-sql-injections-in-asp-net/</link>
+      <link>http://abhi1010.github.io/2008/03/how-to-protect-from-sql-injections-in-asp.net/</link>
       <pubDate>Tue, 11 Mar 2008 07:55:00 +0000</pubDate>
       
-      <guid>http://abhi1010.github.io/post/how-to-protect-from-sql-injections-in-asp-net/</guid>
+      <guid>http://abhi1010.github.io/2008/03/how-to-protect-from-sql-injections-in-asp.net/</guid>
       <description>&lt;p&gt;Some good links to figure out how to save your code&amp;rsquo;s ass from being thrashed by SQL Injections&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&#34;http://msdn2.microsoft.com/en-us/library/ms998271.aspx#paght000002_step2&#34;&gt;http://msdn2.microsoft.com/en-us/library/ms998271.aspx#paght000002_step2&lt;/a&gt;&lt;/p&gt;
@@ -79,10 +79,10 @@
     
     <item>
       <title>Creating Custom Web Controls</title>
-      <link>http://abhi1010.github.io/post/creating-custom-web-controls/</link>
+      <link>http://abhi1010.github.io/2008/03/creating-custom-web-controls/</link>
       <pubDate>Sat, 08 Mar 2008 22:30:00 +0000</pubDate>
       
-      <guid>http://abhi1010.github.io/post/creating-custom-web-controls/</guid>
+      <guid>http://abhi1010.github.io/2008/03/creating-custom-web-controls/</guid>
       <description>&lt;p&gt;How do you extend a control? Let&amp;rsquo;s figure it out.&lt;/p&gt;
 
 &lt;p&gt;**Why would you want to extend existing controls?&lt;br /&gt;
@@ -193,10 +193,10 @@
     
     <item>
       <title>Blogs I like</title>
-      <link>http://abhi1010.github.io/post/blogs-i-like/</link>
+      <link>http://abhi1010.github.io/2008/03/blogs-i-like/</link>
       <pubDate>Sat, 08 Mar 2008 10:26:00 +0000</pubDate>
       
-      <guid>http://abhi1010.github.io/post/blogs-i-like/</guid>
+      <guid>http://abhi1010.github.io/2008/03/blogs-i-like/</guid>
       <description>&lt;p&gt;Two blogs i really like and follow many a times are:&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&#34;SqlAuthority.com&#34;&gt;SqlAuthority.com&lt;/a&gt; - Excellent blog for Sql Server 2005. The guy has a very in-depth knowledge of Sql Server and I appreciate the way&lt;/p&gt;
@@ -217,10 +217,10 @@
     
     <item>
       <title>Talk to my... Flash</title>
-      <link>http://abhi1010.github.io/post/talk-to-my-flash/</link>
+      <link>http://abhi1010.github.io/2008/03/talk-to-my...-flash/</link>
       <pubDate>Mon, 03 Mar 2008 04:58:00 +0000</pubDate>
       
-      <guid>http://abhi1010.github.io/post/talk-to-my-flash/</guid>
+      <guid>http://abhi1010.github.io/2008/03/talk-to-my...-flash/</guid>
       <description>&lt;p&gt;According to normal acceptable behaviour it is not possible to let flash talk to the computer, be it on desktop or web browser.&lt;/p&gt;
 
 &lt;p&gt;There are always ways around a problem and there&amp;rsquo;s one in this case as well.&lt;/p&gt;
@@ -245,10 +245,10 @@ AMF.NET is a .NET gateway sitting between a Flash movie and .NET code. The goal 
     
     <item>
       <title>Membership and Profiler in ASP.NET</title>
-      <link>http://abhi1010.github.io/post/membership-and-profiler-in-asp-net/</link>
+      <link>http://abhi1010.github.io/2008/02/membership-and-profiler-in-asp.net/</link>
       <pubDate>Wed, 06 Feb 2008 19:34:00 +0000</pubDate>
       
-      <guid>http://abhi1010.github.io/post/membership-and-profiler-in-asp-net/</guid>
+      <guid>http://abhi1010.github.io/2008/02/membership-and-profiler-in-asp.net/</guid>
       <description>&lt;p&gt;Whenever you are using Sql Membership and Profiler classes - Trying to generate reports make sure your query&amp;rsquo;s WHERE clause is using &amp;ldquo;indexed&amp;rdquo; column names at least.&lt;/p&gt;
 
 &lt;p&gt;Let&amp;rsquo;s look at some of the more used tables. The index of some of the tables is given below:&lt;/p&gt;

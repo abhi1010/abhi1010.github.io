@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>Counting Sort &middot; abhishek pandey</title>
+
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+  <link rel="stylesheet" href="http://abhi1010.github.io/css/poole.css">
+  <link rel="stylesheet" href="http://abhi1010.github.io/css/hyde.css">
+  <link rel="stylesheet" href="http://abhi1010.github.io/css/poole-overrides.css">
+  <link rel="stylesheet" href="http://abhi1010.github.io/css/hyde-overrides.css">
+  <link rel="stylesheet" href="http://abhi1010.github.io/css/hyde-x.css">
+  <link rel="stylesheet" href="http://abhi1010.github.io/css/highlight/sunburst.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://abhi1010.github.io/touch-icon-144-precomposed.png">
+  <link href="http://abhi1010.github.io/favicon.png" rel="icon">
+
+  
+  
+  
+  
+
+  <meta name="description" content="Your default page description">
+  <meta name="keywords" content="your,default,page,keywords">
+  
+</head>
+<body class="theme-base-aa">
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      
+      <h1><a href="http://abhi1010.github.io/">abhishek pandey</a></h1>
+      <p class="lead">&hellip; lost in reverie</p>
+    </div>
+
+    <ul class="sidebar-nav">
+      
+      <li class="sidebar-nav-item"><a href="http://abhi1010.github.io/post/">Posts</a></li>
+      
+      <li class="sidebar-nav-item"><a href="http://abhi1010.github.io/tags/">Tags</a></li>
+      
+      <li class="sidebar-nav-item"><a href="http://abhi1010.github.io/categories/">Categories</a></li>
+      
+      <li class="sidebar-nav-item"><a href="http://abhi1010.github.io/about/">About Me</a></li>
+      
+    </ul>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item">
+      
+      
+      
+      
+      
+      
+      
+      
+      </li>
+    </ul>
+
+    
+
+  </div>
+</div>
+
+
+<div class="content container">
+  <div class="post">
+    <h1>Counting Sort</h1>
+    <span class="post-date">Sep 11, 2012  &middot; <a href="http://abhi1010.github.io/2012/09/counting-sort/#disqus_thread">Comments</a>
+    
+    <br/>
+    <a class="label" href="http://abhi1010.github.io/categories/linux">Linux</a>
+    </span>
+    <p>Counting Sort is an integer sorting algorithm. It is not very famous when somebody talks about sorting algorithms but it is great when sorting integers. In fact, many a times it may even beat other Sorting Algorithms. The highlight of Counting Sort is that it creates a bucket array (to keep track of frequency of numbers) whose size is the maximum element in the provided array.</p>
+
+<p>We are looking to compare most of the sorting algorithms to find out which one performs better under different circumstances. One of the ways is to compare the complexity for each algorithm. The other way is to compare how well they perform based on the input they are all provided. I will post my code on Github but will start with Counting Sort here.</p>
+
+<p><em>Here are some pointers about Counting Sort:</em></p>
+
+<ul>
+<li><p>Linear sorting algo with O(n+k) when the elements range from 1 to k</p>
+
+<ul>
+<li>On</li>
+</ul></li>
+
+<li><p>It is really good when the numbers range from 1 to n which means the max between them is not going to be very high</p></li>
+</ul>
+
+<p><strong><em>How do we compare all Sorting Algorithms?</em></strong></p>
+
+<p>We are going to look at the following scenarios across all Sorting Algorithms:</p>
+
+<ul>
+<li><p>10 numbers - Random + Sorted</p></li>
+
+<li><p>1000 numbers (1K) - Random + Sorted</p></li>
+
+<li><p>1,000,000 numbers (1M) - Random + Sorted</p></li>
+
+<li><p>20000 iterations for each one of these scenarios</p></li>
+
+<li><p>For good measure we will look at the average time required to sort 100 numbers in each one of these cases</p>
+
+<ul>
+<li><p>This will allow us to compare all algorithms against each other by looking at the average times</p></li>
+
+<li><p>It means we will be multiplying the results of 10 numbers by 10 (to get the &ldquo;average&rdquo; for 100 numbers) and also</p></li>
+</ul></li>
+</ul>
+
+<!-- more -->
+
+<p><strong>Machine Setup</strong></p>
+
+<p>The setup of my machine is as follows:</p>
+
+<p>| Hardware: x86_64
+| Processor: 16 x Intel&reg; Xeon&reg; E5540 2.53 GHz
+| Compiler: gcc version 4.8.2 (GCC)
+| Redhat Version: Red Hat 5.3</p>
+
+<p><strong>The Source Code</strong></p>
+
+<p>I am trying to do this all together in a single place so that it is easy for anybody to pick up the code, either for their own testing or going through the Sorting Algos. All of the source code for this can be found here:</p>
+
+<p><a href="https://github.com/abhi1010/Algorithms">https://github.com/abhi1010/Algorithms</a></p>
+
+<p><strong>Numbers</strong></p>
+
+<p>Without further ado, let&rsquo;s delve into the numbers for Counting Sorts. Here&rsquo;s the result from the code:
+<table style="text-align:center;background-color:#efefef;width:100%;border-collapse:collapse;border:lightblue solid;" border="1" >
+<tbody >
+<tr ></p>
+
+<p><td style="width:25%;" >
+</td></p>
+
+<p><td style="width:25%;" ><strong># of Items in Array</strong>
+</td></p>
+
+<p><td style="width:25%;" ><strong>Time Taken</strong>
+</td></p>
+
+<p><td style="width:25%;" ><strong>Average for 100 numbers</strong>
+</td>
+</tr>
+<tr ></p>
+
+<p><td rowspan="3" ><strong>Random</strong>
+</td></p>
+
+<p><td >10
+</td></p>
+
+<p><td >0.022982
+</td></p>
+
+<p><td >0.22982
+</td>
+</tr>
+<tr style="background-color:#efefef;color:#008000;" ></p>
+
+<p><td >1K
+</td></p>
+
+<p><td >1.21822
+</td></p>
+
+<p><td >0.121822
+</td>
+</tr>
+<tr ></p>
+
+<p><td >1M
+</td></p>
+
+<p><td >1823.85
+</td></p>
+
+<p><td >0.182385
+</td>
+</tr>
+<tr ></p>
+
+<p><td rowspan="3" ><strong>Sorted</strong>
+</td></p>
+
+<p><td >10
+</td></p>
+
+<p><td >0.026815
+</td></p>
+
+<p><td >0.26815
+</td>
+</tr>
+<tr style="background-color:#efefef;color:#008000;" ></p>
+
+<p><td >1K
+</td></p>
+
+<p><td >1.19146
+</td></p>
+
+<p><td >0.119146
+</td>
+</tr>
+<tr ></p>
+
+<p><td >1M
+</td></p>
+
+<p><td >1612.58
+</td></p>
+
+<p><td >0.161258
+</td>
+</tr>
+</tbody>
+</table></p>
+
+  </div>
+  <div id="disqus_thread"></div>
+</div>
+
+
+<script type="text/javascript">
+var disqus_shortname = "abhi1010";
+(function () {
+    var s = document.createElement('script'); s.async = true;
+    s.type = 'text/javascript';
+    s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+}());
+</script>
+
+
+
+<script type="text/javascript">
+    var disqus_shortname = "abhi1010";
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+<script src="http://abhi1010.github.io/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+</body>
+</html>
+

@@ -11,10 +11,10 @@
     
     <item>
       <title>CVS Cheat Sheet</title>
-      <link>http://abhi1010.github.io/post/cvs-cheat-sheet/</link>
+      <link>http://abhi1010.github.io/2013/07/cvs-cheat-sheet/</link>
       <pubDate>Wed, 03 Jul 2013 07:28:00 +0000</pubDate>
       
-      <guid>http://abhi1010.github.io/post/cvs-cheat-sheet/</guid>
+      <guid>http://abhi1010.github.io/2013/07/cvs-cheat-sheet/</guid>
       <description>&lt;p&gt;I&amp;rsquo;ve worked on CVS for a long time now and figured out that I&amp;rsquo;d save a lot of time if I started writing alias or functions for the numerous tasks that I did on them. I will put down some of them here so you may benefit from them.&lt;/p&gt;
 
 &lt;p&gt;&lt;em&gt;Silently update and inform about the status of the files (recursive)&lt;/em&gt;&lt;/p&gt;

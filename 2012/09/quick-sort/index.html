@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>Quick Sort &middot; abhishek pandey</title>
+
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+  <link rel="stylesheet" href="http://abhi1010.github.io/css/poole.css">
+  <link rel="stylesheet" href="http://abhi1010.github.io/css/hyde.css">
+  <link rel="stylesheet" href="http://abhi1010.github.io/css/poole-overrides.css">
+  <link rel="stylesheet" href="http://abhi1010.github.io/css/hyde-overrides.css">
+  <link rel="stylesheet" href="http://abhi1010.github.io/css/hyde-x.css">
+  <link rel="stylesheet" href="http://abhi1010.github.io/css/highlight/sunburst.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://abhi1010.github.io/touch-icon-144-precomposed.png">
+  <link href="http://abhi1010.github.io/favicon.png" rel="icon">
+
+  
+  
+  
+  
+
+  <meta name="description" content="Your default page description">
+  <meta name="keywords" content="your,default,page,keywords">
+  
+</head>
+<body class="theme-base-aa">
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      
+      <h1><a href="http://abhi1010.github.io/">abhishek pandey</a></h1>
+      <p class="lead">&hellip; lost in reverie</p>
+    </div>
+
+    <ul class="sidebar-nav">
+      
+      <li class="sidebar-nav-item"><a href="http://abhi1010.github.io/post/">Posts</a></li>
+      
+      <li class="sidebar-nav-item"><a href="http://abhi1010.github.io/tags/">Tags</a></li>
+      
+      <li class="sidebar-nav-item"><a href="http://abhi1010.github.io/categories/">Categories</a></li>
+      
+      <li class="sidebar-nav-item"><a href="http://abhi1010.github.io/about/">About Me</a></li>
+      
+    </ul>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item">
+      
+      
+      
+      
+      
+      
+      
+      
+      </li>
+    </ul>
+
+    
+
+  </div>
+</div>
+
+
+<div class="content container">
+  <div class="post">
+    <h1>Quick Sort</h1>
+    <span class="post-date">Sep 22, 2012  &middot; <a href="http://abhi1010.github.io/2012/09/quick-sort/#disqus_thread">Comments</a>
+    
+    <br/>
+    <a class="label" href="http://abhi1010.github.io/categories/linux">Linux</a>
+    </span>
+    
+
+<p>Quick Sort is an efficient divide and conquer algorithm performed in two phases - partition and sorting phase.</p>
+
+<p>Here are few pointers to remember about Quick Sort:</p>
+
+<ul>
+<li>Partitioning places all the elements less than the pivot in the left part of the array and greater elements in the right part</li>
+<li>Pivot element stays in its place</li>
+<li>After partitioning no element moves to the other side, of the pivot</li>
+<li>* This allows you to sort the elements, to the left or right of the pivot, independent of the other side</li>
+<li>Complexity is O(n log n)</li>
+<li>Often fast for small arrays with a few distinct values, repeated many times</li>
+<li>It is a conquer-and-divide algo; with most of the work happening during partitioning phase</li>
+<li>If you had to choose the optimum pivot then it should the median of the given array</li>
+<li>Not a stable sort
+&lt;!&ndash; more &ndash;&gt;</li>
+</ul>
+
+<h2 id="testing-notes:bc3cdebe8a50650a5fd63bed57e56314">Testing Notes</h2>
+
+<ul>
+<li>Currently we have only one version of the code. We may try to do another version that is not recursive because putting the functions on stack will take up some memory and time</li>
+<li>Another version could be trying to use the pivot from the middle and then compare how do the random numbers compare against the sorted numbers</li>
+</ul>
+
+<h2 id="code:bc3cdebe8a50650a5fd63bed57e56314">Code</h2>
+
+<p>As usual the <a href="https://github.com/abhi1010/Algorithms/blob/master/Algo_codes/QuickSort.cpp">code</a> is available here:</p>
+
+<p><a href="https://github.com/abhi1010/Algorithms">https://github.com/abhi1010/Algorithms</a></p>
+
+<h2 id="numbers:bc3cdebe8a50650a5fd63bed57e56314">Numbers</h2>
+
+<table style="border-bottom:lightblue solid;text-align:center;border-left:lightblue solid;background-color:#efefef;width:100%;border-collapse:collapse;border-top:lightblue solid;border-right:lightblue solid;" border="1" > <tbody > <tr >
+<td style="width:25%;" >
+</td>
+<td style="width:25%;" >**# of Items in Array**
+</td>
+<td style="width:25%;" >**Time Taken**
+</td>
+<td style="width:25%;" >**Average for 100 numbers**
+</td> </tr> <tr >
+<td rowspan="3" >**Random**
+</td>
+<td >10
+</td>
+<td >0.072972
+</td>
+<td >0.72972
+</td> </tr> <tr >
+<td >1K
+</td>
+<td >2.74698
+</td>
+<td >0.274698
+</td> </tr> <tr >
+<td >1M
+</td>
+<td >4640.77
+</td>
+<td >0.464077
+</td> </tr> <tr >
+<td rowspan="3" >**Sorted**
+</td>
+<td >10
+</td>
+<td >0.042773
+</td>
+<td >0.42773
+</td> </tr> <tr >
+<td >1K
+</td>
+<td >1.84335
+</td>
+<td >0.184335
+</td> </tr> <tr >
+<td >1M
+</td>
+<td >2473.42
+</td>
+<td >0.247342
+</td> </tr> </tbody> </table>
+
+  </div>
+  <div id="disqus_thread"></div>
+</div>
+
+
+<script type="text/javascript">
+var disqus_shortname = "abhi1010";
+(function () {
+    var s = document.createElement('script'); s.async = true;
+    s.type = 'text/javascript';
+    s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+}());
+</script>
+
+
+
+<script type="text/javascript">
+    var disqus_shortname = "abhi1010";
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+<script src="http://abhi1010.github.io/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+</body>
+</html>
+

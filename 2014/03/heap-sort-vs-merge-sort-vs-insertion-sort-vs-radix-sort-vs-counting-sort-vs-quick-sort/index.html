@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>Heap Sort vs Merge Sort vs Insertion Sort vs Radix Sort vs Counting Sort vs Quick Sort &middot; abhishek pandey</title>
+
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+  <link rel="stylesheet" href="http://abhi1010.github.io/css/poole.css">
+  <link rel="stylesheet" href="http://abhi1010.github.io/css/hyde.css">
+  <link rel="stylesheet" href="http://abhi1010.github.io/css/poole-overrides.css">
+  <link rel="stylesheet" href="http://abhi1010.github.io/css/hyde-overrides.css">
+  <link rel="stylesheet" href="http://abhi1010.github.io/css/hyde-x.css">
+  <link rel="stylesheet" href="http://abhi1010.github.io/css/highlight/sunburst.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://abhi1010.github.io/touch-icon-144-precomposed.png">
+  <link href="http://abhi1010.github.io/favicon.png" rel="icon">
+
+  
+  
+  
+  
+
+  <meta name="description" content="Your default page description">
+  <meta name="keywords" content="your,default,page,keywords">
+  
+</head>
+<body class="theme-base-aa">
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      
+      <h1><a href="http://abhi1010.github.io/">abhishek pandey</a></h1>
+      <p class="lead">&hellip; lost in reverie</p>
+    </div>
+
+    <ul class="sidebar-nav">
+      
+      <li class="sidebar-nav-item"><a href="http://abhi1010.github.io/post/">Posts</a></li>
+      
+      <li class="sidebar-nav-item"><a href="http://abhi1010.github.io/tags/">Tags</a></li>
+      
+      <li class="sidebar-nav-item"><a href="http://abhi1010.github.io/categories/">Categories</a></li>
+      
+      <li class="sidebar-nav-item"><a href="http://abhi1010.github.io/about/">About Me</a></li>
+      
+    </ul>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item">
+      
+      
+      
+      
+      
+      
+      
+      
+      </li>
+    </ul>
+
+    
+
+  </div>
+</div>
+
+
+<div class="content container">
+  <div class="post">
+    <h1>Heap Sort vs Merge Sort vs Insertion Sort vs Radix Sort vs Counting Sort vs Quick Sort</h1>
+    <span class="post-date">Mar 19, 2014  &middot; <a href="http://abhi1010.github.io/2014/03/heap-sort-vs-merge-sort-vs-insertion-sort-vs-radix-sort-vs-counting-sort-vs-quick-sort/#disqus_thread">Comments</a>
+    
+    <br/>
+    <a class="label" href="http://abhi1010.github.io/categories/linux">Linux</a>
+    </span>
+    
+
+<p>I had written about sorting algorithms (Tag: <a href="http://codersdigest.wordpress.com/tag/sorting/">Sorting</a>) with details about what to look out for along with their code snippets but I wanted a do a quick comparison of all the algos together to see how do they perform when the same set of input is provided to them. Hence I started working on a simple implementation for each one of them. I have now put together all of them in a single project on GitHub. I ensured that they all have the same set of procedures during their run. Some of the items I wanted to ensure was:</p>
+
+<ul>
+<li><p>Same input array</p></li>
+
+<li><p>Same number of iterations. Each iteration having the same input</p></li>
+
+<li><p>Each algo being timed the exact same way as another</p></li>
+</ul>
+
+<p>Some of the algorithms being tested were:</p>
+
+<ul>
+<li><p><a href="http://codersdigest.wordpress.com/2012/10/06/merge-sort/">Heap Sort</a></p></li>
+
+<li><p><a href="http://codersdigest.wordpress.com/2012/10/06/merge-sort/">Merge Sort</a></p></li>
+
+<li><p><a href="http://codersdigest.wordpress.com/2012/09/18/insertion-sort/">Insertion Sort</a></p></li>
+
+<li><p><a href="http://codersdigest.wordpress.com/2012/09/13/radix-sort/">Radix Sort</a></p></li>
+
+<li><p><a href="http://codersdigest.wordpress.com/2012/09/11/counting-sort/">Counting Sort</a></p></li>
+
+<li><p><a href="http://codersdigest.wordpress.com/2012/09/22/quick-sort/">Quick Sort</a></p></li>
+</ul>
+
+<h2 id="how-did-we-ensure-equality:6e1f05c125f850e9eb36735baf7184b1">How did we ensure Equality?</h2>
+
+<ul>
+<li><p>Created a simple base class for all algorithms: <code>AlgoStopwatch</code></p></li>
+
+<li><ul>
+<li><p>Responsible for benchmarking everything</p></li>
+
+<li><p>Provide a function called <code>doSort()</code> that would allow derived classes to implement their algorithm</p></li>
+
+<li><p>Ensures that every algorithm has a name and description - to help us distinguish</p></li>
+</ul></li>
+
+<li><p>Another class to help manage the testing of all the algorithms: <code>AlgoDemo</code></p></li>
+
+<li><ul>
+<li><p>All instances are created here for the algorithms</p></li>
+
+<li><p>The input array is provided by this class to all algorithms</p></li>
+</ul></li>
+</ul>
+
+<h2 id="code:6e1f05c125f850e9eb36735baf7184b1">Code</h2>
+
+<p>As usual the code for the project is available here:</p>
+
+<p><strong><a href="https://github.com/abhi1010/Algorithms">https://github.com/abhi1010/Algorithms</a></strong></p>
+
+<p>It can be run using Visual Studio without any changes.</p>
+
+<!-- more -->
+
+<h2 id="numbers:6e1f05c125f850e9eb36735baf7184b1">Numbers</h2>
+
+<p>Looking at the numbers below, it may be hard to compare the actual values. Hence I decided to <code>normalize</code> them by calculating how much time will be required to sort <code>100 numbers</code> using the same rate as the actual numbers. They are provided for all algorithms on the right-most column.
+<table style="text-align:center;background-color:#efefef;width:100%;border-collapse:collapse;border:lightblue solid;" border="1" >
+<tbody >
+<tr ></p>
+
+<p><td style="width:25%;" ></p>
+
+<h3 id="merge-sort-http-codersdigest-wordpress-com-2012-10-06-merge-sort:6e1f05c125f850e9eb36735baf7184b1"><a href="http://codersdigest.wordpress.com/2012/10/06/merge-sort/">Merge Sort</a></h3>
+
+<p></td></p>
+
+<p><td style="width:25%;" ><strong># of Items in Array</strong>
+</td></p>
+
+<p><td style="width:25%;" ><strong>Time Taken</strong>
+</td></p>
+
+<p><td style="width:25%;" ><strong>Average for 100 numbers</strong>
+</td>
+</tr>
+<tr ></p>
+
+<p><td rowspan="3" ><strong>Random</strong>
+</td></p>
+
+<p><td >10
+</td></p>
+
+<p><td >0.047464
+</td></p>
+
+<p><td >0.47464
+</td>
+</tr>
+<tr ></p>
+
+<p><td >1K
+</td></p>
+
+<p><td >5.41906
+</td></p>
+
+<p><td >0.541906
+</td>
+</tr>
+<tr ></p>
+
+<p><td >1M
+</td></p>
+
+<p><td >8444.11
+</td></p>
+
+<p><td >0.844411
+</td>
+</tr>
+<tr ></p>
+
+<p><td rowspan="3" ><strong>Sorted</strong>
+</td></p>
+
+<p><td >10
+</td></p>
+
+<p><td >0.027155
+</td></p>
+
+<p><td >0.27155
+</td>
+</tr>
+<tr ></p>
+
+<p><td >1K
+</td></p>
+
+<p><td >4.47016
+</td></p>
+
+<p><td >0.447016
+</td>
+</tr>
+<tr ></p>
+
+<p><td >1M
+</td></p>
+
+<p><td >6323.05
+</td></p>
+
+<p><td >0.632305
+</td>
+</tr>
+</tbody>
+</table></p>
+
+<table style="text-align:center;background-color:#efefef;width:100%;border-collapse:collapse;border:lightblue solid;" border="1" >
+<tbody >
+<tr >
+
+<td style="width:25%;" >
+
+
+### Merge Sort 2
+
+
+
+</td>
+
+<td style="width:25%;" >**# of Items in Array**
+</td>
+
+<td style="width:25%;" >**Time Taken**
+</td>
+
+<td style="width:25%;" >**Average for 100 numbers**
+</td>
+</tr>
+<tr >
+
+<td rowspan="3" >**Random**
+</td>
+
+<td >10
+</td>
+
+<td >0.033668
+</td>
+
+<td >0.33668
+</td>
+</tr>
+<tr >
+
+<td >1K
+</td>
+
+<td >3.89374
+</td>
+
+<td >0.389374
+</td>
+</tr>
+<tr >
+
+<td >1M
+</td>
+
+<td >7076.04
+</td>
+
+<td >0.707604
+</td>
+</tr>
+<tr >
+
+<td rowspan="3" >**Sorted**
+</td>
+
+<td >10
+</td>
+
+<td >0.019034
+</td>
+
+<td >0.19034
+</td>
+</tr>
+<tr >
+
+<td >1K
+</td>
+
+<td >2.7833
+</td>
+
+<td >0.27833
+</td>
+</tr>
+<tr >
+
+<td >1M
+</td>
+
+<td >4664.16
+</td>
+
+<td >0.466416
+</td>
+</tr>
+</tbody>
+</table>
+
+<table style="text-align:center;background-color:#efefef;width:100%;border-collapse:collapse;border:lightblue solid;" border="1" >
+<tbody >
+<tr >
+
+<td style="width:25%;" >
+
+
+### [Insertion Sort](http://codersdigest.wordpress.com/2012/09/18/insertion-sort/)
+
+
+
+</td>
+
+<td style="width:25%;" >**# of Items in Array**
+</td>
+
+<td style="width:25%;" >**Time Taken**
+</td>
+
+<td style="width:25%;" >**Average for 100 numbers**
+</td>
+</tr>
+<tr >
+
+<td rowspan="3" >**Random**
+</td>
+
+<td >10
+</td>
+
+<td >0.006095
+</td>
+
+<td >0.06095
+</td>
+</tr>
+<tr >
+
+<td >1K
+</td>
+
+<td >0.369859
+</td>
+
+<td >0.0369859
+</td>
+</tr>
+<tr >
+
+<td >1M
+</td>
+
+<td >323.878
+</td>
+
+<td >0.0323878
+</td>
+</tr>
+<tr >
+
+<td rowspan="3" >**Sorted**
+</td>
+
+<td >10
+</td>
+
+<td >0.005022
+</td>
+
+<td >0.05022
+</td>
+</tr>
+<tr >
+
+<td >1K
+</td>
+
+<td >0.11696
+</td>
+
+<td >0.011696
+</td>
+</tr>
+<tr >
+
+<td >1M
+</td>
+
+<td >122.427
+</td>
+
+<td >0.0122427
+</td>
+</tr>
+</tbody>
+</table>
+
+<table style="text-align:center;background-color:#efefef;width:100%;border-collapse:collapse;border:lightblue solid;" border="1" >
+<tbody >
+<tr >
+
+<td style="width:25%;" >
+
+
+### [Heap Sort 1](http://codersdigest.wordpress.com/2012/10/17/heap-sort/)
+
+
+
+</td>
+
+<td style="width:25%;" >**# of Items in Array**
+</td>
+
+<td style="width:25%;" >**Time Taken**
+</td>
+
+<td style="width:25%;" >**Average for 100 numbers**
+</td>
+</tr>
+<tr >
+
+<td rowspan="3" >**Random**
+</td>
+
+<td >10
+</td>
+
+<td >0.013543
+</td>
+
+<td >0.13543
+</td>
+</tr>
+<tr >
+
+<td >1K
+</td>
+
+<td >3.22043
+</td>
+
+<td >0.322043
+</td>
+</tr>
+<tr >
+
+<td >1M
+</td>
+
+<td >4770.14
+</td>
+
+<td >0.477014
+</td>
+</tr>
+<tr >
+
+<td rowspan="3" >**Sorted**
+</td>
+
+<td >10
+</td>
+
+<td >0.007507
+</td>
+
+<td >0.07507
+</td>
+</tr>
+<tr >
+
+<td >1K
+</td>
+
+<td >0.625425
+</td>
+
+<td >0.0625425
+</td>
+</tr>
+<tr >
+
+<td >1M
+</td>
+
+<td >633.142
+</td>
+
+<td >0.0633142
+</td>
+</tr>
+</tbody>
+</table>
+
+<table style="text-align:center;background-color:#efefef;width:100%;border-collapse:collapse;border:lightblue solid;" border="1" >
+<tbody >
+<tr >
+
+<td style="width:25%;" >
+
+
+### [Heap Sort 2](http://codersdigest.wordpress.com/2012/10/17/heap-sort/)
+
+
+
+</td>
+
+<td style="width:25%;" >**# of Items in Array**
+</td>
+
+<td style="width:25%;" >**Time Taken**
+</td>
+
+<td style="width:25%;" >**Average for 100 numbers**
+</td>
+</tr>
+<tr >
+
+<td rowspan="3" >**Random**
+</td>
+
+<td >10
+</td>
+
+<td >0.019352
+</td>
+
+<td >0.19352
+</td>
+</tr>
+<tr >
+
+<td >1K
+</td>
+
+<td >3.86284
+</td>
+
+<td >0.386284
+</td>
+</tr>
+<tr >
+
+<td >1M
+</td>
+
+<td >8914.22
+</td>
+
+<td >0.891422
+</td>
+</tr>
+<tr >
+
+<td rowspan="3" >**Sorted**
+</td>
+
+<td >10
+</td>
+
+<td >0.011289
+</td>
+
+<td >0.11289
+</td>
+</tr>
+<tr >
+
+<td >1K
+</td>
+
+<td >3.49712
+</td>
+
+<td >0.349712
+</td>
+</tr>
+<tr >
+
+<td >1M
+</td>
+
+<td >6661.45
+</td>
+
+<td >0.666145
+</td>
+</tr>
+</tbody>
+</table>
+
+<table style="text-align:center;background-color:#efefef;width:100%;border-collapse:collapse;margin-left:0;border:lightblue solid;" border="1" >
+<tbody >
+<tr >
+
+<td style="width:25%;" >
+
+
+### [Heap Sort 3](http://codersdigest.wordpress.com/2012/10/17/heap-sort/)
+
+
+
+</td>
+
+<td style="width:25%;" >**# of Items in Arraytrong>**
+</td>
+
+<td style="width:25%;" >**Time Taken**
+</td>
+
+<td style="width:25%;" >**Average for 100 numbers**
+</td>
+</tr>
+<tr >
+
+<td rowspan="3" >**Random**
+</td>
+
+<td >10
+</td>
+
+<td >0.016266
+</td>
+
+<td >0.16266
+</td>
+</tr>
+<tr >
+
+<td >1K
+</td>
+
+<td >0.968032
+</td>
+
+<td >0.0968032
+</td>
+</tr>
+<tr >
+
+<td >1M
+</td>
+
+<td >900.004
+</td>
+
+<td >0.0900004
+</td>
+</tr>
+<tr >
+
+<td rowspan="3" >**Sorted**
+</td>
+
+<td >10
+</td>
+
+<td >0.012845
+</td>
+
+<td >0.12845
+</td>
+</tr>
+<tr >
+
+<td >1K
+</td>
+
+<td >3.08637
+</td>
+
+<td >0.308637
+</td>
+</tr>
+<tr >
+
+<td >1M
+</td>
+
+<td >3839.23
+</td>
+
+<td >0.383923
+</td>
+</tr>
+</tbody>
+</table>
+
+<table style="text-align:center;background-color:#efefef;width:100%;border-collapse:collapse;border:lightblue solid;" border="1" >
+<tbody >
+<tr >
+
+<td style="width:25%;" >
+
+
+### [QuickSort](http://codersdigest.wordpress.com/2012/09/22/quick-sort/)
+
+
+
+</td>
+
+<td style="width:25%;" >**# of Items in Array**
+</td>
+
+<td style="width:25%;" >**Time Taken**
+</td>
+
+<td style="width:25%;" >**Average for 100 numbers**
+</td>
+</tr>
+<tr >
+
+<td rowspan="3" >**Random**
+</td>
+
+<td >10
+</td>
+
+<td >0.072972
+</td>
+
+<td >0.72972
+</td>
+</tr>
+<tr >
+
+<td >1K
+</td>
+
+<td >2.74698
+</td>
+
+<td >0.274698
+</td>
+</tr>
+<tr >
+
+<td >1M
+</td>
+
+<td >4640.77
+</td>
+
+<td >0.464077
+</td>
+</tr>
+<tr >
+
+<td rowspan="3" >**Sorted**
+</td>
+
+<td >10
+</td>
+
+<td >0.042773
+</td>
+
+<td >0.42773
+</td>
+</tr>
+<tr >
+
+<td >1K
+</td>
+
+<td >1.84335
+</td>
+
+<td >0.184335
+</td>
+</tr>
+<tr >
+
+<td >1M
+</td>
+
+<td >2473.42
+</td>
+
+<td >0.247342
+</td>
+</tr>
+</tbody>
+</table>
+
+<table style="text-align:center;background-color:#efefef;width:100%;border-collapse:collapse;border:lightblue solid;" border="1" >
+<tbody >
+<tr >
+
+<td style="width:25%;" >
+
+
+### [Counting Sort](http://codersdigest.wordpress.com/2012/09/11/counting-sort/)
+
+
+
+</td>
+
+<td style="width:25%;" >**# of Items in Array**
+</td>
+
+<td style="width:25%;" >**Time Taken**
+</td>
+
+<td style="width:25%;" >**Average for 100 numbers**
+</td>
+</tr>
+<tr >
+
+<td rowspan="3" >**Random**
+</td>
+
+<td >10
+</td>
+
+<td >0.022982
+</td>
+
+<td >0.22982
+</td>
+</tr>
+<tr style="background-color:#efefef;color:#008000;" >
+
+<td >1K
+</td>
+
+<td >1.21822
+</td>
+
+<td >0.121822
+</td>
+</tr>
+<tr >
+
+<td >1M
+</td>
+
+<td >1823.85
+</td>
+
+<td >0.182385
+</td>
+</tr>
+<tr >
+
+<td rowspan="3" >**Sorted**
+</td>
+
+<td >10
+</td>
+
+<td >0.026815
+</td>
+
+<td >0.26815
+</td>
+</tr>
+<tr style="background-color:#efefef;color:#008000;" >
+
+<td >1K
+</td>
+
+<td >1.19146
+</td>
+
+<td >0.119146
+</td>
+</tr>
+<tr >
+
+<td >1M
+</td>
+
+<td >1612.58
+</td>
+
+<td >0.161258
+</td>
+</tr>
+</tbody>
+</table>
+
+<table style="text-align:center;background-color:#efefef;width:100%;border-collapse:collapse;border:lightblue solid;" border="1" >
+<tbody >
+<tr >
+
+<td style="width:25%;" >
+
+
+### [Radix Sort](http://codersdigest.wordpress.com/2012/09/13/radix-sort/)
+
+
+
+</td>
+
+<td style="width:25%;" >**# of Items in Array**
+</td>
+
+<td style="width:25%;" >**Time Taken**
+</td>
+
+<td style="width:25%;" >**Average for 100 numbers**
+</td>
+</tr>
+<tr >
+
+<td rowspan="3" >**Random**
+</td>
+
+<td >10
+</td>
+
+<td >0.033351
+</td>
+
+<td >0.33351
+</td>
+</tr>
+<tr style="background-color:#efefef;color:#008000;" >
+
+<td >1K
+</td>
+
+<td >3.22004
+</td>
+
+<td >0.322004
+</td>
+</tr>
+<tr >
+
+<td >1M
+</td>
+
+<td >5650.9
+</td>
+
+<td >0.56509
+</td>
+</tr>
+<tr >
+
+<td rowspan="3" >**Sorted**
+</td>
+
+<td >10
+</td>
+
+<td >0.020659
+</td>
+
+<td >0.20659
+</td>
+</tr>
+<tr >
+
+<td >1K
+</td>
+
+<td >3.26273
+</td>
+
+<td >0.326273
+</td>
+</tr>
+<tr >
+
+<td >1M
+</td>
+
+<td >5683.91
+</td>
+
+<td >0.568391
+</td>
+</tr>
+</tbody>
+</table>
+
+  </div>
+  <div id="disqus_thread"></div>
+</div>
+
+
+<script type="text/javascript">
+var disqus_shortname = "abhi1010";
+(function () {
+    var s = document.createElement('script'); s.async = true;
+    s.type = 'text/javascript';
+    s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+}());
+</script>
+
+
+
+<script type="text/javascript">
+    var disqus_shortname = "abhi1010";
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+<script src="http://abhi1010.github.io/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+</body>
+</html>
+

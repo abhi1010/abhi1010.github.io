@@ -11,10 +11,10 @@
     
     <item>
       <title>Setting up your VIM... Your Style</title>
-      <link>http://abhi1010.github.io/post/setting-up-your-vim-your-style/</link>
+      <link>http://abhi1010.github.io/2014/05/setting-up-your-vim...-your-style/</link>
       <pubDate>Mon, 19 May 2014 15:51:51 +0000</pubDate>
       
-      <guid>http://abhi1010.github.io/post/setting-up-your-vim-your-style/</guid>
+      <guid>http://abhi1010.github.io/2014/05/setting-up-your-vim...-your-style/</guid>
       <description>&lt;p&gt;Writing code using VIM can be a bit overwhelming but it helps creating a few shortcuts there to make your life easier. Here I will discuss a few.&lt;/p&gt;
 
 &lt;ul&gt;
@@ -38,10 +38,10 @@
     
     <item>
       <title>Global Search in VIM</title>
-      <link>http://abhi1010.github.io/post/global-search/</link>
+      <link>http://abhi1010.github.io/2014/02/global-search-in-vim/</link>
       <pubDate>Tue, 11 Feb 2014 14:56:00 +0000</pubDate>
       
-      <guid>http://abhi1010.github.io/post/global-search/</guid>
+      <guid>http://abhi1010.github.io/2014/02/global-search-in-vim/</guid>
       <description>&lt;p&gt;You must be knowing about regular VIM search&lt;/p&gt;
 
 &lt;blockquote&gt;%s/SEARCH/REPLACE/CMD
@@ -74,10 +74,10 @@
     
     <item>
       <title>Cursor Control in VIM Search</title>
-      <link>http://abhi1010.github.io/post/cursor-control-in-vim-search/</link>
+      <link>http://abhi1010.github.io/2013/06/cursor-control-in-vim-search/</link>
       <pubDate>Tue, 11 Jun 2013 07:05:00 +0000</pubDate>
       
-      <guid>http://abhi1010.github.io/post/cursor-control-in-vim-search/</guid>
+      <guid>http://abhi1010.github.io/2013/06/cursor-control-in-vim-search/</guid>
       <description>&lt;p&gt;Found a great way to search for keywords &amp;amp;&amp;amp; control the location of cursor in vim. It is excellent if you want to do a particular task multiple times. Usually if you search the cursor will straight away take you to the start of search. What if you want to go to the end of the word you are searching for?&lt;/p&gt;
 
 &lt;blockquote&gt;  

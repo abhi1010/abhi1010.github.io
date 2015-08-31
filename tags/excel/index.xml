@@ -11,10 +11,10 @@
     
     <item>
       <title>Reading Excel in C#</title>
-      <link>http://abhi1010.github.io/post/reading-excel-in-c/</link>
+      <link>http://abhi1010.github.io/2013/11/reading-excel-in-c/</link>
       <pubDate>Sat, 09 Nov 2013 23:51:00 +0000</pubDate>
       
-      <guid>http://abhi1010.github.io/post/reading-excel-in-c/</guid>
+      <guid>http://abhi1010.github.io/2013/11/reading-excel-in-c/</guid>
       <description>&lt;p&gt;Recently had to work on an Excel and update its content when some events were triggered on a Bloomberg terminal. I couldn&amp;rsquo;t find any code for reading the excel file using C# so thought of putting that up.&lt;/p&gt;
 
 &lt;p&gt;There were a few things to learn:&lt;/p&gt;

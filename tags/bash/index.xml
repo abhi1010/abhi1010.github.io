@@ -11,10 +11,10 @@
     
     <item>
       <title>Setting up your VIM... Your Style</title>
-      <link>http://abhi1010.github.io/post/setting-up-your-vim-your-style/</link>
+      <link>http://abhi1010.github.io/2014/05/setting-up-your-vim...-your-style/</link>
       <pubDate>Mon, 19 May 2014 15:51:51 +0000</pubDate>
       
-      <guid>http://abhi1010.github.io/post/setting-up-your-vim-your-style/</guid>
+      <guid>http://abhi1010.github.io/2014/05/setting-up-your-vim...-your-style/</guid>
       <description>&lt;p&gt;Writing code using VIM can be a bit overwhelming but it helps creating a few shortcuts there to make your life easier. Here I will discuss a few.&lt;/p&gt;
 
 &lt;ul&gt;
@@ -38,10 +38,10 @@
     
     <item>
       <title>Getting a group of lines from a file</title>
-      <link>http://abhi1010.github.io/post/getting-a-group-of-lines-from-a-file/</link>
+      <link>http://abhi1010.github.io/2014/05/getting-a-group-of-lines-from-a-file/</link>
       <pubDate>Mon, 19 May 2014 09:45:57 +0000</pubDate>
       
-      <guid>http://abhi1010.github.io/post/getting-a-group-of-lines-from-a-file/</guid>
+      <guid>http://abhi1010.github.io/2014/05/getting-a-group-of-lines-from-a-file/</guid>
       <description>&lt;p&gt;I&amp;rsquo;ve had this need quite a few times to pull out a section of logs that would begin with a particular line and end with another. grep is not exactly useful there because it only prints out sections based on line counters (using -A/B/C) lines based on a single search pattern.&lt;/p&gt;
 
 &lt;p&gt;I came up with a script that can run at almost same speeds using &lt;code&gt;grep/cat/awk&lt;/code&gt;. &lt;code&gt;awk&lt;/code&gt; is used to decide whether the end of the section has been reached or not. Some features of the script are:&lt;/p&gt;
@@ -66,10 +66,10 @@
     
     <item>
       <title>Global Search in VIM</title>
-      <link>http://abhi1010.github.io/post/global-search/</link>
+      <link>http://abhi1010.github.io/2014/02/global-search-in-vim/</link>
       <pubDate>Tue, 11 Feb 2014 14:56:00 +0000</pubDate>
       
-      <guid>http://abhi1010.github.io/post/global-search/</guid>
+      <guid>http://abhi1010.github.io/2014/02/global-search-in-vim/</guid>
       <description>&lt;p&gt;You must be knowing about regular VIM search&lt;/p&gt;
 
 &lt;blockquote&gt;%s/SEARCH/REPLACE/CMD
@@ -102,10 +102,10 @@
     
     <item>
       <title>CVS Cheat Sheet</title>
-      <link>http://abhi1010.github.io/post/cvs-cheat-sheet/</link>
+      <link>http://abhi1010.github.io/2013/07/cvs-cheat-sheet/</link>
       <pubDate>Wed, 03 Jul 2013 07:28:00 +0000</pubDate>
       
-      <guid>http://abhi1010.github.io/post/cvs-cheat-sheet/</guid>
+      <guid>http://abhi1010.github.io/2013/07/cvs-cheat-sheet/</guid>
       <description>&lt;p&gt;I&amp;rsquo;ve worked on CVS for a long time now and figured out that I&amp;rsquo;d save a lot of time if I started writing alias or functions for the numerous tasks that I did on them. I will put down some of them here so you may benefit from them.&lt;/p&gt;
 
 &lt;p&gt;&lt;em&gt;Silently update and inform about the status of the files (recursive)&lt;/em&gt;&lt;/p&gt;
@@ -156,10 +156,10 @@ echo $CMD
     
     <item>
       <title>Change Putty Window Title</title>
-      <link>http://abhi1010.github.io/post/change-putty-window-title/</link>
+      <link>http://abhi1010.github.io/2013/04/change-putty-window-title/</link>
       <pubDate>Thu, 25 Apr 2013 07:02:00 +0000</pubDate>
       
-      <guid>http://abhi1010.github.io/post/change-putty-window-title/</guid>
+      <guid>http://abhi1010.github.io/2013/04/change-putty-window-title/</guid>
       <description>&lt;p&gt;How to modify the Putty window title to a specific string?&lt;/p&gt;
 
 &lt;p&gt;By default, you&amp;rsquo;d like to have the window title to give you the full path to the folder you are working from (working directory). PROMPT_COMMAND will help you with that.&lt;/p&gt;

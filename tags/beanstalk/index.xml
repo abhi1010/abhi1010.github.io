@@ -11,10 +11,10 @@
     
     <item>
       <title>Docker Container cleanup on Elastic Beanstalk</title>
-      <link>http://abhi1010.github.io/post/docker-container-cleanup-on-elastic-beanstalk/</link>
+      <link>http://abhi1010.github.io/2015/08/docker-container-cleanup-on-elastic-beanstalk/</link>
       <pubDate>Fri, 07 Aug 2015 14:59:18 +0000</pubDate>
       
-      <guid>http://abhi1010.github.io/post/docker-container-cleanup-on-elastic-beanstalk/</guid>
+      <guid>http://abhi1010.github.io/2015/08/docker-container-cleanup-on-elastic-beanstalk/</guid>
       <description>&lt;p&gt;{% comment %}
     These commments will not include inside the source.
 {% endcomment %}&lt;/p&gt;
