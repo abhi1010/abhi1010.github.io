@@ -6,20 +6,16 @@
     <description>Recent content on Coders Digest</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 07 Aug 2015 14:59:18 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 07 Aug 2015 14:59:18 -0400</lastBuildDate>
     <atom:link href="http://abhi1010.github.io/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Docker Container cleanup on Elastic Beanstalk</title>
       <link>http://abhi1010.github.io/2015/08/docker-container-cleanup-on-elastic-beanstalk/</link>
-      <pubDate>Fri, 07 Aug 2015 14:59:18 +0000</pubDate>
+      <pubDate>Fri, 07 Aug 2015 14:59:18 -0400</pubDate>
       
       <guid>http://abhi1010.github.io/2015/08/docker-container-cleanup-on-elastic-beanstalk/</guid>
-      <description>&lt;p&gt;{% comment %}
-    These commments will not include inside the source.
-{% endcomment %}&lt;/p&gt;
-
-&lt;p&gt;Sometimes you may notice that old containers are not cleaned up from Beanstalk environment. This may be due to your container still running as a ghost on the background. One way to find out about this is to quickly look into your
+      <description>&lt;p&gt;Sometimes you may notice that old containers are not cleaned up from Beanstalk environment. This may be due to your container still running as a ghost on the background. One way to find out about this is to quickly look into your
 &lt;code&gt;/var/lib/docker/vfs/dir&lt;/code&gt; directory whether it has too many folders.&lt;/p&gt;
 
 &lt;p&gt;Next, find out what container processes you have going on.
@@ -35,13 +31,17 @@
 &lt;/p&gt;
 
 &lt;p&gt;Ideally, we want to &amp;ldquo;forcibly remove&amp;rdquo; all images (and hence the folders from &lt;code&gt;/var/lib/docker/vfs/dir&lt;/code&gt; directory) that are not in use anymore.
-Just run the following to test whether it works:
-&lt;code&gt;docker rmi -f&lt;/code&gt;docker images -aq``&lt;/p&gt;
+Just run the following to test whether it works:&lt;/p&gt;
+
+&lt;p&gt;&lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;    docker rmi -f &lt;span style=&#34;color: #dd2200; background-color: #fff0f0&#34;&gt;`&lt;/span&gt;docker images -aq&lt;span style=&#34;color: #dd2200; background-color: #fff0f0&#34;&gt;`&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/p&gt;
 
 &lt;p&gt;You might run into trouble where docker says that all those images already have a container that is running them. This means those container are orphaned but not killed as we thought them to be. Let&amp;rsquo;s remove the shared volumes if any, for each one of them.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;docker rm -fv `docker ps -aq` 
-&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;    docker rm -fv &lt;span style=&#34;color: #dd2200; background-color: #fff0f0&#34;&gt;`&lt;/span&gt;docker ps -aq&lt;span style=&#34;color: #dd2200; background-color: #fff0f0&#34;&gt;`&lt;/span&gt; 
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/p&gt;
 
 &lt;p&gt;This will&lt;/p&gt;
 
@@ -58,6 +58,30 @@ Just run the following to test whether it works:
     tmpfs           499M     0  499M   0% /dev/shm
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>About</title>
+      <link>http://abhi1010.github.io/about/</link>
+      <pubDate>Mon, 28 Jul 2014 11:14:25 +0000</pubDate>
+      
+      <guid>http://abhi1010.github.io/about/</guid>
+      <description>&lt;p&gt;Welcome to Coders Digest!&lt;/p&gt;
+
+&lt;p&gt;I am &lt;strong&gt;&lt;em&gt;Abhishek&lt;/em&gt;&lt;/strong&gt;. I have been based in Singapore since 13 years, working in the financial industry for over 8 years now.&lt;/p&gt;
+
+&lt;p&gt;In my current blog I am putting up some articles that would be of interest to other developers. The blog is pretty widespread with topics ranging from Flash to C++. My idea is to be as concise as possible while giving you a gist of the topic that I am covering. Naturally a lot of it is going to be code based so I spent some time recently putting up all my code on Github. Code snippets have been moved to gist.github.com. I have also modified some of my posts putting up direct links for easier access so you will definitely find it whenever possible. Please feel free to correct me on anything. You can start here:&lt;/p&gt;
+
+&lt;p&gt;*&lt;strong&gt;&lt;em&gt;&lt;a href=&#34;https://github.com/abhi1010&#34;&gt;https://github.com/abhi1010&lt;/a&gt;&lt;/em&gt;&lt;/strong&gt;*&lt;/p&gt;
+
+&lt;p&gt;Some of my projects have included Black Box, Arbitrage, Algorithmic &amp;amp; HFT Trading Development. A few recent products that I developed have been Order Management System, Market Data Price Feed Handler and Risk Management System. I have previously done Websites as well which you will see referenced here in this blog.&lt;/p&gt;
+
+&lt;p&gt;I have worked on various languages over the years like C++/C#/ASP.NET/Java/Perl/Python.&lt;/p&gt;
+
+&lt;p&gt;You are welcome to consult me for anything that interests you or may be of my interest. Please contact me at &amp;ldquo;codersdigest at gmail.com&amp;rdquo; or through twitter: *&lt;strong&gt;&lt;em&gt;&lt;a href=&#34;http://www.twitter.com/codersdigest&#34;&gt;@codersdigest&lt;/a&gt;&lt;/em&gt;&lt;/strong&gt;*&lt;/p&gt;
+
+&lt;p&gt;Thanks for stopping by&amp;hellip;&lt;/p&gt;
 </description>
     </item>
     
@@ -85,7 +109,7 @@ Just run the following to test whether it works:
 
 &lt;!-- more --&gt;
 
-&lt;p&gt;&lt;a href=&#34;https://gist.github.com/abhi1010/3ada1d15b5bda319a54c&#34;&gt;https://gist.github.com/abhi1010/3ada1d15b5bda319a54c&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;script type=&#34;text/javascript&#34; src=&#34;http://gist.github.com/3ada1d15b5bda319a54c.js&#34;&gt;&lt;/script&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;code:8a20b19b0e16e5ac875728276c435d4c&#34;&gt;Code&lt;/h3&gt;
 
@@ -116,28 +140,7 @@ Just run the following to test whether it works:
 
 &lt;p&gt;Let&amp;rsquo;s have a look at the code:&lt;/p&gt;
 
-&lt;p&gt;&lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;    
-Node* &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;findKthToLastElement&lt;/span&gt; (Node* node, &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;unsigned&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;short&lt;/span&gt; k)
-{
-    Node* secondRunner = node;
-    &lt;span style=&#34;color: #008800; font-weight: bold&#34;&gt;for&lt;/span&gt;(&lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;unsigned&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;short&lt;/span&gt; i = &lt;span style=&#34;color: #0000DD; font-weight: bold&#34;&gt;0&lt;/span&gt;; i &amp;lt; k; ++i)
-    {
-        &lt;span style=&#34;color: #008800; font-weight: bold&#34;&gt;if&lt;/span&gt; (secondRunner-&amp;gt;next != &lt;span style=&#34;color: #003388&#34;&gt;NULL&lt;/span&gt;)
-            secondRunner = secondRunner-&amp;gt;next;
-        &lt;span style=&#34;color: #008800; font-weight: bold&#34;&gt;else&lt;/span&gt;
-            &lt;span style=&#34;color: #008800; font-weight: bold&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color: #003388&#34;&gt;NULL&lt;/span&gt;;
-    }
-    &lt;span style=&#34;color: #008800; font-weight: bold&#34;&gt;while&lt;/span&gt; (secondRunner)
-    {
-        secondRunner = secondRunner-&amp;gt;next;
-        node = node-&amp;gt;next;
-    }
-    &lt;span style=&#34;color: #008800; font-weight: bold&#34;&gt;return&lt;/span&gt; node;
-}
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;https://gist.github.com/abhi1010/43e289a9877fb9293680&#34;&gt;https://gist.github.com/abhi1010/43e289a9877fb9293680&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;script type=&#34;text/javascript&#34; src=&#34;http://gist.github.com/43e289a9877fb9293680.js&#34;&gt;&lt;/script&gt;&lt;/p&gt;
 
 &lt;p&gt;As usual the code is available &lt;a href=&#34;https://github.com/abhi1010/Algorithms/blob/master/Algo_codes/Node.cpp&#34;&gt;here&lt;/a&gt;:&lt;/p&gt;
 
@@ -173,7 +176,7 @@ Node* &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;findKthToLas
 
 &lt;p&gt;Here&amp;rsquo;s a small sample as to how to do it:&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&#34;https://gist.github.com/abhi1010/e2b7117c20d0f591896f&#34;&gt;https://gist.github.com/abhi1010/e2b7117c20d0f591896f&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;script type=&#34;text/javascript&#34; src=&#34;http://gist.github.com/e2b7117c20d0f591896f.js&#34;&gt;&lt;/script&gt;&lt;/p&gt;
 </description>
     </item>
     
@@ -198,11 +201,11 @@ Node* &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;findKthToLas
 &lt;p&gt;Before we talk about the code, let&amp;rsquo;s see how Linked List is setup.
 &amp;lt;!&amp;ndash; more &amp;ndash;&amp;gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&#34;https://gist.github.com/abhi1010/33be440bf1012773b7e1&#34;&gt;https://gist.github.com/abhi1010/33be440bf1012773b7e1&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;script type=&#34;text/javascript&#34; src=&#34;http://gist.github.com/33be440bf1012773b7e1.js&#34;&gt;&lt;/script&gt;&lt;/p&gt;
 
 &lt;p&gt;Now, below is the code for it&amp;hellip;.&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&#34;https://gist.github.com/abhi1010/bf9dbb193b4ff84ba3af&#34;&gt;https://gist.github.com/abhi1010/bf9dbb193b4ff84ba3af&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;script type=&#34;text/javascript&#34; src=&#34;http://gist.github.com/bf9dbb193b4ff84ba3af.js&#34;&gt;&lt;/script&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;code:ca5ee7b35fae15e9d7ea6b34351195c6&#34;&gt;Code&lt;/h3&gt;
 
@@ -220,19 +223,18 @@ Node* &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;findKthToLas
       <guid>http://abhi1010.github.io/2014/05/usage-of-typename/</guid>
       <description>&lt;p&gt;What is wrong with the following code?&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&#34;https://gist.github.com/anonymous/f1f2246d04a935794e44&#34;&gt;https://gist.github.com/anonymous/f1f2246d04a935794e44&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;script type=&#34;text/javascript&#34; src=&#34;http://gist.github.com/0bd5e4d910e4d8a7672e.js&#34;&gt;&lt;/script&gt;&lt;/p&gt;
 
 &lt;p&gt;The issue is very simple but hard to notice. If you try to compile this, you will get the following errors:&lt;/p&gt;
 
-&lt;blockquote&gt;main.cpp:24:5: error: need &#39;typename&#39; before &#39;OuterStruct&lt;T2&gt;::InnerStruct&#39; because &#39;OuterStruct&lt;T2&gt;&#39; is a dependent scope
-OuterStruct&lt;T2&gt;::InnerStruct mUsingInner;
+&lt;pre&gt;&lt;code&gt;main.cpp:24:5: error: need &#39;typename&#39; before &#39;OuterStruct&amp;lt;T2&amp;gt;::InnerStruct&#39; because &#39;OuterStruct&amp;lt;T2&amp;gt;&#39; is a dependent scope
+OuterStruct&amp;lt;T2&amp;gt;::InnerStruct mUsingInner;
 ^
 main.cpp: In function &#39;int main(int, char**)&#39;:
-main.cpp:34:13: error: &#39;struct InnerStruct_Wrapper&lt;int&gt;&#39; has no member named &#39;mUsingInner&#39;
+main.cpp:34:13: error: &#39;struct InnerStruct_Wrapper&amp;lt;int&amp;gt;&#39; has no member named &#39;mUsingInner&#39;
 wrapper.mUsingInner = innerStrct;
-^&lt;/blockquote&gt;
-
-&lt;!-- more --&gt;
+^
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;&lt;strong&gt;The Issue&lt;/strong&gt;&lt;/p&gt;
 
@@ -259,7 +261,7 @@ wrapper.mUsingInner = innerStrct;
     </item>
     
     <item>
-      <title>Setting up your VIM... Your Style</title>
+      <title>Setting up your VIM... Your style</title>
       <link>http://abhi1010.github.io/2014/05/setting-up-your-vim...-your-style/</link>
       <pubDate>Mon, 19 May 2014 15:51:51 +0000</pubDate>
       
@@ -268,20 +270,20 @@ wrapper.mUsingInner = innerStrct;
 
 &lt;ul&gt;
 &lt;li&gt;First of all, it is always a good idea to set up your tabs and spaces&lt;/li&gt;
-&lt;li&gt;Set up a shortcut to:&lt;/li&gt;
-&lt;li&gt;* Toggling of Auto-Indent while pasting source text; very useful in code (F2 in my provided script)
+&lt;li&gt;Set up shortcuts for:
 
 &lt;ul&gt;
-&lt;li&gt;Toggling of Auto-Scroll of Split windows (F3 in my provided script)&lt;/li&gt;
-&lt;li&gt;Macro for Folding functions within the source code (@q in my provided script)&lt;/li&gt;
-&lt;li&gt;Smart case search - based on whether the input is in caps or not&lt;/li&gt;
-&lt;li&gt;Toggling of Mouse Usage in VIM window - to allow quick selection of text (F12 in my provided script)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Toggling of Auto-Indent&lt;/code&gt; while pasting source text; very useful in code (&lt;em&gt;F2&lt;/em&gt; in my provided script)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Toggling of Auto-Scroll&lt;/code&gt; of Split windows (&lt;em&gt;F3&lt;/em&gt; in my provided script)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Macro for Folding functions&lt;/code&gt; within the source code (&lt;em&gt;&lt;em&gt;@q&lt;/em&gt;&lt;/em&gt; in my provided script)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Smart case search&lt;/code&gt; - based on whether the input is in caps or not&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Toggling of Mouse Usage&lt;/code&gt; in VIM window - to allow quick selection of text (&lt;em&gt;F12&lt;/em&gt; in my provided script)&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;Please see the provided script below to have a look.&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&#34;https://gist.github.com/abhi1010/6f190c9f3afd42881ef5&#34;&gt;https://gist.github.com/abhi1010/6f190c9f3afd42881ef5&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;script type=&#34;text/javascript&#34; src=&#34;http://gist.github.com/6f190c9f3afd42881ef5.js&#34;&gt;&lt;/script&gt;&lt;/p&gt;
 </description>
     </item>
     
@@ -307,9 +309,7 @@ wrapper.mUsingInner = innerStrct;
 
 &lt;p&gt;Let&amp;rsquo;s have a look at the script&amp;hellip;.&lt;/p&gt;
 
-&lt;!-- more --&gt;
-
-&lt;p&gt;&lt;a href=&#34;https://gist.github.com/abhi1010/924a5f12f3067ba0b3af&#34;&gt;https://gist.github.com/abhi1010/924a5f12f3067ba0b3af&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;script type=&#34;text/javascript&#34; src=&#34;http://gist.github.com/924a5f12f3067ba0b3af.js&#34;&gt;&lt;/script&gt;&lt;/p&gt;
 </description>
     </item>
     
@@ -353,7 +353,7 @@ wrapper.mUsingInner = innerStrct;
       <guid>http://abhi1010.github.io/2014/04/tokenize-a-string-using-c/</guid>
       <description>&lt;p&gt;Here&amp;rsquo;s a short snippet to split a string into multiple tokens; into a vector. As you will see that, if you run the code, boost version performs better because you can choose a number of delimiters to split your string instead of the vanilla version using the normal C++ code. Of course, you may also write your own code to do something like this but I was looking to do some short snippets.&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&#34;https://gist.github.com/anonymous/0465925390f3442a7691&#34;&gt;https://gist.github.com/anonymous/0465925390f3442a7691&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;script type=&#34;text/javascript&#34; src=&#34;http://gist.github.com/554885a7235f4047dae6.js&#34;&gt;&lt;/script&gt;&lt;/p&gt;
 
 &lt;p&gt;I have &lt;strong&gt;posted my code on &lt;a href=&#34;http://coliru.stacked-crooked.com/a/01e1c68ffd0199cd&#34;&gt;Stacked-Crooked&lt;/a&gt;&lt;/strong&gt; which you can view along with the output as well. It shows C++ doesn&amp;rsquo;t perform so well.&lt;/p&gt;
 </description>
@@ -1308,29 +1308,25 @@ wrapper.mUsingInner = innerStrct;
       <guid>http://abhi1010.github.io/2014/02/global-search-in-vim/</guid>
       <description>&lt;p&gt;You must be knowing about regular VIM search&lt;/p&gt;
 
-&lt;blockquote&gt;%s/SEARCH/REPLACE/CMD
-&gt; 
-&gt; &lt;/blockquote&gt;
+&lt;pre&gt;&lt;code&gt;%s/SEARCH/REPLACE/CMD
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;However, sometimes you do not want to replace something but just see all instances of the a word or phrase. In such cases, global search is really useful when on vim. The syntax is simpler than normal search-replace:&lt;/p&gt;
 
-&lt;blockquote&gt;:[range]g[lobal]/{pattern}/[cmd]
-&gt; 
-&gt; &lt;/blockquote&gt;
+&lt;pre&gt;&lt;code&gt;:[range]g[lobal]/{pattern}/[cmd]
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;This will show all instances of the &amp;ldquo;SEARCH&amp;rdquo; term within the VIM window. There&amp;rsquo;s another version of the same command which is as follows:&lt;/p&gt;
 
-&lt;blockquote&gt;:[range]g[lobal]!/{pattern}/[cmd]
-&gt; 
-&gt; &lt;/blockquote&gt;
+&lt;pre&gt;&lt;code&gt;:[range]g[lobal]!/{pattern}/[cmd]
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;This is similar to the previous command but the only difference is that this command contains &amp;ldquo;!&amp;rdquo; which signifies that the command will be executed on all lines &lt;code&gt;NOT&lt;/code&gt; matching the &lt;code&gt;pattern&lt;/code&gt;.&lt;/p&gt;
 
 &lt;p&gt;One example here would be to delete all lines in a file containing a particular word:&lt;/p&gt;
 
-&lt;blockquote&gt;:g/deleteMe/d
-&gt; 
-&gt; &lt;/blockquote&gt;
+&lt;pre&gt;&lt;code&gt;:g/deleteMe/d
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;There could be lot more actions (regular vim stuff) that you could do like yanking or indenting.&lt;/p&gt;
 </description>
@@ -1362,7 +1358,7 @@ wrapper.mUsingInner = innerStrct;
 
 &lt;!-- more --&gt;
 
-&lt;p&gt;&lt;a href=&#34;https://gist.github.com/abhi1010/ee13f57720471c8feea2&#34;&gt;https://gist.github.com/abhi1010/ee13f57720471c8feea2&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;script type=&#34;text/javascript&#34; src=&#34;http://gist.github.com/ee13f57720471c8feea2.js&#34;&gt;&lt;/script&gt;&lt;/p&gt;
 </description>
     </item>
     
@@ -1374,215 +1370,101 @@ wrapper.mUsingInner = innerStrct;
       <guid>http://abhi1010.github.io/2013/10/ideas-for-shared-memory-in-linux/</guid>
       <description>&lt;p&gt;I have been doing extensive research today regarding shared memory in linux before I embark on a new project in which shaving time off process communication latency is extremely important. I found some very interesting links as well. Let’s break them down:&lt;/p&gt;
 
-&lt;table style=&#34;border:thin solid lightblue;&#34; &gt;
-&lt;tbody &gt;
-&lt;tr &gt;
-
-&lt;td width=&#34;133&#34; &gt;**Topic**
-&lt;/td&gt;
-
-&lt;td width=&#34;354&#34; &gt;**Description**
-&lt;/td&gt;
-
-&lt;td width=&#34;151&#34; &gt;**Link**
-&lt;/td&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Topic&lt;/th&gt;
+&lt;th&gt;Description&lt;/th&gt;
+&lt;th&gt;Link&lt;/th&gt;
 &lt;/tr&gt;
-&lt;tr &gt;
+&lt;/thead&gt;
 
-&lt;td width=&#34;133&#34; &gt;Theory/Explanation
-&lt;/td&gt;
-
-&lt;td width=&#34;354&#34; &gt;Some articles that explain how to get started
-&lt;/td&gt;
-
-&lt;td width=&#34;151&#34; &gt;[open-std](http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2006/n2044.html)
-&lt;/td&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Theory/Explanation&lt;/td&gt;
+&lt;td&gt;Some articles that explain how to get started&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2006/n2044.html&#34;&gt;open-std&lt;/a&gt;&lt;/td&gt;
 &lt;/tr&gt;
-&lt;tr &gt;
 
-&lt;td width=&#34;133&#34; &gt;
-&lt;/td&gt;
-
-&lt;td width=&#34;354&#34; &gt;IPC Mechanisms – some recommendations. Mainly talks about softwares like Boost, dBus
-
-dBus used to work using kernel levels but lately have come up with a patch that bypasses kernels
-&lt;/td&gt;
-
-&lt;td width=&#34;151&#34; &gt;[Stackoverflow](http://stackoverflow.com/questions/1906166/inter-process-communication-recommendation)
-&lt;/td&gt;
+&lt;tr&gt;
+&lt;td&gt;Content in the first column&lt;/td&gt;
+&lt;td&gt;Content in the second column&lt;/td&gt;
+&lt;td&gt;lkd&lt;/td&gt;
 &lt;/tr&gt;
-&lt;tr &gt;
 
-&lt;td width=&#34;133&#34; &gt;
-&lt;/td&gt;
-
-&lt;td width=&#34;354&#34; &gt;What every programmer should know about memory
-&lt;/td&gt;
-
-&lt;td width=&#34;151&#34; &gt;[LWN](http://lwn.net/Articles/255364/)
-&lt;/td&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;IPC Mechanisms – some recommendations. Mainly talks about softwares like Boost, dBus dBus used to work using kernel levels but lately have come up with a patch that bypasses kernels&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;http://stackoverflow.com/questions/1906166/inter-process-communication-recommendation&#34;&gt;Stackoverflow&lt;/a&gt;&lt;/td&gt;
 &lt;/tr&gt;
-&lt;tr &gt;
 
-&lt;td width=&#34;133&#34; &gt;
-&lt;/td&gt;
-
-&lt;td width=&#34;354&#34; &gt;Linux IPC
-&lt;/td&gt;
-
-&lt;td width=&#34;151&#34; &gt;[TLDP](http://www.tldp.org/LDP/tlk/ipc/ipc.html)
-&lt;/td&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;What every programmer should know about memory&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;http://lwn.net/Articles/255364/&#34;&gt;LWN&lt;/a&gt;&lt;/td&gt;
 &lt;/tr&gt;
-&lt;tr &gt;
 
-&lt;td width=&#34;133&#34; &gt;
-&lt;/td&gt;
-
-&lt;td width=&#34;354&#34; &gt;Cache Friendly Code
-&lt;/td&gt;
-
-&lt;td width=&#34;151&#34; &gt;[Stackoverflow](http://stackoverflow.com/questions/16699247/what-is-cache-friendly-code/16699282#16699282)
-&lt;/td&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;Linux IPC&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;http://www.tldp.org/LDP/tlk/ipc/ipc.html&#34;&gt;TLDP&lt;/a&gt;&lt;/td&gt;
 &lt;/tr&gt;
-&lt;tr &gt;
 
-&lt;td width=&#34;133&#34; &gt;Helpful Articles
-&lt;/td&gt;
-
-&lt;td width=&#34;354&#34; &gt;Which linux IPC technique to use?
-&lt;/td&gt;
-
-&lt;td width=&#34;151&#34; &gt;[Stackoverflow](http://stackoverflow.com/questions/2281204/which-linux-ipc-technique-to-use)
-&lt;/td&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;Cache Friendly Code&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;http://stackoverflow.com/questions/16699247/what-is-cache-friendly-code/16699282#16699282&#34;&gt;Stackoverflow&lt;/a&gt;&lt;/td&gt;
 &lt;/tr&gt;
-&lt;tr &gt;
 
-&lt;td width=&#34;133&#34; &gt;
-&lt;/td&gt;
-
-&lt;td width=&#34;354&#34; &gt;Inter process communication – talks about shared memory
-&lt;/td&gt;
-
-&lt;td width=&#34;151&#34; &gt;[ALP](http://www.advancedlinuxprogramming.com/alp-folder/alp-ch05-ipc.pdf)
-&lt;/td&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;Helpful Articles     Which linux IPC technique to use?&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;http://stackoverflow.com/questions/2281204/which-linux-ipc-technique-to-use&#34;&gt;Stackoverflow&lt;/a&gt;&lt;/td&gt;
 &lt;/tr&gt;
-&lt;tr &gt;
 
-&lt;td width=&#34;133&#34; &gt;
-&lt;/td&gt;
-
-&lt;td width=&#34;354&#34; &gt;Linux Poll Events on Shared Memory
-&lt;/td&gt;
-
-&lt;td width=&#34;151&#34; &gt;[Stackoverflow](http://stackoverflow.com/questions/11470322/cause-a-linux-poll-event-on-a-shared-memory-file)
-&lt;/td&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;Inter process communication – talks about shared memory&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;http://www.advancedlinuxprogramming.com/alp-folder/alp-ch05-ipc.pdf&#34;&gt;ALP&lt;/a&gt;&lt;/td&gt;
 &lt;/tr&gt;
-&lt;tr &gt;
 
-&lt;td width=&#34;133&#34; &gt;
-&lt;/td&gt;
-
-&lt;td width=&#34;354&#34; &gt;Using semaphores in Shared Memory
-&lt;/td&gt;
-
-&lt;td width=&#34;151&#34; &gt;[Stackoverflow](http://stackoverflow.com/questions/10772860/semaphores-and-shared-memory-in-linux)
-&lt;/td&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;Linux Poll Events on Shared Memory&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;http://stackoverflow.com/questions/11470322/cause-a-linux-poll-event-on-a-shared-memory-file&#34;&gt;Stackoverflow&lt;/a&gt;&lt;/td&gt;
 &lt;/tr&gt;
-&lt;tr &gt;
 
-&lt;td width=&#34;133&#34; &gt;
-&lt;/td&gt;
-
-&lt;td width=&#34;354&#34; &gt;Sharing semaphores between Shared Memory
-&lt;/td&gt;
-
-&lt;td width=&#34;151&#34; &gt;[Stackoverflow](http://stackoverflow.com/questions/8359322/how-to-share-semaphores-between-processes-using-shared-memory?rq=1)
-&lt;/td&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;Using semaphores in Shared Memory&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;http://stackoverflow.com/questions/10772860/semaphores-and-shared-memory-in-linux&#34;&gt;Stackoverflow&lt;/a&gt;&lt;/td&gt;
 &lt;/tr&gt;
-&lt;tr &gt;
 
-&lt;td width=&#34;133&#34; &gt;
-&lt;/td&gt;
-
-&lt;td width=&#34;354&#34; &gt;Sharing memory between processes
-&lt;/td&gt;
-
-&lt;td width=&#34;151&#34; &gt;[Stackoverflow](http://stackoverflow.com/questions/11583281/sharing-memory-between-two-processes)
-&lt;/td&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;Sharing semaphores between Shared Memory&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;http://stackoverflow.com/questions/8359322/how-to-share-semaphores-between-processes-using-shared-memory?rq=1&#34;&gt;Stackoverflow&lt;/a&gt;&lt;/td&gt;
 &lt;/tr&gt;
-&lt;tr &gt;
 
-&lt;td width=&#34;133&#34; &gt;
-&lt;/td&gt;
-
-&lt;td width=&#34;354&#34; &gt;Reserving memory at kernel boot up (DMA)
-&lt;/td&gt;
-
-&lt;td width=&#34;151&#34; &gt;[Stackoverflow](http://stackoverflow.com/questions/647783/direct-memory-access-in-linux?rq=1)
-&lt;/td&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;Sharing memory between processes&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;http://stackoverflow.com/questions/11583281/sharing-memory-between-two-processes&#34;&gt;Stackoverflow&lt;/a&gt;&lt;/td&gt;
 &lt;/tr&gt;
-&lt;tr &gt;
 
-&lt;td width=&#34;133&#34; &gt;Extra
-&lt;/td&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;Reserving memory at kernel boot up (DMA)&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;http://stackoverflow.com/questions/647783/direct-memory-access-in-linux?rq=1&#34;&gt;Stackoverflow&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
 
-&lt;td width=&#34;354&#34; &gt;IPC Shared memory samples
-&lt;/td&gt;
-
-&lt;td width=&#34;151&#34; &gt;[linuxgazette](http://linuxgazette.net/104/ramankutty.html)
-&lt;/td&gt;
+&lt;tr&gt;
+&lt;td&gt;Extra&lt;/td&gt;
+&lt;td&gt;IPC Shared memory samples&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;http://linuxgazette.net/104/ramankutty.html&#34;&gt;linuxgazette&lt;/a&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Oracle SQL Queries</title>
-      <link>http://abhi1010.github.io/2013/09/oracle-sql-queries/</link>
-      <pubDate>Sun, 22 Sep 2013 08:48:00 +0000</pubDate>
-      
-      <guid>http://abhi1010.github.io/2013/09/oracle-sql-queries/</guid>
-      <description>&lt;p&gt;Recently I found myself in a situation where I had to view all the tables in the Oracle Server.&lt;/p&gt;
-
-&lt;p&gt;I did some digging and came up with these helpful queries.&lt;/p&gt;
-
-&lt;p&gt;&lt;table cellpadding=&#34;2&#34; cellspacing=&#34;0&#34; border=&#34;1&#34; width=&#34;1083&#34; &gt;&lt;tbody &gt;     &lt;tr &gt;&lt;br /&gt;
-&lt;td width=&#34;591&#34; valign=&#34;top&#34; &gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Query&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;/td&gt;&lt;br /&gt;
-&lt;td width=&#34;490&#34; valign=&#34;top&#34; &gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Remarks&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;/td&gt;     &lt;/tr&gt;      &lt;tr &gt;&lt;br /&gt;
-&lt;td width=&#34;591&#34; valign=&#34;top&#34; &gt;Select * from All_Tables
-&lt;/td&gt;&lt;br /&gt;
-&lt;td width=&#34;490&#34; valign=&#34;top&#34; &gt;View all the tables in the Oracle Server
-&lt;/td&gt;     &lt;/tr&gt;      &lt;tr &gt;&lt;br /&gt;
-&lt;td width=&#34;591&#34; valign=&#34;top&#34; &gt;Select * from all_Views
-&lt;/td&gt;&lt;br /&gt;
-&lt;td width=&#34;490&#34; valign=&#34;top&#34; &gt;View all the views in the Oracle Server
-&lt;/td&gt;     &lt;/tr&gt;            &lt;tr &gt;&lt;br /&gt;
-&lt;td width=&#34;591&#34; valign=&#34;top&#34; &gt;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;DESC &amp;lt;em&amp;gt;table&amp;lt;/em&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;/td&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;td width=&#34;490&#34; valign=&#34;top&#34; &gt;View all the columns of a given table.&lt;/p&gt;
-
-&lt;p&gt;This function is used instead of the previous one mostly, but when this one doesn&amp;rsquo;t work make sure you try the other one - I bet it will work.
-&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;&lt;/table&gt;&lt;/p&gt;
-
-&lt;p&gt;Here&amp;rsquo;s a short code for viewing all the columns of a given table.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;https://gist.github.com/abhi1010/11365686&#34;&gt;https://gist.github.com/abhi1010/11365686&lt;/a&gt;&lt;/p&gt;
 </description>
     </item>
     

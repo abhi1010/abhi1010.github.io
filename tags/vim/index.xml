@@ -10,7 +10,7 @@
     <atom:link href="http://abhi1010.github.io/tags/vim/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
-      <title>Setting up your VIM... Your Style</title>
+      <title>Setting up your VIM... Your style</title>
       <link>http://abhi1010.github.io/2014/05/setting-up-your-vim...-your-style/</link>
       <pubDate>Mon, 19 May 2014 15:51:51 +0000</pubDate>
       
@@ -19,20 +19,20 @@
 
 &lt;ul&gt;
 &lt;li&gt;First of all, it is always a good idea to set up your tabs and spaces&lt;/li&gt;
-&lt;li&gt;Set up a shortcut to:&lt;/li&gt;
-&lt;li&gt;* Toggling of Auto-Indent while pasting source text; very useful in code (F2 in my provided script)
+&lt;li&gt;Set up shortcuts for:
 
 &lt;ul&gt;
-&lt;li&gt;Toggling of Auto-Scroll of Split windows (F3 in my provided script)&lt;/li&gt;
-&lt;li&gt;Macro for Folding functions within the source code (@q in my provided script)&lt;/li&gt;
-&lt;li&gt;Smart case search - based on whether the input is in caps or not&lt;/li&gt;
-&lt;li&gt;Toggling of Mouse Usage in VIM window - to allow quick selection of text (F12 in my provided script)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Toggling of Auto-Indent&lt;/code&gt; while pasting source text; very useful in code (&lt;em&gt;F2&lt;/em&gt; in my provided script)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Toggling of Auto-Scroll&lt;/code&gt; of Split windows (&lt;em&gt;F3&lt;/em&gt; in my provided script)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Macro for Folding functions&lt;/code&gt; within the source code (&lt;em&gt;&lt;em&gt;@q&lt;/em&gt;&lt;/em&gt; in my provided script)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Smart case search&lt;/code&gt; - based on whether the input is in caps or not&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Toggling of Mouse Usage&lt;/code&gt; in VIM window - to allow quick selection of text (&lt;em&gt;F12&lt;/em&gt; in my provided script)&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;Please see the provided script below to have a look.&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&#34;https://gist.github.com/abhi1010/6f190c9f3afd42881ef5&#34;&gt;https://gist.github.com/abhi1010/6f190c9f3afd42881ef5&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;script type=&#34;text/javascript&#34; src=&#34;http://gist.github.com/6f190c9f3afd42881ef5.js&#34;&gt;&lt;/script&gt;&lt;/p&gt;
 </description>
     </item>
     
@@ -44,29 +44,25 @@
       <guid>http://abhi1010.github.io/2014/02/global-search-in-vim/</guid>
       <description>&lt;p&gt;You must be knowing about regular VIM search&lt;/p&gt;
 
-&lt;blockquote&gt;%s/SEARCH/REPLACE/CMD
-&gt; 
-&gt; &lt;/blockquote&gt;
+&lt;pre&gt;&lt;code&gt;%s/SEARCH/REPLACE/CMD
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;However, sometimes you do not want to replace something but just see all instances of the a word or phrase. In such cases, global search is really useful when on vim. The syntax is simpler than normal search-replace:&lt;/p&gt;
 
-&lt;blockquote&gt;:[range]g[lobal]/{pattern}/[cmd]
-&gt; 
-&gt; &lt;/blockquote&gt;
+&lt;pre&gt;&lt;code&gt;:[range]g[lobal]/{pattern}/[cmd]
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;This will show all instances of the &amp;ldquo;SEARCH&amp;rdquo; term within the VIM window. There&amp;rsquo;s another version of the same command which is as follows:&lt;/p&gt;
 
-&lt;blockquote&gt;:[range]g[lobal]!/{pattern}/[cmd]
-&gt; 
-&gt; &lt;/blockquote&gt;
+&lt;pre&gt;&lt;code&gt;:[range]g[lobal]!/{pattern}/[cmd]
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;This is similar to the previous command but the only difference is that this command contains &amp;ldquo;!&amp;rdquo; which signifies that the command will be executed on all lines &lt;code&gt;NOT&lt;/code&gt; matching the &lt;code&gt;pattern&lt;/code&gt;.&lt;/p&gt;
 
 &lt;p&gt;One example here would be to delete all lines in a file containing a particular word:&lt;/p&gt;
 
-&lt;blockquote&gt;:g/deleteMe/d
-&gt; 
-&gt; &lt;/blockquote&gt;
+&lt;pre&gt;&lt;code&gt;:g/deleteMe/d
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;There could be lot more actions (regular vim stuff) that you could do like yanking or indenting.&lt;/p&gt;
 </description>
@@ -80,84 +76,70 @@
       <guid>http://abhi1010.github.io/2013/06/cursor-control-in-vim-search/</guid>
       <description>&lt;p&gt;Found a great way to search for keywords &amp;amp;&amp;amp; control the location of cursor in vim. It is excellent if you want to do a particular task multiple times. Usually if you search the cursor will straight away take you to the start of search. What if you want to go to the end of the word you are searching for?&lt;/p&gt;
 
-&lt;blockquote&gt;  
-&gt; 
-&gt; /pattern/e
-&gt; 
-&gt; &lt;/blockquote&gt;
+&lt;pre&gt;&lt;code&gt;/pattern/e
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;This takes you to the END of the keyword you are looking for.&lt;/p&gt;
 
 &lt;p&gt;That’s not all. What if you want to go the second letter in that keyword? Change the pattern to as follows:&lt;/p&gt;
 
-&lt;blockquote&gt;  
-&gt; 
-&gt; /pattern/s+1
-&gt; 
-&gt; &lt;/blockquote&gt;
+&lt;pre&gt;&lt;code&gt;/pattern/s+1
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;That’s great. But what if I want to go to the end of the keyword?&lt;/p&gt;
 
-&lt;blockquote&gt;  
-&gt; 
-&gt; /pattern/e
-&gt; 
-&gt; &lt;/blockquote&gt;
+&lt;pre&gt;&lt;code&gt;/pattern/e
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Awesome. Let’s review it through examples. Let’s say our phrase is “the brown fox jumped over the lazy dog” and we originally want to search for “brown”.&lt;/p&gt;
 
-&lt;p&gt;&lt;table cellpadding=&#34;2&#34; cellspacing=&#34;0&#34; border=&#34;1&#34; width=&#34;947&#34; &gt;&lt;tbody &gt;     &lt;tr &gt;&lt;br /&gt;
-&lt;td width=&#34;185&#34; valign=&#34;top&#34; &gt;&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Pattern&lt;/th&gt;
+&lt;th&gt;CURSOR LOCATED AT BEGINNING OF&lt;/th&gt;
+&lt;th&gt;Description&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
 
-&lt;p&gt;&lt;strong&gt;PATTERN&lt;/strong&gt;&lt;/p&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;/brown&lt;/td&gt;
+&lt;td&gt;brown fox….&lt;/td&gt;
+&lt;td&gt;search and start at “brown”&lt;/td&gt;
+&lt;/tr&gt;
 
-&lt;p&gt;&lt;/td&gt;&lt;br /&gt;
-&lt;td width=&#34;286&#34; valign=&#34;top&#34; &gt;&lt;/p&gt;
+&lt;tr&gt;
+&lt;td&gt;/brown/s+2&lt;/td&gt;
+&lt;td&gt;own fox…&lt;/td&gt;
+&lt;td&gt;start at “brown” but move 2 letters from ‘start’&lt;/td&gt;
+&lt;/tr&gt;
 
-&lt;p&gt;&lt;strong&gt;CURSOR LOCATED AT BEGINNING OF&lt;/strong&gt;&lt;/p&gt;
+&lt;tr&gt;
+&lt;td&gt;/brown/s-4&lt;/td&gt;
+&lt;td&gt;the brown fox…&lt;/td&gt;
+&lt;td&gt;start at “brown” but move 4 letters to the left from ‘start’&lt;/td&gt;
+&lt;/tr&gt;
 
-&lt;p&gt;&lt;/td&gt;&lt;br /&gt;
-&lt;td width=&#34;474&#34; valign=&#34;top&#34; &gt;&lt;/p&gt;
+&lt;tr&gt;
+&lt;td&gt;/brown/e&lt;/td&gt;
+&lt;td&gt;n fox….&lt;/td&gt;
+&lt;td&gt;search for “brown” but move to the end&lt;/td&gt;
+&lt;/tr&gt;
 
-&lt;p&gt;&lt;strong&gt;DESCRIPTION&lt;/strong&gt;&lt;/p&gt;
+&lt;tr&gt;
+&lt;td&gt;/brown/e+2&lt;/td&gt;
+&lt;td&gt;fox…&lt;/td&gt;
+&lt;td&gt;search for “brown” but move 2 letters from the ‘end’&lt;/td&gt;
+&lt;/tr&gt;
 
-&lt;p&gt;&lt;/td&gt;     &lt;/tr&gt;      &lt;tr &gt;&lt;br /&gt;
-&lt;td width=&#34;185&#34; valign=&#34;top&#34; &gt;/brown
-&lt;/td&gt;&lt;br /&gt;
-&lt;td width=&#34;286&#34; valign=&#34;top&#34; &gt;brown fox….
-&lt;/td&gt;&lt;br /&gt;
-&lt;td width=&#34;474&#34; valign=&#34;top&#34; &gt;search and start at “brown”
-&lt;/td&gt;     &lt;/tr&gt;      &lt;tr &gt;&lt;br /&gt;
-&lt;td width=&#34;185&#34; valign=&#34;top&#34; &gt;/brown/s+2
-&lt;/td&gt;&lt;br /&gt;
-&lt;td width=&#34;286&#34; valign=&#34;top&#34; &gt;own fox…
-&lt;/td&gt;&lt;br /&gt;
-&lt;td width=&#34;474&#34; valign=&#34;top&#34; &gt;start at “brown” but move 2 letters from ‘start’
-&lt;/td&gt;     &lt;/tr&gt;      &lt;tr &gt;&lt;br /&gt;
-&lt;td width=&#34;185&#34; valign=&#34;top&#34; &gt;/brown/s-4
-&lt;/td&gt;&lt;br /&gt;
-&lt;td width=&#34;286&#34; valign=&#34;top&#34; &gt;the brown fox…
-&lt;/td&gt;&lt;br /&gt;
-&lt;td width=&#34;474&#34; valign=&#34;top&#34; &gt;start at “brown” but move 4 letters to the left from ‘start’
-&lt;/td&gt;     &lt;/tr&gt;      &lt;tr &gt;&lt;br /&gt;
-&lt;td width=&#34;185&#34; valign=&#34;top&#34; &gt;/brown/e
-&lt;/td&gt;&lt;br /&gt;
-&lt;td width=&#34;286&#34; valign=&#34;top&#34; &gt;n fox….
-&lt;/td&gt;&lt;br /&gt;
-&lt;td width=&#34;474&#34; valign=&#34;top&#34; &gt;search for “brown” but move to the end
-&lt;/td&gt;     &lt;/tr&gt;      &lt;tr &gt;&lt;br /&gt;
-&lt;td width=&#34;185&#34; valign=&#34;top&#34; &gt;/brown/e+2
-&lt;/td&gt;&lt;br /&gt;
-&lt;td width=&#34;286&#34; valign=&#34;top&#34; &gt;fox…
-&lt;/td&gt;&lt;br /&gt;
-&lt;td width=&#34;474&#34; valign=&#34;top&#34; &gt;search for “brown” but move 2 letters from the ‘end’
-&lt;/td&gt;     &lt;/tr&gt;      &lt;tr &gt;&lt;br /&gt;
-&lt;td width=&#34;185&#34; valign=&#34;top&#34; &gt;/brown/e-1
-&lt;/td&gt;&lt;br /&gt;
-&lt;td width=&#34;286&#34; valign=&#34;top&#34; &gt;wn fox…
-&lt;/td&gt;&lt;br /&gt;
-&lt;td width=&#34;474&#34; valign=&#34;top&#34; &gt;search for “brown” but move 1 letter to the left from the ‘end’
-&lt;/td&gt;     &lt;/tr&gt;   &lt;/tbody&gt;&lt;/table&gt;&lt;/p&gt;
+&lt;tr&gt;
+&lt;td&gt;/brown/e-1&lt;/td&gt;
+&lt;td&gt;wn fox…&lt;/td&gt;
+&lt;td&gt;search for “brown” but move 1 letter to the left from the ‘end’&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
 </description>
     </item>
     

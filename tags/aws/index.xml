@@ -6,20 +6,16 @@
     <description>Recent content in Aws on Coders Digest</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 07 Aug 2015 14:59:18 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 07 Aug 2015 14:59:18 -0400</lastBuildDate>
     <atom:link href="http://abhi1010.github.io/tags/aws/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Docker Container cleanup on Elastic Beanstalk</title>
       <link>http://abhi1010.github.io/2015/08/docker-container-cleanup-on-elastic-beanstalk/</link>
-      <pubDate>Fri, 07 Aug 2015 14:59:18 +0000</pubDate>
+      <pubDate>Fri, 07 Aug 2015 14:59:18 -0400</pubDate>
       
       <guid>http://abhi1010.github.io/2015/08/docker-container-cleanup-on-elastic-beanstalk/</guid>
-      <description>&lt;p&gt;{% comment %}
-    These commments will not include inside the source.
-{% endcomment %}&lt;/p&gt;
-
-&lt;p&gt;Sometimes you may notice that old containers are not cleaned up from Beanstalk environment. This may be due to your container still running as a ghost on the background. One way to find out about this is to quickly look into your
+      <description>&lt;p&gt;Sometimes you may notice that old containers are not cleaned up from Beanstalk environment. This may be due to your container still running as a ghost on the background. One way to find out about this is to quickly look into your
 &lt;code&gt;/var/lib/docker/vfs/dir&lt;/code&gt; directory whether it has too many folders.&lt;/p&gt;
 
 &lt;p&gt;Next, find out what container processes you have going on.
@@ -35,13 +31,17 @@
 &lt;/p&gt;
 
 &lt;p&gt;Ideally, we want to &amp;ldquo;forcibly remove&amp;rdquo; all images (and hence the folders from &lt;code&gt;/var/lib/docker/vfs/dir&lt;/code&gt; directory) that are not in use anymore.
-Just run the following to test whether it works:
-&lt;code&gt;docker rmi -f&lt;/code&gt;docker images -aq``&lt;/p&gt;
+Just run the following to test whether it works:&lt;/p&gt;
+
+&lt;p&gt;&lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;    docker rmi -f &lt;span style=&#34;color: #dd2200; background-color: #fff0f0&#34;&gt;`&lt;/span&gt;docker images -aq&lt;span style=&#34;color: #dd2200; background-color: #fff0f0&#34;&gt;`&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/p&gt;
 
 &lt;p&gt;You might run into trouble where docker says that all those images already have a container that is running them. This means those container are orphaned but not killed as we thought them to be. Let&amp;rsquo;s remove the shared volumes if any, for each one of them.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;docker rm -fv `docker ps -aq` 
-&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;    docker rm -fv &lt;span style=&#34;color: #dd2200; background-color: #fff0f0&#34;&gt;`&lt;/span&gt;docker ps -aq&lt;span style=&#34;color: #dd2200; background-color: #fff0f0&#34;&gt;`&lt;/span&gt; 
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/p&gt;
 
 &lt;p&gt;This will&lt;/p&gt;
 

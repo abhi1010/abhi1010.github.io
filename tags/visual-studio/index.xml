@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Visual Studio on Coders Digest</title>
+    <link>http://abhi1010.github.io/tags/visual-studio/</link>
+    <description>Recent content in Visual Studio on Coders Digest</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 14 May 2008 21:43:00 +0000</lastBuildDate>
+    <atom:link href="http://abhi1010.github.io/tags/visual-studio/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Visual Studio 2008 crashes while adding items</title>
+      <link>http://abhi1010.github.io/2008/05/visual-studio-2008-crashes-while-adding-items/</link>
+      <pubDate>Wed, 14 May 2008 21:43:00 +0000</pubDate>
+      
+      <guid>http://abhi1010.github.io/2008/05/visual-studio-2008-crashes-while-adding-items/</guid>
+      <description>&lt;p&gt;Had this problem cropping up since months where I was trying to add items to Visual Studio 2008 Toolbox and it kept crashing.&lt;/p&gt;
+
+&lt;p&gt;Finally got a work around, you should start it in safe mode. Here&amp;rsquo;s the procedure:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;devenv /safemode
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Then use Choose Items on toolbox and run through each of the tabs. Once you
+accept any exceptions raised on loading controls, you can then open Visual
+Studio normally and add items.&lt;/p&gt;
+
+&lt;p&gt;The reason for this has to be pretty simple - I have installed way too many beta/refresh version on Visual Studio 2008, something had to give up. I can&amp;rsquo;t really complain.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Full Trust on Mapped Drive</title>
+      <link>http://abhi1010.github.io/2008/03/full-trust-on-mapped-drive/</link>
+      <pubDate>Mon, 31 Mar 2008 18:26:00 +0000</pubDate>
+      
+      <guid>http://abhi1010.github.io/2008/03/full-trust-on-mapped-drive/</guid>
+      <description>&lt;p&gt;Sometimes, when opening a web project from another mapped drive (not your own computer&amp;rsquo;s hard disk) Visual Studio may complain something like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;The project location is not trusted.
+
+Running the application may result in security exceptions when it
+attempts to perform actions which require full trust.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The problem here is that .Net does not want to fully adhere to all security policies as your hard disk to this mapped drive as well as it does not know what kind of data it might have. If you want it to fully trust this mapped drive then you will have to use caspol for this purpose. Here&amp;rsquo;s how it is done:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;c:\&amp;gt;caspol -q -machine -addgroup 1 -url file://W:/* FullTrust -name &amp;quot;W Drive&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Once this new code group is in place, any new .NET processes you start will give any assemblies on the W drive full trust&lt;strong&gt;.&lt;/strong&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

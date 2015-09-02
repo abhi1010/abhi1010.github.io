@@ -35,7 +35,7 @@
 
 &lt;!-- more --&gt;
 
-&lt;p&gt;&lt;a href=&#34;https://gist.github.com/abhi1010/ee13f57720471c8feea2&#34;&gt;https://gist.github.com/abhi1010/ee13f57720471c8feea2&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;script type=&#34;text/javascript&#34; src=&#34;http://gist.github.com/ee13f57720471c8feea2.js&#34;&gt;&lt;/script&gt;&lt;/p&gt;
 </description>
     </item>
     
@@ -47,163 +47,98 @@
       <guid>http://abhi1010.github.io/2013/10/ideas-for-shared-memory-in-linux/</guid>
       <description>&lt;p&gt;I have been doing extensive research today regarding shared memory in linux before I embark on a new project in which shaving time off process communication latency is extremely important. I found some very interesting links as well. Let’s break them down:&lt;/p&gt;
 
-&lt;table style=&#34;border:thin solid lightblue;&#34; &gt;
-&lt;tbody &gt;
-&lt;tr &gt;
-
-&lt;td width=&#34;133&#34; &gt;**Topic**
-&lt;/td&gt;
-
-&lt;td width=&#34;354&#34; &gt;**Description**
-&lt;/td&gt;
-
-&lt;td width=&#34;151&#34; &gt;**Link**
-&lt;/td&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Topic&lt;/th&gt;
+&lt;th&gt;Description&lt;/th&gt;
+&lt;th&gt;Link&lt;/th&gt;
 &lt;/tr&gt;
-&lt;tr &gt;
+&lt;/thead&gt;
 
-&lt;td width=&#34;133&#34; &gt;Theory/Explanation
-&lt;/td&gt;
-
-&lt;td width=&#34;354&#34; &gt;Some articles that explain how to get started
-&lt;/td&gt;
-
-&lt;td width=&#34;151&#34; &gt;[open-std](http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2006/n2044.html)
-&lt;/td&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Theory/Explanation&lt;/td&gt;
+&lt;td&gt;Some articles that explain how to get started&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2006/n2044.html&#34;&gt;open-std&lt;/a&gt;&lt;/td&gt;
 &lt;/tr&gt;
-&lt;tr &gt;
 
-&lt;td width=&#34;133&#34; &gt;
-&lt;/td&gt;
-
-&lt;td width=&#34;354&#34; &gt;IPC Mechanisms – some recommendations. Mainly talks about softwares like Boost, dBus
-
-dBus used to work using kernel levels but lately have come up with a patch that bypasses kernels
-&lt;/td&gt;
-
-&lt;td width=&#34;151&#34; &gt;[Stackoverflow](http://stackoverflow.com/questions/1906166/inter-process-communication-recommendation)
-&lt;/td&gt;
+&lt;tr&gt;
+&lt;td&gt;Content in the first column&lt;/td&gt;
+&lt;td&gt;Content in the second column&lt;/td&gt;
+&lt;td&gt;lkd&lt;/td&gt;
 &lt;/tr&gt;
-&lt;tr &gt;
 
-&lt;td width=&#34;133&#34; &gt;
-&lt;/td&gt;
-
-&lt;td width=&#34;354&#34; &gt;What every programmer should know about memory
-&lt;/td&gt;
-
-&lt;td width=&#34;151&#34; &gt;[LWN](http://lwn.net/Articles/255364/)
-&lt;/td&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;IPC Mechanisms – some recommendations. Mainly talks about softwares like Boost, dBus dBus used to work using kernel levels but lately have come up with a patch that bypasses kernels&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;http://stackoverflow.com/questions/1906166/inter-process-communication-recommendation&#34;&gt;Stackoverflow&lt;/a&gt;&lt;/td&gt;
 &lt;/tr&gt;
-&lt;tr &gt;
 
-&lt;td width=&#34;133&#34; &gt;
-&lt;/td&gt;
-
-&lt;td width=&#34;354&#34; &gt;Linux IPC
-&lt;/td&gt;
-
-&lt;td width=&#34;151&#34; &gt;[TLDP](http://www.tldp.org/LDP/tlk/ipc/ipc.html)
-&lt;/td&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;What every programmer should know about memory&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;http://lwn.net/Articles/255364/&#34;&gt;LWN&lt;/a&gt;&lt;/td&gt;
 &lt;/tr&gt;
-&lt;tr &gt;
 
-&lt;td width=&#34;133&#34; &gt;
-&lt;/td&gt;
-
-&lt;td width=&#34;354&#34; &gt;Cache Friendly Code
-&lt;/td&gt;
-
-&lt;td width=&#34;151&#34; &gt;[Stackoverflow](http://stackoverflow.com/questions/16699247/what-is-cache-friendly-code/16699282#16699282)
-&lt;/td&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;Linux IPC&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;http://www.tldp.org/LDP/tlk/ipc/ipc.html&#34;&gt;TLDP&lt;/a&gt;&lt;/td&gt;
 &lt;/tr&gt;
-&lt;tr &gt;
 
-&lt;td width=&#34;133&#34; &gt;Helpful Articles
-&lt;/td&gt;
-
-&lt;td width=&#34;354&#34; &gt;Which linux IPC technique to use?
-&lt;/td&gt;
-
-&lt;td width=&#34;151&#34; &gt;[Stackoverflow](http://stackoverflow.com/questions/2281204/which-linux-ipc-technique-to-use)
-&lt;/td&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;Cache Friendly Code&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;http://stackoverflow.com/questions/16699247/what-is-cache-friendly-code/16699282#16699282&#34;&gt;Stackoverflow&lt;/a&gt;&lt;/td&gt;
 &lt;/tr&gt;
-&lt;tr &gt;
 
-&lt;td width=&#34;133&#34; &gt;
-&lt;/td&gt;
-
-&lt;td width=&#34;354&#34; &gt;Inter process communication – talks about shared memory
-&lt;/td&gt;
-
-&lt;td width=&#34;151&#34; &gt;[ALP](http://www.advancedlinuxprogramming.com/alp-folder/alp-ch05-ipc.pdf)
-&lt;/td&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;Helpful Articles     Which linux IPC technique to use?&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;http://stackoverflow.com/questions/2281204/which-linux-ipc-technique-to-use&#34;&gt;Stackoverflow&lt;/a&gt;&lt;/td&gt;
 &lt;/tr&gt;
-&lt;tr &gt;
 
-&lt;td width=&#34;133&#34; &gt;
-&lt;/td&gt;
-
-&lt;td width=&#34;354&#34; &gt;Linux Poll Events on Shared Memory
-&lt;/td&gt;
-
-&lt;td width=&#34;151&#34; &gt;[Stackoverflow](http://stackoverflow.com/questions/11470322/cause-a-linux-poll-event-on-a-shared-memory-file)
-&lt;/td&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;Inter process communication – talks about shared memory&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;http://www.advancedlinuxprogramming.com/alp-folder/alp-ch05-ipc.pdf&#34;&gt;ALP&lt;/a&gt;&lt;/td&gt;
 &lt;/tr&gt;
-&lt;tr &gt;
 
-&lt;td width=&#34;133&#34; &gt;
-&lt;/td&gt;
-
-&lt;td width=&#34;354&#34; &gt;Using semaphores in Shared Memory
-&lt;/td&gt;
-
-&lt;td width=&#34;151&#34; &gt;[Stackoverflow](http://stackoverflow.com/questions/10772860/semaphores-and-shared-memory-in-linux)
-&lt;/td&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;Linux Poll Events on Shared Memory&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;http://stackoverflow.com/questions/11470322/cause-a-linux-poll-event-on-a-shared-memory-file&#34;&gt;Stackoverflow&lt;/a&gt;&lt;/td&gt;
 &lt;/tr&gt;
-&lt;tr &gt;
 
-&lt;td width=&#34;133&#34; &gt;
-&lt;/td&gt;
-
-&lt;td width=&#34;354&#34; &gt;Sharing semaphores between Shared Memory
-&lt;/td&gt;
-
-&lt;td width=&#34;151&#34; &gt;[Stackoverflow](http://stackoverflow.com/questions/8359322/how-to-share-semaphores-between-processes-using-shared-memory?rq=1)
-&lt;/td&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;Using semaphores in Shared Memory&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;http://stackoverflow.com/questions/10772860/semaphores-and-shared-memory-in-linux&#34;&gt;Stackoverflow&lt;/a&gt;&lt;/td&gt;
 &lt;/tr&gt;
-&lt;tr &gt;
 
-&lt;td width=&#34;133&#34; &gt;
-&lt;/td&gt;
-
-&lt;td width=&#34;354&#34; &gt;Sharing memory between processes
-&lt;/td&gt;
-
-&lt;td width=&#34;151&#34; &gt;[Stackoverflow](http://stackoverflow.com/questions/11583281/sharing-memory-between-two-processes)
-&lt;/td&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;Sharing semaphores between Shared Memory&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;http://stackoverflow.com/questions/8359322/how-to-share-semaphores-between-processes-using-shared-memory?rq=1&#34;&gt;Stackoverflow&lt;/a&gt;&lt;/td&gt;
 &lt;/tr&gt;
-&lt;tr &gt;
 
-&lt;td width=&#34;133&#34; &gt;
-&lt;/td&gt;
-
-&lt;td width=&#34;354&#34; &gt;Reserving memory at kernel boot up (DMA)
-&lt;/td&gt;
-
-&lt;td width=&#34;151&#34; &gt;[Stackoverflow](http://stackoverflow.com/questions/647783/direct-memory-access-in-linux?rq=1)
-&lt;/td&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;Sharing memory between processes&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;http://stackoverflow.com/questions/11583281/sharing-memory-between-two-processes&#34;&gt;Stackoverflow&lt;/a&gt;&lt;/td&gt;
 &lt;/tr&gt;
-&lt;tr &gt;
 
-&lt;td width=&#34;133&#34; &gt;Extra
-&lt;/td&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;Reserving memory at kernel boot up (DMA)&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;http://stackoverflow.com/questions/647783/direct-memory-access-in-linux?rq=1&#34;&gt;Stackoverflow&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
 
-&lt;td width=&#34;354&#34; &gt;IPC Shared memory samples
-&lt;/td&gt;
-
-&lt;td width=&#34;151&#34; &gt;[linuxgazette](http://linuxgazette.net/104/ramankutty.html)
-&lt;/td&gt;
+&lt;tr&gt;
+&lt;td&gt;Extra&lt;/td&gt;
+&lt;td&gt;IPC Shared memory samples&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;http://linuxgazette.net/104/ramankutty.html&#34;&gt;linuxgazette&lt;/a&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
@@ -249,47 +184,9 @@ Studio normally and add items.&lt;/p&gt;
 &lt;p&gt;One thing to note, however, is that the classes inside this namespace cannot be accessed directly and the word &amp;ldquo;asp&amp;rdquo; has to be used.&lt;/p&gt;
 
 &lt;p&gt;Let&amp;rsquo;s see an example to understand it.
-&lt;a href=&#34;https://gist.github.com/abhi1010/ad4f3fc47ffa870a48f9&#34;&gt;https://gist.github.com/abhi1010/ad4f3fc47ffa870a48f9&lt;/a&gt;&lt;/p&gt;
+&lt;script type=&#34;text/javascript&#34; src=&#34;http://gist.github.com/ad4f3fc47ffa870a48f9.js&#34;&gt;&lt;/script&gt;&lt;/p&gt;
 
-&lt;p&gt;This function, btw, is going through a namespace called &amp;ldquo;Company.AspFunctions&amp;rdquo; and we give it a tag &amp;ldquo;asp&amp;rdquo; to access all classes under it by its tag instead. Date_Format() fn is a static function inside Conn Class. Basically it takes your &amp;ldquo;asp style&amp;rdquo; datetime strings and returns you the correct date in &amp;ldquo;yyyyMMdd&amp;rdquo; format.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Few Good Links for March 08</title>
-      <link>http://abhi1010.github.io/2008/03/few-good-links-for-march-08/</link>
-      <pubDate>Mon, 31 Mar 2008 05:10:00 +0000</pubDate>
-      
-      <guid>http://abhi1010.github.io/2008/03/few-good-links-for-march-08/</guid>
-      <description>&lt;p&gt;&lt;strong&gt;GAX and GAT&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;http://www.vsdotnet.be/blogs/tommer/2006/08/26/GuidanceOnTheQuotGuidanceAutomationToolkitquot.aspx&#34;&gt;http://www.vsdotnet.be/blogs/tommer/2006/08/26/GuidanceOnTheQuotGuidanceAutomationToolkitquot.aspx&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Excellent place to get started.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;http://www.microsoft.com/belux/msdn/nl/chopsticks/default.aspx?id=10&#34;&gt;http://www.microsoft.com/belux/msdn/nl/chopsticks/default.aspx?id=10&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;http://jelle.druyts.net/CategoryView.aspx?category=Blog|Programming|.NET|GuidanceAutomation&#34;&gt;http://jelle.druyts.net/CategoryView.aspx?category=Blog|Programming|.NET|GuidanceAutomation&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;ASP.NET AJAX Extender for multicolumn drag and drop&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;http://www.codeproject.com/KB/ajax/MakingGoogleIG.aspx&#34;&gt;http://www.codeproject.com/KB/ajax/MakingGoogleIG.aspx&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;http://www.codeproject.com/KB/ajax/multicolumndragdrop.aspx&#34;&gt;http://www.codeproject.com/KB/ajax/multicolumndragdrop.aspx&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;http://msmvps.com/blogs/omar/archive/2007/03/22/asp-net-ajax-extender-for-multi-column-widget-drag-drop.aspx&#34;&gt;http://msmvps.com/blogs/omar/archive/2007/03/22/asp-net-ajax-extender-for-multi-column-widget-drag-drop.aspx&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Advanced ASP.NET AJAX Tips and Tricks&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;http://www.codeproject.com/KB/ajax/aspnetajaxtips.aspx&#34;&gt;http://www.codeproject.com/KB/ajax/aspnetajaxtips.aspx&lt;/a&gt;****&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Writing user defined functions for Excel in .NET&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;http://blogs.msdn.com/eric_carter/archive/2004/12/01/writing-user-defined-functions-for-excel-in-net.aspx&#34;&gt;http://blogs.msdn.com/eric_carter/archive/2004/12/01/writing-user-defined-functions-for-excel-in-net.aspx&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;**Silverlight Tips, Tricks, Tutorials and Links Page **&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;http://weblogs.asp.net/scottgu/pages/silverlight-posts.aspx&#34;&gt;http://weblogs.asp.net/scottgu/pages/silverlight-posts.aspx&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;This function, btw, is going through a namespace called &lt;code&gt;Company.AspFunctions&lt;/code&gt; and we give it a tag &lt;code&gt;asp&lt;/code&gt; to access all classes under it by its tag instead. Date_Format() fn is a static function inside Conn Class. Basically it takes your &amp;ldquo;asp style&amp;rdquo; datetime strings and returns you the correct date in &lt;code&gt;yyyyMMdd&lt;/code&gt; format.&lt;/p&gt;
 </description>
     </item>
     
@@ -301,8 +198,9 @@ Studio normally and add items.&lt;/p&gt;
       <guid>http://abhi1010.github.io/2008/03/creating-custom-web-controls/</guid>
       <description>&lt;p&gt;How do you extend a control? Let&amp;rsquo;s figure it out.&lt;/p&gt;
 
-&lt;p&gt;**Why would you want to extend existing controls?&lt;br /&gt;
-**Because some functionality may not exist exactly as you may need it. For example, let&amp;rsquo;s take up ImageButton control example. It is a great control but it falls short when it comes to real world scenario. Mostly websites do a hover image clickable button where the text or background color of the button changes once you hover your mouse over it.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Why would you want to extend existing controls?&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Because some functionality may not exist exactly as you may need it. For example, let&amp;rsquo;s take up ImageButton control example. It is a great control but it falls short when it comes to real world scenario. Mostly websites do a hover image clickable button where the text or background color of the button changes once you hover your mouse over it.&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;How to Extend?&lt;/strong&gt;&lt;/p&gt;
 
@@ -334,7 +232,7 @@ Studio normally and add items.&lt;/p&gt;
 
 &lt;p&gt;This is how you do that.&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&#34;https://gist.github.com/abhi1010/bfb075b6787d2616fde6&#34;&gt;https://gist.github.com/abhi1010/bfb075b6787d2616fde6&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;script type=&#34;text/javascript&#34; src=&#34;http://gist.github.com/bfb075b6787d2616fde6.js&#34;&gt;&lt;/script&gt;&lt;/p&gt;
 
 &lt;p&gt;Please note that the name of the javascript file is &amp;ldquo;HoverImageButtonJS.js&amp;rdquo;. ExtendedControls is the name of the project/assembly that I have created for this custom web control.&lt;/p&gt;
 
@@ -346,13 +244,13 @@ Studio normally and add items.&lt;/p&gt;
 
 &lt;p&gt;Let&amp;rsquo;s see how that&amp;rsquo;s done.&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&#34;https://gist.github.com/abhi1010/d0b66ef7b0f076e88042&#34;&gt;https://gist.github.com/abhi1010/d0b66ef7b0f076e88042&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;script type=&#34;text/javascript&#34; src=&#34;http://gist.github.com/d0b66ef7b0f076e88042.js&#34;&gt;&lt;/script&gt;&lt;/p&gt;
 
-&lt;p&gt;Over here, I have told the class to include &amp;ldquo;onmouseover=ShowImageHoverButton(this, &amp;lsquo;IMAGE_SOURCE&amp;rsquo;)&amp;rdquo; as a property.&lt;/p&gt;
+&lt;p&gt;Over here, I have told the class to include &lt;code&gt;&amp;quot;onmouseover=ShowImageHoverButton(this, &#39;IMAGE_SOURCE&#39;)&amp;quot;&lt;/code&gt; as a property.&lt;/p&gt;
 
 &lt;p&gt;This is how it is rendered on the client browser:&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&#34;https://gist.github.com/abhi1010/6df972bf94b736545419&#34;&gt;https://gist.github.com/abhi1010/6df972bf94b736545419&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;script type=&#34;text/javascript&#34; src=&#34;http://gist.github.com/6df972bf94b736545419.js&#34;&gt;&lt;/script&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Add the javascript file also to the AssemblyInfo.cs class&lt;/strong&gt;&lt;/p&gt;
 
@@ -371,7 +269,7 @@ Studio normally and add items.&lt;/p&gt;
 &lt;li&gt;&lt;p&gt;Register the dll on web.config. This makes the control available automatically on all the pages.&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;a href=&#34;https://gist.github.com/abhi1010/88222d3f94911fbec6f4&#34;&gt;https://gist.github.com/abhi1010/88222d3f94911fbec6f4&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;script type=&#34;text/javascript&#34; src=&#34;http://gist.github.com/88222d3f94911fbec6f4.js&#34;&gt;&lt;/script&gt;&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Go to the design view of any page. Open up the Toolbox pane and you will automatically see the name appear &amp;ldquo;HoverImageButton&amp;rdquo;. Double click and you are ready to go!!&lt;/li&gt;
@@ -403,7 +301,7 @@ Studio normally and add items.&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Here&amp;rsquo;s all the code in case somebody needs it:&lt;/strong&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&#34;https://gist.github.com/abhi1010/135e9bbf44f3d9a53cb8&#34;&gt;https://gist.github.com/abhi1010/135e9bbf44f3d9a53cb8&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;script type=&#34;text/javascript&#34; src=&#34;http://gist.github.com/135e9bbf44f3d9a53cb8.js&#34;&gt;&lt;/script&gt;&lt;/p&gt;
 </description>
     </item>
     
@@ -465,7 +363,7 @@ Studio normally and add items.&lt;/p&gt;
       <pubDate>Tue, 04 Mar 2008 07:49:00 +0000</pubDate>
       
       <guid>http://abhi1010.github.io/2008/03/recursively-read-directories-and-list-all-files-under-it/</guid>
-      <description>&lt;p&gt;&lt;a href=&#34;https://gist.github.com/abhi1010/a1bcc60b383a0bc72d5f&#34;&gt;https://gist.github.com/abhi1010/a1bcc60b383a0bc72d5f&lt;/a&gt;&lt;/p&gt;
+      <description>&lt;p&gt;&lt;script type=&#34;text/javascript&#34; src=&#34;http://gist.github.com/a1bcc60b383a0bc72d5f.js&#34;&gt;&lt;/script&gt;&lt;/p&gt;
 </description>
     </item>
     
@@ -479,11 +377,11 @@ Studio normally and add items.&lt;/p&gt;
 
 &lt;p&gt;Despair not, there&amp;rsquo;s still a solution. Just create a label and set it&amp;rsquo;s text first then call this function:&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&#34;https://gist.github.com/abhi1010/e8390c5868a86998a7d5&#34;&gt;https://gist.github.com/abhi1010/e8390c5868a86998a7d5&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;script type=&#34;text/javascript&#34; src=&#34;http://gist.github.com/e8390c5868a86998a7d5.js&#34;&gt;&lt;/script&gt;&lt;/p&gt;
 
 &lt;p&gt;If you do some testing it may not work on Compact Framework. Here&amp;rsquo;s how to get around that issue again.&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&#34;https://gist.github.com/abhi1010/f488949a5d79b6d86544&#34;&gt;https://gist.github.com/abhi1010/f488949a5d79b6d86544&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;script type=&#34;text/javascript&#34; src=&#34;http://gist.github.com/f488949a5d79b6d86544.js&#34;&gt;&lt;/script&gt;&lt;/p&gt;
 </description>
     </item>
     
@@ -499,7 +397,7 @@ Studio normally and add items.&lt;/p&gt;
 
 &lt;p&gt;The best way to put the whole process of reading the excel file is to automate reading, iterating and closing of the excel files. It is done by yield statement as I can &amp;ldquo;yield&amp;rdquo; the data of the excel through DataReader (OdbcDataReader in my case).&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&#34;https://gist.github.com/abhi1010/36ecc206fc5f61f4b4bc&#34;&gt;https://gist.github.com/abhi1010/36ecc206fc5f61f4b4bc&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;script type=&#34;text/javascript&#34; src=&#34;http://gist.github.com/36ecc206fc5f61f4b4bc.js&#34;&gt;&lt;/script&gt;&lt;/p&gt;
 
 &lt;p&gt;This way, the function is always common - it is always supposed to read the excel, iterate through it. The data that I need is always in the DataReader so I thought let&amp;rsquo;s just return the data itself! The rest of the function is pretty much normal. The biggest gain is that I don&amp;rsquo;t have to change the structure of the function. The same function can now be used for multiple excel sheets. Have a look at the code.&lt;/p&gt;
 </description>

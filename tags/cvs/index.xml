@@ -19,37 +19,32 @@
 
 &lt;p&gt;&lt;em&gt;Silently update and inform about the status of the files (recursive)&lt;/em&gt;&lt;/p&gt;
 
-&lt;blockquote&gt;cvs -q -n update
-&gt; 
-&gt; &lt;/blockquote&gt;
+&lt;pre&gt;&lt;code&gt;cvs -q -n update
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;&lt;em&gt;Same as earlier but will only do so for the current folder&lt;/em&gt;&lt;/p&gt;
 
-&lt;blockquote&gt;cvs -Q -n update -l
-&gt; 
-&gt; &lt;/blockquote&gt;
+&lt;pre&gt;&lt;code&gt;cvs -Q -n update -l
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;&lt;em&gt;Finds out the cv[s] [m]odified list of files while also indentating them nicely with only the important data pulled out&lt;/em&gt;&lt;/p&gt;
 
-&lt;blockquote&gt;cvs -Q status | egrep &#34;File: &#34; -A 4 | egrep -v &#34;Up-to-date&#34; | egrep &#34;File: &#34; -A 3 | sed -e &#34;s/ Status:/\t\tStatus:/&#34; -e &#34;s/,v$/\n-------------------------------------------------------------------------\n/&#34; -e &#34;s/.*${PWD##*/}\//Location:\t\t /&#34; -e &#34;s/Attic\///&#34; | egrep &#34;Location:|Repository|Status:|File:|--------
-&gt; 
-&gt; &lt;/blockquote&gt;
+&lt;pre&gt;&lt;code&gt;cvs -Q status | egrep &amp;quot;File: &amp;quot; -A 4 | egrep -v &amp;quot;Up-to-date&amp;quot; | egrep &amp;quot;File: &amp;quot; -A 3 | sed -e &amp;quot;s/ Status:/\t\tStatus:/&amp;quot; -e &amp;quot;s/,v$/\n-------------------------------------------------------------------------\n/&amp;quot; -e &amp;quot;s/.*${PWD##*/}\//Location:\t\t /&amp;quot; -e &amp;quot;s/Attic\///&amp;quot; | egrep &amp;quot;Location:|Repository|Status:|File:|--------
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;&lt;em&gt;Recursively add all files to CVS for committing from the current directory&lt;/em&gt;&lt;/p&gt;
 
-&lt;blockquote&gt;find . -type d -print | grep -v CVS | xargs cvs add
-&gt; 
-&gt; &lt;/blockquote&gt;
+&lt;pre&gt;&lt;code&gt;find . -type d -print | grep -v CVS | xargs cvs add
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;&lt;em&gt;Doing a side by side diff (change the value of -W according to the width of the screen)&lt;/em&gt;&lt;/p&gt;
 
-&lt;blockquote&gt;cvs -Q diff -t -y --suppress-common-lines -W 190 $*
-&gt; 
-&gt; &lt;/blockquote&gt;
+&lt;pre&gt;&lt;code&gt;cvs -Q diff -t -y --suppress-common-lines -W 190 $*
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;&lt;em&gt;Merging code from one branch to another&lt;/em&gt;&lt;/p&gt;
 
-&lt;blockquote&gt;# Creates a command that you can use to &#34;merge&#34; your code from dev head to this current branch.   
+&lt;pre&gt;&lt;code&gt;# Creates a command that you can use to &amp;quot;merge&amp;quot; your code from dev head to this current branch.   
 # Ideally you want to run this command from a folder where you want the code to merge to....   
 merge()   
 {   
@@ -57,9 +52,7 @@ BRANCH=$(cat CVS/Tag | cut -c2-)
 CMD=$(echo cvs update -j $BRANCH -j Version_2_17_dev .)   
 echo $CMD   
 }   
-
-&gt; 
-&gt; &lt;/blockquote&gt;
+&lt;/code&gt;&lt;/pre&gt;
 </description>
     </item>
     

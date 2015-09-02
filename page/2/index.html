@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 
-  <title>Coders Digest &middot; abhishek pandey</title>
+  <title>Coders Digest &middot; Abhishek Pandey</title>
 
   
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
@@ -15,7 +15,8 @@
   <link rel="stylesheet" href="http://abhi1010.github.io/css/hyde.css">
   <link rel="stylesheet" href="http://abhi1010.github.io/css/poole-overrides.css">
   <link rel="stylesheet" href="http://abhi1010.github.io/css/hyde-overrides.css">
-  <link rel="stylesheet" href="http://abhi1010.github.io/css/hyde-x.css">
+  <link rel="stylesheet" href="http://abhi1010.github.io/css/hyde-a.css">
+  <link rel="stylesheet" href="http://abhi1010.github.io/css/custom-additions.css">
   <link rel="stylesheet" href="http://abhi1010.github.io/css/highlight/sunburst.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
@@ -27,7 +28,7 @@
   
   
   
-  <link href="http://abhi1010.github.io/index.xml" rel="alternate" type="application/rss+xml" title="Coders Digest &middot; abhishek pandey" />
+  <link href="http://abhi1010.github.io/index.xml" rel="alternate" type="application/rss+xml" title="Coders Digest &middot; Abhishek Pandey" />
 
   <meta name="description" content="Your default page description">
   <meta name="keywords" content="your,default,page,keywords">
@@ -38,7 +39,7 @@
   <div class="container sidebar-sticky">
     <div class="sidebar-about">
       
-      <h1><a href="http://abhi1010.github.io/">abhishek pandey</a></h1>
+      <h1><a href="http://abhi1010.github.io/">Abhishek Pandey</a></h1>
       <p class="lead">&hellip; lost in reverie</p>
     </div>
 
@@ -50,7 +51,7 @@
       
       <li class="sidebar-nav-item"><a href="http://abhi1010.github.io/categories/">Categories</a></li>
       
-      <li class="sidebar-nav-item"><a href="http://abhi1010.github.io/about/">About Me</a></li>
+      <li class="sidebar-nav-item"><a href="http://abhi1010.github.io/about/">About</a></li>
       
     </ul>
 
@@ -84,9 +85,9 @@
       <span class="post-date">Mar 19, 2014  &middot; <a href="http://abhi1010.github.io/2014/03/heap-sort-vs-merge-sort-vs-insertion-sort-vs-radix-sort-vs-counting-sort-vs-quick-sort/#disqus_thread">Comments</a>
       
       <br/>
-      <a class="label" href="http://abhi1010.github.io/categories/linux">Linux</a>
+      <a class="a_cat" href="http://abhi1010.github.io/categories/code">code</a>
         
-      <a class="a_tag" href="http://abhi1010.github.io/tags/algo">algo</a><a class="a_tag" href="http://abhi1010.github.io/tags/c">c&#43;&#43;</a><a class="a_tag" href="http://abhi1010.github.io/tags/sorting">sorting</a>
+      <a class="a_tag" href="http://abhi1010.github.io/tags/sorting">sorting</a><a class="a_tag" href="http://abhi1010.github.io/tags/algo">algo</a><a class="a_tag" href="http://abhi1010.github.io/tags/c">c&#43;&#43;</a>
     
       </span>
       
@@ -1033,7 +1034,7 @@
       <span class="post-date">Feb 11, 2014  &middot; <a href="http://abhi1010.github.io/2014/02/global-search-in-vim/#disqus_thread">Comments</a>
       
       <br/>
-      <a class="label" href="http://abhi1010.github.io/categories/linux">Linux</a>
+      <a class="a_cat" href="http://abhi1010.github.io/categories/code">code</a>
         
       <a class="a_tag" href="http://abhi1010.github.io/tags/bash">bash</a><a class="a_tag" href="http://abhi1010.github.io/tags/vim">vim</a>
     
@@ -1041,29 +1042,25 @@
       
       <p>You must be knowing about regular VIM search</p>
 
-<blockquote>%s/SEARCH/REPLACE/CMD
-> 
-> </blockquote>
+<pre><code>%s/SEARCH/REPLACE/CMD
+</code></pre>
 
 <p>However, sometimes you do not want to replace something but just see all instances of the a word or phrase. In such cases, global search is really useful when on vim. The syntax is simpler than normal search-replace:</p>
 
-<blockquote>:[range]g[lobal]/{pattern}/[cmd]
-> 
-> </blockquote>
+<pre><code>:[range]g[lobal]/{pattern}/[cmd]
+</code></pre>
 
 <p>This will show all instances of the &ldquo;SEARCH&rdquo; term within the VIM window. There&rsquo;s another version of the same command which is as follows:</p>
 
-<blockquote>:[range]g[lobal]!/{pattern}/[cmd]
-> 
-> </blockquote>
+<pre><code>:[range]g[lobal]!/{pattern}/[cmd]
+</code></pre>
 
 <p>This is similar to the previous command but the only difference is that this command contains &ldquo;!&rdquo; which signifies that the command will be executed on all lines <code>NOT</code> matching the <code>pattern</code>.</p>
 
 <p>One example here would be to delete all lines in a file containing a particular word:</p>
 
-<blockquote>:g/deleteMe/d
-> 
-> </blockquote>
+<pre><code>:g/deleteMe/d
+</code></pre>
 
 <p>There could be lot more actions (regular vim stuff) that you could do like yanking or indenting.</p>
 
@@ -1077,7 +1074,7 @@
       <span class="post-date">Nov 9, 2013  &middot; <a href="http://abhi1010.github.io/2013/11/reading-excel-in-c/#disqus_thread">Comments</a>
       
       <br/>
-      <a class="label" href="http://abhi1010.github.io/categories/.net">.NET</a>
+      <a class="a_cat" href="http://abhi1010.github.io/categories/code">code</a>
         
       <a class="a_tag" href="http://abhi1010.github.io/tags/c">c#</a><a class="a_tag" href="http://abhi1010.github.io/tags/excel">excel</a>
     
@@ -1103,7 +1100,7 @@
 
 <!-- more -->
 
-<p><a href="https://gist.github.com/abhi1010/ee13f57720471c8feea2">https://gist.github.com/abhi1010/ee13f57720471c8feea2</a></p>
+<p><script type="text/javascript" src="http://gist.github.com/ee13f57720471c8feea2.js"></script></p>
 
       
     </div>
@@ -1115,7 +1112,7 @@
       <span class="post-date">Oct 13, 2013  &middot; <a href="http://abhi1010.github.io/2013/10/ideas-for-shared-memory-in-linux/#disqus_thread">Comments</a>
       
       <br/>
-      <a class="label" href="http://abhi1010.github.io/categories/linux">Linux</a>
+      <a class="a_cat" href="http://abhi1010.github.io/categories/code">code</a>
         
       <a class="a_tag" href="http://abhi1010.github.io/tags/c">c#</a>
     
@@ -1123,163 +1120,98 @@
       
       <p>I have been doing extensive research today regarding shared memory in linux before I embark on a new project in which shaving time off process communication latency is extremely important. I found some very interesting links as well. Let’s break them down:</p>
 
-<table style="border:thin solid lightblue;" >
-<tbody >
-<tr >
-
-<td width="133" >**Topic**
-</td>
-
-<td width="354" >**Description**
-</td>
-
-<td width="151" >**Link**
-</td>
+<table>
+<thead>
+<tr>
+<th>Topic</th>
+<th>Description</th>
+<th>Link</th>
 </tr>
-<tr >
+</thead>
 
-<td width="133" >Theory/Explanation
-</td>
-
-<td width="354" >Some articles that explain how to get started
-</td>
-
-<td width="151" >[open-std](http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2006/n2044.html)
-</td>
+<tbody>
+<tr>
+<td>Theory/Explanation</td>
+<td>Some articles that explain how to get started</td>
+<td><a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2006/n2044.html">open-std</a></td>
 </tr>
-<tr >
 
-<td width="133" >
-</td>
-
-<td width="354" >IPC Mechanisms – some recommendations. Mainly talks about softwares like Boost, dBus
-
-dBus used to work using kernel levels but lately have come up with a patch that bypasses kernels
-</td>
-
-<td width="151" >[Stackoverflow](http://stackoverflow.com/questions/1906166/inter-process-communication-recommendation)
-</td>
+<tr>
+<td>Content in the first column</td>
+<td>Content in the second column</td>
+<td>lkd</td>
 </tr>
-<tr >
 
-<td width="133" >
-</td>
-
-<td width="354" >What every programmer should know about memory
-</td>
-
-<td width="151" >[LWN](http://lwn.net/Articles/255364/)
-</td>
+<tr>
+<td></td>
+<td>IPC Mechanisms – some recommendations. Mainly talks about softwares like Boost, dBus dBus used to work using kernel levels but lately have come up with a patch that bypasses kernels</td>
+<td><a href="http://stackoverflow.com/questions/1906166/inter-process-communication-recommendation">Stackoverflow</a></td>
 </tr>
-<tr >
 
-<td width="133" >
-</td>
-
-<td width="354" >Linux IPC
-</td>
-
-<td width="151" >[TLDP](http://www.tldp.org/LDP/tlk/ipc/ipc.html)
-</td>
+<tr>
+<td></td>
+<td>What every programmer should know about memory</td>
+<td><a href="http://lwn.net/Articles/255364/">LWN</a></td>
 </tr>
-<tr >
 
-<td width="133" >
-</td>
-
-<td width="354" >Cache Friendly Code
-</td>
-
-<td width="151" >[Stackoverflow](http://stackoverflow.com/questions/16699247/what-is-cache-friendly-code/16699282#16699282)
-</td>
+<tr>
+<td></td>
+<td>Linux IPC</td>
+<td><a href="http://www.tldp.org/LDP/tlk/ipc/ipc.html">TLDP</a></td>
 </tr>
-<tr >
 
-<td width="133" >Helpful Articles
-</td>
-
-<td width="354" >Which linux IPC technique to use?
-</td>
-
-<td width="151" >[Stackoverflow](http://stackoverflow.com/questions/2281204/which-linux-ipc-technique-to-use)
-</td>
+<tr>
+<td></td>
+<td>Cache Friendly Code</td>
+<td><a href="http://stackoverflow.com/questions/16699247/what-is-cache-friendly-code/16699282#16699282">Stackoverflow</a></td>
 </tr>
-<tr >
 
-<td width="133" >
-</td>
-
-<td width="354" >Inter process communication – talks about shared memory
-</td>
-
-<td width="151" >[ALP](http://www.advancedlinuxprogramming.com/alp-folder/alp-ch05-ipc.pdf)
-</td>
+<tr>
+<td></td>
+<td>Helpful Articles     Which linux IPC technique to use?</td>
+<td><a href="http://stackoverflow.com/questions/2281204/which-linux-ipc-technique-to-use">Stackoverflow</a></td>
 </tr>
-<tr >
 
-<td width="133" >
-</td>
-
-<td width="354" >Linux Poll Events on Shared Memory
-</td>
-
-<td width="151" >[Stackoverflow](http://stackoverflow.com/questions/11470322/cause-a-linux-poll-event-on-a-shared-memory-file)
-</td>
+<tr>
+<td></td>
+<td>Inter process communication – talks about shared memory</td>
+<td><a href="http://www.advancedlinuxprogramming.com/alp-folder/alp-ch05-ipc.pdf">ALP</a></td>
 </tr>
-<tr >
 
-<td width="133" >
-</td>
-
-<td width="354" >Using semaphores in Shared Memory
-</td>
-
-<td width="151" >[Stackoverflow](http://stackoverflow.com/questions/10772860/semaphores-and-shared-memory-in-linux)
-</td>
+<tr>
+<td></td>
+<td>Linux Poll Events on Shared Memory</td>
+<td><a href="http://stackoverflow.com/questions/11470322/cause-a-linux-poll-event-on-a-shared-memory-file">Stackoverflow</a></td>
 </tr>
-<tr >
 
-<td width="133" >
-</td>
-
-<td width="354" >Sharing semaphores between Shared Memory
-</td>
-
-<td width="151" >[Stackoverflow](http://stackoverflow.com/questions/8359322/how-to-share-semaphores-between-processes-using-shared-memory?rq=1)
-</td>
+<tr>
+<td></td>
+<td>Using semaphores in Shared Memory</td>
+<td><a href="http://stackoverflow.com/questions/10772860/semaphores-and-shared-memory-in-linux">Stackoverflow</a></td>
 </tr>
-<tr >
 
-<td width="133" >
-</td>
-
-<td width="354" >Sharing memory between processes
-</td>
-
-<td width="151" >[Stackoverflow](http://stackoverflow.com/questions/11583281/sharing-memory-between-two-processes)
-</td>
+<tr>
+<td></td>
+<td>Sharing semaphores between Shared Memory</td>
+<td><a href="http://stackoverflow.com/questions/8359322/how-to-share-semaphores-between-processes-using-shared-memory?rq=1">Stackoverflow</a></td>
 </tr>
-<tr >
 
-<td width="133" >
-</td>
-
-<td width="354" >Reserving memory at kernel boot up (DMA)
-</td>
-
-<td width="151" >[Stackoverflow](http://stackoverflow.com/questions/647783/direct-memory-access-in-linux?rq=1)
-</td>
+<tr>
+<td></td>
+<td>Sharing memory between processes</td>
+<td><a href="http://stackoverflow.com/questions/11583281/sharing-memory-between-two-processes">Stackoverflow</a></td>
 </tr>
-<tr >
 
-<td width="133" >Extra
-</td>
+<tr>
+<td></td>
+<td>Reserving memory at kernel boot up (DMA)</td>
+<td><a href="http://stackoverflow.com/questions/647783/direct-memory-access-in-linux?rq=1">Stackoverflow</a></td>
+</tr>
 
-<td width="354" >IPC Shared memory samples
-</td>
-
-<td width="151" >[linuxgazette](http://linuxgazette.net/104/ramankutty.html)
-</td>
+<tr>
+<td>Extra</td>
+<td>IPC Shared memory samples</td>
+<td><a href="http://linuxgazette.net/104/ramankutty.html">linuxgazette</a></td>
 </tr>
 </tbody>
 </table>
@@ -1294,7 +1226,7 @@ dBus used to work using kernel levels but lately have come up with a patch that 
       <span class="post-date">Sep 22, 2013  &middot; <a href="http://abhi1010.github.io/2013/09/oracle-sql-queries/#disqus_thread">Comments</a>
       
       <br/>
-      <a class="label" href="http://abhi1010.github.io/categories/sql">SQL</a>
+      <a class="a_cat" href="http://abhi1010.github.io/categories/code">code</a><a class="a_cat" href="http://abhi1010.github.io/categories/database">database</a>
         
       <a class="a_tag" href="http://abhi1010.github.io/tags/sql">sql</a>
     
@@ -1304,42 +1236,35 @@ dBus used to work using kernel levels but lately have come up with a patch that 
 
 <p>I did some digging and came up with these helpful queries.</p>
 
-<p><table cellpadding="2" cellspacing="0" border="1" width="1083" ><tbody >     <tr ><br />
-<td width="591" valign="top" ></p>
+<table>
+<thead>
+<tr>
+<th>Query</th>
+<th>Remarks</th>
+</tr>
+</thead>
 
-<p><strong>Query</strong></p>
+<tbody>
+<tr>
+<td>Select * from All_Tables</td>
+<td>View all the tables in the Oracle Server</td>
+</tr>
 
-<p></td><br />
-<td width="490" valign="top" ></p>
+<tr>
+<td>Select * from all_Views</td>
+<td>View all the views in the Oracle Server</td>
+</tr>
 
-<p><strong>Remarks</strong></p>
-
-<p></td>     </tr>      <tr ><br />
-<td width="591" valign="top" >Select * from All_Tables
-</td><br />
-<td width="490" valign="top" >View all the tables in the Oracle Server
-</td>     </tr>      <tr ><br />
-<td width="591" valign="top" >Select * from all_Views
-</td><br />
-<td width="490" valign="top" >View all the views in the Oracle Server
-</td>     </tr>            <tr ><br />
-<td width="591" valign="top" ></p>
-
-<pre><code>DESC &lt;em&gt;table&lt;/em&gt;
-</code></pre>
-
-<p></td></p>
-
-<p><td width="490" valign="top" >View all the columns of a given table.</p>
-
-<p>This function is used instead of the previous one mostly, but when this one doesn&rsquo;t work make sure you try the other one - I bet it will work.
-</td>
-    </tr>
-  </tbody></table></p>
+<tr>
+<td>DESC table</td>
+<td>View all the columns of a given table. This function is used instead of the previous one mostly, but when this one doesn&rsquo;t work make sure you try the other one - I bet it will work.</td>
+</tr>
+</tbody>
+</table>
 
 <p>Here&rsquo;s a short code for viewing all the columns of a given table.</p>
 
-<p><a href="https://gist.github.com/abhi1010/11365686">https://gist.github.com/abhi1010/11365686</a></p>
+<p><script type="text/javascript" src="http://gist.github.com/11365686.js"></script></p>
 
       
     </div>
@@ -1351,9 +1276,9 @@ dBus used to work using kernel levels but lately have come up with a patch that 
       <span class="post-date">Jul 3, 2013  &middot; <a href="http://abhi1010.github.io/2013/07/cvs-cheat-sheet/#disqus_thread">Comments</a>
       
       <br/>
-      <a class="label" href="http://abhi1010.github.io/categories/linux">Linux</a>
+      <a class="a_cat" href="http://abhi1010.github.io/categories/code">code</a><a class="a_cat" href="http://abhi1010.github.io/categories/tips">tips</a>
         
-      <a class="a_tag" href="http://abhi1010.github.io/tags/bash">bash</a><a class="a_tag" href="http://abhi1010.github.io/tags/cvs">cvs</a><a class="a_tag" href="http://abhi1010.github.io/tags/tips">tips</a>
+      <a class="a_tag" href="http://abhi1010.github.io/tags/bash">bash</a><a class="a_tag" href="http://abhi1010.github.io/tags/cvs">cvs</a>
     
       </span>
       
@@ -1361,37 +1286,32 @@ dBus used to work using kernel levels but lately have come up with a patch that 
 
 <p><em>Silently update and inform about the status of the files (recursive)</em></p>
 
-<blockquote>cvs -q -n update
-> 
-> </blockquote>
+<pre><code>cvs -q -n update
+</code></pre>
 
 <p><em>Same as earlier but will only do so for the current folder</em></p>
 
-<blockquote>cvs -Q -n update -l
-> 
-> </blockquote>
+<pre><code>cvs -Q -n update -l
+</code></pre>
 
 <p><em>Finds out the cv[s] [m]odified list of files while also indentating them nicely with only the important data pulled out</em></p>
 
-<blockquote>cvs -Q status | egrep "File: " -A 4 | egrep -v "Up-to-date" | egrep "File: " -A 3 | sed -e "s/ Status:/\t\tStatus:/" -e "s/,v$/\n-------------------------------------------------------------------------\n/" -e "s/.*${PWD##*/}\//Location:\t\t /" -e "s/Attic\///" | egrep "Location:|Repository|Status:|File:|--------
-> 
-> </blockquote>
+<pre><code>cvs -Q status | egrep &quot;File: &quot; -A 4 | egrep -v &quot;Up-to-date&quot; | egrep &quot;File: &quot; -A 3 | sed -e &quot;s/ Status:/\t\tStatus:/&quot; -e &quot;s/,v$/\n-------------------------------------------------------------------------\n/&quot; -e &quot;s/.*${PWD##*/}\//Location:\t\t /&quot; -e &quot;s/Attic\///&quot; | egrep &quot;Location:|Repository|Status:|File:|--------
+</code></pre>
 
 <p><em>Recursively add all files to CVS for committing from the current directory</em></p>
 
-<blockquote>find . -type d -print | grep -v CVS | xargs cvs add
-> 
-> </blockquote>
+<pre><code>find . -type d -print | grep -v CVS | xargs cvs add
+</code></pre>
 
 <p><em>Doing a side by side diff (change the value of -W according to the width of the screen)</em></p>
 
-<blockquote>cvs -Q diff -t -y --suppress-common-lines -W 190 $*
-> 
-> </blockquote>
+<pre><code>cvs -Q diff -t -y --suppress-common-lines -W 190 $*
+</code></pre>
 
 <p><em>Merging code from one branch to another</em></p>
 
-<blockquote># Creates a command that you can use to "merge" your code from dev head to this current branch.   
+<pre><code># Creates a command that you can use to &quot;merge&quot; your code from dev head to this current branch.   
 # Ideally you want to run this command from a folder where you want the code to merge to....   
 merge()   
 {   
@@ -1399,9 +1319,7 @@ BRANCH=$(cat CVS/Tag | cut -c2-)
 CMD=$(echo cvs update -j $BRANCH -j Version_2_17_dev .)   
 echo $CMD   
 }   
-
-> 
-> </blockquote>
+</code></pre>
 
       
     </div>
@@ -1413,92 +1331,78 @@ echo $CMD
       <span class="post-date">Jun 11, 2013  &middot; <a href="http://abhi1010.github.io/2013/06/cursor-control-in-vim-search/#disqus_thread">Comments</a>
       
       <br/>
-      <a class="label" href="http://abhi1010.github.io/categories/linux">Linux</a>
+      <a class="a_cat" href="http://abhi1010.github.io/categories/code">code</a><a class="a_cat" href="http://abhi1010.github.io/categories/tips">tips</a>
         
-      <a class="a_tag" href="http://abhi1010.github.io/tags/tips">tips</a><a class="a_tag" href="http://abhi1010.github.io/tags/vim">vim</a>
+      <a class="a_tag" href="http://abhi1010.github.io/tags/vim">vim</a>
     
       </span>
       
       <p>Found a great way to search for keywords &amp;&amp; control the location of cursor in vim. It is excellent if you want to do a particular task multiple times. Usually if you search the cursor will straight away take you to the start of search. What if you want to go to the end of the word you are searching for?</p>
 
-<blockquote>  
-> 
-> /pattern/e
-> 
-> </blockquote>
+<pre><code>/pattern/e
+</code></pre>
 
 <p>This takes you to the END of the keyword you are looking for.</p>
 
 <p>That’s not all. What if you want to go the second letter in that keyword? Change the pattern to as follows:</p>
 
-<blockquote>  
-> 
-> /pattern/s+1
-> 
-> </blockquote>
+<pre><code>/pattern/s+1
+</code></pre>
 
 <p>That’s great. But what if I want to go to the end of the keyword?</p>
 
-<blockquote>  
-> 
-> /pattern/e
-> 
-> </blockquote>
+<pre><code>/pattern/e
+</code></pre>
 
 <p>Awesome. Let’s review it through examples. Let’s say our phrase is “the brown fox jumped over the lazy dog” and we originally want to search for “brown”.</p>
 
-<p><table cellpadding="2" cellspacing="0" border="1" width="947" ><tbody >     <tr ><br />
-<td width="185" valign="top" ></p>
+<table>
+<thead>
+<tr>
+<th>Pattern</th>
+<th>CURSOR LOCATED AT BEGINNING OF</th>
+<th>Description</th>
+</tr>
+</thead>
 
-<p><strong>PATTERN</strong></p>
+<tbody>
+<tr>
+<td>/brown</td>
+<td>brown fox….</td>
+<td>search and start at “brown”</td>
+</tr>
 
-<p></td><br />
-<td width="286" valign="top" ></p>
+<tr>
+<td>/brown/s+2</td>
+<td>own fox…</td>
+<td>start at “brown” but move 2 letters from ‘start’</td>
+</tr>
 
-<p><strong>CURSOR LOCATED AT BEGINNING OF</strong></p>
+<tr>
+<td>/brown/s-4</td>
+<td>the brown fox…</td>
+<td>start at “brown” but move 4 letters to the left from ‘start’</td>
+</tr>
 
-<p></td><br />
-<td width="474" valign="top" ></p>
+<tr>
+<td>/brown/e</td>
+<td>n fox….</td>
+<td>search for “brown” but move to the end</td>
+</tr>
 
-<p><strong>DESCRIPTION</strong></p>
+<tr>
+<td>/brown/e+2</td>
+<td>fox…</td>
+<td>search for “brown” but move 2 letters from the ‘end’</td>
+</tr>
 
-<p></td>     </tr>      <tr ><br />
-<td width="185" valign="top" >/brown
-</td><br />
-<td width="286" valign="top" >brown fox….
-</td><br />
-<td width="474" valign="top" >search and start at “brown”
-</td>     </tr>      <tr ><br />
-<td width="185" valign="top" >/brown/s+2
-</td><br />
-<td width="286" valign="top" >own fox…
-</td><br />
-<td width="474" valign="top" >start at “brown” but move 2 letters from ‘start’
-</td>     </tr>      <tr ><br />
-<td width="185" valign="top" >/brown/s-4
-</td><br />
-<td width="286" valign="top" >the brown fox…
-</td><br />
-<td width="474" valign="top" >start at “brown” but move 4 letters to the left from ‘start’
-</td>     </tr>      <tr ><br />
-<td width="185" valign="top" >/brown/e
-</td><br />
-<td width="286" valign="top" >n fox….
-</td><br />
-<td width="474" valign="top" >search for “brown” but move to the end
-</td>     </tr>      <tr ><br />
-<td width="185" valign="top" >/brown/e+2
-</td><br />
-<td width="286" valign="top" >fox…
-</td><br />
-<td width="474" valign="top" >search for “brown” but move 2 letters from the ‘end’
-</td>     </tr>      <tr ><br />
-<td width="185" valign="top" >/brown/e-1
-</td><br />
-<td width="286" valign="top" >wn fox…
-</td><br />
-<td width="474" valign="top" >search for “brown” but move 1 letter to the left from the ‘end’
-</td>     </tr>   </tbody></table></p>
+<tr>
+<td>/brown/e-1</td>
+<td>wn fox…</td>
+<td>search for “brown” but move 1 letter to the left from the ‘end’</td>
+</tr>
+</tbody>
+</table>
 
       
     </div>
@@ -1510,23 +1414,23 @@ echo $CMD
       <span class="post-date">Apr 25, 2013  &middot; <a href="http://abhi1010.github.io/2013/04/change-putty-window-title/#disqus_thread">Comments</a>
       
       <br/>
-      <a class="label" href="http://abhi1010.github.io/categories/linux">Linux</a>
+      <a class="a_cat" href="http://abhi1010.github.io/categories/code">code</a><a class="a_cat" href="http://abhi1010.github.io/categories/tips">tips</a>
         
-      <a class="a_tag" href="http://abhi1010.github.io/tags/bash">bash</a><a class="a_tag" href="http://abhi1010.github.io/tags/putty">putty</a><a class="a_tag" href="http://abhi1010.github.io/tags/tips">tips</a>
+      <a class="a_tag" href="http://abhi1010.github.io/tags/bash">bash</a><a class="a_tag" href="http://abhi1010.github.io/tags/putty">putty</a>
     
       </span>
       
       <p>How to modify the Putty window title to a specific string?</p>
 
-<p>By default, you&rsquo;d like to have the window title to give you the full path to the folder you are working from (working directory). PROMPT_COMMAND will help you with that.</p>
+<p>By default, you&rsquo;d like to have the window title to give you the full path to the folder you are working from (working directory). <code>PROMPT_COMMAND</code>will help you with that.</p>
 
-<p>However, if you have too many windows where you are on the same folder then it may become confusing. To set your own title you&rsquo;d like to use the title() function provided here. It sets the name to whatever you say.</p>
+<p>However, if you have too many windows where you are on the same folder then it may become confusing. To set your own title you&rsquo;d like to use the <code>title()</code> function provided here. It sets the name to whatever you say.</p>
 
-<p>Please note that PS1 is only valid until you move your folders again. That is why the title() function also has to reset PROMPT_COMMAND.</p>
+<p>Please note that <code>PS1</code> is only valid until you move your folders again. That is why the title() function also has to reset <code>PROMPT_COMMAND</code>.</p>
 
 <p>Let&rsquo;s have a look at the script needed. Maybe you wanna put them in your .bashrc file.</p>
 
-<p><a href="https://gist.github.com/abhi1010/8eed9133ed91cbb42854">https://gist.github.com/abhi1010/8eed9133ed91cbb42854</a></p>
+<p><script type="text/javascript" src="http://gist.github.com/8eed9133ed91cbb42854.js"></script></p>
 
       
     </div>
@@ -1538,7 +1442,7 @@ echo $CMD
       <span class="post-date">Oct 23, 2012  &middot; <a href="http://abhi1010.github.io/2012/10/multiple-inheritance/#disqus_thread">Comments</a>
       
       <br/>
-      <a class="label" href="http://abhi1010.github.io/categories/linux">Linux</a>
+      <a class="a_cat" href="http://abhi1010.github.io/categories/code">code</a>
         
       <a class="a_tag" href="http://abhi1010.github.io/tags/c">c&#43;&#43;</a>
     
@@ -1546,7 +1450,9 @@ echo $CMD
       
       <p>What is the output to the following code?</p>
 
-<p>[gist <a href="https://gist.github.com/8fac0155f30551df8bca">https://gist.github.com/8fac0155f30551df8bca</a> /]&lt;!&ndash; more &ndash;&gt;</p>
+<p><script type="text/javascript" src="http://gist.github.com/8fac0155f30551df8bca.js"></script></p>
+
+<!-- more -->
 
 <p><em>Output</em></p>
 
@@ -1581,9 +1487,9 @@ echo $CMD
       <span class="post-date">Oct 17, 2012  &middot; <a href="http://abhi1010.github.io/2012/10/heap-sort/#disqus_thread">Comments</a>
       
       <br/>
-      <a class="label" href="http://abhi1010.github.io/categories/linux">Linux</a>
+      <a class="a_cat" href="http://abhi1010.github.io/categories/code">code</a>
         
-      <a class="a_tag" href="http://abhi1010.github.io/tags/algo">algo</a><a class="a_tag" href="http://abhi1010.github.io/tags/c">c&#43;&#43;</a><a class="a_tag" href="http://abhi1010.github.io/tags/sorting">sorting</a>
+      <a class="a_tag" href="http://abhi1010.github.io/tags/sorting">sorting</a><a class="a_tag" href="http://abhi1010.github.io/tags/algo">algo</a><a class="a_tag" href="http://abhi1010.github.io/tags/c">c&#43;&#43;</a>
     
       </span>
       

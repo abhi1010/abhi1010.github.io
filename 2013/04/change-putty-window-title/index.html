@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 
-  <title>Change Putty Window Title &middot; abhishek pandey</title>
+  <title>Change Putty Window Title &middot; Abhishek Pandey</title>
 
   
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
@@ -15,7 +15,8 @@
   <link rel="stylesheet" href="http://abhi1010.github.io/css/hyde.css">
   <link rel="stylesheet" href="http://abhi1010.github.io/css/poole-overrides.css">
   <link rel="stylesheet" href="http://abhi1010.github.io/css/hyde-overrides.css">
-  <link rel="stylesheet" href="http://abhi1010.github.io/css/hyde-x.css">
+  <link rel="stylesheet" href="http://abhi1010.github.io/css/hyde-a.css">
+  <link rel="stylesheet" href="http://abhi1010.github.io/css/custom-additions.css">
   <link rel="stylesheet" href="http://abhi1010.github.io/css/highlight/sunburst.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
@@ -38,7 +39,7 @@
   <div class="container sidebar-sticky">
     <div class="sidebar-about">
       
-      <h1><a href="http://abhi1010.github.io/">abhishek pandey</a></h1>
+      <h1><a href="http://abhi1010.github.io/">Abhishek Pandey</a></h1>
       <p class="lead">&hellip; lost in reverie</p>
     </div>
 
@@ -50,7 +51,7 @@
       
       <li class="sidebar-nav-item"><a href="http://abhi1010.github.io/categories/">Categories</a></li>
       
-      <li class="sidebar-nav-item"><a href="http://abhi1010.github.io/about/">About Me</a></li>
+      <li class="sidebar-nav-item"><a href="http://abhi1010.github.io/about/">About</a></li>
       
     </ul>
 
@@ -79,19 +80,25 @@
     <span class="post-date">Apr 25, 2013  &middot; <a href="http://abhi1010.github.io/2013/04/change-putty-window-title/#disqus_thread">Comments</a>
     
     <br/>
-    <a class="label" href="http://abhi1010.github.io/categories/linux">Linux</a>
+    
+          <a class="a_cat" href="http://abhi1010.github.io/categories/code">code</a><a class="a_cat" href="http://abhi1010.github.io/categories/tips">tips</a>
+      
+      
+        <a class="a_tag" href="http://abhi1010.github.io/tags/bash">bash</a><a class="a_tag" href="http://abhi1010.github.io/tags/putty">putty</a>
+      
+
     </span>
     <p>How to modify the Putty window title to a specific string?</p>
 
-<p>By default, you&rsquo;d like to have the window title to give you the full path to the folder you are working from (working directory). PROMPT_COMMAND will help you with that.</p>
+<p>By default, you&rsquo;d like to have the window title to give you the full path to the folder you are working from (working directory). <code>PROMPT_COMMAND</code>will help you with that.</p>
 
-<p>However, if you have too many windows where you are on the same folder then it may become confusing. To set your own title you&rsquo;d like to use the title() function provided here. It sets the name to whatever you say.</p>
+<p>However, if you have too many windows where you are on the same folder then it may become confusing. To set your own title you&rsquo;d like to use the <code>title()</code> function provided here. It sets the name to whatever you say.</p>
 
-<p>Please note that PS1 is only valid until you move your folders again. That is why the title() function also has to reset PROMPT_COMMAND.</p>
+<p>Please note that <code>PS1</code> is only valid until you move your folders again. That is why the title() function also has to reset <code>PROMPT_COMMAND</code>.</p>
 
 <p>Let&rsquo;s have a look at the script needed. Maybe you wanna put them in your .bashrc file.</p>
 
-<p><a href="https://gist.github.com/abhi1010/8eed9133ed91cbb42854">https://gist.github.com/abhi1010/8eed9133ed91cbb42854</a></p>
+<p><script type="text/javascript" src="http://gist.github.com/8eed9133ed91cbb42854.js"></script></p>
 
   </div>
   <div id="disqus_thread"></div>

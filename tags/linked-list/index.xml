@@ -33,7 +33,7 @@
 
 &lt;!-- more --&gt;
 
-&lt;p&gt;&lt;a href=&#34;https://gist.github.com/abhi1010/3ada1d15b5bda319a54c&#34;&gt;https://gist.github.com/abhi1010/3ada1d15b5bda319a54c&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;script type=&#34;text/javascript&#34; src=&#34;http://gist.github.com/3ada1d15b5bda319a54c.js&#34;&gt;&lt;/script&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;code:8a20b19b0e16e5ac875728276c435d4c&#34;&gt;Code&lt;/h3&gt;
 
@@ -64,28 +64,7 @@
 
 &lt;p&gt;Let&amp;rsquo;s have a look at the code:&lt;/p&gt;
 
-&lt;p&gt;&lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;    
-Node* &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;findKthToLastElement&lt;/span&gt; (Node* node, &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;unsigned&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;short&lt;/span&gt; k)
-{
-    Node* secondRunner = node;
-    &lt;span style=&#34;color: #008800; font-weight: bold&#34;&gt;for&lt;/span&gt;(&lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;unsigned&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;short&lt;/span&gt; i = &lt;span style=&#34;color: #0000DD; font-weight: bold&#34;&gt;0&lt;/span&gt;; i &amp;lt; k; ++i)
-    {
-        &lt;span style=&#34;color: #008800; font-weight: bold&#34;&gt;if&lt;/span&gt; (secondRunner-&amp;gt;next != &lt;span style=&#34;color: #003388&#34;&gt;NULL&lt;/span&gt;)
-            secondRunner = secondRunner-&amp;gt;next;
-        &lt;span style=&#34;color: #008800; font-weight: bold&#34;&gt;else&lt;/span&gt;
-            &lt;span style=&#34;color: #008800; font-weight: bold&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color: #003388&#34;&gt;NULL&lt;/span&gt;;
-    }
-    &lt;span style=&#34;color: #008800; font-weight: bold&#34;&gt;while&lt;/span&gt; (secondRunner)
-    {
-        secondRunner = secondRunner-&amp;gt;next;
-        node = node-&amp;gt;next;
-    }
-    &lt;span style=&#34;color: #008800; font-weight: bold&#34;&gt;return&lt;/span&gt; node;
-}
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;https://gist.github.com/abhi1010/43e289a9877fb9293680&#34;&gt;https://gist.github.com/abhi1010/43e289a9877fb9293680&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;script type=&#34;text/javascript&#34; src=&#34;http://gist.github.com/43e289a9877fb9293680.js&#34;&gt;&lt;/script&gt;&lt;/p&gt;
 
 &lt;p&gt;As usual the code is available &lt;a href=&#34;https://github.com/abhi1010/Algorithms/blob/master/Algo_codes/Node.cpp&#34;&gt;here&lt;/a&gt;:&lt;/p&gt;
 
@@ -121,7 +100,7 @@ Node* &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;findKthToLas
 
 &lt;p&gt;Here&amp;rsquo;s a small sample as to how to do it:&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&#34;https://gist.github.com/abhi1010/e2b7117c20d0f591896f&#34;&gt;https://gist.github.com/abhi1010/e2b7117c20d0f591896f&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;script type=&#34;text/javascript&#34; src=&#34;http://gist.github.com/e2b7117c20d0f591896f.js&#34;&gt;&lt;/script&gt;&lt;/p&gt;
 </description>
     </item>
     
@@ -146,11 +125,11 @@ Node* &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;findKthToLas
 &lt;p&gt;Before we talk about the code, let&amp;rsquo;s see how Linked List is setup.
 &amp;lt;!&amp;ndash; more &amp;ndash;&amp;gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&#34;https://gist.github.com/abhi1010/33be440bf1012773b7e1&#34;&gt;https://gist.github.com/abhi1010/33be440bf1012773b7e1&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;script type=&#34;text/javascript&#34; src=&#34;http://gist.github.com/33be440bf1012773b7e1.js&#34;&gt;&lt;/script&gt;&lt;/p&gt;
 
 &lt;p&gt;Now, below is the code for it&amp;hellip;.&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&#34;https://gist.github.com/abhi1010/bf9dbb193b4ff84ba3af&#34;&gt;https://gist.github.com/abhi1010/bf9dbb193b4ff84ba3af&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;script type=&#34;text/javascript&#34; src=&#34;http://gist.github.com/bf9dbb193b4ff84ba3af.js&#34;&gt;&lt;/script&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;code:ca5ee7b35fae15e9d7ea6b34351195c6&#34;&gt;Code&lt;/h3&gt;
 

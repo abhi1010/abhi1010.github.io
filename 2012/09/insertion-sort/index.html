@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 
-  <title>Insertion Sort &middot; abhishek pandey</title>
+  <title>Insertion Sort &middot; Abhishek Pandey</title>
 
   
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
@@ -15,7 +15,8 @@
   <link rel="stylesheet" href="http://abhi1010.github.io/css/hyde.css">
   <link rel="stylesheet" href="http://abhi1010.github.io/css/poole-overrides.css">
   <link rel="stylesheet" href="http://abhi1010.github.io/css/hyde-overrides.css">
-  <link rel="stylesheet" href="http://abhi1010.github.io/css/hyde-x.css">
+  <link rel="stylesheet" href="http://abhi1010.github.io/css/hyde-a.css">
+  <link rel="stylesheet" href="http://abhi1010.github.io/css/custom-additions.css">
   <link rel="stylesheet" href="http://abhi1010.github.io/css/highlight/sunburst.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
@@ -38,7 +39,7 @@
   <div class="container sidebar-sticky">
     <div class="sidebar-about">
       
-      <h1><a href="http://abhi1010.github.io/">abhishek pandey</a></h1>
+      <h1><a href="http://abhi1010.github.io/">Abhishek Pandey</a></h1>
       <p class="lead">&hellip; lost in reverie</p>
     </div>
 
@@ -50,7 +51,7 @@
       
       <li class="sidebar-nav-item"><a href="http://abhi1010.github.io/categories/">Categories</a></li>
       
-      <li class="sidebar-nav-item"><a href="http://abhi1010.github.io/about/">About Me</a></li>
+      <li class="sidebar-nav-item"><a href="http://abhi1010.github.io/about/">About</a></li>
       
     </ul>
 
@@ -79,48 +80,36 @@
     <span class="post-date">Sep 17, 2012  &middot; <a href="http://abhi1010.github.io/2012/09/insertion-sort/#disqus_thread">Comments</a>
     
     <br/>
-    <a class="label" href="http://abhi1010.github.io/categories/linux">Linux</a>
+    
+          <a class="a_cat" href="http://abhi1010.github.io/categories/code">code</a>
+      
+      
+        <a class="a_tag" href="http://abhi1010.github.io/tags/sorting">sorting</a><a class="a_tag" href="http://abhi1010.github.io/tags/algo">algo</a><a class="a_tag" href="http://abhi1010.github.io/tags/c">c&#43;&#43;</a>
+      
+
     </span>
     
 
 <p>Insertion Sort has the following properties:</p>
 
 <ul>
-<li><p>It works by moving elements one at a time</p></li>
-
-<li><p>Works really well for small data sets</p></li>
-
-<li><p>Consider going with this when the input data may already be sorted or partially sorted</p></li>
-
-<li><ul>
+<li>It works by moving elements one at a time</li>
+<li>Works really well for small data sets</li>
+<li>Consider going with this when the input data may already be sorted or partially sorted</li>
 <li>The may not have to move the elements around, thereby saving precious cycles</li>
-</ul></li>
-
-<li><p>Stable sort</p></li>
-
-<li><ul>
+<li>Stable sort</li>
 <li>Keeps the original order of elements with equal values</li>
-</ul></li>
 </ul>
-
-<!-- more -->
 
 <h2 id="testing-notes:a9ce6fa80f206d39e558f67e9cc61fdd">Testing Notes</h2>
 
 <ul>
-<li><p>Had a very interesting time testing my code. I knew that swapping takes time. std::swap takes particularly longer. I disabled that from the beginning itself</p></li>
-
-<li><p>Even more interesting was how I thought of fixing my code which was running slowly</p></li>
-
-<li><p>Initially even running an array of size 1K was taking about 4s so I just made a minor change to remove &ldquo;&ndash; insertIndex ;&rdquo; altogether and do the calculation in the previous line itself. That did the trick. Otherwise the code was taking hours and hours for 1M array size so I had to stop running it.</p></li>
-
-<li><p>I even tried improving the code a bit futher by ensuring that I do not call insertIndex-1 many a times but that didn&rsquo;t really help - in fact made it worse again</p></li>
-
-<li><p>Sorted runs will run much faster because there&rsquo;s no work to be done in those cases</p></li>
-
-<li><ul>
+<li>Had a very interesting time testing my code. I knew that swapping takes time. std::swap takes particularly longer. I disabled that from the beginning itself<br /></li>
+<li>Even more interesting was how I thought of fixing my code which was running slowly</li>
+<li>Initially even running an array of size 1K was taking about 4s so I just made a minor change to remove &ldquo;&ndash; insertIndex ;&rdquo; altogether and do the calculation in the previous line itself. That did the trick. Otherwise the code was taking hours and hours for 1M array size so I had to stop running it.</li>
+<li>I even tried improving the code a bit futher by ensuring that I do not call insertIndex-1 many a times but that didn&rsquo;t really help - in fact made it worse again</li>
+<li>Sorted runs will run much faster because there&rsquo;s no work to be done in those cases</li>
 <li>Would be a nice algo to use if your data is mostly sorted</li>
-</ul></li>
 </ul>
 
 <h2 id="code:a9ce6fa80f206d39e558f67e9cc61fdd">Code</h2>

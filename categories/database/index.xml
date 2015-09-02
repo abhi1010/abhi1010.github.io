@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Database on Coders Digest</title>
+    <link>http://abhi1010.github.io/categories/database/</link>
+    <description>Recent content in Database on Coders Digest</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 22 Sep 2013 08:48:00 +0000</lastBuildDate>
+    <atom:link href="http://abhi1010.github.io/categories/database/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Oracle SQL Queries</title>
+      <link>http://abhi1010.github.io/2013/09/oracle-sql-queries/</link>
+      <pubDate>Sun, 22 Sep 2013 08:48:00 +0000</pubDate>
+      
+      <guid>http://abhi1010.github.io/2013/09/oracle-sql-queries/</guid>
+      <description>&lt;p&gt;Recently I found myself in a situation where I had to view all the tables in the Oracle Server.&lt;/p&gt;
+
+&lt;p&gt;I did some digging and came up with these helpful queries.&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Query&lt;/th&gt;
+&lt;th&gt;Remarks&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Select * from All_Tables&lt;/td&gt;
+&lt;td&gt;View all the tables in the Oracle Server&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;Select * from all_Views&lt;/td&gt;
+&lt;td&gt;View all the views in the Oracle Server&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;DESC table&lt;/td&gt;
+&lt;td&gt;View all the columns of a given table. This function is used instead of the previous one mostly, but when this one doesn&amp;rsquo;t work make sure you try the other one - I bet it will work.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;Here&amp;rsquo;s a short code for viewing all the columns of a given table.&lt;/p&gt;
+
+&lt;p&gt;&lt;script type=&#34;text/javascript&#34; src=&#34;http://gist.github.com/11365686.js&#34;&gt;&lt;/script&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Talk to my... Flash?</title>
+      <link>http://abhi1010.github.io/2008/03/talk-to-my...-flash/</link>
+      <pubDate>Mon, 03 Mar 2008 04:58:00 +0000</pubDate>
+      
+      <guid>http://abhi1010.github.io/2008/03/talk-to-my...-flash/</guid>
+      <description>&lt;p&gt;According to normal acceptable behaviour it is not possible to let flash talk to the computer, be it on desktop or web browser.&lt;/p&gt;
+
+&lt;p&gt;There are always ways around a problem and there&amp;rsquo;s one in this case as well.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Windows Forms&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;If you wanted to access .net functions on windows form then probably a good way to do that would be through &lt;code&gt;ShockWaveFlashObjects&lt;/code&gt; library. It wraps all the functions that are available in ShockWave Objects and makes them available to you in .Net type safe way.&lt;/p&gt;
+
+&lt;p&gt;The easiest of ways to send data back and forth would be through
+&lt;code&gt;fscommand&lt;/code&gt; function. The concept is to embed a flash file in windows form and then make use of &lt;code&gt;fscommand&lt;/code&gt; function.&lt;/p&gt;
+
+&lt;p&gt;Tip: Remember to remove the blue window bondary at the top so the flash appears as if its a standalone object and not embedded inside another form!&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Websites&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;If you wanted to talk over a web page then an easy way out would be to use AMF.Net software. It is a freeware and very easy to use as well. In the words of its official &lt;a href=&#34;http://amfnet.openmymind.net/overview/default.aspx&#34;&gt;website&lt;/a&gt;:&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;&amp;ldquo;AMF enables developers to build powerful flash-based applications driven by databases and rich business layers.
+AMF.NET is a .NET gateway sitting between a Flash movie and .NET code. The goal of AMF.NET is to promote proper N-Tier development by allowing your existing business layer (written in .NET) to be consumed by Flash without requiring any modification.&amp;rdquo;&lt;/em&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Membership and Profiler in ASP.NET</title>
+      <link>http://abhi1010.github.io/2008/02/membership-and-profiler-in-asp.net/</link>
+      <pubDate>Wed, 06 Feb 2008 19:34:00 +0000</pubDate>
+      
+      <guid>http://abhi1010.github.io/2008/02/membership-and-profiler-in-asp.net/</guid>
+      <description>&lt;p&gt;Whenever you are using Sql Membership and Profiler classes - Trying to generate reports make sure your query&amp;rsquo;s WHERE clause is using &amp;ldquo;indexed&amp;rdquo; column names at least.&lt;/p&gt;
+
+&lt;p&gt;Let&amp;rsquo;s look at some of the more used tables. The index of some of the tables is given below:&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Table: aspnet_membership&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Clustered Index = &lt;code&gt;ApplicationID&lt;/code&gt;, &lt;code&gt;LoweredEmail&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;NonClustered = UserID&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Table: aspnet_users&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Clustered Index = &lt;code&gt;ApplicationID&lt;/code&gt;, &lt;code&gt;LoweredUserName&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;NonClustered Index = &lt;code&gt;ApplicationID&lt;/code&gt;, &lt;code&gt;LastActivityDate&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Primary Key = &lt;code&gt;UserID&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Table: aspnet_Profile&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Clustered Index = &lt;code&gt;UserID&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+Bottomline - try to use ApplicationID in your queries otherwise your queries, for sure, will not run over the index at all and make it slow. This comes in effect if you are expecting high volume.
+&lt;/blockquote&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

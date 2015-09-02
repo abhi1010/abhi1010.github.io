@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 
-  <title>Coders Digest &middot; abhishek pandey</title>
+  <title>Coders Digest &middot; Abhishek Pandey</title>
 
   
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
@@ -15,7 +15,8 @@
   <link rel="stylesheet" href="http://abhi1010.github.io/css/hyde.css">
   <link rel="stylesheet" href="http://abhi1010.github.io/css/poole-overrides.css">
   <link rel="stylesheet" href="http://abhi1010.github.io/css/hyde-overrides.css">
-  <link rel="stylesheet" href="http://abhi1010.github.io/css/hyde-x.css">
+  <link rel="stylesheet" href="http://abhi1010.github.io/css/hyde-a.css">
+  <link rel="stylesheet" href="http://abhi1010.github.io/css/custom-additions.css">
   <link rel="stylesheet" href="http://abhi1010.github.io/css/highlight/sunburst.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
@@ -27,7 +28,7 @@
   
   
   
-  <link href="http://abhi1010.github.io/index.xml" rel="alternate" type="application/rss+xml" title="Coders Digest &middot; abhishek pandey" />
+  <link href="http://abhi1010.github.io/index.xml" rel="alternate" type="application/rss+xml" title="Coders Digest &middot; Abhishek Pandey" />
 
   <meta name="description" content="Your default page description">
   <meta name="keywords" content="your,default,page,keywords">
@@ -38,7 +39,7 @@
   <div class="container sidebar-sticky">
     <div class="sidebar-about">
       
-      <h1><a href="http://abhi1010.github.io/">abhishek pandey</a></h1>
+      <h1><a href="http://abhi1010.github.io/">Abhishek Pandey</a></h1>
       <p class="lead">&hellip; lost in reverie</p>
     </div>
 
@@ -50,7 +51,7 @@
       
       <li class="sidebar-nav-item"><a href="http://abhi1010.github.io/categories/">Categories</a></li>
       
-      <li class="sidebar-nav-item"><a href="http://abhi1010.github.io/about/">About Me</a></li>
+      <li class="sidebar-nav-item"><a href="http://abhi1010.github.io/about/">About</a></li>
       
     </ul>
 
@@ -84,17 +85,13 @@
       <span class="post-date">Aug 7, 2015  &middot; <a href="http://abhi1010.github.io/2015/08/docker-container-cleanup-on-elastic-beanstalk/#disqus_thread">Comments</a>
       
       <br/>
-      <a class="label" href="http://abhi1010.github.io/categories/linux">Linux</a>
+      <a class="a_cat" href="http://abhi1010.github.io/categories/linux">Linux</a>
         
       <a class="a_tag" href="http://abhi1010.github.io/tags/aws">aws</a><a class="a_tag" href="http://abhi1010.github.io/tags/beanstalk">beanstalk</a><a class="a_tag" href="http://abhi1010.github.io/tags/docker">docker</a>
     
       </span>
       
-      <p>{% comment %}
-    These commments will not include inside the source.
-{% endcomment %}</p>
-
-<p>Sometimes you may notice that old containers are not cleaned up from Beanstalk environment. This may be due to your container still running as a ghost on the background. One way to find out about this is to quickly look into your
+      <p>Sometimes you may notice that old containers are not cleaned up from Beanstalk environment. This may be due to your container still running as a ghost on the background. One way to find out about this is to quickly look into your
 <code>/var/lib/docker/vfs/dir</code> directory whether it has too many folders.</p>
 
 <p>Next, find out what container processes you have going on.
@@ -110,13 +107,17 @@
 </p>
 
 <p>Ideally, we want to &ldquo;forcibly remove&rdquo; all images (and hence the folders from <code>/var/lib/docker/vfs/dir</code> directory) that are not in use anymore.
-Just run the following to test whether it works:
-<code>docker rmi -f</code>docker images -aq``</p>
+Just run the following to test whether it works:</p>
+
+<p><div class="highlight" style="background: #ffffff"><pre style="line-height: 125%">    docker rmi -f <span style="color: #dd2200; background-color: #fff0f0">`</span>docker images -aq<span style="color: #dd2200; background-color: #fff0f0">`</span>
+</pre></div>
+</p>
 
 <p>You might run into trouble where docker says that all those images already have a container that is running them. This means those container are orphaned but not killed as we thought them to be. Let&rsquo;s remove the shared volumes if any, for each one of them.</p>
 
-<pre><code>docker rm -fv `docker ps -aq` 
-</code></pre>
+<p><div class="highlight" style="background: #ffffff"><pre style="line-height: 125%">    docker rm -fv <span style="color: #dd2200; background-color: #fff0f0">`</span>docker ps -aq<span style="color: #dd2200; background-color: #fff0f0">`</span> 
+</pre></div>
+</p>
 
 <p>This will</p>
 
@@ -144,9 +145,9 @@ Just run the following to test whether it works:
       <span class="post-date">Jun 9, 2014  &middot; <a href="http://abhi1010.github.io/2014/06/partition-linked-list-around-a-value-x/#disqus_thread">Comments</a>
       
       <br/>
-      <a class="label" href="http://abhi1010.github.io/categories/linux">Linux</a>
+      <a class="a_cat" href="http://abhi1010.github.io/categories/code">code</a>
         
-      <a class="a_tag" href="http://abhi1010.github.io/tags/algo">algo</a><a class="a_tag" href="http://abhi1010.github.io/tags/c">c&#43;&#43;</a><a class="a_tag" href="http://abhi1010.github.io/tags/linked-list">linked list</a>
+      <a class="a_tag" href="http://abhi1010.github.io/tags/c">c&#43;&#43;</a><a class="a_tag" href="http://abhi1010.github.io/tags/algo">algo</a><a class="a_tag" href="http://abhi1010.github.io/tags/linked-list">linked list</a>
     
       </span>
       
@@ -168,7 +169,7 @@ Just run the following to test whether it works:
 
 <!-- more -->
 
-<p><a href="https://gist.github.com/abhi1010/3ada1d15b5bda319a54c">https://gist.github.com/abhi1010/3ada1d15b5bda319a54c</a></p>
+<p><script type="text/javascript" src="http://gist.github.com/3ada1d15b5bda319a54c.js"></script></p>
 
 <h3 id="code:8a20b19b0e16e5ac875728276c435d4c">Code</h3>
 
@@ -186,9 +187,9 @@ Just run the following to test whether it works:
       <span class="post-date">Jun 8, 2014  &middot; <a href="http://abhi1010.github.io/2014/06/find-the-kth-to-last-element-of-a-singly-linked-list/#disqus_thread">Comments</a>
       
       <br/>
-      <a class="label" href="http://abhi1010.github.io/categories/linux">Linux</a>
+      <a class="a_cat" href="http://abhi1010.github.io/categories/code">code</a>
         
-      <a class="a_tag" href="http://abhi1010.github.io/tags/algo">algo</a><a class="a_tag" href="http://abhi1010.github.io/tags/c">c&#43;&#43;</a><a class="a_tag" href="http://abhi1010.github.io/tags/linked-list">linked list</a>
+      <a class="a_tag" href="http://abhi1010.github.io/tags/c">c&#43;&#43;</a><a class="a_tag" href="http://abhi1010.github.io/tags/algo">algo</a><a class="a_tag" href="http://abhi1010.github.io/tags/linked-list">linked list</a>
     
       </span>
       
@@ -207,28 +208,7 @@ Just run the following to test whether it works:
 
 <p>Let&rsquo;s have a look at the code:</p>
 
-<p><div class="highlight" style="background: #ffffff"><pre style="line-height: 125%">    
-Node* <span style="color: #0066bb; font-weight: bold">findKthToLastElement</span> (Node* node, <span style="color: #888888; font-weight: bold">unsigned</span> <span style="color: #888888; font-weight: bold">short</span> k)
-{
-    Node* secondRunner = node;
-    <span style="color: #008800; font-weight: bold">for</span>(<span style="color: #888888; font-weight: bold">unsigned</span> <span style="color: #888888; font-weight: bold">short</span> i = <span style="color: #0000DD; font-weight: bold">0</span>; i &lt; k; ++i)
-    {
-        <span style="color: #008800; font-weight: bold">if</span> (secondRunner-&gt;next != <span style="color: #003388">NULL</span>)
-            secondRunner = secondRunner-&gt;next;
-        <span style="color: #008800; font-weight: bold">else</span>
-            <span style="color: #008800; font-weight: bold">return</span> <span style="color: #003388">NULL</span>;
-    }
-    <span style="color: #008800; font-weight: bold">while</span> (secondRunner)
-    {
-        secondRunner = secondRunner-&gt;next;
-        node = node-&gt;next;
-    }
-    <span style="color: #008800; font-weight: bold">return</span> node;
-}
-</pre></div>
-</p>
-
-<p><a href="https://gist.github.com/abhi1010/43e289a9877fb9293680">https://gist.github.com/abhi1010/43e289a9877fb9293680</a></p>
+<p><script type="text/javascript" src="http://gist.github.com/43e289a9877fb9293680.js"></script></p>
 
 <p>As usual the code is available <a href="https://github.com/abhi1010/Algorithms/blob/master/Algo_codes/Node.cpp">here</a>:</p>
 
@@ -244,9 +224,9 @@ Node* <span style="color: #0066bb; font-weight: bold">findKthToLastElement</span
       <span class="post-date">Jun 7, 2014  &middot; <a href="http://abhi1010.github.io/2014/06/removing-duplicates-from-linked-list/#disqus_thread">Comments</a>
       
       <br/>
-      <a class="label" href="http://abhi1010.github.io/categories/linux">Linux</a>
+      <a class="a_cat" href="http://abhi1010.github.io/categories/code">code</a>
         
-      <a class="a_tag" href="http://abhi1010.github.io/tags/algo">algo</a><a class="a_tag" href="http://abhi1010.github.io/tags/c">c&#43;&#43;</a><a class="a_tag" href="http://abhi1010.github.io/tags/linked-list">linked list</a>
+      <a class="a_tag" href="http://abhi1010.github.io/tags/c">c&#43;&#43;</a><a class="a_tag" href="http://abhi1010.github.io/tags/algo">algo</a><a class="a_tag" href="http://abhi1010.github.io/tags/linked-list">linked list</a>
     
       </span>
       
@@ -272,7 +252,7 @@ Node* <span style="color: #0066bb; font-weight: bold">findKthToLastElement</span
 
 <p>Here&rsquo;s a small sample as to how to do it:</p>
 
-<p><a href="https://gist.github.com/abhi1010/e2b7117c20d0f591896f">https://gist.github.com/abhi1010/e2b7117c20d0f591896f</a></p>
+<p><script type="text/javascript" src="http://gist.github.com/e2b7117c20d0f591896f.js"></script></p>
 
       
     </div>
@@ -284,9 +264,9 @@ Node* <span style="color: #0066bb; font-weight: bold">findKthToLastElement</span
       <span class="post-date">Jun 7, 2014  &middot; <a href="http://abhi1010.github.io/2014/06/deleting-a-node-from-singly-linked-list/#disqus_thread">Comments</a>
       
       <br/>
-      <a class="label" href="http://abhi1010.github.io/categories/linux">Linux</a>
+      <a class="a_cat" href="http://abhi1010.github.io/categories/code">code</a>
         
-      <a class="a_tag" href="http://abhi1010.github.io/tags/algo">algo</a><a class="a_tag" href="http://abhi1010.github.io/tags/c">c&#43;&#43;</a><a class="a_tag" href="http://abhi1010.github.io/tags/linked-list">linked list</a>
+      <a class="a_tag" href="http://abhi1010.github.io/tags/linked-list">linked list</a><a class="a_tag" href="http://abhi1010.github.io/tags/c">c&#43;&#43;</a><a class="a_tag" href="http://abhi1010.github.io/tags/algo">algo</a>
     
       </span>
       
@@ -305,11 +285,11 @@ Node* <span style="color: #0066bb; font-weight: bold">findKthToLastElement</span
 <p>Before we talk about the code, let&rsquo;s see how Linked List is setup.
 &lt;!&ndash; more &ndash;&gt;</p>
 
-<p><a href="https://gist.github.com/abhi1010/33be440bf1012773b7e1">https://gist.github.com/abhi1010/33be440bf1012773b7e1</a></p>
+<p><script type="text/javascript" src="http://gist.github.com/33be440bf1012773b7e1.js"></script></p>
 
 <p>Now, below is the code for it&hellip;.</p>
 
-<p><a href="https://gist.github.com/abhi1010/bf9dbb193b4ff84ba3af">https://gist.github.com/abhi1010/bf9dbb193b4ff84ba3af</a></p>
+<p><script type="text/javascript" src="http://gist.github.com/bf9dbb193b4ff84ba3af.js"></script></p>
 
 <h3 id="code:ca5ee7b35fae15e9d7ea6b34351195c6">Code</h3>
 
@@ -327,7 +307,7 @@ Node* <span style="color: #0066bb; font-weight: bold">findKthToLastElement</span
       <span class="post-date">May 26, 2014  &middot; <a href="http://abhi1010.github.io/2014/05/usage-of-typename/#disqus_thread">Comments</a>
       
       <br/>
-      <a class="label" href="http://abhi1010.github.io/categories/linux">Linux</a>
+      <a class="a_cat" href="http://abhi1010.github.io/categories/code">code</a>
         
       <a class="a_tag" href="http://abhi1010.github.io/tags/c">c&#43;&#43;</a>
     
@@ -335,19 +315,18 @@ Node* <span style="color: #0066bb; font-weight: bold">findKthToLastElement</span
       
       <p>What is wrong with the following code?</p>
 
-<p><a href="https://gist.github.com/anonymous/f1f2246d04a935794e44">https://gist.github.com/anonymous/f1f2246d04a935794e44</a></p>
+<p><script type="text/javascript" src="http://gist.github.com/0bd5e4d910e4d8a7672e.js"></script></p>
 
 <p>The issue is very simple but hard to notice. If you try to compile this, you will get the following errors:</p>
 
-<blockquote>main.cpp:24:5: error: need 'typename' before 'OuterStruct<T2>::InnerStruct' because 'OuterStruct<T2>' is a dependent scope
-OuterStruct<T2>::InnerStruct mUsingInner;
+<pre><code>main.cpp:24:5: error: need 'typename' before 'OuterStruct&lt;T2&gt;::InnerStruct' because 'OuterStruct&lt;T2&gt;' is a dependent scope
+OuterStruct&lt;T2&gt;::InnerStruct mUsingInner;
 ^
 main.cpp: In function 'int main(int, char**)':
-main.cpp:34:13: error: 'struct InnerStruct_Wrapper<int>' has no member named 'mUsingInner'
+main.cpp:34:13: error: 'struct InnerStruct_Wrapper&lt;int&gt;' has no member named 'mUsingInner'
 wrapper.mUsingInner = innerStrct;
-^</blockquote>
-
-<!-- more -->
+^
+</code></pre>
 
 <p><strong>The Issue</strong></p>
 
@@ -376,14 +355,14 @@ wrapper.mUsingInner = innerStrct;
     
     <div class="post">
       <h1 class="post-title">
-        <a href="http://abhi1010.github.io/2014/05/setting-up-your-vim...-your-style/">Setting up your VIM... Your Style</a>
+        <a href="http://abhi1010.github.io/2014/05/setting-up-your-vim...-your-style/">Setting up your VIM... Your style</a>
       </h1>
       <span class="post-date">May 19, 2014  &middot; <a href="http://abhi1010.github.io/2014/05/setting-up-your-vim...-your-style/#disqus_thread">Comments</a>
       
       <br/>
-      <a class="label" href="http://abhi1010.github.io/categories/linux">Linux</a>
+      <a class="a_cat" href="http://abhi1010.github.io/categories/code">code</a>
         
-      <a class="a_tag" href="http://abhi1010.github.io/tags/bash">bash</a><a class="a_tag" href="http://abhi1010.github.io/tags/tips">tips</a><a class="a_tag" href="http://abhi1010.github.io/tags/vim">vim</a>
+      <a class="a_tag" href="http://abhi1010.github.io/tags/bash">bash</a><a class="a_tag" href="http://abhi1010.github.io/tags/vim">vim</a><a class="a_tag" href="http://abhi1010.github.io/tags/tips">tips</a>
     
       </span>
       
@@ -391,20 +370,20 @@ wrapper.mUsingInner = innerStrct;
 
 <ul>
 <li>First of all, it is always a good idea to set up your tabs and spaces</li>
-<li>Set up a shortcut to:</li>
-<li>* Toggling of Auto-Indent while pasting source text; very useful in code (F2 in my provided script)
+<li>Set up shortcuts for:
 
 <ul>
-<li>Toggling of Auto-Scroll of Split windows (F3 in my provided script)</li>
-<li>Macro for Folding functions within the source code (@q in my provided script)</li>
-<li>Smart case search - based on whether the input is in caps or not</li>
-<li>Toggling of Mouse Usage in VIM window - to allow quick selection of text (F12 in my provided script)</li>
+<li><code>Toggling of Auto-Indent</code> while pasting source text; very useful in code (<em>F2</em> in my provided script)</li>
+<li><code>Toggling of Auto-Scroll</code> of Split windows (<em>F3</em> in my provided script)</li>
+<li><code>Macro for Folding functions</code> within the source code (<em><em>@q</em></em> in my provided script)</li>
+<li><code>Smart case search</code> - based on whether the input is in caps or not</li>
+<li><code>Toggling of Mouse Usage</code> in VIM window - to allow quick selection of text (<em>F12</em> in my provided script)</li>
 </ul></li>
 </ul>
 
 <p>Please see the provided script below to have a look.</p>
 
-<p><a href="https://gist.github.com/abhi1010/6f190c9f3afd42881ef5">https://gist.github.com/abhi1010/6f190c9f3afd42881ef5</a></p>
+<p><script type="text/javascript" src="http://gist.github.com/6f190c9f3afd42881ef5.js"></script></p>
 
       
     </div>
@@ -416,9 +395,9 @@ wrapper.mUsingInner = innerStrct;
       <span class="post-date">May 19, 2014  &middot; <a href="http://abhi1010.github.io/2014/05/getting-a-group-of-lines-from-a-file/#disqus_thread">Comments</a>
       
       <br/>
-      <a class="label" href="http://abhi1010.github.io/categories/linux">Linux</a>
+      <a class="a_cat" href="http://abhi1010.github.io/categories/code">code</a><a class="a_cat" href="http://abhi1010.github.io/categories/tips">tips</a>
         
-      <a class="a_tag" href="http://abhi1010.github.io/tags/awk">awk</a><a class="a_tag" href="http://abhi1010.github.io/tags/bash">bash</a><a class="a_tag" href="http://abhi1010.github.io/tags/tips">tips</a>
+      <a class="a_tag" href="http://abhi1010.github.io/tags/awk">awk</a><a class="a_tag" href="http://abhi1010.github.io/tags/bash">bash</a>
     
       </span>
       
@@ -438,9 +417,7 @@ wrapper.mUsingInner = innerStrct;
 
 <p>Let&rsquo;s have a look at the script&hellip;.</p>
 
-<!-- more -->
-
-<p><a href="https://gist.github.com/abhi1010/924a5f12f3067ba0b3af">https://gist.github.com/abhi1010/924a5f12f3067ba0b3af</a></p>
+<p><script type="text/javascript" src="http://gist.github.com/924a5f12f3067ba0b3af.js"></script></p>
 
       
     </div>
@@ -452,7 +429,7 @@ wrapper.mUsingInner = innerStrct;
       <span class="post-date">Apr 15, 2014  &middot; <a href="http://abhi1010.github.io/2014/04/32-bit-vs-64-bit/#disqus_thread">Comments</a>
       
       <br/>
-      <a class="label" href="http://abhi1010.github.io/categories/.net">.NET</a><a class="label" href="http://abhi1010.github.io/categories/linux">Linux</a>
+      <a class="a_cat" href="http://abhi1010.github.io/categories/code">code</a>
         
       <a class="a_tag" href="http://abhi1010.github.io/tags/c">c&#43;&#43;</a>
     
@@ -492,15 +469,15 @@ wrapper.mUsingInner = innerStrct;
       <span class="post-date">Apr 8, 2014  &middot; <a href="http://abhi1010.github.io/2014/04/tokenize-a-string-using-c/#disqus_thread">Comments</a>
       
       <br/>
-      <a class="label" href="http://abhi1010.github.io/categories/linux">Linux</a>
+      <a class="a_cat" href="http://abhi1010.github.io/categories/code">code</a><a class="a_cat" href="http://abhi1010.github.io/categories/tips">tips</a>
         
-      <a class="a_tag" href="http://abhi1010.github.io/tags/c">c&#43;&#43;</a><a class="a_tag" href="http://abhi1010.github.io/tags/tips">tips</a>
+      <a class="a_tag" href="http://abhi1010.github.io/tags/c">c&#43;&#43;</a>
     
       </span>
       
       <p>Here&rsquo;s a short snippet to split a string into multiple tokens; into a vector. As you will see that, if you run the code, boost version performs better because you can choose a number of delimiters to split your string instead of the vanilla version using the normal C++ code. Of course, you may also write your own code to do something like this but I was looking to do some short snippets.</p>
 
-<p><a href="https://gist.github.com/anonymous/0465925390f3442a7691">https://gist.github.com/anonymous/0465925390f3442a7691</a></p>
+<p><script type="text/javascript" src="http://gist.github.com/554885a7235f4047dae6.js"></script></p>
 
 <p>I have <strong>posted my code on <a href="http://coliru.stacked-crooked.com/a/01e1c68ffd0199cd">Stacked-Crooked</a></strong> which you can view along with the output as well. It shows C++ doesn&rsquo;t perform so well.</p>
 

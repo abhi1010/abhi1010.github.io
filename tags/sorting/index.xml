@@ -1461,8 +1461,7 @@
 &lt;li&gt;Often fast for small arrays with a few distinct values, repeated many times&lt;/li&gt;
 &lt;li&gt;It is a conquer-and-divide algo; with most of the work happening during partitioning phase&lt;/li&gt;
 &lt;li&gt;If you had to choose the optimum pivot then it should the median of the given array&lt;/li&gt;
-&lt;li&gt;Not a stable sort
-&amp;lt;!&amp;ndash; more &amp;ndash;&amp;gt;&lt;/li&gt;
+&lt;li&gt;Not a stable sort&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h2 id=&#34;testing-notes:bc3cdebe8a50650a5fd63bed57e56314&#34;&gt;Testing Notes&lt;/h2&gt;
@@ -1543,41 +1542,23 @@
 &lt;p&gt;Insertion Sort has the following properties:&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;p&gt;It works by moving elements one at a time&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Works really well for small data sets&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Consider going with this when the input data may already be sorted or partially sorted&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;ul&gt;
+&lt;li&gt;It works by moving elements one at a time&lt;/li&gt;
+&lt;li&gt;Works really well for small data sets&lt;/li&gt;
+&lt;li&gt;Consider going with this when the input data may already be sorted or partially sorted&lt;/li&gt;
 &lt;li&gt;The may not have to move the elements around, thereby saving precious cycles&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Stable sort&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;ul&gt;
+&lt;li&gt;Stable sort&lt;/li&gt;
 &lt;li&gt;Keeps the original order of elements with equal values&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
-
-&lt;!-- more --&gt;
 
 &lt;h2 id=&#34;testing-notes:a9ce6fa80f206d39e558f67e9cc61fdd&#34;&gt;Testing Notes&lt;/h2&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;p&gt;Had a very interesting time testing my code. I knew that swapping takes time. std::swap takes particularly longer. I disabled that from the beginning itself&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Even more interesting was how I thought of fixing my code which was running slowly&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Initially even running an array of size 1K was taking about 4s so I just made a minor change to remove &amp;ldquo;&amp;ndash; insertIndex ;&amp;rdquo; altogether and do the calculation in the previous line itself. That did the trick. Otherwise the code was taking hours and hours for 1M array size so I had to stop running it.&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;I even tried improving the code a bit futher by ensuring that I do not call insertIndex-1 many a times but that didn&amp;rsquo;t really help - in fact made it worse again&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Sorted runs will run much faster because there&amp;rsquo;s no work to be done in those cases&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;ul&gt;
+&lt;li&gt;Had a very interesting time testing my code. I knew that swapping takes time. std::swap takes particularly longer. I disabled that from the beginning itself&lt;br /&gt;&lt;/li&gt;
+&lt;li&gt;Even more interesting was how I thought of fixing my code which was running slowly&lt;/li&gt;
+&lt;li&gt;Initially even running an array of size 1K was taking about 4s so I just made a minor change to remove &amp;ldquo;&amp;ndash; insertIndex ;&amp;rdquo; altogether and do the calculation in the previous line itself. That did the trick. Otherwise the code was taking hours and hours for 1M array size so I had to stop running it.&lt;/li&gt;
+&lt;li&gt;I even tried improving the code a bit futher by ensuring that I do not call insertIndex-1 many a times but that didn&amp;rsquo;t really help - in fact made it worse again&lt;/li&gt;
+&lt;li&gt;Sorted runs will run much faster because there&amp;rsquo;s no work to be done in those cases&lt;/li&gt;
 &lt;li&gt;Would be a nice algo to use if your data is mostly sorted&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h2 id=&#34;code:a9ce6fa80f206d39e558f67e9cc61fdd&#34;&gt;Code&lt;/h2&gt;
@@ -1703,8 +1684,7 @@
 &lt;li&gt;If memory is not really a concern, forget about this issue&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;li&gt;Radix Sort, with at most d digits, takes O(d*(n+b)) time where b is the base&lt;/li&gt;
-&lt;li&gt;Use Radix Sort over Counting Sort when the numbers range from 1 to n-square for example.
-&amp;lt;!&amp;ndash; more &amp;ndash;&amp;gt;&lt;/li&gt;
+&lt;li&gt;Use Radix Sort over Counting Sort when the numbers range from 1 to n-square for example.&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;&lt;strong&gt;Numbers&lt;/strong&gt;&lt;/p&gt;

@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 
-  <title>Creating Custom Web Controls &middot; abhishek pandey</title>
+  <title>Creating Custom Web Controls &middot; Abhishek Pandey</title>
 
   
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
@@ -15,7 +15,8 @@
   <link rel="stylesheet" href="http://abhi1010.github.io/css/hyde.css">
   <link rel="stylesheet" href="http://abhi1010.github.io/css/poole-overrides.css">
   <link rel="stylesheet" href="http://abhi1010.github.io/css/hyde-overrides.css">
-  <link rel="stylesheet" href="http://abhi1010.github.io/css/hyde-x.css">
+  <link rel="stylesheet" href="http://abhi1010.github.io/css/hyde-a.css">
+  <link rel="stylesheet" href="http://abhi1010.github.io/css/custom-additions.css">
   <link rel="stylesheet" href="http://abhi1010.github.io/css/highlight/sunburst.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
@@ -38,7 +39,7 @@
   <div class="container sidebar-sticky">
     <div class="sidebar-about">
       
-      <h1><a href="http://abhi1010.github.io/">abhishek pandey</a></h1>
+      <h1><a href="http://abhi1010.github.io/">Abhishek Pandey</a></h1>
       <p class="lead">&hellip; lost in reverie</p>
     </div>
 
@@ -50,7 +51,7 @@
       
       <li class="sidebar-nav-item"><a href="http://abhi1010.github.io/categories/">Categories</a></li>
       
-      <li class="sidebar-nav-item"><a href="http://abhi1010.github.io/about/">About Me</a></li>
+      <li class="sidebar-nav-item"><a href="http://abhi1010.github.io/about/">About</a></li>
       
     </ul>
 
@@ -79,12 +80,19 @@
     <span class="post-date">Mar 8, 2008  &middot; <a href="http://abhi1010.github.io/2008/03/creating-custom-web-controls/#disqus_thread">Comments</a>
     
     <br/>
-    <a class="label" href="http://abhi1010.github.io/categories/.net">.NET</a><a class="label" href="http://abhi1010.github.io/categories/asp.net">ASP.NET</a>
+    
+          <a class="a_cat" href="http://abhi1010.github.io/categories/code">code</a>
+      
+      
+        <a class="a_tag" href="http://abhi1010.github.io/tags/c">c#</a><a class="a_tag" href="http://abhi1010.github.io/tags/asp.net">asp.net</a>
+      
+
     </span>
     <p>How do you extend a control? Let&rsquo;s figure it out.</p>
 
-<p>**Why would you want to extend existing controls?<br />
-**Because some functionality may not exist exactly as you may need it. For example, let&rsquo;s take up ImageButton control example. It is a great control but it falls short when it comes to real world scenario. Mostly websites do a hover image clickable button where the text or background color of the button changes once you hover your mouse over it.</p>
+<p><strong>Why would you want to extend existing controls?</strong></p>
+
+<p>Because some functionality may not exist exactly as you may need it. For example, let&rsquo;s take up ImageButton control example. It is a great control but it falls short when it comes to real world scenario. Mostly websites do a hover image clickable button where the text or background color of the button changes once you hover your mouse over it.</p>
 
 <p><strong>How to Extend?</strong></p>
 
@@ -116,7 +124,7 @@
 
 <p>This is how you do that.</p>
 
-<p><a href="https://gist.github.com/abhi1010/bfb075b6787d2616fde6">https://gist.github.com/abhi1010/bfb075b6787d2616fde6</a></p>
+<p><script type="text/javascript" src="http://gist.github.com/bfb075b6787d2616fde6.js"></script></p>
 
 <p>Please note that the name of the javascript file is &ldquo;HoverImageButtonJS.js&rdquo;. ExtendedControls is the name of the project/assembly that I have created for this custom web control.</p>
 
@@ -128,13 +136,13 @@
 
 <p>Let&rsquo;s see how that&rsquo;s done.</p>
 
-<p><a href="https://gist.github.com/abhi1010/d0b66ef7b0f076e88042">https://gist.github.com/abhi1010/d0b66ef7b0f076e88042</a></p>
+<p><script type="text/javascript" src="http://gist.github.com/d0b66ef7b0f076e88042.js"></script></p>
 
-<p>Over here, I have told the class to include &ldquo;onmouseover=ShowImageHoverButton(this, &lsquo;IMAGE_SOURCE&rsquo;)&rdquo; as a property.</p>
+<p>Over here, I have told the class to include <code>&quot;onmouseover=ShowImageHoverButton(this, 'IMAGE_SOURCE')&quot;</code> as a property.</p>
 
 <p>This is how it is rendered on the client browser:</p>
 
-<p><a href="https://gist.github.com/abhi1010/6df972bf94b736545419">https://gist.github.com/abhi1010/6df972bf94b736545419</a></p>
+<p><script type="text/javascript" src="http://gist.github.com/6df972bf94b736545419.js"></script></p>
 
 <p><strong>Add the javascript file also to the AssemblyInfo.cs class</strong></p>
 
@@ -153,7 +161,7 @@
 <li><p>Register the dll on web.config. This makes the control available automatically on all the pages.</p></li>
 </ul>
 
-<p><a href="https://gist.github.com/abhi1010/88222d3f94911fbec6f4">https://gist.github.com/abhi1010/88222d3f94911fbec6f4</a></p>
+<p><script type="text/javascript" src="http://gist.github.com/88222d3f94911fbec6f4.js"></script></p>
 
 <ul>
 <li>Go to the design view of any page. Open up the Toolbox pane and you will automatically see the name appear &ldquo;HoverImageButton&rdquo;. Double click and you are ready to go!!</li>
@@ -185,7 +193,7 @@
 
 <p><strong>Here&rsquo;s all the code in case somebody needs it:</strong></p>
 
-<p><a href="https://gist.github.com/abhi1010/135e9bbf44f3d9a53cb8">https://gist.github.com/abhi1010/135e9bbf44f3d9a53cb8</a></p>
+<p><script type="text/javascript" src="http://gist.github.com/135e9bbf44f3d9a53cb8.js"></script></p>
 
   </div>
   <div id="disqus_thread"></div>

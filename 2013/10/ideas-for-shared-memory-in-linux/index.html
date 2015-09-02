@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 
-  <title>Ideas for Shared Memory in Linux &middot; abhishek pandey</title>
+  <title>Ideas for Shared Memory in Linux &middot; Abhishek Pandey</title>
 
   
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
@@ -15,7 +15,8 @@
   <link rel="stylesheet" href="http://abhi1010.github.io/css/hyde.css">
   <link rel="stylesheet" href="http://abhi1010.github.io/css/poole-overrides.css">
   <link rel="stylesheet" href="http://abhi1010.github.io/css/hyde-overrides.css">
-  <link rel="stylesheet" href="http://abhi1010.github.io/css/hyde-x.css">
+  <link rel="stylesheet" href="http://abhi1010.github.io/css/hyde-a.css">
+  <link rel="stylesheet" href="http://abhi1010.github.io/css/custom-additions.css">
   <link rel="stylesheet" href="http://abhi1010.github.io/css/highlight/sunburst.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
@@ -38,7 +39,7 @@
   <div class="container sidebar-sticky">
     <div class="sidebar-about">
       
-      <h1><a href="http://abhi1010.github.io/">abhishek pandey</a></h1>
+      <h1><a href="http://abhi1010.github.io/">Abhishek Pandey</a></h1>
       <p class="lead">&hellip; lost in reverie</p>
     </div>
 
@@ -50,7 +51,7 @@
       
       <li class="sidebar-nav-item"><a href="http://abhi1010.github.io/categories/">Categories</a></li>
       
-      <li class="sidebar-nav-item"><a href="http://abhi1010.github.io/about/">About Me</a></li>
+      <li class="sidebar-nav-item"><a href="http://abhi1010.github.io/about/">About</a></li>
       
     </ul>
 
@@ -79,167 +80,108 @@
     <span class="post-date">Oct 13, 2013  &middot; <a href="http://abhi1010.github.io/2013/10/ideas-for-shared-memory-in-linux/#disqus_thread">Comments</a>
     
     <br/>
-    <a class="label" href="http://abhi1010.github.io/categories/linux">Linux</a>
+    
+          <a class="a_cat" href="http://abhi1010.github.io/categories/code">code</a>
+      
+      
+        <a class="a_tag" href="http://abhi1010.github.io/tags/c">c#</a>
+      
+
     </span>
     <p>I have been doing extensive research today regarding shared memory in linux before I embark on a new project in which shaving time off process communication latency is extremely important. I found some very interesting links as well. Let’s break them down:</p>
 
-<table style="border:thin solid lightblue;" >
-<tbody >
-<tr >
-
-<td width="133" >**Topic**
-</td>
-
-<td width="354" >**Description**
-</td>
-
-<td width="151" >**Link**
-</td>
+<table>
+<thead>
+<tr>
+<th>Topic</th>
+<th>Description</th>
+<th>Link</th>
 </tr>
-<tr >
+</thead>
 
-<td width="133" >Theory/Explanation
-</td>
-
-<td width="354" >Some articles that explain how to get started
-</td>
-
-<td width="151" >[open-std](http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2006/n2044.html)
-</td>
+<tbody>
+<tr>
+<td>Theory/Explanation</td>
+<td>Some articles that explain how to get started</td>
+<td><a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2006/n2044.html">open-std</a></td>
 </tr>
-<tr >
 
-<td width="133" >
-</td>
-
-<td width="354" >IPC Mechanisms – some recommendations. Mainly talks about softwares like Boost, dBus
-
-dBus used to work using kernel levels but lately have come up with a patch that bypasses kernels
-</td>
-
-<td width="151" >[Stackoverflow](http://stackoverflow.com/questions/1906166/inter-process-communication-recommendation)
-</td>
+<tr>
+<td>Content in the first column</td>
+<td>Content in the second column</td>
+<td>lkd</td>
 </tr>
-<tr >
 
-<td width="133" >
-</td>
-
-<td width="354" >What every programmer should know about memory
-</td>
-
-<td width="151" >[LWN](http://lwn.net/Articles/255364/)
-</td>
+<tr>
+<td></td>
+<td>IPC Mechanisms – some recommendations. Mainly talks about softwares like Boost, dBus dBus used to work using kernel levels but lately have come up with a patch that bypasses kernels</td>
+<td><a href="http://stackoverflow.com/questions/1906166/inter-process-communication-recommendation">Stackoverflow</a></td>
 </tr>
-<tr >
 
-<td width="133" >
-</td>
-
-<td width="354" >Linux IPC
-</td>
-
-<td width="151" >[TLDP](http://www.tldp.org/LDP/tlk/ipc/ipc.html)
-</td>
+<tr>
+<td></td>
+<td>What every programmer should know about memory</td>
+<td><a href="http://lwn.net/Articles/255364/">LWN</a></td>
 </tr>
-<tr >
 
-<td width="133" >
-</td>
-
-<td width="354" >Cache Friendly Code
-</td>
-
-<td width="151" >[Stackoverflow](http://stackoverflow.com/questions/16699247/what-is-cache-friendly-code/16699282#16699282)
-</td>
+<tr>
+<td></td>
+<td>Linux IPC</td>
+<td><a href="http://www.tldp.org/LDP/tlk/ipc/ipc.html">TLDP</a></td>
 </tr>
-<tr >
 
-<td width="133" >Helpful Articles
-</td>
-
-<td width="354" >Which linux IPC technique to use?
-</td>
-
-<td width="151" >[Stackoverflow](http://stackoverflow.com/questions/2281204/which-linux-ipc-technique-to-use)
-</td>
+<tr>
+<td></td>
+<td>Cache Friendly Code</td>
+<td><a href="http://stackoverflow.com/questions/16699247/what-is-cache-friendly-code/16699282#16699282">Stackoverflow</a></td>
 </tr>
-<tr >
 
-<td width="133" >
-</td>
-
-<td width="354" >Inter process communication – talks about shared memory
-</td>
-
-<td width="151" >[ALP](http://www.advancedlinuxprogramming.com/alp-folder/alp-ch05-ipc.pdf)
-</td>
+<tr>
+<td></td>
+<td>Helpful Articles     Which linux IPC technique to use?</td>
+<td><a href="http://stackoverflow.com/questions/2281204/which-linux-ipc-technique-to-use">Stackoverflow</a></td>
 </tr>
-<tr >
 
-<td width="133" >
-</td>
-
-<td width="354" >Linux Poll Events on Shared Memory
-</td>
-
-<td width="151" >[Stackoverflow](http://stackoverflow.com/questions/11470322/cause-a-linux-poll-event-on-a-shared-memory-file)
-</td>
+<tr>
+<td></td>
+<td>Inter process communication – talks about shared memory</td>
+<td><a href="http://www.advancedlinuxprogramming.com/alp-folder/alp-ch05-ipc.pdf">ALP</a></td>
 </tr>
-<tr >
 
-<td width="133" >
-</td>
-
-<td width="354" >Using semaphores in Shared Memory
-</td>
-
-<td width="151" >[Stackoverflow](http://stackoverflow.com/questions/10772860/semaphores-and-shared-memory-in-linux)
-</td>
+<tr>
+<td></td>
+<td>Linux Poll Events on Shared Memory</td>
+<td><a href="http://stackoverflow.com/questions/11470322/cause-a-linux-poll-event-on-a-shared-memory-file">Stackoverflow</a></td>
 </tr>
-<tr >
 
-<td width="133" >
-</td>
-
-<td width="354" >Sharing semaphores between Shared Memory
-</td>
-
-<td width="151" >[Stackoverflow](http://stackoverflow.com/questions/8359322/how-to-share-semaphores-between-processes-using-shared-memory?rq=1)
-</td>
+<tr>
+<td></td>
+<td>Using semaphores in Shared Memory</td>
+<td><a href="http://stackoverflow.com/questions/10772860/semaphores-and-shared-memory-in-linux">Stackoverflow</a></td>
 </tr>
-<tr >
 
-<td width="133" >
-</td>
-
-<td width="354" >Sharing memory between processes
-</td>
-
-<td width="151" >[Stackoverflow](http://stackoverflow.com/questions/11583281/sharing-memory-between-two-processes)
-</td>
+<tr>
+<td></td>
+<td>Sharing semaphores between Shared Memory</td>
+<td><a href="http://stackoverflow.com/questions/8359322/how-to-share-semaphores-between-processes-using-shared-memory?rq=1">Stackoverflow</a></td>
 </tr>
-<tr >
 
-<td width="133" >
-</td>
-
-<td width="354" >Reserving memory at kernel boot up (DMA)
-</td>
-
-<td width="151" >[Stackoverflow](http://stackoverflow.com/questions/647783/direct-memory-access-in-linux?rq=1)
-</td>
+<tr>
+<td></td>
+<td>Sharing memory between processes</td>
+<td><a href="http://stackoverflow.com/questions/11583281/sharing-memory-between-two-processes">Stackoverflow</a></td>
 </tr>
-<tr >
 
-<td width="133" >Extra
-</td>
+<tr>
+<td></td>
+<td>Reserving memory at kernel boot up (DMA)</td>
+<td><a href="http://stackoverflow.com/questions/647783/direct-memory-access-in-linux?rq=1">Stackoverflow</a></td>
+</tr>
 
-<td width="354" >IPC Shared memory samples
-</td>
-
-<td width="151" >[linuxgazette](http://linuxgazette.net/104/ramankutty.html)
-</td>
+<tr>
+<td>Extra</td>
+<td>IPC Shared memory samples</td>
+<td><a href="http://linuxgazette.net/104/ramankutty.html">linuxgazette</a></td>
 </tr>
 </tbody>
 </table>

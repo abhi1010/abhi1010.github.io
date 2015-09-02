@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 
-  <title>Usage of typename &middot; abhishek pandey</title>
+  <title>Usage of typename &middot; Abhishek Pandey</title>
 
   
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
@@ -15,7 +15,8 @@
   <link rel="stylesheet" href="http://abhi1010.github.io/css/hyde.css">
   <link rel="stylesheet" href="http://abhi1010.github.io/css/poole-overrides.css">
   <link rel="stylesheet" href="http://abhi1010.github.io/css/hyde-overrides.css">
-  <link rel="stylesheet" href="http://abhi1010.github.io/css/hyde-x.css">
+  <link rel="stylesheet" href="http://abhi1010.github.io/css/hyde-a.css">
+  <link rel="stylesheet" href="http://abhi1010.github.io/css/custom-additions.css">
   <link rel="stylesheet" href="http://abhi1010.github.io/css/highlight/sunburst.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
@@ -38,7 +39,7 @@
   <div class="container sidebar-sticky">
     <div class="sidebar-about">
       
-      <h1><a href="http://abhi1010.github.io/">abhishek pandey</a></h1>
+      <h1><a href="http://abhi1010.github.io/">Abhishek Pandey</a></h1>
       <p class="lead">&hellip; lost in reverie</p>
     </div>
 
@@ -50,7 +51,7 @@
       
       <li class="sidebar-nav-item"><a href="http://abhi1010.github.io/categories/">Categories</a></li>
       
-      <li class="sidebar-nav-item"><a href="http://abhi1010.github.io/about/">About Me</a></li>
+      <li class="sidebar-nav-item"><a href="http://abhi1010.github.io/about/">About</a></li>
       
     </ul>
 
@@ -79,23 +80,28 @@
     <span class="post-date">May 26, 2014  &middot; <a href="http://abhi1010.github.io/2014/05/usage-of-typename/#disqus_thread">Comments</a>
     
     <br/>
-    <a class="label" href="http://abhi1010.github.io/categories/linux">Linux</a>
+    
+          <a class="a_cat" href="http://abhi1010.github.io/categories/code">code</a>
+      
+      
+        <a class="a_tag" href="http://abhi1010.github.io/tags/c">c&#43;&#43;</a>
+      
+
     </span>
     <p>What is wrong with the following code?</p>
 
-<p><a href="https://gist.github.com/anonymous/f1f2246d04a935794e44">https://gist.github.com/anonymous/f1f2246d04a935794e44</a></p>
+<p><script type="text/javascript" src="http://gist.github.com/0bd5e4d910e4d8a7672e.js"></script></p>
 
 <p>The issue is very simple but hard to notice. If you try to compile this, you will get the following errors:</p>
 
-<blockquote>main.cpp:24:5: error: need 'typename' before 'OuterStruct<T2>::InnerStruct' because 'OuterStruct<T2>' is a dependent scope
-OuterStruct<T2>::InnerStruct mUsingInner;
+<pre><code>main.cpp:24:5: error: need 'typename' before 'OuterStruct&lt;T2&gt;::InnerStruct' because 'OuterStruct&lt;T2&gt;' is a dependent scope
+OuterStruct&lt;T2&gt;::InnerStruct mUsingInner;
 ^
 main.cpp: In function 'int main(int, char**)':
-main.cpp:34:13: error: 'struct InnerStruct_Wrapper<int>' has no member named 'mUsingInner'
+main.cpp:34:13: error: 'struct InnerStruct_Wrapper&lt;int&gt;' has no member named 'mUsingInner'
 wrapper.mUsingInner = innerStrct;
-^</blockquote>
-
-<!-- more -->
+^
+</code></pre>
 
 <p><strong>The Issue</strong></p>
 

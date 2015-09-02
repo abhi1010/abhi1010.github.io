@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 
-  <title>Membership and Profiler in ASP.NET &middot; abhishek pandey</title>
+  <title>Membership and Profiler in ASP.NET &middot; Abhishek Pandey</title>
 
   
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
@@ -15,7 +15,8 @@
   <link rel="stylesheet" href="http://abhi1010.github.io/css/hyde.css">
   <link rel="stylesheet" href="http://abhi1010.github.io/css/poole-overrides.css">
   <link rel="stylesheet" href="http://abhi1010.github.io/css/hyde-overrides.css">
-  <link rel="stylesheet" href="http://abhi1010.github.io/css/hyde-x.css">
+  <link rel="stylesheet" href="http://abhi1010.github.io/css/hyde-a.css">
+  <link rel="stylesheet" href="http://abhi1010.github.io/css/custom-additions.css">
   <link rel="stylesheet" href="http://abhi1010.github.io/css/highlight/sunburst.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
@@ -38,7 +39,7 @@
   <div class="container sidebar-sticky">
     <div class="sidebar-about">
       
-      <h1><a href="http://abhi1010.github.io/">abhishek pandey</a></h1>
+      <h1><a href="http://abhi1010.github.io/">Abhishek Pandey</a></h1>
       <p class="lead">&hellip; lost in reverie</p>
     </div>
 
@@ -50,7 +51,7 @@
       
       <li class="sidebar-nav-item"><a href="http://abhi1010.github.io/categories/">Categories</a></li>
       
-      <li class="sidebar-nav-item"><a href="http://abhi1010.github.io/about/">About Me</a></li>
+      <li class="sidebar-nav-item"><a href="http://abhi1010.github.io/about/">About</a></li>
       
     </ul>
 
@@ -79,13 +80,19 @@
     <span class="post-date">Feb 6, 2008  &middot; <a href="http://abhi1010.github.io/2008/02/membership-and-profiler-in-asp.net/#disqus_thread">Comments</a>
     
     <br/>
-    <a class="label" href="http://abhi1010.github.io/categories/asp.net">ASP.NET</a><a class="label" href="http://abhi1010.github.io/categories/sql">SQL</a>
+    
+          <a class="a_cat" href="http://abhi1010.github.io/categories/database">database</a>
+      
+      
+        <a class="a_tag" href="http://abhi1010.github.io/tags/sql">sql</a>
+      
+
     </span>
     <p>Whenever you are using Sql Membership and Profiler classes - Trying to generate reports make sure your query&rsquo;s WHERE clause is using &ldquo;indexed&rdquo; column names at least.</p>
 
 <p>Let&rsquo;s look at some of the more used tables. The index of some of the tables is given below:</p>
 
-<p><strong><code>Table: aspnet_membership</code></strong></p>
+<p><strong>Table: aspnet_membership</strong></p>
 
 <ul>
 <li><p>Clustered Index = <code>ApplicationID</code>, <code>LoweredEmail</code></p></li>
@@ -93,7 +100,7 @@
 <li><p>NonClustered = UserID</p></li>
 </ul>
 
-<p><strong><code>Table: aspnet_users</code></strong></p>
+<p><strong>Table: aspnet_users</strong></p>
 
 <ul>
 <li><p>Clustered Index = <code>ApplicationID</code>, <code>LoweredUserName</code></p></li>
@@ -103,13 +110,15 @@
 <li><p>Primary Key = <code>UserID</code></p></li>
 </ul>
 
-<p><strong><code>Table: aspnet_Profile</code></strong></p>
+<p><strong>Table: aspnet_Profile</strong></p>
 
 <ul>
 <li>Clustered Index = <code>UserID</code></li>
 </ul>
 
-<p><code>Bottomline - try to use ApplicationID in your queries otherwise your queries, for sure, will not run over the index at all and make it slow. This comes in effect if you are expecting high volume.</code></p>
+<blockquote>
+Bottomline - try to use ApplicationID in your queries otherwise your queries, for sure, will not run over the index at all and make it slow. This comes in effect if you are expecting high volume.
+</blockquote>
 
   </div>
   <div id="disqus_thread"></div>

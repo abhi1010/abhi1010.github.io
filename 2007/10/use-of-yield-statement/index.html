@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 
-  <title>Use of yield statement &middot; abhishek pandey</title>
+  <title>Use of yield statement &middot; Abhishek Pandey</title>
 
   
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
@@ -15,7 +15,8 @@
   <link rel="stylesheet" href="http://abhi1010.github.io/css/hyde.css">
   <link rel="stylesheet" href="http://abhi1010.github.io/css/poole-overrides.css">
   <link rel="stylesheet" href="http://abhi1010.github.io/css/hyde-overrides.css">
-  <link rel="stylesheet" href="http://abhi1010.github.io/css/hyde-x.css">
+  <link rel="stylesheet" href="http://abhi1010.github.io/css/hyde-a.css">
+  <link rel="stylesheet" href="http://abhi1010.github.io/css/custom-additions.css">
   <link rel="stylesheet" href="http://abhi1010.github.io/css/highlight/sunburst.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
@@ -38,7 +39,7 @@
   <div class="container sidebar-sticky">
     <div class="sidebar-about">
       
-      <h1><a href="http://abhi1010.github.io/">abhishek pandey</a></h1>
+      <h1><a href="http://abhi1010.github.io/">Abhishek Pandey</a></h1>
       <p class="lead">&hellip; lost in reverie</p>
     </div>
 
@@ -50,7 +51,7 @@
       
       <li class="sidebar-nav-item"><a href="http://abhi1010.github.io/categories/">Categories</a></li>
       
-      <li class="sidebar-nav-item"><a href="http://abhi1010.github.io/about/">About Me</a></li>
+      <li class="sidebar-nav-item"><a href="http://abhi1010.github.io/about/">About</a></li>
       
     </ul>
 
@@ -79,7 +80,13 @@
     <span class="post-date">Oct 26, 2007  &middot; <a href="http://abhi1010.github.io/2007/10/use-of-yield-statement/#disqus_thread">Comments</a>
     
     <br/>
-    <a class="label" href="http://abhi1010.github.io/categories/.net">.NET</a>
+    
+          <a class="a_cat" href="http://abhi1010.github.io/categories/code">code</a>
+      
+      
+        <a class="a_tag" href="http://abhi1010.github.io/tags/c">c#</a>
+      
+
     </span>
     <p>It might be a little late for this to appear but I have no qualms in accepting that I have finally embraced yield statement and see it as an excellent way of writing codes.</p>
 
@@ -87,7 +94,7 @@
 
 <p>The best way to put the whole process of reading the excel file is to automate reading, iterating and closing of the excel files. It is done by yield statement as I can &ldquo;yield&rdquo; the data of the excel through DataReader (OdbcDataReader in my case).</p>
 
-<p><a href="https://gist.github.com/abhi1010/36ecc206fc5f61f4b4bc">https://gist.github.com/abhi1010/36ecc206fc5f61f4b4bc</a></p>
+<p><script type="text/javascript" src="http://gist.github.com/36ecc206fc5f61f4b4bc.js"></script></p>
 
 <p>This way, the function is always common - it is always supposed to read the excel, iterate through it. The data that I need is always in the DataReader so I thought let&rsquo;s just return the data itself! The rest of the function is pretty much normal. The biggest gain is that I don&rsquo;t have to change the structure of the function. The same function can now be used for multiple excel sheets. Have a look at the code.</p>
 

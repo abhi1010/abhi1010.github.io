@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 
-  <title>Oracle SQL Queries &middot; abhishek pandey</title>
+  <title>Oracle SQL Queries &middot; Abhishek Pandey</title>
 
   
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
@@ -15,7 +15,8 @@
   <link rel="stylesheet" href="http://abhi1010.github.io/css/hyde.css">
   <link rel="stylesheet" href="http://abhi1010.github.io/css/poole-overrides.css">
   <link rel="stylesheet" href="http://abhi1010.github.io/css/hyde-overrides.css">
-  <link rel="stylesheet" href="http://abhi1010.github.io/css/hyde-x.css">
+  <link rel="stylesheet" href="http://abhi1010.github.io/css/hyde-a.css">
+  <link rel="stylesheet" href="http://abhi1010.github.io/css/custom-additions.css">
   <link rel="stylesheet" href="http://abhi1010.github.io/css/highlight/sunburst.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
@@ -38,7 +39,7 @@
   <div class="container sidebar-sticky">
     <div class="sidebar-about">
       
-      <h1><a href="http://abhi1010.github.io/">abhishek pandey</a></h1>
+      <h1><a href="http://abhi1010.github.io/">Abhishek Pandey</a></h1>
       <p class="lead">&hellip; lost in reverie</p>
     </div>
 
@@ -50,7 +51,7 @@
       
       <li class="sidebar-nav-item"><a href="http://abhi1010.github.io/categories/">Categories</a></li>
       
-      <li class="sidebar-nav-item"><a href="http://abhi1010.github.io/about/">About Me</a></li>
+      <li class="sidebar-nav-item"><a href="http://abhi1010.github.io/about/">About</a></li>
       
     </ul>
 
@@ -79,48 +80,47 @@
     <span class="post-date">Sep 22, 2013  &middot; <a href="http://abhi1010.github.io/2013/09/oracle-sql-queries/#disqus_thread">Comments</a>
     
     <br/>
-    <a class="label" href="http://abhi1010.github.io/categories/sql">SQL</a>
+    
+          <a class="a_cat" href="http://abhi1010.github.io/categories/code">code</a><a class="a_cat" href="http://abhi1010.github.io/categories/database">database</a>
+      
+      
+        <a class="a_tag" href="http://abhi1010.github.io/tags/sql">sql</a>
+      
+
     </span>
     <p>Recently I found myself in a situation where I had to view all the tables in the Oracle Server.</p>
 
 <p>I did some digging and came up with these helpful queries.</p>
 
-<p><table cellpadding="2" cellspacing="0" border="1" width="1083" ><tbody >     <tr ><br />
-<td width="591" valign="top" ></p>
+<table>
+<thead>
+<tr>
+<th>Query</th>
+<th>Remarks</th>
+</tr>
+</thead>
 
-<p><strong>Query</strong></p>
+<tbody>
+<tr>
+<td>Select * from All_Tables</td>
+<td>View all the tables in the Oracle Server</td>
+</tr>
 
-<p></td><br />
-<td width="490" valign="top" ></p>
+<tr>
+<td>Select * from all_Views</td>
+<td>View all the views in the Oracle Server</td>
+</tr>
 
-<p><strong>Remarks</strong></p>
-
-<p></td>     </tr>      <tr ><br />
-<td width="591" valign="top" >Select * from All_Tables
-</td><br />
-<td width="490" valign="top" >View all the tables in the Oracle Server
-</td>     </tr>      <tr ><br />
-<td width="591" valign="top" >Select * from all_Views
-</td><br />
-<td width="490" valign="top" >View all the views in the Oracle Server
-</td>     </tr>            <tr ><br />
-<td width="591" valign="top" ></p>
-
-<pre><code>DESC &lt;em&gt;table&lt;/em&gt;
-</code></pre>
-
-<p></td></p>
-
-<p><td width="490" valign="top" >View all the columns of a given table.</p>
-
-<p>This function is used instead of the previous one mostly, but when this one doesn&rsquo;t work make sure you try the other one - I bet it will work.
-</td>
-    </tr>
-  </tbody></table></p>
+<tr>
+<td>DESC table</td>
+<td>View all the columns of a given table. This function is used instead of the previous one mostly, but when this one doesn&rsquo;t work make sure you try the other one - I bet it will work.</td>
+</tr>
+</tbody>
+</table>
 
 <p>Here&rsquo;s a short code for viewing all the columns of a given table.</p>
 
-<p><a href="https://gist.github.com/abhi1010/11365686">https://gist.github.com/abhi1010/11365686</a></p>
+<p><script type="text/javascript" src="http://gist.github.com/11365686.js"></script></p>
 
   </div>
   <div id="disqus_thread"></div>

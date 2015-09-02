@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 
-  <title>Docker Container cleanup on Elastic Beanstalk &middot; abhishek pandey</title>
+  <title>Docker Container cleanup on Elastic Beanstalk &middot; Abhishek Pandey</title>
 
   
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
@@ -15,7 +15,8 @@
   <link rel="stylesheet" href="http://abhi1010.github.io/css/hyde.css">
   <link rel="stylesheet" href="http://abhi1010.github.io/css/poole-overrides.css">
   <link rel="stylesheet" href="http://abhi1010.github.io/css/hyde-overrides.css">
-  <link rel="stylesheet" href="http://abhi1010.github.io/css/hyde-x.css">
+  <link rel="stylesheet" href="http://abhi1010.github.io/css/hyde-a.css">
+  <link rel="stylesheet" href="http://abhi1010.github.io/css/custom-additions.css">
   <link rel="stylesheet" href="http://abhi1010.github.io/css/highlight/sunburst.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
@@ -38,7 +39,7 @@
   <div class="container sidebar-sticky">
     <div class="sidebar-about">
       
-      <h1><a href="http://abhi1010.github.io/">abhishek pandey</a></h1>
+      <h1><a href="http://abhi1010.github.io/">Abhishek Pandey</a></h1>
       <p class="lead">&hellip; lost in reverie</p>
     </div>
 
@@ -50,7 +51,7 @@
       
       <li class="sidebar-nav-item"><a href="http://abhi1010.github.io/categories/">Categories</a></li>
       
-      <li class="sidebar-nav-item"><a href="http://abhi1010.github.io/about/">About Me</a></li>
+      <li class="sidebar-nav-item"><a href="http://abhi1010.github.io/about/">About</a></li>
       
     </ul>
 
@@ -79,13 +80,15 @@
     <span class="post-date">Aug 7, 2015  &middot; <a href="http://abhi1010.github.io/2015/08/docker-container-cleanup-on-elastic-beanstalk/#disqus_thread">Comments</a>
     
     <br/>
-    <a class="label" href="http://abhi1010.github.io/categories/linux">Linux</a>
-    </span>
-    <p>{% comment %}
-    These commments will not include inside the source.
-{% endcomment %}</p>
+    
+          <a class="a_cat" href="http://abhi1010.github.io/categories/linux">Linux</a>
+      
+      
+        <a class="a_tag" href="http://abhi1010.github.io/tags/aws">aws</a><a class="a_tag" href="http://abhi1010.github.io/tags/beanstalk">beanstalk</a><a class="a_tag" href="http://abhi1010.github.io/tags/docker">docker</a>
+      
 
-<p>Sometimes you may notice that old containers are not cleaned up from Beanstalk environment. This may be due to your container still running as a ghost on the background. One way to find out about this is to quickly look into your
+    </span>
+    <p>Sometimes you may notice that old containers are not cleaned up from Beanstalk environment. This may be due to your container still running as a ghost on the background. One way to find out about this is to quickly look into your
 <code>/var/lib/docker/vfs/dir</code> directory whether it has too many folders.</p>
 
 <p>Next, find out what container processes you have going on.
@@ -101,13 +104,17 @@
 </p>
 
 <p>Ideally, we want to &ldquo;forcibly remove&rdquo; all images (and hence the folders from <code>/var/lib/docker/vfs/dir</code> directory) that are not in use anymore.
-Just run the following to test whether it works:
-<code>docker rmi -f</code>docker images -aq``</p>
+Just run the following to test whether it works:</p>
+
+<p><div class="highlight" style="background: #ffffff"><pre style="line-height: 125%">    docker rmi -f <span style="color: #dd2200; background-color: #fff0f0">`</span>docker images -aq<span style="color: #dd2200; background-color: #fff0f0">`</span>
+</pre></div>
+</p>
 
 <p>You might run into trouble where docker says that all those images already have a container that is running them. This means those container are orphaned but not killed as we thought them to be. Let&rsquo;s remove the shared volumes if any, for each one of them.</p>
 
-<pre><code>docker rm -fv `docker ps -aq` 
-</code></pre>
+<p><div class="highlight" style="background: #ffffff"><pre style="line-height: 125%">    docker rm -fv <span style="color: #dd2200; background-color: #fff0f0">`</span>docker ps -aq<span style="color: #dd2200; background-color: #fff0f0">`</span> 
+</pre></div>
+</p>
 
 <p>This will</p>
 
