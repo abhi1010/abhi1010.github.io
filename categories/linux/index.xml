@@ -39,9 +39,10 @@ Just run the following to test whether it works:&lt;/p&gt;
 
 &lt;p&gt;You might run into trouble where docker says that all those images already have a container that is running them. This means those container are orphaned but not killed as we thought them to be. Let&amp;rsquo;s remove the shared volumes if any, for each one of them.&lt;/p&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;    docker rm -fv &lt;span style=&#34;color: #dd2200; background-color: #fff0f0&#34;&gt;`&lt;/span&gt;docker ps -aq&lt;span style=&#34;color: #dd2200; background-color: #fff0f0&#34;&gt;`&lt;/span&gt; 
+&lt;p&gt;&lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;    docker rm -fv &lt;span style=&#34;color: #dd2200; background-color: #fff0f0&#34;&gt;`&lt;/span&gt;docker ps -aq&lt;span style=&#34;color: #dd2200; background-color: #fff0f0&#34;&gt;`&lt;/span&gt; 
 &lt;/pre&gt;&lt;/div&gt;
 
+    docker rm -fv &lt;code&gt;docker ps -aq&lt;/code&gt;&lt;/p&gt;
 
 &lt;p&gt;This will&lt;/p&gt;
 
