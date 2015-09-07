@@ -17,7 +17,7 @@
   <link rel="stylesheet" href="http://abhi1010.github.io/css/hyde-overrides.css">
   <link rel="stylesheet" href="http://abhi1010.github.io/css/hyde-a.css">
   <link rel="stylesheet" href="http://abhi1010.github.io/css/custom-additions.css">
-  <link rel="stylesheet" href="http://abhi1010.github.io/css/highlight/sunburst.css">
+  
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
@@ -96,28 +96,25 @@
 
 <p>You might see something like this:</p>
 
-<div class="highlight" style="background: #ffffff"><pre style="line-height: 125%">    CONTAINER ID        IMAGE                              COMMAND             CREATED             STATUS              PORTS               NAMES
-    1611e5ebe2c0        aws_beanstalk/staging-app:latest   <span style="color: #dd2200; background-color: #fff0f0">&quot;supervisord -n&quot;</span>    About an hour ago                                           boring_galileo
-    e59d0dd8bba1        aws_beanstalk/staging-app:latest   <span style="color: #dd2200; background-color: #fff0f0">&quot;supervisord -n&quot;</span>    About an hour ago                                           desperate_yalow
-    3844d0e18c47        aws_beanstalk/staging-app:latest   <span style="color: #dd2200; background-color: #fff0f0">&quot;supervisord -n&quot;</span>    <span style="color: #0000DD; font-weight: bold">2</span> hours ago         Up <span style="color: #0000DD; font-weight: bold">8</span> minutes        80/tcp              pensive_jang
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000000; font-style: italic">    CONTAINER ID        IMAGE                              COMMAND             CREATED             STATUS              PORTS               NAMES</span>
+<span style="color: #000000; font-style: italic">    1611e5ebe2c0        aws_beanstalk/staging-app:latest   &quot;supervisord -n&quot;    About an hour ago                                           boring_galileo</span>
+<span style="color: #000000; font-style: italic">    e59d0dd8bba1        aws_beanstalk/staging-app:latest   &quot;supervisord -n&quot;    About an hour ago                                           desperate_yalow</span>
+<span style="color: #000000; font-style: italic">    3844d0e18c47        aws_beanstalk/staging-app:latest   &quot;supervisord -n&quot;    2 hours ago         Up 8 minutes        80/tcp              pensive_jang</span>
 </pre></div>
 
 
 <p>Ideally, we want to &ldquo;forcibly remove&rdquo; all images (and hence the folders from <code>/var/lib/docker/vfs/dir</code> directory) that are not in use anymore.
 Just run the following to test whether it works:</p>
 
-<div class="highlight" style="background: #ffffff"><pre style="line-height: 125%">    docker rmi -f <span style="color: #dd2200; background-color: #fff0f0">`</span>docker images -aq<span style="color: #dd2200; background-color: #fff0f0">`</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000000; font-style: italic">    docker rmi -f `docker images -aq`</span>
 </pre></div>
 
 
 <p>You might run into trouble where docker says that all those images already have a container that is running them. This means those container are orphaned but not killed as we thought them to be. Let&rsquo;s remove the shared volumes if any, for each one of them.</p>
 
-<div class="highlight" style="background: #ffffff"><pre style="line-height: 125%">    docker rm -fv <span style="color: #dd2200; background-color: #fff0f0">`</span>docker ps -aq<span style="color: #dd2200; background-color: #fff0f0">`</span> 
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000000; font-style: italic">    docker rm -fv `docker ps -aq` </span>
 </pre></div>
 
-
-<pre><code>docker rm -fv `docker ps -aq`
-</code></pre>
 
 <p>This will</p>
 
@@ -127,11 +124,11 @@ Just run the following to test whether it works:</p>
 </ul>
 
 <p>You should see a lot more space now on your beanstalk instance.
-<div class="highlight" style="background: #ffffff"><pre style="line-height: 125%">    [root@ip dir]<span style="color: #888888"># df -h</span>
-    Filesystem      Size  Used Avail Use% Mounted on
-    /dev/xvda1      7.8G  1.8G  5.9G  24% /
-    devtmpfs        490M   96K  490M   1% /dev
-    tmpfs           499M     0  499M   0% /dev/shm
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000000; font-style: italic">    [root@ip dir]# df -h</span>
+<span style="color: #000000; font-style: italic">    Filesystem      Size  Used Avail Use% Mounted on</span>
+<span style="color: #000000; font-style: italic">    /dev/xvda1      7.8G  1.8G  5.9G  24% /</span>
+<span style="color: #000000; font-style: italic">    devtmpfs        490M   96K  490M   1% /dev</span>
+<span style="color: #000000; font-style: italic">    tmpfs           499M     0  499M   0% /dev/shm</span>
 </pre></div>
 </p>
 
@@ -163,8 +160,7 @@ var disqus_shortname = "abhi1010";
 <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
 
-<script src="http://abhi1010.github.io/js/highlight.pack.js"></script>
-<script>hljs.initHighlightingOnLoad();</script>
+
 
 </body>
 </html>

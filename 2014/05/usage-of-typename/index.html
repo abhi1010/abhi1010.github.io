@@ -17,7 +17,7 @@
   <link rel="stylesheet" href="http://abhi1010.github.io/css/hyde-overrides.css">
   <link rel="stylesheet" href="http://abhi1010.github.io/css/hyde-a.css">
   <link rel="stylesheet" href="http://abhi1010.github.io/css/custom-additions.css">
-  <link rel="stylesheet" href="http://abhi1010.github.io/css/highlight/sunburst.css">
+  
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
@@ -94,14 +94,14 @@
 
 <p>The issue is very simple but hard to notice. If you try to compile this, you will get the following errors:</p>
 
-<pre><code>main.cpp:24:5: error: need 'typename' before 'OuterStruct&lt;T2&gt;::InnerStruct' because 'OuterStruct&lt;T2&gt;' is a dependent scope
-OuterStruct&lt;T2&gt;::InnerStruct mUsingInner;
-^
-main.cpp: In function 'int main(int, char**)':
-main.cpp:34:13: error: 'struct InnerStruct_Wrapper&lt;int&gt;' has no member named 'mUsingInner'
-wrapper.mUsingInner = innerStrct;
-^
-</code></pre>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000000; font-style: italic">    main.cpp:24:5: error: need &#39;typename&#39; before &#39;OuterStruct&lt;T2&gt;::InnerStruct&#39; because &#39;OuterStruct&lt;T2&gt;&#39; is a dependent scope</span>
+<span style="color: #000000; font-style: italic">    OuterStruct&lt;T2&gt;::InnerStruct mUsingInner;</span>
+<span style="color: #000000; font-style: italic">    ^</span>
+<span style="color: #000000; font-style: italic">    main.cpp: In function &#39;int main(int, char**)&#39;:</span>
+<span style="color: #000000; font-style: italic">    main.cpp:34:13: error: &#39;struct InnerStruct_Wrapper&lt;int&gt;&#39; has no member named &#39;mUsingInner&#39;</span>
+<span style="color: #000000; font-style: italic">    wrapper.mUsingInner = innerStrct;</span>
+</pre></div>
+
 
 <p><strong>The Issue</strong></p>
 
@@ -153,8 +153,7 @@ var disqus_shortname = "abhi1010";
 <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
 
-<script src="http://abhi1010.github.io/js/highlight.pack.js"></script>
-<script>hljs.initHighlightingOnLoad();</script>
+
 
 </body>
 </html>

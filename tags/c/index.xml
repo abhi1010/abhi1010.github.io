@@ -151,14 +151,14 @@
 
 &lt;p&gt;The issue is very simple but hard to notice. If you try to compile this, you will get the following errors:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;main.cpp:24:5: error: need &#39;typename&#39; before &#39;OuterStruct&amp;lt;T2&amp;gt;::InnerStruct&#39; because &#39;OuterStruct&amp;lt;T2&amp;gt;&#39; is a dependent scope
-OuterStruct&amp;lt;T2&amp;gt;::InnerStruct mUsingInner;
-^
-main.cpp: In function &#39;int main(int, char**)&#39;:
-main.cpp:34:13: error: &#39;struct InnerStruct_Wrapper&amp;lt;int&amp;gt;&#39; has no member named &#39;mUsingInner&#39;
-wrapper.mUsingInner = innerStrct;
-^
-&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #000000; font-style: italic&#34;&gt;    main.cpp:24:5: error: need &amp;#39;typename&amp;#39; before &amp;#39;OuterStruct&amp;lt;T2&amp;gt;::InnerStruct&amp;#39; because &amp;#39;OuterStruct&amp;lt;T2&amp;gt;&amp;#39; is a dependent scope&lt;/span&gt;
+&lt;span style=&#34;color: #000000; font-style: italic&#34;&gt;    OuterStruct&amp;lt;T2&amp;gt;::InnerStruct mUsingInner;&lt;/span&gt;
+&lt;span style=&#34;color: #000000; font-style: italic&#34;&gt;    ^&lt;/span&gt;
+&lt;span style=&#34;color: #000000; font-style: italic&#34;&gt;    main.cpp: In function &amp;#39;int main(int, char**)&amp;#39;:&lt;/span&gt;
+&lt;span style=&#34;color: #000000; font-style: italic&#34;&gt;    main.cpp:34:13: error: &amp;#39;struct InnerStruct_Wrapper&amp;lt;int&amp;gt;&amp;#39; has no member named &amp;#39;mUsingInner&amp;#39;&lt;/span&gt;
+&lt;span style=&#34;color: #000000; font-style: italic&#34;&gt;    wrapper.mUsingInner = innerStrct;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
 
 &lt;p&gt;&lt;strong&gt;The Issue&lt;/strong&gt;&lt;/p&gt;
 
