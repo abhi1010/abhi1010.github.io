@@ -23,25 +23,25 @@
 
 &lt;p&gt;You might see something like this:&lt;/p&gt;
 
-&lt;p&gt;&lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;    CONTAINER ID        IMAGE                              COMMAND             CREATED             STATUS              PORTS               NAMES
-    1611e5ebe2c0        aws_beanstalk/staging-app:latest   &lt;span style=&#34;color: #dd2200; background-color: #fff0f0&#34;&gt;&amp;quot;supervisord -n&amp;quot;&lt;/span&gt;    About an hour ago                                           boring_galileo
-    e59d0dd8bba1        aws_beanstalk/staging-app:latest   &lt;span style=&#34;color: #dd2200; background-color: #fff0f0&#34;&gt;&amp;quot;supervisord -n&amp;quot;&lt;/span&gt;    About an hour ago                                           desperate_yalow
-    3844d0e18c47        aws_beanstalk/staging-app:latest   &lt;span style=&#34;color: #dd2200; background-color: #fff0f0&#34;&gt;&amp;quot;supervisord -n&amp;quot;&lt;/span&gt;    &lt;span style=&#34;color: #0000DD; font-weight: bold&#34;&gt;2&lt;/span&gt; hours ago         Up &lt;span style=&#34;color: #0000DD; font-weight: bold&#34;&gt;8&lt;/span&gt; minutes        80/tcp              pensive_jang
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/p&gt;
+
+    CONTAINER ID        IMAGE                              COMMAND             CREATED             STATUS              PORTS               NAMES
+    1611e5ebe2c0        aws_beanstalk/staging-app:latest   &#34;supervisord -n&#34;    About an hour ago                                           boring_galileo
+    e59d0dd8bba1        aws_beanstalk/staging-app:latest   &#34;supervisord -n&#34;    About an hour ago                                           desperate_yalow
+    3844d0e18c47        aws_beanstalk/staging-app:latest   &#34;supervisord -n&#34;    2 hours ago         Up 8 minutes        80/tcp              pensive_jang
+
 
 &lt;p&gt;Ideally, we want to &amp;ldquo;forcibly remove&amp;rdquo; all images (and hence the folders from &lt;code&gt;/var/lib/docker/vfs/dir&lt;/code&gt; directory) that are not in use anymore.
 Just run the following to test whether it works:&lt;/p&gt;
 
-&lt;p&gt;&lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;    docker rmi -f &lt;span style=&#34;color: #dd2200; background-color: #fff0f0&#34;&gt;`&lt;/span&gt;docker images -aq&lt;span style=&#34;color: #dd2200; background-color: #fff0f0&#34;&gt;`&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/p&gt;
+
+    docker rmi -f `docker images -aq`
+
 
 &lt;p&gt;You might run into trouble where docker says that all those images already have a container that is running them. This means those container are orphaned but not killed as we thought them to be. Let&amp;rsquo;s remove the shared volumes if any, for each one of them.&lt;/p&gt;
 
-&lt;p&gt;&lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;    docker rm -fv &lt;span style=&#34;color: #dd2200; background-color: #fff0f0&#34;&gt;`&lt;/span&gt;docker ps -aq&lt;span style=&#34;color: #dd2200; background-color: #fff0f0&#34;&gt;`&lt;/span&gt; 
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/p&gt;
+
+    docker rm -fv `docker ps -aq` 
+
 
 &lt;p&gt;This will&lt;/p&gt;
 
@@ -51,12 +51,12 @@ Just run the following to test whether it works:&lt;/p&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;You should see a lot more space now on your beanstalk instance.
-&lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;    [root@ip dir]&lt;span style=&#34;color: #888888&#34;&gt;# df -h&lt;/span&gt;
+
+    [root@ip dir]# df -h
     Filesystem      Size  Used Avail Use% Mounted on
     /dev/xvda1      7.8G  1.8G  5.9G  24% /
     devtmpfs        490M   96K  490M   1% /dev
     tmpfs           499M     0  499M   0% /dev/shm
-&lt;/pre&gt;&lt;/div&gt;
 &lt;/p&gt;
 </description>
     </item>
@@ -85,7 +85,7 @@ Just run the following to test whether it works:&lt;/p&gt;
 
 &lt;!-- more --&gt;
 
-&lt;p&gt;&lt;script type=&#34;text/javascript&#34; src=&#34;http://gist.github.com/3ada1d15b5bda319a54c.js&#34;&gt;&lt;/script&gt;&lt;/p&gt;
+&lt;script type=&#34;text/javascript&#34; src=&#34;http://gist.github.com/3ada1d15b5bda319a54c.js&#34;&gt;&lt;/script&gt;
 
 &lt;h3 id=&#34;code:8a20b19b0e16e5ac875728276c435d4c&#34;&gt;Code&lt;/h3&gt;
 
@@ -116,7 +116,7 @@ Just run the following to test whether it works:&lt;/p&gt;
 
 &lt;p&gt;Let&amp;rsquo;s have a look at the code:&lt;/p&gt;
 
-&lt;p&gt;&lt;script type=&#34;text/javascript&#34; src=&#34;http://gist.github.com/43e289a9877fb9293680.js&#34;&gt;&lt;/script&gt;&lt;/p&gt;
+&lt;script type=&#34;text/javascript&#34; src=&#34;http://gist.github.com/43e289a9877fb9293680.js&#34;&gt;&lt;/script&gt;
 
 &lt;p&gt;As usual the code is available &lt;a href=&#34;https://github.com/abhi1010/Algorithms/blob/master/Algo_codes/Node.cpp&#34;&gt;here&lt;/a&gt;:&lt;/p&gt;
 
@@ -152,7 +152,7 @@ Just run the following to test whether it works:&lt;/p&gt;
 
 &lt;p&gt;Here&amp;rsquo;s a small sample as to how to do it:&lt;/p&gt;
 
-&lt;p&gt;&lt;script type=&#34;text/javascript&#34; src=&#34;http://gist.github.com/e2b7117c20d0f591896f.js&#34;&gt;&lt;/script&gt;&lt;/p&gt;
+&lt;script type=&#34;text/javascript&#34; src=&#34;http://gist.github.com/e2b7117c20d0f591896f.js&#34;&gt;&lt;/script&gt;
 </description>
     </item>
     
@@ -177,11 +177,11 @@ Just run the following to test whether it works:&lt;/p&gt;
 &lt;p&gt;Before we talk about the code, let&amp;rsquo;s see how Linked List is setup.
 &amp;lt;!&amp;ndash; more &amp;ndash;&amp;gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;script type=&#34;text/javascript&#34; src=&#34;http://gist.github.com/33be440bf1012773b7e1.js&#34;&gt;&lt;/script&gt;&lt;/p&gt;
+&lt;script type=&#34;text/javascript&#34; src=&#34;http://gist.github.com/33be440bf1012773b7e1.js&#34;&gt;&lt;/script&gt;
 
 &lt;p&gt;Now, below is the code for it&amp;hellip;.&lt;/p&gt;
 
-&lt;p&gt;&lt;script type=&#34;text/javascript&#34; src=&#34;http://gist.github.com/bf9dbb193b4ff84ba3af.js&#34;&gt;&lt;/script&gt;&lt;/p&gt;
+&lt;script type=&#34;text/javascript&#34; src=&#34;http://gist.github.com/bf9dbb193b4ff84ba3af.js&#34;&gt;&lt;/script&gt;
 
 &lt;h3 id=&#34;code:ca5ee7b35fae15e9d7ea6b34351195c6&#34;&gt;Code&lt;/h3&gt;
 
@@ -199,7 +199,7 @@ Just run the following to test whether it works:&lt;/p&gt;
       <guid>http://abhi1010.github.io/2014/05/usage-of-typename/</guid>
       <description>&lt;p&gt;What is wrong with the following code?&lt;/p&gt;
 
-&lt;p&gt;&lt;script type=&#34;text/javascript&#34; src=&#34;http://gist.github.com/0bd5e4d910e4d8a7672e.js&#34;&gt;&lt;/script&gt;&lt;/p&gt;
+&lt;script type=&#34;text/javascript&#34; src=&#34;http://gist.github.com/0bd5e4d910e4d8a7672e.js&#34;&gt;&lt;/script&gt;
 
 &lt;p&gt;The issue is very simple but hard to notice. If you try to compile this, you will get the following errors:&lt;/p&gt;
 
@@ -259,7 +259,7 @@ wrapper.mUsingInner = innerStrct;
 
 &lt;p&gt;Please see the provided script below to have a look.&lt;/p&gt;
 
-&lt;p&gt;&lt;script type=&#34;text/javascript&#34; src=&#34;http://gist.github.com/6f190c9f3afd42881ef5.js&#34;&gt;&lt;/script&gt;&lt;/p&gt;
+&lt;script type=&#34;text/javascript&#34; src=&#34;http://gist.github.com/6f190c9f3afd42881ef5.js&#34;&gt;&lt;/script&gt;
 </description>
     </item>
     
@@ -285,7 +285,7 @@ wrapper.mUsingInner = innerStrct;
 
 &lt;p&gt;Let&amp;rsquo;s have a look at the script&amp;hellip;.&lt;/p&gt;
 
-&lt;p&gt;&lt;script type=&#34;text/javascript&#34; src=&#34;http://gist.github.com/924a5f12f3067ba0b3af.js&#34;&gt;&lt;/script&gt;&lt;/p&gt;
+&lt;script type=&#34;text/javascript&#34; src=&#34;http://gist.github.com/924a5f12f3067ba0b3af.js&#34;&gt;&lt;/script&gt;
 </description>
     </item>
     
@@ -329,7 +329,7 @@ wrapper.mUsingInner = innerStrct;
       <guid>http://abhi1010.github.io/2014/04/tokenize-a-string-using-c/</guid>
       <description>&lt;p&gt;Here&amp;rsquo;s a short snippet to split a string into multiple tokens; into a vector. As you will see that, if you run the code, boost version performs better because you can choose a number of delimiters to split your string instead of the vanilla version using the normal C++ code. Of course, you may also write your own code to do something like this but I was looking to do some short snippets.&lt;/p&gt;
 
-&lt;p&gt;&lt;script type=&#34;text/javascript&#34; src=&#34;http://gist.github.com/554885a7235f4047dae6.js&#34;&gt;&lt;/script&gt;&lt;/p&gt;
+&lt;script type=&#34;text/javascript&#34; src=&#34;http://gist.github.com/554885a7235f4047dae6.js&#34;&gt;&lt;/script&gt;
 
 &lt;p&gt;I have &lt;strong&gt;posted my code on &lt;a href=&#34;http://coliru.stacked-crooked.com/a/01e1c68ffd0199cd&#34;&gt;Stacked-Crooked&lt;/a&gt;&lt;/strong&gt; which you can view along with the output as well. It shows C++ doesn&amp;rsquo;t perform so well.&lt;/p&gt;
 </description>
@@ -1334,7 +1334,7 @@ wrapper.mUsingInner = innerStrct;
 
 &lt;!-- more --&gt;
 
-&lt;p&gt;&lt;script type=&#34;text/javascript&#34; src=&#34;http://gist.github.com/ee13f57720471c8feea2.js&#34;&gt;&lt;/script&gt;&lt;/p&gt;
+&lt;script type=&#34;text/javascript&#34; src=&#34;http://gist.github.com/ee13f57720471c8feea2.js&#34;&gt;&lt;/script&gt;
 </description>
     </item>
     
@@ -1482,7 +1482,7 @@ wrapper.mUsingInner = innerStrct;
 
 &lt;p&gt;Here&amp;rsquo;s a short code for viewing all the columns of a given table.&lt;/p&gt;
 
-&lt;p&gt;&lt;script type=&#34;text/javascript&#34; src=&#34;http://gist.github.com/11365686.js&#34;&gt;&lt;/script&gt;&lt;/p&gt;
+&lt;script type=&#34;text/javascript&#34; src=&#34;http://gist.github.com/11365686.js&#34;&gt;&lt;/script&gt;
 </description>
     </item>
     

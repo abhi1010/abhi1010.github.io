@@ -65,7 +65,7 @@
 
 &lt;p&gt;This is how you do that.&lt;/p&gt;
 
-&lt;p&gt;&lt;script type=&#34;text/javascript&#34; src=&#34;http://gist.github.com/bfb075b6787d2616fde6.js&#34;&gt;&lt;/script&gt;&lt;/p&gt;
+&lt;script type=&#34;text/javascript&#34; src=&#34;http://gist.github.com/bfb075b6787d2616fde6.js&#34;&gt;&lt;/script&gt;
 
 &lt;p&gt;Please note that the name of the javascript file is &amp;ldquo;HoverImageButtonJS.js&amp;rdquo;. ExtendedControls is the name of the project/assembly that I have created for this custom web control.&lt;/p&gt;
 
@@ -77,13 +77,13 @@
 
 &lt;p&gt;Let&amp;rsquo;s see how that&amp;rsquo;s done.&lt;/p&gt;
 
-&lt;p&gt;&lt;script type=&#34;text/javascript&#34; src=&#34;http://gist.github.com/d0b66ef7b0f076e88042.js&#34;&gt;&lt;/script&gt;&lt;/p&gt;
+&lt;script type=&#34;text/javascript&#34; src=&#34;http://gist.github.com/d0b66ef7b0f076e88042.js&#34;&gt;&lt;/script&gt;
 
 &lt;p&gt;Over here, I have told the class to include &lt;code&gt;&amp;quot;onmouseover=ShowImageHoverButton(this, &#39;IMAGE_SOURCE&#39;)&amp;quot;&lt;/code&gt; as a property.&lt;/p&gt;
 
 &lt;p&gt;This is how it is rendered on the client browser:&lt;/p&gt;
 
-&lt;p&gt;&lt;script type=&#34;text/javascript&#34; src=&#34;http://gist.github.com/6df972bf94b736545419.js&#34;&gt;&lt;/script&gt;&lt;/p&gt;
+&lt;script type=&#34;text/javascript&#34; src=&#34;http://gist.github.com/6df972bf94b736545419.js&#34;&gt;&lt;/script&gt;
 
 &lt;p&gt;&lt;strong&gt;Add the javascript file also to the AssemblyInfo.cs class&lt;/strong&gt;&lt;/p&gt;
 
@@ -102,7 +102,7 @@
 &lt;li&gt;&lt;p&gt;Register the dll on web.config. This makes the control available automatically on all the pages.&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;script type=&#34;text/javascript&#34; src=&#34;http://gist.github.com/88222d3f94911fbec6f4.js&#34;&gt;&lt;/script&gt;&lt;/p&gt;
+&lt;script type=&#34;text/javascript&#34; src=&#34;http://gist.github.com/88222d3f94911fbec6f4.js&#34;&gt;&lt;/script&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Go to the design view of any page. Open up the Toolbox pane and you will automatically see the name appear &amp;ldquo;HoverImageButton&amp;rdquo;. Double click and you are ready to go!!&lt;/li&gt;
@@ -134,7 +134,7 @@
 
 &lt;p&gt;&lt;strong&gt;Here&amp;rsquo;s all the code in case somebody needs it:&lt;/strong&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;script type=&#34;text/javascript&#34; src=&#34;http://gist.github.com/135e9bbf44f3d9a53cb8.js&#34;&gt;&lt;/script&gt;&lt;/p&gt;
+&lt;script type=&#34;text/javascript&#34; src=&#34;http://gist.github.com/135e9bbf44f3d9a53cb8.js&#34;&gt;&lt;/script&gt;
 </description>
     </item>
     
