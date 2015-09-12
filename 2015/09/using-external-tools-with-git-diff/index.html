@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>Using External Tools with Git Diff &middot; Abhishek Pandey</title>
+
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+  <link rel="stylesheet" href="http://abhi1010.github.io/css/poole.css">
+  <link rel="stylesheet" href="http://abhi1010.github.io/css/hyde.css">
+  <link rel="stylesheet" href="http://abhi1010.github.io/css/poole-overrides.css">
+  <link rel="stylesheet" href="http://abhi1010.github.io/css/hyde-overrides.css">
+  <link rel="stylesheet" href="http://abhi1010.github.io/css/hyde-a.css">
+  <link rel="stylesheet" href="http://abhi1010.github.io/css/custom-additions.css">
+  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://abhi1010.github.io/touch-icon-144-precomposed.png">
+  <link href="http://abhi1010.github.io/favicon.png" rel="icon">
+
+  
+  
+  
+  
+
+  <meta name="description" content="Your default page description">
+  <meta name="keywords" content="your,default,page,keywords">
+  
+</head>
+<body class="theme-base-aa">
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      
+      <h1><a href="http://abhi1010.github.io/">Abhishek Pandey</a></h1>
+      <p class="lead">&hellip; lost in reverie</p>
+    </div>
+
+    <ul class="sidebar-nav">
+      
+      <li class="sidebar-nav-item"><a href="http://abhi1010.github.io/post/">Posts</a></li>
+      
+      <li class="sidebar-nav-item"><a href="http://abhi1010.github.io/tags/">Tags</a></li>
+      
+      <li class="sidebar-nav-item"><a href="http://abhi1010.github.io/categories/">Categories</a></li>
+      
+      <li class="sidebar-nav-item"><a href="http://abhi1010.github.io/about/">About</a></li>
+      
+    </ul>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item">
+      
+      
+      
+      
+      
+      
+      
+      
+      </li>
+    </ul>
+
+    
+
+  </div>
+</div>
+
+
+<div class="content container">
+  <div class="post">
+    <h1>Using External Tools with Git Diff</h1>
+    <span class="post-date">Sep 10, 2015  &middot; <a href="http://abhi1010.github.io/2015/09/using-external-tools-with-git-diff/#disqus_thread">Comments</a>
+    
+    <br/>
+    
+          <a class="a_cat" href="http://abhi1010.github.io/categories/code">code</a>
+      
+      
+        <a class="a_tag" href="http://abhi1010.github.io/tags/git">git</a>
+      
+
+    
+    </span>
+      <div id="_toc" class="toc">
+        
+      </div>
+    <p>If you want to view what has changed since one commit to another, it is quite easy to view the diff.</p>
+
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">git diff 5fad06c..0a504fa
+</pre></div>
+
+
+<p>You will get something like this:</p>
+
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000080; font-weight: bold">diff --git a/modules/file_1.erb b/modules/file_1.erb</span>
+<span style="color: #000080; font-weight: bold">index 0538da0..6621d93 100644</span>
+<span style="color: #a40000">--- a/modules/file_1.erb</span>
+<span style="color: #00A000">+++ b/modules/file_1.erb</span>
+<span style="color: #800080; font-weight: bold">@@ -5,8 +5,8 @@</span>
+ 
+   // Algo settings
+   &quot;Carbo&quot;: {
+<span style="color: #a40000">-    &quot;active-instrument&quot;: &quot;SGX/NK15&quot;,</span>
+<span style="color: #a40000">-    &quot;hedge-instrument&quot;: &quot;SGX/NK16&quot;,</span>
+<span style="color: #00A000">+    &quot;active-instrument&quot;: &quot;SGX/NK17&quot;,</span>
+<span style="color: #00A000">+    &quot;hedge-instrument&quot;: &quot;SGX/NK18&quot;,</span>
+     &quot;owner-app-id&quot;: &quot;abhi1010&quot;,
+</pre></div>
+
+
+<p>What if you wanted a use an external tool like <code>meld</code> to view the diff, in a nice beautiful side by side view? You&rsquo;d have to modify your settings to tell that to <code>git</code>.
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">git config --global diff.tool meld
+</pre></div>
+</p>
+
+<p>Finally, then to view the diff:
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">git difftool 5fad06c..0a504fa
+</pre></div>
+</p>
+
+  </div>
+  <div id="disqus_thread"></div>
+</div>
+
+
+<script type="text/javascript">
+var disqus_shortname = "abhi1010";
+(function () {
+    var s = document.createElement('script'); s.async = true;
+    s.type = 'text/javascript';
+    s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+}());
+</script>
+
+
+
+<script type="text/javascript">
+    var disqus_shortname = "abhi1010";
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+</body>
+</html>
+
