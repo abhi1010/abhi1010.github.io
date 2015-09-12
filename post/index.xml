@@ -52,6 +52,82 @@
     </item>
     
     <item>
+      <title>Updating Django Source with Docker Deployments</title>
+      <link>http://abhi1010.github.io/2015/09/updating-django-source-with-docker-deployments/</link>
+      <pubDate>Fri, 04 Sep 2015 00:11:51 +0800</pubDate>
+      
+      <guid>http://abhi1010.github.io/2015/09/updating-django-source-with-docker-deployments/</guid>
+      <description>
+
+&lt;p&gt;While deploying docker multiple times, you may not want to copy over your &lt;code&gt;Django&lt;/code&gt; source code every time you do a deployment.&lt;/p&gt;
+
+&lt;h1 id=&#34;setting-up-supervisord:8ef139736ad377184214844940ced19b&#34;&gt;Setting up &lt;code&gt;supervisord&lt;/code&gt;&lt;/h1&gt;
+
+&lt;p&gt;Luckily there is an easy way to manage this. Since you are working with &lt;code&gt;Django&lt;/code&gt;, there is a good chance that you are also managing the processes (like &lt;code&gt;uwsgi&lt;/code&gt;) with &lt;code&gt;supervisord&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Here are some of the steps that you can take with &lt;code&gt;supervisord&lt;/code&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Set up a new process in &lt;code&gt;supervisord&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Do not allow it to &lt;em&gt;&lt;code&gt;autorestart&lt;/code&gt;&lt;/em&gt; since it will be a one-shot process&lt;/li&gt;
+&lt;li&gt;Call another script in any format to update the source code
+
+&lt;ul&gt;
+&lt;li&gt;As an example, I use &lt;code&gt;bash&lt;/code&gt; to update my source code through &lt;code&gt;git&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Here&amp;rsquo;s a sample code:&lt;/p&gt;
+
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;    &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;[&lt;/span&gt;program:source-updater&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;]&lt;/span&gt;
+    &lt;span style=&#34;color: #000000&#34;&gt;redirect_stderr&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #204a87&#34;&gt;true&lt;/span&gt;
+&lt;span style=&#34;color: #204a87&#34;&gt;    &lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;stdout_logfile&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt; /shared/source_code_updater.log
+    &lt;span style=&#34;color: #000000&#34;&gt;directory&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt; /ws/
+    &lt;span style=&#34;color: #204a87&#34;&gt;command&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt; /ws/source_code_updater.sh
+    &lt;span style=&#34;color: #000000&#34;&gt;autorestart&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;False
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h1 id=&#34;updating-the-source-code:8ef139736ad377184214844940ced19b&#34;&gt;Updating the source code&lt;/h1&gt;
+
+&lt;p&gt;Few things are important to note in a &lt;code&gt;docker&lt;/code&gt; deployment:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Not every commit needs to be deployed&lt;/li&gt;
+&lt;li&gt;Filter your commits to only allow &lt;strong&gt;&lt;em&gt;deployable&lt;/em&gt;&lt;/strong&gt; code to be updated on &lt;code&gt;docker&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Include regression, unit and system tests to be part of your build process&lt;/li&gt;
+&lt;li&gt;Once everything has been confirmed to be working, tag your code so that you know it is worthy of going to docker&lt;/li&gt;
+&lt;li&gt;Another way would be to manage this process through branches and merge only if everything passes&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;docker&lt;/code&gt; deployments would build off this merged branch or tagged version&lt;/li&gt;
+&lt;li&gt;This way even if you have made 10 commits while fixing a bug and are still in the process of fixing it, you know it won&amp;rsquo;t go to &lt;code&gt;docker&lt;/code&gt; deployment&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;With that idea, do a checkout and update the source code according to specific tag:&lt;/p&gt;
+
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;    git checkout -f tags/your_tag_name
+    git pull origin tags/your_tag_name
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h1 id=&#34;telling-uwsgi-about-the-updated-source-code:8ef139736ad377184214844940ced19b&#34;&gt;Telling &lt;code&gt;uwsgi&lt;/code&gt; about the updated source code&lt;/h1&gt;
+
+&lt;p&gt;Once you have updated your source code, you need to re-load the project onto &lt;code&gt;uwsgi&lt;/code&gt; so that &lt;code&gt;nginx&lt;/code&gt; or &lt;code&gt;apache&lt;/code&gt; can pick it up.
+The simplest way to achieve it using the config parameter of &lt;code&gt;uwsgi&lt;/code&gt;: &lt;code&gt;--touch-reload&lt;/code&gt;. It will &lt;em&gt;reload uWSGI if the specified file is modified/touched&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Just remember to setup &lt;code&gt;supervisord&lt;/code&gt; in your &lt;code&gt;Dockerfile&lt;/code&gt; with this config parameter.&lt;/p&gt;
+
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;[&lt;/span&gt;program:app-uwsgi&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;]&lt;/span&gt;
+&lt;span style=&#34;color: #000000&#34;&gt;redirect_stderr&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #204a87&#34;&gt;true&lt;/span&gt;
+&lt;span style=&#34;color: #000000&#34;&gt;stdout_logfile&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt; /var/shared/_uwsgi.log
+&lt;span style=&#34;color: #204a87&#34;&gt;command&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt; /ws/ve_envs/rwv2/bin/uwsgi --touch-reload&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;/ws/wsgi.ini --ini /ws/wsgi.ini
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;You can choose any file. I choose &lt;code&gt;uwsgi.ini&lt;/code&gt; because the contents never really need to change in it.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Docker Container cleanup on Elastic Beanstalk</title>
       <link>http://abhi1010.github.io/2015/08/docker-container-cleanup-on-elastic-beanstalk/</link>
       <pubDate>Fri, 07 Aug 2015 14:59:18 -0400</pubDate>
@@ -1373,112 +1449,6 @@ Just run the following to test whether it works:&lt;/p&gt;
 &lt;!-- more --&gt;
 
 &lt;script type=&#34;text/javascript&#34; src=&#34;http://gist.github.com/ee13f57720471c8feea2.js&#34;&gt;&lt;/script&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Ideas for Shared Memory in Linux</title>
-      <link>http://abhi1010.github.io/2013/10/ideas-for-shared-memory-in-linux/</link>
-      <pubDate>Sun, 13 Oct 2013 05:59:22 +0000</pubDate>
-      
-      <guid>http://abhi1010.github.io/2013/10/ideas-for-shared-memory-in-linux/</guid>
-      <description>&lt;p&gt;I have been doing extensive research today regarding shared memory in linux before I embark on a new project in which shaving time off process communication latency is extremely important. I found some very interesting links as well. Let’s break them down:&lt;/p&gt;
-
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;Topic&lt;/th&gt;
-&lt;th&gt;Description&lt;/th&gt;
-&lt;th&gt;Link&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;Theory/Explanation&lt;/td&gt;
-&lt;td&gt;Some articles that explain how to get started&lt;/td&gt;
-&lt;td&gt;&lt;a href=&#34;http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2006/n2044.html&#34;&gt;open-std&lt;/a&gt;&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;Content in the first column&lt;/td&gt;
-&lt;td&gt;Content in the second column&lt;/td&gt;
-&lt;td&gt;lkd&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;td&gt;IPC Mechanisms – some recommendations. Mainly talks about softwares like Boost, dBus dBus used to work using kernel levels but lately have come up with a patch that bypasses kernels&lt;/td&gt;
-&lt;td&gt;&lt;a href=&#34;http://stackoverflow.com/questions/1906166/inter-process-communication-recommendation&#34;&gt;Stackoverflow&lt;/a&gt;&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;td&gt;What every programmer should know about memory&lt;/td&gt;
-&lt;td&gt;&lt;a href=&#34;http://lwn.net/Articles/255364/&#34;&gt;LWN&lt;/a&gt;&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;td&gt;Linux IPC&lt;/td&gt;
-&lt;td&gt;&lt;a href=&#34;http://www.tldp.org/LDP/tlk/ipc/ipc.html&#34;&gt;TLDP&lt;/a&gt;&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;td&gt;Cache Friendly Code&lt;/td&gt;
-&lt;td&gt;&lt;a href=&#34;http://stackoverflow.com/questions/16699247/what-is-cache-friendly-code/16699282#16699282&#34;&gt;Stackoverflow&lt;/a&gt;&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;td&gt;Helpful Articles     Which linux IPC technique to use?&lt;/td&gt;
-&lt;td&gt;&lt;a href=&#34;http://stackoverflow.com/questions/2281204/which-linux-ipc-technique-to-use&#34;&gt;Stackoverflow&lt;/a&gt;&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;td&gt;Inter process communication – talks about shared memory&lt;/td&gt;
-&lt;td&gt;&lt;a href=&#34;http://www.advancedlinuxprogramming.com/alp-folder/alp-ch05-ipc.pdf&#34;&gt;ALP&lt;/a&gt;&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;td&gt;Linux Poll Events on Shared Memory&lt;/td&gt;
-&lt;td&gt;&lt;a href=&#34;http://stackoverflow.com/questions/11470322/cause-a-linux-poll-event-on-a-shared-memory-file&#34;&gt;Stackoverflow&lt;/a&gt;&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;td&gt;Using semaphores in Shared Memory&lt;/td&gt;
-&lt;td&gt;&lt;a href=&#34;http://stackoverflow.com/questions/10772860/semaphores-and-shared-memory-in-linux&#34;&gt;Stackoverflow&lt;/a&gt;&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;td&gt;Sharing semaphores between Shared Memory&lt;/td&gt;
-&lt;td&gt;&lt;a href=&#34;http://stackoverflow.com/questions/8359322/how-to-share-semaphores-between-processes-using-shared-memory?rq=1&#34;&gt;Stackoverflow&lt;/a&gt;&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;td&gt;Sharing memory between processes&lt;/td&gt;
-&lt;td&gt;&lt;a href=&#34;http://stackoverflow.com/questions/11583281/sharing-memory-between-two-processes&#34;&gt;Stackoverflow&lt;/a&gt;&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;td&gt;Reserving memory at kernel boot up (DMA)&lt;/td&gt;
-&lt;td&gt;&lt;a href=&#34;http://stackoverflow.com/questions/647783/direct-memory-access-in-linux?rq=1&#34;&gt;Stackoverflow&lt;/a&gt;&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;Extra&lt;/td&gt;
-&lt;td&gt;IPC Shared memory samples&lt;/td&gt;
-&lt;td&gt;&lt;a href=&#34;http://linuxgazette.net/104/ramankutty.html&#34;&gt;linuxgazette&lt;/a&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
 </description>
     </item>
     

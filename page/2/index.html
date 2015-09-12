@@ -80,6 +80,46 @@
     
     <div class="post">
       <h1 class="post-title">
+        <a href="http://abhi1010.github.io/2014/04/32-bit-vs-64-bit/">32 bit vs 64 bit</a>
+      </h1>
+      <span class="post-date">Apr 15, 2014  &middot; <a href="http://abhi1010.github.io/2014/04/32-bit-vs-64-bit/#disqus_thread">Comments</a>
+      
+      <br/>
+      <a class="a_cat" href="http://abhi1010.github.io/categories/code">code</a>
+        
+      <a class="a_tag" href="http://abhi1010.github.io/tags/c">c&#43;&#43;</a>
+    
+      </span>
+      
+      
+
+<h3 id="when-to-use-64-bit:781115a00a27c6c773035866d9644c43">When to use 64-bit?</h3>
+
+<p>If your application needs more than 2-4gb of data</p>
+
+<ul>
+<li>If your application intensively uses 64-bit arithmetic</li>
+<li>* 32-bit x86 compiled applications are restricted to x86 instruction set, even when run on on a 64-bit machine</li>
+<li>x64 supports 16 registers compared to just 8 in x86. If your code is computation intensive this may help a great deal</li>
+</ul>
+
+<h3 id="when-to-use-32-bit:781115a00a27c6c773035866d9644c43">When to use 32-bit?</h3>
+
+<p>After reading so many great things about 32 bit, why would anybody still want to code against 32-bit? Simple reason - code compiled in 32-bit takes lesser memory. For example, a pointer in 64-bit machine is 8 bytes compared to 4 bytes with 32-bit. Now imagine how many pointers do you have going around in your code?</p>
+
+<h3 id="when-to-not-use-64-bit:781115a00a27c6c773035866d9644c43">When to not use 64-bit?</h3>
+
+<p>Sometimes if your code is running on a machine that does not have too much of space then it is a never a great idea to use 64-bit compilation because the same task can probably be done much better using 32-bit version. L2 and L3 caches will be utilized a lot more in 64-bit code (and a lot earlier as well) compared to 32-bit; on such systems.</p>
+
+<h3 id="summary:781115a00a27c6c773035866d9644c43">Summary</h3>
+
+<p>Always benchmark your code and ensure that the application actually needs more than 2-4Gb of space.</p>
+
+      
+    </div>
+    
+    <div class="post">
+      <h1 class="post-title">
         <a href="http://abhi1010.github.io/2014/04/tokenize-a-string-using-c/">Tokenize a String using C&#43;&#43;</a>
       </h1>
       <span class="post-date">Apr 8, 2014  &middot; <a href="http://abhi1010.github.io/2014/04/tokenize-a-string-using-c/#disqus_thread">Comments</a>
@@ -1457,51 +1497,6 @@ echo $CMD
       
     </div>
     
-    <div class="post">
-      <h1 class="post-title">
-        <a href="http://abhi1010.github.io/2012/10/multiple-inheritance/">Multiple Inheritance</a>
-      </h1>
-      <span class="post-date">Oct 23, 2012  &middot; <a href="http://abhi1010.github.io/2012/10/multiple-inheritance/#disqus_thread">Comments</a>
-      
-      <br/>
-      <a class="a_cat" href="http://abhi1010.github.io/categories/code">code</a>
-        
-      <a class="a_tag" href="http://abhi1010.github.io/tags/c">c&#43;&#43;</a>
-    
-      </span>
-      
-      <p>What is the output to the following code?</p>
-
-<script type="text/javascript" src="http://gist.github.com/8fac0155f30551df8bca.js"></script>
-
-<!-- more -->
-
-<p><em>Output</em></p>
-
-<pre><code>Foo FooToo Bar FootTooBar
-</code></pre>
-
-<p><em>Why?</em></p>
-
-<ol>
-<li><p>An instance of FooTooBar needs to be created according to main()</p></li>
-
-<li><p>To create that instance, we first need the base classes too, hence FooToo and Bar classes</p></li>
-
-<li><p>Now notice the keyword virtual everytime inheritance is defined</p>
-
-<ul>
-<li><p>This does half the magic by ensuring that the member data instances are shared with any other inclusions of that same base in further derived classes</p></li>
-
-<li><p>This is very handy for multiple inheritance</p></li>
-</ul></li>
-</ol>
-
-<p>As an exercise you may try to remove virtual from some derived class and see what results you get.</p>
-
-      
-    </div>
-    
     
     
     <ul class="pagination">
@@ -1528,12 +1523,15 @@ echo $CMD
         ><a href="/page/4/">4</a></li>
         
         <li
+        ><a href="/page/5/">5</a></li>
+        
+        <li
         >
         <a href="/page/3/" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
         </li>
         
         <li>
-            <a href="/page/4/" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+            <a href="/page/5/" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
         </li>
         
     </ul>
