@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>Multiple Virtual Environments in Docker &middot; Abhishek Pandey</title>
+
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+  <link rel="stylesheet" href="http://abhi1010.github.io/css/poole.css">
+  <link rel="stylesheet" href="http://abhi1010.github.io/css/hyde.css">
+  <link rel="stylesheet" href="http://abhi1010.github.io/css/poole-overrides.css">
+  <link rel="stylesheet" href="http://abhi1010.github.io/css/hyde-overrides.css">
+  <link rel="stylesheet" href="http://abhi1010.github.io/css/hyde-a.css">
+  <link rel="stylesheet" href="http://abhi1010.github.io/css/custom-additions.css">
+  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://abhi1010.github.io/touch-icon-144-precomposed.png">
+  <link href="http://abhi1010.github.io/favicon.png" rel="icon">
+
+  
+  
+  
+  
+
+  <meta name="description" content="How to allow multiple projects to use their own separate pythong virtual environments">
+  <meta name="keywords" content="your,default,page,keywords">
+  
+</head>
+<body class="theme-base-aa">
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      
+      <h1><a href="http://abhi1010.github.io/">Abhishek Pandey</a></h1>
+      <p class="lead">&hellip; lost in reverie</p>
+    </div>
+
+    <ul class="sidebar-nav">
+      
+      <li class="sidebar-nav-item"><a href="http://abhi1010.github.io/post/">Posts</a></li>
+      
+      <li class="sidebar-nav-item"><a href="http://abhi1010.github.io/tags/">Tags</a></li>
+      
+      <li class="sidebar-nav-item"><a href="http://abhi1010.github.io/categories/">Categories</a></li>
+      
+      <li class="sidebar-nav-item"><a href="http://abhi1010.github.io/about/">About</a></li>
+      
+    </ul>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item">
+      
+      
+      
+      
+      
+      
+      
+      
+      </li>
+    </ul>
+
+    
+
+  </div>
+</div>
+
+
+<div class="content container">
+  <div class="post">
+    <h1>Multiple Virtual Environments in Docker</h1>
+    <span class="post-date">Sep 3, 2015  &middot; <a href="http://abhi1010.github.io/2015/09/multiple-virtual-environments-in-docker/#disqus_thread">Comments</a>
+    
+    <br/>
+    
+          <a class="a_cat" href="http://abhi1010.github.io/categories/continuous-delivery">continuous delivery</a>
+      
+      
+        <a class="a_tag" href="http://abhi1010.github.io/tags/docker">docker</a><a class="a_tag" href="http://abhi1010.github.io/tags/python">python</a><a class="a_tag" href="http://abhi1010.github.io/tags/deployment">deployment</a><a class="a_tag" href="http://abhi1010.github.io/tags/supervisord">supervisord</a>
+      
+
+    
+    </span>
+      <div id="_toc" class="toc">
+        
+      </div>
+    <p>It may seem like a daunting task to have multiple python projects running in their own virtual environments in docker as you want to manage the running of the tasks from a single source - let&rsquo;s say <code>supervisord</code>.
+However, all that is required here is to know that python automatically picks up the location of the virtual environments if you provide full path to the virtual environment&rsquo;s python.</p>
+
+<p>For example, in my docker environment, I have virtual environment install at the following location:</p>
+
+<pre><code>/ws/ve_envs/rwv1/
+</code></pre>
+
+<p>To enable a project with this virtual environment, I can run the following:</p>
+
+<pre><code>/ws/ve_envs/rwv1/bin/python3.4 PYTHON_PROJECT_FILE_TO_RUN.py
+</code></pre>
+
+<p>Similarly, other projects can be set up in the same way.</p>
+
+<p>For example, for running <code>uwsgi</code> I provide the full path for python as follows:</p>
+
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #ce5c00; font-weight: bold">[</span>program:appName<span style="color: #ce5c00; font-weight: bold">]</span>
+<span style="color: #000000">stdout_logfile</span> <span style="color: #ce5c00; font-weight: bold">=</span> /var/shared/_uwsgi.log
+<span style="color: #204a87">command</span> <span style="color: #ce5c00; font-weight: bold">=</span> /ws/ve_envs/project/bin/uwsgi --touch-reload<span style="color: #ce5c00; font-weight: bold">=</span>/ws/wsgi.ini --ini /ws/wsgi.ini
+</pre></div>
+
+
+<p>You might want to read about <code>--touch-reload</code> in my <a href="http://abhi1010.github.io/2015/09/updating-django-source-with-docker-deployments/">other post.</a></p>
+
+  </div>
+  <div id="disqus_thread"></div>
+</div>
+
+
+<script type="text/javascript">
+var disqus_shortname = "abhi1010";
+(function () {
+    var s = document.createElement('script'); s.async = true;
+    s.type = 'text/javascript';
+    s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+}());
+</script>
+
+
+
+<script type="text/javascript">
+    var disqus_shortname = "abhi1010";
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+</body>
+</html>
+

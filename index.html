@@ -214,6 +214,47 @@ The simplest way to achieve it using the config parameter of <code>uwsgi</code>:
     
     <div class="post">
       <h1 class="post-title">
+        <a href="http://abhi1010.github.io/2015/09/multiple-virtual-environments-in-docker/">Multiple Virtual Environments in Docker</a>
+      </h1>
+      <span class="post-date">Sep 3, 2015  &middot; <a href="http://abhi1010.github.io/2015/09/multiple-virtual-environments-in-docker/#disqus_thread">Comments</a>
+      
+      <br/>
+      <a class="a_cat" href="http://abhi1010.github.io/categories/continuous-delivery">continuous delivery</a>
+        
+      <a class="a_tag" href="http://abhi1010.github.io/tags/docker">docker</a><a class="a_tag" href="http://abhi1010.github.io/tags/python">python</a><a class="a_tag" href="http://abhi1010.github.io/tags/deployment">deployment</a><a class="a_tag" href="http://abhi1010.github.io/tags/supervisord">supervisord</a>
+    
+      </span>
+      
+      <p>It may seem like a daunting task to have multiple python projects running in their own virtual environments in docker as you want to manage the running of the tasks from a single source - let&rsquo;s say <code>supervisord</code>.
+However, all that is required here is to know that python automatically picks up the location of the virtual environments if you provide full path to the virtual environment&rsquo;s python.</p>
+
+<p>For example, in my docker environment, I have virtual environment install at the following location:</p>
+
+<pre><code>/ws/ve_envs/rwv1/
+</code></pre>
+
+<p>To enable a project with this virtual environment, I can run the following:</p>
+
+<pre><code>/ws/ve_envs/rwv1/bin/python3.4 PYTHON_PROJECT_FILE_TO_RUN.py
+</code></pre>
+
+<p>Similarly, other projects can be set up in the same way.</p>
+
+<p>For example, for running <code>uwsgi</code> I provide the full path for python as follows:</p>
+
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #ce5c00; font-weight: bold">[</span>program:appName<span style="color: #ce5c00; font-weight: bold">]</span>
+<span style="color: #000000">stdout_logfile</span> <span style="color: #ce5c00; font-weight: bold">=</span> /var/shared/_uwsgi.log
+<span style="color: #204a87">command</span> <span style="color: #ce5c00; font-weight: bold">=</span> /ws/ve_envs/project/bin/uwsgi --touch-reload<span style="color: #ce5c00; font-weight: bold">=</span>/ws/wsgi.ini --ini /ws/wsgi.ini
+</pre></div>
+
+
+<p>You might want to read about <code>--touch-reload</code> in my <a href="http://abhi1010.github.io/2015/09/updating-django-source-with-docker-deployments/">other post.</a></p>
+
+      
+    </div>
+    
+    <div class="post">
+      <h1 class="post-title">
         <a href="http://abhi1010.github.io/2015/08/docker-container-cleanup-on-elastic-beanstalk/">Docker Container cleanup on Elastic Beanstalk</a>
       </h1>
       <span class="post-date">Aug 7, 2015  &middot; <a href="http://abhi1010.github.io/2015/08/docker-container-cleanup-on-elastic-beanstalk/#disqus_thread">Comments</a>
@@ -514,40 +555,6 @@ Just run the following to test whether it works:</p>
 <p>Please see the provided script below to have a look.</p>
 
 <script type="text/javascript" src="http://gist.github.com/6f190c9f3afd42881ef5.js"></script>
-
-      
-    </div>
-    
-    <div class="post">
-      <h1 class="post-title">
-        <a href="http://abhi1010.github.io/2014/05/getting-a-group-of-lines-from-a-file/">Getting a group of lines from a file</a>
-      </h1>
-      <span class="post-date">May 19, 2014  &middot; <a href="http://abhi1010.github.io/2014/05/getting-a-group-of-lines-from-a-file/#disqus_thread">Comments</a>
-      
-      <br/>
-      <a class="a_cat" href="http://abhi1010.github.io/categories/code">code</a><a class="a_cat" href="http://abhi1010.github.io/categories/tips">tips</a>
-        
-      <a class="a_tag" href="http://abhi1010.github.io/tags/awk">awk</a><a class="a_tag" href="http://abhi1010.github.io/tags/bash">bash</a>
-    
-      </span>
-      
-      <p>I&rsquo;ve had this need quite a few times to pull out a section of logs that would begin with a particular line and end with another. grep is not exactly useful there because it only prints out sections based on line counters (using -A/B/C) lines based on a single search pattern.</p>
-
-<p>I came up with a script that can run at almost same speeds using <code>grep/cat/awk</code>. <code>awk</code> is used to decide whether the end of the section has been reached or not. Some features of the script are:</p>
-
-<ul>
-<li><p>Since <code>awk</code> script only toggles one variable it works seamlessly without delaying the actual work</p></li>
-
-<li><p>Works on gzip files as well</p></li>
-
-<li><p>If you do not want to depend on grep or are unsure how many lines may be between begin and end keyword then replace gunzip with zcat and grep with cat.</p></li>
-
-<li><p>Usage: <code>group filename printBeginKeyword printUntilKeyword NumOfLines</code></p></li>
-</ul>
-
-<p>Let&rsquo;s have a look at the script&hellip;.</p>
-
-<script type="text/javascript" src="http://gist.github.com/924a5f12f3067ba0b3af.js"></script>
 
       
     </div>

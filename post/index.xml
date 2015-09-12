@@ -128,6 +128,39 @@ The simplest way to achieve it using the config parameter of &lt;code&gt;uwsgi&l
     </item>
     
     <item>
+      <title>Multiple Virtual Environments in Docker</title>
+      <link>http://abhi1010.github.io/2015/09/multiple-virtual-environments-in-docker/</link>
+      <pubDate>Thu, 03 Sep 2015 22:33:33 +0800</pubDate>
+      
+      <guid>http://abhi1010.github.io/2015/09/multiple-virtual-environments-in-docker/</guid>
+      <description>&lt;p&gt;It may seem like a daunting task to have multiple python projects running in their own virtual environments in docker as you want to manage the running of the tasks from a single source - let&amp;rsquo;s say &lt;code&gt;supervisord&lt;/code&gt;.
+However, all that is required here is to know that python automatically picks up the location of the virtual environments if you provide full path to the virtual environment&amp;rsquo;s python.&lt;/p&gt;
+
+&lt;p&gt;For example, in my docker environment, I have virtual environment install at the following location:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;/ws/ve_envs/rwv1/
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;To enable a project with this virtual environment, I can run the following:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;/ws/ve_envs/rwv1/bin/python3.4 PYTHON_PROJECT_FILE_TO_RUN.py
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Similarly, other projects can be set up in the same way.&lt;/p&gt;
+
+&lt;p&gt;For example, for running &lt;code&gt;uwsgi&lt;/code&gt; I provide the full path for python as follows:&lt;/p&gt;
+
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;[&lt;/span&gt;program:appName&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;]&lt;/span&gt;
+&lt;span style=&#34;color: #000000&#34;&gt;stdout_logfile&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt; /var/shared/_uwsgi.log
+&lt;span style=&#34;color: #204a87&#34;&gt;command&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt; /ws/ve_envs/project/bin/uwsgi --touch-reload&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;/ws/wsgi.ini --ini /ws/wsgi.ini
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;You might want to read about &lt;code&gt;--touch-reload&lt;/code&gt; in my &lt;a href=&#34;http://abhi1010.github.io/2015/09/updating-django-source-with-docker-deployments/&#34;&gt;other post.&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Docker Container cleanup on Elastic Beanstalk</title>
       <link>http://abhi1010.github.io/2015/08/docker-container-cleanup-on-elastic-beanstalk/</link>
       <pubDate>Fri, 07 Aug 2015 14:59:18 -0400</pubDate>
@@ -1419,36 +1452,6 @@ Just run the following to test whether it works:&lt;/p&gt;
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;There could be lot more actions (regular vim stuff) that you could do like yanking or indenting.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Reading Excel in C#</title>
-      <link>http://abhi1010.github.io/2013/11/reading-excel-in-c/</link>
-      <pubDate>Sat, 09 Nov 2013 23:51:00 +0000</pubDate>
-      
-      <guid>http://abhi1010.github.io/2013/11/reading-excel-in-c/</guid>
-      <description>&lt;p&gt;Recently had to work on an Excel and update its content when some events were triggered on a Bloomberg terminal. I couldn&amp;rsquo;t find any code for reading the excel file using C# so thought of putting that up.&lt;/p&gt;
-
-&lt;p&gt;There were a few things to learn:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;Excel support is not available by default so make sure to add Microsoft.Office.Interop.Excel as a reference&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Sometime indexing to reference the Workbooks or Worksheets may not work so try out other values&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;ul&gt;
-&lt;li&gt;I remember this was not a problem with Visual Studio 2010 but something must have happened in Visual Studio 2012&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;It is also possible to try Workbook names to try and retrieve them&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Please follow the shortened code to read an Excel file after the break.&lt;/p&gt;
-
-&lt;!-- more --&gt;
-
-&lt;script type=&#34;text/javascript&#34; src=&#34;http://gist.github.com/ee13f57720471c8feea2.js&#34;&gt;&lt;/script&gt;
 </description>
     </item>
     

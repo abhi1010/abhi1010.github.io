@@ -80,6 +80,34 @@
     
     <div class="post">
       <h1 class="post-title">
+        <a href="http://abhi1010.github.io/2013/04/change-putty-window-title/">Change Putty Window Title</a>
+      </h1>
+      <span class="post-date">Apr 25, 2013  &middot; <a href="http://abhi1010.github.io/2013/04/change-putty-window-title/#disqus_thread">Comments</a>
+      
+      <br/>
+      <a class="a_cat" href="http://abhi1010.github.io/categories/code">code</a><a class="a_cat" href="http://abhi1010.github.io/categories/tips">tips</a>
+        
+      <a class="a_tag" href="http://abhi1010.github.io/tags/bash">bash</a><a class="a_tag" href="http://abhi1010.github.io/tags/putty">putty</a>
+    
+      </span>
+      
+      <p>How to modify the Putty window title to a specific string?</p>
+
+<p>By default, you&rsquo;d like to have the window title to give you the full path to the folder you are working from (working directory). <code>PROMPT_COMMAND</code>will help you with that.</p>
+
+<p>However, if you have too many windows where you are on the same folder then it may become confusing. To set your own title you&rsquo;d like to use the <code>title()</code> function provided here. It sets the name to whatever you say.</p>
+
+<p>Please note that <code>PS1</code> is only valid until you move your folders again. That is why the title() function also has to reset <code>PROMPT_COMMAND</code>.</p>
+
+<p>Let&rsquo;s have a look at the script needed. Maybe you wanna put them in your .bashrc file.</p>
+
+<script type="text/javascript" src="http://gist.github.com/8eed9133ed91cbb42854.js"></script>
+
+      
+    </div>
+    
+    <div class="post">
+      <h1 class="post-title">
         <a href="http://abhi1010.github.io/2012/10/multiple-inheritance/">Multiple Inheritance</a>
       </h1>
       <span class="post-date">Oct 23, 2012  &middot; <a href="http://abhi1010.github.io/2012/10/multiple-inheritance/#disqus_thread">Comments</a>
@@ -1174,37 +1202,6 @@ Studio normally and add items.</p>
 <p>Well, the problem turns out that SWFAddress uses <code>ExternalInterface.call()</code> instead of getUrl() function internally and they don&rsquo;t go well together if used together.</p>
 
 <p>The solution was simple, since flash is using SWFAddress feature, every getUrl should be replaced with ExternalInterface.call(). Needless to say, everything seemed perfect again.</p>
-
-      
-    </div>
-    
-    <div class="post">
-      <h1 class="post-title">
-        <a href="http://abhi1010.github.io/2008/03/full-trust-on-mapped-drive/">Full Trust on Mapped Drive</a>
-      </h1>
-      <span class="post-date">Mar 31, 2008  &middot; <a href="http://abhi1010.github.io/2008/03/full-trust-on-mapped-drive/#disqus_thread">Comments</a>
-      
-      <br/>
-      <a class="a_cat" href="http://abhi1010.github.io/categories/code">code</a><a class="a_cat" href="http://abhi1010.github.io/categories/tips">tips</a>
-        
-      <a class="a_tag" href="http://abhi1010.github.io/tags/visual-studio">visual studio</a>
-    
-      </span>
-      
-      <p>Sometimes, when opening a web project from another mapped drive (not your own computer&rsquo;s hard disk) Visual Studio may complain something like this:</p>
-
-<pre><code>The project location is not trusted.
-
-Running the application may result in security exceptions when it
-attempts to perform actions which require full trust.
-</code></pre>
-
-<p>The problem here is that .Net does not want to fully adhere to all security policies as your hard disk to this mapped drive as well as it does not know what kind of data it might have. If you want it to fully trust this mapped drive then you will have to use caspol for this purpose. Here&rsquo;s how it is done:</p>
-
-<pre><code>c:\&gt;caspol -q -machine -addgroup 1 -url file://W:/* FullTrust -name &quot;W Drive&quot;
-</code></pre>
-
-<p>Once this new code group is in place, any new .NET processes you start will give any assemblies on the W drive full trust<strong>.</strong></p>
 
       
     </div>
