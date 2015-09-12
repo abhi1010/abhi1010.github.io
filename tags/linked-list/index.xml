@@ -31,11 +31,9 @@
 
 &lt;p&gt;Now that we have this out of the way, let&amp;rsquo;s look at the code:&lt;/p&gt;
 
-&lt;!-- more --&gt;
-
 &lt;script type=&#34;text/javascript&#34; src=&#34;http://gist.github.com/3ada1d15b5bda319a54c.js&#34;&gt;&lt;/script&gt;
 
-&lt;h3 id=&#34;code:8a20b19b0e16e5ac875728276c435d4c&#34;&gt;Code&lt;/h3&gt;
+&lt;h1 id=&#34;code:8a20b19b0e16e5ac875728276c435d4c&#34;&gt;Code&lt;/h1&gt;
 
 &lt;p&gt;As usual the code is available &lt;a href=&#34;https://github.com/abhi1010/Algorithms/blob/master/Algo_codes/Node.cpp&#34;&gt;here&lt;/a&gt;:&lt;/p&gt;
 
@@ -90,9 +88,7 @@
 
 &lt;p&gt;The internal structure itself for the algo can either be map or set based. When using map the Node itself can be saved thereby making your life easier if you are creating a new Linked List. However sets can be very useful if we are just iterating through the Linked List and simply deleting items that are being repetetive. This is also a great spacesaver. Hence we decided to go down this path.&lt;/p&gt;
 
-&lt;!-- more --&gt;
-
-&lt;h3 id=&#34;code:33d170712a3b1643edfc33b9f231740c&#34;&gt;Code&lt;/h3&gt;
+&lt;h1 id=&#34;code:33d170712a3b1643edfc33b9f231740c&#34;&gt;Code&lt;/h1&gt;
 
 &lt;p&gt;As usual the &lt;a href=&#34;https://github.com/abhi1010/Algorithms/blob/master/Algo_codes/Node.cpp&#34;&gt;code&lt;/a&gt; is available here:&lt;/p&gt;
 

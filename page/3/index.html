@@ -80,6 +80,356 @@
     
     <div class="post">
       <h1 class="post-title">
+        <a href="http://abhi1010.github.io/2012/10/heap-sort/">Heap Sort</a>
+      </h1>
+      <span class="post-date">Oct 17, 2012  &middot; <a href="http://abhi1010.github.io/2012/10/heap-sort/#disqus_thread">Comments</a>
+      
+      <br/>
+      <a class="a_cat" href="http://abhi1010.github.io/categories/code">code</a>
+        
+      <a class="a_tag" href="http://abhi1010.github.io/tags/sorting">sorting</a><a class="a_tag" href="http://abhi1010.github.io/tags/algo">algo</a><a class="a_tag" href="http://abhi1010.github.io/tags/c">c&#43;&#43;</a>
+    
+      </span>
+      
+      
+
+<p>Heap Sort algo has the following properties:</p>
+
+<ul>
+<li><p>The top element (root) is always the next in order</p></li>
+
+<li><p>This allows you to remove one element at a time (the root) and ensure that you are pulling out items in a sorted order</p></li>
+
+<li><p>Always takes O(n*log(n)) time - worst case or best case</p></li>
+
+<li><ul>
+<li>Pros and cons to both</li>
+</ul></li>
+
+<li><p>Simple implementations require additional space to hold heap of size n</p></li>
+
+<li><ul>
+<li><p>Hence space requirement is double of array size n</p></li>
+
+<li><p>Not included in big-O notation so something to keep in mind</p></li>
+</ul></li>
+
+<li><p>Not a stable sort</p></li>
+
+<li><ul>
+<li>Original order of equal values may not be maintained</li>
+</ul></li>
+</ul>
+
+<p>Let&rsquo;s look at three versions of Heap Sort and see how they compare against each other. We will also find out what differentiates them from each other.</p>
+
+<!-- more -->
+
+<h2 id="testing-notes:e8a729abef3e1973716b8b8b10688a00">Testing Notes</h2>
+
+<ul>
+<li><p>I compared three versions of of Heap Sort</p></li>
+
+<li><ul>
+<li><p>First version (HeapSort_1) includes logic of sorting items while adding them one by one</p></li>
+
+<li><p>Second version (HeapSort_2) and third version (HeapSort_3) are very similar to each other with very minor differences but the performance is different. Still some improvements can be made but for now HeapSort_3 seems to be better</p></li>
+
+<li><ul>
+<li>There&rsquo;s still scope for both the versions to be better</li>
+</ul></li>
+</ul></li>
+
+<li><p>Postincrement can be replaced with preincrement in most places which should improve the numbers even more</p></li>
+</ul>
+
+<h2 id="code:e8a729abef3e1973716b8b8b10688a00">Code</h2>
+
+<p>As usual the code is <a href="https://github.com/abhi1010/Algorithms/blob/master/Algo_codes/HeapSort.cpp">available</a> here:</p>
+
+<p><a href="https://github.com/abhi1010/Algorithms">https://github.com/abhi1010/Algorithms</a></p>
+
+<h2 id="numbers:e8a729abef3e1973716b8b8b10688a00">Numbers</h2>
+
+<p><strong>HeapSort_1</strong>
+<table style="text-align:center;background-color:#efefef;width:100%;border-collapse:collapse;border:lightblue solid;" border="1" >
+<tbody >
+<tr ></p>
+
+<p><td style="width:25%;" >
+</td></p>
+
+<p><td style="width:25%;" ><strong># of Items in Array</strong>
+</td></p>
+
+<p><td style="width:25%;" ><strong>Time Taken</strong>
+</td></p>
+
+<p><td style="width:25%;" ><strong>Average for 100 numbers</strong>
+</td>
+</tr>
+<tr ></p>
+
+<p><td rowspan="3" ><strong>Random</strong>
+</td></p>
+
+<p><td >10
+</td></p>
+
+<p><td >0.013543
+</td></p>
+
+<p><td >0.13543
+</td>
+</tr>
+<tr ></p>
+
+<p><td >1K
+</td></p>
+
+<p><td >3.22043
+</td></p>
+
+<p><td >0.322043
+</td>
+</tr>
+<tr ></p>
+
+<p><td >1M
+</td></p>
+
+<p><td >4770.14
+</td></p>
+
+<p><td >0.477014
+</td>
+</tr>
+<tr ></p>
+
+<p><td rowspan="3" ><strong>Sorted</strong>
+</td></p>
+
+<p><td >10
+</td></p>
+
+<p><td >0.007507
+</td></p>
+
+<p><td >0.07507
+</td>
+</tr>
+<tr ></p>
+
+<p><td >1K
+</td></p>
+
+<p><td >0.625425
+</td></p>
+
+<p><td >0.0625425
+</td>
+</tr>
+<tr ></p>
+
+<p><td >1M
+</td></p>
+
+<p><td >633.142
+</td></p>
+
+<p><td >0.0633142
+</td>
+</tr>
+</tbody>
+</table>
+<strong>HeapSort_2</strong>
+<table style="text-align:center;background-color:#efefef;width:100%;border-collapse:collapse;border:lightblue solid;" border="1" >
+<tbody >
+<tr ></p>
+
+<p><td style="width:25%;" >
+</td></p>
+
+<p><td style="width:25%;" ><strong># of Items in Array</strong>
+</td></p>
+
+<p><td style="width:25%;" ><strong>Time Taken</strong>
+</td></p>
+
+<p><td style="width:25%;" ><strong>Average for 100 numbers</strong>
+</td>
+</tr>
+<tr ></p>
+
+<p><td rowspan="3" ><strong>Random</strong>
+</td></p>
+
+<p><td >10
+</td></p>
+
+<p><td >0.019352
+</td></p>
+
+<p><td >0.19352
+</td>
+</tr>
+<tr ></p>
+
+<p><td >1K
+</td></p>
+
+<p><td >3.86284
+</td></p>
+
+<p><td >0.386284
+</td>
+</tr>
+<tr ></p>
+
+<p><td >1M
+</td></p>
+
+<p><td >8914.22
+</td></p>
+
+<p><td >0.891422
+</td>
+</tr>
+<tr ></p>
+
+<p><td rowspan="3" ><strong>Sorted</strong>
+</td></p>
+
+<p><td >10
+</td></p>
+
+<p><td >0.011289
+</td></p>
+
+<p><td >0.11289
+</td>
+</tr>
+<tr ></p>
+
+<p><td >1K
+</td></p>
+
+<p><td >3.49712
+</td></p>
+
+<p><td >0.349712
+</td>
+</tr>
+<tr ></p>
+
+<p><td >1M
+</td></p>
+
+<p><td >6661.45
+</td></p>
+
+<p><td >0.666145
+</td>
+</tr>
+</tbody>
+</table>
+<strong>HeapSort_3</strong>
+<table style="text-align:center;background-color:#efefef;width:100%;border-collapse:collapse;border:lightblue solid;" border="1" >
+<tbody >
+<tr ></p>
+
+<p><td style="width:25%;" >
+</td></p>
+
+<p><td style="width:25%;" ><strong># of Items in Array</strong>
+</td></p>
+
+<p><td style="width:25%;" ><strong>Time Taken</strong>
+</td></p>
+
+<p><td style="width:25%;" ><strong>Average for 100 numbers</strong>
+</td>
+</tr>
+<tr ></p>
+
+<p><td rowspan="3" ><strong>Random</strong>
+</td></p>
+
+<p><td >10
+</td></p>
+
+<p><td >0.016266
+</td></p>
+
+<p><td >0.16266
+</td>
+</tr>
+<tr ></p>
+
+<p><td >1K
+</td></p>
+
+<p><td >0.968032
+</td></p>
+
+<p><td >0.0968032
+</td>
+</tr>
+<tr ></p>
+
+<p><td ><strong>1M</strong>
+</td></p>
+
+<p><td ><strong>900.004</strong>
+</td></p>
+
+<p><td ><strong>0.0900004</strong>
+</td>
+</tr>
+<tr ></p>
+
+<p><td rowspan="3" ><strong>Sorted</strong>
+</td></p>
+
+<p><td >10
+</td></p>
+
+<p><td >0.012845
+</td></p>
+
+<p><td >0.12845
+</td>
+</tr>
+<tr ></p>
+
+<p><td >1K
+</td></p>
+
+<p><td >3.08637
+</td></p>
+
+<p><td >0.308637
+</td>
+</tr>
+<tr ></p>
+
+<p><td >1M
+</td></p>
+
+<p><td >3839.23
+</td></p>
+
+<p><td >0.383923
+</td>
+</tr>
+</tbody>
+</table></p>
+
+      
+    </div>
+    
+    <div class="post">
+      <h1 class="post-title">
         <a href="http://abhi1010.github.io/2012/10/merge-sort/">Merge Sort</a>
       </h1>
       <span class="post-date">Oct 6, 2012  &middot; <a href="http://abhi1010.github.io/2012/10/merge-sort/#disqus_thread">Comments</a>
@@ -842,28 +1192,6 @@ attempts to perform actions which require full trust.
 <script type="text/javascript" src="http://gist.github.com/ad4f3fc47ffa870a48f9.js"></script></p>
 
 <p>This function, btw, is going through a namespace called <code>Company.AspFunctions</code> and we give it a tag <code>asp</code> to access all classes under it by its tag instead. Date_Format() fn is a static function inside Conn Class. Basically it takes your &ldquo;asp style&rdquo; datetime strings and returns you the correct date in <code>yyyyMMdd</code> format.</p>
-
-      
-    </div>
-    
-    <div class="post">
-      <h1 class="post-title">
-        <a href="http://abhi1010.github.io/2008/03/how-to-protect-from-sql-injections-in-asp.net/">How to protect from SQL Injections in ASP.NET</a>
-      </h1>
-      <span class="post-date">Mar 11, 2008  &middot; <a href="http://abhi1010.github.io/2008/03/how-to-protect-from-sql-injections-in-asp.net/#disqus_thread">Comments</a>
-      
-      <br/>
-      <a class="a_cat" href="http://abhi1010.github.io/categories/code">code</a>
-        
-      <a class="a_tag" href="http://abhi1010.github.io/tags/asp.net">asp.net</a>
-    
-      </span>
-      
-      <p>Some good links to figure out how to save your code&rsquo;s ass from being thrashed by SQL Injections</p>
-
-<p><a href="http://msdn2.microsoft.com/en-us/library/ms998271.aspx#paght000002_step2">http://msdn2.microsoft.com/en-us/library/ms998271.aspx#paght000002_step2</a></p>
-
-<p><a href="http://msdn2.microsoft.com/en-us/library/bb355989.aspx#paght000003_step4">http://msdn2.microsoft.com/en-us/library/bb355989.aspx#paght000003_step4</a></p>
 
       
     </div>

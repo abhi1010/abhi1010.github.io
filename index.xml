@@ -6,8 +6,50 @@
     <description>Recent content on Coders Digest</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 07 Aug 2015 14:59:18 -0400</lastBuildDate>
+    <lastBuildDate>Thu, 10 Sep 2015 00:18:24 +0800</lastBuildDate>
     <atom:link href="http://abhi1010.github.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Using External Tools with Git Diff</title>
+      <link>http://abhi1010.github.io/2015/09/using-external-tools-with-git-diff/</link>
+      <pubDate>Thu, 10 Sep 2015 00:18:24 +0800</pubDate>
+      
+      <guid>http://abhi1010.github.io/2015/09/using-external-tools-with-git-diff/</guid>
+      <description>&lt;p&gt;If you want to view what has changed since one commit to another, it is quite easy to view the diff.&lt;/p&gt;
+
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;git diff 5fad06c..0a504fa
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;You will get something like this:&lt;/p&gt;
+
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #000080; font-weight: bold&#34;&gt;diff --git a/modules/file_1.erb b/modules/file_1.erb&lt;/span&gt;
+&lt;span style=&#34;color: #000080; font-weight: bold&#34;&gt;index 0538da0..6621d93 100644&lt;/span&gt;
+&lt;span style=&#34;color: #a40000&#34;&gt;--- a/modules/file_1.erb&lt;/span&gt;
+&lt;span style=&#34;color: #00A000&#34;&gt;+++ b/modules/file_1.erb&lt;/span&gt;
+&lt;span style=&#34;color: #800080; font-weight: bold&#34;&gt;@@ -5,8 +5,8 @@&lt;/span&gt;
+ 
+   // Algo settings
+   &amp;quot;Carbo&amp;quot;: {
+&lt;span style=&#34;color: #a40000&#34;&gt;-    &amp;quot;active-instrument&amp;quot;: &amp;quot;SGX/NK15&amp;quot;,&lt;/span&gt;
+&lt;span style=&#34;color: #a40000&#34;&gt;-    &amp;quot;hedge-instrument&amp;quot;: &amp;quot;SGX/NK16&amp;quot;,&lt;/span&gt;
+&lt;span style=&#34;color: #00A000&#34;&gt;+    &amp;quot;active-instrument&amp;quot;: &amp;quot;SGX/NK17&amp;quot;,&lt;/span&gt;
+&lt;span style=&#34;color: #00A000&#34;&gt;+    &amp;quot;hedge-instrument&amp;quot;: &amp;quot;SGX/NK18&amp;quot;,&lt;/span&gt;
+     &amp;quot;owner-app-id&amp;quot;: &amp;quot;abhi1010&amp;quot;,
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;What if you wanted a use an external tool like &lt;code&gt;meld&lt;/code&gt; to view the diff, in a nice beautiful side by side view? You&amp;rsquo;d have to modify your settings to tell that to &lt;code&gt;git&lt;/code&gt;.
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;git config --global diff.tool meld
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Finally, then to view the diff:
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;git difftool 5fad06c..0a504fa
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Docker Container cleanup on Elastic Beanstalk</title>
@@ -107,11 +149,9 @@ Just run the following to test whether it works:&lt;/p&gt;
 
 &lt;p&gt;Now that we have this out of the way, let&amp;rsquo;s look at the code:&lt;/p&gt;
 
-&lt;!-- more --&gt;
-
 &lt;script type=&#34;text/javascript&#34; src=&#34;http://gist.github.com/3ada1d15b5bda319a54c.js&#34;&gt;&lt;/script&gt;
 
-&lt;h3 id=&#34;code:8a20b19b0e16e5ac875728276c435d4c&#34;&gt;Code&lt;/h3&gt;
+&lt;h1 id=&#34;code:8a20b19b0e16e5ac875728276c435d4c&#34;&gt;Code&lt;/h1&gt;
 
 &lt;p&gt;As usual the code is available &lt;a href=&#34;https://github.com/abhi1010/Algorithms/blob/master/Algo_codes/Node.cpp&#34;&gt;here&lt;/a&gt;:&lt;/p&gt;
 
@@ -166,9 +206,7 @@ Just run the following to test whether it works:&lt;/p&gt;
 
 &lt;p&gt;The internal structure itself for the algo can either be map or set based. When using map the Node itself can be saved thereby making your life easier if you are creating a new Linked List. However sets can be very useful if we are just iterating through the Linked List and simply deleting items that are being repetetive. This is also a great spacesaver. Hence we decided to go down this path.&lt;/p&gt;
 
-&lt;!-- more --&gt;
-
-&lt;h3 id=&#34;code:33d170712a3b1643edfc33b9f231740c&#34;&gt;Code&lt;/h3&gt;
+&lt;h1 id=&#34;code:33d170712a3b1643edfc33b9f231740c&#34;&gt;Code&lt;/h1&gt;
 
 &lt;p&gt;As usual the &lt;a href=&#34;https://github.com/abhi1010/Algorithms/blob/master/Algo_codes/Node.cpp&#34;&gt;code&lt;/a&gt; is available here:&lt;/p&gt;
 
@@ -1359,112 +1397,6 @@ Just run the following to test whether it works:&lt;/p&gt;
 &lt;!-- more --&gt;
 
 &lt;script type=&#34;text/javascript&#34; src=&#34;http://gist.github.com/ee13f57720471c8feea2.js&#34;&gt;&lt;/script&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Ideas for Shared Memory in Linux</title>
-      <link>http://abhi1010.github.io/2013/10/ideas-for-shared-memory-in-linux/</link>
-      <pubDate>Sun, 13 Oct 2013 05:59:22 +0000</pubDate>
-      
-      <guid>http://abhi1010.github.io/2013/10/ideas-for-shared-memory-in-linux/</guid>
-      <description>&lt;p&gt;I have been doing extensive research today regarding shared memory in linux before I embark on a new project in which shaving time off process communication latency is extremely important. I found some very interesting links as well. Let’s break them down:&lt;/p&gt;
-
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;Topic&lt;/th&gt;
-&lt;th&gt;Description&lt;/th&gt;
-&lt;th&gt;Link&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;Theory/Explanation&lt;/td&gt;
-&lt;td&gt;Some articles that explain how to get started&lt;/td&gt;
-&lt;td&gt;&lt;a href=&#34;http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2006/n2044.html&#34;&gt;open-std&lt;/a&gt;&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;Content in the first column&lt;/td&gt;
-&lt;td&gt;Content in the second column&lt;/td&gt;
-&lt;td&gt;lkd&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;td&gt;IPC Mechanisms – some recommendations. Mainly talks about softwares like Boost, dBus dBus used to work using kernel levels but lately have come up with a patch that bypasses kernels&lt;/td&gt;
-&lt;td&gt;&lt;a href=&#34;http://stackoverflow.com/questions/1906166/inter-process-communication-recommendation&#34;&gt;Stackoverflow&lt;/a&gt;&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;td&gt;What every programmer should know about memory&lt;/td&gt;
-&lt;td&gt;&lt;a href=&#34;http://lwn.net/Articles/255364/&#34;&gt;LWN&lt;/a&gt;&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;td&gt;Linux IPC&lt;/td&gt;
-&lt;td&gt;&lt;a href=&#34;http://www.tldp.org/LDP/tlk/ipc/ipc.html&#34;&gt;TLDP&lt;/a&gt;&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;td&gt;Cache Friendly Code&lt;/td&gt;
-&lt;td&gt;&lt;a href=&#34;http://stackoverflow.com/questions/16699247/what-is-cache-friendly-code/16699282#16699282&#34;&gt;Stackoverflow&lt;/a&gt;&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;td&gt;Helpful Articles     Which linux IPC technique to use?&lt;/td&gt;
-&lt;td&gt;&lt;a href=&#34;http://stackoverflow.com/questions/2281204/which-linux-ipc-technique-to-use&#34;&gt;Stackoverflow&lt;/a&gt;&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;td&gt;Inter process communication – talks about shared memory&lt;/td&gt;
-&lt;td&gt;&lt;a href=&#34;http://www.advancedlinuxprogramming.com/alp-folder/alp-ch05-ipc.pdf&#34;&gt;ALP&lt;/a&gt;&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;td&gt;Linux Poll Events on Shared Memory&lt;/td&gt;
-&lt;td&gt;&lt;a href=&#34;http://stackoverflow.com/questions/11470322/cause-a-linux-poll-event-on-a-shared-memory-file&#34;&gt;Stackoverflow&lt;/a&gt;&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;td&gt;Using semaphores in Shared Memory&lt;/td&gt;
-&lt;td&gt;&lt;a href=&#34;http://stackoverflow.com/questions/10772860/semaphores-and-shared-memory-in-linux&#34;&gt;Stackoverflow&lt;/a&gt;&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;td&gt;Sharing semaphores between Shared Memory&lt;/td&gt;
-&lt;td&gt;&lt;a href=&#34;http://stackoverflow.com/questions/8359322/how-to-share-semaphores-between-processes-using-shared-memory?rq=1&#34;&gt;Stackoverflow&lt;/a&gt;&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;td&gt;Sharing memory between processes&lt;/td&gt;
-&lt;td&gt;&lt;a href=&#34;http://stackoverflow.com/questions/11583281/sharing-memory-between-two-processes&#34;&gt;Stackoverflow&lt;/a&gt;&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;td&gt;Reserving memory at kernel boot up (DMA)&lt;/td&gt;
-&lt;td&gt;&lt;a href=&#34;http://stackoverflow.com/questions/647783/direct-memory-access-in-linux?rq=1&#34;&gt;Stackoverflow&lt;/a&gt;&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;Extra&lt;/td&gt;
-&lt;td&gt;IPC Shared memory samples&lt;/td&gt;
-&lt;td&gt;&lt;a href=&#34;http://linuxgazette.net/104/ramankutty.html&#34;&gt;linuxgazette&lt;/a&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
 </description>
     </item>
     

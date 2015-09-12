@@ -87,7 +87,11 @@
         <a class="a_tag" href="http://abhi1010.github.io/tags/awk">awk</a><a class="a_tag" href="http://abhi1010.github.io/tags/bash">bash</a>
       
 
+    
     </span>
+      <div id="_toc" class="toc">
+        
+      </div>
     <p>I&rsquo;ve had this need quite a few times to pull out a section of logs that would begin with a particular line and end with another. grep is not exactly useful there because it only prints out sections based on line counters (using -A/B/C) lines based on a single search pattern.</p>
 
 <p>I came up with a script that can run at almost same speeds using <code>grep/cat/awk</code>. <code>awk</code> is used to decide whether the end of the section has been reached or not. Some features of the script are:</p>
