@@ -80,6 +80,137 @@
     
     <div class="post">
       <h1 class="post-title">
+        <a href="http://abhi1010.github.io/2014/06/deleting-a-node-from-singly-linked-list/">Deleting a Node from Singly Linked List</a>
+      </h1>
+      <span class="post-date">Jun 7, 2014  &middot; <a href="http://abhi1010.github.io/2014/06/deleting-a-node-from-singly-linked-list/#disqus_thread">Comments</a>
+      
+      <br/>
+      <a class="a_cat" href="http://abhi1010.github.io/categories/code">code</a>
+        
+      <a class="a_tag" href="http://abhi1010.github.io/tags/linked-list">linked list</a><a class="a_tag" href="http://abhi1010.github.io/tags/c">c&#43;&#43;</a><a class="a_tag" href="http://abhi1010.github.io/tags/algo">algo</a>
+    
+      </span>
+      
+      
+
+<p>Deleting a Node from Singly Linked List is rather straight forward.</p>
+
+<ul>
+<li><p>You have to know the head first of all</p></li>
+
+<li><p>Start by checking the head if that&rsquo;s the one you are looking for</p></li>
+
+<li><p>Keep moving forward and checking - always check for null pointers everywhere</p></li>
+</ul>
+
+<p>Before we talk about the code, let&rsquo;s see how Linked List is setup.
+&lt;!&ndash; more &ndash;&gt;</p>
+
+<script type="text/javascript" src="http://gist.github.com/33be440bf1012773b7e1.js"></script>
+
+<p>Now, below is the code for it&hellip;.</p>
+
+<script type="text/javascript" src="http://gist.github.com/bf9dbb193b4ff84ba3af.js"></script>
+
+<h3 id="code:ca5ee7b35fae15e9d7ea6b34351195c6">Code</h3>
+
+<p>As usual the code is available <a href="https://github.com/abhi1010/Algorithms/blob/master/Algo_codes/Node.cpp">here</a>:</p>
+
+<p><a href="https://github.com/abhi1010/Algorithms">https://github.com/abhi1010/Algorithms</a></p>
+
+      
+    </div>
+    
+    <div class="post">
+      <h1 class="post-title">
+        <a href="http://abhi1010.github.io/2014/05/usage-of-typename/">Usage of typename</a>
+      </h1>
+      <span class="post-date">May 26, 2014  &middot; <a href="http://abhi1010.github.io/2014/05/usage-of-typename/#disqus_thread">Comments</a>
+      
+      <br/>
+      <a class="a_cat" href="http://abhi1010.github.io/categories/code">code</a>
+        
+      <a class="a_tag" href="http://abhi1010.github.io/tags/c">c&#43;&#43;</a>
+    
+      </span>
+      
+      <p>What is wrong with the following code?</p>
+
+<script type="text/javascript" src="http://gist.github.com/0bd5e4d910e4d8a7672e.js"></script>
+
+<p>The issue is very simple but hard to notice. If you try to compile this, you will get the following errors:</p>
+
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000000; font-style: italic">    main.cpp:24:5: error: need &#39;typename&#39; before &#39;OuterStruct&lt;T2&gt;::InnerStruct&#39; because &#39;OuterStruct&lt;T2&gt;&#39; is a dependent scope</span>
+<span style="color: #000000; font-style: italic">    OuterStruct&lt;T2&gt;::InnerStruct mUsingInner;</span>
+<span style="color: #000000; font-style: italic">    ^</span>
+<span style="color: #000000; font-style: italic">    main.cpp: In function &#39;int main(int, char**)&#39;:</span>
+<span style="color: #000000; font-style: italic">    main.cpp:34:13: error: &#39;struct InnerStruct_Wrapper&lt;int&gt;&#39; has no member named &#39;mUsingInner&#39;</span>
+<span style="color: #000000; font-style: italic">    wrapper.mUsingInner = innerStrct;</span>
+</pre></div>
+
+
+<p><strong>The Issue</strong></p>
+
+<p>At least it straight away tells you something is wrong with <code>InnerStruct_Wrapper</code>. Here&rsquo;s what is happening:</p>
+
+<ul>
+<li><p>The compiler does not know that mUsingInner in that line is actually a variable of type &ldquo;OuterStruct<T2>::InnerStruct&rdquo;</p></li>
+
+<li><p>InnerStruct will only be known later when it is being instantiated</p></li>
+
+<li><p>Compiler cannot figure out what InnerStruct means here. It could be a type or a member variable</p></li>
+</ul>
+
+<p><strong>The Fix</strong></p>
+
+<p>The only way here is to help the compiler by telling it beforehand that is going to be a class or struct type. The way to tell the compiler that something like this is supposed to be a type name is to throw in the keyword &ldquo;typename&rdquo;. The &ldquo;typename&rdquo; keyword has to be used everytime you want to tell the compiler that it should expect a Type in its place.</p>
+
+<p>One place where this is used quite a lot is when templates have to implement iterators.</p>
+
+<p><strong>Full Code</strong></p>
+
+<p><strong><em>The full sample code, along with the fix</em></strong> is provided on <a href="http://coliru.stacked-crooked.com/a/b0ab70c458370048">Stacked-Crooked</a>.</p>
+
+      
+    </div>
+    
+    <div class="post">
+      <h1 class="post-title">
+        <a href="http://abhi1010.github.io/2014/05/setting-up-your-vim...-your-style/">Setting up your VIM... Your style</a>
+      </h1>
+      <span class="post-date">May 19, 2014  &middot; <a href="http://abhi1010.github.io/2014/05/setting-up-your-vim...-your-style/#disqus_thread">Comments</a>
+      
+      <br/>
+      <a class="a_cat" href="http://abhi1010.github.io/categories/code">code</a>
+        
+      <a class="a_tag" href="http://abhi1010.github.io/tags/bash">bash</a><a class="a_tag" href="http://abhi1010.github.io/tags/vim">vim</a><a class="a_tag" href="http://abhi1010.github.io/tags/tips">tips</a>
+    
+      </span>
+      
+      <p>Writing code using VIM can be a bit overwhelming but it helps creating a few shortcuts there to make your life easier. Here I will discuss a few.</p>
+
+<ul>
+<li>First of all, it is always a good idea to set up your tabs and spaces</li>
+<li>Set up shortcuts for:
+
+<ul>
+<li><code>Toggling of Auto-Indent</code> while pasting source text; very useful in code (<em>F2</em> in my provided script)</li>
+<li><code>Toggling of Auto-Scroll</code> of Split windows (<em>F3</em> in my provided script)</li>
+<li><code>Macro for Folding functions</code> within the source code (<em><em>@q</em></em> in my provided script)</li>
+<li><code>Smart case search</code> - based on whether the input is in caps or not</li>
+<li><code>Toggling of Mouse Usage</code> in VIM window - to allow quick selection of text (<em>F12</em> in my provided script)</li>
+</ul></li>
+</ul>
+
+<p>Please see the provided script below to have a look.</p>
+
+<script type="text/javascript" src="http://gist.github.com/6f190c9f3afd42881ef5.js"></script>
+
+      
+    </div>
+    
+    <div class="post">
+      <h1 class="post-title">
         <a href="http://abhi1010.github.io/2014/05/getting-a-group-of-lines-from-a-file/">Getting a group of lines from a file</a>
       </h1>
       <span class="post-date">May 19, 2014  &middot; <a href="http://abhi1010.github.io/2014/05/getting-a-group-of-lines-from-a-file/#disqus_thread">Comments</a>
@@ -1308,194 +1439,6 @@
 <td>Extra</td>
 <td>IPC Shared memory samples</td>
 <td><a href="http://linuxgazette.net/104/ramankutty.html">linuxgazette</a></td>
-</tr>
-</tbody>
-</table>
-
-      
-    </div>
-    
-    <div class="post">
-      <h1 class="post-title">
-        <a href="http://abhi1010.github.io/2013/09/oracle-sql-queries/">Oracle SQL Queries</a>
-      </h1>
-      <span class="post-date">Sep 22, 2013  &middot; <a href="http://abhi1010.github.io/2013/09/oracle-sql-queries/#disqus_thread">Comments</a>
-      
-      <br/>
-      <a class="a_cat" href="http://abhi1010.github.io/categories/code">code</a><a class="a_cat" href="http://abhi1010.github.io/categories/database">database</a>
-        
-      <a class="a_tag" href="http://abhi1010.github.io/tags/sql">sql</a>
-    
-      </span>
-      
-      <p>Recently I found myself in a situation where I had to view all the tables in the Oracle Server.</p>
-
-<p>I did some digging and came up with these helpful queries.</p>
-
-<table>
-<thead>
-<tr>
-<th>Query</th>
-<th>Remarks</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td>Select * from All_Tables</td>
-<td>View all the tables in the Oracle Server</td>
-</tr>
-
-<tr>
-<td>Select * from all_Views</td>
-<td>View all the views in the Oracle Server</td>
-</tr>
-
-<tr>
-<td>DESC table</td>
-<td>View all the columns of a given table. This function is used instead of the previous one mostly, but when this one doesn&rsquo;t work make sure you try the other one - I bet it will work.</td>
-</tr>
-</tbody>
-</table>
-
-<p>Here&rsquo;s a short code for viewing all the columns of a given table.</p>
-
-<script type="text/javascript" src="http://gist.github.com/11365686.js"></script>
-
-      
-    </div>
-    
-    <div class="post">
-      <h1 class="post-title">
-        <a href="http://abhi1010.github.io/2013/07/cvs-cheat-sheet/">CVS Cheat Sheet</a>
-      </h1>
-      <span class="post-date">Jul 3, 2013  &middot; <a href="http://abhi1010.github.io/2013/07/cvs-cheat-sheet/#disqus_thread">Comments</a>
-      
-      <br/>
-      <a class="a_cat" href="http://abhi1010.github.io/categories/code">code</a><a class="a_cat" href="http://abhi1010.github.io/categories/tips">tips</a>
-        
-      <a class="a_tag" href="http://abhi1010.github.io/tags/bash">bash</a><a class="a_tag" href="http://abhi1010.github.io/tags/cvs">cvs</a>
-    
-      </span>
-      
-      <p>I&rsquo;ve worked on CVS for a long time now and figured out that I&rsquo;d save a lot of time if I started writing alias or functions for the numerous tasks that I did on them. I will put down some of them here so you may benefit from them.</p>
-
-<p><em>Silently update and inform about the status of the files (recursive)</em></p>
-
-<pre><code>cvs -q -n update
-</code></pre>
-
-<p><em>Same as earlier but will only do so for the current folder</em></p>
-
-<pre><code>cvs -Q -n update -l
-</code></pre>
-
-<p><em>Finds out the cv[s] [m]odified list of files while also indentating them nicely with only the important data pulled out</em></p>
-
-<pre><code>cvs -Q status | egrep &quot;File: &quot; -A 4 | egrep -v &quot;Up-to-date&quot; | egrep &quot;File: &quot; -A 3 | sed -e &quot;s/ Status:/\t\tStatus:/&quot; -e &quot;s/,v$/\n-------------------------------------------------------------------------\n/&quot; -e &quot;s/.*${PWD##*/}\//Location:\t\t /&quot; -e &quot;s/Attic\///&quot; | egrep &quot;Location:|Repository|Status:|File:|--------
-</code></pre>
-
-<p><em>Recursively add all files to CVS for committing from the current directory</em></p>
-
-<pre><code>find . -type d -print | grep -v CVS | xargs cvs add
-</code></pre>
-
-<p><em>Doing a side by side diff (change the value of -W according to the width of the screen)</em></p>
-
-<pre><code>cvs -Q diff -t -y --suppress-common-lines -W 190 $*
-</code></pre>
-
-<p><em>Merging code from one branch to another</em></p>
-
-<pre><code># Creates a command that you can use to &quot;merge&quot; your code from dev head to this current branch.   
-# Ideally you want to run this command from a folder where you want the code to merge to....   
-merge()   
-{   
-BRANCH=$(cat CVS/Tag | cut -c2-)   
-CMD=$(echo cvs update -j $BRANCH -j Version_2_17_dev .)   
-echo $CMD   
-}   
-</code></pre>
-
-      
-    </div>
-    
-    <div class="post">
-      <h1 class="post-title">
-        <a href="http://abhi1010.github.io/2013/06/cursor-control-in-vim-search/">Cursor Control in VIM Search</a>
-      </h1>
-      <span class="post-date">Jun 11, 2013  &middot; <a href="http://abhi1010.github.io/2013/06/cursor-control-in-vim-search/#disqus_thread">Comments</a>
-      
-      <br/>
-      <a class="a_cat" href="http://abhi1010.github.io/categories/code">code</a><a class="a_cat" href="http://abhi1010.github.io/categories/tips">tips</a>
-        
-      <a class="a_tag" href="http://abhi1010.github.io/tags/vim">vim</a>
-    
-      </span>
-      
-      <p>Found a great way to search for keywords &amp;&amp; control the location of cursor in vim. It is excellent if you want to do a particular task multiple times. Usually if you search the cursor will straight away take you to the start of search. What if you want to go to the end of the word you are searching for?</p>
-
-<pre><code>/pattern/e
-</code></pre>
-
-<p>This takes you to the END of the keyword you are looking for.</p>
-
-<p>That’s not all. What if you want to go the second letter in that keyword? Change the pattern to as follows:</p>
-
-<pre><code>/pattern/s+1
-</code></pre>
-
-<p>That’s great. But what if I want to go to the end of the keyword?</p>
-
-<pre><code>/pattern/e
-</code></pre>
-
-<p>Awesome. Let’s review it through examples. Let’s say our phrase is “the brown fox jumped over the lazy dog” and we originally want to search for “brown”.</p>
-
-<table>
-<thead>
-<tr>
-<th>Pattern</th>
-<th>CURSOR LOCATED AT BEGINNING OF</th>
-<th>Description</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td>/brown</td>
-<td>brown fox….</td>
-<td>search and start at “brown”</td>
-</tr>
-
-<tr>
-<td>/brown/s+2</td>
-<td>own fox…</td>
-<td>start at “brown” but move 2 letters from ‘start’</td>
-</tr>
-
-<tr>
-<td>/brown/s-4</td>
-<td>the brown fox…</td>
-<td>start at “brown” but move 4 letters to the left from ‘start’</td>
-</tr>
-
-<tr>
-<td>/brown/e</td>
-<td>n fox….</td>
-<td>search for “brown” but move to the end</td>
-</tr>
-
-<tr>
-<td>/brown/e+2</td>
-<td>fox…</td>
-<td>search for “brown” but move 2 letters from the ‘end’</td>
-</tr>
-
-<tr>
-<td>/brown/e-1</td>
-<td>wn fox…</td>
-<td>search for “brown” but move 1 letter to the left from the ‘end’</td>
 </tr>
 </tbody>
 </table>

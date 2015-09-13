@@ -80,6 +80,224 @@
     
     <div class="post">
       <h1 class="post-title">
+        <a href="http://abhi1010.github.io/2012/09/counting-sort/">Counting Sort</a>
+      </h1>
+      <span class="post-date">Sep 11, 2012  &middot; <a href="http://abhi1010.github.io/2012/09/counting-sort/#disqus_thread">Comments</a>
+      
+      <br/>
+      <a class="a_cat" href="http://abhi1010.github.io/categories/code">code</a>
+        
+      <a class="a_tag" href="http://abhi1010.github.io/tags/sorting">sorting</a><a class="a_tag" href="http://abhi1010.github.io/tags/algo">algo</a><a class="a_tag" href="http://abhi1010.github.io/tags/c">c&#43;&#43;</a>
+    
+      </span>
+      
+      <p>Counting Sort is an integer sorting algorithm. It is not very famous when somebody talks about sorting algorithms but it is great when sorting integers. In fact, many a times it may even beat other Sorting Algorithms. The highlight of Counting Sort is that it creates a bucket array (to keep track of frequency of numbers) whose size is the maximum element in the provided array.</p>
+
+<p>We are looking to compare most of the sorting algorithms to find out which one performs better under different circumstances. One of the ways is to compare the complexity for each algorithm. The other way is to compare how well they perform based on the input they are all provided. I will post my code on Github but will start with Counting Sort here.</p>
+
+<p><em>Here are some pointers about Counting Sort:</em></p>
+
+<ul>
+<li><p>Linear sorting algo with O(n+k) when the elements range from 1 to k</p>
+
+<ul>
+<li>On</li>
+</ul></li>
+
+<li><p>It is really good when the numbers range from 1 to n which means the max between them is not going to be very high</p></li>
+</ul>
+
+<p><strong><em>How do we compare all Sorting Algorithms?</em></strong></p>
+
+<p>We are going to look at the following scenarios across all Sorting Algorithms:</p>
+
+<ul>
+<li><p>10 numbers - Random + Sorted</p></li>
+
+<li><p>1000 numbers (1K) - Random + Sorted</p></li>
+
+<li><p>1,000,000 numbers (1M) - Random + Sorted</p></li>
+
+<li><p>20000 iterations for each one of these scenarios</p></li>
+
+<li><p>For good measure we will look at the average time required to sort 100 numbers in each one of these cases</p>
+
+<ul>
+<li><p>This will allow us to compare all algorithms against each other by looking at the average times</p></li>
+
+<li><p>It means we will be multiplying the results of 10 numbers by 10 (to get the &ldquo;average&rdquo; for 100 numbers) and also</p></li>
+</ul></li>
+</ul>
+
+<!-- more -->
+
+<p><strong>Machine Setup</strong></p>
+
+<p>The setup of my machine is as follows:</p>
+
+<p>| Hardware: x86_64
+| Processor: 16 x Intel&reg; Xeon&reg; E5540 2.53 GHz
+| Compiler: gcc version 4.8.2 (GCC)
+| Redhat Version: Red Hat 5.3</p>
+
+<p><strong>The Source Code</strong></p>
+
+<p>I am trying to do this all together in a single place so that it is easy for anybody to pick up the code, either for their own testing or going through the Sorting Algos. All of the source code for this can be found here:</p>
+
+<p><a href="https://github.com/abhi1010/Algorithms">https://github.com/abhi1010/Algorithms</a></p>
+
+<p><strong>Numbers</strong></p>
+
+<p>Without further ado, let&rsquo;s delve into the numbers for Counting Sorts. Here&rsquo;s the result from the code:
+<table style="text-align:center;background-color:#efefef;width:100%;border-collapse:collapse;border:lightblue solid;" border="1" >
+<tbody >
+<tr ></p>
+
+<p><td style="width:25%;" >
+</td></p>
+
+<p><td style="width:25%;" ><strong># of Items in Array</strong>
+</td></p>
+
+<p><td style="width:25%;" ><strong>Time Taken</strong>
+</td></p>
+
+<p><td style="width:25%;" ><strong>Average for 100 numbers</strong>
+</td>
+</tr>
+<tr ></p>
+
+<p><td rowspan="3" ><strong>Random</strong>
+</td></p>
+
+<p><td >10
+</td></p>
+
+<p><td >0.022982
+</td></p>
+
+<p><td >0.22982
+</td>
+</tr>
+<tr style="background-color:#efefef;color:#008000;" ></p>
+
+<p><td >1K
+</td></p>
+
+<p><td >1.21822
+</td></p>
+
+<p><td >0.121822
+</td>
+</tr>
+<tr ></p>
+
+<p><td >1M
+</td></p>
+
+<p><td >1823.85
+</td></p>
+
+<p><td >0.182385
+</td>
+</tr>
+<tr ></p>
+
+<p><td rowspan="3" ><strong>Sorted</strong>
+</td></p>
+
+<p><td >10
+</td></p>
+
+<p><td >0.026815
+</td></p>
+
+<p><td >0.26815
+</td>
+</tr>
+<tr style="background-color:#efefef;color:#008000;" ></p>
+
+<p><td >1K
+</td></p>
+
+<p><td >1.19146
+</td></p>
+
+<p><td >0.119146
+</td>
+</tr>
+<tr ></p>
+
+<p><td >1M
+</td></p>
+
+<p><td >1612.58
+</td></p>
+
+<p><td >0.161258
+</td>
+</tr>
+</tbody>
+</table></p>
+
+      
+    </div>
+    
+    <div class="post">
+      <h1 class="post-title">
+        <a href="http://abhi1010.github.io/2008/05/visual-studio-2008-crashes-while-adding-items/">Visual Studio 2008 crashes while adding items</a>
+      </h1>
+      <span class="post-date">May 14, 2008  &middot; <a href="http://abhi1010.github.io/2008/05/visual-studio-2008-crashes-while-adding-items/#disqus_thread">Comments</a>
+      
+      <br/>
+      <a class="a_cat" href="http://abhi1010.github.io/categories/code">code</a>
+        
+      <a class="a_tag" href="http://abhi1010.github.io/tags/c">c#</a><a class="a_tag" href="http://abhi1010.github.io/tags/visual-studio">visual studio</a>
+    
+      </span>
+      
+      <p>Had this problem cropping up since months where I was trying to add items to Visual Studio 2008 Toolbox and it kept crashing.</p>
+
+<p>Finally got a work around, you should start it in safe mode. Here&rsquo;s the procedure:</p>
+
+<pre><code>devenv /safemode
+</code></pre>
+
+<p>Then use Choose Items on toolbox and run through each of the tabs. Once you
+accept any exceptions raised on loading controls, you can then open Visual
+Studio normally and add items.</p>
+
+<p>The reason for this has to be pretty simple - I have installed way too many beta/refresh version on Visual Studio 2008, something had to give up. I can&rsquo;t really complain.</p>
+
+      
+    </div>
+    
+    <div class="post">
+      <h1 class="post-title">
+        <a href="http://abhi1010.github.io/2008/04/google-analytics--swfaddress/">Google Analytics &amp; SWFAddress</a>
+      </h1>
+      <span class="post-date">Apr 6, 2008  &middot; <a href="http://abhi1010.github.io/2008/04/google-analytics--swfaddress/#disqus_thread">Comments</a>
+      
+      <br/>
+      <a class="a_cat" href="http://abhi1010.github.io/categories/code">code</a><a class="a_cat" href="http://abhi1010.github.io/categories/tips">tips</a>
+        
+      <a class="a_tag" href="http://abhi1010.github.io/tags/flash">flash</a>
+    
+      </span>
+      
+      <p>Recently found a bug slash issue with Google Analytics new javscript software (post-urchin v5). I had written the internal documentation for the company standards and somehow when those standards were put into practice, SWFAddress feature of flash stopped working the moment google analytics feature was enabled. Worst of all, the web pages failed to load! To cap it off, the website was working perfectly fine on Firefox 2, 3 and IE 7!! It was having trouble only on IE6.</p>
+
+<p>I tried a lot of ways but none seem to worked. Finally found a blog that remotely talked about SWFAddress!</p>
+
+<p>Well, the problem turns out that SWFAddress uses <code>ExternalInterface.call()</code> instead of getUrl() function internally and they don&rsquo;t go well together if used together.</p>
+
+<p>The solution was simple, since flash is using SWFAddress feature, every getUrl should be replaced with ExternalInterface.call(). Needless to say, everything seemed perfect again.</p>
+
+      
+    </div>
+    
+    <div class="post">
+      <h1 class="post-title">
         <a href="http://abhi1010.github.io/2008/03/full-trust-on-mapped-drive/">Full Trust on Mapped Drive</a>
       </h1>
       <span class="post-date">Mar 31, 2008  &middot; <a href="http://abhi1010.github.io/2008/03/full-trust-on-mapped-drive/#disqus_thread">Comments</a>
@@ -368,116 +586,6 @@ attempts to perform actions which require full trust.
       </span>
       
       <script type="text/javascript" src="http://gist.github.com/a1bcc60b383a0bc72d5f.js"></script>
-
-      
-    </div>
-    
-    <div class="post">
-      <h1 class="post-title">
-        <a href="http://abhi1010.github.io/2008/03/talk-to-my...-flash/">Talk to my... Flash?</a>
-      </h1>
-      <span class="post-date">Mar 3, 2008  &middot; <a href="http://abhi1010.github.io/2008/03/talk-to-my...-flash/#disqus_thread">Comments</a>
-      
-      <br/>
-      <a class="a_cat" href="http://abhi1010.github.io/categories/database">database</a><a class="a_cat" href="http://abhi1010.github.io/categories/tips">tips</a>
-        
-      <a class="a_tag" href="http://abhi1010.github.io/tags/flash">flash</a>
-    
-      </span>
-      
-      <p>According to normal acceptable behaviour it is not possible to let flash talk to the computer, be it on desktop or web browser.</p>
-
-<p>There are always ways around a problem and there&rsquo;s one in this case as well.</p>
-
-<p><strong>Windows Forms</strong></p>
-
-<p>If you wanted to access .net functions on windows form then probably a good way to do that would be through <code>ShockWaveFlashObjects</code> library. It wraps all the functions that are available in ShockWave Objects and makes them available to you in .Net type safe way.</p>
-
-<p>The easiest of ways to send data back and forth would be through
-<code>fscommand</code> function. The concept is to embed a flash file in windows form and then make use of <code>fscommand</code> function.</p>
-
-<p>Tip: Remember to remove the blue window bondary at the top so the flash appears as if its a standalone object and not embedded inside another form!</p>
-
-<p><strong>Websites</strong></p>
-
-<p>If you wanted to talk over a web page then an easy way out would be to use AMF.Net software. It is a freeware and very easy to use as well. In the words of its official <a href="http://amfnet.openmymind.net/overview/default.aspx">website</a>:</p>
-
-<p><em>&ldquo;AMF enables developers to build powerful flash-based applications driven by databases and rich business layers.
-AMF.NET is a .NET gateway sitting between a Flash movie and .NET code. The goal of AMF.NET is to promote proper N-Tier development by allowing your existing business layer (written in .NET) to be consumed by Flash without requiring any modification.&rdquo;</em></p>
-
-      
-    </div>
-    
-    <div class="post">
-      <h1 class="post-title">
-        <a href="http://abhi1010.github.io/2008/02/membership-and-profiler-in-asp.net/">Membership and Profiler in ASP.NET</a>
-      </h1>
-      <span class="post-date">Feb 6, 2008  &middot; <a href="http://abhi1010.github.io/2008/02/membership-and-profiler-in-asp.net/#disqus_thread">Comments</a>
-      
-      <br/>
-      <a class="a_cat" href="http://abhi1010.github.io/categories/database">database</a>
-        
-      <a class="a_tag" href="http://abhi1010.github.io/tags/sql">sql</a>
-    
-      </span>
-      
-      <p>Whenever you are using Sql Membership and Profiler classes - Trying to generate reports make sure your query&rsquo;s WHERE clause is using &ldquo;indexed&rdquo; column names at least.</p>
-
-<p>Let&rsquo;s look at some of the more used tables. The index of some of the tables is given below:</p>
-
-<p><strong>Table: aspnet_membership</strong></p>
-
-<ul>
-<li><p>Clustered Index = <code>ApplicationID</code>, <code>LoweredEmail</code></p></li>
-
-<li><p>NonClustered = UserID</p></li>
-</ul>
-
-<p><strong>Table: aspnet_users</strong></p>
-
-<ul>
-<li><p>Clustered Index = <code>ApplicationID</code>, <code>LoweredUserName</code></p></li>
-
-<li><p>NonClustered Index = <code>ApplicationID</code>, <code>LastActivityDate</code></p></li>
-
-<li><p>Primary Key = <code>UserID</code></p></li>
-</ul>
-
-<p><strong>Table: aspnet_Profile</strong></p>
-
-<ul>
-<li>Clustered Index = <code>UserID</code></li>
-</ul>
-
-<blockquote>
-Bottomline - try to use ApplicationID in your queries otherwise your queries, for sure, will not run over the index at all and make it slow. This comes in effect if you are expecting high volume.
-</blockquote>
-
-      
-    </div>
-    
-    <div class="post">
-      <h1 class="post-title">
-        <a href="http://abhi1010.github.io/2007/12/book-review-head-first-design-patterns/">Book Review: Head First Design Patterns</a>
-      </h1>
-      <span class="post-date">Dec 12, 2007  &middot; <a href="http://abhi1010.github.io/2007/12/book-review-head-first-design-patterns/#disqus_thread">Comments</a>
-      
-      <br/>
-      <a class="a_cat" href="http://abhi1010.github.io/categories/code">code</a><a class="a_cat" href="http://abhi1010.github.io/categories/design-patterns">design patterns</a>
-        
-      <a class="a_tag" href="http://abhi1010.github.io/tags/java">java</a>
-    
-      </span>
-      
-      <p>What an amazing book this is! It is a must read for any developer who wants to develop long term codes/projects.</p>
-
-<p>The book looks at mostly the more important design patterns. The distinctive feature that stands out in this book is how it manages to make each pattern stand out against each other. It gives comparison between similar-looking patterns where necessary. It make the patterns &ldquo;debate&rdquo; against each other, get the birds-eye-view from &ldquo;patterns guru and grasshopper discussion&rdquo;, UML like &ldquo;class diagrams with notes&rdquo; to show how everything is gelling together.</p>
-
-<p>It starts off every pattern with the basic situation and come up with a code how a normal developer would code - then give that situation a twist and show us mortal beings how to code again using a pattern! It is a perfect setup for even a novice to get it straight into his head.</p>
-
-<p>The code for this book can be picked up at <a href="http://www.wickedlysmart.com">www.wickedlysmart.com</a>.</p>
-
-<p>Although this book is written for Java developers but it should suit C# and VB.NET. The website includes code for C# as well donated by a reader of the book.</p>
 
       
     </div>

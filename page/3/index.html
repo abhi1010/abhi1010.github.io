@@ -80,6 +80,194 @@
     
     <div class="post">
       <h1 class="post-title">
+        <a href="http://abhi1010.github.io/2013/09/oracle-sql-queries/">Oracle SQL Queries</a>
+      </h1>
+      <span class="post-date">Sep 22, 2013  &middot; <a href="http://abhi1010.github.io/2013/09/oracle-sql-queries/#disqus_thread">Comments</a>
+      
+      <br/>
+      <a class="a_cat" href="http://abhi1010.github.io/categories/code">code</a><a class="a_cat" href="http://abhi1010.github.io/categories/database">database</a>
+        
+      <a class="a_tag" href="http://abhi1010.github.io/tags/sql">sql</a>
+    
+      </span>
+      
+      <p>Recently I found myself in a situation where I had to view all the tables in the Oracle Server.</p>
+
+<p>I did some digging and came up with these helpful queries.</p>
+
+<table>
+<thead>
+<tr>
+<th>Query</th>
+<th>Remarks</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Select * from All_Tables</td>
+<td>View all the tables in the Oracle Server</td>
+</tr>
+
+<tr>
+<td>Select * from all_Views</td>
+<td>View all the views in the Oracle Server</td>
+</tr>
+
+<tr>
+<td>DESC table</td>
+<td>View all the columns of a given table. This function is used instead of the previous one mostly, but when this one doesn&rsquo;t work make sure you try the other one - I bet it will work.</td>
+</tr>
+</tbody>
+</table>
+
+<p>Here&rsquo;s a short code for viewing all the columns of a given table.</p>
+
+<script type="text/javascript" src="http://gist.github.com/11365686.js"></script>
+
+      
+    </div>
+    
+    <div class="post">
+      <h1 class="post-title">
+        <a href="http://abhi1010.github.io/2013/07/cvs-cheat-sheet/">CVS Cheat Sheet</a>
+      </h1>
+      <span class="post-date">Jul 3, 2013  &middot; <a href="http://abhi1010.github.io/2013/07/cvs-cheat-sheet/#disqus_thread">Comments</a>
+      
+      <br/>
+      <a class="a_cat" href="http://abhi1010.github.io/categories/code">code</a><a class="a_cat" href="http://abhi1010.github.io/categories/tips">tips</a>
+        
+      <a class="a_tag" href="http://abhi1010.github.io/tags/bash">bash</a><a class="a_tag" href="http://abhi1010.github.io/tags/cvs">cvs</a>
+    
+      </span>
+      
+      <p>I&rsquo;ve worked on CVS for a long time now and figured out that I&rsquo;d save a lot of time if I started writing alias or functions for the numerous tasks that I did on them. I will put down some of them here so you may benefit from them.</p>
+
+<p><em>Silently update and inform about the status of the files (recursive)</em></p>
+
+<pre><code>cvs -q -n update
+</code></pre>
+
+<p><em>Same as earlier but will only do so for the current folder</em></p>
+
+<pre><code>cvs -Q -n update -l
+</code></pre>
+
+<p><em>Finds out the cv[s] [m]odified list of files while also indentating them nicely with only the important data pulled out</em></p>
+
+<pre><code>cvs -Q status | egrep &quot;File: &quot; -A 4 | egrep -v &quot;Up-to-date&quot; | egrep &quot;File: &quot; -A 3 | sed -e &quot;s/ Status:/\t\tStatus:/&quot; -e &quot;s/,v$/\n-------------------------------------------------------------------------\n/&quot; -e &quot;s/.*${PWD##*/}\//Location:\t\t /&quot; -e &quot;s/Attic\///&quot; | egrep &quot;Location:|Repository|Status:|File:|--------
+</code></pre>
+
+<p><em>Recursively add all files to CVS for committing from the current directory</em></p>
+
+<pre><code>find . -type d -print | grep -v CVS | xargs cvs add
+</code></pre>
+
+<p><em>Doing a side by side diff (change the value of -W according to the width of the screen)</em></p>
+
+<pre><code>cvs -Q diff -t -y --suppress-common-lines -W 190 $*
+</code></pre>
+
+<p><em>Merging code from one branch to another</em></p>
+
+<pre><code># Creates a command that you can use to &quot;merge&quot; your code from dev head to this current branch.   
+# Ideally you want to run this command from a folder where you want the code to merge to....   
+merge()   
+{   
+BRANCH=$(cat CVS/Tag | cut -c2-)   
+CMD=$(echo cvs update -j $BRANCH -j Version_2_17_dev .)   
+echo $CMD   
+}   
+</code></pre>
+
+      
+    </div>
+    
+    <div class="post">
+      <h1 class="post-title">
+        <a href="http://abhi1010.github.io/2013/06/cursor-control-in-vim-search/">Cursor Control in VIM Search</a>
+      </h1>
+      <span class="post-date">Jun 11, 2013  &middot; <a href="http://abhi1010.github.io/2013/06/cursor-control-in-vim-search/#disqus_thread">Comments</a>
+      
+      <br/>
+      <a class="a_cat" href="http://abhi1010.github.io/categories/code">code</a><a class="a_cat" href="http://abhi1010.github.io/categories/tips">tips</a>
+        
+      <a class="a_tag" href="http://abhi1010.github.io/tags/vim">vim</a>
+    
+      </span>
+      
+      <p>Found a great way to search for keywords &amp;&amp; control the location of cursor in vim. It is excellent if you want to do a particular task multiple times. Usually if you search the cursor will straight away take you to the start of search. What if you want to go to the end of the word you are searching for?</p>
+
+<pre><code>/pattern/e
+</code></pre>
+
+<p>This takes you to the END of the keyword you are looking for.</p>
+
+<p>That’s not all. What if you want to go the second letter in that keyword? Change the pattern to as follows:</p>
+
+<pre><code>/pattern/s+1
+</code></pre>
+
+<p>That’s great. But what if I want to go to the end of the keyword?</p>
+
+<pre><code>/pattern/e
+</code></pre>
+
+<p>Awesome. Let’s review it through examples. Let’s say our phrase is “the brown fox jumped over the lazy dog” and we originally want to search for “brown”.</p>
+
+<table>
+<thead>
+<tr>
+<th>Pattern</th>
+<th>CURSOR LOCATED AT BEGINNING OF</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>/brown</td>
+<td>brown fox….</td>
+<td>search and start at “brown”</td>
+</tr>
+
+<tr>
+<td>/brown/s+2</td>
+<td>own fox…</td>
+<td>start at “brown” but move 2 letters from ‘start’</td>
+</tr>
+
+<tr>
+<td>/brown/s-4</td>
+<td>the brown fox…</td>
+<td>start at “brown” but move 4 letters to the left from ‘start’</td>
+</tr>
+
+<tr>
+<td>/brown/e</td>
+<td>n fox….</td>
+<td>search for “brown” but move to the end</td>
+</tr>
+
+<tr>
+<td>/brown/e+2</td>
+<td>fox…</td>
+<td>search for “brown” but move 2 letters from the ‘end’</td>
+</tr>
+
+<tr>
+<td>/brown/e-1</td>
+<td>wn fox…</td>
+<td>search for “brown” but move 1 letter to the left from the ‘end’</td>
+</tr>
+</tbody>
+</table>
+
+      
+    </div>
+    
+    <div class="post">
+      <h1 class="post-title">
         <a href="http://abhi1010.github.io/2013/04/change-putty-window-title/">Change Putty Window Title</a>
       </h1>
       <span class="post-date">Apr 25, 2013  &middot; <a href="http://abhi1010.github.io/2013/04/change-putty-window-title/#disqus_thread">Comments</a>
@@ -984,224 +1172,6 @@
 <p><strong>Code</strong></p>
 
 <p>As always, the code is available at <a href="https://github.com/abhi1010/Algorithms">https://github.com/abhi1010/Algorithms</a> for easier access.</p>
-
-      
-    </div>
-    
-    <div class="post">
-      <h1 class="post-title">
-        <a href="http://abhi1010.github.io/2012/09/counting-sort/">Counting Sort</a>
-      </h1>
-      <span class="post-date">Sep 11, 2012  &middot; <a href="http://abhi1010.github.io/2012/09/counting-sort/#disqus_thread">Comments</a>
-      
-      <br/>
-      <a class="a_cat" href="http://abhi1010.github.io/categories/code">code</a>
-        
-      <a class="a_tag" href="http://abhi1010.github.io/tags/sorting">sorting</a><a class="a_tag" href="http://abhi1010.github.io/tags/algo">algo</a><a class="a_tag" href="http://abhi1010.github.io/tags/c">c&#43;&#43;</a>
-    
-      </span>
-      
-      <p>Counting Sort is an integer sorting algorithm. It is not very famous when somebody talks about sorting algorithms but it is great when sorting integers. In fact, many a times it may even beat other Sorting Algorithms. The highlight of Counting Sort is that it creates a bucket array (to keep track of frequency of numbers) whose size is the maximum element in the provided array.</p>
-
-<p>We are looking to compare most of the sorting algorithms to find out which one performs better under different circumstances. One of the ways is to compare the complexity for each algorithm. The other way is to compare how well they perform based on the input they are all provided. I will post my code on Github but will start with Counting Sort here.</p>
-
-<p><em>Here are some pointers about Counting Sort:</em></p>
-
-<ul>
-<li><p>Linear sorting algo with O(n+k) when the elements range from 1 to k</p>
-
-<ul>
-<li>On</li>
-</ul></li>
-
-<li><p>It is really good when the numbers range from 1 to n which means the max between them is not going to be very high</p></li>
-</ul>
-
-<p><strong><em>How do we compare all Sorting Algorithms?</em></strong></p>
-
-<p>We are going to look at the following scenarios across all Sorting Algorithms:</p>
-
-<ul>
-<li><p>10 numbers - Random + Sorted</p></li>
-
-<li><p>1000 numbers (1K) - Random + Sorted</p></li>
-
-<li><p>1,000,000 numbers (1M) - Random + Sorted</p></li>
-
-<li><p>20000 iterations for each one of these scenarios</p></li>
-
-<li><p>For good measure we will look at the average time required to sort 100 numbers in each one of these cases</p>
-
-<ul>
-<li><p>This will allow us to compare all algorithms against each other by looking at the average times</p></li>
-
-<li><p>It means we will be multiplying the results of 10 numbers by 10 (to get the &ldquo;average&rdquo; for 100 numbers) and also</p></li>
-</ul></li>
-</ul>
-
-<!-- more -->
-
-<p><strong>Machine Setup</strong></p>
-
-<p>The setup of my machine is as follows:</p>
-
-<p>| Hardware: x86_64
-| Processor: 16 x Intel&reg; Xeon&reg; E5540 2.53 GHz
-| Compiler: gcc version 4.8.2 (GCC)
-| Redhat Version: Red Hat 5.3</p>
-
-<p><strong>The Source Code</strong></p>
-
-<p>I am trying to do this all together in a single place so that it is easy for anybody to pick up the code, either for their own testing or going through the Sorting Algos. All of the source code for this can be found here:</p>
-
-<p><a href="https://github.com/abhi1010/Algorithms">https://github.com/abhi1010/Algorithms</a></p>
-
-<p><strong>Numbers</strong></p>
-
-<p>Without further ado, let&rsquo;s delve into the numbers for Counting Sorts. Here&rsquo;s the result from the code:
-<table style="text-align:center;background-color:#efefef;width:100%;border-collapse:collapse;border:lightblue solid;" border="1" >
-<tbody >
-<tr ></p>
-
-<p><td style="width:25%;" >
-</td></p>
-
-<p><td style="width:25%;" ><strong># of Items in Array</strong>
-</td></p>
-
-<p><td style="width:25%;" ><strong>Time Taken</strong>
-</td></p>
-
-<p><td style="width:25%;" ><strong>Average for 100 numbers</strong>
-</td>
-</tr>
-<tr ></p>
-
-<p><td rowspan="3" ><strong>Random</strong>
-</td></p>
-
-<p><td >10
-</td></p>
-
-<p><td >0.022982
-</td></p>
-
-<p><td >0.22982
-</td>
-</tr>
-<tr style="background-color:#efefef;color:#008000;" ></p>
-
-<p><td >1K
-</td></p>
-
-<p><td >1.21822
-</td></p>
-
-<p><td >0.121822
-</td>
-</tr>
-<tr ></p>
-
-<p><td >1M
-</td></p>
-
-<p><td >1823.85
-</td></p>
-
-<p><td >0.182385
-</td>
-</tr>
-<tr ></p>
-
-<p><td rowspan="3" ><strong>Sorted</strong>
-</td></p>
-
-<p><td >10
-</td></p>
-
-<p><td >0.026815
-</td></p>
-
-<p><td >0.26815
-</td>
-</tr>
-<tr style="background-color:#efefef;color:#008000;" ></p>
-
-<p><td >1K
-</td></p>
-
-<p><td >1.19146
-</td></p>
-
-<p><td >0.119146
-</td>
-</tr>
-<tr ></p>
-
-<p><td >1M
-</td></p>
-
-<p><td >1612.58
-</td></p>
-
-<p><td >0.161258
-</td>
-</tr>
-</tbody>
-</table></p>
-
-      
-    </div>
-    
-    <div class="post">
-      <h1 class="post-title">
-        <a href="http://abhi1010.github.io/2008/05/visual-studio-2008-crashes-while-adding-items/">Visual Studio 2008 crashes while adding items</a>
-      </h1>
-      <span class="post-date">May 14, 2008  &middot; <a href="http://abhi1010.github.io/2008/05/visual-studio-2008-crashes-while-adding-items/#disqus_thread">Comments</a>
-      
-      <br/>
-      <a class="a_cat" href="http://abhi1010.github.io/categories/code">code</a>
-        
-      <a class="a_tag" href="http://abhi1010.github.io/tags/c">c#</a><a class="a_tag" href="http://abhi1010.github.io/tags/visual-studio">visual studio</a>
-    
-      </span>
-      
-      <p>Had this problem cropping up since months where I was trying to add items to Visual Studio 2008 Toolbox and it kept crashing.</p>
-
-<p>Finally got a work around, you should start it in safe mode. Here&rsquo;s the procedure:</p>
-
-<pre><code>devenv /safemode
-</code></pre>
-
-<p>Then use Choose Items on toolbox and run through each of the tabs. Once you
-accept any exceptions raised on loading controls, you can then open Visual
-Studio normally and add items.</p>
-
-<p>The reason for this has to be pretty simple - I have installed way too many beta/refresh version on Visual Studio 2008, something had to give up. I can&rsquo;t really complain.</p>
-
-      
-    </div>
-    
-    <div class="post">
-      <h1 class="post-title">
-        <a href="http://abhi1010.github.io/2008/04/google-analytics--swfaddress/">Google Analytics &amp; SWFAddress</a>
-      </h1>
-      <span class="post-date">Apr 6, 2008  &middot; <a href="http://abhi1010.github.io/2008/04/google-analytics--swfaddress/#disqus_thread">Comments</a>
-      
-      <br/>
-      <a class="a_cat" href="http://abhi1010.github.io/categories/code">code</a><a class="a_cat" href="http://abhi1010.github.io/categories/tips">tips</a>
-        
-      <a class="a_tag" href="http://abhi1010.github.io/tags/flash">flash</a>
-    
-      </span>
-      
-      <p>Recently found a bug slash issue with Google Analytics new javscript software (post-urchin v5). I had written the internal documentation for the company standards and somehow when those standards were put into practice, SWFAddress feature of flash stopped working the moment google analytics feature was enabled. Worst of all, the web pages failed to load! To cap it off, the website was working perfectly fine on Firefox 2, 3 and IE 7!! It was having trouble only on IE6.</p>
-
-<p>I tried a lot of ways but none seem to worked. Finally found a blog that remotely talked about SWFAddress!</p>
-
-<p>Well, the problem turns out that SWFAddress uses <code>ExternalInterface.call()</code> instead of getUrl() function internally and they don&rsquo;t go well together if used together.</p>
-
-<p>The solution was simple, since flash is using SWFAddress feature, every getUrl should be replaced with ExternalInterface.call(). Needless to say, everything seemed perfect again.</p>
 
       
     </div>

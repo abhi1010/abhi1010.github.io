@@ -52,6 +52,379 @@
     </item>
     
     <item>
+      <title>Elastic Beanstalk Deployment Automation</title>
+      <link>http://abhi1010.github.io/2015/09/elastic-beanstalk-deployment-automation/</link>
+      <pubDate>Fri, 04 Sep 2015 00:17:10 +0800</pubDate>
+      
+      <guid>http://abhi1010.github.io/2015/09/elastic-beanstalk-deployment-automation/</guid>
+      <description>
+
+&lt;p&gt;We are going to talk about a setup where &lt;strong&gt;all you need to do it &lt;em&gt;commit&lt;/em&gt; your code and all the rest of the steps from unit tests to deployment can be taken care of by some externally hosted cloud platform that provides continuous integration.&lt;/strong&gt;
+  In my case, it is going to be &lt;code&gt;Shippable&lt;/code&gt; that I am using as a sample but you can use almost anything like &lt;code&gt;TravisCI&lt;/code&gt; or &lt;code&gt;codeship&lt;/code&gt;, for example.&lt;/p&gt;
+
+&lt;h1 id=&#34;setup:8d5fa5afd262889ee9af2f0243a94c6d&#34;&gt;Setup&lt;/h1&gt;
+
+&lt;p&gt;Here is the setup we will be looking at:&lt;/p&gt;
+
+
+&lt;figure &gt;
+    
+        &lt;img src=&#34;http://abhi1010.github.io/images/elastic-beanstalk-deployment-automation-arch.png&#34; alt=&#34;Architecture&#34; /&gt;
+    
+    
+    &lt;figcaption&gt;
+        &lt;p&gt;
+        Architecture
+        
+            
+        
+        &lt;/p&gt; 
+    &lt;/figcaption&gt;
+    
+&lt;/figure&gt;
+
+
+&lt;h1 id=&#34;shippable-for-commits:8d5fa5afd262889ee9af2f0243a94c6d&#34;&gt;Shippable for commits&lt;/h1&gt;
+
+&lt;p&gt;We will use &lt;code&gt;shippable&lt;/code&gt; for the following:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Unit Tests&lt;/li&gt;
+&lt;li&gt;Regression Tests&lt;/li&gt;
+&lt;li&gt;Localized DB Tests&lt;/li&gt;
+&lt;li&gt;Tagging of the source code if the commit passes all tests&lt;/li&gt;
+&lt;li&gt;Deployment of the source code on &lt;code&gt;beanstalk&lt;/code&gt; running &lt;code&gt;docker&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Login onto &lt;code&gt;shippable&lt;/code&gt; and setup your project to be built. It uses webhooks with your repository like &lt;code&gt;GitHub&lt;/code&gt; or &lt;code&gt;shippable&lt;/code&gt; which are called on every commit.
+You can create a &lt;code&gt;shippable.yml&lt;/code&gt; file in your project which will be called on every commit. If you have used &lt;code&gt;docker&lt;/code&gt; before, it might look familiar because they invoke a &lt;code&gt;docker&lt;/code&gt; script to run the script within &lt;code&gt;shippable.yml&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Here is one of my sample files from the project that powers this blog:&lt;/p&gt;
+
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;language: python
+
+install:
+  - pip install Pygments 
+
+before_script:
+  - git config --global push.default matching
+  - mkdir -p themes
+  - git clone git@github.com:abhi1010/abhi1010.github.io.git
+  - &lt;span style=&#34;color: #204a87&#34;&gt;cd &lt;/span&gt;themes
+  - git clone https://github.com/abhi1010/hyde-a.git
+  - &lt;span style=&#34;color: #204a87&#34;&gt;cd&lt;/span&gt; ../
+
+script:
+  - hugo -d abhi1010.github.io/
+
+after_success:
+  - &lt;span style=&#34;color: #204a87&#34;&gt;echo&lt;/span&gt; &lt;span style=&#34;color: #4e9a06&#34;&gt;`&lt;/span&gt;&lt;span style=&#34;color: #204a87&#34;&gt;pwd&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;`&lt;/span&gt;
+  - &lt;span style=&#34;color: #204a87&#34;&gt;export &lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;NOW_HOUR&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;$(&lt;/span&gt;date +%d-%b-%H_%M&lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;)&lt;/span&gt; 
+  - git config --global user.email &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;abhi.pandey@gmail.com&amp;quot;&lt;/span&gt;
+  - git config --global user.name &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;abhi1010&amp;quot;&lt;/span&gt;
+  - git config --get remote.origin.url
+  - git remote &lt;span style=&#34;color: #204a87&#34;&gt;set&lt;/span&gt;-url origin git@github.com:abhi1010.github.io.git
+  - &lt;span style=&#34;color: #204a87&#34;&gt;cd &lt;/span&gt;abhi1010.github.io
+  - git status -s
+  - &lt;span style=&#34;color: #204a87&#34;&gt;echo&lt;/span&gt; -e &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;a\n*\nq\n&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;git add -i
+  - git commit -am &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;Automated build from Shippable - &amp;#39;&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;$NOW_HOUR&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; git push
+
+
+notifications:
+     email:
+         recipients:
+             - abhi@boun.cr
+         on_success: change
+         on_failure: always
+
+cache: &lt;span style=&#34;color: #204a87&#34;&gt;true&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;This script does the following tasks:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Set &lt;code&gt;python&lt;/code&gt; as the default language for the scripts to use&lt;/li&gt;
+&lt;li&gt;Install &lt;code&gt;Pygments&lt;/code&gt; using &lt;code&gt;pip&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;My blog is done using three repos - so it does a &lt;em&gt;git clone&lt;/em&gt; for each&lt;/li&gt;
+&lt;li&gt;Calls on hugo to create the static site&lt;/li&gt;
+&lt;li&gt;Commits the changes made in static content to &lt;code&gt;GitHub&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Once it works, you will see the following on &lt;code&gt;shippable&lt;/code&gt; site:&lt;/p&gt;
+
+
+&lt;figure &gt;
+    
+        &lt;img src=&#34;http://abhi1010.github.io/images/elastic-beanstalk-deployment-automation-2.png&#34; alt=&#34;Shippable Build Status&#34; /&gt;
+    
+    
+    &lt;figcaption&gt;
+        &lt;p&gt;
+        Shippable Build Status
+        
+            
+        
+        &lt;/p&gt; 
+    &lt;/figcaption&gt;
+    
+&lt;/figure&gt;
+
+
+&lt;h2 id=&#34;unit-tests:8d5fa5afd262889ee9af2f0243a94c6d&#34;&gt;Unit Tests&lt;/h2&gt;
+
+&lt;p&gt;You may also want to set up unit tests and regression tests as part of your &lt;em&gt;scripts&lt;/em&gt;
+Just do the following then&lt;/p&gt;
+
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #000000&#34;&gt;script&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt;
+  &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;-&lt;/span&gt;  &lt;span style=&#34;color: #000000&#34;&gt;py.test-3.4 tests/test.py --maxfail=3 -s --full-trace --tb=long --junitxml=../shippable/testresults/pytests.xml&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2 id=&#34;git-tagging:8d5fa5afd262889ee9af2f0243a94c6d&#34;&gt;Git Tagging&lt;/h2&gt;
+
+&lt;p&gt;If the tests pass in &lt;em&gt;scripts&lt;/em&gt; only then does &lt;code&gt;shippable&lt;/code&gt; go to &lt;strong&gt;after_success&lt;/strong&gt; section.
+Over there, you might want to tag your source code, so that &lt;code&gt;docker&lt;/code&gt; will only pull the tagged and approved commits from &lt;code&gt;shippable&lt;/code&gt;, not every commit - which is very important.&lt;/p&gt;
+
+&lt;p&gt;Here&amp;rsquo;s how to do that:&lt;/p&gt;
+
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;after_success:
+  - git tag -f recon_prod master
+  - git push -f --tags
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h1 id=&#34;deployment:8d5fa5afd262889ee9af2f0243a94c6d&#34;&gt;Deployment&lt;/h1&gt;
+
+&lt;p&gt;Once you have approved your code commit, it is time to deploy it to &lt;code&gt;docker&lt;/code&gt; on &lt;code&gt;beanstalk&lt;/code&gt;.
+I like to keep deployment scripts in another bash script, so that deployment can be done in various other ways as well, if needed.&lt;/p&gt;
+
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;after_success:
+  - main/scripts/deploy.sh 
+  - &lt;span style=&#34;color: #204a87&#34;&gt;echo&lt;/span&gt; &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;CODE DEPLOYED&amp;#39;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Or, you may choose to have the &amp;ldquo;deployment&amp;rdquo; script from another project, if you wish. It allows you to separately maintain all the moving parts.&lt;/p&gt;
+
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;rm -rf &lt;span style=&#34;color: #204a87&#34;&gt;cd &lt;/span&gt;eb-reconwise
+&lt;span style=&#34;color: #204a87&#34;&gt;echo&lt;/span&gt; &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;Deploying New Dockers&amp;#39;&lt;/span&gt;
+git clone https://github.com/abhi1010/deplyment_project.git
+&lt;span style=&#34;color: #204a87&#34;&gt;cd &lt;/span&gt;deplyment_project/
+chmod +x deploy.sh
+eb use beanstalk_env_name
+./deploy.sh
+&lt;span style=&#34;color: #204a87&#34;&gt;echo&lt;/span&gt; &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;Deployment Complete&amp;#39;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2 id=&#34;dockerfile:8d5fa5afd262889ee9af2f0243a94c6d&#34;&gt;Dockerfile&lt;/h2&gt;
+
+&lt;p&gt;Now first what we need is setting up &lt;code&gt;docker&lt;/code&gt; on beanstalk.&lt;/p&gt;
+
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;  FROM abhi1010/base_docker
+  MAINTAINER abhi1010 &amp;lt;codersdigest@gmail.com&amp;gt;
+  
+  ENV DEBIAN_FRONTEND noninteractive
+  
+  ENV WS &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;/ws&amp;#39;&lt;/span&gt;
+  ENV CURR_HOME &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;/root&amp;#39;&lt;/span&gt;
+  WORKDIR &lt;span style=&#34;color: #000000&#34;&gt;$WS&lt;/span&gt;
+  
+  RUN git clone https://github.com/abhi1010/dockerprj.git &lt;span style=&#34;color: #4e9a06&#34;&gt;\&lt;/span&gt;
+   &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; . &lt;span style=&#34;color: #000000&#34;&gt;$WS&lt;/span&gt;/ve_envs/rwv2/bin/activate &lt;span style=&#34;color: #4e9a06&#34;&gt;\&lt;/span&gt;
+   &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;$WS&lt;/span&gt;/prj/rw/manage.py collectstatic --noinput
+  
+  COPY supervisor-app.conf &lt;span style=&#34;color: #000000&#34;&gt;$WS&lt;/span&gt;/
+  
+  RUN &lt;span style=&#34;color: #4e9a06&#34;&gt;\&lt;/span&gt;
+      cp &lt;span style=&#34;color: #000000&#34;&gt;$WS&lt;/span&gt;/supervisor-app.conf /etc/supervisor/supervisord.conf &lt;span style=&#34;color: #4e9a06&#34;&gt;\&lt;/span&gt;
+   &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; chown -R www-data:www-data /var/lib/nginx
+
+  VOLUME &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;[&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;/var/shared/&amp;quot;&lt;/span&gt;, &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;/etc/nginx/sites-enabled&amp;quot;&lt;/span&gt;, &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;/var/log/nginx&amp;quot;&lt;/span&gt;, &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;/ws/&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;]&lt;/span&gt;
+    
+  EXPOSE 80
+  CMD &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;[&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;supervisord&amp;quot;&lt;/span&gt;, &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;-n&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;]&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;This does the following tasks:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Run a base &lt;code&gt;docker&lt;/code&gt; from a custom image - where all apps and project requirements have already been installed and configured. It helps me save a lot of time during deployments.&lt;/li&gt;
+&lt;li&gt;Download the source code using &lt;code&gt;RUN&lt;/code&gt; - which I update using another method.
+
+&lt;ul&gt;
+&lt;li&gt;You can view detail on this &lt;a href=&#34;http://abhi1010.github.io/2015/09/updating-django-source-with-docker-deployments/&#34;&gt;method here&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Copy the &lt;code&gt;supervisord&lt;/code&gt; config as well&lt;/li&gt;
+&lt;li&gt;Set the right user rights for &lt;code&gt;nginx&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Setup folders to be shared using &lt;code&gt;VOLUME&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Expose port 80 so that this &lt;code&gt;docker&lt;/code&gt; container can be used as a web container&lt;/li&gt;
+&lt;li&gt;Set &lt;code&gt;cmd&lt;/code&gt; so that it allows &lt;code&gt;supervisord&lt;/code&gt; to be used for running the container&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;beanstalk-configuration:8d5fa5afd262889ee9af2f0243a94c6d&#34;&gt;Beanstalk Configuration&lt;/h2&gt;
+
+&lt;p&gt;Once we have the &lt;code&gt;Dockerfile&lt;/code&gt; ready, we need to set up the configuration for &lt;code&gt;beanstalk&lt;/code&gt; so that during deployment, other steps can be taken care of as well. Some of the things to keep in mind in &lt;code&gt;beanstalk&lt;/code&gt; setup are:&lt;/p&gt;
+
+&lt;h3 id=&#34;tips:8d5fa5afd262889ee9af2f0243a94c6d&#34;&gt;Tips&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;All &lt;code&gt;beanstalk&lt;/code&gt; configuration has be kept in a folder called &lt;strong&gt;&lt;code&gt;.ebextension&lt;/code&gt;&lt;/strong&gt;&lt;br /&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;beanstalk ec2&lt;/code&gt; instance maintains a folder internally to run the scripts while setting up &lt;code&gt;docker&lt;/code&gt; for you so that the instance can be ready for you
+
+&lt;ul&gt;
+&lt;li&gt;It is totally possible to &lt;em&gt;plug&lt;/em&gt; your own scripts into &lt;code&gt;beanstalk&lt;/code&gt; initialization setup so that you can &lt;em&gt;program&lt;/em&gt; a custom &lt;code&gt;EC2&lt;/code&gt; instance for yourself&lt;/li&gt;
+&lt;li&gt;Folder to place your scripts are &lt;code&gt;/opt/elasticbeanstalk/hooks/appdeploy/post&lt;/code&gt; and &lt;code&gt;/opt/elasticbeanstalk/hooks/appdeploy/pre&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Scripts placed in the folders are read in alphabetical order&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;You can increase the timeout of your &lt;code&gt;docker&lt;/code&gt; initialization setup if it takes too long due to multiple steps
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #000000&#34;&gt;option_settings&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt;
+    &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;-&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;namespace&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;aws&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;elasticbeanstalk&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;command&lt;/span&gt;
+      &lt;span style=&#34;color: #000000&#34;&gt;option_name&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;Timeout&lt;/span&gt;
+      &lt;span style=&#34;color: #000000&#34;&gt;value&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #0000cf; font-weight: bold&#34;&gt;1800&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;user-accounts:8d5fa5afd262889ee9af2f0243a94c6d&#34;&gt;User Accounts&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;You can also add any user account if you&amp;rsquo;d like pragmatically and make sure they are &lt;em&gt;always&lt;/em&gt; part of the &lt;code&gt;EC2&lt;/code&gt; instance that you are creating
+
+&lt;ul&gt;
+&lt;li&gt;Create a file called &lt;code&gt;00001.ftp.config&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Use &lt;code&gt;pre&lt;/code&gt; folder to setup accounts&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;files:
+  &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;/opt/elasticbeanstalk/hooks/appdeploy/pre/0001_create_users.sh&amp;quot;&lt;/span&gt;:
+    mode: &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;000755&amp;quot;&lt;/span&gt; 
+    owner: root
+    group: root
+    content: &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;
+      &lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;#!/usr/bin/env bash&lt;/span&gt;
+      &lt;span style=&#34;color: #204a87&#34;&gt;echo&lt;/span&gt; &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;About to Add user gh-user&amp;#39;&lt;/span&gt;
+      adduser gh-user
+      runuser -l gh-user -c &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;mkdir ~/.ssh&amp;#39;&lt;/span&gt;
+      runuser -l gh-user -c &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;chmod 700 ~/.ssh&amp;#39;&lt;/span&gt;
+      runuser -l gh-user -c &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;touch ~/.ssh/authorized_keys&amp;#39;&lt;/span&gt;
+      runuser -l gh-user -c &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;chmod 600 ~/.ssh/authorized_keys&amp;#39;&lt;/span&gt;
+      runuser -l gh-user -c &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;echo &amp;quot;ssh-rsa r4CBI2cWQohEwBkGw9CcW0vWfnlAcKkrCnsJvwe/+kG5w9J8gJdnNQ8BFB+q+kQ6fWl+1kw7b+8jah5q0nNpOzLbed+Rzse1BoOIjsSXqN/L7AW8y61PVBULcVAVBKCrVy0U5zifv/e6a5+dsUD3WLiD3yXTgPDcZoqQqPYkurCx5ZzxLylKfXfL37k7sz00e+Tu/Y+J9xXdI9j3G5bU9rmIe4SH4mK4BCMRQ6zCHqAzAXZtnmN5U1XR3XrfMtuDLvVgcOlEpXIMl9q2kco0ZCdMkYoSzf3Yj&amp;quot; &amp;gt;&amp;gt; ~/.ssh/authorized_keys&amp;#39;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3 id=&#34;pre-installing-packages:8d5fa5afd262889ee9af2f0243a94c6d&#34;&gt;Pre-installing Packages&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;You should also install any package that you&amp;rsquo;d like on all &lt;code&gt;EC2&lt;/code&gt; instances&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;files:
+  &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;/opt/elasticbeanstalk/hooks/appdeploy/pre/0003_packages.sh&amp;quot;&lt;/span&gt;:
+    mode: &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;000755&amp;quot;&lt;/span&gt; 
+    owner: root
+    group: root
+    content: &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;
+      &lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;#!/usr/bin/env bash &lt;/span&gt;
+      yum install -y git
+     
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3 id=&#34;sharing-volumes-between-docker-and-ec2:8d5fa5afd262889ee9af2f0243a94c6d&#34;&gt;Sharing volumes between &lt;code&gt;docker&lt;/code&gt; and &lt;code&gt;EC2&lt;/code&gt;&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Ensure that folder sharing is enabled between &lt;code&gt;EC2&lt;/code&gt; and &lt;code&gt;docker&lt;/code&gt; instances
+
+&lt;ul&gt;
+&lt;li&gt;This goes into file &lt;code&gt;Dockerrun.aws.json&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;{&lt;/span&gt;
+   &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;AWSEBDockerrunVersion&amp;quot;&lt;/span&gt;: &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;1&amp;quot;&lt;/span&gt;,
+  &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;Volumes&amp;quot;&lt;/span&gt;: &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;[&lt;/span&gt;
+    &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;{&lt;/span&gt;
+      &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;HostDirectory&amp;quot;&lt;/span&gt;: &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;/var/shared&amp;quot;&lt;/span&gt;,
+      &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;ContainerDirectory&amp;quot;&lt;/span&gt;: &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;/var/shared&amp;quot;&lt;/span&gt;
+    &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;}&lt;/span&gt;
+  &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;]&lt;/span&gt;,
+  &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;Ports&amp;quot;&lt;/span&gt;: &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;[&lt;/span&gt;
+    &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;{&lt;/span&gt;
+      &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;ContainerPort&amp;quot;&lt;/span&gt;: &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;80&amp;quot;&lt;/span&gt;
+    &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;}&lt;/span&gt;
+  &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;]&lt;/span&gt;,
+   &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;Logging&amp;quot;&lt;/span&gt;: &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;/var/log/&amp;quot;&lt;/span&gt;
+ &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3 id=&#34;folder-and-files-structure:8d5fa5afd262889ee9af2f0243a94c6d&#34;&gt;Folder and files structure&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Finally, make sure that your folder files are setup as follows:&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #000000&#34;&gt;$ &lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;(&lt;/span&gt;master&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;)&lt;/span&gt; tree -a 
+.
+&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;-- .ebextensions
+&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;   &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;-- 0000_users.config  &lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;# setup extra users&lt;/span&gt;
+&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;   &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;-- 0002_packages.config  &lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;# install external packages&lt;/span&gt;
+&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;   &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;-- 0004_bash.config  &lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;# I like to manage all &lt;/span&gt;
+&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;-- .elasticbeanstalk
+&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;   &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;-- config.yml  &lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;# AWS connection details&lt;/span&gt;
+&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;-- .gitignore 
+&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;-- Dockerfile  &lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;# Docker instance&lt;/span&gt;
+&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;-- Dockerrun.aws.json   &lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;# folder sharing&lt;/span&gt;
+&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;-- updater.sh  &lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;# script to update any code&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3 id=&#34;elasticbeanstalk-folder-for-aws-configs:8d5fa5afd262889ee9af2f0243a94c6d&#34;&gt;&lt;code&gt;.elasticbeanstalk&lt;/code&gt; folder for &lt;code&gt;aws&lt;/code&gt; configs&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;You might be wondering what&amp;rsquo;s &lt;code&gt;.elasticbeanstalk&lt;/code&gt; folder. It is the folder that&amp;rsquo;s responsible for taking your &lt;code&gt;AWS&lt;/code&gt; secret key and access id for doing the actual deployment. If you don&amp;rsquo;t set it up, AWS will ask you every time.
+
+&lt;ul&gt;
+&lt;li&gt;For setting it up, you just need to call &lt;code&gt;eb config&lt;/code&gt; one time, it creates the folder for you with all the details, including connection details. You can then make it part of your &lt;code&gt;git&lt;/code&gt; commits&lt;/li&gt;
+&lt;li&gt;Make sure it is secure&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;And that&amp;rsquo;s it! Once you commit your code, &lt;code&gt;shippable&lt;/code&gt; will run the tests, tag your code and finally download this &lt;em&gt;deployment&lt;/em&gt; project and deploy it to &lt;code&gt;beanstalk&lt;/code&gt; through &lt;code&gt;docker&lt;/code&gt; containers.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Nginx Upload limits on Beanstalk Docker</title>
+      <link>http://abhi1010.github.io/2015/09/nginx-upload-limits-on-beanstalk-docker/</link>
+      <pubDate>Fri, 04 Sep 2015 00:14:35 +0800</pubDate>
+      
+      <guid>http://abhi1010.github.io/2015/09/nginx-upload-limits-on-beanstalk-docker/</guid>
+      <description>&lt;p&gt;If I am not wrong, &lt;code&gt;nginx&lt;/code&gt; only allows you to upload up till max 2Mb of data by default. If you are doing a &lt;code&gt;docker&lt;/code&gt; deployment on &lt;code&gt;beanstalk&lt;/code&gt; you may to remember to change that not once but twice!&lt;/p&gt;
+
+&lt;p&gt;As you may know already, &lt;code&gt;beanstalk&lt;/code&gt; creates an &lt;code&gt;EC2&lt;/code&gt; instance to manage the &lt;code&gt;docker&lt;/code&gt; environment.&lt;br /&gt;
+Since &lt;code&gt;EC2&lt;/code&gt; needs to manage the &lt;code&gt;docker&lt;/code&gt; environment and serve the web interface as well, it does so by having another &lt;code&gt;nginx&lt;/code&gt; instance to serve the &lt;code&gt;nginx&lt;/code&gt; within &lt;code&gt;docker&lt;/code&gt;.
+Hence, if you had to modify the &lt;code&gt;nginx&lt;/code&gt; settings to allow bigger uploads, &lt;strong&gt;you&amp;rsquo;d have to modify the settings for &lt;code&gt;nginx&lt;/code&gt; on both - &lt;code&gt;docker&lt;/code&gt; as well as &lt;code&gt;EC2&lt;/code&gt;&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;    &lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;# max upload size&lt;/span&gt;
+    &lt;span style=&#34;color: #000000&#34;&gt;client_max_body_size&lt;/span&gt; &lt;span style=&#34;color: #0000cf; font-weight: bold&#34;&gt;10&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;M&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;;&lt;/span&gt;   &lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;# adjust to your liking&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Also, if you don&amp;rsquo;t want to have any limit at all for uploads, then just change the &lt;code&gt;client_max_body_size&lt;/code&gt; to 0.&lt;/p&gt;
+
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;    &lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;# max upload size&lt;/span&gt;
+    &lt;span style=&#34;color: #000000&#34;&gt;client_max_body_size&lt;/span&gt; &lt;span style=&#34;color: #0000cf; font-weight: bold&#34;&gt;0&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+</description>
+    </item>
+    
+    <item>
       <title>Updating Django Source with Docker Deployments</title>
       <link>http://abhi1010.github.io/2015/09/updating-django-source-with-docker-deployments/</link>
       <pubDate>Fri, 04 Sep 2015 00:11:51 +0800</pubDate>
@@ -157,6 +530,37 @@ However, all that is required here is to know that python automatically picks up
 
 
 &lt;p&gt;You might want to read about &lt;code&gt;--touch-reload&lt;/code&gt; in my &lt;a href=&#34;http://abhi1010.github.io/2015/09/updating-django-source-with-docker-deployments/&#34;&gt;other post.&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Sharing folders on Beanstalk Docker</title>
+      <link>http://abhi1010.github.io/2015/08/sharing-folders-on-beanstalk-docker/</link>
+      <pubDate>Fri, 14 Aug 2015 00:19:51 +0800</pubDate>
+      
+      <guid>http://abhi1010.github.io/2015/08/sharing-folders-on-beanstalk-docker/</guid>
+      <description>&lt;p&gt;It is very easy to setup volume sharing in &lt;code&gt;docker&lt;/code&gt;. You ideally want the following folders to be shared when a new &lt;code&gt;docker&lt;/code&gt; is initialized for you:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;/var/log&lt;/code&gt; so that you can keep track of logs&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;nginx&lt;/code&gt; specific folders because you will have two instances of &lt;code&gt;nginx&lt;/code&gt; running - one on &lt;code&gt;docker&lt;/code&gt; and another on &lt;code&gt;EC2&lt;/code&gt;. This allows you to share logs
+
+&lt;ul&gt;
+&lt;li&gt;Also read &lt;a href=&#34;http://abhi1010.github.io/2015/09/nginx-upload-limits-on-beanstalk-docker/&#34;&gt;this post&lt;/a&gt; for related info&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;your personal workspace or anything that you&amp;rsquo;d like to share&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Here&amp;rsquo;s how you&amp;rsquo;d do it. The keyword is &lt;code&gt;VOLUME&lt;/code&gt;&amp;hellip; in your &lt;code&gt;Dockerfile&lt;/code&gt;&lt;/p&gt;
+
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #000000&#34;&gt;VOLUME&lt;/span&gt; &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;[&lt;/span&gt; \
+    &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;/var/shared/&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt; \ 
+    &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;/etc/nginx/sites-enabled&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt; \ 
+    &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;/var/log/nginx&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt; \
+    &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;/ws/&amp;quot;&lt;/span&gt; \
+&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;]&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
 </description>
     </item>
     
@@ -457,993 +861,6 @@ Just run the following to test whether it works:&lt;/p&gt;
 &lt;p&gt;Let&amp;rsquo;s have a look at the script&amp;hellip;.&lt;/p&gt;
 
 &lt;script type=&#34;text/javascript&#34; src=&#34;http://gist.github.com/924a5f12f3067ba0b3af.js&#34;&gt;&lt;/script&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>32 bit vs 64 bit</title>
-      <link>http://abhi1010.github.io/2014/04/32-bit-vs-64-bit/</link>
-      <pubDate>Tue, 15 Apr 2014 02:40:00 +0000</pubDate>
-      
-      <guid>http://abhi1010.github.io/2014/04/32-bit-vs-64-bit/</guid>
-      <description>
-
-&lt;h3 id=&#34;when-to-use-64-bit:781115a00a27c6c773035866d9644c43&#34;&gt;When to use 64-bit?&lt;/h3&gt;
-
-&lt;p&gt;If your application needs more than 2-4gb of data&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;If your application intensively uses 64-bit arithmetic&lt;/li&gt;
-&lt;li&gt;* 32-bit x86 compiled applications are restricted to x86 instruction set, even when run on on a 64-bit machine&lt;/li&gt;
-&lt;li&gt;x64 supports 16 registers compared to just 8 in x86. If your code is computation intensive this may help a great deal&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&#34;when-to-use-32-bit:781115a00a27c6c773035866d9644c43&#34;&gt;When to use 32-bit?&lt;/h3&gt;
-
-&lt;p&gt;After reading so many great things about 32 bit, why would anybody still want to code against 32-bit? Simple reason - code compiled in 32-bit takes lesser memory. For example, a pointer in 64-bit machine is 8 bytes compared to 4 bytes with 32-bit. Now imagine how many pointers do you have going around in your code?&lt;/p&gt;
-
-&lt;h3 id=&#34;when-to-not-use-64-bit:781115a00a27c6c773035866d9644c43&#34;&gt;When to not use 64-bit?&lt;/h3&gt;
-
-&lt;p&gt;Sometimes if your code is running on a machine that does not have too much of space then it is a never a great idea to use 64-bit compilation because the same task can probably be done much better using 32-bit version. L2 and L3 caches will be utilized a lot more in 64-bit code (and a lot earlier as well) compared to 32-bit; on such systems.&lt;/p&gt;
-
-&lt;h3 id=&#34;summary:781115a00a27c6c773035866d9644c43&#34;&gt;Summary&lt;/h3&gt;
-
-&lt;p&gt;Always benchmark your code and ensure that the application actually needs more than 2-4Gb of space.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Tokenize a String using C&#43;&#43;</title>
-      <link>http://abhi1010.github.io/2014/04/tokenize-a-string-using-c/</link>
-      <pubDate>Tue, 08 Apr 2014 07:00:00 +0000</pubDate>
-      
-      <guid>http://abhi1010.github.io/2014/04/tokenize-a-string-using-c/</guid>
-      <description>&lt;p&gt;Here&amp;rsquo;s a short snippet to split a string into multiple tokens; into a vector. As you will see that, if you run the code, boost version performs better because you can choose a number of delimiters to split your string instead of the vanilla version using the normal C++ code. Of course, you may also write your own code to do something like this but I was looking to do some short snippets.&lt;/p&gt;
-
-&lt;script type=&#34;text/javascript&#34; src=&#34;http://gist.github.com/554885a7235f4047dae6.js&#34;&gt;&lt;/script&gt;
-
-&lt;p&gt;I have &lt;strong&gt;posted my code on &lt;a href=&#34;http://coliru.stacked-crooked.com/a/01e1c68ffd0199cd&#34;&gt;Stacked-Crooked&lt;/a&gt;&lt;/strong&gt; which you can view along with the output as well. It shows C++ doesn&amp;rsquo;t perform so well.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Heap Sort vs Merge Sort vs Insertion Sort vs Radix Sort vs Counting Sort vs Quick Sort</title>
-      <link>http://abhi1010.github.io/2014/03/heap-sort-vs-merge-sort-vs-insertion-sort-vs-radix-sort-vs-counting-sort-vs-quick-sort/</link>
-      <pubDate>Wed, 19 Mar 2014 05:42:00 +0000</pubDate>
-      
-      <guid>http://abhi1010.github.io/2014/03/heap-sort-vs-merge-sort-vs-insertion-sort-vs-radix-sort-vs-counting-sort-vs-quick-sort/</guid>
-      <description>
-
-&lt;p&gt;I had written about sorting algorithms (Tag: &lt;a href=&#34;http://codersdigest.wordpress.com/tag/sorting/&#34;&gt;Sorting&lt;/a&gt;) with details about what to look out for along with their code snippets but I wanted a do a quick comparison of all the algos together to see how do they perform when the same set of input is provided to them. Hence I started working on a simple implementation for each one of them. I have now put together all of them in a single project on GitHub. I ensured that they all have the same set of procedures during their run. Some of the items I wanted to ensure was:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;Same input array&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Same number of iterations. Each iteration having the same input&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Each algo being timed the exact same way as another&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Some of the algorithms being tested were:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;&lt;a href=&#34;http://codersdigest.wordpress.com/2012/10/06/merge-sort/&#34;&gt;Heap Sort&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;&lt;a href=&#34;http://codersdigest.wordpress.com/2012/10/06/merge-sort/&#34;&gt;Merge Sort&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;&lt;a href=&#34;http://codersdigest.wordpress.com/2012/09/18/insertion-sort/&#34;&gt;Insertion Sort&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;&lt;a href=&#34;http://codersdigest.wordpress.com/2012/09/13/radix-sort/&#34;&gt;Radix Sort&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;&lt;a href=&#34;http://codersdigest.wordpress.com/2012/09/11/counting-sort/&#34;&gt;Counting Sort&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;&lt;a href=&#34;http://codersdigest.wordpress.com/2012/09/22/quick-sort/&#34;&gt;Quick Sort&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;how-did-we-ensure-equality:6e1f05c125f850e9eb36735baf7184b1&#34;&gt;How did we ensure Equality?&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;Created a simple base class for all algorithms: &lt;code&gt;AlgoStopwatch&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;Responsible for benchmarking everything&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Provide a function called &lt;code&gt;doSort()&lt;/code&gt; that would allow derived classes to implement their algorithm&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Ensures that every algorithm has a name and description - to help us distinguish&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Another class to help manage the testing of all the algorithms: &lt;code&gt;AlgoDemo&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;All instances are created here for the algorithms&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;The input array is provided by this class to all algorithms&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;code:6e1f05c125f850e9eb36735baf7184b1&#34;&gt;Code&lt;/h2&gt;
-
-&lt;p&gt;As usual the code for the project is available here:&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;&lt;a href=&#34;https://github.com/abhi1010/Algorithms&#34;&gt;https://github.com/abhi1010/Algorithms&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;It can be run using Visual Studio without any changes.&lt;/p&gt;
-
-&lt;!-- more --&gt;
-
-&lt;h2 id=&#34;numbers:6e1f05c125f850e9eb36735baf7184b1&#34;&gt;Numbers&lt;/h2&gt;
-
-&lt;p&gt;Looking at the numbers below, it may be hard to compare the actual values. Hence I decided to &lt;code&gt;normalize&lt;/code&gt; them by calculating how much time will be required to sort &lt;code&gt;100 numbers&lt;/code&gt; using the same rate as the actual numbers. They are provided for all algorithms on the right-most column.
-&lt;table style=&#34;text-align:center;background-color:#efefef;width:100%;border-collapse:collapse;border:lightblue solid;&#34; border=&#34;1&#34; &gt;
-&lt;tbody &gt;
-&lt;tr &gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;td style=&#34;width:25%;&#34; &gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;merge-sort-http-codersdigest-wordpress-com-2012-10-06-merge-sort:6e1f05c125f850e9eb36735baf7184b1&#34;&gt;&lt;a href=&#34;http://codersdigest.wordpress.com/2012/10/06/merge-sort/&#34;&gt;Merge Sort&lt;/a&gt;&lt;/h3&gt;
-
-&lt;p&gt;&lt;/td&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;td style=&#34;width:25%;&#34; &gt;&lt;strong&gt;# of Items in Array&lt;/strong&gt;
-&lt;/td&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;td style=&#34;width:25%;&#34; &gt;&lt;strong&gt;Time Taken&lt;/strong&gt;
-&lt;/td&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;td style=&#34;width:25%;&#34; &gt;&lt;strong&gt;Average for 100 numbers&lt;/strong&gt;
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr &gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;td rowspan=&#34;3&#34; &gt;&lt;strong&gt;Random&lt;/strong&gt;
-&lt;/td&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;td &gt;10
-&lt;/td&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;td &gt;0.047464
-&lt;/td&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;td &gt;0.47464
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr &gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;td &gt;1K
-&lt;/td&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;td &gt;5.41906
-&lt;/td&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;td &gt;0.541906
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr &gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;td &gt;1M
-&lt;/td&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;td &gt;8444.11
-&lt;/td&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;td &gt;0.844411
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr &gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;td rowspan=&#34;3&#34; &gt;&lt;strong&gt;Sorted&lt;/strong&gt;
-&lt;/td&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;td &gt;10
-&lt;/td&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;td &gt;0.027155
-&lt;/td&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;td &gt;0.27155
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr &gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;td &gt;1K
-&lt;/td&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;td &gt;4.47016
-&lt;/td&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;td &gt;0.447016
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr &gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;td &gt;1M
-&lt;/td&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;td &gt;6323.05
-&lt;/td&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;td &gt;0.632305
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;&lt;/p&gt;
-
-&lt;table style=&#34;text-align:center;background-color:#efefef;width:100%;border-collapse:collapse;border:lightblue solid;&#34; border=&#34;1&#34; &gt;
-&lt;tbody &gt;
-&lt;tr &gt;
-
-&lt;td style=&#34;width:25%;&#34; &gt;
-
-
-### Merge Sort 2
-
-
-
-&lt;/td&gt;
-
-&lt;td style=&#34;width:25%;&#34; &gt;**# of Items in Array**
-&lt;/td&gt;
-
-&lt;td style=&#34;width:25%;&#34; &gt;**Time Taken**
-&lt;/td&gt;
-
-&lt;td style=&#34;width:25%;&#34; &gt;**Average for 100 numbers**
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr &gt;
-
-&lt;td rowspan=&#34;3&#34; &gt;**Random**
-&lt;/td&gt;
-
-&lt;td &gt;10
-&lt;/td&gt;
-
-&lt;td &gt;0.033668
-&lt;/td&gt;
-
-&lt;td &gt;0.33668
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr &gt;
-
-&lt;td &gt;1K
-&lt;/td&gt;
-
-&lt;td &gt;3.89374
-&lt;/td&gt;
-
-&lt;td &gt;0.389374
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr &gt;
-
-&lt;td &gt;1M
-&lt;/td&gt;
-
-&lt;td &gt;7076.04
-&lt;/td&gt;
-
-&lt;td &gt;0.707604
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr &gt;
-
-&lt;td rowspan=&#34;3&#34; &gt;**Sorted**
-&lt;/td&gt;
-
-&lt;td &gt;10
-&lt;/td&gt;
-
-&lt;td &gt;0.019034
-&lt;/td&gt;
-
-&lt;td &gt;0.19034
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr &gt;
-
-&lt;td &gt;1K
-&lt;/td&gt;
-
-&lt;td &gt;2.7833
-&lt;/td&gt;
-
-&lt;td &gt;0.27833
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr &gt;
-
-&lt;td &gt;1M
-&lt;/td&gt;
-
-&lt;td &gt;4664.16
-&lt;/td&gt;
-
-&lt;td &gt;0.466416
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;table style=&#34;text-align:center;background-color:#efefef;width:100%;border-collapse:collapse;border:lightblue solid;&#34; border=&#34;1&#34; &gt;
-&lt;tbody &gt;
-&lt;tr &gt;
-
-&lt;td style=&#34;width:25%;&#34; &gt;
-
-
-### [Insertion Sort](http://codersdigest.wordpress.com/2012/09/18/insertion-sort/)
-
-
-
-&lt;/td&gt;
-
-&lt;td style=&#34;width:25%;&#34; &gt;**# of Items in Array**
-&lt;/td&gt;
-
-&lt;td style=&#34;width:25%;&#34; &gt;**Time Taken**
-&lt;/td&gt;
-
-&lt;td style=&#34;width:25%;&#34; &gt;**Average for 100 numbers**
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr &gt;
-
-&lt;td rowspan=&#34;3&#34; &gt;**Random**
-&lt;/td&gt;
-
-&lt;td &gt;10
-&lt;/td&gt;
-
-&lt;td &gt;0.006095
-&lt;/td&gt;
-
-&lt;td &gt;0.06095
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr &gt;
-
-&lt;td &gt;1K
-&lt;/td&gt;
-
-&lt;td &gt;0.369859
-&lt;/td&gt;
-
-&lt;td &gt;0.0369859
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr &gt;
-
-&lt;td &gt;1M
-&lt;/td&gt;
-
-&lt;td &gt;323.878
-&lt;/td&gt;
-
-&lt;td &gt;0.0323878
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr &gt;
-
-&lt;td rowspan=&#34;3&#34; &gt;**Sorted**
-&lt;/td&gt;
-
-&lt;td &gt;10
-&lt;/td&gt;
-
-&lt;td &gt;0.005022
-&lt;/td&gt;
-
-&lt;td &gt;0.05022
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr &gt;
-
-&lt;td &gt;1K
-&lt;/td&gt;
-
-&lt;td &gt;0.11696
-&lt;/td&gt;
-
-&lt;td &gt;0.011696
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr &gt;
-
-&lt;td &gt;1M
-&lt;/td&gt;
-
-&lt;td &gt;122.427
-&lt;/td&gt;
-
-&lt;td &gt;0.0122427
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;table style=&#34;text-align:center;background-color:#efefef;width:100%;border-collapse:collapse;border:lightblue solid;&#34; border=&#34;1&#34; &gt;
-&lt;tbody &gt;
-&lt;tr &gt;
-
-&lt;td style=&#34;width:25%;&#34; &gt;
-
-
-### [Heap Sort 1](http://codersdigest.wordpress.com/2012/10/17/heap-sort/)
-
-
-
-&lt;/td&gt;
-
-&lt;td style=&#34;width:25%;&#34; &gt;**# of Items in Array**
-&lt;/td&gt;
-
-&lt;td style=&#34;width:25%;&#34; &gt;**Time Taken**
-&lt;/td&gt;
-
-&lt;td style=&#34;width:25%;&#34; &gt;**Average for 100 numbers**
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr &gt;
-
-&lt;td rowspan=&#34;3&#34; &gt;**Random**
-&lt;/td&gt;
-
-&lt;td &gt;10
-&lt;/td&gt;
-
-&lt;td &gt;0.013543
-&lt;/td&gt;
-
-&lt;td &gt;0.13543
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr &gt;
-
-&lt;td &gt;1K
-&lt;/td&gt;
-
-&lt;td &gt;3.22043
-&lt;/td&gt;
-
-&lt;td &gt;0.322043
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr &gt;
-
-&lt;td &gt;1M
-&lt;/td&gt;
-
-&lt;td &gt;4770.14
-&lt;/td&gt;
-
-&lt;td &gt;0.477014
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr &gt;
-
-&lt;td rowspan=&#34;3&#34; &gt;**Sorted**
-&lt;/td&gt;
-
-&lt;td &gt;10
-&lt;/td&gt;
-
-&lt;td &gt;0.007507
-&lt;/td&gt;
-
-&lt;td &gt;0.07507
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr &gt;
-
-&lt;td &gt;1K
-&lt;/td&gt;
-
-&lt;td &gt;0.625425
-&lt;/td&gt;
-
-&lt;td &gt;0.0625425
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr &gt;
-
-&lt;td &gt;1M
-&lt;/td&gt;
-
-&lt;td &gt;633.142
-&lt;/td&gt;
-
-&lt;td &gt;0.0633142
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;table style=&#34;text-align:center;background-color:#efefef;width:100%;border-collapse:collapse;border:lightblue solid;&#34; border=&#34;1&#34; &gt;
-&lt;tbody &gt;
-&lt;tr &gt;
-
-&lt;td style=&#34;width:25%;&#34; &gt;
-
-
-### [Heap Sort 2](http://codersdigest.wordpress.com/2012/10/17/heap-sort/)
-
-
-
-&lt;/td&gt;
-
-&lt;td style=&#34;width:25%;&#34; &gt;**# of Items in Array**
-&lt;/td&gt;
-
-&lt;td style=&#34;width:25%;&#34; &gt;**Time Taken**
-&lt;/td&gt;
-
-&lt;td style=&#34;width:25%;&#34; &gt;**Average for 100 numbers**
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr &gt;
-
-&lt;td rowspan=&#34;3&#34; &gt;**Random**
-&lt;/td&gt;
-
-&lt;td &gt;10
-&lt;/td&gt;
-
-&lt;td &gt;0.019352
-&lt;/td&gt;
-
-&lt;td &gt;0.19352
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr &gt;
-
-&lt;td &gt;1K
-&lt;/td&gt;
-
-&lt;td &gt;3.86284
-&lt;/td&gt;
-
-&lt;td &gt;0.386284
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr &gt;
-
-&lt;td &gt;1M
-&lt;/td&gt;
-
-&lt;td &gt;8914.22
-&lt;/td&gt;
-
-&lt;td &gt;0.891422
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr &gt;
-
-&lt;td rowspan=&#34;3&#34; &gt;**Sorted**
-&lt;/td&gt;
-
-&lt;td &gt;10
-&lt;/td&gt;
-
-&lt;td &gt;0.011289
-&lt;/td&gt;
-
-&lt;td &gt;0.11289
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr &gt;
-
-&lt;td &gt;1K
-&lt;/td&gt;
-
-&lt;td &gt;3.49712
-&lt;/td&gt;
-
-&lt;td &gt;0.349712
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr &gt;
-
-&lt;td &gt;1M
-&lt;/td&gt;
-
-&lt;td &gt;6661.45
-&lt;/td&gt;
-
-&lt;td &gt;0.666145
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;table style=&#34;text-align:center;background-color:#efefef;width:100%;border-collapse:collapse;margin-left:0;border:lightblue solid;&#34; border=&#34;1&#34; &gt;
-&lt;tbody &gt;
-&lt;tr &gt;
-
-&lt;td style=&#34;width:25%;&#34; &gt;
-
-
-### [Heap Sort 3](http://codersdigest.wordpress.com/2012/10/17/heap-sort/)
-
-
-
-&lt;/td&gt;
-
-&lt;td style=&#34;width:25%;&#34; &gt;**# of Items in Arraytrong&gt;**
-&lt;/td&gt;
-
-&lt;td style=&#34;width:25%;&#34; &gt;**Time Taken**
-&lt;/td&gt;
-
-&lt;td style=&#34;width:25%;&#34; &gt;**Average for 100 numbers**
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr &gt;
-
-&lt;td rowspan=&#34;3&#34; &gt;**Random**
-&lt;/td&gt;
-
-&lt;td &gt;10
-&lt;/td&gt;
-
-&lt;td &gt;0.016266
-&lt;/td&gt;
-
-&lt;td &gt;0.16266
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr &gt;
-
-&lt;td &gt;1K
-&lt;/td&gt;
-
-&lt;td &gt;0.968032
-&lt;/td&gt;
-
-&lt;td &gt;0.0968032
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr &gt;
-
-&lt;td &gt;1M
-&lt;/td&gt;
-
-&lt;td &gt;900.004
-&lt;/td&gt;
-
-&lt;td &gt;0.0900004
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr &gt;
-
-&lt;td rowspan=&#34;3&#34; &gt;**Sorted**
-&lt;/td&gt;
-
-&lt;td &gt;10
-&lt;/td&gt;
-
-&lt;td &gt;0.012845
-&lt;/td&gt;
-
-&lt;td &gt;0.12845
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr &gt;
-
-&lt;td &gt;1K
-&lt;/td&gt;
-
-&lt;td &gt;3.08637
-&lt;/td&gt;
-
-&lt;td &gt;0.308637
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr &gt;
-
-&lt;td &gt;1M
-&lt;/td&gt;
-
-&lt;td &gt;3839.23
-&lt;/td&gt;
-
-&lt;td &gt;0.383923
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;table style=&#34;text-align:center;background-color:#efefef;width:100%;border-collapse:collapse;border:lightblue solid;&#34; border=&#34;1&#34; &gt;
-&lt;tbody &gt;
-&lt;tr &gt;
-
-&lt;td style=&#34;width:25%;&#34; &gt;
-
-
-### [QuickSort](http://codersdigest.wordpress.com/2012/09/22/quick-sort/)
-
-
-
-&lt;/td&gt;
-
-&lt;td style=&#34;width:25%;&#34; &gt;**# of Items in Array**
-&lt;/td&gt;
-
-&lt;td style=&#34;width:25%;&#34; &gt;**Time Taken**
-&lt;/td&gt;
-
-&lt;td style=&#34;width:25%;&#34; &gt;**Average for 100 numbers**
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr &gt;
-
-&lt;td rowspan=&#34;3&#34; &gt;**Random**
-&lt;/td&gt;
-
-&lt;td &gt;10
-&lt;/td&gt;
-
-&lt;td &gt;0.072972
-&lt;/td&gt;
-
-&lt;td &gt;0.72972
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr &gt;
-
-&lt;td &gt;1K
-&lt;/td&gt;
-
-&lt;td &gt;2.74698
-&lt;/td&gt;
-
-&lt;td &gt;0.274698
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr &gt;
-
-&lt;td &gt;1M
-&lt;/td&gt;
-
-&lt;td &gt;4640.77
-&lt;/td&gt;
-
-&lt;td &gt;0.464077
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr &gt;
-
-&lt;td rowspan=&#34;3&#34; &gt;**Sorted**
-&lt;/td&gt;
-
-&lt;td &gt;10
-&lt;/td&gt;
-
-&lt;td &gt;0.042773
-&lt;/td&gt;
-
-&lt;td &gt;0.42773
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr &gt;
-
-&lt;td &gt;1K
-&lt;/td&gt;
-
-&lt;td &gt;1.84335
-&lt;/td&gt;
-
-&lt;td &gt;0.184335
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr &gt;
-
-&lt;td &gt;1M
-&lt;/td&gt;
-
-&lt;td &gt;2473.42
-&lt;/td&gt;
-
-&lt;td &gt;0.247342
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;table style=&#34;text-align:center;background-color:#efefef;width:100%;border-collapse:collapse;border:lightblue solid;&#34; border=&#34;1&#34; &gt;
-&lt;tbody &gt;
-&lt;tr &gt;
-
-&lt;td style=&#34;width:25%;&#34; &gt;
-
-
-### [Counting Sort](http://codersdigest.wordpress.com/2012/09/11/counting-sort/)
-
-
-
-&lt;/td&gt;
-
-&lt;td style=&#34;width:25%;&#34; &gt;**# of Items in Array**
-&lt;/td&gt;
-
-&lt;td style=&#34;width:25%;&#34; &gt;**Time Taken**
-&lt;/td&gt;
-
-&lt;td style=&#34;width:25%;&#34; &gt;**Average for 100 numbers**
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr &gt;
-
-&lt;td rowspan=&#34;3&#34; &gt;**Random**
-&lt;/td&gt;
-
-&lt;td &gt;10
-&lt;/td&gt;
-
-&lt;td &gt;0.022982
-&lt;/td&gt;
-
-&lt;td &gt;0.22982
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr style=&#34;background-color:#efefef;color:#008000;&#34; &gt;
-
-&lt;td &gt;1K
-&lt;/td&gt;
-
-&lt;td &gt;1.21822
-&lt;/td&gt;
-
-&lt;td &gt;0.121822
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr &gt;
-
-&lt;td &gt;1M
-&lt;/td&gt;
-
-&lt;td &gt;1823.85
-&lt;/td&gt;
-
-&lt;td &gt;0.182385
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr &gt;
-
-&lt;td rowspan=&#34;3&#34; &gt;**Sorted**
-&lt;/td&gt;
-
-&lt;td &gt;10
-&lt;/td&gt;
-
-&lt;td &gt;0.026815
-&lt;/td&gt;
-
-&lt;td &gt;0.26815
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr style=&#34;background-color:#efefef;color:#008000;&#34; &gt;
-
-&lt;td &gt;1K
-&lt;/td&gt;
-
-&lt;td &gt;1.19146
-&lt;/td&gt;
-
-&lt;td &gt;0.119146
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr &gt;
-
-&lt;td &gt;1M
-&lt;/td&gt;
-
-&lt;td &gt;1612.58
-&lt;/td&gt;
-
-&lt;td &gt;0.161258
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;table style=&#34;text-align:center;background-color:#efefef;width:100%;border-collapse:collapse;border:lightblue solid;&#34; border=&#34;1&#34; &gt;
-&lt;tbody &gt;
-&lt;tr &gt;
-
-&lt;td style=&#34;width:25%;&#34; &gt;
-
-
-### [Radix Sort](http://codersdigest.wordpress.com/2012/09/13/radix-sort/)
-
-
-
-&lt;/td&gt;
-
-&lt;td style=&#34;width:25%;&#34; &gt;**# of Items in Array**
-&lt;/td&gt;
-
-&lt;td style=&#34;width:25%;&#34; &gt;**Time Taken**
-&lt;/td&gt;
-
-&lt;td style=&#34;width:25%;&#34; &gt;**Average for 100 numbers**
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr &gt;
-
-&lt;td rowspan=&#34;3&#34; &gt;**Random**
-&lt;/td&gt;
-
-&lt;td &gt;10
-&lt;/td&gt;
-
-&lt;td &gt;0.033351
-&lt;/td&gt;
-
-&lt;td &gt;0.33351
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr style=&#34;background-color:#efefef;color:#008000;&#34; &gt;
-
-&lt;td &gt;1K
-&lt;/td&gt;
-
-&lt;td &gt;3.22004
-&lt;/td&gt;
-
-&lt;td &gt;0.322004
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr &gt;
-
-&lt;td &gt;1M
-&lt;/td&gt;
-
-&lt;td &gt;5650.9
-&lt;/td&gt;
-
-&lt;td &gt;0.56509
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr &gt;
-
-&lt;td rowspan=&#34;3&#34; &gt;**Sorted**
-&lt;/td&gt;
-
-&lt;td &gt;10
-&lt;/td&gt;
-
-&lt;td &gt;0.020659
-&lt;/td&gt;
-
-&lt;td &gt;0.20659
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr &gt;
-
-&lt;td &gt;1K
-&lt;/td&gt;
-
-&lt;td &gt;3.26273
-&lt;/td&gt;
-
-&lt;td &gt;0.326273
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr &gt;
-
-&lt;td &gt;1M
-&lt;/td&gt;
-
-&lt;td &gt;5683.91
-&lt;/td&gt;
-
-&lt;td &gt;0.568391
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
 </description>
     </item>
     

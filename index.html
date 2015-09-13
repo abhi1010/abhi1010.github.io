@@ -130,6 +130,395 @@
     
     <div class="post">
       <h1 class="post-title">
+        <a href="http://abhi1010.github.io/2015/09/elastic-beanstalk-deployment-automation/">Elastic Beanstalk Deployment Automation</a>
+      </h1>
+      <span class="post-date">Sep 4, 2015  &middot; <a href="http://abhi1010.github.io/2015/09/elastic-beanstalk-deployment-automation/#disqus_thread">Comments</a>
+      
+      <br/>
+      <a class="a_cat" href="http://abhi1010.github.io/categories/continuous-delivery">continuous delivery</a><a class="a_cat" href="http://abhi1010.github.io/categories/code">code</a>
+        
+      <a class="a_tag" href="http://abhi1010.github.io/tags/aws">aws</a><a class="a_tag" href="http://abhi1010.github.io/tags/beanstalk">beanstalk</a><a class="a_tag" href="http://abhi1010.github.io/tags/deployment">deployment</a><a class="a_tag" href="http://abhi1010.github.io/tags/docker">docker</a><a class="a_tag" href="http://abhi1010.github.io/tags/python">python</a><a class="a_tag" href="http://abhi1010.github.io/tags/supervisord">supervisord</a>
+    
+      </span>
+      
+      
+
+<p>We are going to talk about a setup where <strong>all you need to do it <em>commit</em> your code and all the rest of the steps from unit tests to deployment can be taken care of by some externally hosted cloud platform that provides continuous integration.</strong>
+  In my case, it is going to be <code>Shippable</code> that I am using as a sample but you can use almost anything like <code>TravisCI</code> or <code>codeship</code>, for example.</p>
+
+<h1 id="setup:8d5fa5afd262889ee9af2f0243a94c6d">Setup</h1>
+
+<p>Here is the setup we will be looking at:</p>
+
+
+<figure >
+    
+        <img src="/images/elastic-beanstalk-deployment-automation-arch.png" alt="Architecture" />
+    
+    
+    <figcaption>
+        <p>
+        Architecture
+        
+            
+        
+        </p> 
+    </figcaption>
+    
+</figure>
+
+
+<h1 id="shippable-for-commits:8d5fa5afd262889ee9af2f0243a94c6d">Shippable for commits</h1>
+
+<p>We will use <code>shippable</code> for the following:</p>
+
+<ul>
+<li>Unit Tests</li>
+<li>Regression Tests</li>
+<li>Localized DB Tests</li>
+<li>Tagging of the source code if the commit passes all tests</li>
+<li>Deployment of the source code on <code>beanstalk</code> running <code>docker</code></li>
+</ul>
+
+<p>Login onto <code>shippable</code> and setup your project to be built. It uses webhooks with your repository like <code>GitHub</code> or <code>shippable</code> which are called on every commit.
+You can create a <code>shippable.yml</code> file in your project which will be called on every commit. If you have used <code>docker</code> before, it might look familiar because they invoke a <code>docker</code> script to run the script within <code>shippable.yml</code></p>
+
+<p>Here is one of my sample files from the project that powers this blog:</p>
+
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">language: python
+
+install:
+  - pip install Pygments 
+
+before_script:
+  - git config --global push.default matching
+  - mkdir -p themes
+  - git clone git@github.com:abhi1010/abhi1010.github.io.git
+  - <span style="color: #204a87">cd </span>themes
+  - git clone https://github.com/abhi1010/hyde-a.git
+  - <span style="color: #204a87">cd</span> ../
+
+script:
+  - hugo -d abhi1010.github.io/
+
+after_success:
+  - <span style="color: #204a87">echo</span> <span style="color: #4e9a06">`</span><span style="color: #204a87">pwd</span><span style="color: #4e9a06">`</span>
+  - <span style="color: #204a87">export </span><span style="color: #000000">NOW_HOUR</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #204a87; font-weight: bold">$(</span>date +%d-%b-%H_%M<span style="color: #204a87; font-weight: bold">)</span> 
+  - git config --global user.email <span style="color: #4e9a06">&quot;abhi.pandey@gmail.com&quot;</span>
+  - git config --global user.name <span style="color: #4e9a06">&quot;abhi1010&quot;</span>
+  - git config --get remote.origin.url
+  - git remote <span style="color: #204a87">set</span>-url origin git@github.com:abhi1010.github.io.git
+  - <span style="color: #204a87">cd </span>abhi1010.github.io
+  - git status -s
+  - <span style="color: #204a87">echo</span> -e <span style="color: #4e9a06">&quot;a\n*\nq\n&quot;</span><span style="color: #000000; font-weight: bold">|</span>git add -i
+  - git commit -am <span style="color: #4e9a06">&#39;Automated build from Shippable - &#39;</span><span style="color: #000000">$NOW_HOUR</span> <span style="color: #ce5c00; font-weight: bold">&amp;&amp;</span> git push
+
+
+notifications:
+     email:
+         recipients:
+             - abhi@boun.cr
+         on_success: change
+         on_failure: always
+
+cache: <span style="color: #204a87">true</span>
+</pre></div>
+
+
+<p>This script does the following tasks:</p>
+
+<ul>
+<li>Set <code>python</code> as the default language for the scripts to use</li>
+<li>Install <code>Pygments</code> using <code>pip</code></li>
+<li>My blog is done using three repos - so it does a <em>git clone</em> for each</li>
+<li>Calls on hugo to create the static site</li>
+<li>Commits the changes made in static content to <code>GitHub</code></li>
+</ul>
+
+<p>Once it works, you will see the following on <code>shippable</code> site:</p>
+
+
+<figure >
+    
+        <img src="/images/elastic-beanstalk-deployment-automation-2.png" alt="Shippable Build Status" />
+    
+    
+    <figcaption>
+        <p>
+        Shippable Build Status
+        
+            
+        
+        </p> 
+    </figcaption>
+    
+</figure>
+
+
+<h2 id="unit-tests:8d5fa5afd262889ee9af2f0243a94c6d">Unit Tests</h2>
+
+<p>You may also want to set up unit tests and regression tests as part of your <em>scripts</em>
+Just do the following then</p>
+
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000000">script</span><span style="color: #000000; font-weight: bold">:</span>
+  <span style="color: #000000; font-weight: bold">-</span>  <span style="color: #000000">py.test-3.4 tests/test.py --maxfail=3 -s --full-trace --tb=long --junitxml=../shippable/testresults/pytests.xml</span>
+</pre></div>
+
+
+<h2 id="git-tagging:8d5fa5afd262889ee9af2f0243a94c6d">Git Tagging</h2>
+
+<p>If the tests pass in <em>scripts</em> only then does <code>shippable</code> go to <strong>after_success</strong> section.
+Over there, you might want to tag your source code, so that <code>docker</code> will only pull the tagged and approved commits from <code>shippable</code>, not every commit - which is very important.</p>
+
+<p>Here&rsquo;s how to do that:</p>
+
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">after_success:
+  - git tag -f recon_prod master
+  - git push -f --tags
+</pre></div>
+
+
+<h1 id="deployment:8d5fa5afd262889ee9af2f0243a94c6d">Deployment</h1>
+
+<p>Once you have approved your code commit, it is time to deploy it to <code>docker</code> on <code>beanstalk</code>.
+I like to keep deployment scripts in another bash script, so that deployment can be done in various other ways as well, if needed.</p>
+
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">after_success:
+  - main/scripts/deploy.sh 
+  - <span style="color: #204a87">echo</span> <span style="color: #4e9a06">&#39;CODE DEPLOYED&#39;</span>
+</pre></div>
+
+
+<p>Or, you may choose to have the &ldquo;deployment&rdquo; script from another project, if you wish. It allows you to separately maintain all the moving parts.</p>
+
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">rm -rf <span style="color: #204a87">cd </span>eb-reconwise
+<span style="color: #204a87">echo</span> <span style="color: #4e9a06">&#39;Deploying New Dockers&#39;</span>
+git clone https://github.com/abhi1010/deplyment_project.git
+<span style="color: #204a87">cd </span>deplyment_project/
+chmod +x deploy.sh
+eb use beanstalk_env_name
+./deploy.sh
+<span style="color: #204a87">echo</span> <span style="color: #4e9a06">&#39;Deployment Complete&#39;</span>
+</pre></div>
+
+
+<h2 id="dockerfile:8d5fa5afd262889ee9af2f0243a94c6d">Dockerfile</h2>
+
+<p>Now first what we need is setting up <code>docker</code> on beanstalk.</p>
+
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">  FROM abhi1010/base_docker
+  MAINTAINER abhi1010 &lt;codersdigest@gmail.com&gt;
+  
+  ENV DEBIAN_FRONTEND noninteractive
+  
+  ENV WS <span style="color: #4e9a06">&#39;/ws&#39;</span>
+  ENV CURR_HOME <span style="color: #4e9a06">&#39;/root&#39;</span>
+  WORKDIR <span style="color: #000000">$WS</span>
+  
+  RUN git clone https://github.com/abhi1010/dockerprj.git <span style="color: #4e9a06">\</span>
+   <span style="color: #ce5c00; font-weight: bold">&amp;&amp;</span> . <span style="color: #000000">$WS</span>/ve_envs/rwv2/bin/activate <span style="color: #4e9a06">\</span>
+   <span style="color: #ce5c00; font-weight: bold">&amp;&amp;</span> <span style="color: #000000">$WS</span>/prj/rw/manage.py collectstatic --noinput
+  
+  COPY supervisor-app.conf <span style="color: #000000">$WS</span>/
+  
+  RUN <span style="color: #4e9a06">\</span>
+      cp <span style="color: #000000">$WS</span>/supervisor-app.conf /etc/supervisor/supervisord.conf <span style="color: #4e9a06">\</span>
+   <span style="color: #ce5c00; font-weight: bold">&amp;&amp;</span> chown -R www-data:www-data /var/lib/nginx
+
+  VOLUME <span style="color: #ce5c00; font-weight: bold">[</span><span style="color: #4e9a06">&quot;/var/shared/&quot;</span>, <span style="color: #4e9a06">&quot;/etc/nginx/sites-enabled&quot;</span>, <span style="color: #4e9a06">&quot;/var/log/nginx&quot;</span>, <span style="color: #4e9a06">&quot;/ws/&quot;</span><span style="color: #ce5c00; font-weight: bold">]</span>
+    
+  EXPOSE 80
+  CMD <span style="color: #ce5c00; font-weight: bold">[</span><span style="color: #4e9a06">&quot;supervisord&quot;</span>, <span style="color: #4e9a06">&quot;-n&quot;</span><span style="color: #ce5c00; font-weight: bold">]</span>
+</pre></div>
+
+
+<p>This does the following tasks:</p>
+
+<ul>
+<li>Run a base <code>docker</code> from a custom image - where all apps and project requirements have already been installed and configured. It helps me save a lot of time during deployments.</li>
+<li>Download the source code using <code>RUN</code> - which I update using another method.
+
+<ul>
+<li>You can view detail on this <a href="http://abhi1010.github.io/2015/09/updating-django-source-with-docker-deployments/">method here</a></li>
+</ul></li>
+<li>Copy the <code>supervisord</code> config as well</li>
+<li>Set the right user rights for <code>nginx</code></li>
+<li>Setup folders to be shared using <code>VOLUME</code></li>
+<li>Expose port 80 so that this <code>docker</code> container can be used as a web container</li>
+<li>Set <code>cmd</code> so that it allows <code>supervisord</code> to be used for running the container</li>
+</ul>
+
+<h2 id="beanstalk-configuration:8d5fa5afd262889ee9af2f0243a94c6d">Beanstalk Configuration</h2>
+
+<p>Once we have the <code>Dockerfile</code> ready, we need to set up the configuration for <code>beanstalk</code> so that during deployment, other steps can be taken care of as well. Some of the things to keep in mind in <code>beanstalk</code> setup are:</p>
+
+<h3 id="tips:8d5fa5afd262889ee9af2f0243a94c6d">Tips</h3>
+
+<ul>
+<li>All <code>beanstalk</code> configuration has be kept in a folder called <strong><code>.ebextension</code></strong><br /></li>
+<li><code>beanstalk ec2</code> instance maintains a folder internally to run the scripts while setting up <code>docker</code> for you so that the instance can be ready for you
+
+<ul>
+<li>It is totally possible to <em>plug</em> your own scripts into <code>beanstalk</code> initialization setup so that you can <em>program</em> a custom <code>EC2</code> instance for yourself</li>
+<li>Folder to place your scripts are <code>/opt/elasticbeanstalk/hooks/appdeploy/post</code> and <code>/opt/elasticbeanstalk/hooks/appdeploy/pre</code></li>
+<li>Scripts placed in the folders are read in alphabetical order</li>
+</ul></li>
+<li>You can increase the timeout of your <code>docker</code> initialization setup if it takes too long due to multiple steps
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000000">option_settings</span><span style="color: #000000; font-weight: bold">:</span>
+    <span style="color: #ce5c00; font-weight: bold">-</span> <span style="color: #000000">namespace</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #000000">aws</span><span style="color: #000000; font-weight: bold">:</span><span style="color: #000000">elasticbeanstalk</span><span style="color: #000000; font-weight: bold">:</span><span style="color: #000000">command</span>
+      <span style="color: #000000">option_name</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #000000">Timeout</span>
+      <span style="color: #000000">value</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #0000cf; font-weight: bold">1800</span>
+</pre></div>
+</li>
+</ul>
+
+<h3 id="user-accounts:8d5fa5afd262889ee9af2f0243a94c6d">User Accounts</h3>
+
+<ul>
+<li>You can also add any user account if you&rsquo;d like pragmatically and make sure they are <em>always</em> part of the <code>EC2</code> instance that you are creating
+
+<ul>
+<li>Create a file called <code>00001.ftp.config</code></li>
+<li>Use <code>pre</code> folder to setup accounts</li>
+</ul></li>
+</ul>
+
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">files:
+  <span style="color: #4e9a06">&quot;/opt/elasticbeanstalk/hooks/appdeploy/pre/0001_create_users.sh&quot;</span>:
+    mode: <span style="color: #4e9a06">&quot;000755&quot;</span> 
+    owner: root
+    group: root
+    content: <span style="color: #000000; font-weight: bold">|</span>
+      <span style="color: #8f5902; font-style: italic">#!/usr/bin/env bash</span>
+      <span style="color: #204a87">echo</span> <span style="color: #4e9a06">&#39;About to Add user gh-user&#39;</span>
+      adduser gh-user
+      runuser -l gh-user -c <span style="color: #4e9a06">&#39;mkdir ~/.ssh&#39;</span>
+      runuser -l gh-user -c <span style="color: #4e9a06">&#39;chmod 700 ~/.ssh&#39;</span>
+      runuser -l gh-user -c <span style="color: #4e9a06">&#39;touch ~/.ssh/authorized_keys&#39;</span>
+      runuser -l gh-user -c <span style="color: #4e9a06">&#39;chmod 600 ~/.ssh/authorized_keys&#39;</span>
+      runuser -l gh-user -c <span style="color: #4e9a06">&#39;echo &quot;ssh-rsa r4CBI2cWQohEwBkGw9CcW0vWfnlAcKkrCnsJvwe/+kG5w9J8gJdnNQ8BFB+q+kQ6fWl+1kw7b+8jah5q0nNpOzLbed+Rzse1BoOIjsSXqN/L7AW8y61PVBULcVAVBKCrVy0U5zifv/e6a5+dsUD3WLiD3yXTgPDcZoqQqPYkurCx5ZzxLylKfXfL37k7sz00e+Tu/Y+J9xXdI9j3G5bU9rmIe4SH4mK4BCMRQ6zCHqAzAXZtnmN5U1XR3XrfMtuDLvVgcOlEpXIMl9q2kco0ZCdMkYoSzf3Yj&quot; &gt;&gt; ~/.ssh/authorized_keys&#39;</span>
+</pre></div>
+
+
+<h3 id="pre-installing-packages:8d5fa5afd262889ee9af2f0243a94c6d">Pre-installing Packages</h3>
+
+<ul>
+<li>You should also install any package that you&rsquo;d like on all <code>EC2</code> instances</li>
+</ul>
+
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">files:
+  <span style="color: #4e9a06">&quot;/opt/elasticbeanstalk/hooks/appdeploy/pre/0003_packages.sh&quot;</span>:
+    mode: <span style="color: #4e9a06">&quot;000755&quot;</span> 
+    owner: root
+    group: root
+    content: <span style="color: #000000; font-weight: bold">|</span>
+      <span style="color: #8f5902; font-style: italic">#!/usr/bin/env bash </span>
+      yum install -y git
+     
+</pre></div>
+
+
+<h3 id="sharing-volumes-between-docker-and-ec2:8d5fa5afd262889ee9af2f0243a94c6d">Sharing volumes between <code>docker</code> and <code>EC2</code></h3>
+
+<ul>
+<li>Ensure that folder sharing is enabled between <code>EC2</code> and <code>docker</code> instances
+
+<ul>
+<li>This goes into file <code>Dockerrun.aws.json</code></li>
+</ul></li>
+</ul>
+
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #ce5c00; font-weight: bold">{</span>
+   <span style="color: #4e9a06">&quot;AWSEBDockerrunVersion&quot;</span>: <span style="color: #4e9a06">&quot;1&quot;</span>,
+  <span style="color: #4e9a06">&quot;Volumes&quot;</span>: <span style="color: #ce5c00; font-weight: bold">[</span>
+    <span style="color: #ce5c00; font-weight: bold">{</span>
+      <span style="color: #4e9a06">&quot;HostDirectory&quot;</span>: <span style="color: #4e9a06">&quot;/var/shared&quot;</span>,
+      <span style="color: #4e9a06">&quot;ContainerDirectory&quot;</span>: <span style="color: #4e9a06">&quot;/var/shared&quot;</span>
+    <span style="color: #ce5c00; font-weight: bold">}</span>
+  <span style="color: #ce5c00; font-weight: bold">]</span>,
+  <span style="color: #4e9a06">&quot;Ports&quot;</span>: <span style="color: #ce5c00; font-weight: bold">[</span>
+    <span style="color: #ce5c00; font-weight: bold">{</span>
+      <span style="color: #4e9a06">&quot;ContainerPort&quot;</span>: <span style="color: #4e9a06">&quot;80&quot;</span>
+    <span style="color: #ce5c00; font-weight: bold">}</span>
+  <span style="color: #ce5c00; font-weight: bold">]</span>,
+   <span style="color: #4e9a06">&quot;Logging&quot;</span>: <span style="color: #4e9a06">&quot;/var/log/&quot;</span>
+ <span style="color: #ce5c00; font-weight: bold">}</span>
+</pre></div>
+
+
+<h3 id="folder-and-files-structure:8d5fa5afd262889ee9af2f0243a94c6d">Folder and files structure</h3>
+
+<ul>
+<li>Finally, make sure that your folder files are setup as follows:</li>
+</ul>
+
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000000">$ </span><span style="color: #ce5c00; font-weight: bold">(</span>master<span style="color: #ce5c00; font-weight: bold">)</span> tree -a 
+.
+<span style="color: #000000; font-weight: bold">|</span>-- .ebextensions
+<span style="color: #000000; font-weight: bold">|</span>   <span style="color: #000000; font-weight: bold">|</span>-- 0000_users.config  <span style="color: #8f5902; font-style: italic"># setup extra users</span>
+<span style="color: #000000; font-weight: bold">|</span>   <span style="color: #000000; font-weight: bold">|</span>-- 0002_packages.config  <span style="color: #8f5902; font-style: italic"># install external packages</span>
+<span style="color: #000000; font-weight: bold">|</span>   <span style="color: #000000; font-weight: bold">|</span>-- 0004_bash.config  <span style="color: #8f5902; font-style: italic"># I like to manage all </span>
+<span style="color: #000000; font-weight: bold">|</span>-- .elasticbeanstalk
+<span style="color: #000000; font-weight: bold">|</span>   <span style="color: #000000; font-weight: bold">|</span>-- config.yml  <span style="color: #8f5902; font-style: italic"># AWS connection details</span>
+<span style="color: #000000; font-weight: bold">|</span>-- .gitignore 
+<span style="color: #000000; font-weight: bold">|</span>-- Dockerfile  <span style="color: #8f5902; font-style: italic"># Docker instance</span>
+<span style="color: #000000; font-weight: bold">|</span>-- Dockerrun.aws.json   <span style="color: #8f5902; font-style: italic"># folder sharing</span>
+<span style="color: #000000; font-weight: bold">|</span>-- updater.sh  <span style="color: #8f5902; font-style: italic"># script to update any code</span>
+</pre></div>
+
+
+<h3 id="elasticbeanstalk-folder-for-aws-configs:8d5fa5afd262889ee9af2f0243a94c6d"><code>.elasticbeanstalk</code> folder for <code>aws</code> configs</h3>
+
+<ul>
+<li>You might be wondering what&rsquo;s <code>.elasticbeanstalk</code> folder. It is the folder that&rsquo;s responsible for taking your <code>AWS</code> secret key and access id for doing the actual deployment. If you don&rsquo;t set it up, AWS will ask you every time.
+
+<ul>
+<li>For setting it up, you just need to call <code>eb config</code> one time, it creates the folder for you with all the details, including connection details. You can then make it part of your <code>git</code> commits</li>
+<li>Make sure it is secure</li>
+</ul></li>
+</ul>
+
+<p>And that&rsquo;s it! Once you commit your code, <code>shippable</code> will run the tests, tag your code and finally download this <em>deployment</em> project and deploy it to <code>beanstalk</code> through <code>docker</code> containers.</p>
+
+      
+    </div>
+    
+    <div class="post">
+      <h1 class="post-title">
+        <a href="http://abhi1010.github.io/2015/09/nginx-upload-limits-on-beanstalk-docker/">Nginx Upload limits on Beanstalk Docker</a>
+      </h1>
+      <span class="post-date">Sep 4, 2015  &middot; <a href="http://abhi1010.github.io/2015/09/nginx-upload-limits-on-beanstalk-docker/#disqus_thread">Comments</a>
+      
+      <br/>
+      <a class="a_cat" href="http://abhi1010.github.io/categories/code">code</a><a class="a_cat" href="http://abhi1010.github.io/categories/continuous-delivery">continuous delivery</a>
+        
+      <a class="a_tag" href="http://abhi1010.github.io/tags/nginx">nginx</a><a class="a_tag" href="http://abhi1010.github.io/tags/beanstalk">beanstalk</a><a class="a_tag" href="http://abhi1010.github.io/tags/docker">docker</a>
+    
+      </span>
+      
+      <p>If I am not wrong, <code>nginx</code> only allows you to upload up till max 2Mb of data by default. If you are doing a <code>docker</code> deployment on <code>beanstalk</code> you may to remember to change that not once but twice!</p>
+
+<p>As you may know already, <code>beanstalk</code> creates an <code>EC2</code> instance to manage the <code>docker</code> environment.<br />
+Since <code>EC2</code> needs to manage the <code>docker</code> environment and serve the web interface as well, it does so by having another <code>nginx</code> instance to serve the <code>nginx</code> within <code>docker</code>.
+Hence, if you had to modify the <code>nginx</code> settings to allow bigger uploads, <strong>you&rsquo;d have to modify the settings for <code>nginx</code> on both - <code>docker</code> as well as <code>EC2</code></strong>.</p>
+
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">    <span style="color: #8f5902; font-style: italic"># max upload size</span>
+    <span style="color: #000000">client_max_body_size</span> <span style="color: #0000cf; font-weight: bold">10</span><span style="color: #000000">M</span><span style="color: #000000; font-weight: bold">;</span>   <span style="color: #8f5902; font-style: italic"># adjust to your liking</span>
+</pre></div>
+
+
+<p>Also, if you don&rsquo;t want to have any limit at all for uploads, then just change the <code>client_max_body_size</code> to 0.</p>
+
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">    <span style="color: #8f5902; font-style: italic"># max upload size</span>
+    <span style="color: #000000">client_max_body_size</span> <span style="color: #0000cf; font-weight: bold">0</span><span style="color: #000000; font-weight: bold">;</span>
+</pre></div>
+
+
+      
+    </div>
+    
+    <div class="post">
+      <h1 class="post-title">
         <a href="http://abhi1010.github.io/2015/09/updating-django-source-with-docker-deployments/">Updating Django Source with Docker Deployments</a>
       </h1>
       <span class="post-date">Sep 4, 2015  &middot; <a href="http://abhi1010.github.io/2015/09/updating-django-source-with-docker-deployments/#disqus_thread">Comments</a>
@@ -249,6 +638,45 @@ However, all that is required here is to know that python automatically picks up
 
 
 <p>You might want to read about <code>--touch-reload</code> in my <a href="http://abhi1010.github.io/2015/09/updating-django-source-with-docker-deployments/">other post.</a></p>
+
+      
+    </div>
+    
+    <div class="post">
+      <h1 class="post-title">
+        <a href="http://abhi1010.github.io/2015/08/sharing-folders-on-beanstalk-docker/">Sharing folders on Beanstalk Docker</a>
+      </h1>
+      <span class="post-date">Aug 14, 2015  &middot; <a href="http://abhi1010.github.io/2015/08/sharing-folders-on-beanstalk-docker/#disqus_thread">Comments</a>
+      
+      <br/>
+      <a class="a_cat" href="http://abhi1010.github.io/categories/code">code</a><a class="a_cat" href="http://abhi1010.github.io/categories/continuous-delivery">continuous delivery</a>
+        
+      <a class="a_tag" href="http://abhi1010.github.io/tags/docker">docker</a><a class="a_tag" href="http://abhi1010.github.io/tags/nginx">nginx</a><a class="a_tag" href="http://abhi1010.github.io/tags/aws">aws</a><a class="a_tag" href="http://abhi1010.github.io/tags/beanstalk">beanstalk</a>
+    
+      </span>
+      
+      <p>It is very easy to setup volume sharing in <code>docker</code>. You ideally want the following folders to be shared when a new <code>docker</code> is initialized for you:</p>
+
+<ul>
+<li><code>/var/log</code> so that you can keep track of logs</li>
+<li><code>nginx</code> specific folders because you will have two instances of <code>nginx</code> running - one on <code>docker</code> and another on <code>EC2</code>. This allows you to share logs
+
+<ul>
+<li>Also read <a href="http://abhi1010.github.io/2015/09/nginx-upload-limits-on-beanstalk-docker/">this post</a> for related info</li>
+</ul></li>
+<li>your personal workspace or anything that you&rsquo;d like to share</li>
+</ul>
+
+<p>Here&rsquo;s how you&rsquo;d do it. The keyword is <code>VOLUME</code>&hellip; in your <code>Dockerfile</code></p>
+
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000000">VOLUME</span> <span style="color: #000000; font-weight: bold">[</span> \
+    <span style="color: #4e9a06">&quot;/var/shared/&quot;</span><span style="color: #000000; font-weight: bold">,</span> \ 
+    <span style="color: #4e9a06">&quot;/etc/nginx/sites-enabled&quot;</span><span style="color: #000000; font-weight: bold">,</span> \ 
+    <span style="color: #4e9a06">&quot;/var/log/nginx&quot;</span><span style="color: #000000; font-weight: bold">,</span> \
+    <span style="color: #4e9a06">&quot;/ws/&quot;</span> \
+<span style="color: #000000; font-weight: bold">]</span>
+</pre></div>
+
 
       
     </div>
@@ -424,137 +852,6 @@ Just run the following to test whether it works:</p>
 <p>Here&rsquo;s a small sample as to how to do it:</p>
 
 <script type="text/javascript" src="http://gist.github.com/e2b7117c20d0f591896f.js"></script>
-
-      
-    </div>
-    
-    <div class="post">
-      <h1 class="post-title">
-        <a href="http://abhi1010.github.io/2014/06/deleting-a-node-from-singly-linked-list/">Deleting a Node from Singly Linked List</a>
-      </h1>
-      <span class="post-date">Jun 7, 2014  &middot; <a href="http://abhi1010.github.io/2014/06/deleting-a-node-from-singly-linked-list/#disqus_thread">Comments</a>
-      
-      <br/>
-      <a class="a_cat" href="http://abhi1010.github.io/categories/code">code</a>
-        
-      <a class="a_tag" href="http://abhi1010.github.io/tags/linked-list">linked list</a><a class="a_tag" href="http://abhi1010.github.io/tags/c">c&#43;&#43;</a><a class="a_tag" href="http://abhi1010.github.io/tags/algo">algo</a>
-    
-      </span>
-      
-      
-
-<p>Deleting a Node from Singly Linked List is rather straight forward.</p>
-
-<ul>
-<li><p>You have to know the head first of all</p></li>
-
-<li><p>Start by checking the head if that&rsquo;s the one you are looking for</p></li>
-
-<li><p>Keep moving forward and checking - always check for null pointers everywhere</p></li>
-</ul>
-
-<p>Before we talk about the code, let&rsquo;s see how Linked List is setup.
-&lt;!&ndash; more &ndash;&gt;</p>
-
-<script type="text/javascript" src="http://gist.github.com/33be440bf1012773b7e1.js"></script>
-
-<p>Now, below is the code for it&hellip;.</p>
-
-<script type="text/javascript" src="http://gist.github.com/bf9dbb193b4ff84ba3af.js"></script>
-
-<h3 id="code:ca5ee7b35fae15e9d7ea6b34351195c6">Code</h3>
-
-<p>As usual the code is available <a href="https://github.com/abhi1010/Algorithms/blob/master/Algo_codes/Node.cpp">here</a>:</p>
-
-<p><a href="https://github.com/abhi1010/Algorithms">https://github.com/abhi1010/Algorithms</a></p>
-
-      
-    </div>
-    
-    <div class="post">
-      <h1 class="post-title">
-        <a href="http://abhi1010.github.io/2014/05/usage-of-typename/">Usage of typename</a>
-      </h1>
-      <span class="post-date">May 26, 2014  &middot; <a href="http://abhi1010.github.io/2014/05/usage-of-typename/#disqus_thread">Comments</a>
-      
-      <br/>
-      <a class="a_cat" href="http://abhi1010.github.io/categories/code">code</a>
-        
-      <a class="a_tag" href="http://abhi1010.github.io/tags/c">c&#43;&#43;</a>
-    
-      </span>
-      
-      <p>What is wrong with the following code?</p>
-
-<script type="text/javascript" src="http://gist.github.com/0bd5e4d910e4d8a7672e.js"></script>
-
-<p>The issue is very simple but hard to notice. If you try to compile this, you will get the following errors:</p>
-
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000000; font-style: italic">    main.cpp:24:5: error: need &#39;typename&#39; before &#39;OuterStruct&lt;T2&gt;::InnerStruct&#39; because &#39;OuterStruct&lt;T2&gt;&#39; is a dependent scope</span>
-<span style="color: #000000; font-style: italic">    OuterStruct&lt;T2&gt;::InnerStruct mUsingInner;</span>
-<span style="color: #000000; font-style: italic">    ^</span>
-<span style="color: #000000; font-style: italic">    main.cpp: In function &#39;int main(int, char**)&#39;:</span>
-<span style="color: #000000; font-style: italic">    main.cpp:34:13: error: &#39;struct InnerStruct_Wrapper&lt;int&gt;&#39; has no member named &#39;mUsingInner&#39;</span>
-<span style="color: #000000; font-style: italic">    wrapper.mUsingInner = innerStrct;</span>
-</pre></div>
-
-
-<p><strong>The Issue</strong></p>
-
-<p>At least it straight away tells you something is wrong with <code>InnerStruct_Wrapper</code>. Here&rsquo;s what is happening:</p>
-
-<ul>
-<li><p>The compiler does not know that mUsingInner in that line is actually a variable of type &ldquo;OuterStruct<T2>::InnerStruct&rdquo;</p></li>
-
-<li><p>InnerStruct will only be known later when it is being instantiated</p></li>
-
-<li><p>Compiler cannot figure out what InnerStruct means here. It could be a type or a member variable</p></li>
-</ul>
-
-<p><strong>The Fix</strong></p>
-
-<p>The only way here is to help the compiler by telling it beforehand that is going to be a class or struct type. The way to tell the compiler that something like this is supposed to be a type name is to throw in the keyword &ldquo;typename&rdquo;. The &ldquo;typename&rdquo; keyword has to be used everytime you want to tell the compiler that it should expect a Type in its place.</p>
-
-<p>One place where this is used quite a lot is when templates have to implement iterators.</p>
-
-<p><strong>Full Code</strong></p>
-
-<p><strong><em>The full sample code, along with the fix</em></strong> is provided on <a href="http://coliru.stacked-crooked.com/a/b0ab70c458370048">Stacked-Crooked</a>.</p>
-
-      
-    </div>
-    
-    <div class="post">
-      <h1 class="post-title">
-        <a href="http://abhi1010.github.io/2014/05/setting-up-your-vim...-your-style/">Setting up your VIM... Your style</a>
-      </h1>
-      <span class="post-date">May 19, 2014  &middot; <a href="http://abhi1010.github.io/2014/05/setting-up-your-vim...-your-style/#disqus_thread">Comments</a>
-      
-      <br/>
-      <a class="a_cat" href="http://abhi1010.github.io/categories/code">code</a>
-        
-      <a class="a_tag" href="http://abhi1010.github.io/tags/bash">bash</a><a class="a_tag" href="http://abhi1010.github.io/tags/vim">vim</a><a class="a_tag" href="http://abhi1010.github.io/tags/tips">tips</a>
-    
-      </span>
-      
-      <p>Writing code using VIM can be a bit overwhelming but it helps creating a few shortcuts there to make your life easier. Here I will discuss a few.</p>
-
-<ul>
-<li>First of all, it is always a good idea to set up your tabs and spaces</li>
-<li>Set up shortcuts for:
-
-<ul>
-<li><code>Toggling of Auto-Indent</code> while pasting source text; very useful in code (<em>F2</em> in my provided script)</li>
-<li><code>Toggling of Auto-Scroll</code> of Split windows (<em>F3</em> in my provided script)</li>
-<li><code>Macro for Folding functions</code> within the source code (<em><em>@q</em></em> in my provided script)</li>
-<li><code>Smart case search</code> - based on whether the input is in caps or not</li>
-<li><code>Toggling of Mouse Usage</code> in VIM window - to allow quick selection of text (<em>F12</em> in my provided script)</li>
-</ul></li>
-</ul>
-
-<p>Please see the provided script below to have a look.</p>
-
-<script type="text/javascript" src="http://gist.github.com/6f190c9f3afd42881ef5.js"></script>
 
       
     </div>

@@ -80,6 +80,116 @@
     
     <div class="post">
       <h1 class="post-title">
+        <a href="http://abhi1010.github.io/2008/03/talk-to-my...-flash/">Talk to my... Flash?</a>
+      </h1>
+      <span class="post-date">Mar 3, 2008  &middot; <a href="http://abhi1010.github.io/2008/03/talk-to-my...-flash/#disqus_thread">Comments</a>
+      
+      <br/>
+      <a class="a_cat" href="http://abhi1010.github.io/categories/database">database</a><a class="a_cat" href="http://abhi1010.github.io/categories/tips">tips</a>
+        
+      <a class="a_tag" href="http://abhi1010.github.io/tags/flash">flash</a>
+    
+      </span>
+      
+      <p>According to normal acceptable behaviour it is not possible to let flash talk to the computer, be it on desktop or web browser.</p>
+
+<p>There are always ways around a problem and there&rsquo;s one in this case as well.</p>
+
+<p><strong>Windows Forms</strong></p>
+
+<p>If you wanted to access .net functions on windows form then probably a good way to do that would be through <code>ShockWaveFlashObjects</code> library. It wraps all the functions that are available in ShockWave Objects and makes them available to you in .Net type safe way.</p>
+
+<p>The easiest of ways to send data back and forth would be through
+<code>fscommand</code> function. The concept is to embed a flash file in windows form and then make use of <code>fscommand</code> function.</p>
+
+<p>Tip: Remember to remove the blue window bondary at the top so the flash appears as if its a standalone object and not embedded inside another form!</p>
+
+<p><strong>Websites</strong></p>
+
+<p>If you wanted to talk over a web page then an easy way out would be to use AMF.Net software. It is a freeware and very easy to use as well. In the words of its official <a href="http://amfnet.openmymind.net/overview/default.aspx">website</a>:</p>
+
+<p><em>&ldquo;AMF enables developers to build powerful flash-based applications driven by databases and rich business layers.
+AMF.NET is a .NET gateway sitting between a Flash movie and .NET code. The goal of AMF.NET is to promote proper N-Tier development by allowing your existing business layer (written in .NET) to be consumed by Flash without requiring any modification.&rdquo;</em></p>
+
+      
+    </div>
+    
+    <div class="post">
+      <h1 class="post-title">
+        <a href="http://abhi1010.github.io/2008/02/membership-and-profiler-in-asp.net/">Membership and Profiler in ASP.NET</a>
+      </h1>
+      <span class="post-date">Feb 6, 2008  &middot; <a href="http://abhi1010.github.io/2008/02/membership-and-profiler-in-asp.net/#disqus_thread">Comments</a>
+      
+      <br/>
+      <a class="a_cat" href="http://abhi1010.github.io/categories/database">database</a>
+        
+      <a class="a_tag" href="http://abhi1010.github.io/tags/sql">sql</a>
+    
+      </span>
+      
+      <p>Whenever you are using Sql Membership and Profiler classes - Trying to generate reports make sure your query&rsquo;s WHERE clause is using &ldquo;indexed&rdquo; column names at least.</p>
+
+<p>Let&rsquo;s look at some of the more used tables. The index of some of the tables is given below:</p>
+
+<p><strong>Table: aspnet_membership</strong></p>
+
+<ul>
+<li><p>Clustered Index = <code>ApplicationID</code>, <code>LoweredEmail</code></p></li>
+
+<li><p>NonClustered = UserID</p></li>
+</ul>
+
+<p><strong>Table: aspnet_users</strong></p>
+
+<ul>
+<li><p>Clustered Index = <code>ApplicationID</code>, <code>LoweredUserName</code></p></li>
+
+<li><p>NonClustered Index = <code>ApplicationID</code>, <code>LastActivityDate</code></p></li>
+
+<li><p>Primary Key = <code>UserID</code></p></li>
+</ul>
+
+<p><strong>Table: aspnet_Profile</strong></p>
+
+<ul>
+<li>Clustered Index = <code>UserID</code></li>
+</ul>
+
+<blockquote>
+Bottomline - try to use ApplicationID in your queries otherwise your queries, for sure, will not run over the index at all and make it slow. This comes in effect if you are expecting high volume.
+</blockquote>
+
+      
+    </div>
+    
+    <div class="post">
+      <h1 class="post-title">
+        <a href="http://abhi1010.github.io/2007/12/book-review-head-first-design-patterns/">Book Review: Head First Design Patterns</a>
+      </h1>
+      <span class="post-date">Dec 12, 2007  &middot; <a href="http://abhi1010.github.io/2007/12/book-review-head-first-design-patterns/#disqus_thread">Comments</a>
+      
+      <br/>
+      <a class="a_cat" href="http://abhi1010.github.io/categories/code">code</a><a class="a_cat" href="http://abhi1010.github.io/categories/design-patterns">design patterns</a>
+        
+      <a class="a_tag" href="http://abhi1010.github.io/tags/java">java</a>
+    
+      </span>
+      
+      <p>What an amazing book this is! It is a must read for any developer who wants to develop long term codes/projects.</p>
+
+<p>The book looks at mostly the more important design patterns. The distinctive feature that stands out in this book is how it manages to make each pattern stand out against each other. It gives comparison between similar-looking patterns where necessary. It make the patterns &ldquo;debate&rdquo; against each other, get the birds-eye-view from &ldquo;patterns guru and grasshopper discussion&rdquo;, UML like &ldquo;class diagrams with notes&rdquo; to show how everything is gelling together.</p>
+
+<p>It starts off every pattern with the basic situation and come up with a code how a normal developer would code - then give that situation a twist and show us mortal beings how to code again using a pattern! It is a perfect setup for even a novice to get it straight into his head.</p>
+
+<p>The code for this book can be picked up at <a href="http://www.wickedlysmart.com">www.wickedlysmart.com</a>.</p>
+
+<p>Although this book is written for Java developers but it should suit C# and VB.NET. The website includes code for C# as well donated by a reader of the book.</p>
+
+      
+    </div>
+    
+    <div class="post">
+      <h1 class="post-title">
         <a href="http://abhi1010.github.io/2007/11/dynamically-increase-label-size-autosize/">Dynamically increase Label size [AutoSize]</a>
       </h1>
       <span class="post-date">Nov 23, 2007  &middot; <a href="http://abhi1010.github.io/2007/11/dynamically-increase-label-size-autosize/#disqus_thread">Comments</a>
