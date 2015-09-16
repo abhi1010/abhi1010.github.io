@@ -80,6 +80,120 @@
     
     <div class="post">
       <h1 class="post-title">
+        <a href="http://abhi1010.github.io/2013/10/ideas-for-shared-memory-in-linux/">Ideas for Shared Memory in Linux</a>
+      </h1>
+      <span class="post-date">Oct 13, 2013  &middot; <a href="http://abhi1010.github.io/2013/10/ideas-for-shared-memory-in-linux/#disqus_thread">Comments</a>
+      
+      <br/>
+      <a class="a_cat" href="http://abhi1010.github.io/categories/code">code</a>
+        
+      <a class="a_tag" href="http://abhi1010.github.io/tags/c">c#</a>
+    
+      </span>
+      
+      <p>I have been doing extensive research today regarding shared memory in linux before I embark on a new project in which shaving time off process communication latency is extremely important. I found some very interesting links as well. Let’s break them down:</p>
+
+<table>
+<thead>
+<tr>
+<th>Topic</th>
+<th>Description</th>
+<th>Link</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Theory/Explanation</td>
+<td>Some articles that explain how to get started</td>
+<td><a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2006/n2044.html">open-std</a></td>
+</tr>
+
+<tr>
+<td>Content in the first column</td>
+<td>Content in the second column</td>
+<td>lkd</td>
+</tr>
+
+<tr>
+<td></td>
+<td>IPC Mechanisms – some recommendations. Mainly talks about softwares like Boost, dBus dBus used to work using kernel levels but lately have come up with a patch that bypasses kernels</td>
+<td><a href="http://stackoverflow.com/questions/1906166/inter-process-communication-recommendation">Stackoverflow</a></td>
+</tr>
+
+<tr>
+<td></td>
+<td>What every programmer should know about memory</td>
+<td><a href="http://lwn.net/Articles/255364/">LWN</a></td>
+</tr>
+
+<tr>
+<td></td>
+<td>Linux IPC</td>
+<td><a href="http://www.tldp.org/LDP/tlk/ipc/ipc.html">TLDP</a></td>
+</tr>
+
+<tr>
+<td></td>
+<td>Cache Friendly Code</td>
+<td><a href="http://stackoverflow.com/questions/16699247/what-is-cache-friendly-code/16699282#16699282">Stackoverflow</a></td>
+</tr>
+
+<tr>
+<td></td>
+<td>Helpful Articles     Which linux IPC technique to use?</td>
+<td><a href="http://stackoverflow.com/questions/2281204/which-linux-ipc-technique-to-use">Stackoverflow</a></td>
+</tr>
+
+<tr>
+<td></td>
+<td>Inter process communication – talks about shared memory</td>
+<td><a href="http://www.advancedlinuxprogramming.com/alp-folder/alp-ch05-ipc.pdf">ALP</a></td>
+</tr>
+
+<tr>
+<td></td>
+<td>Linux Poll Events on Shared Memory</td>
+<td><a href="http://stackoverflow.com/questions/11470322/cause-a-linux-poll-event-on-a-shared-memory-file">Stackoverflow</a></td>
+</tr>
+
+<tr>
+<td></td>
+<td>Using semaphores in Shared Memory</td>
+<td><a href="http://stackoverflow.com/questions/10772860/semaphores-and-shared-memory-in-linux">Stackoverflow</a></td>
+</tr>
+
+<tr>
+<td></td>
+<td>Sharing semaphores between Shared Memory</td>
+<td><a href="http://stackoverflow.com/questions/8359322/how-to-share-semaphores-between-processes-using-shared-memory?rq=1">Stackoverflow</a></td>
+</tr>
+
+<tr>
+<td></td>
+<td>Sharing memory between processes</td>
+<td><a href="http://stackoverflow.com/questions/11583281/sharing-memory-between-two-processes">Stackoverflow</a></td>
+</tr>
+
+<tr>
+<td></td>
+<td>Reserving memory at kernel boot up (DMA)</td>
+<td><a href="http://stackoverflow.com/questions/647783/direct-memory-access-in-linux?rq=1">Stackoverflow</a></td>
+</tr>
+
+<tr>
+<td>Extra</td>
+<td>IPC Shared memory samples</td>
+<td><a href="http://linuxgazette.net/104/ramankutty.html">linuxgazette</a></td>
+</tr>
+</tbody>
+</table>
+
+      
+    </div>
+    
+    <div class="post">
+      <h1 class="post-title">
         <a href="http://abhi1010.github.io/2013/09/oracle-sql-queries/">Oracle SQL Queries</a>
       </h1>
       <span class="post-date">Sep 22, 2013  &middot; <a href="http://abhi1010.github.io/2013/09/oracle-sql-queries/#disqus_thread">Comments</a>
@@ -1079,99 +1193,6 @@ echo $CMD
 </tr>
 </tbody>
 </table>
-
-      
-    </div>
-    
-    <div class="post">
-      <h1 class="post-title">
-        <a href="http://abhi1010.github.io/2012/09/radix-sort/">Radix Sort</a>
-      </h1>
-      <span class="post-date">Sep 13, 2012  &middot; <a href="http://abhi1010.github.io/2012/09/radix-sort/#disqus_thread">Comments</a>
-      
-      <br/>
-      <a class="a_cat" href="http://abhi1010.github.io/categories/code">code</a>
-        
-      <a class="a_tag" href="http://abhi1010.github.io/tags/sorting">sorting</a><a class="a_tag" href="http://abhi1010.github.io/tags/algo">algo</a><a class="a_tag" href="http://abhi1010.github.io/tags/c">c&#43;&#43;</a>
-    
-      </span>
-      
-      <p>It is a non-comparative <em>integer</em> sorting algorithm. It sorts data by grouping keys by the individual digits which share the same significant position and value. Think <em>Tens, Hundreds, Thousands</em> etc. Some pointers about Radix Sort:</p>
-
-<ul>
-<li>Even though it is an integer sorting algorithm, it is not restricted just to integers. Integers can also represent strings of characters</li>
-<li>Two types of radix sort are:
-
-<ul>
-<li>LSD (Least Significant Digit): Short keys come before long keys</li>
-<li>MSD (Most Significant Digit) Sorting: Lexicographic Order. Better for strings.</li>
-</ul></li>
-<li>Uses Counting Sort as Sub Routine (which takes extra memory)
-
-<ul>
-<li>If memory is not really a concern, forget about this issue</li>
-</ul></li>
-<li>Radix Sort, with at most d digits, takes O(d*(n+b)) time where b is the base</li>
-<li>Use Radix Sort over Counting Sort when the numbers range from 1 to n-square for example.</li>
-</ul>
-
-<p><strong>Numbers</strong></p>
-
-<p>Let&rsquo;s look at the stats from the algorithm:</p>
-
-<table style="border-bottom:lightblue solid;text-align:center;border-left:lightblue solid;background-color:#efefef;width:100%;border-collapse:collapse;border-top:lightblue solid;border-right:lightblue solid;" border="1" > <tbody > <tr >
-<td style="width:25%;" >
-</td>
-<td style="width:25%;" >**# of Items in Array**
-</td>
-<td style="width:25%;" >**Time Taken**
-</td>
-<td style="width:25%;" >**Average for 100 numbers**
-</td> </tr> <tr >
-<td rowspan="3" >**Random**
-</td>
-<td >10
-</td>
-<td >0.033351
-</td>
-<td >0.33351
-</td> </tr> <tr style="background-color:#efefef;color:#008000;" >
-<td >1K
-</td>
-<td >3.22004
-</td>
-<td >0.322004
-</td> </tr> <tr >
-<td >1M
-</td>
-<td >5650.9
-</td>
-<td >0.56509
-</td> </tr> <tr >
-<td rowspan="3" >**Sorted**
-</td>
-<td >10
-</td>
-<td >0.020659
-</td>
-<td >0.20659
-</td> </tr> <tr >
-<td >1K
-</td>
-<td >3.26273
-</td>
-<td >0.326273
-</td> </tr> <tr >
-<td >1M
-</td>
-<td >5683.91
-</td>
-<td >0.568391
-</td> </tr> </tbody> </table>
-
-<p><strong>Code</strong></p>
-
-<p>As always, the code is available at <a href="https://github.com/abhi1010/Algorithms">https://github.com/abhi1010/Algorithms</a> for easier access.</p>
 
       
     </div>

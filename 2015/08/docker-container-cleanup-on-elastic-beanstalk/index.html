@@ -90,9 +90,15 @@
     
     </span>
       <div id="_toc" class="toc">
-        
+        <nav id="TableOfContents">
+<ul>
+<li><a href="#last-resort:57533ab22b2cfb33b4a75f9cd178e950">Last Resort</a></li>
+</ul>
+</nav>
       </div>
-    <p>Sometimes you may notice that old containers are not cleaned up from Beanstalk environment. This may be due to your container still running as a ghost on the background. One way to find out about this is to quickly look into your
+    
+
+<p>Sometimes you may notice that old containers are not cleaned up from Beanstalk environment. This may be due to your container still running as a ghost on the background. One way to find out about this is to quickly look into your
 <code>/var/lib/docker/vfs/dir</code> directory whether it has too many folders.</p>
 
 <p>Next, find out what container processes you have going on.
@@ -135,6 +141,13 @@ Just run the following to test whether it works:</p>
 <span style="color: #000000; font-style: italic">    tmpfs           499M     0  499M   0% /dev/shm</span>
 </pre></div>
 </p>
+
+<h1 id="last-resort:57533ab22b2cfb33b4a75f9cd178e950">Last Resort</h1>
+
+<p>If you feel that all this is not working, then you can try one of the scripts provided by <code>docker</code> itself at
+<a href="https://github.com/docker/docker/blob/master/contrib/nuke-graph-directory.sh">GitHub</a></p>
+
+<p>It will delete the folders under <code>/var/lib/docker</code> and try to do it responsibly.</p>
 
   </div>
   <div id="disqus_thread"></div>
