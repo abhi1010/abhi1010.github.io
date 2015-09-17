@@ -6,19 +6,8 @@
     <description>Recent content in Posts on Coders Digest</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 14 Sep 2015 11:14:38 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 10 Sep 2015 00:18:24 +0800</lastBuildDate>
     <atom:link href="http://abhi1010.github.io/post/index.xml" rel="self" type="application/rss+xml" />
-    
-    <item>
-      <title>Moving To Hugo</title>
-      <link>http://abhi1010.github.io/2015/09/moving-to-hugo/</link>
-      <pubDate>Mon, 14 Sep 2015 11:14:38 +0800</pubDate>
-      
-      <guid>http://abhi1010.github.io/2015/09/moving-to-hugo/</guid>
-      <description>&lt;p&gt;My blogging experience started with blogspot. It was great until I realized that I needed something that was responsive.
-The layout looked nice on 1024x768 but with the new generation of laptops&lt;/p&gt;
-</description>
-    </item>
     
     <item>
       <title>Using External Tools with Git Diff</title>
@@ -857,6 +846,38 @@ Just run the following to test whether it works:&lt;/p&gt;
 &lt;p&gt;Let&amp;rsquo;s have a look at the script&amp;hellip;.&lt;/p&gt;
 
 &lt;script type=&#34;text/javascript&#34; src=&#34;http://gist.github.com/924a5f12f3067ba0b3af.js&#34;&gt;&lt;/script&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>32 bit vs 64 bit</title>
+      <link>http://abhi1010.github.io/2014/04/32-bit-vs-64-bit/</link>
+      <pubDate>Tue, 15 Apr 2014 02:40:00 +0000</pubDate>
+      
+      <guid>http://abhi1010.github.io/2014/04/32-bit-vs-64-bit/</guid>
+      <description>
+
+&lt;h3 id=&#34;when-to-use-64-bit:781115a00a27c6c773035866d9644c43&#34;&gt;When to use 64-bit?&lt;/h3&gt;
+
+&lt;p&gt;If your application needs more than 2-4gb of data&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;If your application intensively uses 64-bit arithmetic&lt;/li&gt;
+&lt;li&gt;* 32-bit x86 compiled applications are restricted to x86 instruction set, even when run on on a 64-bit machine&lt;/li&gt;
+&lt;li&gt;x64 supports 16 registers compared to just 8 in x86. If your code is computation intensive this may help a great deal&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;when-to-use-32-bit:781115a00a27c6c773035866d9644c43&#34;&gt;When to use 32-bit?&lt;/h3&gt;
+
+&lt;p&gt;After reading so many great things about 32 bit, why would anybody still want to code against 32-bit? Simple reason - code compiled in 32-bit takes lesser memory. For example, a pointer in 64-bit machine is 8 bytes compared to 4 bytes with 32-bit. Now imagine how many pointers do you have going around in your code?&lt;/p&gt;
+
+&lt;h3 id=&#34;when-to-not-use-64-bit:781115a00a27c6c773035866d9644c43&#34;&gt;When to not use 64-bit?&lt;/h3&gt;
+
+&lt;p&gt;Sometimes if your code is running on a machine that does not have too much of space then it is a never a great idea to use 64-bit compilation because the same task can probably be done much better using 32-bit version. L2 and L3 caches will be utilized a lot more in 64-bit code (and a lot earlier as well) compared to 32-bit; on such systems.&lt;/p&gt;
+
+&lt;h3 id=&#34;summary:781115a00a27c6c773035866d9644c43&#34;&gt;Summary&lt;/h3&gt;
+
+&lt;p&gt;Always benchmark your code and ensure that the application actually needs more than 2-4Gb of space.&lt;/p&gt;
 </description>
     </item>
     

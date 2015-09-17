@@ -6,19 +6,8 @@
     <description>Recent content on Coders Digest</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 14 Sep 2015 11:14:38 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 10 Sep 2015 00:18:24 +0800</lastBuildDate>
     <atom:link href="http://abhi1010.github.io/index.xml" rel="self" type="application/rss+xml" />
-    
-    <item>
-      <title>Moving To Hugo</title>
-      <link>http://abhi1010.github.io/2015/09/moving-to-hugo/</link>
-      <pubDate>Mon, 14 Sep 2015 11:14:38 +0800</pubDate>
-      
-      <guid>http://abhi1010.github.io/2015/09/moving-to-hugo/</guid>
-      <description>&lt;p&gt;My blogging experience started with blogspot. It was great until I realized that I needed something that was responsive.
-The layout looked nice on 1024x768 but with the new generation of laptops&lt;/p&gt;
-</description>
-    </item>
     
     <item>
       <title>Using External Tools with Git Diff</title>
@@ -855,6 +844,32 @@ Just run the following to test whether it works:&lt;/p&gt;
 &lt;p&gt;Please see the provided script below to have a look.&lt;/p&gt;
 
 &lt;script type=&#34;text/javascript&#34; src=&#34;http://gist.github.com/6f190c9f3afd42881ef5.js&#34;&gt;&lt;/script&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Getting a group of lines from a file</title>
+      <link>http://abhi1010.github.io/2014/05/getting-a-group-of-lines-from-a-file/</link>
+      <pubDate>Mon, 19 May 2014 09:45:57 +0000</pubDate>
+      
+      <guid>http://abhi1010.github.io/2014/05/getting-a-group-of-lines-from-a-file/</guid>
+      <description>&lt;p&gt;I&amp;rsquo;ve had this need quite a few times to pull out a section of logs that would begin with a particular line and end with another. grep is not exactly useful there because it only prints out sections based on line counters (using -A/B/C) lines based on a single search pattern.&lt;/p&gt;
+
+&lt;p&gt;I came up with a script that can run at almost same speeds using &lt;code&gt;grep/cat/awk&lt;/code&gt;. &lt;code&gt;awk&lt;/code&gt; is used to decide whether the end of the section has been reached or not. Some features of the script are:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Since &lt;code&gt;awk&lt;/code&gt; script only toggles one variable it works seamlessly without delaying the actual work&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Works on gzip files as well&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;If you do not want to depend on grep or are unsure how many lines may be between begin and end keyword then replace gunzip with zcat and grep with cat.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Usage: &lt;code&gt;group filename printBeginKeyword printUntilKeyword NumOfLines&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Let&amp;rsquo;s have a look at the script&amp;hellip;.&lt;/p&gt;
+
+&lt;script type=&#34;text/javascript&#34; src=&#34;http://gist.github.com/924a5f12f3067ba0b3af.js&#34;&gt;&lt;/script&gt;
 </description>
     </item>
     
