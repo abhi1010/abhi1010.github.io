@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="google-site-verification" content="D0BY3izxK5iqxQOk6iQvcCCuxrl_iDwjB9r5FgRc01w" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>Git LOC Stats by Time Range &middot; Abhishek Pandey</title>
+
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+  <link rel="stylesheet" href="http://abhi1010.github.io/css/poole.css?ref=abc124">
+  <link rel="stylesheet" href="http://abhi1010.github.io/css/hyde.css?ref=abc124">
+  <link rel="stylesheet" href="http://abhi1010.github.io/css/poole-overrides.css?ref=abc124">
+  <link rel="stylesheet" href="http://abhi1010.github.io/css/hyde-overrides.css?ref=abc124">
+  <link rel="stylesheet" href="http://abhi1010.github.io/css/hyde-a.css?ref=abc124">
+  <link rel="stylesheet" href="http://abhi1010.github.io/css/custom-additions.css?ref=abc124">
+  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://abhi1010.github.io/touch-icon-144-precomposed.png?ref=abc124">
+  <link href="http://abhi1010.github.io/favicon.png?ref=abc124" rel="icon">
+
+  
+  
+  
+  
+
+  <meta name="description" content="Your default page description">
+  <meta name="keywords" content="your,default,page,keywords">
+  
+</head>
+<body class="theme-base-aa">
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      
+      <h1><a href="http://abhi1010.github.io/">Abhishek Pandey</a></h1>
+      <p class="lead">&hellip; lost in reverie</p>
+    </div>
+
+    <ul class="sidebar-nav">
+      
+      <li class="sidebar-nav-item"><a href="http://abhi1010.github.io/post/">Posts</a></li>
+      
+      <li class="sidebar-nav-item"><a href="http://abhi1010.github.io/tags/">Tags</a></li>
+      
+      <li class="sidebar-nav-item"><a href="http://abhi1010.github.io/categories/">Categories</a></li>
+      
+      <li class="sidebar-nav-item"><a href="http://abhi1010.github.io/about/">About</a></li>
+      
+    </ul>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item">
+      
+      
+      
+      
+      
+      
+      
+      
+      </li>
+    </ul>
+
+    
+
+  </div>
+</div>
+
+
+<div class="content container">
+  <div class="post">
+    <h1>Git LOC Stats by Time Range</h1>
+    <span class="post-date">Sep 17, 2015  &middot; <a href="http://abhi1010.github.io/2015/09/git-loc-stats-by-time-range/#disqus_thread">Comments</a>
+    
+    <br/>
+    
+          <a class="a_cat" href="http://abhi1010.github.io/categories/code">code</a>
+      
+      
+        <a class="a_tag" href="http://abhi1010.github.io/tags/bash">bash</a><a class="a_tag" href="http://abhi1010.github.io/tags/git">git</a>
+      
+
+    
+    </span>
+      <div id="_toc" class="toc">
+        
+      </div>
+    <p>Recently had an interest in seeing how many LOC were committed to the code base over a particular period of
+time. After some tinkering around, mainly to find out the correct format for time ranges, decided to use the following bash script for finding coding stats.
+Following sample is to find out lines added or removed during the year 2014.</p>
+
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000000">$ </span>git log --after<span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #4e9a06">&quot;2014-1-1&quot;</span> --before<span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #4e9a06">&quot;2014-12-31&quot;</span> --pretty<span style="color: #ce5c00; font-weight: bold">=</span>tformat: --numstat 
+    <span style="color: #000000; font-weight: bold">|</span> awk <span style="color: #4e9a06">&#39;{ if ( $2 != 0 &amp;&amp; $1 != 0 ) print $0 }&#39;</span> 
+    <span style="color: #000000; font-weight: bold">|</span> gawk <span style="color: #4e9a06">&#39;{ add += $1; subs += $2; loc += $1 - $2 } END { printf &quot;Added lines: %s Removed lines: %s Total # of lines: %s\n&quot;, add, subs, loc }&#39;</span>
+</pre></div>
+
+
+<p>The result will be as follows:</p>
+
+<pre><code>Added lines: 327505 Removed lines: 243860 Total # of lines: 83645
+</code></pre>
+
+<p>You will notice in the second line that I am doing the following:
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000000; font-style: italic"> if ( $2 != 0 &amp;&amp; $1 != 0 ) </span>
+</pre></div>
+</p>
+
+<p>This is simply to discard off any commit numbers that were pure addition or deletion (with no corresponding delete or add in the same commit).
+It may also remove some numbers that were actually valid commits but mostly it is to protect ourselves against any library or API that we may have added or replaced during that time period.</p>
+
+<p>For time range, you may even use something like <code>--since=&quot;1 year ago&quot;</code> and that will also yield similar results.</p>
+
+  </div>
+  <div id="disqus_thread"></div>
+</div>
+
+
+<script type="text/javascript">
+var disqus_shortname = "abhi1010";
+(function () {
+    var s = document.createElement('script'); s.async = true;
+    s.type = 'text/javascript';
+    s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+}());
+</script>
+
+
+
+<script type="text/javascript">
+    var disqus_shortname = "abhi1010";
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+</body>
+</html>
+

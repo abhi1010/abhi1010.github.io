@@ -6,8 +6,41 @@
     <description>Recent content on Coders Digest</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 10 Sep 2015 00:18:24 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 17 Sep 2015 11:06:06 +0800</lastBuildDate>
     <atom:link href="http://abhi1010.github.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Git LOC Stats by Time Range</title>
+      <link>http://abhi1010.github.io/2015/09/git-loc-stats-by-time-range/</link>
+      <pubDate>Thu, 17 Sep 2015 11:06:06 +0800</pubDate>
+      
+      <guid>http://abhi1010.github.io/2015/09/git-loc-stats-by-time-range/</guid>
+      <description>&lt;p&gt;Recently had an interest in seeing how many LOC were committed to the code base over a particular period of
+time. After some tinkering around, mainly to find out the correct format for time ranges, decided to use the following bash script for finding coding stats.
+Following sample is to find out lines added or removed during the year 2014.&lt;/p&gt;
+
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #000000&#34;&gt;$ &lt;/span&gt;git log --after&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;2014-1-1&amp;quot;&lt;/span&gt; --before&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;2014-12-31&amp;quot;&lt;/span&gt; --pretty&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;tformat: --numstat 
+    &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; awk &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;{ if ( $2 != 0 &amp;amp;&amp;amp; $1 != 0 ) print $0 }&amp;#39;&lt;/span&gt; 
+    &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; gawk &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;{ add += $1; subs += $2; loc += $1 - $2 } END { printf &amp;quot;Added lines: %s Removed lines: %s Total # of lines: %s\n&amp;quot;, add, subs, loc }&amp;#39;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;The result will be as follows:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Added lines: 327505 Removed lines: 243860 Total # of lines: 83645
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You will notice in the second line that I am doing the following:
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #000000; font-style: italic&#34;&gt; if ( $2 != 0 &amp;amp;&amp;amp; $1 != 0 ) &lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/p&gt;
+
+&lt;p&gt;This is simply to discard off any commit numbers that were pure addition or deletion (with no corresponding delete or add in the same commit).
+It may also remove some numbers that were actually valid commits but mostly it is to protect ourselves against any library or API that we may have added or replaced during that time period.&lt;/p&gt;
+
+&lt;p&gt;For time range, you may even use something like &lt;code&gt;--since=&amp;quot;1 year ago&amp;quot;&lt;/code&gt; and that will also yield similar results.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Using External Tools with Git Diff</title>
@@ -844,32 +877,6 @@ Just run the following to test whether it works:&lt;/p&gt;
 &lt;p&gt;Please see the provided script below to have a look.&lt;/p&gt;
 
 &lt;script type=&#34;text/javascript&#34; src=&#34;http://gist.github.com/6f190c9f3afd42881ef5.js&#34;&gt;&lt;/script&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Getting a group of lines from a file</title>
-      <link>http://abhi1010.github.io/2014/05/getting-a-group-of-lines-from-a-file/</link>
-      <pubDate>Mon, 19 May 2014 09:45:57 +0000</pubDate>
-      
-      <guid>http://abhi1010.github.io/2014/05/getting-a-group-of-lines-from-a-file/</guid>
-      <description>&lt;p&gt;I&amp;rsquo;ve had this need quite a few times to pull out a section of logs that would begin with a particular line and end with another. grep is not exactly useful there because it only prints out sections based on line counters (using -A/B/C) lines based on a single search pattern.&lt;/p&gt;
-
-&lt;p&gt;I came up with a script that can run at almost same speeds using &lt;code&gt;grep/cat/awk&lt;/code&gt;. &lt;code&gt;awk&lt;/code&gt; is used to decide whether the end of the section has been reached or not. Some features of the script are:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;Since &lt;code&gt;awk&lt;/code&gt; script only toggles one variable it works seamlessly without delaying the actual work&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Works on gzip files as well&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;If you do not want to depend on grep or are unsure how many lines may be between begin and end keyword then replace gunzip with zcat and grep with cat.&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Usage: &lt;code&gt;group filename printBeginKeyword printUntilKeyword NumOfLines&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Let&amp;rsquo;s have a look at the script&amp;hellip;.&lt;/p&gt;
-
-&lt;script type=&#34;text/javascript&#34; src=&#34;http://gist.github.com/924a5f12f3067ba0b3af.js&#34;&gt;&lt;/script&gt;
 </description>
     </item>
     

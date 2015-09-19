@@ -80,6 +80,47 @@
     
     <div class="post">
       <h1 class="post-title">
+        <a href="http://abhi1010.github.io/2015/09/git-loc-stats-by-time-range/">Git LOC Stats by Time Range</a>
+      </h1>
+      <span class="post-date">Sep 17, 2015  &middot; <a href="http://abhi1010.github.io/2015/09/git-loc-stats-by-time-range/#disqus_thread">Comments</a>
+      
+      <br/>
+      <a class="a_cat" href="http://abhi1010.github.io/categories/code">code</a>
+        
+      <a class="a_tag" href="http://abhi1010.github.io/tags/bash">bash</a><a class="a_tag" href="http://abhi1010.github.io/tags/git">git</a>
+    
+      </span>
+      
+      <p>Recently had an interest in seeing how many LOC were committed to the code base over a particular period of
+time. After some tinkering around, mainly to find out the correct format for time ranges, decided to use the following bash script for finding coding stats.
+Following sample is to find out lines added or removed during the year 2014.</p>
+
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000000">$ </span>git log --after<span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #4e9a06">&quot;2014-1-1&quot;</span> --before<span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #4e9a06">&quot;2014-12-31&quot;</span> --pretty<span style="color: #ce5c00; font-weight: bold">=</span>tformat: --numstat 
+    <span style="color: #000000; font-weight: bold">|</span> awk <span style="color: #4e9a06">&#39;{ if ( $2 != 0 &amp;&amp; $1 != 0 ) print $0 }&#39;</span> 
+    <span style="color: #000000; font-weight: bold">|</span> gawk <span style="color: #4e9a06">&#39;{ add += $1; subs += $2; loc += $1 - $2 } END { printf &quot;Added lines: %s Removed lines: %s Total # of lines: %s\n&quot;, add, subs, loc }&#39;</span>
+</pre></div>
+
+
+<p>The result will be as follows:</p>
+
+<pre><code>Added lines: 327505 Removed lines: 243860 Total # of lines: 83645
+</code></pre>
+
+<p>You will notice in the second line that I am doing the following:
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000000; font-style: italic"> if ( $2 != 0 &amp;&amp; $1 != 0 ) </span>
+</pre></div>
+</p>
+
+<p>This is simply to discard off any commit numbers that were pure addition or deletion (with no corresponding delete or add in the same commit).
+It may also remove some numbers that were actually valid commits but mostly it is to protect ourselves against any library or API that we may have added or replaced during that time period.</p>
+
+<p>For time range, you may even use something like <code>--since=&quot;1 year ago&quot;</code> and that will also yield similar results.</p>
+
+      
+    </div>
+    
+    <div class="post">
+      <h1 class="post-title">
         <a href="http://abhi1010.github.io/2015/09/using-external-tools-with-git-diff/">Using External Tools with Git Diff</a>
       </h1>
       <span class="post-date">Sep 10, 2015  &middot; <a href="http://abhi1010.github.io/2015/09/using-external-tools-with-git-diff/#disqus_thread">Comments</a>
@@ -823,44 +864,6 @@ Just run the following to test whether it works:</p>
 <p>As usual the code is available <a href="https://github.com/abhi1010/Algorithms/blob/master/Algo_codes/Node.cpp">here</a>:</p>
 
 <p><a href="https://github.com/abhi1010/Algorithms">https://github.com/abhi1010/Algorithms</a></p>
-
-      
-    </div>
-    
-    <div class="post">
-      <h1 class="post-title">
-        <a href="http://abhi1010.github.io/2014/06/removing-duplicates-from-linked-list/">Removing Duplicates from Linked List</a>
-      </h1>
-      <span class="post-date">Jun 7, 2014  &middot; <a href="http://abhi1010.github.io/2014/06/removing-duplicates-from-linked-list/#disqus_thread">Comments</a>
-      
-      <br/>
-      <a class="a_cat" href="http://abhi1010.github.io/categories/code">code</a>
-        
-      <a class="a_tag" href="http://abhi1010.github.io/tags/c">c&#43;&#43;</a><a class="a_tag" href="http://abhi1010.github.io/tags/algo">algo</a><a class="a_tag" href="http://abhi1010.github.io/tags/linked-list">linked list</a>
-    
-      </span>
-      
-      
-
-<p>Duplicates can be removed in many ways:</p>
-
-<ul>
-<li><p>Create a new Linked List containing only unique items</p></li>
-
-<li><p>Iterate through the Linked List and keep removing items that are being repeated</p></li>
-</ul>
-
-<p>The internal structure itself for the algo can either be map or set based. When using map the Node itself can be saved thereby making your life easier if you are creating a new Linked List. However sets can be very useful if we are just iterating through the Linked List and simply deleting items that are being repetetive. This is also a great spacesaver. Hence we decided to go down this path.</p>
-
-<h1 id="code:33d170712a3b1643edfc33b9f231740c">Code</h1>
-
-<p>As usual the <a href="https://github.com/abhi1010/Algorithms/blob/master/Algo_codes/Node.cpp">code</a> is available here:</p>
-
-<p><a href="https://github.com/abhi1010/Algorithms">https://github.com/abhi1010/Algorithms</a></p>
-
-<p>Here&rsquo;s a small sample as to how to do it:</p>
-
-<script type="text/javascript" src="http://gist.github.com/e2b7117c20d0f591896f.js"></script>
 
       
     </div>

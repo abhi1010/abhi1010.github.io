@@ -6,8 +6,41 @@
     <description>Recent content in Git on Coders Digest</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 10 Sep 2015 00:18:24 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 17 Sep 2015 11:06:06 +0800</lastBuildDate>
     <atom:link href="http://abhi1010.github.io/tags/git/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Git LOC Stats by Time Range</title>
+      <link>http://abhi1010.github.io/2015/09/git-loc-stats-by-time-range/</link>
+      <pubDate>Thu, 17 Sep 2015 11:06:06 +0800</pubDate>
+      
+      <guid>http://abhi1010.github.io/2015/09/git-loc-stats-by-time-range/</guid>
+      <description>&lt;p&gt;Recently had an interest in seeing how many LOC were committed to the code base over a particular period of
+time. After some tinkering around, mainly to find out the correct format for time ranges, decided to use the following bash script for finding coding stats.
+Following sample is to find out lines added or removed during the year 2014.&lt;/p&gt;
+
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #000000&#34;&gt;$ &lt;/span&gt;git log --after&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;2014-1-1&amp;quot;&lt;/span&gt; --before&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;2014-12-31&amp;quot;&lt;/span&gt; --pretty&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;tformat: --numstat 
+    &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; awk &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;{ if ( $2 != 0 &amp;amp;&amp;amp; $1 != 0 ) print $0 }&amp;#39;&lt;/span&gt; 
+    &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; gawk &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;{ add += $1; subs += $2; loc += $1 - $2 } END { printf &amp;quot;Added lines: %s Removed lines: %s Total # of lines: %s\n&amp;quot;, add, subs, loc }&amp;#39;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;The result will be as follows:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Added lines: 327505 Removed lines: 243860 Total # of lines: 83645
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You will notice in the second line that I am doing the following:
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #000000; font-style: italic&#34;&gt; if ( $2 != 0 &amp;amp;&amp;amp; $1 != 0 ) &lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/p&gt;
+
+&lt;p&gt;This is simply to discard off any commit numbers that were pure addition or deletion (with no corresponding delete or add in the same commit).
+It may also remove some numbers that were actually valid commits but mostly it is to protect ourselves against any library or API that we may have added or replaced during that time period.&lt;/p&gt;
+
+&lt;p&gt;For time range, you may even use something like &lt;code&gt;--since=&amp;quot;1 year ago&amp;quot;&lt;/code&gt; and that will also yield similar results.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Using External Tools with Git Diff</title>
