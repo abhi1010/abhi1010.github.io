@@ -6,8 +6,104 @@
     <description>Recent content in Git on Coders Digest</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 17 Sep 2015 11:06:06 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 27 Sep 2015 13:30:10 +0800</lastBuildDate>
     <atom:link href="http://abhi1010.github.io/tags/git/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Automated Git Mirror With GitHub or Gitlab or Bitbucket</title>
+      <link>http://abhi1010.github.io/2015/09/automated-git-mirror-with-github-or-gitlab-or-bitbucket/</link>
+      <pubDate>Sun, 27 Sep 2015 13:30:10 +0800</pubDate>
+      
+      <guid>http://abhi1010.github.io/2015/09/automated-git-mirror-with-github-or-gitlab-or-bitbucket/</guid>
+      <description>
+
+&lt;h1 id=&#34;experience-with-gitlab-ci:e8d2b63c4e2d32c203d45ddfe7306ca8&#34;&gt;Experience with Gitlab CI&lt;/h1&gt;
+
+
+&lt;figure &gt;
+    
+        &lt;img src=&#34;http://abhi1010.github.io/images/git_mirror_with_gitlab__ci.png&#34; alt=&#34;Git Mirror from Gitlab to Bitbucket using Gitlab CI&#34; /&gt;
+    
+    
+    &lt;figcaption&gt;
+        &lt;p&gt;
+        Git Mirror from Gitlab to Bitbucket using Gitlab CI
+        
+            
+        
+        &lt;/p&gt; 
+    &lt;/figcaption&gt;
+    
+&lt;/figure&gt;
+
+
+&lt;p&gt;Had to move from &lt;code&gt;BitBucket&lt;/code&gt; to &lt;code&gt;Gitlab&lt;/code&gt; which is really great, btw. However, there was one tiny issue here - &lt;code&gt;Gitlab&lt;/code&gt; was not supported by &lt;code&gt;Shippable&lt;/code&gt;.
+As you may know already &lt;code&gt;Shippable&lt;/code&gt; is a hosted cloud platform that provides hosted continuous integration.
+We use it in our current setup to do a full testing and deployment onto &lt;code&gt;AWS Elastic Beanstalk&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Since we were moving to &lt;code&gt;Gitlab&lt;/code&gt; I wanted to continue using &lt;code&gt;Shippable&lt;/code&gt; for our prod deployments. &lt;code&gt;Shippable&lt;/code&gt; only supports &lt;code&gt;Github&lt;/code&gt; or &lt;code&gt;Bitbucket&lt;/code&gt; and therein lies the problem.
+&lt;code&gt;Gitlab&lt;/code&gt; did not work with &lt;code&gt;Circl CI&lt;/code&gt; or &lt;code&gt;Travis CI&lt;/code&gt; or &lt;code&gt;Shippable&lt;/code&gt; or &lt;code&gt;Wercker&lt;/code&gt; so I tried using &lt;code&gt;Gitlab CI&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;However, there were some issues with it:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Runs the tasks as standalone but are not part of a &lt;code&gt;Docker&lt;/code&gt; process
+
+&lt;ul&gt;
+&lt;li&gt;This means &lt;code&gt;Gitlab CI&lt;/code&gt; does not work similar to &lt;code&gt;Circl CI&lt;/code&gt; or &lt;code&gt;Travis CI&lt;/code&gt; or &lt;code&gt;Shippable&lt;/code&gt; or &lt;code&gt;Wercker&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Sometimes CI takes long to be triggered even though it registers you to be running right after your commit&lt;/li&gt;
+&lt;li&gt;The terms are a bit different compared to the other cloud based continuous integration sites
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Gitlab CI&lt;/code&gt; supposedly tries to improve upon other tools but in the process ensures that you need to learn CI again if you want to use them&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;I tried using the same yaml was &lt;code&gt;Shippable&lt;/code&gt; but it was just not working with too many errors being reported and not to mention, having to wait for an hour during the worst period to see results.
+&lt;code&gt;Shippable&lt;/code&gt; on the other hand, would hand over the console and results within 5 minutes of my commits. Decided to ditch &lt;code&gt;Gitlab CI&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h1 id=&#34;using-git-mirror:e8d2b63c4e2d32c203d45ddfe7306ca8&#34;&gt;Using Git Mirror&lt;/h1&gt;
+
+&lt;p&gt;Since &lt;code&gt;Gitlab CI&lt;/code&gt; was clearing not working I decided to continue using &lt;code&gt;Shippable&lt;/code&gt;. The only issue was, code had to exist in &lt;code&gt;Bitbucket&lt;/code&gt;.
+ For that, I needed a git mirror from &lt;code&gt;Gitlab&lt;/code&gt; to &lt;code&gt;Bitbucket&lt;/code&gt;. Looking into docs I found this link - &lt;a href=&#34;http://docs.shippable.com/using_gitlab/&#34;&gt;http://docs.shippable.com/using_gitlab/&lt;/a&gt;.
+ Other options mentioned setting up configs to add a mirror. For example, look here:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://stackoverflow.com/questions/21551929/how-to-make-a-github-mirror-to-bitbucket&#34;&gt;http://stackoverflow.com/questions/21551929/how-to-make-a-github-mirror-to-bitbucket&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/git-mirror-sync/git-mirror-sync&#34;&gt;git mirror sync as a service&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://stackoverflow.com/questions/22906917/how-to-move-git-repository-with-all-branches-from-bitbucket-to-github&#34;&gt;http://stackoverflow.com/questions/22906917/how-to-move-git-repository-with-all-branches-from-bitbucket-to-github&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;I had a major problem with all the options - every developer had to set it up for this to work on every commit.&lt;/p&gt;
+
+&lt;p&gt;I looked into webhooks and triggers on &lt;code&gt;Gitlab&lt;/code&gt; but webhooks would have old code (unless I updated the code manually before loading).&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Finally, the only way I saw fit to fix this issue was the &lt;code&gt;Gitlab CI&lt;/code&gt; itself.&lt;/strong&gt; I set up a git push as a one-step CI on &lt;code&gt;Gitlab&lt;/code&gt; itself.
+ This would do the following:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;A commit on &lt;code&gt;Gitlab&lt;/code&gt; leads to CI enabling this &lt;code&gt;git push --mirror&lt;/code&gt; through the file &lt;code&gt;.gitlab-ci.yml&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;When the commit is mirrored on &lt;code&gt;Bitbucket&lt;/code&gt;, the webhook there is registered with &lt;code&gt;Shippable&lt;/code&gt; which triggers the actual deployment through &lt;code&gt;shippable.yml&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;In a way &lt;code&gt;Shippable&lt;/code&gt; doesn&amp;rsquo;t need to know anything about &lt;code&gt;Gitlab&lt;/code&gt; which is great&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Here&amp;rsquo;s my &lt;strong&gt;&lt;em&gt;&lt;code&gt;.gitlab-ci.yml&lt;/code&gt;&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #000000&#34;&gt;stages&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt;
+  &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;-&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;deploy&lt;/span&gt;
+
+&lt;span style=&#34;color: #000000&#34;&gt;Git MIRROR&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt;
+  &lt;span style=&#34;color: #000000&#34;&gt;stage&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;deploy&lt;/span&gt;
+  &lt;span style=&#34;color: #000000&#34;&gt;script&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt;
+    &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;-&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;git push --mirror https://BITBUCKET_USERNAME:BITBUCKET_PASSWORD@bitbucket.org/group/repo.git&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;em&gt;Note:&lt;/em&gt; Remember to use variables in &lt;code&gt;Gitlab CI&lt;/code&gt; to set up your bitbucket username and password.
+  &lt;strong&gt;This had to be done&lt;/strong&gt; because you can&amp;rsquo;t have any ssh key from &lt;code&gt;Gitlab&lt;/code&gt; to add it to &lt;code&gt;Bitbucket&lt;/code&gt;&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Git LOC Stats by Time Range</title>
