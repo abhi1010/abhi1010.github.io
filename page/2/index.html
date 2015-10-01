@@ -90,6 +90,46 @@
     
     <div class="post">
       <h1 class="post-title">
+        <a href="http://abhi1010.github.io/2014/06/partition-linked-list-around-a-value-x/">Partition Linked List around a Value X</a>
+      </h1>
+      <span class="post-date">Jun 9, 2014  &middot; <a href="http://abhi1010.github.io/2014/06/partition-linked-list-around-a-value-x/#disqus_thread">Comments</a>
+      
+      <br/>
+      <a class="a_cat" href="http://abhi1010.github.io/categories/code">code</a>
+        
+      <a class="a_tag" href="http://abhi1010.github.io/tags/c">c&#43;&#43;</a><a class="a_tag" href="http://abhi1010.github.io/tags/algo">algo</a><a class="a_tag" href="http://abhi1010.github.io/tags/linked-list">linked list</a>
+    
+      </span>
+      
+      
+
+<p>How do you partition a list around a value x, such that all nodes less than x come before all nodes greater than or equal to x?</p>
+
+<p>Well, there are some solutions possible. The solution, I came up with, is a bit convoluted but let me tell the idea behind it. You want to track the following:</p>
+
+<ul>
+<li><p>Two pointers to remember the beginning of the <em>lower</em> and <em>higher</em> series each</p></li>
+
+<li><p>One pointer (<em>current</em>) to iterate through the Linked List</p></li>
+
+<li><p>The list may itself start with higher or lower value compared to the <em>middleValue</em>. Thus we need to remember the beginning of the lower series (<em>lowerSeries</em>) as this is what we will send back</p></li>
+</ul>
+
+<p>Now that we have this out of the way, let&rsquo;s look at the code:</p>
+
+<script type="text/javascript" src="http://gist.github.com/3ada1d15b5bda319a54c.js"></script>
+
+<h1 id="code:8a20b19b0e16e5ac875728276c435d4c">Code</h1>
+
+<p>As usual the code is available <a href="https://github.com/abhi1010/Algorithms/blob/master/Algo_codes/Node.cpp">here</a>:</p>
+
+<p><a href="https://github.com/abhi1010/Algorithms">https://github.com/abhi1010/Algorithms</a></p>
+
+      
+    </div>
+    
+    <div class="post">
+      <h1 class="post-title">
         <a href="http://abhi1010.github.io/2014/06/find-the-kth-to-last-element-of-a-singly-linked-list/">Find the Kth to Last Element of a Singly Linked List</a>
       </h1>
       <span class="post-date">Jun 8, 2014  &middot; <a href="http://abhi1010.github.io/2014/06/find-the-kth-to-last-element-of-a-singly-linked-list/#disqus_thread">Comments</a>
@@ -1335,46 +1375,6 @@
 </tr>
 </tbody>
 </table>
-
-      
-    </div>
-    
-    <div class="post">
-      <h1 class="post-title">
-        <a href="http://abhi1010.github.io/2014/02/global-search-in-vim/">Global Search in VIM</a>
-      </h1>
-      <span class="post-date">Feb 11, 2014  &middot; <a href="http://abhi1010.github.io/2014/02/global-search-in-vim/#disqus_thread">Comments</a>
-      
-      <br/>
-      <a class="a_cat" href="http://abhi1010.github.io/categories/code">code</a>
-        
-      <a class="a_tag" href="http://abhi1010.github.io/tags/bash">bash</a><a class="a_tag" href="http://abhi1010.github.io/tags/vim">vim</a>
-    
-      </span>
-      
-      <p>You must be knowing about regular VIM search</p>
-
-<pre><code>%s/SEARCH/REPLACE/CMD
-</code></pre>
-
-<p>However, sometimes you do not want to replace something but just see all instances of the a word or phrase. In such cases, global search is really useful when on vim. The syntax is simpler than normal search-replace:</p>
-
-<pre><code>:[range]g[lobal]/{pattern}/[cmd]
-</code></pre>
-
-<p>This will show all instances of the &ldquo;SEARCH&rdquo; term within the VIM window. There&rsquo;s another version of the same command which is as follows:</p>
-
-<pre><code>:[range]g[lobal]!/{pattern}/[cmd]
-</code></pre>
-
-<p>This is similar to the previous command but the only difference is that this command contains &ldquo;!&rdquo; which signifies that the command will be executed on all lines <code>NOT</code> matching the <code>pattern</code>.</p>
-
-<p>One example here would be to delete all lines in a file containing a particular word:</p>
-
-<pre><code>:g/deleteMe/d
-</code></pre>
-
-<p>There could be lot more actions (regular vim stuff) that you could do like yanking or indenting.</p>
 
       
     </div>

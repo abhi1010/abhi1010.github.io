@@ -90,6 +90,105 @@
     
     <div class="post">
       <h1 class="post-title">
+        <a href="http://abhi1010.github.io/2012/09/quick-sort/">Quick Sort</a>
+      </h1>
+      <span class="post-date">Sep 22, 2012  &middot; <a href="http://abhi1010.github.io/2012/09/quick-sort/#disqus_thread">Comments</a>
+      
+      <br/>
+      <a class="a_cat" href="http://abhi1010.github.io/categories/code">code</a>
+        
+      <a class="a_tag" href="http://abhi1010.github.io/tags/sorting">sorting</a><a class="a_tag" href="http://abhi1010.github.io/tags/algo">algo</a><a class="a_tag" href="http://abhi1010.github.io/tags/c">c&#43;&#43;</a>
+    
+      </span>
+      
+      
+
+<p>Quick Sort is an efficient divide and conquer algorithm performed in two phases - partition and sorting phase.</p>
+
+<p>Here are few pointers to remember about Quick Sort:</p>
+
+<ul>
+<li>Partitioning places all the elements less than the pivot in the left part of the array and greater elements in the right part</li>
+<li>Pivot element stays in its place</li>
+<li>After partitioning no element moves to the other side, of the pivot</li>
+<li>* This allows you to sort the elements, to the left or right of the pivot, independent of the other side</li>
+<li>Complexity is O(n log n)</li>
+<li>Often fast for small arrays with a few distinct values, repeated many times</li>
+<li>It is a conquer-and-divide algo; with most of the work happening during partitioning phase</li>
+<li>If you had to choose the optimum pivot then it should the median of the given array</li>
+<li>Not a stable sort</li>
+</ul>
+
+<h2 id="testing-notes:bc3cdebe8a50650a5fd63bed57e56314">Testing Notes</h2>
+
+<ul>
+<li>Currently we have only one version of the code. We may try to do another version that is not recursive because putting the functions on stack will take up some memory and time</li>
+<li>Another version could be trying to use the pivot from the middle and then compare how do the random numbers compare against the sorted numbers</li>
+</ul>
+
+<h2 id="code:bc3cdebe8a50650a5fd63bed57e56314">Code</h2>
+
+<p>As usual the <a href="https://github.com/abhi1010/Algorithms/blob/master/Algo_codes/QuickSort.cpp">code</a> is available here:</p>
+
+<p><a href="https://github.com/abhi1010/Algorithms">https://github.com/abhi1010/Algorithms</a></p>
+
+<h2 id="numbers:bc3cdebe8a50650a5fd63bed57e56314">Numbers</h2>
+
+<table style="border-bottom:lightblue solid;text-align:center;border-left:lightblue solid;background-color:#efefef;width:100%;border-collapse:collapse;border-top:lightblue solid;border-right:lightblue solid;" border="1" > <tbody > <tr >
+<td style="width:25%;" >
+</td>
+<td style="width:25%;" >**# of Items in Array**
+</td>
+<td style="width:25%;" >**Time Taken**
+</td>
+<td style="width:25%;" >**Average for 100 numbers**
+</td> </tr> <tr >
+<td rowspan="3" >**Random**
+</td>
+<td >10
+</td>
+<td >0.072972
+</td>
+<td >0.72972
+</td> </tr> <tr >
+<td >1K
+</td>
+<td >2.74698
+</td>
+<td >0.274698
+</td> </tr> <tr >
+<td >1M
+</td>
+<td >4640.77
+</td>
+<td >0.464077
+</td> </tr> <tr >
+<td rowspan="3" >**Sorted**
+</td>
+<td >10
+</td>
+<td >0.042773
+</td>
+<td >0.42773
+</td> </tr> <tr >
+<td >1K
+</td>
+<td >1.84335
+</td>
+<td >0.184335
+</td> </tr> <tr >
+<td >1M
+</td>
+<td >2473.42
+</td>
+<td >0.247342
+</td> </tr> </tbody> </table>
+
+      
+    </div>
+    
+    <div class="post">
+      <h1 class="post-title">
         <a href="http://abhi1010.github.io/2012/09/insertion-sort/">Insertion Sort</a>
       </h1>
       <span class="post-date">Sep 17, 2012  &middot; <a href="http://abhi1010.github.io/2012/09/insertion-sort/#disqus_thread">Comments</a>
@@ -742,42 +841,6 @@ attempts to perform actions which require full trust.
 <p><strong>Here&rsquo;s all the code in case somebody needs it:</strong></p>
 
 <script type="text/javascript" src="http://gist.github.com/135e9bbf44f3d9a53cb8.js"></script>
-
-      
-    </div>
-    
-    <div class="post">
-      <h1 class="post-title">
-        <a href="http://abhi1010.github.io/2008/03/stringbuilder-vs-string-joins/">StringBuilder vs String joins</a>
-      </h1>
-      <span class="post-date">Mar 8, 2008  &middot; <a href="http://abhi1010.github.io/2008/03/stringbuilder-vs-string-joins/#disqus_thread">Comments</a>
-      
-      <br/>
-      <a class="a_cat" href="http://abhi1010.github.io/categories/code">code</a>
-        
-      <a class="a_tag" href="http://abhi1010.github.io/tags/c">c#</a>
-    
-      </span>
-      
-      <p>For those who do not want to waste their time, here&rsquo;s the gist for this whole article:
-<em>StringBuilder performs better but you should try to use it when there&rsquo;s lot of concatenation involved (normally more than 7 joins - start thinking about StringBuilder.</em></p>
-
-<p>Let&rsquo;s move on for the lesser mortals. There has been a lot of debate about using StringBuilder instead of adding string like</p>
-
-<pre><code>&lt;span style=&quot;color:#606060;&quot;&gt;   1:&lt;/span&gt; strVariable += &lt;span style=&quot;color:#006080;&quot;&gt;&quot; Add this string to my variable string&quot;&lt;/span&gt;;
-</code></pre>
-
-<p>What&rsquo;s the darn difference?</p>
-
-<p>If you remember your schooling concepts string objects are fixed, their values cannot be changed. So, how can you change the value of a string? Well, you do NOT change the value, you change the object altogether! Every time you assign a value a new object of type string is created with the given value and is returned to you. hence, you discard the old string and actually come up with a new string.</p>
-
-<p>On the other hand, when you use StringBuilder, it is the same object, that you are working on. It keeps appending to the same object and the heap is not changed. Then why don&rsquo;t you use it always? Because there are &ldquo;appending&rdquo; costs. Everytime you append something, it is checked against the buffer and if it falls short of space needed, a new buffer is allocated. Let&rsquo;s see how that works inside the dll:</p>
-
-<p>How about some proof?</p>
-
-<p>Fortunately somebody did the hard work for all of us and actually came up with the statistics. You can find all of that over here:</p>
-
-<p><a href="http://209.85.175.104/search?q=cache:k9R6UE-q2nMJ:www.heikniemi.net/hc/archives/000124.html+http://www.heikniemi.net/hc/archives/000124.html&amp;hl=en&amp;ct=clnk&amp;cd=1&amp;gl=sg&amp;client=firefox-a">http://www.heikniemi.net/hc/archives/000124.html</a></p>
 
       
     </div>

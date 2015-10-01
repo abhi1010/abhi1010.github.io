@@ -3,7 +3,6 @@
 <head>
   <link href="http://gmpg.org/xfn/11" rel="profile">
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
-  <meta name="google-site-verification" content="D0BY3izxK5iqxQOk6iQvcCCuxrl_iDwjB9r5FgRc01w" />
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 
@@ -33,6 +32,17 @@
   <meta name="description" content="Your default page description">
   <meta name="keywords" content="your,default,page,keywords">
   
+  
+  <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-68135443-1', 'auto');
+      ga('send', 'pageview');
+  </script>
+
 </head>
 <body class="theme-base-aa">
 <div class="sidebar">
@@ -90,10 +100,386 @@
     
     </span>
       <div id="_toc" class="toc">
-        
+        <nav id="TableOfContents">
+<ul>
+<li><a href="#options:5b4a6d9bf657db7e28a56367aab9ae4c">Options</a></li>
+<li><a href="#installing-hugo:5b4a6d9bf657db7e28a56367aab9ae4c">Installing hugo</a></li>
+<li><a href="#exporting-wordpress:5b4a6d9bf657db7e28a56367aab9ae4c">Exporting wordpress</a></li>
+<li><a href="#using-hugo:5b4a6d9bf657db7e28a56367aab9ae4c">Using hugo</a>
+<ul>
+<li><a href="#setup:5b4a6d9bf657db7e28a56367aab9ae4c">Setup</a></li>
+<li><a href="#theme:5b4a6d9bf657db7e28a56367aab9ae4c">Theme</a></li>
+<li><a href="#folder-structure:5b4a6d9bf657db7e28a56367aab9ae4c">Folder structure</a></li>
+<li><a href="#config:5b4a6d9bf657db7e28a56367aab9ae4c">Config</a></li>
+<li><a href="#run-hugo:5b4a6d9bf657db7e28a56367aab9ae4c">Run hugo</a></li>
+<li><a href="#final-look:5b4a6d9bf657db7e28a56367aab9ae4c">Final look</a></li>
+<li><a href="#going-further:5b4a6d9bf657db7e28a56367aab9ae4c">Going further</a></li>
+<li><a href="#hosting-your-blog:5b4a6d9bf657db7e28a56367aab9ae4c">Hosting your blog</a></li>
+</ul></li>
+<li><a href="#automating-your-blog-generation:5b4a6d9bf657db7e28a56367aab9ae4c">Automating your blog generation</a></li>
+</ul>
+</nav>
       </div>
-    <p>My blogging experience started with blogspot. It was great until I realized that I needed something that was responsive.
-The layout looked nice on 1024x768 but with the new generation of laptops</p>
+    
+
+
+<figure >
+    
+        <img src="/images/moving_to_hugo__demo.png" alt="Create your own blog" />
+    
+    
+    <figcaption>
+        <p>
+        Create your own blog
+        
+            
+        
+        </p> 
+    </figcaption>
+    
+</figure>
+
+
+<p>My blogging experience started with <code>blogspot</code>. It was great until I realized that I needed something that was responsive.
+The layout looked nice on 1024x768 but with the new generation of screens it started to look narrow.
+I hated the look of the website when it seemed that I was wasting a lot of white space on the web pages.
+ I moved to <code>wordpress.com</code> to give that a try when they started their responsive themes.
+ The website looked great after a lot of customization but after writing some posts there,
+ I realized that I had to <strong>micro-manage</strong> a lot of styling every time I was writing some new section, like special blocks or tables.
+ The post writing was fun only for a short while. The enthusiasm died down pretty soon.</p>
+
+<h1 id="options:5b4a6d9bf657db7e28a56367aab9ae4c">Options</h1>
+
+<p>I stopped blogging for a while for such reasons. Eventually I heard about <code>Jekyll</code> and was again motivated to try it.
+ However, since I had also moved from <code>C++</code> to <code>Python</code> I figured there&rsquo;s bound to be something that&rsquo;s gonna be related to <code>Python</code>
+ so that I can quickly jump in and navigate my way into the core base should there be a need (and who doesn&rsquo;t find reason to do that?).
+ <code>Jekyll</code> was <code>ruby</code> based and that was holding me back a bit.
+ During my research I found out three options:</p>
+
+<ul>
+<li><code>Jekyll</code>
+
+<ul>
+<li>A lot of mileage but based on <code>ruby</code></li>
+</ul></li>
+<li><code>Pelican</code>
+
+<ul>
+<li>During my testing everything was great about it. Even setting up themes was extremely easy. Anything I tried, worked at my first try.</li>
+<li>The biggest drawback against <code>pelican</code> and <code>jekyll</code> was that the bigger the number of posts get the longer it takes for compilation to take place</li>
+</ul></li>
+<li><code>Hugo</code>
+
+<ul>
+<li>Was deemed to have the best build times of 1ms per page</li>
+<li>Extremely easy setup with <code>livereload</code></li>
+<li>Lots of other smaller features but just these two items were enough to get me sold on <code>hugo</code>.
+<code>livereload</code> is a killer feature as it means you don&rsquo;t have to keep on rebuilding your site every time you want to view how the contents affect your site.
+It was also extremely easy to make theme changes and see them in action, straight away. We will see details of this, later.</li>
+<li>Was already using <code>pelican</code> but decided to give <code>hugo</code> a weekend and see it from there. I am glad I did.</li>
+</ul></li>
+</ul>
+
+<h1 id="installing-hugo:5b4a6d9bf657db7e28a56367aab9ae4c">Installing hugo</h1>
+
+<p>Running it on mac, installation was pretty straightforward using <code>brew</code></p>
+
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">brew install hugo
+</pre></div>
+
+
+<p>I wanted to setup <code>Pygments</code> as well for code scripts as well.
+I knew that I would be presenting a lot of code on my site and one of my main problems with site like wordpress was that
+I had to manage a lot of styling for code sections which was not fun.
+So I decided to install <code>Pygments</code> on default <code>python</code> by doing:</p>
+
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">pip install Pygments
+</pre></div>
+
+
+<h1 id="exporting-wordpress:5b4a6d9bf657db7e28a56367aab9ae4c">Exporting wordpress</h1>
+
+<p>Since I wanted to move all of my wordpress content into hugo I really needed to export everything from wordpress.
+I found this link on wordpress to export all of the contents out into xml file.</p>
+
+<p><a href="https://wordpress.com/wp-admin/export.php?type=export">https://wordpress.com/wp-admin/export.php?type=export</a></p>
+
+<p>The next task was to convert the xml file into markdown files so that <code>hugo</code> could use them. However, I had already converted
+some of my files earlier while working on <code>pelican</code>. Once I started using them I realized that my contents were not looking as expecting when I was iterating through
+ various themes. Sometimes things okay and other times not. I figured it <em>must be something to do with how markdown was laid down from the xml file</em> because
+  the tags and categories were missing perhaps. I double checked the wordpress xml file but it contained the tags and categories that I was looking for.
+  It was time to start digging again.</p>
+
+<p>I came across <a href="https://github.com/thomasf/exitwp">exitwp</a> which needed a bit of setup, but I was willing to give it a try.
+Here&rsquo;s what I did:
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">git clone https://github.com/thomasf/exitwp
+<span style="color: #204a87">cd </span>exitwp
+
+cp wordpress.2015-08-23.xml wordpress-xml/
+
+
+<span style="color: #8f5902; font-style: italic"># install dependencies</span>
+pip install --upgrade -r pip_requirements.txt
+
+<span style="color: #8f5902; font-style: italic"># Run cmd with path to xml (optional if you have only one file)</span>
+exitwp.py wordpress-xml/wordpress.2015-08-23.xml
+</pre></div>
+</p>
+
+<p>This creates a folder <code>build/jekyll/OLD_WORDPRESS_URL/</code> with the contents inside it. Here&rsquo;s my sample</p>
+
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000000">$ </span>tree
+.
+<span style="color: #000000; font-weight: bold">|</span>-- _posts
+<span style="color: #000000; font-weight: bold">|</span>   <span style="color: #000000; font-weight: bold">|</span>-- 2007-10-26-use-of-yield-statement.markdown
+<span style="color: #000000; font-weight: bold">|</span>   <span style="color: #000000; font-weight: bold">|</span>-- 2007-11-23-dynamically-increase-label-size-autosize.markdown
+<span style="color: #000000; font-weight: bold">|</span>   <span style="color: #000000; font-weight: bold">|</span>-- 2007-12-12-book-review-head-first-design-patterns.markdown
+<span style="color: #8f5902; font-style: italic"># ...............</span>
+<span style="color: #000000; font-weight: bold">|</span>   <span style="color: #4e9a06">`</span>-- 2015-08-07-docker-container-cleanup-on-elastic-beanstalk.markdown
+<span style="color: #4e9a06">`</span>-- about
+    <span style="color: #4e9a06">`</span>-- index.markdown
+
+<span style="color: #0000cf; font-weight: bold">2</span> directories, <span style="color: #0000cf; font-weight: bold">42</span> files
+</pre></div>
+
+
+<p>You are ready to test with <code>hugo</code> now.</p>
+
+<h1 id="using-hugo:5b4a6d9bf657db7e28a56367aab9ae4c">Using hugo</h1>
+
+<p>Now that we have made some markdown files, we just want to see how it looks like on default <code>hugo</code> setup.</p>
+
+<p><code>hugo</code> documentation mentions says that all you need to do is call it with your input files.
+The idea would be to start a new folder, copy your markdowns there. Here&rsquo;s what we need:</p>
+
+<h2 id="setup:5b4a6d9bf657db7e28a56367aab9ae4c">Setup</h2>
+
+<ul>
+<li><code>config.toml</code> file for all the configuration that will be used by <code>hugo</code> to build the site</li>
+<li>Markdown to be put in <code>content</code> folder</li>
+<li><code>themes/{THEME_NAME}</code> folder container the actual theme in <code>{THEME_NAME}</code> folder</li>
+</ul>
+
+<p>Other minor things to note here:</p>
+
+<ul>
+<li>Output html files are put in <code>public</code> folder.
+
+<ul>
+<li>It is usually a good idea to keep separate folders for testing and production otherwise you may inadvertently commit your dev test pages (thanks to <code>livereload</code></li>
+</ul></li>
+<li>I have seen hugo to complain quite a lot if you have your static files within <code>themes/{THEME}/static</code> folder
+
+<ul>
+<li>You can get around it in two ways.</li>
+<li>Create a symbolic link from within your blogging folder by calling <code>ln -s themes/hyde-x/static static</code></li>
+<li>Copy the <code>static</code> folder as is in to the main folder location, as is by calling <code>cp -r themes/hyde-x/static/ ./</code>. However, do this <em>only</em> if you don&rsquo;t intend to mkae any changes</li>
+</ul></li>
+</ul>
+
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"> mkdir my_blog
+ <span style="color: #204a87">cd </span>my_blog
+ mkdir content
+ cp -r /PATH_TO/exitwp/build/jekyll/codersdigest.wordpress.com/* ./content/
+ 
+</pre></div>
+
+
+<h2 id="theme:5b4a6d9bf657db7e28a56367aab9ae4c">Theme</h2>
+
+<p>Let&rsquo;s start with a simple theme <a href="https://github.com/zyro/hyde-x">hyde-x</a></p>
+
+<p>Here&rsquo;s how to install it.
+ <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"> mkdir themes/
+ <span style="color: #204a87">cd </span>themes/
+ git clone https://github.com/zyro/hyde-x
+ 
+</pre></div>
+</p>
+
+<h2 id="folder-structure:5b4a6d9bf657db7e28a56367aab9ae4c">Folder structure</h2>
+
+<p>Here&rsquo;s how the folders look now. Use this for comparison.</p>
+
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">tree -L 2
+.
+<span style="color: #000000; font-weight: bold">|</span>-- config.toml
+<span style="color: #000000; font-weight: bold">|</span>-- content
+<span style="color: #000000; font-weight: bold">|</span>   <span style="color: #000000; font-weight: bold">|</span>-- _posts
+<span style="color: #000000; font-weight: bold">|</span>   <span style="color: #4e9a06">`</span>-- about
+<span style="color: #000000; font-weight: bold">|</span>-- public
+<span style="color: #000000; font-weight: bold">|</span>   <span style="color: #000000; font-weight: bold">|</span>-- 404.html
+<span style="color: #000000; font-weight: bold">|</span>   <span style="color: #000000; font-weight: bold">|</span>-- _posts
+<span style="color: #000000; font-weight: bold">|</span>   <span style="color: #000000; font-weight: bold">|</span>-- about
+<span style="color: #000000; font-weight: bold">|</span>   <span style="color: #000000; font-weight: bold">|</span>-- categories
+<span style="color: #000000; font-weight: bold">|</span>   <span style="color: #000000; font-weight: bold">|</span>-- css
+<span style="color: #000000; font-weight: bold">|</span>   <span style="color: #000000; font-weight: bold">|</span>-- favicon.png
+<span style="color: #000000; font-weight: bold">|</span>   <span style="color: #000000; font-weight: bold">|</span>-- index.html
+<span style="color: #000000; font-weight: bold">|</span>   <span style="color: #000000; font-weight: bold">|</span>-- index.xml
+<span style="color: #000000; font-weight: bold">|</span>   <span style="color: #000000; font-weight: bold">|</span>-- js
+<span style="color: #000000; font-weight: bold">|</span>   <span style="color: #000000; font-weight: bold">|</span>-- page
+<span style="color: #000000; font-weight: bold">|</span>   <span style="color: #000000; font-weight: bold">|</span>-- sitemap.xml
+<span style="color: #000000; font-weight: bold">|</span>   <span style="color: #000000; font-weight: bold">|</span>-- tags
+<span style="color: #000000; font-weight: bold">|</span>   <span style="color: #4e9a06">`</span>-- touch-icon-144-precomposed.png
+<span style="color: #000000; font-weight: bold">|</span>-- static
+<span style="color: #000000; font-weight: bold">|</span>   <span style="color: #000000; font-weight: bold">|</span>-- css
+<span style="color: #000000; font-weight: bold">|</span>   <span style="color: #000000; font-weight: bold">|</span>-- favicon.png
+<span style="color: #000000; font-weight: bold">|</span>   <span style="color: #000000; font-weight: bold">|</span>-- js
+<span style="color: #000000; font-weight: bold">|</span>   <span style="color: #4e9a06">`</span>-- touch-icon-144-precomposed.png
+<span style="color: #4e9a06">`</span>-- themes
+    <span style="color: #4e9a06">`</span>-- hyde-x
+</pre></div>
+
+
+<h2 id="config:5b4a6d9bf657db7e28a56367aab9ae4c">Config</h2>
+
+<p>Your config file could be as follows. Do note that I am also trying to build a menu for myself on the sidebar for better tracking.
+It can be found under <code>[[menu.</code></p>
+
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000000">baseurl = &quot;your_github_url&quot;</span>
+<span style="color: #000000">languageCode = &quot;en-us&quot;</span>
+<span style="color: #000000">title = &quot;title&quot;</span>
+<span style="color: #000000">contentdir = &quot;content&quot;</span>
+<span style="color: #000000">layoutdir = &quot;layouts&quot;</span>
+<span style="color: #000000">publishdir = &quot;public&quot;</span>
+<span style="color: #000000">theme = &quot;hyde-x&quot;</span>
+
+<span style="color: #000000">pygmentsstyle = &quot;native&quot;</span>
+<span style="color: #000000">pygmentsuseclasses = false</span>
+
+<span style="color: #000000">[author]</span>
+    <span style="color: #000000">name = &quot;your name&quot;</span>
+
+<span style="color: #000000">[permalinks]</span>
+    <span style="color: #000000"># Change the permalink format for the &#39;post&#39; content type.</span>
+    <span style="color: #000000"># This defines how your folder is structured</span>
+    <span style="color: #000000">post = &quot;/:year/:month/:title/&quot;</span>
+
+<span style="color: #000000">[taxonomies]</span>
+    <span style="color: #000000"># I wanted to use tags and categories</span>
+    <span style="color: #000000">category = &quot;categories&quot;</span>
+    <span style="color: #000000">tag = &quot;tags&quot;</span>
+
+<span style="color: #000000">[[menu.main]]</span>
+    <span style="color: #000000">name = &quot;Posts&quot;</span>
+    <span style="color: #000000">pre = &quot;&lt;i class=&#39;fa fa-heart&#39;&gt;&lt;/i&gt;&quot;</span>
+    <span style="color: #000000">weight = -110</span>
+    <span style="color: #000000">identifier = &quot;posts&quot;</span>
+    <span style="color: #000000">url = &quot;/post/&quot;</span>
+<span style="color: #000000">[[menu.main]]</span>
+    <span style="color: #000000">name = &quot;Tags&quot;</span>
+    <span style="color: #000000">pre = &quot;&lt;i class=&#39;fa fa-road&#39;&gt;&lt;/i&gt;&quot;</span>
+    <span style="color: #000000">weight = -109</span>
+    <span style="color: #000000">url = &quot;/tags/&quot;</span>
+<span style="color: #000000">[[menu.main]]</span>
+    <span style="color: #000000">name = &quot;Categories&quot;</span>
+    <span style="color: #000000">pre = &quot;&lt;i class=&#39;fa fa-road&#39;&gt;&lt;/i&gt;&quot;</span>
+    <span style="color: #000000">weight = -108</span>
+    <span style="color: #000000">url = &quot;/categories/&quot;</span>
+</pre></div>
+
+
+<h2 id="run-hugo:5b4a6d9bf657db7e28a56367aab9ae4c">Run hugo</h2>
+
+<p>Now that we have setup the contents, themes
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #8f5902">$</span> hugo server
+<span style="color: #000000; font-style: italic">    0 draft content</span>
+<span style="color: #000000; font-style: italic">    0 future content </span>
+<span style="color: #000000; font-style: italic">    42 pages created</span>
+<span style="color: #000000; font-style: italic">    0 paginator pages created</span>
+<span style="color: #000000; font-style: italic">    18 tags created</span>
+<span style="color: #000000; font-style: italic">    6 categories created</span>
+<span style="color: #000000; font-style: italic">    in 53 ms</span>
+<span style="color: #000000; font-style: italic">    Serving pages from /Users/your_username/code/githubs/_tmp/_del/public</span>
+<span style="color: #000000; font-style: italic">    Web Server is available at http://127.0.0.1:1313/</span>
+<span style="color: #000000; font-style: italic">    Press Ctrl+C to stop</span>
+</pre></div>
+</p>
+
+<h2 id="final-look:5b4a6d9bf657db7e28a56367aab9ae4c">Final look</h2>
+
+<p>You&rsquo;re done. How does it look?!</p>
+
+
+<figure >
+    
+        <img src="/images/moving_to_hugo__blog_sample.png" alt="Your sidebar" />
+    
+    
+    <figcaption>
+        <p>
+        Your sidebar
+        
+            
+        
+        </p> 
+    </figcaption>
+    
+</figure>
+
+
+<h2 id="going-further:5b4a6d9bf657db7e28a56367aab9ae4c">Going further</h2>
+
+<p>This is only the beginning. There are still a few loose ends to tie up.</p>
+
+<ul>
+<li>Are you happy enough with the theme?
+
+<ul>
+<li>If not, you can always try <a href="http://gohugo.io/themes/installing/">more themes</a></li>
+</ul></li>
+<li>What about code highlighting? Would you like more changes?
+
+<ul>
+<li><code>hyde-x</code> also provides it&rsquo;s own version of highlighting through css files. You can use <a href="https://github.com/zyro/hyde-x#tips"><code>params</code> to control that</a></li>
+</ul></li>
+</ul>
+
+<p>I wasn&rsquo;t happy with the code highlights as well the default layout the themes were providing. I created my own adaptation of <code>hyde-x</code> called <a href="https://github.com/abhi1010/hyde-a"><code>hyde-a</code></a>
+Some changes I made were:</p>
+
+<ul>
+<li>Tags and Categories didn&rsquo;t have their own proper <code>listing</code> or <code>single</code> templates</li>
+<li>Every time you clicked on a tag/category, the list of all articles related to that term was also not shown properly</li>
+<li>Post listing only included title and date. I was looking for related tag and category for each post</li>
+</ul>
+
+<p>I fixed all of those with <a href="https://github.com/abhi1010/hyde-a"><code>hyde-a</code></a></p>
+
+<h2 id="hosting-your-blog:5b4a6d9bf657db7e28a56367aab9ae4c">Hosting your blog</h2>
+
+<p>Now that we have created the blog, how about hosting it?
+We have use a free service like <a href="https://pages.github.com/">GitHub Pages</a>
+Once we commit your html pages (the <code>output</code>) onto github on a different repo it will show up directly on <code>github.io</code> as well.
+There are some concepts that you want to know. Learn some at [octopress])(<a href="http://octopress.org/docs/deploying/github/">http://octopress.org/docs/deploying/github/</a>).</p>
+
+<p>Create your own repo using the following logic:</p>
+
+<ul>
+<li>You must use the <code>username.github.io</code> naming scheme.</li>
+<li>Content from the master branch will be used to build and publish your GitHub Pages site.</li>
+</ul>
+
+<h1 id="automating-your-blog-generation:5b4a6d9bf657db7e28a56367aab9ae4c">Automating your blog generation</h1>
+
+<p>Now that our blog is generated, we need to automate the process of creating the html from the markdown.
+If we have to commit to two repo - for markdown as well html pages, I feel like is too much of work.</p>
+
+<p>I did some work with <code>shippable</code> and started automatically creating the html pages through it.</p>
+
+<p>I have created another article about it.
+Please <a href="http://abhi1010.github.io/2015/09/elastic-beanstalk-deployment-automation/">read it</a> for further details.</p>
+
+<p>Once you have done it, all you need to do is:</p>
+
+<ul>
+<li>Locally write your markdown files</li>
+<li>Test using <code>hugo server -w</code> to use <code>livereload</code></li>
+<li>Commit your markdown</li>
+</ul>
+
+<p><code>Shippable</code> will pick it up from there. It will download the theme and create the html files.
+It will also commit to the <code>GitHub Pages</code> for you and the site will be live automatically!</p>
 
   </div>
   <div id="disqus_thread"></div>
@@ -122,7 +508,6 @@ var disqus_shortname = "abhi1010";
 </script>
 <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-
 
 
 </body>
