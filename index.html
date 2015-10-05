@@ -90,6 +90,77 @@
     
     <div class="post">
       <h1 class="post-title">
+        <a href="http://abhi1010.github.io/2015/09/powerline-for-zsh/">Powerline for zsh</a>
+      </h1>
+      <span class="post-date">Sep 28, 2015  &middot; <a href="http://abhi1010.github.io/2015/09/powerline-for-zsh/#disqus_thread">Comments</a>
+      
+      <br/>
+      <a class="a_cat" href="http://abhi1010.github.io/categories/code">code</a>
+        
+      <a class="a_tag" href="http://abhi1010.github.io/tags/zsh">zsh</a><a class="a_tag" href="http://abhi1010.github.io/tags/bash">bash</a>
+    
+      </span>
+      
+      
+<figure >
+    
+        <img src="/images/powerline-for-zsh.png" alt="Powerline" />
+    
+    
+    <figcaption>
+        <p>
+        Powerline
+        
+            
+        
+        </p> 
+    </figcaption>
+    
+</figure>
+
+
+<p>I was having a lot of trouble getting <a href="https://github.com/carlcarl/powerline-zsh"><em>powerline</em></a> to work on my mac machine.
+No matter what I tried, I was getting errors like the following:</p>
+
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000000; font-style: italic">    .oh-my-zsh/themes/powerline.zsh-theme:100: character not in range</span>
+</pre></div>
+
+
+<p>Finally got it to work after multiple attempts on <code>bash</code> and <code>zsh</code>.</p>
+
+<p>All I had to do was set <code>LC_ALL</code> to <strong>en_US.UTF-8</strong>. It would set all the locales to <code>en_US.UTF-8</code> which
+would allow <code>powerline</code> fonts work properly.</p>
+
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000000">$ </span><span style="color: #204a87">export </span><span style="color: #000000">LC_ALL</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #4e9a06">&quot;en_US.UTF-8&quot;</span>                                                                                                     22:58:06 
+<span style="color: #000000">$ </span>locale 
+<span style="color: #000000">LANG</span><span style="color: #ce5c00; font-weight: bold">=</span>
+<span style="color: #000000">LC_COLLATE</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #4e9a06">&quot;en_US.UTF-8&quot;</span>
+<span style="color: #000000">LC_CTYPE</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #4e9a06">&quot;en_US.UTF-8&quot;</span>
+<span style="color: #000000">LC_MESSAGES</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #4e9a06">&quot;en_US.UTF-8&quot;</span>
+<span style="color: #000000">LC_MONETARY</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #4e9a06">&quot;en_US.UTF-8&quot;</span>
+<span style="color: #000000">LC_NUMERIC</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #4e9a06">&quot;en_US.UTF-8&quot;</span>
+<span style="color: #000000">LC_TIME</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #4e9a06">&quot;en_US.UTF-8&quot;</span>
+<span style="color: #000000">LC_ALL</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #4e9a06">&quot;en_US.UTF-8&quot;</span>
+</pre></div>
+
+
+<p>After this, run the following command to test your fonts again.</p>
+
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000000">LC_CTYPE</span><span style="color: #ce5c00; font-weight: bold">=</span>en_US.UTF-8 <span style="color: #204a87">echo</span> <span style="color: #4e9a06">&#39;\u2603&#39;</span>
+</pre></div>
+
+
+<p>Your command should work with or without <code>LC_CTYPE=en_US.UTF-8</code>. Here&rsquo;s what you expect to see now.</p>
+
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">    ☃
+</pre></div>
+
+
+      
+    </div>
+    
+    <div class="post">
+      <h1 class="post-title">
         <a href="http://abhi1010.github.io/2015/09/automated-git-mirror-with-github-or-gitlab-or-bitbucket/">Automated Git Mirror With GitHub or Gitlab or Bitbucket</a>
       </h1>
       <span class="post-date">Sep 27, 2015  &middot; <a href="http://abhi1010.github.io/2015/09/automated-git-mirror-with-github-or-gitlab-or-bitbucket/#disqus_thread">Comments</a>
@@ -1209,75 +1280,6 @@ However, all that is required here is to know that python automatically picks up
 <span style="color: #000000; font-weight: bold">]</span>
 </pre></div>
 
-
-      
-    </div>
-    
-    <div class="post">
-      <h1 class="post-title">
-        <a href="http://abhi1010.github.io/2015/08/docker-container-cleanup-on-elastic-beanstalk/">Docker Container cleanup on Elastic Beanstalk</a>
-      </h1>
-      <span class="post-date">Aug 7, 2015  &middot; <a href="http://abhi1010.github.io/2015/08/docker-container-cleanup-on-elastic-beanstalk/#disqus_thread">Comments</a>
-      
-      <br/>
-      <a class="a_cat" href="http://abhi1010.github.io/categories/linux">Linux</a>
-        
-      <a class="a_tag" href="http://abhi1010.github.io/tags/aws">aws</a><a class="a_tag" href="http://abhi1010.github.io/tags/beanstalk">beanstalk</a><a class="a_tag" href="http://abhi1010.github.io/tags/docker">docker</a>
-    
-      </span>
-      
-      
-
-<p>Sometimes you may notice that old containers are not cleaned up from Beanstalk environment. This may be due to your container still running as a ghost on the background. One way to find out about this is to quickly look into your
-<code>/var/lib/docker/vfs/dir</code> directory whether it has too many folders.</p>
-
-<p>Next, find out what container processes you have going on.
-<code>[root@ip dir]# docker ps -a</code></p>
-
-<p>You might see something like this:</p>
-
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000000; font-style: italic">    CONTAINER ID        IMAGE                              COMMAND             CREATED             STATUS              PORTS               NAMES</span>
-<span style="color: #000000; font-style: italic">    1611e5ebe2c0        aws_beanstalk/staging-app:latest   &quot;supervisord -n&quot;    About an hour ago                                           boring_galileo</span>
-<span style="color: #000000; font-style: italic">    e59d0dd8bba1        aws_beanstalk/staging-app:latest   &quot;supervisord -n&quot;    About an hour ago                                           desperate_yalow</span>
-<span style="color: #000000; font-style: italic">    3844d0e18c47        aws_beanstalk/staging-app:latest   &quot;supervisord -n&quot;    2 hours ago         Up 8 minutes        80/tcp              pensive_jang</span>
-</pre></div>
-
-
-<p>Ideally, we want to &ldquo;forcibly remove&rdquo; all images (and hence the folders from <code>/var/lib/docker/vfs/dir</code> directory) that are not in use anymore.
-Just run the following to test whether it works:</p>
-
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000000; font-style: italic">    docker rmi -f `docker images -aq`</span>
-</pre></div>
-
-
-<p>You might run into trouble where docker says that all those images already have a container that is running them. This means those container are orphaned but not killed as we thought them to be. Let&rsquo;s remove the shared volumes if any, for each one of them.</p>
-
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000000; font-style: italic">    docker rm -fv `docker ps -aq` </span>
-</pre></div>
-
-
-<p>This will</p>
-
-<ul>
-<li>kill the container</li>
-<li>unlink the volumes</li>
-</ul>
-
-<p>You should see a lot more space now on your beanstalk instance.
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000000; font-style: italic">    [root@ip dir]# df -h</span>
-<span style="color: #000000; font-style: italic">    Filesystem      Size  Used Avail Use% Mounted on</span>
-<span style="color: #000000; font-style: italic">    /dev/xvda1      7.8G  1.8G  5.9G  24% /</span>
-<span style="color: #000000; font-style: italic">    devtmpfs        490M   96K  490M   1% /dev</span>
-<span style="color: #000000; font-style: italic">    tmpfs           499M     0  499M   0% /dev/shm</span>
-</pre></div>
-</p>
-
-<h1 id="last-resort:57533ab22b2cfb33b4a75f9cd178e950">Last Resort</h1>
-
-<p>If you feel that all this is not working, then you can try one of the scripts provided by <code>docker</code> itself at
-<a href="https://github.com/docker/docker/blob/master/contrib/nuke-graph-directory.sh">GitHub</a></p>
-
-<p>It will delete the folders under <code>/var/lib/docker</code> and try to do it responsibly.</p>
 
       
     </div>

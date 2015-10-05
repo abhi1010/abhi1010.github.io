@@ -6,8 +6,71 @@
     <description>Recent content in Posts on Coders Digest</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 27 Sep 2015 13:30:10 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 28 Sep 2015 08:46:09 +0800</lastBuildDate>
     <atom:link href="http://abhi1010.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Powerline for zsh</title>
+      <link>http://abhi1010.github.io/2015/09/powerline-for-zsh/</link>
+      <pubDate>Mon, 28 Sep 2015 08:46:09 +0800</pubDate>
+      
+      <guid>http://abhi1010.github.io/2015/09/powerline-for-zsh/</guid>
+      <description>
+&lt;figure &gt;
+    
+        &lt;img src=&#34;http://abhi1010.github.io/images/powerline-for-zsh.png&#34; alt=&#34;Powerline&#34; /&gt;
+    
+    
+    &lt;figcaption&gt;
+        &lt;p&gt;
+        Powerline
+        
+            
+        
+        &lt;/p&gt; 
+    &lt;/figcaption&gt;
+    
+&lt;/figure&gt;
+
+
+&lt;p&gt;I was having a lot of trouble getting &lt;a href=&#34;https://github.com/carlcarl/powerline-zsh&#34;&gt;&lt;em&gt;powerline&lt;/em&gt;&lt;/a&gt; to work on my mac machine.
+No matter what I tried, I was getting errors like the following:&lt;/p&gt;
+
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #000000; font-style: italic&#34;&gt;    .oh-my-zsh/themes/powerline.zsh-theme:100: character not in range&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Finally got it to work after multiple attempts on &lt;code&gt;bash&lt;/code&gt; and &lt;code&gt;zsh&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;All I had to do was set &lt;code&gt;LC_ALL&lt;/code&gt; to &lt;strong&gt;en_US.UTF-8&lt;/strong&gt;. It would set all the locales to &lt;code&gt;en_US.UTF-8&lt;/code&gt; which
+would allow &lt;code&gt;powerline&lt;/code&gt; fonts work properly.&lt;/p&gt;
+
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #000000&#34;&gt;$ &lt;/span&gt;&lt;span style=&#34;color: #204a87&#34;&gt;export &lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;LC_ALL&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;en_US.UTF-8&amp;quot;&lt;/span&gt;                                                                                                     22:58:06 
+&lt;span style=&#34;color: #000000&#34;&gt;$ &lt;/span&gt;locale 
+&lt;span style=&#34;color: #000000&#34;&gt;LANG&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;
+&lt;span style=&#34;color: #000000&#34;&gt;LC_COLLATE&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;en_US.UTF-8&amp;quot;&lt;/span&gt;
+&lt;span style=&#34;color: #000000&#34;&gt;LC_CTYPE&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;en_US.UTF-8&amp;quot;&lt;/span&gt;
+&lt;span style=&#34;color: #000000&#34;&gt;LC_MESSAGES&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;en_US.UTF-8&amp;quot;&lt;/span&gt;
+&lt;span style=&#34;color: #000000&#34;&gt;LC_MONETARY&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;en_US.UTF-8&amp;quot;&lt;/span&gt;
+&lt;span style=&#34;color: #000000&#34;&gt;LC_NUMERIC&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;en_US.UTF-8&amp;quot;&lt;/span&gt;
+&lt;span style=&#34;color: #000000&#34;&gt;LC_TIME&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;en_US.UTF-8&amp;quot;&lt;/span&gt;
+&lt;span style=&#34;color: #000000&#34;&gt;LC_ALL&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;en_US.UTF-8&amp;quot;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;After this, run the following command to test your fonts again.&lt;/p&gt;
+
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #000000&#34;&gt;LC_CTYPE&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;en_US.UTF-8 &lt;span style=&#34;color: #204a87&#34;&gt;echo&lt;/span&gt; &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;\u2603&amp;#39;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Your command should work with or without &lt;code&gt;LC_CTYPE=en_US.UTF-8&lt;/code&gt;. Here&amp;rsquo;s what you expect to see now.&lt;/p&gt;
+
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;    ☃
+&lt;/pre&gt;&lt;/div&gt;
+
+</description>
+    </item>
     
     <item>
       <title>Automated Git Mirror With GitHub or Gitlab or Bitbucket</title>
@@ -1246,51 +1309,6 @@ Just run the following to test whether it works:&lt;/p&gt;
 &lt;p&gt;As usual the code is available &lt;a href=&#34;https://github.com/abhi1010/Algorithms/blob/master/Algo_codes/Node.cpp&#34;&gt;here&lt;/a&gt;:&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&#34;https://github.com/abhi1010/Algorithms&#34;&gt;https://github.com/abhi1010/Algorithms&lt;/a&gt;&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Usage of typename</title>
-      <link>http://abhi1010.github.io/2014/05/usage-of-typename/</link>
-      <pubDate>Mon, 26 May 2014 14:19:15 +0000</pubDate>
-      
-      <guid>http://abhi1010.github.io/2014/05/usage-of-typename/</guid>
-      <description>&lt;p&gt;What is wrong with the following code?&lt;/p&gt;
-
-&lt;script type=&#34;text/javascript&#34; src=&#34;http://gist.github.com/0bd5e4d910e4d8a7672e.js&#34;&gt;&lt;/script&gt;
-
-&lt;p&gt;The issue is very simple but hard to notice. If you try to compile this, you will get the following errors:&lt;/p&gt;
-
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #000000; font-style: italic&#34;&gt;    main.cpp:24:5: error: need &amp;#39;typename&amp;#39; before &amp;#39;OuterStruct&amp;lt;T2&amp;gt;::InnerStruct&amp;#39; because &amp;#39;OuterStruct&amp;lt;T2&amp;gt;&amp;#39; is a dependent scope&lt;/span&gt;
-&lt;span style=&#34;color: #000000; font-style: italic&#34;&gt;    OuterStruct&amp;lt;T2&amp;gt;::InnerStruct mUsingInner;&lt;/span&gt;
-&lt;span style=&#34;color: #000000; font-style: italic&#34;&gt;    ^&lt;/span&gt;
-&lt;span style=&#34;color: #000000; font-style: italic&#34;&gt;    main.cpp: In function &amp;#39;int main(int, char**)&amp;#39;:&lt;/span&gt;
-&lt;span style=&#34;color: #000000; font-style: italic&#34;&gt;    main.cpp:34:13: error: &amp;#39;struct InnerStruct_Wrapper&amp;lt;int&amp;gt;&amp;#39; has no member named &amp;#39;mUsingInner&amp;#39;&lt;/span&gt;
-&lt;span style=&#34;color: #000000; font-style: italic&#34;&gt;    wrapper.mUsingInner = innerStrct;&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;&lt;strong&gt;The Issue&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;At least it straight away tells you something is wrong with &lt;code&gt;InnerStruct_Wrapper&lt;/code&gt;. Here&amp;rsquo;s what is happening:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;The compiler does not know that mUsingInner in that line is actually a variable of type &amp;ldquo;OuterStruct&lt;T2&gt;::InnerStruct&amp;rdquo;&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;InnerStruct will only be known later when it is being instantiated&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Compiler cannot figure out what InnerStruct means here. It could be a type or a member variable&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;strong&gt;The Fix&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;The only way here is to help the compiler by telling it beforehand that is going to be a class or struct type. The way to tell the compiler that something like this is supposed to be a type name is to throw in the keyword &amp;ldquo;typename&amp;rdquo;. The &amp;ldquo;typename&amp;rdquo; keyword has to be used everytime you want to tell the compiler that it should expect a Type in its place.&lt;/p&gt;
-
-&lt;p&gt;One place where this is used quite a lot is when templates have to implement iterators.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Full Code&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;&lt;em&gt;The full sample code, along with the fix&lt;/em&gt;&lt;/strong&gt; is provided on &lt;a href=&#34;http://coliru.stacked-crooked.com/a/b0ab70c458370048&#34;&gt;Stacked-Crooked&lt;/a&gt;.&lt;/p&gt;
 </description>
     </item>
     

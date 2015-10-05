@@ -6,8 +6,71 @@
     <description>Recent content on Coders Digest</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 27 Sep 2015 13:30:10 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 28 Sep 2015 08:46:09 +0800</lastBuildDate>
     <atom:link href="http://abhi1010.github.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Powerline for zsh</title>
+      <link>http://abhi1010.github.io/2015/09/powerline-for-zsh/</link>
+      <pubDate>Mon, 28 Sep 2015 08:46:09 +0800</pubDate>
+      
+      <guid>http://abhi1010.github.io/2015/09/powerline-for-zsh/</guid>
+      <description>
+&lt;figure &gt;
+    
+        &lt;img src=&#34;http://abhi1010.github.io/images/powerline-for-zsh.png&#34; alt=&#34;Powerline&#34; /&gt;
+    
+    
+    &lt;figcaption&gt;
+        &lt;p&gt;
+        Powerline
+        
+            
+        
+        &lt;/p&gt; 
+    &lt;/figcaption&gt;
+    
+&lt;/figure&gt;
+
+
+&lt;p&gt;I was having a lot of trouble getting &lt;a href=&#34;https://github.com/carlcarl/powerline-zsh&#34;&gt;&lt;em&gt;powerline&lt;/em&gt;&lt;/a&gt; to work on my mac machine.
+No matter what I tried, I was getting errors like the following:&lt;/p&gt;
+
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #000000; font-style: italic&#34;&gt;    .oh-my-zsh/themes/powerline.zsh-theme:100: character not in range&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Finally got it to work after multiple attempts on &lt;code&gt;bash&lt;/code&gt; and &lt;code&gt;zsh&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;All I had to do was set &lt;code&gt;LC_ALL&lt;/code&gt; to &lt;strong&gt;en_US.UTF-8&lt;/strong&gt;. It would set all the locales to &lt;code&gt;en_US.UTF-8&lt;/code&gt; which
+would allow &lt;code&gt;powerline&lt;/code&gt; fonts work properly.&lt;/p&gt;
+
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #000000&#34;&gt;$ &lt;/span&gt;&lt;span style=&#34;color: #204a87&#34;&gt;export &lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;LC_ALL&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;en_US.UTF-8&amp;quot;&lt;/span&gt;                                                                                                     22:58:06 
+&lt;span style=&#34;color: #000000&#34;&gt;$ &lt;/span&gt;locale 
+&lt;span style=&#34;color: #000000&#34;&gt;LANG&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;
+&lt;span style=&#34;color: #000000&#34;&gt;LC_COLLATE&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;en_US.UTF-8&amp;quot;&lt;/span&gt;
+&lt;span style=&#34;color: #000000&#34;&gt;LC_CTYPE&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;en_US.UTF-8&amp;quot;&lt;/span&gt;
+&lt;span style=&#34;color: #000000&#34;&gt;LC_MESSAGES&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;en_US.UTF-8&amp;quot;&lt;/span&gt;
+&lt;span style=&#34;color: #000000&#34;&gt;LC_MONETARY&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;en_US.UTF-8&amp;quot;&lt;/span&gt;
+&lt;span style=&#34;color: #000000&#34;&gt;LC_NUMERIC&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;en_US.UTF-8&amp;quot;&lt;/span&gt;
+&lt;span style=&#34;color: #000000&#34;&gt;LC_TIME&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;en_US.UTF-8&amp;quot;&lt;/span&gt;
+&lt;span style=&#34;color: #000000&#34;&gt;LC_ALL&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;en_US.UTF-8&amp;quot;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;After this, run the following command to test your fonts again.&lt;/p&gt;
+
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #000000&#34;&gt;LC_CTYPE&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;en_US.UTF-8 &lt;span style=&#34;color: #204a87&#34;&gt;echo&lt;/span&gt; &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;\u2603&amp;#39;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Your command should work with or without &lt;code&gt;LC_CTYPE=en_US.UTF-8&lt;/code&gt;. Here&amp;rsquo;s what you expect to see now.&lt;/p&gt;
+
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;    ☃
+&lt;/pre&gt;&lt;/div&gt;
+
+</description>
+    </item>
     
     <item>
       <title>Automated Git Mirror With GitHub or Gitlab or Bitbucket</title>
@@ -1235,41 +1298,6 @@ Just run the following to test whether it works:&lt;/p&gt;
 &lt;p&gt;Here&amp;rsquo;s a small sample as to how to do it:&lt;/p&gt;
 
 &lt;script type=&#34;text/javascript&#34; src=&#34;http://gist.github.com/e2b7117c20d0f591896f.js&#34;&gt;&lt;/script&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Deleting a Node from Singly Linked List</title>
-      <link>http://abhi1010.github.io/2014/06/deleting-a-node-from-singly-linked-list/</link>
-      <pubDate>Sat, 07 Jun 2014 10:49:17 +0000</pubDate>
-      
-      <guid>http://abhi1010.github.io/2014/06/deleting-a-node-from-singly-linked-list/</guid>
-      <description>
-
-&lt;p&gt;Deleting a Node from Singly Linked List is rather straight forward.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;You have to know the head first of all&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Start by checking the head if that&amp;rsquo;s the one you are looking for&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Keep moving forward and checking - always check for null pointers everywhere&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Before we talk about the code, let&amp;rsquo;s see how Linked List is setup.
-&amp;lt;!&amp;ndash; more &amp;ndash;&amp;gt;&lt;/p&gt;
-
-&lt;script type=&#34;text/javascript&#34; src=&#34;http://gist.github.com/33be440bf1012773b7e1.js&#34;&gt;&lt;/script&gt;
-
-&lt;p&gt;Now, below is the code for it&amp;hellip;.&lt;/p&gt;
-
-&lt;script type=&#34;text/javascript&#34; src=&#34;http://gist.github.com/bf9dbb193b4ff84ba3af.js&#34;&gt;&lt;/script&gt;
-
-&lt;h3 id=&#34;code:ca5ee7b35fae15e9d7ea6b34351195c6&#34;&gt;Code&lt;/h3&gt;
-
-&lt;p&gt;As usual the code is available &lt;a href=&#34;https://github.com/abhi1010/Algorithms/blob/master/Algo_codes/Node.cpp&#34;&gt;here&lt;/a&gt;:&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;https://github.com/abhi1010/Algorithms&#34;&gt;https://github.com/abhi1010/Algorithms&lt;/a&gt;&lt;/p&gt;
 </description>
     </item>
     
