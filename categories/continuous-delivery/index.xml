@@ -618,5 +618,66 @@ However, all that is required here is to know that python automatically picks up
 </description>
     </item>
     
+    <item>
+      <title>Docker Container cleanup on Elastic Beanstalk</title>
+      <link>http://abhi1010.github.io/2015/08/docker-container-cleanup-on-elastic-beanstalk/</link>
+      <pubDate>Fri, 07 Aug 2015 14:59:18 -0400</pubDate>
+      
+      <guid>http://abhi1010.github.io/2015/08/docker-container-cleanup-on-elastic-beanstalk/</guid>
+      <description>
+
+&lt;p&gt;Sometimes you may notice that old containers are not cleaned up from Beanstalk environment. This may be due to your container still running as a ghost on the background. One way to find out about this is to quickly look into your
+&lt;code&gt;/var/lib/docker/vfs/dir&lt;/code&gt; directory whether it has too many folders.&lt;/p&gt;
+
+&lt;p&gt;Next, find out what container processes you have going on.
+&lt;code&gt;[root@ip dir]# docker ps -a&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;You might see something like this:&lt;/p&gt;
+
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #000000; font-style: italic&#34;&gt;    CONTAINER ID        IMAGE                              COMMAND             CREATED             STATUS              PORTS               NAMES&lt;/span&gt;
+&lt;span style=&#34;color: #000000; font-style: italic&#34;&gt;    1611e5ebe2c0        aws_beanstalk/staging-app:latest   &amp;quot;supervisord -n&amp;quot;    About an hour ago                                           boring_galileo&lt;/span&gt;
+&lt;span style=&#34;color: #000000; font-style: italic&#34;&gt;    e59d0dd8bba1        aws_beanstalk/staging-app:latest   &amp;quot;supervisord -n&amp;quot;    About an hour ago                                           desperate_yalow&lt;/span&gt;
+&lt;span style=&#34;color: #000000; font-style: italic&#34;&gt;    3844d0e18c47        aws_beanstalk/staging-app:latest   &amp;quot;supervisord -n&amp;quot;    2 hours ago         Up 8 minutes        80/tcp              pensive_jang&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Ideally, we want to &amp;ldquo;forcibly remove&amp;rdquo; all images (and hence the folders from &lt;code&gt;/var/lib/docker/vfs/dir&lt;/code&gt; directory) that are not in use anymore.
+Just run the following to test whether it works:&lt;/p&gt;
+
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #000000; font-style: italic&#34;&gt;    docker rmi -f `docker images -aq`&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;You might run into trouble where docker says that all those images already have a container that is running them. This means those container are orphaned but not killed as we thought them to be. Let&amp;rsquo;s remove the shared volumes if any, for each one of them.&lt;/p&gt;
+
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #000000; font-style: italic&#34;&gt;    docker rm -fv `docker ps -aq` &lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;This will&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;kill the container&lt;/li&gt;
+&lt;li&gt;unlink the volumes&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;You should see a lot more space now on your beanstalk instance.
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #000000; font-style: italic&#34;&gt;    [root@ip dir]# df -h&lt;/span&gt;
+&lt;span style=&#34;color: #000000; font-style: italic&#34;&gt;    Filesystem      Size  Used Avail Use% Mounted on&lt;/span&gt;
+&lt;span style=&#34;color: #000000; font-style: italic&#34;&gt;    /dev/xvda1      7.8G  1.8G  5.9G  24% /&lt;/span&gt;
+&lt;span style=&#34;color: #000000; font-style: italic&#34;&gt;    devtmpfs        490M   96K  490M   1% /dev&lt;/span&gt;
+&lt;span style=&#34;color: #000000; font-style: italic&#34;&gt;    tmpfs           499M     0  499M   0% /dev/shm&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/p&gt;
+
+&lt;h1 id=&#34;last-resort:57533ab22b2cfb33b4a75f9cd178e950&#34;&gt;Last Resort&lt;/h1&gt;
+
+&lt;p&gt;If you feel that all this is not working, then you can try one of the scripts provided by &lt;code&gt;docker&lt;/code&gt; itself at
+&lt;a href=&#34;https://github.com/docker/docker/blob/master/contrib/nuke-graph-directory.sh&#34;&gt;GitHub&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;It will delete the folders under &lt;code&gt;/var/lib/docker&lt;/code&gt; and try to do it responsibly.&lt;/p&gt;
+</description>
+    </item>
+    
   </channel>
 </rss>

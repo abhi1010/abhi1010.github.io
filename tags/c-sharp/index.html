@@ -6,7 +6,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 
-  <title>Tag your namespaces &middot; Abhishek Pandey</title>
+  <title>C Sharp &middot; Abhishek Pandey</title>
 
   
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
@@ -27,7 +27,7 @@
   
   
   
-  
+  <link href="http://abhi1010.github.io/tags/c-sharp/index.xml" rel="alternate" type="application/rss+xml" title="Coders Digest &middot; Abhishek Pandey" />
 
   <meta name="description" content="Your default page description">
   <meta name="keywords" content="your,default,page,keywords">
@@ -84,69 +84,81 @@
 </div>
 
 
-<div class="content container">
-  <div class="post">
-    <h1>Tag your namespaces</h1>
-    <span class="post-date">Mar 31, 2008  &middot; <a href="http://abhi1010.github.io/2008/03/tag-your-namespaces/#disqus_thread">Comments</a>
-    
-    <br/>
-    
-          <a class="a_cat" href="http://abhi1010.github.io/categories/code">code</a>
-      
-      
-        <a class="a_tag" href="http://abhi1010.github.io/tags/c-sharp">c-sharp</a>
-      
 
+   <div class="content container">
+       <h1 class="title" style="font-variant: small-caps;">C Sharp</h1>
+   
     
-    </span>
-      <div id="_toc" class="toc">
+    
+      
+    
+      
         
-      </div>
-    <p>Recently discovered a nifty little feature on .Net and though of sharing it.</p>
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
 
-<p>You can tag an assembly by giving it a name and then use this name throughout your class to access the classes inside this namespace.</p>
 
-<pre><code>&lt;span style=&quot;color:#0000ff;&quot;&gt;using&lt;/span&gt; asp=CompanyName.Data;
-</code></pre>
 
-<p>Now all the classes inside CompanyName.Data namespace can be accessed using the name asp (as if it was an instance of the namespace).</p>
-
-<p>One thing to note, however, is that the classes inside this namespace cannot be accessed directly and the word &ldquo;asp&rdquo; has to be used.</p>
-
-<p>Let&rsquo;s see an example to understand it.
-<script type="text/javascript" src="http://gist.github.com/ad4f3fc47ffa870a48f9.js"></script></p>
-
-<p>This function, btw, is going through a namespace called <code>Company.AspFunctions</code> and we give it a tag <code>asp</code> to access all classes under it by its tag instead. Date_Format() fn is a static function inside Conn Class. Basically it takes your &ldquo;asp style&rdquo; datetime strings and returns you the correct date in <code>yyyyMMdd</code> format.</p>
+    <ul>
+    
+      <li>
+          <a href="http://abhi1010.github.io/2013/11/reading-excel-in-c/">Reading Excel in C#</a>
+          <span style="float:right;"><time>Nov 9, 2013</time></span>
+      </li>
+    
+      <li>
+          <a href="http://abhi1010.github.io/2013/10/ideas-for-shared-memory-in-linux/">Ideas for Shared Memory in Linux</a>
+          <span style="float:right;"><time>Oct 13, 2013</time></span>
+      </li>
+    
+      <li>
+          <a href="http://abhi1010.github.io/2008/05/visual-studio-2008-crashes-while-adding-items/">Visual Studio 2008 crashes while adding items</a>
+          <span style="float:right;"><time>May 14, 2008</time></span>
+      </li>
+    
+      <li>
+          <a href="http://abhi1010.github.io/2008/03/tag-your-namespaces/">Tag your namespaces</a>
+          <span style="float:right;"><time>Mar 31, 2008</time></span>
+      </li>
+    
+      <li>
+          <a href="http://abhi1010.github.io/2008/03/creating-custom-web-controls/">Creating Custom Web Controls</a>
+          <span style="float:right;"><time>Mar 8, 2008</time></span>
+      </li>
+    
+      <li>
+          <a href="http://abhi1010.github.io/2008/03/stringbuilder-vs-string-joins/">StringBuilder vs String joins</a>
+          <span style="float:right;"><time>Mar 8, 2008</time></span>
+      </li>
+    
+      <li>
+          <a href="http://abhi1010.github.io/2008/03/blogs-i-like/">Blogs I like</a>
+          <span style="float:right;"><time>Mar 8, 2008</time></span>
+      </li>
+    
+      <li>
+          <a href="http://abhi1010.github.io/2008/03/recursively-read-directories-and-list-all-files-under-it/">Recursively read directories and list all files under it</a>
+          <span style="float:right;"><time>Mar 4, 2008</time></span>
+      </li>
+    
+      <li>
+          <a href="http://abhi1010.github.io/2007/11/dynamically-increase-label-size-autosize/">Dynamically increase Label size [AutoSize]</a>
+          <span style="float:right;"><time>Nov 23, 2007</time></span>
+      </li>
+    
+      <li>
+          <a href="http://abhi1010.github.io/2007/10/use-of-yield-statement/">Use of yield statement</a>
+          <span style="float:right;"><time>Oct 26, 2007</time></span>
+      </li>
+    
+    </ul>
 
   </div>
-  <div id="disqus_thread"></div>
-</div>
-
-
-<script type="text/javascript">
-var disqus_shortname = "abhi1010";
-(function () {
-    var s = document.createElement('script'); s.async = true;
-    s.type = 'text/javascript';
-    s.src = '//' + disqus_shortname + '.disqus.com/count.js';
-    (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
-}());
-</script>
-
-
-
-<script type="text/javascript">
-    var disqus_shortname = "abhi1010";
-    (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-
-
-</body>
-</html>
-

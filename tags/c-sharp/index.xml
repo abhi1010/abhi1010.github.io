@@ -1,0 +1,407 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>C Sharp on Coders Digest</title>
+    <link>http://abhi1010.github.io/tags/c-sharp/</link>
+    <description>Recent content in C Sharp on Coders Digest</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 09 Nov 2013 23:51:00 +0000</lastBuildDate>
+    <atom:link href="http://abhi1010.github.io/tags/c-sharp/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Reading Excel in C#</title>
+      <link>http://abhi1010.github.io/2013/11/reading-excel-in-c/</link>
+      <pubDate>Sat, 09 Nov 2013 23:51:00 +0000</pubDate>
+      
+      <guid>http://abhi1010.github.io/2013/11/reading-excel-in-c/</guid>
+      <description>&lt;p&gt;Recently had to work on an Excel and update its content when some events were triggered on a Bloomberg terminal. I couldn&amp;rsquo;t find any code for reading the excel file using C# so thought of putting that up.&lt;/p&gt;
+
+&lt;p&gt;There were a few things to learn:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Excel support is not available by default so make sure to add Microsoft.Office.Interop.Excel as a reference&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Sometime indexing to reference the Workbooks or Worksheets may not work so try out other values&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;ul&gt;
+&lt;li&gt;I remember this was not a problem with Visual Studio 2010 but something must have happened in Visual Studio 2012&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;It is also possible to try Workbook names to try and retrieve them&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Please follow the shortened code to read an Excel file after the break.&lt;/p&gt;
+
+&lt;!-- more --&gt;
+
+&lt;script type=&#34;text/javascript&#34; src=&#34;http://gist.github.com/ee13f57720471c8feea2.js&#34;&gt;&lt;/script&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Ideas for Shared Memory in Linux</title>
+      <link>http://abhi1010.github.io/2013/10/ideas-for-shared-memory-in-linux/</link>
+      <pubDate>Sun, 13 Oct 2013 05:59:22 +0000</pubDate>
+      
+      <guid>http://abhi1010.github.io/2013/10/ideas-for-shared-memory-in-linux/</guid>
+      <description>&lt;p&gt;I have been doing extensive research today regarding shared memory in linux before I embark on a new project in which shaving time off process communication latency is extremely important. I found some very interesting links as well. Let’s break them down:&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Topic&lt;/th&gt;
+&lt;th&gt;Description&lt;/th&gt;
+&lt;th&gt;Link&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Theory/Explanation&lt;/td&gt;
+&lt;td&gt;Some articles that explain how to get started&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2006/n2044.html&#34;&gt;open-std&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;Content in the first column&lt;/td&gt;
+&lt;td&gt;Content in the second column&lt;/td&gt;
+&lt;td&gt;lkd&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;IPC Mechanisms – some recommendations. Mainly talks about softwares like Boost, dBus dBus used to work using kernel levels but lately have come up with a patch that bypasses kernels&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;http://stackoverflow.com/questions/1906166/inter-process-communication-recommendation&#34;&gt;Stackoverflow&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;What every programmer should know about memory&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;http://lwn.net/Articles/255364/&#34;&gt;LWN&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;Linux IPC&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;http://www.tldp.org/LDP/tlk/ipc/ipc.html&#34;&gt;TLDP&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;Cache Friendly Code&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;http://stackoverflow.com/questions/16699247/what-is-cache-friendly-code/16699282#16699282&#34;&gt;Stackoverflow&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;Helpful Articles     Which linux IPC technique to use?&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;http://stackoverflow.com/questions/2281204/which-linux-ipc-technique-to-use&#34;&gt;Stackoverflow&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;Inter process communication – talks about shared memory&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;http://www.advancedlinuxprogramming.com/alp-folder/alp-ch05-ipc.pdf&#34;&gt;ALP&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;Linux Poll Events on Shared Memory&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;http://stackoverflow.com/questions/11470322/cause-a-linux-poll-event-on-a-shared-memory-file&#34;&gt;Stackoverflow&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;Using semaphores in Shared Memory&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;http://stackoverflow.com/questions/10772860/semaphores-and-shared-memory-in-linux&#34;&gt;Stackoverflow&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;Sharing semaphores between Shared Memory&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;http://stackoverflow.com/questions/8359322/how-to-share-semaphores-between-processes-using-shared-memory?rq=1&#34;&gt;Stackoverflow&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;Sharing memory between processes&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;http://stackoverflow.com/questions/11583281/sharing-memory-between-two-processes&#34;&gt;Stackoverflow&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;Reserving memory at kernel boot up (DMA)&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;http://stackoverflow.com/questions/647783/direct-memory-access-in-linux?rq=1&#34;&gt;Stackoverflow&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;Extra&lt;/td&gt;
+&lt;td&gt;IPC Shared memory samples&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;http://linuxgazette.net/104/ramankutty.html&#34;&gt;linuxgazette&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Visual Studio 2008 crashes while adding items</title>
+      <link>http://abhi1010.github.io/2008/05/visual-studio-2008-crashes-while-adding-items/</link>
+      <pubDate>Wed, 14 May 2008 21:43:00 +0000</pubDate>
+      
+      <guid>http://abhi1010.github.io/2008/05/visual-studio-2008-crashes-while-adding-items/</guid>
+      <description>&lt;p&gt;Had this problem cropping up since months where I was trying to add items to Visual Studio 2008 Toolbox and it kept crashing.&lt;/p&gt;
+
+&lt;p&gt;Finally got a work around, you should start it in safe mode. Here&amp;rsquo;s the procedure:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;devenv /safemode
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Then use Choose Items on toolbox and run through each of the tabs. Once you
+accept any exceptions raised on loading controls, you can then open Visual
+Studio normally and add items.&lt;/p&gt;
+
+&lt;p&gt;The reason for this has to be pretty simple - I have installed way too many beta/refresh version on Visual Studio 2008, something had to give up. I can&amp;rsquo;t really complain.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Tag your namespaces</title>
+      <link>http://abhi1010.github.io/2008/03/tag-your-namespaces/</link>
+      <pubDate>Mon, 31 Mar 2008 08:23:00 +0000</pubDate>
+      
+      <guid>http://abhi1010.github.io/2008/03/tag-your-namespaces/</guid>
+      <description>&lt;p&gt;Recently discovered a nifty little feature on .Net and though of sharing it.&lt;/p&gt;
+
+&lt;p&gt;You can tag an assembly by giving it a name and then use this name throughout your class to access the classes inside this namespace.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;span style=&amp;quot;color:#0000ff;&amp;quot;&amp;gt;using&amp;lt;/span&amp;gt; asp=CompanyName.Data;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now all the classes inside CompanyName.Data namespace can be accessed using the name asp (as if it was an instance of the namespace).&lt;/p&gt;
+
+&lt;p&gt;One thing to note, however, is that the classes inside this namespace cannot be accessed directly and the word &amp;ldquo;asp&amp;rdquo; has to be used.&lt;/p&gt;
+
+&lt;p&gt;Let&amp;rsquo;s see an example to understand it.
+&lt;script type=&#34;text/javascript&#34; src=&#34;http://gist.github.com/ad4f3fc47ffa870a48f9.js&#34;&gt;&lt;/script&gt;&lt;/p&gt;
+
+&lt;p&gt;This function, btw, is going through a namespace called &lt;code&gt;Company.AspFunctions&lt;/code&gt; and we give it a tag &lt;code&gt;asp&lt;/code&gt; to access all classes under it by its tag instead. Date_Format() fn is a static function inside Conn Class. Basically it takes your &amp;ldquo;asp style&amp;rdquo; datetime strings and returns you the correct date in &lt;code&gt;yyyyMMdd&lt;/code&gt; format.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Creating Custom Web Controls</title>
+      <link>http://abhi1010.github.io/2008/03/creating-custom-web-controls/</link>
+      <pubDate>Sat, 08 Mar 2008 22:30:00 +0000</pubDate>
+      
+      <guid>http://abhi1010.github.io/2008/03/creating-custom-web-controls/</guid>
+      <description>&lt;p&gt;How do you extend a control? Let&amp;rsquo;s figure it out.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Why would you want to extend existing controls?&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Because some functionality may not exist exactly as you may need it. For example, let&amp;rsquo;s take up ImageButton control example. It is a great control but it falls short when it comes to real world scenario. Mostly websites do a hover image clickable button where the text or background color of the button changes once you hover your mouse over it.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;How to Extend?&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;_I assume that you use C# code but there is not going to be any difference even if you wanted to do in VB.Net. _&lt;/p&gt;
+
+&lt;p&gt;Create a project for creating custom web control library. It automatically includes a C# class that says something like&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;span style=&amp;quot;color:#0000ff;&amp;quot;&amp;gt;public&amp;lt;/span&amp;gt; &amp;lt;span style=&amp;quot;color:#0000ff;&amp;quot;&amp;gt;class&amp;lt;/span&amp;gt; WebCustomControl1 : WebControl
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now ask yourself, what do you want to extend? A GridView? Replace WebControl with GridView. Let&amp;rsquo;s follow our example with Hover Image Button Control. If you recall .Net already has ImageButton control that accepts one url for the image to be shown for that button, let&amp;rsquo;s extend that one to include two Images rather than just one. In that case I would replace WebControl with ImageButton since I am going to extend ImageButton control. Let&amp;rsquo;s call it HoverImageButton. Hence, the line changes to some thing like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;span style=&amp;quot;color:#0000ff;&amp;quot;&amp;gt;public&amp;lt;/span&amp;gt; &amp;lt;span style=&amp;quot;color:#0000ff;&amp;quot;&amp;gt;class&amp;lt;/span&amp;gt; HoverImageButton : ImageButton
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The class also includes a property called Text for you so that you can see that and figure out how to use properties in custom web controls. It also includes attributes that start off just before the property itself. It is used by Visual Studio for showing this property on Properties pane. It is definitely a very useful feature.&lt;/p&gt;
+
+&lt;p&gt;You can change this property to anything you like. Since we are creating a HoverImageButton control we want a property to save another url for the hover image&amp;rsquo;s source. Let&amp;rsquo;s change Text to &amp;ldquo;ImageHoverUrl&amp;rdquo;. ImageButton already has a property called &amp;ldquo;ImageUrl&amp;rdquo; and it belongs to &amp;ldquo;Appearance&amp;rdquo; group in Visual Studio Properties window. Notice the similarity in &amp;ldquo;ImageHoverUrl&amp;rdquo; and ImageUrl so that they appear together in Properties window. Sometimes, little deeds go a long way.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Writing JS file&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Now let&amp;rsquo;s add a javascript file to the project. Add one function called &amp;ldquo;ShowImageHoverButton()&amp;rdquo; that takes in two parameters, the control&amp;rsquo;s id and the new image to be shown for that control. The control image&amp;rsquo;s source is changed everytime when this function is called. We can call this function on mouse out and on mouse over events.&lt;/p&gt;
+
+&lt;p&gt;That&amp;rsquo;s all you need to do for this control.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Linking JS and Custom Control them together&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;This is a very simple process. You have the javascript file and you know for sure that the control will be loaded into the webpage, so you need a mechanism inside the control so that you can tell that &amp;ldquo;hey, include this javascript file whenever you have this control on a page&amp;rdquo;.&lt;/p&gt;
+
+&lt;p&gt;This is how you do that.&lt;/p&gt;
+
+&lt;script type=&#34;text/javascript&#34; src=&#34;http://gist.github.com/bfb075b6787d2616fde6.js&#34;&gt;&lt;/script&gt;
+
+&lt;p&gt;Please note that the name of the javascript file is &amp;ldquo;HoverImageButtonJS.js&amp;rdquo;. ExtendedControls is the name of the project/assembly that I have created for this custom web control.&lt;/p&gt;
+
+&lt;p&gt;How to assign javascript functions to the control?&lt;/p&gt;
+
+&lt;p&gt;Now the next problem is how would you tell the control that call this javscript function function on &amp;ldquo;mouseover&amp;rdquo;? We use OnInit function for this process. We override the function and make use of the control&amp;rsquo;s Attributes property.&lt;/p&gt;
+
+&lt;p&gt;What is Attributes property for anyway? Well, it adds any extra &amp;ldquo;property&amp;rdquo; or &amp;ldquo;style&amp;rdquo; that you may want to add to the control when it is rendered to the client.&lt;/p&gt;
+
+&lt;p&gt;Let&amp;rsquo;s see how that&amp;rsquo;s done.&lt;/p&gt;
+
+&lt;script type=&#34;text/javascript&#34; src=&#34;http://gist.github.com/d0b66ef7b0f076e88042.js&#34;&gt;&lt;/script&gt;
+
+&lt;p&gt;Over here, I have told the class to include &lt;code&gt;&amp;quot;onmouseover=ShowImageHoverButton(this, &#39;IMAGE_SOURCE&#39;)&amp;quot;&lt;/code&gt; as a property.&lt;/p&gt;
+
+&lt;p&gt;This is how it is rendered on the client browser:&lt;/p&gt;
+
+&lt;script type=&#34;text/javascript&#34; src=&#34;http://gist.github.com/6df972bf94b736545419.js&#34;&gt;&lt;/script&gt;
+
+&lt;p&gt;&lt;strong&gt;Add the javascript file also to the AssemblyInfo.cs class&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;For the control library to properly include the js file, you have to add the js file in AssemblyInfo.cs class as well. This is how it is done:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[assembly: WebResource(&amp;lt;span style=&amp;quot;color:#006080;&amp;quot;&amp;gt;&amp;quot;ExtendedControls.HoverImageButtonJS.js&amp;quot;&amp;lt;/span&amp;gt;, &amp;lt;span style=&amp;quot;color:#006080;&amp;quot;&amp;gt;&amp;quot;text/javascript&amp;quot;&amp;lt;/span&amp;gt;)]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;Test Drive!&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;That&amp;rsquo;s all. A few simple steps and your control is ready to be tested. Still, let&amp;rsquo;s not rush and see the steps required:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Add this control&amp;rsquo;s library to any web project.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Register the dll on web.config. This makes the control available automatically on all the pages.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;script type=&#34;text/javascript&#34; src=&#34;http://gist.github.com/88222d3f94911fbec6f4.js&#34;&gt;&lt;/script&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Go to the design view of any page. Open up the Toolbox pane and you will automatically see the name appear &amp;ldquo;HoverImageButton&amp;rdquo;. Double click and you are ready to go!!&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Easy as it may sound but it may not be that smooth a ride for you.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Just take care of few pointers and you should be fine. Here they go:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;The JScript file that you have added sometimes doesn&amp;rsquo;t get linked properly to the control. Right click on the js file and check it&amp;rsquo;s properties. It&amp;rsquo;s compile action should be &amp;ldquo;Embed Content&amp;rdquo; rather than anything else. That way everytime you compile this control, this js file gets &amp;ldquo;embedded&amp;rdquo; into the control&amp;rsquo;s library.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Take care of the naming convention for the js file.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;If your control&amp;rsquo;s namespace is ExtendedControls, then while &amp;ldquo;Registering&amp;rdquo; it in the control&amp;rsquo;s class you should give the JS file&amp;rsquo;s name as &amp;ldquo;ExtendedControls.CustomControl_JS.js&amp;rdquo; where &amp;ldquo;CustomControl_JS.js&amp;rdquo; is the name of the javascript file. Basically, another shortcut to learn it is whatever is the name of the project/assembly that you are creating, you have to append that name before the file name. **Follow this logic strictly, otherwise you will be left high and dry. **&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;You should also remember to register this name inside AssemblyInfo.cs class (&amp;ldquo;ExtendedControls.CustomControl_JS.js&amp;rdquo; as per our example here).&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;If you want Visual Studio Design support then remember to add the attributes that define where can you see the custom properties of this control in the &amp;ldquo;Properties&amp;rdquo; pane.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Whenever you are putting your code files inside some folder, try to keep the JS files in the root folder.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;When I tried putting them inside the folder it did not work, i took them out to the root folder and it worked instantly. I have not tried changing the JS file names but I am sure you can figure out some solution.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Here&amp;rsquo;s all the code in case somebody needs it:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;script type=&#34;text/javascript&#34; src=&#34;http://gist.github.com/135e9bbf44f3d9a53cb8.js&#34;&gt;&lt;/script&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>StringBuilder vs String joins</title>
+      <link>http://abhi1010.github.io/2008/03/stringbuilder-vs-string-joins/</link>
+      <pubDate>Sat, 08 Mar 2008 13:55:00 +0000</pubDate>
+      
+      <guid>http://abhi1010.github.io/2008/03/stringbuilder-vs-string-joins/</guid>
+      <description>&lt;p&gt;For those who do not want to waste their time, here&amp;rsquo;s the gist for this whole article:
+&lt;em&gt;StringBuilder performs better but you should try to use it when there&amp;rsquo;s lot of concatenation involved (normally more than 7 joins - start thinking about StringBuilder.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Let&amp;rsquo;s move on for the lesser mortals. There has been a lot of debate about using StringBuilder instead of adding string like&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;span style=&amp;quot;color:#606060;&amp;quot;&amp;gt;   1:&amp;lt;/span&amp;gt; strVariable += &amp;lt;span style=&amp;quot;color:#006080;&amp;quot;&amp;gt;&amp;quot; Add this string to my variable string&amp;quot;&amp;lt;/span&amp;gt;;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;What&amp;rsquo;s the darn difference?&lt;/p&gt;
+
+&lt;p&gt;If you remember your schooling concepts string objects are fixed, their values cannot be changed. So, how can you change the value of a string? Well, you do NOT change the value, you change the object altogether! Every time you assign a value a new object of type string is created with the given value and is returned to you. hence, you discard the old string and actually come up with a new string.&lt;/p&gt;
+
+&lt;p&gt;On the other hand, when you use StringBuilder, it is the same object, that you are working on. It keeps appending to the same object and the heap is not changed. Then why don&amp;rsquo;t you use it always? Because there are &amp;ldquo;appending&amp;rdquo; costs. Everytime you append something, it is checked against the buffer and if it falls short of space needed, a new buffer is allocated. Let&amp;rsquo;s see how that works inside the dll:&lt;/p&gt;
+
+&lt;p&gt;How about some proof?&lt;/p&gt;
+
+&lt;p&gt;Fortunately somebody did the hard work for all of us and actually came up with the statistics. You can find all of that over here:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://209.85.175.104/search?q=cache:k9R6UE-q2nMJ:www.heikniemi.net/hc/archives/000124.html+http://www.heikniemi.net/hc/archives/000124.html&amp;amp;hl=en&amp;amp;ct=clnk&amp;amp;cd=1&amp;amp;gl=sg&amp;amp;client=firefox-a&#34;&gt;http://www.heikniemi.net/hc/archives/000124.html&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Blogs I like</title>
+      <link>http://abhi1010.github.io/2008/03/blogs-i-like/</link>
+      <pubDate>Sat, 08 Mar 2008 10:26:00 +0000</pubDate>
+      
+      <guid>http://abhi1010.github.io/2008/03/blogs-i-like/</guid>
+      <description>&lt;p&gt;Two blogs i really like and follow many a times are:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;SqlAuthority.com&#34;&gt;SqlAuthority.com&lt;/a&gt; - Excellent blog for Sql Server 2005. The guy has a very in-depth knowledge of Sql Server and I appreciate the way&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://weblogs.asp.net/scottgu&#34;&gt;Scott&amp;rsquo;s Blog&lt;/a&gt; - Another great blog where Scott Guthrie talks quite a bit about ASP.NET and tells the latest details coming in from Microsoft.&lt;/p&gt;
+
+&lt;p&gt;Just today I found another interesting blog. This guy talks about the interesting aspects in programming.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://blogs.msdn.com/ericlippert/default.aspx&#34;&gt;http://blogs.msdn.com/ericlippert/default.aspx&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://blogs.msdn.com/brada/&#34;&gt;http://blogs.msdn.com/brada/&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Following is an interesting link that talks about a lot of topics.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://weblogs.asp.net/scottgu/archive/2008/01/24/jan-24th-links-asp-net-asp-net-ajax-visual-studio-net-iis.aspx&#34;&gt;http://weblogs.asp.net/scottgu/archive/2008/01/24/jan-24th-links-asp-net-asp-net-ajax-visual-studio-net-iis.aspx&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Recursively read directories and list all files under it</title>
+      <link>http://abhi1010.github.io/2008/03/recursively-read-directories-and-list-all-files-under-it/</link>
+      <pubDate>Tue, 04 Mar 2008 07:49:00 +0000</pubDate>
+      
+      <guid>http://abhi1010.github.io/2008/03/recursively-read-directories-and-list-all-files-under-it/</guid>
+      <description>&lt;script type=&#34;text/javascript&#34; src=&#34;http://gist.github.com/a1bcc60b383a0bc72d5f.js&#34;&gt;&lt;/script&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Dynamically increase Label size [AutoSize]</title>
+      <link>http://abhi1010.github.io/2007/11/dynamically-increase-label-size-autosize/</link>
+      <pubDate>Fri, 23 Nov 2007 07:52:00 +0000</pubDate>
+      
+      <guid>http://abhi1010.github.io/2007/11/dynamically-increase-label-size-autosize/</guid>
+      <description>&lt;p&gt;Recently I had to work on a windows form where the Labels are added dynamically onto the form. Some of you may think that setting AutoSize to true would fix the problem but it works only when you already have added that Label control onto the form, not when you are adding it dynamically.&lt;/p&gt;
+
+&lt;p&gt;Despair not, there&amp;rsquo;s still a solution. Just create a label and set it&amp;rsquo;s text first then call this function:&lt;/p&gt;
+
+&lt;script type=&#34;text/javascript&#34; src=&#34;http://gist.github.com/e8390c5868a86998a7d5.js&#34;&gt;&lt;/script&gt;
+
+&lt;p&gt;If you do some testing it may not work on Compact Framework. Here&amp;rsquo;s how to get around that issue again.&lt;/p&gt;
+
+&lt;script type=&#34;text/javascript&#34; src=&#34;http://gist.github.com/f488949a5d79b6d86544.js&#34;&gt;&lt;/script&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Use of yield statement</title>
+      <link>http://abhi1010.github.io/2007/10/use-of-yield-statement/</link>
+      <pubDate>Fri, 26 Oct 2007 16:36:00 +0000</pubDate>
+      
+      <guid>http://abhi1010.github.io/2007/10/use-of-yield-statement/</guid>
+      <description>&lt;p&gt;It might be a little late for this to appear but I have no qualms in accepting that I have finally embraced yield statement and see it as an excellent way of writing codes.&lt;/p&gt;
+
+&lt;p&gt;I have had my fair share of writing small code fragments to read/process/write files and more often than that it is excel files. So I thought, there has to be an easier way than just creating common functions for Connections and processing functions - at that time yield statement came to the rescue. I have always had to read the excel file, one line after another - pretty much like a DataTable if you ask me.&lt;/p&gt;
+
+&lt;p&gt;The best way to put the whole process of reading the excel file is to automate reading, iterating and closing of the excel files. It is done by yield statement as I can &amp;ldquo;yield&amp;rdquo; the data of the excel through DataReader (OdbcDataReader in my case).&lt;/p&gt;
+
+&lt;script type=&#34;text/javascript&#34; src=&#34;http://gist.github.com/36ecc206fc5f61f4b4bc.js&#34;&gt;&lt;/script&gt;
+
+&lt;p&gt;This way, the function is always common - it is always supposed to read the excel, iterate through it. The data that I need is always in the DataReader so I thought let&amp;rsquo;s just return the data itself! The rest of the function is pretty much normal. The biggest gain is that I don&amp;rsquo;t have to change the structure of the function. The same function can now be used for multiple excel sheets. Have a look at the code.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
