@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tips on Coders Digest</title>
-    <link>http://abhi1010.github.io/categories/tips/</link>
+    <link>http://abhipandey.com/categories/tips/</link>
     <description>Recent content in Tips on Coders Digest</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 19 May 2014 09:45:57 +0000</lastBuildDate>
-    <atom:link href="http://abhi1010.github.io/categories/tips/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://abhipandey.com/categories/tips/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Getting a group of lines from a file</title>
-      <link>http://abhi1010.github.io/2014/05/getting-a-group-of-lines-from-a-file/</link>
+      <link>http://abhipandey.com/2014/05/getting-a-group-of-lines-from-a-file/</link>
       <pubDate>Mon, 19 May 2014 09:45:57 +0000</pubDate>
       
-      <guid>http://abhi1010.github.io/2014/05/getting-a-group-of-lines-from-a-file/</guid>
+      <guid>http://abhipandey.com/2014/05/getting-a-group-of-lines-from-a-file/</guid>
       <description>&lt;p&gt;I&amp;rsquo;ve had this need quite a few times to pull out a section of logs that would begin with a particular line and end with another. grep is not exactly useful there because it only prints out sections based on line counters (using -A/B/C) lines based on a single search pattern.&lt;/p&gt;
 
 &lt;p&gt;I came up with a script that can run at almost same speeds using &lt;code&gt;grep/cat/awk&lt;/code&gt;. &lt;code&gt;awk&lt;/code&gt; is used to decide whether the end of the section has been reached or not. Some features of the script are:&lt;/p&gt;
@@ -37,10 +37,10 @@
     
     <item>
       <title>Tokenize a String using C&#43;&#43;</title>
-      <link>http://abhi1010.github.io/2014/04/tokenize-a-string-using-c/</link>
+      <link>http://abhipandey.com/2014/04/tokenize-a-string-using-c/</link>
       <pubDate>Tue, 08 Apr 2014 07:00:00 +0000</pubDate>
       
-      <guid>http://abhi1010.github.io/2014/04/tokenize-a-string-using-c/</guid>
+      <guid>http://abhipandey.com/2014/04/tokenize-a-string-using-c/</guid>
       <description>&lt;p&gt;Here&amp;rsquo;s a short snippet to split a string into multiple tokens; into a vector. As you will see that, if you run the code, boost version performs better because you can choose a number of delimiters to split your string instead of the vanilla version using the normal C++ code. Of course, you may also write your own code to do something like this but I was looking to do some short snippets.&lt;/p&gt;
 
 &lt;script type=&#34;text/javascript&#34; src=&#34;http://gist.github.com/554885a7235f4047dae6.js&#34;&gt;&lt;/script&gt;
@@ -51,10 +51,10 @@
     
     <item>
       <title>CVS Cheat Sheet</title>
-      <link>http://abhi1010.github.io/2013/07/cvs-cheat-sheet/</link>
+      <link>http://abhipandey.com/2013/07/cvs-cheat-sheet/</link>
       <pubDate>Wed, 03 Jul 2013 07:28:00 +0000</pubDate>
       
-      <guid>http://abhi1010.github.io/2013/07/cvs-cheat-sheet/</guid>
+      <guid>http://abhipandey.com/2013/07/cvs-cheat-sheet/</guid>
       <description>&lt;p&gt;I&amp;rsquo;ve worked on CVS for a long time now and figured out that I&amp;rsquo;d save a lot of time if I started writing alias or functions for the numerous tasks that I did on them. I will put down some of them here so you may benefit from them.&lt;/p&gt;
 
 &lt;p&gt;&lt;em&gt;Silently update and inform about the status of the files (recursive)&lt;/em&gt;&lt;/p&gt;
@@ -98,10 +98,10 @@ echo $CMD
     
     <item>
       <title>Cursor Control in VIM Search</title>
-      <link>http://abhi1010.github.io/2013/06/cursor-control-in-vim-search/</link>
+      <link>http://abhipandey.com/2013/06/cursor-control-in-vim-search/</link>
       <pubDate>Tue, 11 Jun 2013 07:05:00 +0000</pubDate>
       
-      <guid>http://abhi1010.github.io/2013/06/cursor-control-in-vim-search/</guid>
+      <guid>http://abhipandey.com/2013/06/cursor-control-in-vim-search/</guid>
       <description>&lt;p&gt;Found a great way to search for keywords &amp;amp;&amp;amp; control the location of cursor in vim. It is excellent if you want to do a particular task multiple times. Usually if you search the cursor will straight away take you to the start of search. What if you want to go to the end of the word you are searching for?&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;/pattern/e
@@ -173,10 +173,10 @@ echo $CMD
     
     <item>
       <title>Change Putty Window Title</title>
-      <link>http://abhi1010.github.io/2013/04/change-putty-window-title/</link>
+      <link>http://abhipandey.com/2013/04/change-putty-window-title/</link>
       <pubDate>Thu, 25 Apr 2013 07:02:00 +0000</pubDate>
       
-      <guid>http://abhi1010.github.io/2013/04/change-putty-window-title/</guid>
+      <guid>http://abhipandey.com/2013/04/change-putty-window-title/</guid>
       <description>&lt;p&gt;How to modify the Putty window title to a specific string?&lt;/p&gt;
 
 &lt;p&gt;By default, you&amp;rsquo;d like to have the window title to give you the full path to the folder you are working from (working directory). &lt;code&gt;PROMPT_COMMAND&lt;/code&gt;will help you with that.&lt;/p&gt;
@@ -193,10 +193,10 @@ echo $CMD
     
     <item>
       <title>Google Analytics &amp; SWFAddress</title>
-      <link>http://abhi1010.github.io/2008/04/google-analytics--swfaddress/</link>
+      <link>http://abhipandey.com/2008/04/google-analytics--swfaddress/</link>
       <pubDate>Sun, 06 Apr 2008 05:32:00 +0000</pubDate>
       
-      <guid>http://abhi1010.github.io/2008/04/google-analytics--swfaddress/</guid>
+      <guid>http://abhipandey.com/2008/04/google-analytics--swfaddress/</guid>
       <description>&lt;p&gt;Recently found a bug slash issue with Google Analytics new javscript software (post-urchin v5). I had written the internal documentation for the company standards and somehow when those standards were put into practice, SWFAddress feature of flash stopped working the moment google analytics feature was enabled. Worst of all, the web pages failed to load! To cap it off, the website was working perfectly fine on Firefox 2, 3 and IE 7!! It was having trouble only on IE6.&lt;/p&gt;
 
 &lt;p&gt;I tried a lot of ways but none seem to worked. Finally found a blog that remotely talked about SWFAddress!&lt;/p&gt;
@@ -209,10 +209,10 @@ echo $CMD
     
     <item>
       <title>Full Trust on Mapped Drive</title>
-      <link>http://abhi1010.github.io/2008/03/full-trust-on-mapped-drive/</link>
+      <link>http://abhipandey.com/2008/03/full-trust-on-mapped-drive/</link>
       <pubDate>Mon, 31 Mar 2008 18:26:00 +0000</pubDate>
       
-      <guid>http://abhi1010.github.io/2008/03/full-trust-on-mapped-drive/</guid>
+      <guid>http://abhipandey.com/2008/03/full-trust-on-mapped-drive/</guid>
       <description>&lt;p&gt;Sometimes, when opening a web project from another mapped drive (not your own computer&amp;rsquo;s hard disk) Visual Studio may complain something like this:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;The project location is not trusted.
@@ -232,10 +232,10 @@ attempts to perform actions which require full trust.
     
     <item>
       <title>Talk to my... Flash?</title>
-      <link>http://abhi1010.github.io/2008/03/talk-to-my...-flash/</link>
+      <link>http://abhipandey.com/2008/03/talk-to-my...-flash/</link>
       <pubDate>Mon, 03 Mar 2008 04:58:00 +0000</pubDate>
       
-      <guid>http://abhi1010.github.io/2008/03/talk-to-my...-flash/</guid>
+      <guid>http://abhipandey.com/2008/03/talk-to-my...-flash/</guid>
       <description>&lt;p&gt;According to normal acceptable behaviour it is not possible to let flash talk to the computer, be it on desktop or web browser.&lt;/p&gt;
 
 &lt;p&gt;There are always ways around a problem and there&amp;rsquo;s one in this case as well.&lt;/p&gt;

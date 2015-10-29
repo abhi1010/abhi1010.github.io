@@ -2,23 +2,23 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on Coders Digest</title>
-    <link>http://abhi1010.github.io/post/</link>
+    <link>http://abhipandey.com/post/</link>
     <description>Recent content in Posts on Coders Digest</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 28 Sep 2015 08:46:09 +0800</lastBuildDate>
-    <atom:link href="http://abhi1010.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://abhipandey.com/post/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Powerline for zsh</title>
-      <link>http://abhi1010.github.io/2015/09/powerline-for-zsh/</link>
+      <link>http://abhipandey.com/2015/09/powerline-for-zsh/</link>
       <pubDate>Mon, 28 Sep 2015 08:46:09 +0800</pubDate>
       
-      <guid>http://abhi1010.github.io/2015/09/powerline-for-zsh/</guid>
+      <guid>http://abhipandey.com/2015/09/powerline-for-zsh/</guid>
       <description>
 &lt;figure &gt;
     
-        &lt;img src=&#34;http://abhi1010.github.io/images/powerline-for-zsh.png&#34; alt=&#34;Powerline&#34; /&gt;
+        &lt;img src=&#34;http://abhipandey.com/images/powerline-for-zsh.png&#34; alt=&#34;Powerline&#34; /&gt;
     
     
     &lt;figcaption&gt;
@@ -74,10 +74,10 @@ would allow &lt;code&gt;powerline&lt;/code&gt; fonts work properly.&lt;/p&gt;
     
     <item>
       <title>Automated Git Mirror With GitHub or Gitlab or Bitbucket</title>
-      <link>http://abhi1010.github.io/2015/09/automated-git-mirror-with-github-or-gitlab-or-bitbucket/</link>
+      <link>http://abhipandey.com/2015/09/automated-git-mirror-with-github-or-gitlab-or-bitbucket/</link>
       <pubDate>Sun, 27 Sep 2015 13:30:10 +0800</pubDate>
       
-      <guid>http://abhi1010.github.io/2015/09/automated-git-mirror-with-github-or-gitlab-or-bitbucket/</guid>
+      <guid>http://abhipandey.com/2015/09/automated-git-mirror-with-github-or-gitlab-or-bitbucket/</guid>
       <description>
 
 &lt;h1 id=&#34;experience-with-gitlab-ci:e8d2b63c4e2d32c203d45ddfe7306ca8&#34;&gt;Experience with Gitlab CI&lt;/h1&gt;
@@ -85,7 +85,7 @@ would allow &lt;code&gt;powerline&lt;/code&gt; fonts work properly.&lt;/p&gt;
 
 &lt;figure &gt;
     
-        &lt;img src=&#34;http://abhi1010.github.io/images/git_mirror_with_gitlab__ci.png&#34; alt=&#34;Git Mirror from Gitlab to Bitbucket using Gitlab CI&#34; /&gt;
+        &lt;img src=&#34;http://abhipandey.com/images/git_mirror_with_gitlab__ci.png&#34; alt=&#34;Git Mirror from Gitlab to Bitbucket using Gitlab CI&#34; /&gt;
     
     
     &lt;figcaption&gt;
@@ -170,10 +170,10 @@ We use it in our current setup to do a full testing and deployment onto &lt;code
     
     <item>
       <title>Git LOC Stats by Time Range</title>
-      <link>http://abhi1010.github.io/2015/09/git-loc-stats-by-time-range/</link>
+      <link>http://abhipandey.com/2015/09/git-loc-stats-by-time-range/</link>
       <pubDate>Thu, 17 Sep 2015 11:06:06 +0800</pubDate>
       
-      <guid>http://abhi1010.github.io/2015/09/git-loc-stats-by-time-range/</guid>
+      <guid>http://abhipandey.com/2015/09/git-loc-stats-by-time-range/</guid>
       <description>&lt;p&gt;Recently had an interest in seeing how many LOC were committed to the code base over a particular period of
 time. After some tinkering around, mainly to find out the correct format for time ranges, decided to use the following bash script for finding coding stats.
 Following sample is to find out lines added or removed during the year 2014.&lt;/p&gt;
@@ -203,16 +203,16 @@ It may also remove some numbers that were actually valid commits but mostly it i
     
     <item>
       <title>Moving To Hugo</title>
-      <link>http://abhi1010.github.io/2015/09/moving-to-hugo/</link>
+      <link>http://abhipandey.com/2015/09/moving-to-hugo/</link>
       <pubDate>Mon, 14 Sep 2015 11:14:38 +0800</pubDate>
       
-      <guid>http://abhi1010.github.io/2015/09/moving-to-hugo/</guid>
+      <guid>http://abhipandey.com/2015/09/moving-to-hugo/</guid>
       <description>
 
 
 &lt;figure &gt;
     
-        &lt;img src=&#34;http://abhi1010.github.io/images/moving_to_hugo__demo.png&#34; alt=&#34;Create your own blog&#34; /&gt;
+        &lt;img src=&#34;http://abhipandey.com/images/moving_to_hugo__demo.png&#34; alt=&#34;Create your own blog&#34; /&gt;
     
     
     &lt;figcaption&gt;
@@ -490,7 +490,7 @@ It can be found under &lt;code&gt;[[menu.&lt;/code&gt;&lt;/p&gt;
 
 &lt;figure &gt;
     
-        &lt;img src=&#34;http://abhi1010.github.io/images/moving_to_hugo__blog_sample.png&#34; alt=&#34;Your sidebar&#34; /&gt;
+        &lt;img src=&#34;http://abhipandey.com/images/moving_to_hugo__blog_sample.png&#34; alt=&#34;Your sidebar&#34; /&gt;
     
     
     &lt;figcaption&gt;
@@ -555,7 +555,7 @@ If we have to commit to two repo - for markdown as well html pages, I feel like 
 &lt;p&gt;I did some work with &lt;code&gt;shippable&lt;/code&gt; and started automatically creating the html pages through it.&lt;/p&gt;
 
 &lt;p&gt;I have created another article about it.
-Please &lt;a href=&#34;http://abhi1010.github.io/2015/09/elastic-beanstalk-deployment-automation/&#34;&gt;read it&lt;/a&gt; for further details.&lt;/p&gt;
+Please &lt;a href=&#34;http://abhipandey.com/2015/09/elastic-beanstalk-deployment-automation/&#34;&gt;read it&lt;/a&gt; for further details.&lt;/p&gt;
 
 &lt;p&gt;Once you have done it, all you need to do is:&lt;/p&gt;
 
@@ -572,10 +572,10 @@ It will also commit to the &lt;code&gt;GitHub Pages&lt;/code&gt; for you and the
     
     <item>
       <title>Using External Tools with Git Diff</title>
-      <link>http://abhi1010.github.io/2015/09/using-external-tools-with-git-diff/</link>
+      <link>http://abhipandey.com/2015/09/using-external-tools-with-git-diff/</link>
       <pubDate>Thu, 10 Sep 2015 00:18:24 +0800</pubDate>
       
-      <guid>http://abhi1010.github.io/2015/09/using-external-tools-with-git-diff/</guid>
+      <guid>http://abhipandey.com/2015/09/using-external-tools-with-git-diff/</guid>
       <description>&lt;p&gt;If you want to view what has changed since one commit to another, it is quite easy to view the diff.&lt;/p&gt;
 
 &lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;git diff 5fad06c..0a504fa
@@ -614,10 +614,10 @@ It will also commit to the &lt;code&gt;GitHub Pages&lt;/code&gt; for you and the
     
     <item>
       <title>Elastic Beanstalk Deployment Automation</title>
-      <link>http://abhi1010.github.io/2015/09/elastic-beanstalk-deployment-automation/</link>
+      <link>http://abhipandey.com/2015/09/elastic-beanstalk-deployment-automation/</link>
       <pubDate>Fri, 04 Sep 2015 00:17:10 +0800</pubDate>
       
-      <guid>http://abhi1010.github.io/2015/09/elastic-beanstalk-deployment-automation/</guid>
+      <guid>http://abhipandey.com/2015/09/elastic-beanstalk-deployment-automation/</guid>
       <description>
 
 &lt;p&gt;We are going to talk about a setup where &lt;strong&gt;all you need to do it &lt;em&gt;commit&lt;/em&gt; your code and all the rest of the steps from unit tests to deployment can be taken care of by some externally hosted cloud platform that provides continuous integration.&lt;/strong&gt;
@@ -630,7 +630,7 @@ It will also commit to the &lt;code&gt;GitHub Pages&lt;/code&gt; for you and the
 
 &lt;figure &gt;
     
-        &lt;img src=&#34;http://abhi1010.github.io/images/elastic-beanstalk-deployment-automation-arch.png&#34; alt=&#34;Architecture&#34; /&gt;
+        &lt;img src=&#34;http://abhipandey.com/images/elastic-beanstalk-deployment-automation-arch.png&#34; alt=&#34;Architecture&#34; /&gt;
     
     
     &lt;figcaption&gt;
@@ -717,7 +717,7 @@ cache: &lt;span style=&#34;color: #204a87&#34;&gt;true&lt;/span&gt;
 
 &lt;figure &gt;
     
-        &lt;img src=&#34;http://abhi1010.github.io/images/elastic-beanstalk-deployment-automation-2.png&#34; alt=&#34;Shippable Build Status&#34; /&gt;
+        &lt;img src=&#34;http://abhipandey.com/images/elastic-beanstalk-deployment-automation-2.png&#34; alt=&#34;Shippable Build Status&#34; /&gt;
     
     
     &lt;figcaption&gt;
@@ -816,7 +816,7 @@ eb use beanstalk_env_name
 &lt;li&gt;Download the source code using &lt;code&gt;RUN&lt;/code&gt; - which I update using another method.
 
 &lt;ul&gt;
-&lt;li&gt;You can view detail on this &lt;a href=&#34;http://abhi1010.github.io/2015/09/updating-django-source-with-docker-deployments/&#34;&gt;method here&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;You can view detail on this &lt;a href=&#34;http://abhipandey.com/2015/09/updating-django-source-with-docker-deployments/&#34;&gt;method here&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;li&gt;Copy the &lt;code&gt;supervisord&lt;/code&gt; config as well&lt;/li&gt;
 &lt;li&gt;Set the right user rights for &lt;code&gt;nginx&lt;/code&gt;&lt;/li&gt;
@@ -961,10 +961,10 @@ eb use beanstalk_env_name
     
     <item>
       <title>Nginx Upload limits on Beanstalk Docker</title>
-      <link>http://abhi1010.github.io/2015/09/nginx-upload-limits-on-beanstalk-docker/</link>
+      <link>http://abhipandey.com/2015/09/nginx-upload-limits-on-beanstalk-docker/</link>
       <pubDate>Fri, 04 Sep 2015 00:14:35 +0800</pubDate>
       
-      <guid>http://abhi1010.github.io/2015/09/nginx-upload-limits-on-beanstalk-docker/</guid>
+      <guid>http://abhipandey.com/2015/09/nginx-upload-limits-on-beanstalk-docker/</guid>
       <description>&lt;p&gt;If I am not wrong, &lt;code&gt;nginx&lt;/code&gt; only allows you to upload up till max 2Mb of data by default. If you are doing a &lt;code&gt;docker&lt;/code&gt; deployment on &lt;code&gt;beanstalk&lt;/code&gt; you may to remember to change that not once but twice!&lt;/p&gt;
 
 &lt;p&gt;As you may know already, &lt;code&gt;beanstalk&lt;/code&gt; creates an &lt;code&gt;EC2&lt;/code&gt; instance to manage the &lt;code&gt;docker&lt;/code&gt; environment.&lt;br /&gt;
@@ -987,10 +987,10 @@ Hence, if you had to modify the &lt;code&gt;nginx&lt;/code&gt; settings to allow
     
     <item>
       <title>Updating Django Source with Docker Deployments</title>
-      <link>http://abhi1010.github.io/2015/09/updating-django-source-with-docker-deployments/</link>
+      <link>http://abhipandey.com/2015/09/updating-django-source-with-docker-deployments/</link>
       <pubDate>Fri, 04 Sep 2015 00:11:51 +0800</pubDate>
       
-      <guid>http://abhi1010.github.io/2015/09/updating-django-source-with-docker-deployments/</guid>
+      <guid>http://abhipandey.com/2015/09/updating-django-source-with-docker-deployments/</guid>
       <description>
 
 &lt;p&gt;While deploying docker multiple times, you may not want to copy over your &lt;code&gt;Django&lt;/code&gt; source code every time you do a deployment.&lt;/p&gt;
@@ -1063,10 +1063,10 @@ The simplest way to achieve it using the config parameter of &lt;code&gt;uwsgi&l
     
     <item>
       <title>Multiple Virtual Environments in Docker</title>
-      <link>http://abhi1010.github.io/2015/09/multiple-virtual-environments-in-docker/</link>
+      <link>http://abhipandey.com/2015/09/multiple-virtual-environments-in-docker/</link>
       <pubDate>Thu, 03 Sep 2015 22:33:33 +0800</pubDate>
       
-      <guid>http://abhi1010.github.io/2015/09/multiple-virtual-environments-in-docker/</guid>
+      <guid>http://abhipandey.com/2015/09/multiple-virtual-environments-in-docker/</guid>
       <description>&lt;p&gt;It may seem like a daunting task to have multiple python projects running in their own virtual environments in docker as you want to manage the running of the tasks from a single source - let&amp;rsquo;s say &lt;code&gt;supervisord&lt;/code&gt;.
 However, all that is required here is to know that python automatically picks up the location of the virtual environments if you provide full path to the virtual environment&amp;rsquo;s python.&lt;/p&gt;
 
@@ -1090,16 +1090,16 @@ However, all that is required here is to know that python automatically picks up
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;You might want to read about &lt;code&gt;--touch-reload&lt;/code&gt; in my &lt;a href=&#34;http://abhi1010.github.io/2015/09/updating-django-source-with-docker-deployments/&#34;&gt;other post.&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;You might want to read about &lt;code&gt;--touch-reload&lt;/code&gt; in my &lt;a href=&#34;http://abhipandey.com/2015/09/updating-django-source-with-docker-deployments/&#34;&gt;other post.&lt;/a&gt;&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Sharing folders on Beanstalk Docker</title>
-      <link>http://abhi1010.github.io/2015/08/sharing-folders-on-beanstalk-docker/</link>
+      <link>http://abhipandey.com/2015/08/sharing-folders-on-beanstalk-docker/</link>
       <pubDate>Fri, 14 Aug 2015 00:19:51 +0800</pubDate>
       
-      <guid>http://abhi1010.github.io/2015/08/sharing-folders-on-beanstalk-docker/</guid>
+      <guid>http://abhipandey.com/2015/08/sharing-folders-on-beanstalk-docker/</guid>
       <description>&lt;p&gt;It is very easy to setup volume sharing in &lt;code&gt;docker&lt;/code&gt;. You ideally want the following folders to be shared when a new &lt;code&gt;docker&lt;/code&gt; is initialized for you:&lt;/p&gt;
 
 &lt;ul&gt;
@@ -1107,7 +1107,7 @@ However, all that is required here is to know that python automatically picks up
 &lt;li&gt;&lt;code&gt;nginx&lt;/code&gt; specific folders because you will have two instances of &lt;code&gt;nginx&lt;/code&gt; running - one on &lt;code&gt;docker&lt;/code&gt; and another on &lt;code&gt;EC2&lt;/code&gt;. This allows you to share logs
 
 &lt;ul&gt;
-&lt;li&gt;Also read &lt;a href=&#34;http://abhi1010.github.io/2015/09/nginx-upload-limits-on-beanstalk-docker/&#34;&gt;this post&lt;/a&gt; for related info&lt;/li&gt;
+&lt;li&gt;Also read &lt;a href=&#34;http://abhipandey.com/2015/09/nginx-upload-limits-on-beanstalk-docker/&#34;&gt;this post&lt;/a&gt; for related info&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;li&gt;your personal workspace or anything that you&amp;rsquo;d like to share&lt;/li&gt;
 &lt;/ul&gt;
@@ -1127,10 +1127,10 @@ However, all that is required here is to know that python automatically picks up
     
     <item>
       <title>Docker Container cleanup on Elastic Beanstalk</title>
-      <link>http://abhi1010.github.io/2015/08/docker-container-cleanup-on-elastic-beanstalk/</link>
+      <link>http://abhipandey.com/2015/08/docker-container-cleanup-on-elastic-beanstalk/</link>
       <pubDate>Fri, 07 Aug 2015 14:59:18 -0400</pubDate>
       
-      <guid>http://abhi1010.github.io/2015/08/docker-container-cleanup-on-elastic-beanstalk/</guid>
+      <guid>http://abhipandey.com/2015/08/docker-container-cleanup-on-elastic-beanstalk/</guid>
       <description>
 
 &lt;p&gt;Sometimes you may notice that old containers are not cleaned up from Beanstalk environment. This may be due to your container still running as a ghost on the background. One way to find out about this is to quickly look into your
@@ -1188,10 +1188,10 @@ Just run the following to test whether it works:&lt;/p&gt;
     
     <item>
       <title>Partition Linked List around a Value X</title>
-      <link>http://abhi1010.github.io/2014/06/partition-linked-list-around-a-value-x/</link>
+      <link>http://abhipandey.com/2014/06/partition-linked-list-around-a-value-x/</link>
       <pubDate>Mon, 09 Jun 2014 15:02:07 +0000</pubDate>
       
-      <guid>http://abhi1010.github.io/2014/06/partition-linked-list-around-a-value-x/</guid>
+      <guid>http://abhipandey.com/2014/06/partition-linked-list-around-a-value-x/</guid>
       <description>
 
 &lt;p&gt;How do you partition a list around a value x, such that all nodes less than x come before all nodes greater than or equal to x?&lt;/p&gt;
@@ -1220,10 +1220,10 @@ Just run the following to test whether it works:&lt;/p&gt;
     
     <item>
       <title>Find the Kth to Last Element of a Singly Linked List</title>
-      <link>http://abhi1010.github.io/2014/06/find-the-kth-to-last-element-of-a-singly-linked-list/</link>
+      <link>http://abhipandey.com/2014/06/find-the-kth-to-last-element-of-a-singly-linked-list/</link>
       <pubDate>Sun, 08 Jun 2014 07:49:47 +0000</pubDate>
       
-      <guid>http://abhi1010.github.io/2014/06/find-the-kth-to-last-element-of-a-singly-linked-list/</guid>
+      <guid>http://abhipandey.com/2014/06/find-the-kth-to-last-element-of-a-singly-linked-list/</guid>
       <description>&lt;p&gt;It is possible to a recursive solutions but I will use a simple runner logic. Recursive solutions are usually less optimal.&lt;/p&gt;
 
 &lt;p&gt;Note here that, in our logic K=1 would return the last element in the linked list. Similarly, K=2 would return the second last element.&lt;/p&gt;
@@ -1249,10 +1249,10 @@ Just run the following to test whether it works:&lt;/p&gt;
     
     <item>
       <title>Removing Duplicates from Linked List</title>
-      <link>http://abhi1010.github.io/2014/06/removing-duplicates-from-linked-list/</link>
+      <link>http://abhipandey.com/2014/06/removing-duplicates-from-linked-list/</link>
       <pubDate>Sat, 07 Jun 2014 16:50:12 +0000</pubDate>
       
-      <guid>http://abhi1010.github.io/2014/06/removing-duplicates-from-linked-list/</guid>
+      <guid>http://abhipandey.com/2014/06/removing-duplicates-from-linked-list/</guid>
       <description>
 
 &lt;p&gt;Duplicates can be removed in many ways:&lt;/p&gt;
@@ -1279,10 +1279,10 @@ Just run the following to test whether it works:&lt;/p&gt;
     
     <item>
       <title>Deleting a Node from Singly Linked List</title>
-      <link>http://abhi1010.github.io/2014/06/deleting-a-node-from-singly-linked-list/</link>
+      <link>http://abhipandey.com/2014/06/deleting-a-node-from-singly-linked-list/</link>
       <pubDate>Sat, 07 Jun 2014 10:49:17 +0000</pubDate>
       
-      <guid>http://abhi1010.github.io/2014/06/deleting-a-node-from-singly-linked-list/</guid>
+      <guid>http://abhipandey.com/2014/06/deleting-a-node-from-singly-linked-list/</guid>
       <description>
 
 &lt;p&gt;Deleting a Node from Singly Linked List is rather straight forward.&lt;/p&gt;

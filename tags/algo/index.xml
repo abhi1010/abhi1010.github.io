@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Algo on Coders Digest</title>
-    <link>http://abhi1010.github.io/tags/algo/</link>
+    <link>http://abhipandey.com/tags/algo/</link>
     <description>Recent content in Algo on Coders Digest</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 09 Jun 2014 15:02:07 +0000</lastBuildDate>
-    <atom:link href="http://abhi1010.github.io/tags/algo/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://abhipandey.com/tags/algo/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Partition Linked List around a Value X</title>
-      <link>http://abhi1010.github.io/2014/06/partition-linked-list-around-a-value-x/</link>
+      <link>http://abhipandey.com/2014/06/partition-linked-list-around-a-value-x/</link>
       <pubDate>Mon, 09 Jun 2014 15:02:07 +0000</pubDate>
       
-      <guid>http://abhi1010.github.io/2014/06/partition-linked-list-around-a-value-x/</guid>
+      <guid>http://abhipandey.com/2014/06/partition-linked-list-around-a-value-x/</guid>
       <description>
 
 &lt;p&gt;How do you partition a list around a value x, such that all nodes less than x come before all nodes greater than or equal to x?&lt;/p&gt;
@@ -43,10 +43,10 @@
     
     <item>
       <title>Find the Kth to Last Element of a Singly Linked List</title>
-      <link>http://abhi1010.github.io/2014/06/find-the-kth-to-last-element-of-a-singly-linked-list/</link>
+      <link>http://abhipandey.com/2014/06/find-the-kth-to-last-element-of-a-singly-linked-list/</link>
       <pubDate>Sun, 08 Jun 2014 07:49:47 +0000</pubDate>
       
-      <guid>http://abhi1010.github.io/2014/06/find-the-kth-to-last-element-of-a-singly-linked-list/</guid>
+      <guid>http://abhipandey.com/2014/06/find-the-kth-to-last-element-of-a-singly-linked-list/</guid>
       <description>&lt;p&gt;It is possible to a recursive solutions but I will use a simple runner logic. Recursive solutions are usually less optimal.&lt;/p&gt;
 
 &lt;p&gt;Note here that, in our logic K=1 would return the last element in the linked list. Similarly, K=2 would return the second last element.&lt;/p&gt;
@@ -72,10 +72,10 @@
     
     <item>
       <title>Removing Duplicates from Linked List</title>
-      <link>http://abhi1010.github.io/2014/06/removing-duplicates-from-linked-list/</link>
+      <link>http://abhipandey.com/2014/06/removing-duplicates-from-linked-list/</link>
       <pubDate>Sat, 07 Jun 2014 16:50:12 +0000</pubDate>
       
-      <guid>http://abhi1010.github.io/2014/06/removing-duplicates-from-linked-list/</guid>
+      <guid>http://abhipandey.com/2014/06/removing-duplicates-from-linked-list/</guid>
       <description>
 
 &lt;p&gt;Duplicates can be removed in many ways:&lt;/p&gt;
@@ -102,10 +102,10 @@
     
     <item>
       <title>Deleting a Node from Singly Linked List</title>
-      <link>http://abhi1010.github.io/2014/06/deleting-a-node-from-singly-linked-list/</link>
+      <link>http://abhipandey.com/2014/06/deleting-a-node-from-singly-linked-list/</link>
       <pubDate>Sat, 07 Jun 2014 10:49:17 +0000</pubDate>
       
-      <guid>http://abhi1010.github.io/2014/06/deleting-a-node-from-singly-linked-list/</guid>
+      <guid>http://abhipandey.com/2014/06/deleting-a-node-from-singly-linked-list/</guid>
       <description>
 
 &lt;p&gt;Deleting a Node from Singly Linked List is rather straight forward.&lt;/p&gt;
@@ -137,10 +137,10 @@
     
     <item>
       <title>Heap Sort vs Merge Sort vs Insertion Sort vs Radix Sort vs Counting Sort vs Quick Sort</title>
-      <link>http://abhi1010.github.io/2014/03/heap-sort-vs-merge-sort-vs-insertion-sort-vs-radix-sort-vs-counting-sort-vs-quick-sort/</link>
+      <link>http://abhipandey.com/2014/03/heap-sort-vs-merge-sort-vs-insertion-sort-vs-radix-sort-vs-counting-sort-vs-quick-sort/</link>
       <pubDate>Wed, 19 Mar 2014 05:42:00 +0000</pubDate>
       
-      <guid>http://abhi1010.github.io/2014/03/heap-sort-vs-merge-sort-vs-insertion-sort-vs-radix-sort-vs-counting-sort-vs-quick-sort/</guid>
+      <guid>http://abhipandey.com/2014/03/heap-sort-vs-merge-sort-vs-insertion-sort-vs-radix-sort-vs-counting-sort-vs-quick-sort/</guid>
       <description>
 
 &lt;p&gt;I had written about sorting algorithms (Tag: &lt;a href=&#34;http://codersdigest.wordpress.com/tag/sorting/&#34;&gt;Sorting&lt;/a&gt;) with details about what to look out for along with their code snippets but I wanted a do a quick comparison of all the algos together to see how do they perform when the same set of input is provided to them. Hence I started working on a simple implementation for each one of them. I have now put together all of them in a single project on GitHub. I ensured that they all have the same set of procedures during their run. Some of the items I wanted to ensure was:&lt;/p&gt;
@@ -1078,10 +1078,10 @@
     
     <item>
       <title>Heap Sort</title>
-      <link>http://abhi1010.github.io/2012/10/heap-sort/</link>
+      <link>http://abhipandey.com/2012/10/heap-sort/</link>
       <pubDate>Wed, 17 Oct 2012 14:15:00 +0000</pubDate>
       
-      <guid>http://abhi1010.github.io/2012/10/heap-sort/</guid>
+      <guid>http://abhipandey.com/2012/10/heap-sort/</guid>
       <description>
 
 &lt;p&gt;Heap Sort algo has the following properties:&lt;/p&gt;
@@ -1420,10 +1420,10 @@
     
     <item>
       <title>Merge Sort</title>
-      <link>http://abhi1010.github.io/2012/10/merge-sort/</link>
+      <link>http://abhipandey.com/2012/10/merge-sort/</link>
       <pubDate>Sat, 06 Oct 2012 14:26:00 +0000</pubDate>
       
-      <guid>http://abhi1010.github.io/2012/10/merge-sort/</guid>
+      <guid>http://abhipandey.com/2012/10/merge-sort/</guid>
       <description>
 
 &lt;p&gt;Merge Sort&lt;/p&gt;
@@ -1568,10 +1568,10 @@
     
     <item>
       <title>Quick Sort</title>
-      <link>http://abhi1010.github.io/2012/09/quick-sort/</link>
+      <link>http://abhipandey.com/2012/09/quick-sort/</link>
       <pubDate>Sat, 22 Sep 2012 14:24:00 +0000</pubDate>
       
-      <guid>http://abhi1010.github.io/2012/09/quick-sort/</guid>
+      <guid>http://abhipandey.com/2012/09/quick-sort/</guid>
       <description>
 
 &lt;p&gt;Quick Sort is an efficient divide and conquer algorithm performed in two phases - partition and sorting phase.&lt;/p&gt;
@@ -1659,10 +1659,10 @@
     
     <item>
       <title>Insertion Sort</title>
-      <link>http://abhi1010.github.io/2012/09/insertion-sort/</link>
+      <link>http://abhipandey.com/2012/09/insertion-sort/</link>
       <pubDate>Mon, 17 Sep 2012 16:00:00 +0000</pubDate>
       
-      <guid>http://abhi1010.github.io/2012/09/insertion-sort/</guid>
+      <guid>http://abhipandey.com/2012/09/insertion-sort/</guid>
       <description>
 
 &lt;p&gt;Insertion Sort has the following properties:&lt;/p&gt;
@@ -1790,10 +1790,10 @@
     
     <item>
       <title>Radix Sort</title>
-      <link>http://abhi1010.github.io/2012/09/radix-sort/</link>
+      <link>http://abhipandey.com/2012/09/radix-sort/</link>
       <pubDate>Thu, 13 Sep 2012 10:37:00 +0000</pubDate>
       
-      <guid>http://abhi1010.github.io/2012/09/radix-sort/</guid>
+      <guid>http://abhipandey.com/2012/09/radix-sort/</guid>
       <description>&lt;p&gt;It is a non-comparative &lt;em&gt;integer&lt;/em&gt; sorting algorithm. It sorts data by grouping keys by the individual digits which share the same significant position and value. Think &lt;em&gt;Tens, Hundreds, Thousands&lt;/em&gt; etc. Some pointers about Radix Sort:&lt;/p&gt;
 
 &lt;ul&gt;
@@ -1875,10 +1875,10 @@
     
     <item>
       <title>Counting Sort</title>
-      <link>http://abhi1010.github.io/2012/09/counting-sort/</link>
+      <link>http://abhipandey.com/2012/09/counting-sort/</link>
       <pubDate>Tue, 11 Sep 2012 10:03:00 +0000</pubDate>
       
-      <guid>http://abhi1010.github.io/2012/09/counting-sort/</guid>
+      <guid>http://abhipandey.com/2012/09/counting-sort/</guid>
       <description>&lt;p&gt;Counting Sort is an integer sorting algorithm. It is not very famous when somebody talks about sorting algorithms but it is great when sorting integers. In fact, many a times it may even beat other Sorting Algorithms. The highlight of Counting Sort is that it creates a bucket array (to keep track of frequency of numbers) whose size is the maximum element in the provided array.&lt;/p&gt;
 
 &lt;p&gt;We are looking to compare most of the sorting algorithms to find out which one performs better under different circumstances. One of the ways is to compare the complexity for each algorithm. The other way is to compare how well they perform based on the input they are all provided. I will post my code on Github but will start with Counting Sort here.&lt;/p&gt;

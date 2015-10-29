@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Awk on Coders Digest</title>
-    <link>http://abhi1010.github.io/tags/awk/</link>
+    <link>http://abhipandey.com/tags/awk/</link>
     <description>Recent content in Awk on Coders Digest</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 19 May 2014 09:45:57 +0000</lastBuildDate>
-    <atom:link href="http://abhi1010.github.io/tags/awk/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://abhipandey.com/tags/awk/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Getting a group of lines from a file</title>
-      <link>http://abhi1010.github.io/2014/05/getting-a-group-of-lines-from-a-file/</link>
+      <link>http://abhipandey.com/2014/05/getting-a-group-of-lines-from-a-file/</link>
       <pubDate>Mon, 19 May 2014 09:45:57 +0000</pubDate>
       
-      <guid>http://abhi1010.github.io/2014/05/getting-a-group-of-lines-from-a-file/</guid>
+      <guid>http://abhipandey.com/2014/05/getting-a-group-of-lines-from-a-file/</guid>
       <description>&lt;p&gt;I&amp;rsquo;ve had this need quite a few times to pull out a section of logs that would begin with a particular line and end with another. grep is not exactly useful there because it only prints out sections based on line counters (using -A/B/C) lines based on a single search pattern.&lt;/p&gt;
 
 &lt;p&gt;I came up with a script that can run at almost same speeds using &lt;code&gt;grep/cat/awk&lt;/code&gt;. &lt;code&gt;awk&lt;/code&gt; is used to decide whether the end of the section has been reached or not. Some features of the script are:&lt;/p&gt;

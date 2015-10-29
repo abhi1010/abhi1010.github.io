@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Git on Coders Digest</title>
-    <link>http://abhi1010.github.io/tags/git/</link>
+    <link>http://abhipandey.com/tags/git/</link>
     <description>Recent content in Git on Coders Digest</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 27 Sep 2015 13:30:10 +0800</lastBuildDate>
-    <atom:link href="http://abhi1010.github.io/tags/git/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://abhipandey.com/tags/git/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Automated Git Mirror With GitHub or Gitlab or Bitbucket</title>
-      <link>http://abhi1010.github.io/2015/09/automated-git-mirror-with-github-or-gitlab-or-bitbucket/</link>
+      <link>http://abhipandey.com/2015/09/automated-git-mirror-with-github-or-gitlab-or-bitbucket/</link>
       <pubDate>Sun, 27 Sep 2015 13:30:10 +0800</pubDate>
       
-      <guid>http://abhi1010.github.io/2015/09/automated-git-mirror-with-github-or-gitlab-or-bitbucket/</guid>
+      <guid>http://abhipandey.com/2015/09/automated-git-mirror-with-github-or-gitlab-or-bitbucket/</guid>
       <description>
 
 &lt;h1 id=&#34;experience-with-gitlab-ci:e8d2b63c4e2d32c203d45ddfe7306ca8&#34;&gt;Experience with Gitlab CI&lt;/h1&gt;
@@ -22,7 +22,7 @@
 
 &lt;figure &gt;
     
-        &lt;img src=&#34;http://abhi1010.github.io/images/git_mirror_with_gitlab__ci.png&#34; alt=&#34;Git Mirror from Gitlab to Bitbucket using Gitlab CI&#34; /&gt;
+        &lt;img src=&#34;http://abhipandey.com/images/git_mirror_with_gitlab__ci.png&#34; alt=&#34;Git Mirror from Gitlab to Bitbucket using Gitlab CI&#34; /&gt;
     
     
     &lt;figcaption&gt;
@@ -107,10 +107,10 @@ We use it in our current setup to do a full testing and deployment onto &lt;code
     
     <item>
       <title>Git LOC Stats by Time Range</title>
-      <link>http://abhi1010.github.io/2015/09/git-loc-stats-by-time-range/</link>
+      <link>http://abhipandey.com/2015/09/git-loc-stats-by-time-range/</link>
       <pubDate>Thu, 17 Sep 2015 11:06:06 +0800</pubDate>
       
-      <guid>http://abhi1010.github.io/2015/09/git-loc-stats-by-time-range/</guid>
+      <guid>http://abhipandey.com/2015/09/git-loc-stats-by-time-range/</guid>
       <description>&lt;p&gt;Recently had an interest in seeing how many LOC were committed to the code base over a particular period of
 time. After some tinkering around, mainly to find out the correct format for time ranges, decided to use the following bash script for finding coding stats.
 Following sample is to find out lines added or removed during the year 2014.&lt;/p&gt;
@@ -140,10 +140,10 @@ It may also remove some numbers that were actually valid commits but mostly it i
     
     <item>
       <title>Using External Tools with Git Diff</title>
-      <link>http://abhi1010.github.io/2015/09/using-external-tools-with-git-diff/</link>
+      <link>http://abhipandey.com/2015/09/using-external-tools-with-git-diff/</link>
       <pubDate>Thu, 10 Sep 2015 00:18:24 +0800</pubDate>
       
-      <guid>http://abhi1010.github.io/2015/09/using-external-tools-with-git-diff/</guid>
+      <guid>http://abhipandey.com/2015/09/using-external-tools-with-git-diff/</guid>
       <description>&lt;p&gt;If you want to view what has changed since one commit to another, it is quite easy to view the diff.&lt;/p&gt;
 
 &lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;git diff 5fad06c..0a504fa
@@ -182,10 +182,10 @@ It may also remove some numbers that were actually valid commits but mostly it i
     
     <item>
       <title>Updating Django Source with Docker Deployments</title>
-      <link>http://abhi1010.github.io/2015/09/updating-django-source-with-docker-deployments/</link>
+      <link>http://abhipandey.com/2015/09/updating-django-source-with-docker-deployments/</link>
       <pubDate>Fri, 04 Sep 2015 00:11:51 +0800</pubDate>
       
-      <guid>http://abhi1010.github.io/2015/09/updating-django-source-with-docker-deployments/</guid>
+      <guid>http://abhipandey.com/2015/09/updating-django-source-with-docker-deployments/</guid>
       <description>
 
 &lt;p&gt;While deploying docker multiple times, you may not want to copy over your &lt;code&gt;Django&lt;/code&gt; source code every time you do a deployment.&lt;/p&gt;

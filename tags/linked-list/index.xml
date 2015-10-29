@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Linked List on Coders Digest</title>
-    <link>http://abhi1010.github.io/tags/linked-list/</link>
+    <link>http://abhipandey.com/tags/linked-list/</link>
     <description>Recent content in Linked List on Coders Digest</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 09 Jun 2014 15:02:07 +0000</lastBuildDate>
-    <atom:link href="http://abhi1010.github.io/tags/linked-list/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://abhipandey.com/tags/linked-list/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Partition Linked List around a Value X</title>
-      <link>http://abhi1010.github.io/2014/06/partition-linked-list-around-a-value-x/</link>
+      <link>http://abhipandey.com/2014/06/partition-linked-list-around-a-value-x/</link>
       <pubDate>Mon, 09 Jun 2014 15:02:07 +0000</pubDate>
       
-      <guid>http://abhi1010.github.io/2014/06/partition-linked-list-around-a-value-x/</guid>
+      <guid>http://abhipandey.com/2014/06/partition-linked-list-around-a-value-x/</guid>
       <description>
 
 &lt;p&gt;How do you partition a list around a value x, such that all nodes less than x come before all nodes greater than or equal to x?&lt;/p&gt;
@@ -43,10 +43,10 @@
     
     <item>
       <title>Find the Kth to Last Element of a Singly Linked List</title>
-      <link>http://abhi1010.github.io/2014/06/find-the-kth-to-last-element-of-a-singly-linked-list/</link>
+      <link>http://abhipandey.com/2014/06/find-the-kth-to-last-element-of-a-singly-linked-list/</link>
       <pubDate>Sun, 08 Jun 2014 07:49:47 +0000</pubDate>
       
-      <guid>http://abhi1010.github.io/2014/06/find-the-kth-to-last-element-of-a-singly-linked-list/</guid>
+      <guid>http://abhipandey.com/2014/06/find-the-kth-to-last-element-of-a-singly-linked-list/</guid>
       <description>&lt;p&gt;It is possible to a recursive solutions but I will use a simple runner logic. Recursive solutions are usually less optimal.&lt;/p&gt;
 
 &lt;p&gt;Note here that, in our logic K=1 would return the last element in the linked list. Similarly, K=2 would return the second last element.&lt;/p&gt;
@@ -72,10 +72,10 @@
     
     <item>
       <title>Removing Duplicates from Linked List</title>
-      <link>http://abhi1010.github.io/2014/06/removing-duplicates-from-linked-list/</link>
+      <link>http://abhipandey.com/2014/06/removing-duplicates-from-linked-list/</link>
       <pubDate>Sat, 07 Jun 2014 16:50:12 +0000</pubDate>
       
-      <guid>http://abhi1010.github.io/2014/06/removing-duplicates-from-linked-list/</guid>
+      <guid>http://abhipandey.com/2014/06/removing-duplicates-from-linked-list/</guid>
       <description>
 
 &lt;p&gt;Duplicates can be removed in many ways:&lt;/p&gt;
@@ -102,10 +102,10 @@
     
     <item>
       <title>Deleting a Node from Singly Linked List</title>
-      <link>http://abhi1010.github.io/2014/06/deleting-a-node-from-singly-linked-list/</link>
+      <link>http://abhipandey.com/2014/06/deleting-a-node-from-singly-linked-list/</link>
       <pubDate>Sat, 07 Jun 2014 10:49:17 +0000</pubDate>
       
-      <guid>http://abhi1010.github.io/2014/06/deleting-a-node-from-singly-linked-list/</guid>
+      <guid>http://abhipandey.com/2014/06/deleting-a-node-from-singly-linked-list/</guid>
       <description>
 
 &lt;p&gt;Deleting a Node from Singly Linked List is rather straight forward.&lt;/p&gt;

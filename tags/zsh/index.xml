@@ -2,23 +2,23 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Zsh on Coders Digest</title>
-    <link>http://abhi1010.github.io/tags/zsh/</link>
+    <link>http://abhipandey.com/tags/zsh/</link>
     <description>Recent content in Zsh on Coders Digest</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 28 Sep 2015 08:46:09 +0800</lastBuildDate>
-    <atom:link href="http://abhi1010.github.io/tags/zsh/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://abhipandey.com/tags/zsh/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Powerline for zsh</title>
-      <link>http://abhi1010.github.io/2015/09/powerline-for-zsh/</link>
+      <link>http://abhipandey.com/2015/09/powerline-for-zsh/</link>
       <pubDate>Mon, 28 Sep 2015 08:46:09 +0800</pubDate>
       
-      <guid>http://abhi1010.github.io/2015/09/powerline-for-zsh/</guid>
+      <guid>http://abhipandey.com/2015/09/powerline-for-zsh/</guid>
       <description>
 &lt;figure &gt;
     
-        &lt;img src=&#34;http://abhi1010.github.io/images/powerline-for-zsh.png&#34; alt=&#34;Powerline&#34; /&gt;
+        &lt;img src=&#34;http://abhipandey.com/images/powerline-for-zsh.png&#34; alt=&#34;Powerline&#34; /&gt;
     
     
     &lt;figcaption&gt;

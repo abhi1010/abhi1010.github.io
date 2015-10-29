@@ -2,25 +2,25 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Hugo on Coders Digest</title>
-    <link>http://abhi1010.github.io/tags/hugo/</link>
+    <link>http://abhipandey.com/tags/hugo/</link>
     <description>Recent content in Hugo on Coders Digest</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 14 Sep 2015 11:14:38 +0800</lastBuildDate>
-    <atom:link href="http://abhi1010.github.io/tags/hugo/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://abhipandey.com/tags/hugo/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Moving To Hugo</title>
-      <link>http://abhi1010.github.io/2015/09/moving-to-hugo/</link>
+      <link>http://abhipandey.com/2015/09/moving-to-hugo/</link>
       <pubDate>Mon, 14 Sep 2015 11:14:38 +0800</pubDate>
       
-      <guid>http://abhi1010.github.io/2015/09/moving-to-hugo/</guid>
+      <guid>http://abhipandey.com/2015/09/moving-to-hugo/</guid>
       <description>
 
 
 &lt;figure &gt;
     
-        &lt;img src=&#34;http://abhi1010.github.io/images/moving_to_hugo__demo.png&#34; alt=&#34;Create your own blog&#34; /&gt;
+        &lt;img src=&#34;http://abhipandey.com/images/moving_to_hugo__demo.png&#34; alt=&#34;Create your own blog&#34; /&gt;
     
     
     &lt;figcaption&gt;
@@ -298,7 +298,7 @@ It can be found under &lt;code&gt;[[menu.&lt;/code&gt;&lt;/p&gt;
 
 &lt;figure &gt;
     
-        &lt;img src=&#34;http://abhi1010.github.io/images/moving_to_hugo__blog_sample.png&#34; alt=&#34;Your sidebar&#34; /&gt;
+        &lt;img src=&#34;http://abhipandey.com/images/moving_to_hugo__blog_sample.png&#34; alt=&#34;Your sidebar&#34; /&gt;
     
     
     &lt;figcaption&gt;
@@ -363,7 +363,7 @@ If we have to commit to two repo - for markdown as well html pages, I feel like 
 &lt;p&gt;I did some work with &lt;code&gt;shippable&lt;/code&gt; and started automatically creating the html pages through it.&lt;/p&gt;
 
 &lt;p&gt;I have created another article about it.
-Please &lt;a href=&#34;http://abhi1010.github.io/2015/09/elastic-beanstalk-deployment-automation/&#34;&gt;read it&lt;/a&gt; for further details.&lt;/p&gt;
+Please &lt;a href=&#34;http://abhipandey.com/2015/09/elastic-beanstalk-deployment-automation/&#34;&gt;read it&lt;/a&gt; for further details.&lt;/p&gt;
 
 &lt;p&gt;Once you have done it, all you need to do is:&lt;/p&gt;
 

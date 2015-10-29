@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Python on Coders Digest</title>
-    <link>http://abhi1010.github.io/tags/python/</link>
+    <link>http://abhipandey.com/tags/python/</link>
     <description>Recent content in Python on Coders Digest</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 04 Sep 2015 00:17:10 +0800</lastBuildDate>
-    <atom:link href="http://abhi1010.github.io/tags/python/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://abhipandey.com/tags/python/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Elastic Beanstalk Deployment Automation</title>
-      <link>http://abhi1010.github.io/2015/09/elastic-beanstalk-deployment-automation/</link>
+      <link>http://abhipandey.com/2015/09/elastic-beanstalk-deployment-automation/</link>
       <pubDate>Fri, 04 Sep 2015 00:17:10 +0800</pubDate>
       
-      <guid>http://abhi1010.github.io/2015/09/elastic-beanstalk-deployment-automation/</guid>
+      <guid>http://abhipandey.com/2015/09/elastic-beanstalk-deployment-automation/</guid>
       <description>
 
 &lt;p&gt;We are going to talk about a setup where &lt;strong&gt;all you need to do it &lt;em&gt;commit&lt;/em&gt; your code and all the rest of the steps from unit tests to deployment can be taken care of by some externally hosted cloud platform that provides continuous integration.&lt;/strong&gt;
@@ -27,7 +27,7 @@
 
 &lt;figure &gt;
     
-        &lt;img src=&#34;http://abhi1010.github.io/images/elastic-beanstalk-deployment-automation-arch.png&#34; alt=&#34;Architecture&#34; /&gt;
+        &lt;img src=&#34;http://abhipandey.com/images/elastic-beanstalk-deployment-automation-arch.png&#34; alt=&#34;Architecture&#34; /&gt;
     
     
     &lt;figcaption&gt;
@@ -114,7 +114,7 @@ cache: &lt;span style=&#34;color: #204a87&#34;&gt;true&lt;/span&gt;
 
 &lt;figure &gt;
     
-        &lt;img src=&#34;http://abhi1010.github.io/images/elastic-beanstalk-deployment-automation-2.png&#34; alt=&#34;Shippable Build Status&#34; /&gt;
+        &lt;img src=&#34;http://abhipandey.com/images/elastic-beanstalk-deployment-automation-2.png&#34; alt=&#34;Shippable Build Status&#34; /&gt;
     
     
     &lt;figcaption&gt;
@@ -213,7 +213,7 @@ eb use beanstalk_env_name
 &lt;li&gt;Download the source code using &lt;code&gt;RUN&lt;/code&gt; - which I update using another method.
 
 &lt;ul&gt;
-&lt;li&gt;You can view detail on this &lt;a href=&#34;http://abhi1010.github.io/2015/09/updating-django-source-with-docker-deployments/&#34;&gt;method here&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;You can view detail on this &lt;a href=&#34;http://abhipandey.com/2015/09/updating-django-source-with-docker-deployments/&#34;&gt;method here&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;li&gt;Copy the &lt;code&gt;supervisord&lt;/code&gt; config as well&lt;/li&gt;
 &lt;li&gt;Set the right user rights for &lt;code&gt;nginx&lt;/code&gt;&lt;/li&gt;
@@ -358,10 +358,10 @@ eb use beanstalk_env_name
     
     <item>
       <title>Multiple Virtual Environments in Docker</title>
-      <link>http://abhi1010.github.io/2015/09/multiple-virtual-environments-in-docker/</link>
+      <link>http://abhipandey.com/2015/09/multiple-virtual-environments-in-docker/</link>
       <pubDate>Thu, 03 Sep 2015 22:33:33 +0800</pubDate>
       
-      <guid>http://abhi1010.github.io/2015/09/multiple-virtual-environments-in-docker/</guid>
+      <guid>http://abhipandey.com/2015/09/multiple-virtual-environments-in-docker/</guid>
       <description>&lt;p&gt;It may seem like a daunting task to have multiple python projects running in their own virtual environments in docker as you want to manage the running of the tasks from a single source - let&amp;rsquo;s say &lt;code&gt;supervisord&lt;/code&gt;.
 However, all that is required here is to know that python automatically picks up the location of the virtual environments if you provide full path to the virtual environment&amp;rsquo;s python.&lt;/p&gt;
 
@@ -385,7 +385,7 @@ However, all that is required here is to know that python automatically picks up
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;You might want to read about &lt;code&gt;--touch-reload&lt;/code&gt; in my &lt;a href=&#34;http://abhi1010.github.io/2015/09/updating-django-source-with-docker-deployments/&#34;&gt;other post.&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;You might want to read about &lt;code&gt;--touch-reload&lt;/code&gt; in my &lt;a href=&#34;http://abhipandey.com/2015/09/updating-django-source-with-docker-deployments/&#34;&gt;other post.&lt;/a&gt;&lt;/p&gt;
 </description>
     </item>
     

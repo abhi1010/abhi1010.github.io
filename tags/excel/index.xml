@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Excel on Coders Digest</title>
-    <link>http://abhi1010.github.io/tags/excel/</link>
+    <link>http://abhipandey.com/tags/excel/</link>
     <description>Recent content in Excel on Coders Digest</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 09 Nov 2013 23:51:00 +0000</lastBuildDate>
-    <atom:link href="http://abhi1010.github.io/tags/excel/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://abhipandey.com/tags/excel/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Reading Excel in C#</title>
-      <link>http://abhi1010.github.io/2013/11/reading-excel-in-c/</link>
+      <link>http://abhipandey.com/2013/11/reading-excel-in-c/</link>
       <pubDate>Sat, 09 Nov 2013 23:51:00 +0000</pubDate>
       
-      <guid>http://abhi1010.github.io/2013/11/reading-excel-in-c/</guid>
+      <guid>http://abhipandey.com/2013/11/reading-excel-in-c/</guid>
       <description>&lt;p&gt;Recently had to work on an Excel and update its content when some events were triggered on a Bloomberg terminal. I couldn&amp;rsquo;t find any code for reading the excel file using C# so thought of putting that up.&lt;/p&gt;
 
 &lt;p&gt;There were a few things to learn:&lt;/p&gt;
