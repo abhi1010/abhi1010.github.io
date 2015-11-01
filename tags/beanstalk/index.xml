@@ -6,8 +6,71 @@
     <description>Recent content in Beanstalk on Coders Digest</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 27 Sep 2015 13:30:10 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 07 Oct 2015 14:59:18 -0400</lastBuildDate>
     <atom:link href="http://abhipandey.com/tags/beanstalk/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Forceful Docker Container cleanup on Elastic Beanstalk</title>
+      <link>http://abhipandey.com/2015/10/forceful-docker-container-cleanup-on-elastic-beanstalk/</link>
+      <pubDate>Wed, 07 Oct 2015 14:59:18 -0400</pubDate>
+      
+      <guid>http://abhipandey.com/2015/10/forceful-docker-container-cleanup-on-elastic-beanstalk/</guid>
+      <description>
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;&lt;code&gt;Note&lt;/code&gt;&lt;/em&gt;&lt;/strong&gt;: &lt;em&gt;&lt;em&gt;If you are not sure of what you are doing here, don&amp;rsquo;t touch it.
+This is all sensitive stuff and a minor mistake can bring down your production.&lt;/em&gt;&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Sometimes, because of so many deployments happening and sharing volumes between dockers instances, the space runs out on production server.&lt;/p&gt;
+
+&lt;p&gt;I found some ways to fix this but the most brutal way to leave the orphaned directories behind forever is to remove them.
+Such sadistic directories can be found at &lt;code&gt;/var/lib/docker/vfs/&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;We can automate the removal.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;First&lt;/strong&gt;, let&amp;rsquo;s find the directories that we should &lt;strong&gt;&lt;em&gt;&lt;code&gt;not&lt;/code&gt;&lt;/em&gt;&lt;/strong&gt; delete.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# These directories are in use
+$ docker ps -q | xargs docker inspect | egrep &amp;quot;var.lib.docker.vfs&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You will see something like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ docker ps -q | xargs docker inspect | egrep &amp;quot;var.lib.docker.vfs&amp;quot;
+  &amp;quot;/etc/nginx/sites-enabled&amp;quot;: &amp;quot;/var/lib/docker/vfs/dir/ed53e780472dbf5057780182bd12ae1cb7930fce73f5f7071bad1b456076dc95&amp;quot;,
+  &amp;quot;/var/log/nginx&amp;quot;: &amp;quot;/var/lib/docker/vfs/dir/26c3ac02631b0eab5d6d3a4c5e6664b43974f217ca24b9369f3f12f186601147&amp;quot;,
+  &amp;quot;/ws&amp;quot;: &amp;quot;/var/lib/docker/vfs/dir/ecd74d6b7e73c25d5e5f6b450a7b162bfb8e44c649c2af951843954538500dba&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;fire-drill:d49d62c8188452b3ac07603c34a3f7b0&#34;&gt;Fire Drill&lt;/h1&gt;
+
+&lt;p&gt;&lt;strong&gt;Find out all directories that should stay&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ docker ps -q \
+ | xargs docker inspect \
+ | egrep &amp;quot;var.lib.docker.vfs&amp;quot; \
+ | sed -e &#39;s/.*dir.//g&#39; -e &#39;s/&amp;quot;.*//g&#39; \
+ | sort \
+ &amp;gt; /tmp/curr.dirs 
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;Find out all directories within &lt;code&gt;/var/lib/docker/vfs/dir&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ sudo ls /var/lib/docker/vfs/dir/ | sort &amp;gt; /tmp/all.dirs
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;Find out the directories from &lt;code&gt;all.dirs&lt;/code&gt; that should be deleted (not in use by current docker instances)&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ sdiff -s /tmp/all.dirs /tmp/curr.dirs
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;removing-the-directories-for-good:d49d62c8188452b3ac07603c34a3f7b0&#34;&gt;Removing the directories for good&lt;/h1&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ sdiff -s -w 300 /tmp/all.dirs /tmp/curr.dirs \
+   | sed -e &#39;s/. &amp;lt;//g&#39; -e &#39;s/^/\/var\/lib\/docker\/vfs\/dir\//g&#39; \
+   | xargs sudo  rm -rf 
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
     
     <item>
       <title>Automated Git Mirror With GitHub or Gitlab or Bitbucket</title>

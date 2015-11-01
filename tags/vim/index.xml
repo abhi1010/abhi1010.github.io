@@ -15,7 +15,7 @@
       <pubDate>Sat, 31 Oct 2015 20:48:16 +0800</pubDate>
       
       <guid>http://abhipandey.com/2015/10/vim-cannot-find-word-list/</guid>
-      <description>&lt;p&gt;After installing &lt;a href=&#34;http://vim.spf13.com/&#34;&gt;spf13 vim&lt;/a&gt; every time I would open a file I had trouble with two things:&lt;/p&gt;
+      <description>&lt;p&gt;After installing &lt;a href=&#34;http://vim.spf13.com/&#34;&gt;spf13 vim&lt;/a&gt; every time I would open a file I had trouble with two things on my mac:&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;File opening would halt in the middle with the following error :  &lt;strong&gt;Cannot find word list &amp;ldquo;en.utf-8.spl&amp;rdquo; or &amp;ldquo;en.ascii.spl&amp;rdquo;&lt;/strong&gt;&lt;/li&gt;

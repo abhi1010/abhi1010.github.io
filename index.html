@@ -101,7 +101,7 @@
     
       </span>
       
-      <p>After installing <a href="http://vim.spf13.com/">spf13 vim</a> every time I would open a file I had trouble with two things:</p>
+      <p>After installing <a href="http://vim.spf13.com/">spf13 vim</a> every time I would open a file I had trouble with two things on my mac:</p>
 
 <ul>
 <li>File opening would halt in the middle with the following error :  <strong>Cannot find word list &ldquo;en.utf-8.spl&rdquo; or &ldquo;en.ascii.spl&rdquo;</strong></li>
@@ -145,6 +145,77 @@ Hence I decided to do a lookup for them:</p>
 </code></pre>
 
 <p>To my surprise, that worked!</p>
+
+      
+    </div>
+    
+    <div class="post">
+      <h1 class="post-title">
+        <a href="http://abhipandey.com/2015/10/forceful-docker-container-cleanup-on-elastic-beanstalk/">Forceful Docker Container cleanup on Elastic Beanstalk</a>
+      </h1>
+      <span class="post-date">Oct 7, 2015  &middot; <a href="http://abhipandey.com/2015/10/forceful-docker-container-cleanup-on-elastic-beanstalk/#disqus_thread">Comments</a>
+      
+      <br/>
+      <a class="a_cat" href="http://abhipandey.com/categories/continuous-delivery">continuous delivery</a><a class="a_cat" href="http://abhipandey.com/categories/code">code</a>
+        
+      <a class="a_tag" href="http://abhipandey.com/tags/aws">aws</a><a class="a_tag" href="http://abhipandey.com/tags/beanstalk">beanstalk</a><a class="a_tag" href="http://abhipandey.com/tags/docker">docker</a>
+    
+      </span>
+      
+      
+
+<p><strong><em><code>Note</code></em></strong>: <em><em>If you are not sure of what you are doing here, don&rsquo;t touch it.
+This is all sensitive stuff and a minor mistake can bring down your production.</em></em></p>
+
+<p>Sometimes, because of so many deployments happening and sharing volumes between dockers instances, the space runs out on production server.</p>
+
+<p>I found some ways to fix this but the most brutal way to leave the orphaned directories behind forever is to remove them.
+Such sadistic directories can be found at <code>/var/lib/docker/vfs/</code>.</p>
+
+<p>We can automate the removal.</p>
+
+<p><strong>First</strong>, let&rsquo;s find the directories that we should <strong><em><code>not</code></em></strong> delete.</p>
+
+<pre><code class="language-bash"># These directories are in use
+$ docker ps -q | xargs docker inspect | egrep &quot;var.lib.docker.vfs&quot;
+</code></pre>
+
+<p>You will see something like this:</p>
+
+<pre><code class="language-bash">$ docker ps -q | xargs docker inspect | egrep &quot;var.lib.docker.vfs&quot;
+  &quot;/etc/nginx/sites-enabled&quot;: &quot;/var/lib/docker/vfs/dir/ed53e780472dbf5057780182bd12ae1cb7930fce73f5f7071bad1b456076dc95&quot;,
+  &quot;/var/log/nginx&quot;: &quot;/var/lib/docker/vfs/dir/26c3ac02631b0eab5d6d3a4c5e6664b43974f217ca24b9369f3f12f186601147&quot;,
+  &quot;/ws&quot;: &quot;/var/lib/docker/vfs/dir/ecd74d6b7e73c25d5e5f6b450a7b162bfb8e44c649c2af951843954538500dba&quot;
+</code></pre>
+
+<h1 id="fire-drill:d49d62c8188452b3ac07603c34a3f7b0">Fire Drill</h1>
+
+<p><strong>Find out all directories that should stay</strong></p>
+
+<pre><code class="language-bash">$ docker ps -q \
+ | xargs docker inspect \
+ | egrep &quot;var.lib.docker.vfs&quot; \
+ | sed -e 's/.*dir.//g' -e 's/&quot;.*//g' \
+ | sort \
+ &gt; /tmp/curr.dirs 
+</code></pre>
+
+<p><strong>Find out all directories within <code>/var/lib/docker/vfs/dir</code></strong></p>
+
+<pre><code class="language-bash">$ sudo ls /var/lib/docker/vfs/dir/ | sort &gt; /tmp/all.dirs
+</code></pre>
+
+<p><strong>Find out the directories from <code>all.dirs</code> that should be deleted (not in use by current docker instances)</strong></p>
+
+<pre><code class="language-bash">$ sdiff -s /tmp/all.dirs /tmp/curr.dirs
+</code></pre>
+
+<h1 id="removing-the-directories-for-good:d49d62c8188452b3ac07603c34a3f7b0">Removing the directories for good</h1>
+
+<pre><code class="language-bash">$ sdiff -s -w 300 /tmp/all.dirs /tmp/curr.dirs \
+   | sed -e 's/. &lt;//g' -e 's/^/\/var\/lib\/docker\/vfs\/dir\//g' \
+   | xargs sudo  rm -rf 
+</code></pre>
 
       
     </div>
@@ -1265,47 +1336,6 @@ The simplest way to achieve it using the config parameter of <code>uwsgi</code>:
       
     </div>
     
-    <div class="post">
-      <h1 class="post-title">
-        <a href="http://abhipandey.com/2015/09/multiple-virtual-environments-in-docker/">Multiple Virtual Environments in Docker</a>
-      </h1>
-      <span class="post-date">Sep 3, 2015  &middot; <a href="http://abhipandey.com/2015/09/multiple-virtual-environments-in-docker/#disqus_thread">Comments</a>
-      
-      <br/>
-      <a class="a_cat" href="http://abhipandey.com/categories/continuous-delivery">continuous delivery</a>
-        
-      <a class="a_tag" href="http://abhipandey.com/tags/docker">docker</a><a class="a_tag" href="http://abhipandey.com/tags/python">python</a><a class="a_tag" href="http://abhipandey.com/tags/deployment">deployment</a><a class="a_tag" href="http://abhipandey.com/tags/supervisord">supervisord</a>
-    
-      </span>
-      
-      <p>It may seem like a daunting task to have multiple python projects running in their own virtual environments in docker as you want to manage the running of the tasks from a single source - let&rsquo;s say <code>supervisord</code>.
-However, all that is required here is to know that python automatically picks up the location of the virtual environments if you provide full path to the virtual environment&rsquo;s python.</p>
-
-<p>For example, in my docker environment, I have virtual environment install at the following location:</p>
-
-<pre><code>/ws/ve_envs/rwv1/
-</code></pre>
-
-<p>To enable a project with this virtual environment, I can run the following:</p>
-
-<pre><code>/ws/ve_envs/rwv1/bin/python3.4 PYTHON_PROJECT_FILE_TO_RUN.py
-</code></pre>
-
-<p>Similarly, other projects can be set up in the same way.</p>
-
-<p>For example, for running <code>uwsgi</code> I provide the full path for python as follows:</p>
-
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #ce5c00; font-weight: bold">[</span>program:appName<span style="color: #ce5c00; font-weight: bold">]</span>
-<span style="color: #000000">stdout_logfile</span> <span style="color: #ce5c00; font-weight: bold">=</span> /var/shared/_uwsgi.log
-<span style="color: #204a87">command</span> <span style="color: #ce5c00; font-weight: bold">=</span> /ws/ve_envs/project/bin/uwsgi --touch-reload<span style="color: #ce5c00; font-weight: bold">=</span>/ws/wsgi.ini --ini /ws/wsgi.ini
-</pre></div>
-
-
-<p>You might want to read about <code>--touch-reload</code> in my <a href="http://abhipandey.com/2015/09/updating-django-source-with-docker-deployments/">other post.</a></p>
-
-      
-    </div>
-    
     
     
     <ul class="pagination">
@@ -1335,12 +1365,15 @@ However, all that is required here is to know that python automatically picks up
         ><a href="/page/5/">5</a></li>
         
         <li
+        ><a href="/page/6/">6</a></li>
+        
+        <li
         >
         <a href="/page/2/" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
         </li>
         
         <li>
-            <a href="/page/5/" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+            <a href="/page/6/" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
         </li>
         
     </ul>

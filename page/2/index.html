@@ -90,6 +90,47 @@
     
     <div class="post">
       <h1 class="post-title">
+        <a href="http://abhipandey.com/2015/09/multiple-virtual-environments-in-docker/">Multiple Virtual Environments in Docker</a>
+      </h1>
+      <span class="post-date">Sep 3, 2015  &middot; <a href="http://abhipandey.com/2015/09/multiple-virtual-environments-in-docker/#disqus_thread">Comments</a>
+      
+      <br/>
+      <a class="a_cat" href="http://abhipandey.com/categories/continuous-delivery">continuous delivery</a>
+        
+      <a class="a_tag" href="http://abhipandey.com/tags/docker">docker</a><a class="a_tag" href="http://abhipandey.com/tags/python">python</a><a class="a_tag" href="http://abhipandey.com/tags/deployment">deployment</a><a class="a_tag" href="http://abhipandey.com/tags/supervisord">supervisord</a>
+    
+      </span>
+      
+      <p>It may seem like a daunting task to have multiple python projects running in their own virtual environments in docker as you want to manage the running of the tasks from a single source - let&rsquo;s say <code>supervisord</code>.
+However, all that is required here is to know that python automatically picks up the location of the virtual environments if you provide full path to the virtual environment&rsquo;s python.</p>
+
+<p>For example, in my docker environment, I have virtual environment install at the following location:</p>
+
+<pre><code>/ws/ve_envs/rwv1/
+</code></pre>
+
+<p>To enable a project with this virtual environment, I can run the following:</p>
+
+<pre><code>/ws/ve_envs/rwv1/bin/python3.4 PYTHON_PROJECT_FILE_TO_RUN.py
+</code></pre>
+
+<p>Similarly, other projects can be set up in the same way.</p>
+
+<p>For example, for running <code>uwsgi</code> I provide the full path for python as follows:</p>
+
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #ce5c00; font-weight: bold">[</span>program:appName<span style="color: #ce5c00; font-weight: bold">]</span>
+<span style="color: #000000">stdout_logfile</span> <span style="color: #ce5c00; font-weight: bold">=</span> /var/shared/_uwsgi.log
+<span style="color: #204a87">command</span> <span style="color: #ce5c00; font-weight: bold">=</span> /ws/ve_envs/project/bin/uwsgi --touch-reload<span style="color: #ce5c00; font-weight: bold">=</span>/ws/wsgi.ini --ini /ws/wsgi.ini
+</pre></div>
+
+
+<p>You might want to read about <code>--touch-reload</code> in my <a href="http://abhipandey.com/2015/09/updating-django-source-with-docker-deployments/">other post.</a></p>
+
+      
+    </div>
+    
+    <div class="post">
+      <h1 class="post-title">
         <a href="http://abhipandey.com/2015/08/sharing-folders-on-beanstalk-docker/">Sharing folders on Beanstalk Docker</a>
       </h1>
       <span class="post-date">Aug 14, 2015  &middot; <a href="http://abhipandey.com/2015/08/sharing-folders-on-beanstalk-docker/#disqus_thread">Comments</a>
@@ -476,46 +517,6 @@ Just run the following to test whether it works:</p>
       
     </div>
     
-    <div class="post">
-      <h1 class="post-title">
-        <a href="http://abhipandey.com/2014/04/32-bit-vs-64-bit/">32 bit vs 64 bit</a>
-      </h1>
-      <span class="post-date">Apr 15, 2014  &middot; <a href="http://abhipandey.com/2014/04/32-bit-vs-64-bit/#disqus_thread">Comments</a>
-      
-      <br/>
-      <a class="a_cat" href="http://abhipandey.com/categories/code">code</a>
-        
-      <a class="a_tag" href="http://abhipandey.com/tags/c">c&#43;&#43;</a>
-    
-      </span>
-      
-      
-
-<h3 id="when-to-use-64-bit:781115a00a27c6c773035866d9644c43">When to use 64-bit?</h3>
-
-<p>If your application needs more than 2-4gb of data</p>
-
-<ul>
-<li>If your application intensively uses 64-bit arithmetic</li>
-<li>* 32-bit x86 compiled applications are restricted to x86 instruction set, even when run on on a 64-bit machine</li>
-<li>x64 supports 16 registers compared to just 8 in x86. If your code is computation intensive this may help a great deal</li>
-</ul>
-
-<h3 id="when-to-use-32-bit:781115a00a27c6c773035866d9644c43">When to use 32-bit?</h3>
-
-<p>After reading so many great things about 32 bit, why would anybody still want to code against 32-bit? Simple reason - code compiled in 32-bit takes lesser memory. For example, a pointer in 64-bit machine is 8 bytes compared to 4 bytes with 32-bit. Now imagine how many pointers do you have going around in your code?</p>
-
-<h3 id="when-to-not-use-64-bit:781115a00a27c6c773035866d9644c43">When to not use 64-bit?</h3>
-
-<p>Sometimes if your code is running on a machine that does not have too much of space then it is a never a great idea to use 64-bit compilation because the same task can probably be done much better using 32-bit version. L2 and L3 caches will be utilized a lot more in 64-bit code (and a lot earlier as well) compared to 32-bit; on such systems.</p>
-
-<h3 id="summary:781115a00a27c6c773035866d9644c43">Summary</h3>
-
-<p>Always benchmark your code and ensure that the application actually needs more than 2-4Gb of space.</p>
-
-      
-    </div>
-    
     
     
     <ul class="pagination">
@@ -545,12 +546,15 @@ Just run the following to test whether it works:</p>
         ><a href="/page/5/">5</a></li>
         
         <li
+        ><a href="/page/6/">6</a></li>
+        
+        <li
         >
         <a href="/page/3/" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
         </li>
         
         <li>
-            <a href="/page/5/" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+            <a href="/page/6/" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
         </li>
         
     </ul>

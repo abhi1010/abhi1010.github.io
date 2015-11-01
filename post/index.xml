@@ -15,7 +15,7 @@
       <pubDate>Sat, 31 Oct 2015 20:48:16 +0800</pubDate>
       
       <guid>http://abhipandey.com/2015/10/vim-cannot-find-word-list/</guid>
-      <description>&lt;p&gt;After installing &lt;a href=&#34;http://vim.spf13.com/&#34;&gt;spf13 vim&lt;/a&gt; every time I would open a file I had trouble with two things:&lt;/p&gt;
+      <description>&lt;p&gt;After installing &lt;a href=&#34;http://vim.spf13.com/&#34;&gt;spf13 vim&lt;/a&gt; every time I would open a file I had trouble with two things on my mac:&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;File opening would halt in the middle with the following error :  &lt;strong&gt;Cannot find word list &amp;ldquo;en.utf-8.spl&amp;rdquo; or &amp;ldquo;en.ascii.spl&amp;rdquo;&lt;/strong&gt;&lt;/li&gt;
@@ -59,6 +59,69 @@ Hence I decided to do a lookup for them:&lt;/p&gt;
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;To my surprise, that worked!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Forceful Docker Container cleanup on Elastic Beanstalk</title>
+      <link>http://abhipandey.com/2015/10/forceful-docker-container-cleanup-on-elastic-beanstalk/</link>
+      <pubDate>Wed, 07 Oct 2015 14:59:18 -0400</pubDate>
+      
+      <guid>http://abhipandey.com/2015/10/forceful-docker-container-cleanup-on-elastic-beanstalk/</guid>
+      <description>
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;&lt;code&gt;Note&lt;/code&gt;&lt;/em&gt;&lt;/strong&gt;: &lt;em&gt;&lt;em&gt;If you are not sure of what you are doing here, don&amp;rsquo;t touch it.
+This is all sensitive stuff and a minor mistake can bring down your production.&lt;/em&gt;&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Sometimes, because of so many deployments happening and sharing volumes between dockers instances, the space runs out on production server.&lt;/p&gt;
+
+&lt;p&gt;I found some ways to fix this but the most brutal way to leave the orphaned directories behind forever is to remove them.
+Such sadistic directories can be found at &lt;code&gt;/var/lib/docker/vfs/&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;We can automate the removal.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;First&lt;/strong&gt;, let&amp;rsquo;s find the directories that we should &lt;strong&gt;&lt;em&gt;&lt;code&gt;not&lt;/code&gt;&lt;/em&gt;&lt;/strong&gt; delete.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# These directories are in use
+$ docker ps -q | xargs docker inspect | egrep &amp;quot;var.lib.docker.vfs&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You will see something like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ docker ps -q | xargs docker inspect | egrep &amp;quot;var.lib.docker.vfs&amp;quot;
+  &amp;quot;/etc/nginx/sites-enabled&amp;quot;: &amp;quot;/var/lib/docker/vfs/dir/ed53e780472dbf5057780182bd12ae1cb7930fce73f5f7071bad1b456076dc95&amp;quot;,
+  &amp;quot;/var/log/nginx&amp;quot;: &amp;quot;/var/lib/docker/vfs/dir/26c3ac02631b0eab5d6d3a4c5e6664b43974f217ca24b9369f3f12f186601147&amp;quot;,
+  &amp;quot;/ws&amp;quot;: &amp;quot;/var/lib/docker/vfs/dir/ecd74d6b7e73c25d5e5f6b450a7b162bfb8e44c649c2af951843954538500dba&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;fire-drill:d49d62c8188452b3ac07603c34a3f7b0&#34;&gt;Fire Drill&lt;/h1&gt;
+
+&lt;p&gt;&lt;strong&gt;Find out all directories that should stay&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ docker ps -q \
+ | xargs docker inspect \
+ | egrep &amp;quot;var.lib.docker.vfs&amp;quot; \
+ | sed -e &#39;s/.*dir.//g&#39; -e &#39;s/&amp;quot;.*//g&#39; \
+ | sort \
+ &amp;gt; /tmp/curr.dirs 
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;Find out all directories within &lt;code&gt;/var/lib/docker/vfs/dir&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ sudo ls /var/lib/docker/vfs/dir/ | sort &amp;gt; /tmp/all.dirs
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;Find out the directories from &lt;code&gt;all.dirs&lt;/code&gt; that should be deleted (not in use by current docker instances)&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ sdiff -s /tmp/all.dirs /tmp/curr.dirs
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;removing-the-directories-for-good:d49d62c8188452b3ac07603c34a3f7b0&#34;&gt;Removing the directories for good&lt;/h1&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ sdiff -s -w 300 /tmp/all.dirs /tmp/curr.dirs \
+   | sed -e &#39;s/. &amp;lt;//g&#39; -e &#39;s/^/\/var\/lib\/docker\/vfs\/dir\//g&#39; \
+   | xargs sudo  rm -rf 
+&lt;/code&gt;&lt;/pre&gt;
 </description>
     </item>
     
@@ -1297,36 +1360,6 @@ Just run the following to test whether it works:&lt;/p&gt;
 &lt;p&gt;As usual the code is available &lt;a href=&#34;https://github.com/abhi1010/Algorithms/blob/master/Algo_codes/Node.cpp&#34;&gt;here&lt;/a&gt;:&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&#34;https://github.com/abhi1010/Algorithms&#34;&gt;https://github.com/abhi1010/Algorithms&lt;/a&gt;&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Removing Duplicates from Linked List</title>
-      <link>http://abhipandey.com/2014/06/removing-duplicates-from-linked-list/</link>
-      <pubDate>Sat, 07 Jun 2014 16:50:12 +0000</pubDate>
-      
-      <guid>http://abhipandey.com/2014/06/removing-duplicates-from-linked-list/</guid>
-      <description>
-
-&lt;p&gt;Duplicates can be removed in many ways:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;Create a new Linked List containing only unique items&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Iterate through the Linked List and keep removing items that are being repeated&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;The internal structure itself for the algo can either be map or set based. When using map the Node itself can be saved thereby making your life easier if you are creating a new Linked List. However sets can be very useful if we are just iterating through the Linked List and simply deleting items that are being repetetive. This is also a great spacesaver. Hence we decided to go down this path.&lt;/p&gt;
-
-&lt;h1 id=&#34;code:33d170712a3b1643edfc33b9f231740c&#34;&gt;Code&lt;/h1&gt;
-
-&lt;p&gt;As usual the &lt;a href=&#34;https://github.com/abhi1010/Algorithms/blob/master/Algo_codes/Node.cpp&#34;&gt;code&lt;/a&gt; is available here:&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;https://github.com/abhi1010/Algorithms&#34;&gt;https://github.com/abhi1010/Algorithms&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Here&amp;rsquo;s a small sample as to how to do it:&lt;/p&gt;
-
-&lt;script type=&#34;text/javascript&#34; src=&#34;http://gist.github.com/e2b7117c20d0f591896f.js&#34;&gt;&lt;/script&gt;
 </description>
     </item>
     
