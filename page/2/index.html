@@ -90,6 +90,45 @@
     
     <div class="post">
       <h1 class="post-title">
+        <a href="http://abhipandey.com/2015/08/sharing-folders-on-beanstalk-docker/">Sharing folders on Beanstalk Docker</a>
+      </h1>
+      <span class="post-date">Aug 14, 2015  &middot; <a href="http://abhipandey.com/2015/08/sharing-folders-on-beanstalk-docker/#disqus_thread">Comments</a>
+      
+      <br/>
+      <a class="a_cat" href="http://abhipandey.com/categories/code">code</a><a class="a_cat" href="http://abhipandey.com/categories/continuous-delivery">continuous delivery</a>
+        
+      <a class="a_tag" href="http://abhipandey.com/tags/docker">docker</a><a class="a_tag" href="http://abhipandey.com/tags/nginx">nginx</a><a class="a_tag" href="http://abhipandey.com/tags/aws">aws</a><a class="a_tag" href="http://abhipandey.com/tags/beanstalk">beanstalk</a>
+    
+      </span>
+      
+      <p>It is very easy to setup volume sharing in <code>docker</code>. You ideally want the following folders to be shared when a new <code>docker</code> is initialized for you:</p>
+
+<ul>
+<li><code>/var/log</code> so that you can keep track of logs</li>
+<li><code>nginx</code> specific folders because you will have two instances of <code>nginx</code> running - one on <code>docker</code> and another on <code>EC2</code>. This allows you to share logs
+
+<ul>
+<li>Also read <a href="http://abhipandey.com/2015/09/nginx-upload-limits-on-beanstalk-docker/">this post</a> for related info</li>
+</ul></li>
+<li>your personal workspace or anything that you&rsquo;d like to share</li>
+</ul>
+
+<p>Here&rsquo;s how you&rsquo;d do it. The keyword is <code>VOLUME</code>&hellip; in your <code>Dockerfile</code></p>
+
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000000">VOLUME</span> <span style="color: #000000; font-weight: bold">[</span> \
+    <span style="color: #4e9a06">&quot;/var/shared/&quot;</span><span style="color: #000000; font-weight: bold">,</span> \ 
+    <span style="color: #4e9a06">&quot;/etc/nginx/sites-enabled&quot;</span><span style="color: #000000; font-weight: bold">,</span> \ 
+    <span style="color: #4e9a06">&quot;/var/log/nginx&quot;</span><span style="color: #000000; font-weight: bold">,</span> \
+    <span style="color: #4e9a06">&quot;/ws/&quot;</span> \
+<span style="color: #000000; font-weight: bold">]</span>
+</pre></div>
+
+
+      
+    </div>
+    
+    <div class="post">
+      <h1 class="post-title">
         <a href="http://abhipandey.com/2015/08/docker-container-cleanup-on-elastic-beanstalk/">Docker Container cleanup on Elastic Beanstalk</a>
       </h1>
       <span class="post-date">Aug 7, 2015  &middot; <a href="http://abhipandey.com/2015/08/docker-container-cleanup-on-elastic-beanstalk/#disqus_thread">Comments</a>
@@ -473,28 +512,6 @@ Just run the following to test whether it works:</p>
 <h3 id="summary:781115a00a27c6c773035866d9644c43">Summary</h3>
 
 <p>Always benchmark your code and ensure that the application actually needs more than 2-4Gb of space.</p>
-
-      
-    </div>
-    
-    <div class="post">
-      <h1 class="post-title">
-        <a href="http://abhipandey.com/2014/04/tokenize-a-string-using-c/">Tokenize a String using C&#43;&#43;</a>
-      </h1>
-      <span class="post-date">Apr 8, 2014  &middot; <a href="http://abhipandey.com/2014/04/tokenize-a-string-using-c/#disqus_thread">Comments</a>
-      
-      <br/>
-      <a class="a_cat" href="http://abhipandey.com/categories/code">code</a><a class="a_cat" href="http://abhipandey.com/categories/tips">tips</a>
-        
-      <a class="a_tag" href="http://abhipandey.com/tags/c">c&#43;&#43;</a>
-    
-      </span>
-      
-      <p>Here&rsquo;s a short snippet to split a string into multiple tokens; into a vector. As you will see that, if you run the code, boost version performs better because you can choose a number of delimiters to split your string instead of the vanilla version using the normal C++ code. Of course, you may also write your own code to do something like this but I was looking to do some short snippets.</p>
-
-<script type="text/javascript" src="http://gist.github.com/554885a7235f4047dae6.js"></script>
-
-<p>I have <strong>posted my code on <a href="http://coliru.stacked-crooked.com/a/01e1c68ffd0199cd">Stacked-Crooked</a></strong> which you can view along with the output as well. It shows C++ doesn&rsquo;t perform so well.</p>
 
       
     </div>

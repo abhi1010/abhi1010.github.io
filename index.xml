@@ -6,8 +6,61 @@
     <description>Recent content on Coders Digest</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 28 Sep 2015 08:46:09 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 31 Oct 2015 20:48:16 +0800</lastBuildDate>
     <atom:link href="http://abhipandey.com/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>vim cannot find word list</title>
+      <link>http://abhipandey.com/2015/10/vim-cannot-find-word-list/</link>
+      <pubDate>Sat, 31 Oct 2015 20:48:16 +0800</pubDate>
+      
+      <guid>http://abhipandey.com/2015/10/vim-cannot-find-word-list/</guid>
+      <description>&lt;p&gt;After installing &lt;a href=&#34;http://vim.spf13.com/&#34;&gt;spf13 vim&lt;/a&gt; every time I would open a file I had trouble with two things:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;File opening would halt in the middle with the following error :  &lt;strong&gt;Cannot find word list &amp;ldquo;en.utf-8.spl&amp;rdquo; or &amp;ldquo;en.ascii.spl&amp;rdquo;&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Syntax highlighting also failed thereafter&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Here&amp;rsquo;s what I would see:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ vim release.sh 
+Warning: Cannot find word list &amp;quot;en.utf-8.spl&amp;quot; or &amp;quot;en.ascii.spl&amp;quot;
+Press ENTER or type command to continue
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I googled a lot regarding this but didn&amp;rsquo;t find anything straight forward.
+When all options failed I recalled that it is looking for the spell files in a specific folder.
+Hence I decided to do a lookup for them:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;locate en.utf-8
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I got a lot of options:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ locate en.utf-8
+
+/usr/local/Cellar/macvim/7.4-73/MacVim.app/Contents/Resources/vim/runtime/spell/en.utf-8.spl
+/usr/local/Cellar/macvim/7.4-73/MacVim.app/Contents/Resources/vim/runtime/spell/en.utf-8.sug
+/usr/local/Cellar/vim/7.4.712/share/vim/vim74/spell/en.utf-8.spl
+/usr/local/Cellar/vim/7.4.712/share/vim/vim74/spell/en.utf-8.sug
+/usr/share/vim/vim73/spell/en.utf-8.spl
+/usr/share/vim/vim73/spell/en.utf-8.sug
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;One of the options was to change the &lt;code&gt;runtimepath&lt;/code&gt; to let it know about the spell folders.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;let &amp;amp;runtimepath=(&amp;quot;~/.vim/,/usr/local/Cellar/vim/7.4.712/share/vim/vim74/spell/,&amp;quot; . &amp;amp;runtimepath)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;When that failed too and nothing else worked, I decided to copy out the file and give it a try:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;cp /usr/local/Cellar/vim/7.4.712/share/vim/vim74/spell/en.utf-8.spl ~/.vim/spell
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;To my surprise, that worked!&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Powerline for zsh</title>
@@ -1268,36 +1321,6 @@ Just run the following to test whether it works:&lt;/p&gt;
 &lt;p&gt;As usual the code is available &lt;a href=&#34;https://github.com/abhi1010/Algorithms/blob/master/Algo_codes/Node.cpp&#34;&gt;here&lt;/a&gt;:&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&#34;https://github.com/abhi1010/Algorithms&#34;&gt;https://github.com/abhi1010/Algorithms&lt;/a&gt;&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Removing Duplicates from Linked List</title>
-      <link>http://abhipandey.com/2014/06/removing-duplicates-from-linked-list/</link>
-      <pubDate>Sat, 07 Jun 2014 16:50:12 +0000</pubDate>
-      
-      <guid>http://abhipandey.com/2014/06/removing-duplicates-from-linked-list/</guid>
-      <description>
-
-&lt;p&gt;Duplicates can be removed in many ways:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;Create a new Linked List containing only unique items&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Iterate through the Linked List and keep removing items that are being repeated&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;The internal structure itself for the algo can either be map or set based. When using map the Node itself can be saved thereby making your life easier if you are creating a new Linked List. However sets can be very useful if we are just iterating through the Linked List and simply deleting items that are being repetetive. This is also a great spacesaver. Hence we decided to go down this path.&lt;/p&gt;
-
-&lt;h1 id=&#34;code:33d170712a3b1643edfc33b9f231740c&#34;&gt;Code&lt;/h1&gt;
-
-&lt;p&gt;As usual the &lt;a href=&#34;https://github.com/abhi1010/Algorithms/blob/master/Algo_codes/Node.cpp&#34;&gt;code&lt;/a&gt; is available here:&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;https://github.com/abhi1010/Algorithms&#34;&gt;https://github.com/abhi1010/Algorithms&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Here&amp;rsquo;s a small sample as to how to do it:&lt;/p&gt;
-
-&lt;script type=&#34;text/javascript&#34; src=&#34;http://gist.github.com/e2b7117c20d0f591896f.js&#34;&gt;&lt;/script&gt;
 </description>
     </item>
     
