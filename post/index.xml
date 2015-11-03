@@ -63,6 +63,106 @@ Hence I decided to do a lookup for them:&lt;/p&gt;
     </item>
     
     <item>
+      <title>Setting up custom domain with Github Pages</title>
+      <link>http://abhipandey.com/2015/10/setting-up-custom-domain-with-github-pages/</link>
+      <pubDate>Sat, 24 Oct 2015 14:59:18 -0400</pubDate>
+      
+      <guid>http://abhipandey.com/2015/10/setting-up-custom-domain-with-github-pages/</guid>
+      <description>
+
+&lt;p&gt;Let&amp;rsquo;s take the example of my domain itself &lt;code&gt;abhipandey.com&lt;/code&gt; that I want to serve from &lt;code&gt;abhi1010.github.io&lt;/code&gt;.
+ We will need to do it in two steps:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Setup CNAME on github
+
+&lt;ul&gt;
+&lt;li&gt;So that github knows about your domain&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Setup &lt;strong&gt;A&lt;/strong&gt; record on AWS Route 53
+
+&lt;ul&gt;
+&lt;li&gt;So that domain can be registered&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;change-cname:75bfc49f34e22778d17e9b1837e9218b&#34;&gt;Change CNAME&lt;/h1&gt;
+
+&lt;p&gt;If we want to tell github about the domain name, it is rather simple: &lt;em&gt;create a CNAME file with the content being
+the name of the domain itself&lt;/em&gt;
+Do &lt;em&gt;note&lt;/em&gt; here that the default redirect of your domain will be the value in your CNAME file.&lt;/p&gt;
+
+&lt;p&gt;Here&amp;rsquo;s my &lt;a href=&#34;https://github.com/abhi1010/abhi1010.github.io/blob/master/CNAME&#34;&gt;CNAME file&lt;/a&gt; content:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;abhipandey.com
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You don&amp;rsquo;t really need &lt;strong&gt;www&lt;/strong&gt;. If you do put &lt;em&gt;www.abhipandey.com&lt;/em&gt; github will figure out and redirect properly.
+The difference is abhipandey.com is a top-level domain (TLD), while &lt;em&gt;www.abhipandey.com&lt;/em&gt; is a subdomain.&lt;/p&gt;
+
+&lt;p&gt;Essentially:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;If your CNAME file contains &lt;em&gt;abhipandey.com&lt;/em&gt;, then &lt;em&gt;www.abhipandey.com&lt;/em&gt; will redirect to &lt;em&gt;abhipandey.com&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;If your CNAME file contains &lt;em&gt;www.abhipandey.com&lt;/em&gt;, then &lt;em&gt;abhipandey.com&lt;/em&gt; will redirect to &lt;em&gt;www.abhipandey.com&lt;/em&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h1 id=&#34;creating-a-record:75bfc49f34e22778d17e9b1837e9218b&#34;&gt;Creating A Record&lt;/h1&gt;
+
+
+&lt;figure &gt;
+    
+        &lt;img src=&#34;http://abhipandey.com/images/custom-domain-name-with-github-pages-and-amazon-route-53_1.png&#34; alt=&#34;Setting up A record&#34; /&gt;
+    
+    
+    &lt;figcaption&gt;
+        &lt;p&gt;
+        Setting up A record
+        
+            
+        
+        &lt;/p&gt; 
+    &lt;/figcaption&gt;
+    
+&lt;/figure&gt;
+
+
+&lt;p&gt;Next is to go to Amazon Route 53 console, and create an A record with the following IPs:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;192.30.252.153
+192.30.252.154
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;setup-subdomain:75bfc49f34e22778d17e9b1837e9218b&#34;&gt;Setup subdomain&lt;/h1&gt;
+
+
+&lt;figure &gt;
+    
+        &lt;img src=&#34;http://abhipandey.com/images/custom-domain-name-with-github-pages-and-amazon-route-53_2.png&#34; alt=&#34;Setting up subdomain&#34; /&gt;
+    
+    
+    &lt;figcaption&gt;
+        &lt;p&gt;
+        Setting up subdomain
+        
+            
+        
+        &lt;/p&gt; 
+    &lt;/figcaption&gt;
+    
+&lt;/figure&gt;
+
+
+&lt;p&gt;If you configure both an apex domain (e.g. &lt;em&gt;abhipandey.com&lt;/em&gt;) and a matching www subdomain (e.g. &lt;em&gt;www.abhipandey.com&lt;/em&gt;),
+GitHub&amp;rsquo;s servers will automatically create redirects between the two.&lt;/p&gt;
+
+&lt;p&gt;You can also also look up &lt;a href=&#34;https://help.github.com/articles/tips-for-configuring-an-a-record-with-your-dns-provider/&#34;&gt;GitHub Tips&lt;/a&gt; for
+configuring an &lt;strong&gt;A&lt;/strong&gt; record with your DNS provider.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Forceful Docker Container cleanup on Elastic Beanstalk</title>
       <link>http://abhipandey.com/2015/10/forceful-docker-container-cleanup-on-elastic-beanstalk/</link>
       <pubDate>Wed, 07 Oct 2015 14:59:18 -0400</pubDate>
@@ -1327,35 +1427,6 @@ Just run the following to test whether it works:&lt;/p&gt;
 &lt;script type=&#34;text/javascript&#34; src=&#34;http://gist.github.com/3ada1d15b5bda319a54c.js&#34;&gt;&lt;/script&gt;
 
 &lt;h1 id=&#34;code:8a20b19b0e16e5ac875728276c435d4c&#34;&gt;Code&lt;/h1&gt;
-
-&lt;p&gt;As usual the code is available &lt;a href=&#34;https://github.com/abhi1010/Algorithms/blob/master/Algo_codes/Node.cpp&#34;&gt;here&lt;/a&gt;:&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;https://github.com/abhi1010/Algorithms&#34;&gt;https://github.com/abhi1010/Algorithms&lt;/a&gt;&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Find the Kth to Last Element of a Singly Linked List</title>
-      <link>http://abhipandey.com/2014/06/find-the-kth-to-last-element-of-a-singly-linked-list/</link>
-      <pubDate>Sun, 08 Jun 2014 07:49:47 +0000</pubDate>
-      
-      <guid>http://abhipandey.com/2014/06/find-the-kth-to-last-element-of-a-singly-linked-list/</guid>
-      <description>&lt;p&gt;It is possible to a recursive solutions but I will use a simple runner logic. Recursive solutions are usually less optimal.&lt;/p&gt;
-
-&lt;p&gt;Note here that, in our logic K=1 would return the last element in the linked list. Similarly, K=2 would return the second last element.&lt;/p&gt;
-
-&lt;p&gt;The suggested solution here is to use two pointers:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;One pointer will first travel K items into the list&lt;/li&gt;
-&lt;li&gt;Once that is done, both the pointers start travelling together, one item at a time&lt;/li&gt;
-&lt;li&gt;They keep travelling until the end of linked list is found&lt;/li&gt;
-&lt;li&gt;In that situation, the first pointer is at the end of the list, but the second pointer would have only reached till Kth element - this is what you want&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Let&amp;rsquo;s have a look at the code:&lt;/p&gt;
-
-&lt;script type=&#34;text/javascript&#34; src=&#34;http://gist.github.com/43e289a9877fb9293680.js&#34;&gt;&lt;/script&gt;
 
 &lt;p&gt;As usual the code is available &lt;a href=&#34;https://github.com/abhi1010/Algorithms/blob/master/Algo_codes/Node.cpp&#34;&gt;here&lt;/a&gt;:&lt;/p&gt;
 

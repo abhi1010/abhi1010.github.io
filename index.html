@@ -151,6 +151,114 @@ Hence I decided to do a lookup for them:</p>
     
     <div class="post">
       <h1 class="post-title">
+        <a href="http://abhipandey.com/2015/10/setting-up-custom-domain-with-github-pages/">Setting up custom domain with Github Pages</a>
+      </h1>
+      <span class="post-date">Oct 24, 2015  &middot; <a href="http://abhipandey.com/2015/10/setting-up-custom-domain-with-github-pages/#disqus_thread">Comments</a>
+      
+      <br/>
+      <a class="a_cat" href="http://abhipandey.com/categories/continuous-delivery">continuous delivery</a><a class="a_cat" href="http://abhipandey.com/categories/code">code</a>
+        
+      <a class="a_tag" href="http://abhipandey.com/tags/aws">aws</a><a class="a_tag" href="http://abhipandey.com/tags/route-53">route 53</a><a class="a_tag" href="http://abhipandey.com/tags/github">github</a>
+    
+      </span>
+      
+      
+
+<p>Let&rsquo;s take the example of my domain itself <code>abhipandey.com</code> that I want to serve from <code>abhi1010.github.io</code>.
+ We will need to do it in two steps:</p>
+
+<ul>
+<li>Setup CNAME on github
+
+<ul>
+<li>So that github knows about your domain</li>
+</ul></li>
+<li>Setup <strong>A</strong> record on AWS Route 53
+
+<ul>
+<li>So that domain can be registered</li>
+</ul></li>
+</ul>
+
+<h1 id="change-cname:75bfc49f34e22778d17e9b1837e9218b">Change CNAME</h1>
+
+<p>If we want to tell github about the domain name, it is rather simple: <em>create a CNAME file with the content being
+the name of the domain itself</em>
+Do <em>note</em> here that the default redirect of your domain will be the value in your CNAME file.</p>
+
+<p>Here&rsquo;s my <a href="https://github.com/abhi1010/abhi1010.github.io/blob/master/CNAME">CNAME file</a> content:</p>
+
+<pre><code>abhipandey.com
+</code></pre>
+
+<p>You don&rsquo;t really need <strong>www</strong>. If you do put <em>www.abhipandey.com</em> github will figure out and redirect properly.
+The difference is abhipandey.com is a top-level domain (TLD), while <em>www.abhipandey.com</em> is a subdomain.</p>
+
+<p>Essentially:</p>
+
+<blockquote>
+<p>If your CNAME file contains <em>abhipandey.com</em>, then <em>www.abhipandey.com</em> will redirect to <em>abhipandey.com</em>.</p>
+
+<p>If your CNAME file contains <em>www.abhipandey.com</em>, then <em>abhipandey.com</em> will redirect to <em>www.abhipandey.com</em>.</p>
+</blockquote>
+
+<h1 id="creating-a-record:75bfc49f34e22778d17e9b1837e9218b">Creating A Record</h1>
+
+
+<figure >
+    
+        <img src="/images/custom-domain-name-with-github-pages-and-amazon-route-53_1.png" alt="Setting up A record" />
+    
+    
+    <figcaption>
+        <p>
+        Setting up A record
+        
+            
+        
+        </p> 
+    </figcaption>
+    
+</figure>
+
+
+<p>Next is to go to Amazon Route 53 console, and create an A record with the following IPs:</p>
+
+<pre><code>192.30.252.153
+192.30.252.154
+</code></pre>
+
+<h1 id="setup-subdomain:75bfc49f34e22778d17e9b1837e9218b">Setup subdomain</h1>
+
+
+<figure >
+    
+        <img src="/images/custom-domain-name-with-github-pages-and-amazon-route-53_2.png" alt="Setting up subdomain" />
+    
+    
+    <figcaption>
+        <p>
+        Setting up subdomain
+        
+            
+        
+        </p> 
+    </figcaption>
+    
+</figure>
+
+
+<p>If you configure both an apex domain (e.g. <em>abhipandey.com</em>) and a matching www subdomain (e.g. <em>www.abhipandey.com</em>),
+GitHub&rsquo;s servers will automatically create redirects between the two.</p>
+
+<p>You can also also look up <a href="https://help.github.com/articles/tips-for-configuring-an-a-record-with-your-dns-provider/">GitHub Tips</a> for
+configuring an <strong>A</strong> record with your DNS provider.</p>
+
+      
+    </div>
+    
+    <div class="post">
+      <h1 class="post-title">
         <a href="http://abhipandey.com/2015/10/forceful-docker-container-cleanup-on-elastic-beanstalk/">Forceful Docker Container cleanup on Elastic Beanstalk</a>
       </h1>
       <span class="post-date">Oct 7, 2015  &middot; <a href="http://abhipandey.com/2015/10/forceful-docker-container-cleanup-on-elastic-beanstalk/#disqus_thread">Comments</a>
@@ -1248,90 +1356,6 @@ Hence, if you had to modify the <code>nginx</code> settings to allow bigger uplo
     <span style="color: #000000">client_max_body_size</span> <span style="color: #0000cf; font-weight: bold">0</span><span style="color: #000000; font-weight: bold">;</span>
 </pre></div>
 
-
-      
-    </div>
-    
-    <div class="post">
-      <h1 class="post-title">
-        <a href="http://abhipandey.com/2015/09/updating-django-source-with-docker-deployments/">Updating Django Source with Docker Deployments</a>
-      </h1>
-      <span class="post-date">Sep 4, 2015  &middot; <a href="http://abhipandey.com/2015/09/updating-django-source-with-docker-deployments/#disqus_thread">Comments</a>
-      
-      <br/>
-      <a class="a_cat" href="http://abhipandey.com/categories/code">code</a><a class="a_cat" href="http://abhipandey.com/categories/continuous-delivery">continuous delivery</a>
-        
-      <a class="a_tag" href="http://abhipandey.com/tags/docker">docker</a><a class="a_tag" href="http://abhipandey.com/tags/django">django</a><a class="a_tag" href="http://abhipandey.com/tags/uwsgi">uwsgi</a><a class="a_tag" href="http://abhipandey.com/tags/git">git</a><a class="a_tag" href="http://abhipandey.com/tags/supervisord">supervisord</a>
-    
-      </span>
-      
-      
-
-<p>While deploying docker multiple times, you may not want to copy over your <code>Django</code> source code every time you do a deployment.</p>
-
-<h1 id="setting-up-supervisord:8ef139736ad377184214844940ced19b">Setting up <code>supervisord</code></h1>
-
-<p>Luckily there is an easy way to manage this. Since you are working with <code>Django</code>, there is a good chance that you are also managing the processes (like <code>uwsgi</code>) with <code>supervisord</code>.</p>
-
-<p>Here are some of the steps that you can take with <code>supervisord</code></p>
-
-<ul>
-<li>Set up a new process in <code>supervisord</code></li>
-<li>Do not allow it to <em><code>autorestart</code></em> since it will be a one-shot process</li>
-<li>Call another script in any format to update the source code
-
-<ul>
-<li>As an example, I use <code>bash</code> to update my source code through <code>git</code></li>
-</ul></li>
-</ul>
-
-<p>Here&rsquo;s a sample code:</p>
-
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">    <span style="color: #ce5c00; font-weight: bold">[</span>program:source-updater<span style="color: #ce5c00; font-weight: bold">]</span>
-    <span style="color: #000000">redirect_stderr</span> <span style="color: #ce5c00; font-weight: bold">=</span> <span style="color: #204a87">true</span>
-<span style="color: #204a87">    </span><span style="color: #000000">stdout_logfile</span> <span style="color: #ce5c00; font-weight: bold">=</span> /shared/source_code_updater.log
-    <span style="color: #000000">directory</span> <span style="color: #ce5c00; font-weight: bold">=</span> /ws/
-    <span style="color: #204a87">command</span> <span style="color: #ce5c00; font-weight: bold">=</span> /ws/source_code_updater.sh
-    <span style="color: #000000">autorestart</span><span style="color: #ce5c00; font-weight: bold">=</span>False
-</pre></div>
-
-
-<h1 id="updating-the-source-code:8ef139736ad377184214844940ced19b">Updating the source code</h1>
-
-<p>Few things are important to note in a <code>docker</code> deployment:</p>
-
-<ul>
-<li>Not every commit needs to be deployed</li>
-<li>Filter your commits to only allow <strong><em>deployable</em></strong> code to be updated on <code>docker</code></li>
-<li>Include regression, unit and system tests to be part of your build process</li>
-<li>Once everything has been confirmed to be working, tag your code so that you know it is worthy of going to docker</li>
-<li>Another way would be to manage this process through branches and merge only if everything passes</li>
-<li><code>docker</code> deployments would build off this merged branch or tagged version</li>
-<li>This way even if you have made 10 commits while fixing a bug and are still in the process of fixing it, you know it won&rsquo;t go to <code>docker</code> deployment</li>
-</ul>
-
-<p>With that idea, do a checkout and update the source code according to specific tag:</p>
-
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">    git checkout -f tags/your_tag_name
-    git pull origin tags/your_tag_name
-</pre></div>
-
-
-<h1 id="telling-uwsgi-about-the-updated-source-code:8ef139736ad377184214844940ced19b">Telling <code>uwsgi</code> about the updated source code</h1>
-
-<p>Once you have updated your source code, you need to re-load the project onto <code>uwsgi</code> so that <code>nginx</code> or <code>apache</code> can pick it up.
-The simplest way to achieve it using the config parameter of <code>uwsgi</code>: <code>--touch-reload</code>. It will <em>reload uWSGI if the specified file is modified/touched</em></p>
-
-<p>Just remember to setup <code>supervisord</code> in your <code>Dockerfile</code> with this config parameter.</p>
-
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #ce5c00; font-weight: bold">[</span>program:app-uwsgi<span style="color: #ce5c00; font-weight: bold">]</span>
-<span style="color: #000000">redirect_stderr</span> <span style="color: #ce5c00; font-weight: bold">=</span> <span style="color: #204a87">true</span>
-<span style="color: #000000">stdout_logfile</span> <span style="color: #ce5c00; font-weight: bold">=</span> /var/shared/_uwsgi.log
-<span style="color: #204a87">command</span> <span style="color: #ce5c00; font-weight: bold">=</span> /ws/ve_envs/rwv2/bin/uwsgi --touch-reload<span style="color: #ce5c00; font-weight: bold">=</span>/ws/wsgi.ini --ini /ws/wsgi.ini
-</pre></div>
-
-
-<p>You can choose any file. I choose <code>uwsgi.ini</code> because the contents never really need to change in it.</p>
 
       
     </div>

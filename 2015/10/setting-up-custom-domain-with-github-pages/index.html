@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>Setting up custom domain with Github Pages &middot; Abhishek Pandey</title>
+
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+  <link rel="stylesheet" href="http://abhipandey.com/css/poole.css?ref=abc124">
+  <link rel="stylesheet" href="http://abhipandey.com/css/hyde.css?ref=abc124">
+  <link rel="stylesheet" href="http://abhipandey.com/css/poole-overrides.css?ref=abc124">
+  <link rel="stylesheet" href="http://abhipandey.com/css/hyde-overrides.css?ref=abc124">
+  <link rel="stylesheet" href="http://abhipandey.com/css/hyde-a.css?ref=abc124">
+  <link rel="stylesheet" href="http://abhipandey.com/css/custom-additions.css?ref=abc124">
+  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://abhipandey.com/touch-icon-144-precomposed.png?ref=abc124">
+  <link href="http://abhipandey.com/favicon.png?ref=abc124" rel="icon">
+
+  
+  
+  
+  
+
+  <meta name="description" content="How to use AWS Route 53 to setup your custom domain for Github pages blog">
+  <meta name="keywords" content="aws,blog domain,github,route 53 domain,custom github domain,CNAME">
+  
+  
+  <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-68135443-1', 'auto');
+      ga('send', 'pageview');
+  </script>
+
+</head>
+<body class="theme-base-aa">
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      
+      <h1><a href="http://abhipandey.com/">Abhishek Pandey</a></h1>
+      <p class="lead">[&lsquo;Code&rsquo;, &lsquo;Debug&rsquo;, &lsquo;Deploy&rsquo;]</p>
+    </div>
+
+    <ul class="sidebar-nav">
+      
+      <li class="sidebar-nav-item"><a href="http://abhipandey.com/post/">Posts</a></li>
+      
+      <li class="sidebar-nav-item"><a href="http://abhipandey.com/tags/">Tags</a></li>
+      
+      <li class="sidebar-nav-item"><a href="http://abhipandey.com/categories/">Categories</a></li>
+      
+      <li class="sidebar-nav-item"><a href="http://abhipandey.com/about/">About</a></li>
+      
+    </ul>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item">
+      
+      
+      
+      
+      
+      
+      
+      
+      </li>
+    </ul>
+
+    
+
+  </div>
+</div>
+
+
+<div class="content container">
+  <div class="post">
+    <h1>Setting up custom domain with Github Pages</h1>
+    <span class="post-date">Oct 24, 2015  &middot; <a href="http://abhipandey.com/2015/10/setting-up-custom-domain-with-github-pages/#disqus_thread">Comments</a>
+    
+    <br/>
+    
+          <a class="a_cat" href="http://abhipandey.com/categories/continuous-delivery">continuous delivery</a><a class="a_cat" href="http://abhipandey.com/categories/code">code</a>
+      
+      
+        <a class="a_tag" href="http://abhipandey.com/tags/aws">aws</a><a class="a_tag" href="http://abhipandey.com/tags/route-53">route 53</a><a class="a_tag" href="http://abhipandey.com/tags/github">github</a>
+      
+
+    
+    </span>
+      <div id="_toc" class="toc">
+        <nav id="TableOfContents">
+<ul>
+<li><a href="#change-cname:75bfc49f34e22778d17e9b1837e9218b">Change CNAME</a></li>
+<li><a href="#creating-a-record:75bfc49f34e22778d17e9b1837e9218b">Creating A Record</a></li>
+<li><a href="#setup-subdomain:75bfc49f34e22778d17e9b1837e9218b">Setup subdomain</a></li>
+</ul>
+</nav>
+      </div>
+    
+
+<p>Let&rsquo;s take the example of my domain itself <code>abhipandey.com</code> that I want to serve from <code>abhi1010.github.io</code>.
+ We will need to do it in two steps:</p>
+
+<ul>
+<li>Setup CNAME on github
+
+<ul>
+<li>So that github knows about your domain</li>
+</ul></li>
+<li>Setup <strong>A</strong> record on AWS Route 53
+
+<ul>
+<li>So that domain can be registered</li>
+</ul></li>
+</ul>
+
+<h1 id="change-cname:75bfc49f34e22778d17e9b1837e9218b">Change CNAME</h1>
+
+<p>If we want to tell github about the domain name, it is rather simple: <em>create a CNAME file with the content being
+the name of the domain itself</em>
+Do <em>note</em> here that the default redirect of your domain will be the value in your CNAME file.</p>
+
+<p>Here&rsquo;s my <a href="https://github.com/abhi1010/abhi1010.github.io/blob/master/CNAME">CNAME file</a> content:</p>
+
+<pre><code>abhipandey.com
+</code></pre>
+
+<p>You don&rsquo;t really need <strong>www</strong>. If you do put <em>www.abhipandey.com</em> github will figure out and redirect properly.
+The difference is abhipandey.com is a top-level domain (TLD), while <em>www.abhipandey.com</em> is a subdomain.</p>
+
+<p>Essentially:</p>
+
+<blockquote>
+<p>If your CNAME file contains <em>abhipandey.com</em>, then <em>www.abhipandey.com</em> will redirect to <em>abhipandey.com</em>.</p>
+
+<p>If your CNAME file contains <em>www.abhipandey.com</em>, then <em>abhipandey.com</em> will redirect to <em>www.abhipandey.com</em>.</p>
+</blockquote>
+
+<h1 id="creating-a-record:75bfc49f34e22778d17e9b1837e9218b">Creating A Record</h1>
+
+
+<figure >
+    
+        <img src="/images/custom-domain-name-with-github-pages-and-amazon-route-53_1.png" alt="Setting up A record" />
+    
+    
+    <figcaption>
+        <p>
+        Setting up A record
+        
+            
+        
+        </p> 
+    </figcaption>
+    
+</figure>
+
+
+<p>Next is to go to Amazon Route 53 console, and create an A record with the following IPs:</p>
+
+<pre><code>192.30.252.153
+192.30.252.154
+</code></pre>
+
+<h1 id="setup-subdomain:75bfc49f34e22778d17e9b1837e9218b">Setup subdomain</h1>
+
+
+<figure >
+    
+        <img src="/images/custom-domain-name-with-github-pages-and-amazon-route-53_2.png" alt="Setting up subdomain" />
+    
+    
+    <figcaption>
+        <p>
+        Setting up subdomain
+        
+            
+        
+        </p> 
+    </figcaption>
+    
+</figure>
+
+
+<p>If you configure both an apex domain (e.g. <em>abhipandey.com</em>) and a matching www subdomain (e.g. <em>www.abhipandey.com</em>),
+GitHub&rsquo;s servers will automatically create redirects between the two.</p>
+
+<p>You can also also look up <a href="https://help.github.com/articles/tips-for-configuring-an-a-record-with-your-dns-provider/">GitHub Tips</a> for
+configuring an <strong>A</strong> record with your DNS provider.</p>
+
+  </div>
+  <div id="disqus_thread"></div>
+</div>
+
+
+<script type="text/javascript">
+var disqus_shortname = "abhi1010";
+(function () {
+    var s = document.createElement('script'); s.async = true;
+    s.type = 'text/javascript';
+    s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+}());
+</script>
+
+
+
+<script type="text/javascript">
+    var disqus_shortname = "abhi1010";
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+</body>
+</html>
+

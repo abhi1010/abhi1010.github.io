@@ -90,6 +90,40 @@
     
     <div class="post">
       <h1 class="post-title">
+        <a href="http://abhipandey.com/2014/05/getting-a-group-of-lines-from-a-file/">Getting a group of lines from a file</a>
+      </h1>
+      <span class="post-date">May 19, 2014  &middot; <a href="http://abhipandey.com/2014/05/getting-a-group-of-lines-from-a-file/#disqus_thread">Comments</a>
+      
+      <br/>
+      <a class="a_cat" href="http://abhipandey.com/categories/code">code</a><a class="a_cat" href="http://abhipandey.com/categories/tips">tips</a>
+        
+      <a class="a_tag" href="http://abhipandey.com/tags/awk">awk</a><a class="a_tag" href="http://abhipandey.com/tags/bash">bash</a>
+    
+      </span>
+      
+      <p>I&rsquo;ve had this need quite a few times to pull out a section of logs that would begin with a particular line and end with another. grep is not exactly useful there because it only prints out sections based on line counters (using -A/B/C) lines based on a single search pattern.</p>
+
+<p>I came up with a script that can run at almost same speeds using <code>grep/cat/awk</code>. <code>awk</code> is used to decide whether the end of the section has been reached or not. Some features of the script are:</p>
+
+<ul>
+<li><p>Since <code>awk</code> script only toggles one variable it works seamlessly without delaying the actual work</p></li>
+
+<li><p>Works on gzip files as well</p></li>
+
+<li><p>If you do not want to depend on grep or are unsure how many lines may be between begin and end keyword then replace gunzip with zcat and grep with cat.</p></li>
+
+<li><p>Usage: <code>group filename printBeginKeyword printUntilKeyword NumOfLines</code></p></li>
+</ul>
+
+<p>Let&rsquo;s have a look at the script&hellip;.</p>
+
+<script type="text/javascript" src="http://gist.github.com/924a5f12f3067ba0b3af.js"></script>
+
+      
+    </div>
+    
+    <div class="post">
+      <h1 class="post-title">
         <a href="http://abhipandey.com/2014/04/32-bit-vs-64-bit/">32 bit vs 64 bit</a>
       </h1>
       <span class="post-date">Apr 15, 2014  &middot; <a href="http://abhipandey.com/2014/04/32-bit-vs-64-bit/#disqus_thread">Comments</a>
@@ -1475,34 +1509,6 @@ echo $CMD
 </tr>
 </tbody>
 </table>
-
-      
-    </div>
-    
-    <div class="post">
-      <h1 class="post-title">
-        <a href="http://abhipandey.com/2013/04/change-putty-window-title/">Change Putty Window Title</a>
-      </h1>
-      <span class="post-date">Apr 25, 2013  &middot; <a href="http://abhipandey.com/2013/04/change-putty-window-title/#disqus_thread">Comments</a>
-      
-      <br/>
-      <a class="a_cat" href="http://abhipandey.com/categories/code">code</a><a class="a_cat" href="http://abhipandey.com/categories/tips">tips</a>
-        
-      <a class="a_tag" href="http://abhipandey.com/tags/bash">bash</a><a class="a_tag" href="http://abhipandey.com/tags/putty">putty</a>
-    
-      </span>
-      
-      <p>How to modify the Putty window title to a specific string?</p>
-
-<p>By default, you&rsquo;d like to have the window title to give you the full path to the folder you are working from (working directory). <code>PROMPT_COMMAND</code>will help you with that.</p>
-
-<p>However, if you have too many windows where you are on the same folder then it may become confusing. To set your own title you&rsquo;d like to use the <code>title()</code> function provided here. It sets the name to whatever you say.</p>
-
-<p>Please note that <code>PS1</code> is only valid until you move your folders again. That is why the title() function also has to reset <code>PROMPT_COMMAND</code>.</p>
-
-<p>Let&rsquo;s have a look at the script needed. Maybe you wanna put them in your .bashrc file.</p>
-
-<script type="text/javascript" src="http://gist.github.com/8eed9133ed91cbb42854.js"></script>
 
       
     </div>
