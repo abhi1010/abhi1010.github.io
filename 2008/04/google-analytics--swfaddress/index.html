@@ -29,8 +29,8 @@
   
   
 
-  <meta name="description" content="Your default page description">
-  <meta name="keywords" content="your,default,page,keywords">
+  <meta name="description" content="Using swfaddress in flash for google analytics">
+  <meta name="keywords" content="ExternalInterface.call(),getUrl,flash">
   
   
   <script>
@@ -106,9 +106,10 @@
 
 <p>I tried a lot of ways but none seem to worked. Finally found a blog that remotely talked about SWFAddress!</p>
 
-<p>Well, the problem turns out that SWFAddress uses <code>ExternalInterface.call()</code> instead of getUrl() function internally and they don&rsquo;t go well together if used together.</p>
+<p>Well, the problem turns out that SWFAddress uses <code>ExternalInterface.call()</code> instead of <code>getUrl()</code> function internally and they don&rsquo;t go well together if used together.</p>
 
-<p>The solution was simple, since flash is using SWFAddress feature, every getUrl should be replaced with ExternalInterface.call(). Needless to say, everything seemed perfect again.</p>
+<p>The solution was simple, since flash is using SWFAddress feature, every <code>getUrl</code> should be replaced with <code>ExternalInterface.call()</code>.
+ Needless to say, everything seemed perfect again.</p>
 
   </div>
   <div id="disqus_thread"></div>

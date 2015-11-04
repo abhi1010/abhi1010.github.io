@@ -254,9 +254,10 @@ echo $CMD
 
 &lt;p&gt;I tried a lot of ways but none seem to worked. Finally found a blog that remotely talked about SWFAddress!&lt;/p&gt;
 
-&lt;p&gt;Well, the problem turns out that SWFAddress uses &lt;code&gt;ExternalInterface.call()&lt;/code&gt; instead of getUrl() function internally and they don&amp;rsquo;t go well together if used together.&lt;/p&gt;
+&lt;p&gt;Well, the problem turns out that SWFAddress uses &lt;code&gt;ExternalInterface.call()&lt;/code&gt; instead of &lt;code&gt;getUrl()&lt;/code&gt; function internally and they don&amp;rsquo;t go well together if used together.&lt;/p&gt;
 
-&lt;p&gt;The solution was simple, since flash is using SWFAddress feature, every getUrl should be replaced with ExternalInterface.call(). Needless to say, everything seemed perfect again.&lt;/p&gt;
+&lt;p&gt;The solution was simple, since flash is using SWFAddress feature, every &lt;code&gt;getUrl&lt;/code&gt; should be replaced with &lt;code&gt;ExternalInterface.call()&lt;/code&gt;.
+ Needless to say, everything seemed perfect again.&lt;/p&gt;
 </description>
     </item>
     

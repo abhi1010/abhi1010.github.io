@@ -85,7 +85,8 @@ AMF.NET is a .NET gateway sitting between a Flash movie and .NET code. The goal 
       <pubDate>Wed, 06 Feb 2008 19:34:00 +0000</pubDate>
       
       <guid>http://abhipandey.com/2008/02/membership-and-profiler-in-asp.net/</guid>
-      <description>&lt;p&gt;Whenever you are using Sql Membership and Profiler classes - Trying to generate reports make sure your query&amp;rsquo;s WHERE clause is using &amp;ldquo;indexed&amp;rdquo; column names at least.&lt;/p&gt;
+      <description>&lt;p&gt;Whenever you are using Sql Membership and Profiler classes -
+Trying to generate reports make sure your query&amp;rsquo;s WHERE clause is using &amp;ldquo;indexed&amp;rdquo; column names at least.&lt;/p&gt;
 
 &lt;p&gt;Let&amp;rsquo;s look at some of the more used tables. The index of some of the tables is given below:&lt;/p&gt;
 
