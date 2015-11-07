@@ -29,8 +29,8 @@
   
   <link href="http://abhipandey.com/index.xml" rel="alternate" type="application/rss+xml" title="Coders Digest &middot; Abhishek Pandey" />
 
-  <meta name="description" content="Your default page description">
-  <meta name="keywords" content="your,default,page,keywords">
+  <meta name="description" content="C&#43;&#43;/python/bash code; How to automate and deploy your applications">
+  <meta name="keywords" content="aws,deploy,elastic beanstalk,beanstalk,python,c&#43;&#43;,continuous delivery,tips,code,docker,bash,linux">
   
   
   <script>
@@ -87,6 +87,41 @@
 <div class="content container">
   <div class="posts">
     
+    
+    <div class="post">
+      <h1 class="post-title">
+        <a href="http://abhipandey.com/2014/05/setting-up-your-vim...-your-style/">Setting up your VIM... Your style</a>
+      </h1>
+      <span class="post-date">May 19, 2014  &middot; <a href="http://abhipandey.com/2014/05/setting-up-your-vim...-your-style/#disqus_thread">Comments</a>
+      
+      <br/>
+      <a class="a_cat" href="http://abhipandey.com/categories/code">code</a>
+        
+      <a class="a_tag" href="http://abhipandey.com/tags/bash">bash</a><a class="a_tag" href="http://abhipandey.com/tags/vim">vim</a><a class="a_tag" href="http://abhipandey.com/tags/tips">tips</a>
+    
+      </span>
+      
+      <p>Writing code using VIM can be a bit overwhelming but it helps creating a few shortcuts there to make your life easier. Here I will discuss a few.</p>
+
+<ul>
+<li>First of all, it is always a good idea to set up your tabs and spaces</li>
+<li>Set up shortcuts for:
+
+<ul>
+<li><code>Toggling of Auto-Indent</code> while pasting source text; very useful in code (<em>F2</em> in my provided script)</li>
+<li><code>Toggling of Auto-Scroll</code> of Split windows (<em>F3</em> in my provided script)</li>
+<li><code>Macro for Folding functions</code> within the source code (<em><em>@q</em></em> in my provided script)</li>
+<li><code>Smart case search</code> - based on whether the input is in caps or not</li>
+<li><code>Toggling of Mouse Usage</code> in VIM window - to allow quick selection of text (<em>F12</em> in my provided script)</li>
+</ul></li>
+</ul>
+
+<p>Please see the provided script below to have a look.</p>
+
+<script type="text/javascript" src="http://gist.github.com/6f190c9f3afd42881ef5.js"></script>
+
+      
+    </div>
     
     <div class="post">
       <h1 class="post-title">
@@ -1426,89 +1461,6 @@ CMD=$(echo cvs update -j $BRANCH -j Version_2_17_dev .)
 echo $CMD   
 }   
 </code></pre>
-
-      
-    </div>
-    
-    <div class="post">
-      <h1 class="post-title">
-        <a href="http://abhipandey.com/2013/06/cursor-control-in-vim-search/">Cursor Control in VIM Search</a>
-      </h1>
-      <span class="post-date">Jun 11, 2013  &middot; <a href="http://abhipandey.com/2013/06/cursor-control-in-vim-search/#disqus_thread">Comments</a>
-      
-      <br/>
-      <a class="a_cat" href="http://abhipandey.com/categories/code">code</a><a class="a_cat" href="http://abhipandey.com/categories/tips">tips</a>
-        
-      <a class="a_tag" href="http://abhipandey.com/tags/vim">vim</a>
-    
-      </span>
-      
-      <p>Found a great way to search for keywords &amp;&amp; control the location of cursor in vim. It is excellent if you want to do a particular task multiple times. Usually if you search the cursor will straight away take you to the start of search. What if you want to go to the end of the word you are searching for?</p>
-
-<pre><code>/pattern/e
-</code></pre>
-
-<p>This takes you to the END of the keyword you are looking for.</p>
-
-<p>That’s not all. What if you want to go the second letter in that keyword? Change the pattern to as follows:</p>
-
-<pre><code>/pattern/s+1
-</code></pre>
-
-<p>That’s great. But what if I want to go to the end of the keyword?</p>
-
-<pre><code>/pattern/e
-</code></pre>
-
-<p>Awesome. Let’s review it through examples. Let’s say our phrase is “the brown fox jumped over the lazy dog” and we originally want to search for “brown”.</p>
-
-<table>
-<thead>
-<tr>
-<th>Pattern</th>
-<th>CURSOR LOCATED AT BEGINNING OF</th>
-<th>Description</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td>/brown</td>
-<td>brown fox….</td>
-<td>search and start at “brown”</td>
-</tr>
-
-<tr>
-<td>/brown/s+2</td>
-<td>own fox…</td>
-<td>start at “brown” but move 2 letters from ‘start’</td>
-</tr>
-
-<tr>
-<td>/brown/s-4</td>
-<td>the brown fox…</td>
-<td>start at “brown” but move 4 letters to the left from ‘start’</td>
-</tr>
-
-<tr>
-<td>/brown/e</td>
-<td>n fox….</td>
-<td>search for “brown” but move to the end</td>
-</tr>
-
-<tr>
-<td>/brown/e+2</td>
-<td>fox…</td>
-<td>search for “brown” but move 2 letters from the ‘end’</td>
-</tr>
-
-<tr>
-<td>/brown/e-1</td>
-<td>wn fox…</td>
-<td>search for “brown” but move 1 letter to the left from the ‘end’</td>
-</tr>
-</tbody>
-</table>
 
       
     </div>

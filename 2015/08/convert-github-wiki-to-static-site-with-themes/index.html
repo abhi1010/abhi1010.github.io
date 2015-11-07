@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>Convert GitHub Wiki to Static Site with themes &middot; Abhishek Pandey</title>
+
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+  <link rel="stylesheet" href="http://abhipandey.com/css/poole.css?ref=abc124">
+  <link rel="stylesheet" href="http://abhipandey.com/css/hyde.css?ref=abc124">
+  <link rel="stylesheet" href="http://abhipandey.com/css/poole-overrides.css?ref=abc124">
+  <link rel="stylesheet" href="http://abhipandey.com/css/hyde-overrides.css?ref=abc124">
+  <link rel="stylesheet" href="http://abhipandey.com/css/hyde-a.css?ref=abc124">
+  <link rel="stylesheet" href="http://abhipandey.com/css/custom-additions.css?ref=abc124">
+  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://abhipandey.com/touch-icon-144-precomposed.png?ref=abc124">
+  <link href="http://abhipandey.com/favicon.png?ref=abc124" rel="icon">
+
+  
+  
+  
+  
+
+  <meta name="description" content="How to convert any wiki to a static html site using Pelican">
+  <meta name="keywords" content="github,wiki,pelican,tips,gitlab,hugo">
+  
+  
+  <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-68135443-1', 'auto');
+      ga('send', 'pageview');
+  </script>
+
+</head>
+<body class="theme-base-aa">
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      
+      <h1><a href="http://abhipandey.com/">Abhishek Pandey</a></h1>
+      <p class="lead">Coders Digest</p>
+    </div>
+
+    <ul class="sidebar-nav">
+      
+      <li class="sidebar-nav-item"><a href="http://abhipandey.com/post/">Posts</a></li>
+      
+      <li class="sidebar-nav-item"><a href="http://abhipandey.com/tags/">Tags</a></li>
+      
+      <li class="sidebar-nav-item"><a href="http://abhipandey.com/categories/">Categories</a></li>
+      
+      <li class="sidebar-nav-item"><a href="http://abhipandey.com/about/">About</a></li>
+      
+    </ul>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item">
+      
+      
+      
+      
+      
+      
+      
+      
+      </li>
+    </ul>
+
+    
+
+  </div>
+</div>
+
+
+<div class="content container">
+  <div class="post">
+    <h1>Convert GitHub Wiki to Static Site with themes</h1>
+    <span class="post-date">Aug 7, 2015  &middot; <a href="http://abhipandey.com/2015/08/convert-github-wiki-to-static-site-with-themes/#disqus_thread">Comments</a>
+    
+    <br/>
+    
+          <a class="a_cat" href="http://abhipandey.com/categories/tips">tips</a><a class="a_cat" href="http://abhipandey.com/categories/code">code</a>
+      
+      
+        <a class="a_tag" href="http://abhipandey.com/tags/github">github</a><a class="a_tag" href="http://abhipandey.com/tags/wiki">wiki</a><a class="a_tag" href="http://abhipandey.com/tags/pelican">pelican</a>
+      
+
+    
+    </span>
+      <div id="_toc" class="toc">
+        <nav id="TableOfContents">
+<ul>
+<li><a href="#setup-and-requirements:7286face6d57cb9f253b611714e09c9a">Setup and requirements</a>
+<ul>
+<li><a href="#virtual-environment-with-pelican:7286face6d57cb9f253b611714e09c9a">Virtual Environment with pelican</a></li>
+<li><a href="#get-the-wiki:7286face6d57cb9f253b611714e09c9a">Get the wiki</a></li>
+</ul></li>
+<li><a href="#why-simple-pelican-won-t-work-and-what-to-do:7286face6d57cb9f253b611714e09c9a">Why simple pelican won&rsquo;t work and what to do</a></li>
+<li><a href="#what-happened-to-the-menu:7286face6d57cb9f253b611714e09c9a">What happened to the menu?</a></li>
+<li><a href="#choosing-themes:7286face6d57cb9f253b611714e09c9a">Choosing themes</a></li>
+<li><a href="#get-all-this-code-in-github-repo:7286face6d57cb9f253b611714e09c9a">Get all this code in github repo</a></li>
+</ul>
+</nav>
+      </div>
+    
+
+<p>I recently wanted to setup a wiki so that I could convert it into a static html site with a proper themes.
+What could be a possible use case for such a requirement:</p>
+
+<ul>
+<li>Manage the documentation of a product internally through <code>git</code> but publish it for clients/world through static site</li>
+<li>Convert the uncolored wiki to a themed version</li>
+<li>Allow serving of the wiki through web application frameworks like <code>Django</code>
+
+<ul>
+<li>It may allow you to have authentication system as a first step hurdle to stop everybody from giving access</li>
+</ul></li>
+</ul>
+
+<p>Anyways, I went about the whole process and decided to jot down everything. Here I am taking <a href="https://github.com/mbostock/d3/wiki">D3 Wiki</a> as an example
+which I will be converting into a static site. Let&rsquo;s begin.</p>
+
+
+<figure >
+    
+        <img src="/images/wiki_to_static_1.png" alt="D3 Wiki using pelican" />
+    
+    
+    <figcaption>
+        <p>
+        D3 Wiki using pelican
+        
+            
+        
+        </p> 
+    </figcaption>
+    
+</figure>
+
+
+<h1 id="setup-and-requirements:7286face6d57cb9f253b611714e09c9a">Setup and requirements</h1>
+
+<p>What do we need to get started?</p>
+
+<ul>
+<li>We will need a static site generator
+
+<ul>
+<li>Let&rsquo;s use <a href="http://blog.getpelican.com"><code>pelican</code></a> for this demo</li>
+</ul></li>
+<li>An actual wiki
+
+<ul>
+<li>Since we are going to demo how to convert a wiki to static we will use an
+<a href="https://github.com/showcases/projects-with-great-wikis">existing wiki from github</a></li>
+<li>Let&rsquo;s choose <a href="https://github.com/mbostock/d3/wiki">D3 Wiki</a> for this instance</li>
+</ul></li>
+<li>Python environment so that <em>pelican</em> and <em>fabric</em> can be installed</li>
+</ul>
+
+<h2 id="virtual-environment-with-pelican:7286face6d57cb9f253b611714e09c9a">Virtual Environment with pelican</h2>
+
+<p><strong>Setup the virtual environment</strong></p>
+
+<pre><code class="language-bash">$ virtualenv ve_blog
+$ source ve_blog/bin/activate
+</code></pre>
+
+<p><strong>Install pelican</strong></p>
+
+<pre><code>$ pip install pelican
+</code></pre>
+
+<p><strong>Pelican Quickstart</strong></p>
+
+<p>Setup pelican using <code>pelican-quickstart</code> so that all files are setup correctly for creating a static site.</p>
+
+<pre><code class="language-bash">$ pelican-quickstart
+
+Welcome to pelican-quickstart v3.6.3.
+
+This script will help you create a new Pelican-based website.
+
+Please answer the following questions so this script can generate the files
+needed by Pelican.
+
+    
+&gt; Where do you want to create your new web site? [.] 
+&gt; What will be the title of this web site? D3 WIKI
+&gt; Who will be the author of this web site? abhi1010
+&gt; What will be the default language of this web site? [en] 
+&gt; Do you want to specify a URL prefix? e.g., http://example.com   (Y/n) n
+&gt; Do you want to enable article pagination? (Y/n) Y
+&gt; How many articles per page do you want? [10] 
+&gt; What is your time zone? [Europe/Paris] Asia/Singapore
+&gt; Do you want to generate a Fabfile/Makefile to automate generation and publishing? (Y/n) Y
+&gt; Do you want an auto-reload &amp; simpleHTTP script to assist with theme and site development? (Y/n) Y
+&gt; Do you want to upload your website using FTP? (y/N) N
+&gt; Do you want to upload your website using SSH? (y/N) N
+&gt; Do you want to upload your website using Dropbox? (y/N) N
+&gt; Do you want to upload your website using S3? (y/N) N
+&gt; Do you want to upload your website using Rackspace Cloud Files? (y/N) N
+&gt; Do you want to upload your website using GitHub Pages? (y/N) N
+Done. Your new project is available at /Users/apandey/code/githubs/d3wiki
+</code></pre>
+
+<h2 id="get-the-wiki:7286face6d57cb9f253b611714e09c9a">Get the wiki</h2>
+
+<pre><code class="language-bash">$ git clone https://github.com/mbostock/d3.wiki.git
+
+Cloning into 'd3.wiki'...
+remote: Counting objects: 12026, done.
+remote: Compressing objects: 100% (67/67), done.
+remote: Total 12026 (delta 607), reused 552 (delta 552), pack-reused 11407
+Receiving objects: 100% (12026/12026), 9.92 MiB | 1.49 MiB/s, done.
+Resolving deltas: 100% (7595/7595), done.
+Checking connectivity... done.
+</code></pre>
+
+<p><strong>Setting the wiki as content for pelican</strong></p>
+
+<pre><code class="language-bash">$ rmdir content
+$ ln -s dr.wiki content
+</code></pre>
+
+<h1 id="why-simple-pelican-won-t-work-and-what-to-do:7286face6d57cb9f253b611714e09c9a">Why simple pelican won&rsquo;t work and what to do</h1>
+
+<p>If you tried to simply call <code>pelican</code> command to build the static site, you will notice a lot of errors like:</p>
+
+<pre><code class="language-bash">
+$ fab build
+
+RROR: Skipping ./请求.md: could not find information about 'NameError: title'
+ERROR: Skipping ./过渡.md: could not find information about 'NameError: title'
+ERROR: Skipping ./选择器.md: could not find information about 'NameError: title'
+ERROR: Skipping ./选择集.md: could not find information about 'NameError: title'
+Done: Processed 0 articles, 0 drafts, 0 pages and 0 hidden pages in 3.47 seconds.
+</code></pre>
+
+<p>The problem is that pelican expects some variables to be defined in each <em>markdown</em> file before it can build the static file.
+ Some of the variables are:</p>
+
+<ul>
+<li>Title</li>
+<li>Slug</li>
+<li>Date</li>
+</ul>
+
+<p>You may add your own <a href="http://docs.getpelican.com/en/3.6.3/content.html#file-metadata">ones as well</a> that you want.
+ However, for our initial purposes, we will keep it simple and just try to add these.</p>
+
+<p><strong>Next</strong>, how do we achieve this automation?
+<strong><code>fab</code> is our answer.</strong></p>
+
+<p>Let&rsquo;s write a function in python that will modify the markdown files and update them to add <em>Title, Slug, Date</em></p>
+
+<p>We will edit <code>fabfile.py</code> and add a new function <code>create_wiki</code>:</p>
+
+<pre><code>def create_wiki():
+    files = []
+    # Find all markdown files in content folder 
+    for f in os.walk('./content/'):
+        fpath = lambda x: os.path.join(f[0], x)
+        for file in f[2]:
+            fullpath = fpath(file)
+            # print('f = {}'.format(fullpath))
+            files.append(fullpath)
+    filtered = [f for f in files if f.endswith('.md')]
+    for file in filtered:
+        with open(file, 'r+') as f:
+            content = f.read()
+            f.seek(0, 0)
+            base = os.path.basename(file).replace('.md', '') 
+            lines = ['Title: {}'.format(base.replace('-', ' ')),
+                    'Slug: {}'.format(base),
+                    'Date: 2015-08-07T14:59:18-04:00',
+                    '', '']
+            line = '\n'.join(lines)
+            # Add the lines to the file
+            f.write(line + '\n' + content)
+        print(file)
+    
+    # build and serve the website
+    build()
+    serve()
+</code></pre>
+
+<p>Now you can call this function easily:</p>
+
+<pre><code>fab create_wiki
+</code></pre>
+
+<p>The website can now be viewed at <a href="http://localhost:8000">http://localhost:8000</a></p>
+
+<h1 id="what-happened-to-the-menu:7286face6d57cb9f253b611714e09c9a">What happened to the menu?</h1>
+
+<p>There is a minor issue here though, you will notice that the menu is not available - it is all empty.
+It is an easy addition. We will need to add some lines to <code>publishconf.py</code> to say what the menu is gonna be.</p>
+
+<p>For my example, I have chosen to show up the following for <em>D3</em>:</p>
+
+<ul>
+<li>API Reference</li>
+<li>Tutorials</li>
+<li>Plugins</li>
+</ul>
+
+<pre><code class="language-python"># We don't want all pages to show up in menu
+DISPLAY_PAGES_ON_MENU = False
+
+# Choose the specific pages that should be part of menu
+MENUITEMS = ( 
+    ('HOME', '/home.html'),
+    ('API Reference', '/API-Reference.html'),
+    ('Tutorials', '/Tutorials.html'),
+    ('Plugins', '/Plugins.html'),
+)
+</code></pre>
+
+<h1 id="choosing-themes:7286face6d57cb9f253b611714e09c9a">Choosing themes</h1>
+
+<p>By default, pelican uses its own theme for the static site, but theme can be modified.
+Let&rsquo;s choose <code>pelican bootstrap3</code> for our example here:</p>
+
+<pre><code>git clone https://github.com/DandyDev/pelican-bootstrap3.git
+</code></pre>
+
+<p>Now, add the full path to the theme at the end of the <code>publishconf.py</code> file:</p>
+
+<pre><code>THEME = &quot;/Users/apandey/code/githubs/pelican_coders/all_themes/pelican-bootstrap3&quot;
+</code></pre>
+
+<p>Finally, build your site again and serve:</p>
+
+<pre><code>fab build
+fab serve
+</code></pre>
+
+
+<figure >
+    
+        <img src="/images/wiki_to_static_2.png" alt="Pelican Bootstrap3 theme" />
+    
+    
+    <figcaption>
+        <p>
+        Pelican Bootstrap3 theme
+        
+            
+        
+        </p> 
+    </figcaption>
+    
+</figure>
+
+
+<h1 id="get-all-this-code-in-github-repo:7286face6d57cb9f253b611714e09c9a">Get all this code in github repo</h1>
+
+<p>I realize there maybe a few things going on here. You can get this whole setup as a project from
+my <a href="https://github.com/abhi1010/d3wiki">github repo</a></p>
+
+<p>You will find all this code and setup so that your life is easier. Just start with d3 wiki along with virtual environment and you will be fine.</p>
+
+  </div>
+  <div id="disqus_thread"></div>
+</div>
+
+
+<script type="text/javascript">
+var disqus_shortname = "abhi1010";
+(function () {
+    var s = document.createElement('script'); s.async = true;
+    s.type = 'text/javascript';
+    s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+}());
+</script>
+
+
+
+<script type="text/javascript">
+    var disqus_shortname = "abhi1010";
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+</body>
+</html>
+

@@ -29,8 +29,8 @@
   
   <link href="http://abhipandey.com/index.xml" rel="alternate" type="application/rss+xml" title="Coders Digest &middot; Abhishek Pandey" />
 
-  <meta name="description" content="Your default page description">
-  <meta name="keywords" content="your,default,page,keywords">
+  <meta name="description" content="C&#43;&#43;/python/bash code; How to automate and deploy your applications">
+  <meta name="keywords" content="aws,deploy,elastic beanstalk,beanstalk,python,c&#43;&#43;,continuous delivery,tips,code,docker,bash,linux">
   
   
   <script>
@@ -248,6 +248,281 @@ However, all that is required here is to know that python automatically picks up
 <span style="color: #000000; font-weight: bold">]</span>
 </pre></div>
 
+
+      
+    </div>
+    
+    <div class="post">
+      <h1 class="post-title">
+        <a href="http://abhipandey.com/2015/08/convert-github-wiki-to-static-site-with-themes/">Convert GitHub Wiki to Static Site with themes</a>
+      </h1>
+      <span class="post-date">Aug 7, 2015  &middot; <a href="http://abhipandey.com/2015/08/convert-github-wiki-to-static-site-with-themes/#disqus_thread">Comments</a>
+      
+      <br/>
+      <a class="a_cat" href="http://abhipandey.com/categories/tips">tips</a><a class="a_cat" href="http://abhipandey.com/categories/code">code</a>
+        
+      <a class="a_tag" href="http://abhipandey.com/tags/github">github</a><a class="a_tag" href="http://abhipandey.com/tags/wiki">wiki</a><a class="a_tag" href="http://abhipandey.com/tags/pelican">pelican</a>
+    
+      </span>
+      
+      
+
+<p>I recently wanted to setup a wiki so that I could convert it into a static html site with a proper themes.
+What could be a possible use case for such a requirement:</p>
+
+<ul>
+<li>Manage the documentation of a product internally through <code>git</code> but publish it for clients/world through static site</li>
+<li>Convert the uncolored wiki to a themed version</li>
+<li>Allow serving of the wiki through web application frameworks like <code>Django</code>
+
+<ul>
+<li>It may allow you to have authentication system as a first step hurdle to stop everybody from giving access</li>
+</ul></li>
+</ul>
+
+<p>Anyways, I went about the whole process and decided to jot down everything. Here I am taking <a href="https://github.com/mbostock/d3/wiki">D3 Wiki</a> as an example
+which I will be converting into a static site. Let&rsquo;s begin.</p>
+
+
+<figure >
+    
+        <img src="/images/wiki_to_static_1.png" alt="D3 Wiki using pelican" />
+    
+    
+    <figcaption>
+        <p>
+        D3 Wiki using pelican
+        
+            
+        
+        </p> 
+    </figcaption>
+    
+</figure>
+
+
+<h1 id="setup-and-requirements:7286face6d57cb9f253b611714e09c9a">Setup and requirements</h1>
+
+<p>What do we need to get started?</p>
+
+<ul>
+<li>We will need a static site generator
+
+<ul>
+<li>Let&rsquo;s use <a href="http://blog.getpelican.com"><code>pelican</code></a> for this demo</li>
+</ul></li>
+<li>An actual wiki
+
+<ul>
+<li>Since we are going to demo how to convert a wiki to static we will use an
+<a href="https://github.com/showcases/projects-with-great-wikis">existing wiki from github</a></li>
+<li>Let&rsquo;s choose <a href="https://github.com/mbostock/d3/wiki">D3 Wiki</a> for this instance</li>
+</ul></li>
+<li>Python environment so that <em>pelican</em> and <em>fabric</em> can be installed</li>
+</ul>
+
+<h2 id="virtual-environment-with-pelican:7286face6d57cb9f253b611714e09c9a">Virtual Environment with pelican</h2>
+
+<p><strong>Setup the virtual environment</strong></p>
+
+<pre><code class="language-bash">$ virtualenv ve_blog
+$ source ve_blog/bin/activate
+</code></pre>
+
+<p><strong>Install pelican</strong></p>
+
+<pre><code>$ pip install pelican
+</code></pre>
+
+<p><strong>Pelican Quickstart</strong></p>
+
+<p>Setup pelican using <code>pelican-quickstart</code> so that all files are setup correctly for creating a static site.</p>
+
+<pre><code class="language-bash">$ pelican-quickstart
+
+Welcome to pelican-quickstart v3.6.3.
+
+This script will help you create a new Pelican-based website.
+
+Please answer the following questions so this script can generate the files
+needed by Pelican.
+
+    
+&gt; Where do you want to create your new web site? [.] 
+&gt; What will be the title of this web site? D3 WIKI
+&gt; Who will be the author of this web site? abhi1010
+&gt; What will be the default language of this web site? [en] 
+&gt; Do you want to specify a URL prefix? e.g., http://example.com   (Y/n) n
+&gt; Do you want to enable article pagination? (Y/n) Y
+&gt; How many articles per page do you want? [10] 
+&gt; What is your time zone? [Europe/Paris] Asia/Singapore
+&gt; Do you want to generate a Fabfile/Makefile to automate generation and publishing? (Y/n) Y
+&gt; Do you want an auto-reload &amp; simpleHTTP script to assist with theme and site development? (Y/n) Y
+&gt; Do you want to upload your website using FTP? (y/N) N
+&gt; Do you want to upload your website using SSH? (y/N) N
+&gt; Do you want to upload your website using Dropbox? (y/N) N
+&gt; Do you want to upload your website using S3? (y/N) N
+&gt; Do you want to upload your website using Rackspace Cloud Files? (y/N) N
+&gt; Do you want to upload your website using GitHub Pages? (y/N) N
+Done. Your new project is available at /Users/apandey/code/githubs/d3wiki
+</code></pre>
+
+<h2 id="get-the-wiki:7286face6d57cb9f253b611714e09c9a">Get the wiki</h2>
+
+<pre><code class="language-bash">$ git clone https://github.com/mbostock/d3.wiki.git
+
+Cloning into 'd3.wiki'...
+remote: Counting objects: 12026, done.
+remote: Compressing objects: 100% (67/67), done.
+remote: Total 12026 (delta 607), reused 552 (delta 552), pack-reused 11407
+Receiving objects: 100% (12026/12026), 9.92 MiB | 1.49 MiB/s, done.
+Resolving deltas: 100% (7595/7595), done.
+Checking connectivity... done.
+</code></pre>
+
+<p><strong>Setting the wiki as content for pelican</strong></p>
+
+<pre><code class="language-bash">$ rmdir content
+$ ln -s dr.wiki content
+</code></pre>
+
+<h1 id="why-simple-pelican-won-t-work-and-what-to-do:7286face6d57cb9f253b611714e09c9a">Why simple pelican won&rsquo;t work and what to do</h1>
+
+<p>If you tried to simply call <code>pelican</code> command to build the static site, you will notice a lot of errors like:</p>
+
+<pre><code class="language-bash">
+$ fab build
+
+RROR: Skipping ./请求.md: could not find information about 'NameError: title'
+ERROR: Skipping ./过渡.md: could not find information about 'NameError: title'
+ERROR: Skipping ./选择器.md: could not find information about 'NameError: title'
+ERROR: Skipping ./选择集.md: could not find information about 'NameError: title'
+Done: Processed 0 articles, 0 drafts, 0 pages and 0 hidden pages in 3.47 seconds.
+</code></pre>
+
+<p>The problem is that pelican expects some variables to be defined in each <em>markdown</em> file before it can build the static file.
+ Some of the variables are:</p>
+
+<ul>
+<li>Title</li>
+<li>Slug</li>
+<li>Date</li>
+</ul>
+
+<p>You may add your own <a href="http://docs.getpelican.com/en/3.6.3/content.html#file-metadata">ones as well</a> that you want.
+ However, for our initial purposes, we will keep it simple and just try to add these.</p>
+
+<p><strong>Next</strong>, how do we achieve this automation?
+<strong><code>fab</code> is our answer.</strong></p>
+
+<p>Let&rsquo;s write a function in python that will modify the markdown files and update them to add <em>Title, Slug, Date</em></p>
+
+<p>We will edit <code>fabfile.py</code> and add a new function <code>create_wiki</code>:</p>
+
+<pre><code>def create_wiki():
+    files = []
+    # Find all markdown files in content folder 
+    for f in os.walk('./content/'):
+        fpath = lambda x: os.path.join(f[0], x)
+        for file in f[2]:
+            fullpath = fpath(file)
+            # print('f = {}'.format(fullpath))
+            files.append(fullpath)
+    filtered = [f for f in files if f.endswith('.md')]
+    for file in filtered:
+        with open(file, 'r+') as f:
+            content = f.read()
+            f.seek(0, 0)
+            base = os.path.basename(file).replace('.md', '') 
+            lines = ['Title: {}'.format(base.replace('-', ' ')),
+                    'Slug: {}'.format(base),
+                    'Date: 2015-08-07T14:59:18-04:00',
+                    '', '']
+            line = '\n'.join(lines)
+            # Add the lines to the file
+            f.write(line + '\n' + content)
+        print(file)
+    
+    # build and serve the website
+    build()
+    serve()
+</code></pre>
+
+<p>Now you can call this function easily:</p>
+
+<pre><code>fab create_wiki
+</code></pre>
+
+<p>The website can now be viewed at <a href="http://localhost:8000">http://localhost:8000</a></p>
+
+<h1 id="what-happened-to-the-menu:7286face6d57cb9f253b611714e09c9a">What happened to the menu?</h1>
+
+<p>There is a minor issue here though, you will notice that the menu is not available - it is all empty.
+It is an easy addition. We will need to add some lines to <code>publishconf.py</code> to say what the menu is gonna be.</p>
+
+<p>For my example, I have chosen to show up the following for <em>D3</em>:</p>
+
+<ul>
+<li>API Reference</li>
+<li>Tutorials</li>
+<li>Plugins</li>
+</ul>
+
+<pre><code class="language-python"># We don't want all pages to show up in menu
+DISPLAY_PAGES_ON_MENU = False
+
+# Choose the specific pages that should be part of menu
+MENUITEMS = ( 
+    ('HOME', '/home.html'),
+    ('API Reference', '/API-Reference.html'),
+    ('Tutorials', '/Tutorials.html'),
+    ('Plugins', '/Plugins.html'),
+)
+</code></pre>
+
+<h1 id="choosing-themes:7286face6d57cb9f253b611714e09c9a">Choosing themes</h1>
+
+<p>By default, pelican uses its own theme for the static site, but theme can be modified.
+Let&rsquo;s choose <code>pelican bootstrap3</code> for our example here:</p>
+
+<pre><code>git clone https://github.com/DandyDev/pelican-bootstrap3.git
+</code></pre>
+
+<p>Now, add the full path to the theme at the end of the <code>publishconf.py</code> file:</p>
+
+<pre><code>THEME = &quot;/Users/apandey/code/githubs/pelican_coders/all_themes/pelican-bootstrap3&quot;
+</code></pre>
+
+<p>Finally, build your site again and serve:</p>
+
+<pre><code>fab build
+fab serve
+</code></pre>
+
+
+<figure >
+    
+        <img src="/images/wiki_to_static_2.png" alt="Pelican Bootstrap3 theme" />
+    
+    
+    <figcaption>
+        <p>
+        Pelican Bootstrap3 theme
+        
+            
+        
+        </p> 
+    </figcaption>
+    
+</figure>
+
+
+<h1 id="get-all-this-code-in-github-repo:7286face6d57cb9f253b611714e09c9a">Get all this code in github repo</h1>
+
+<p>I realize there maybe a few things going on here. You can get this whole setup as a project from
+my <a href="https://github.com/abhi1010/d3wiki">github repo</a></p>
+
+<p>You will find all this code and setup so that your life is easier. Just start with d3 wiki along with virtual environment and you will be fine.</p>
 
       
     </div>
@@ -528,41 +803,6 @@ Just run the following to test whether it works:</p>
 <p><strong>Full Code</strong></p>
 
 <p><strong><em>The full sample code, along with the fix</em></strong> is provided on <a href="http://coliru.stacked-crooked.com/a/b0ab70c458370048">Stacked-Crooked</a>.</p>
-
-      
-    </div>
-    
-    <div class="post">
-      <h1 class="post-title">
-        <a href="http://abhipandey.com/2014/05/setting-up-your-vim...-your-style/">Setting up your VIM... Your style</a>
-      </h1>
-      <span class="post-date">May 19, 2014  &middot; <a href="http://abhipandey.com/2014/05/setting-up-your-vim...-your-style/#disqus_thread">Comments</a>
-      
-      <br/>
-      <a class="a_cat" href="http://abhipandey.com/categories/code">code</a>
-        
-      <a class="a_tag" href="http://abhipandey.com/tags/bash">bash</a><a class="a_tag" href="http://abhipandey.com/tags/vim">vim</a><a class="a_tag" href="http://abhipandey.com/tags/tips">tips</a>
-    
-      </span>
-      
-      <p>Writing code using VIM can be a bit overwhelming but it helps creating a few shortcuts there to make your life easier. Here I will discuss a few.</p>
-
-<ul>
-<li>First of all, it is always a good idea to set up your tabs and spaces</li>
-<li>Set up shortcuts for:
-
-<ul>
-<li><code>Toggling of Auto-Indent</code> while pasting source text; very useful in code (<em>F2</em> in my provided script)</li>
-<li><code>Toggling of Auto-Scroll</code> of Split windows (<em>F3</em> in my provided script)</li>
-<li><code>Macro for Folding functions</code> within the source code (<em><em>@q</em></em> in my provided script)</li>
-<li><code>Smart case search</code> - based on whether the input is in caps or not</li>
-<li><code>Toggling of Mouse Usage</code> in VIM window - to allow quick selection of text (<em>F12</em> in my provided script)</li>
-</ul></li>
-</ul>
-
-<p>Please see the provided script below to have a look.</p>
-
-<script type="text/javascript" src="http://gist.github.com/6f190c9f3afd42881ef5.js"></script>
 
       
     </div>
