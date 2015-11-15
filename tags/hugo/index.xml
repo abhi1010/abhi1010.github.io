@@ -47,7 +47,7 @@ I hated the look of the website when it seemed that I was wasting a lot of white
 
 &lt;p&gt;I stopped blogging for a while for such reasons. Eventually I heard about &lt;code&gt;Jekyll&lt;/code&gt; and was again motivated to try it.
  However, since I had also moved from &lt;code&gt;C++&lt;/code&gt; to &lt;code&gt;Python&lt;/code&gt; I figured there&amp;rsquo;s bound to be something that&amp;rsquo;s gonna be related to &lt;code&gt;Python&lt;/code&gt;
- so that I can quickly jump in and navigate my way into the core base should there be a need (and who doesn&amp;rsquo;t find reason to do that?).
+ so that I can quickly jump in and navigate my way into the code base should there be a need (and who doesn&amp;rsquo;t find reason to do that?).
  &lt;code&gt;Jekyll&lt;/code&gt; was &lt;code&gt;ruby&lt;/code&gt; based and that was holding me back a bit.
  During my research I found out three options:&lt;/p&gt;
 
@@ -101,8 +101,8 @@ I found this link on wordpress to export all of the contents out into xml file.&
 
 &lt;p&gt;The next task was to convert the xml file into markdown files so that &lt;code&gt;hugo&lt;/code&gt; could use them. However, I had already converted
 some of my files earlier while working on &lt;code&gt;pelican&lt;/code&gt;. Once I started using them I realized that my contents were not looking as expecting when I was iterating through
- various themes. Sometimes things okay and other times not. I figured it &lt;em&gt;must be something to do with how markdown was laid down from the xml file&lt;/em&gt; because
-  the tags and categories were missing perhaps. I double checked the wordpress xml file but it contained the tags and categories that I was looking for.
+ various themes. Sometimes things looked okay and other times not. I figured it &lt;em&gt;must be something to do with how markdown was laid down from the xml file&lt;/em&gt; because
+  the tags and categories were missing. I double checked the wordpress xml file but it contained the tags and categories that I was looking for.
   It was time to start digging again.&lt;/p&gt;
 
 &lt;p&gt;I came across &lt;a href=&#34;https://github.com/thomasf/exitwp&#34;&gt;exitwp&lt;/a&gt; which needed a bit of setup, but I was willing to give it a try.

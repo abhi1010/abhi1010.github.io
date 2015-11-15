@@ -37,7 +37,7 @@
 &lt;/figure&gt;
 
 
-&lt;p&gt;Had to move from &lt;code&gt;BitBucket&lt;/code&gt; to &lt;code&gt;Gitlab&lt;/code&gt; which is really great, btw. However, there was one tiny issue here - &lt;code&gt;Gitlab&lt;/code&gt; was not supported by &lt;code&gt;Shippable&lt;/code&gt;.
+&lt;p&gt;Had to move from &lt;code&gt;BitBucket&lt;/code&gt; to &lt;code&gt;Gitlab&lt;/code&gt;; which is really great, btw. However, there was one tiny issue here - &lt;code&gt;Gitlab&lt;/code&gt; was not supported by &lt;code&gt;Shippable&lt;/code&gt;.
 As you may know already &lt;code&gt;Shippable&lt;/code&gt; is a hosted cloud platform that provides hosted continuous integration.
 We use it in our current setup to do a full testing and deployment onto &lt;code&gt;AWS Elastic Beanstalk&lt;/code&gt;.&lt;/p&gt;
 
