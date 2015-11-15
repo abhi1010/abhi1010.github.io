@@ -1,0 +1,451 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Lambda on Coders Digest</title>
+    <link>http://abhipandey.com/tags/lambda/</link>
+    <description>Recent content in Lambda on Coders Digest</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 04 Nov 2015 07:49:00 +0000</lastBuildDate>
+    <atom:link href="http://abhipandey.com/tags/lambda/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Lambda Basics with Python using Github Webhooks or API Gateway</title>
+      <link>http://abhipandey.com/2015/11/lambda-basics-with-python-using-github-webhooks-or-api-gateway/</link>
+      <pubDate>Wed, 04 Nov 2015 07:49:00 +0000</pubDate>
+      
+      <guid>http://abhipandey.com/2015/11/lambda-basics-with-python-using-github-webhooks-or-api-gateway/</guid>
+      <description>
+
+&lt;p&gt;I recently needed to call a command whenever there was a push on my Github repo.
+Since this was related to AWS tasks, I figured &lt;code&gt;aws lambda&lt;/code&gt; is a good candidate.
+Here I will talk about the steps I took to enable all of this using aws lambda, python.
+As a side note, I will also elaborate on using API gateway to call upon the lambda itself.&lt;/p&gt;
+
+&lt;p&gt;In a nutshell, what I will talk about:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Create &lt;strong&gt;SNS&lt;/strong&gt; Topic&lt;/li&gt;
+&lt;li&gt;Create &lt;strong&gt;IAM user&lt;/strong&gt; who can Publish&lt;/li&gt;
+&lt;li&gt;Setup &lt;strong&gt;GitHub webhook&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Create &lt;strong&gt;Lambda function&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Setup &lt;strong&gt;API Gateway&lt;/strong&gt; url that can call lambda function&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;create-sns-topic:f657bc8efd67a0e2d83aeda4b346f8af&#34;&gt;Create SNS Topic&lt;/h1&gt;
+
+&lt;p&gt;Go to &lt;a href=&#34;https://ap-northeast-1.console.aws.amazon.com/sns/v2/home?region=ap-northeast-1#/home&#34;&gt;AWS Console&lt;/a&gt; and click on Create Topic.&lt;/p&gt;
+
+
+&lt;figure &gt;
+    
+        &lt;img src=&#34;http://abhipandey.com/images/lambda_basics_sns_1.png&#34; alt=&#34;Creating an API&#34; /&gt;
+    
+    
+    &lt;figcaption&gt;
+        &lt;p&gt;
+        Creating an API
+        
+            
+        
+        &lt;/p&gt; 
+    &lt;/figcaption&gt;
+    
+&lt;/figure&gt;
+
+
+&lt;p&gt;Note down the &lt;code&gt;ARN&lt;/code&gt; because you will need that.
+In my case it is something like &lt;code&gt;arn:aws:sns:ap-northeast-1:XXXXXXXXXXXX:commits_1&lt;/code&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;create-iam-user:f657bc8efd67a0e2d83aeda4b346f8af&#34;&gt;Create IAM user&lt;/h1&gt;
+
+&lt;p&gt;We need to setup an IAM user who can publish onto this SNS we just created.
+As a shortcut you can just create a simple user and initialize it with full access rights for testing purposes.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Once on IAM page click on &amp;ldquo;Create New Users&amp;rdquo; button at the top.&lt;/strong&gt;
+
+&lt;figure &gt;
+    
+        &lt;img src=&#34;http://abhipandey.com/images/lambda_basics_iam_1.png&#34; alt=&#34;Creating new IAM user&#34; /&gt;
+    
+    
+    &lt;figcaption&gt;
+        &lt;p&gt;
+        Creating new IAM user
+        
+            
+        
+        &lt;/p&gt; 
+    &lt;/figcaption&gt;
+    
+&lt;/figure&gt;
+&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;It will then allow you to download credentials if you want&lt;/strong&gt;
+
+&lt;figure &gt;
+    
+        &lt;img src=&#34;http://abhipandey.com/images/lambda_basics_iam_2.png&#34; alt=&#34;Creating new IAM user&#34; /&gt;
+    
+    
+    &lt;figcaption&gt;
+        &lt;p&gt;
+        Creating new IAM user
+        
+            
+        
+        &lt;/p&gt; 
+    &lt;/figcaption&gt;
+    
+&lt;/figure&gt;
+&lt;/p&gt;
+
+&lt;h2 id=&#34;add-permissions:f657bc8efd67a0e2d83aeda4b346f8af&#34;&gt;Add permissions&lt;/h2&gt;
+
+&lt;p&gt;Once an IAM user is created, by default there are no permissions attached to the account.
+&lt;strong&gt;You can add permissions by going to permissions tab and clicking on &amp;ldquo;Attach Policy&amp;rdquo; button&lt;/strong&gt;.
+
+&lt;figure &gt;
+    
+        &lt;img src=&#34;http://abhipandey.com/images/lambda_basics_iam_3.png&#34; alt=&#34;Attach Policy&#34; /&gt;
+    
+    
+    &lt;figcaption&gt;
+        &lt;p&gt;
+        Attach Policy
+        
+            
+        
+        &lt;/p&gt; 
+    &lt;/figcaption&gt;
+    
+&lt;/figure&gt;
+&lt;/p&gt;
+
+&lt;h1 id=&#34;setup-github-webhook:f657bc8efd67a0e2d83aeda4b346f8af&#34;&gt;Setup GitHub webhook&lt;/h1&gt;
+
+&lt;p&gt;We need to assign a webhook for each Git commit. So let&amp;rsquo;s do the following:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Navigate to your GitHub repo&lt;/li&gt;
+&lt;li&gt;Click on “Settings” in the sidebar of that repo
+
+&lt;ul&gt;
+&lt;li&gt;It has to be an actual repo settings, not profile settings&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Click on “Webhooks &amp;amp; Services”&lt;/li&gt;
+&lt;li&gt;Click the “Add service” dropdown, then click “AmazonSNS”
+
+&lt;ul&gt;
+&lt;li&gt;You will need the account details for the IAM user you just created&lt;/li&gt;
+&lt;li&gt;The trigger will be delegated through this given IAM user&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Add SNS Webhook&lt;/strong&gt;
+
+&lt;figure &gt;
+    
+        &lt;img src=&#34;http://abhipandey.com/images/lambda_basics_webhooks_1.png&#34; /&gt;
+    
+    
+&lt;/figure&gt;
+&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Add Account details from IAM user&lt;/strong&gt;
+
+&lt;figure &gt;
+    
+        &lt;img src=&#34;http://abhipandey.com/images/lambda_basics_webhooks_2.png&#34; /&gt;
+    
+    
+&lt;/figure&gt;
+&lt;/p&gt;
+
+&lt;h1 id=&#34;create-lambda-function:f657bc8efd67a0e2d83aeda4b346f8af&#34;&gt;Create Lambda function&lt;/h1&gt;
+
+&lt;p&gt;Now that we have creater a user, assigned a trigger on Github, we need to create a function
+that will be run on an actual trigger.
+Let&amp;rsquo;s create a lambda function by going to &lt;a href=&#34;https://ap-northeast-1.console.aws.amazon.com/lambda/home?region=ap-northeast-1#/functions&#34;&gt;AWS Lambda&lt;/a&gt; and
+clicking on &amp;ldquo;Create a Lambda Function&amp;rdquo;.&lt;/p&gt;
+
+&lt;p&gt;Filter by SNS in the given samples because we want to see SNS functions.
+
+&lt;figure &gt;
+    
+        &lt;img src=&#34;http://abhipandey.com/images/lambda_basics_lambda_1.png&#34; /&gt;
+    
+    
+&lt;/figure&gt;
+
+&lt;em&gt;Ensure that you select your SNS as the event source.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Create a Lambda function with the following code:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;import json
+print(&#39;Loading function&#39;)
+
+def lambda_handler(event, context):
+    print(&amp;quot;Received event: &amp;quot; + json.dumps(event, indent=2))
+    message = event[&#39;Records&#39;][0][&#39;Sns&#39;][&#39;Message&#39;]
+    print(&amp;quot;From SNS: &amp;quot; + message)
+    return message
+&lt;/code&gt;&lt;/pre&gt;
+
+
+&lt;figure &gt;
+    
+        &lt;img src=&#34;http://abhipandey.com/images/lambda_basics_lambda_2.png&#34; alt=&#34;Python code&#34; /&gt;
+    
+    
+    &lt;figcaption&gt;
+        &lt;p&gt;
+        Python code
+        
+            
+        
+        &lt;/p&gt; 
+    &lt;/figcaption&gt;
+    
+&lt;/figure&gt;
+
+
+&lt;h1 id=&#34;testing-the-setup-so-far:f657bc8efd67a0e2d83aeda4b346f8af&#34;&gt;Testing the setup so far&lt;/h1&gt;
+
+&lt;h2 id=&#34;testing-github-webhook:f657bc8efd67a0e2d83aeda4b346f8af&#34;&gt;Testing GitHub webhook&lt;/h2&gt;
+
+&lt;p&gt;Now that we have setup &lt;strong&gt;Lambda, SNS, and Github&lt;/strong&gt; so far, it is time to test the setup.&lt;/p&gt;
+
+&lt;p&gt;Go to the &amp;ldquo;Webhooks and Services&amp;rdquo; under you repo settings and click on &amp;ldquo;Amazon SNS&amp;rdquo; that is
+viewable at the bottom of that page. You will then be able to test the service.
+
+&lt;figure &gt;
+    
+        &lt;img src=&#34;http://abhipandey.com/images/lambda_basics_results_1.png&#34; /&gt;
+    
+    
+&lt;/figure&gt;
+
+There&amp;rsquo;s a button at the top right &amp;ldquo;Test service&amp;rdquo;. Once you click it, GitHub will confirm that the message is indeed sent.&lt;/p&gt;
+
+&lt;h2 id=&#34;checking-aws:f657bc8efd67a0e2d83aeda4b346f8af&#34;&gt;Checking AWS&lt;/h2&gt;
+
+&lt;p&gt;Now that we have been able to send the message, we also need to confirm that the lambda was actually called.&lt;/p&gt;
+
+&lt;p&gt;This can be done by looking at CloudWatch logs. Any lambda run will be logged under CloudWatch.
+Even normal logging is also available there.
+
+&lt;figure &gt;
+    
+        &lt;img src=&#34;http://abhipandey.com/images/lambda_basics_results_2.png&#34; alt=&#34;Going to CloudWatch&#34; /&gt;
+    
+    
+    &lt;figcaption&gt;
+        &lt;p&gt;
+        Going to CloudWatch
+        
+            
+        
+        &lt;/p&gt; 
+    &lt;/figcaption&gt;
+    
+&lt;/figure&gt;
+
+
+&lt;figure &gt;
+    
+        &lt;img src=&#34;http://abhipandey.com/images/lambda_basics_results_3.png&#34; alt=&#34;Checking the lambda logs&#34; /&gt;
+    
+    
+    &lt;figcaption&gt;
+        &lt;p&gt;
+        Checking the lambda logs
+        
+            
+        
+        &lt;/p&gt; 
+    &lt;/figcaption&gt;
+    
+&lt;/figure&gt;
+&lt;/p&gt;
+
+&lt;h1 id=&#34;setup-api-gateway:f657bc8efd67a0e2d83aeda4b346f8af&#34;&gt;Setup API Gateway&lt;/h1&gt;
+
+&lt;p&gt;After all this is done, we can even &lt;strong&gt;create an API along with a public facing URL&lt;/strong&gt;
+where all these services can be called (apart from just GitHub), if you&amp;rsquo;d like.
+So let&amp;rsquo;s do that.&lt;/p&gt;
+
+&lt;h2 id=&#34;create-api:f657bc8efd67a0e2d83aeda4b346f8af&#34;&gt;Create API&lt;/h2&gt;
+
+
+&lt;figure &gt;
+    
+        &lt;img src=&#34;http://abhipandey.com/images/lambda_basics_api_1.png&#34; alt=&#34;Creating an API&#34; /&gt;
+    
+    
+    &lt;figcaption&gt;
+        &lt;p&gt;
+        Creating an API
+        
+            
+        
+        &lt;/p&gt; 
+    &lt;/figcaption&gt;
+    
+&lt;/figure&gt;
+
+
+&lt;h2 id=&#34;create-resource:f657bc8efd67a0e2d83aeda4b346f8af&#34;&gt;Create Resource&lt;/h2&gt;
+
+
+&lt;figure &gt;
+    
+        &lt;img src=&#34;http://abhipandey.com/images/lambda_basics_api_2.png&#34; alt=&#34;Creating Resource&#34; /&gt;
+    
+    
+    &lt;figcaption&gt;
+        &lt;p&gt;
+        Creating Resource
+        
+            
+        
+        &lt;/p&gt; 
+    &lt;/figcaption&gt;
+    
+&lt;/figure&gt;
+
+
+&lt;h2 id=&#34;create-method:f657bc8efd67a0e2d83aeda4b346f8af&#34;&gt;Create Method&lt;/h2&gt;
+
+
+&lt;figure &gt;
+    
+        &lt;img src=&#34;http://abhipandey.com/images/lambda_basics_api_3.png&#34; alt=&#34;Creating Method for GET&#34; /&gt;
+    
+    
+    &lt;figcaption&gt;
+        &lt;p&gt;
+        Creating Method for GET
+        
+            
+        
+        &lt;/p&gt; 
+    &lt;/figcaption&gt;
+    
+&lt;/figure&gt;
+
+
+
+&lt;figure &gt;
+    
+        &lt;img src=&#34;http://abhipandey.com/images/lambda_basics_api_4.png&#34; alt=&#34;Assign Lambda function to GET&#34; /&gt;
+    
+    
+    &lt;figcaption&gt;
+        &lt;p&gt;
+        Assign Lambda function to GET
+        
+            
+        
+        &lt;/p&gt; 
+    &lt;/figcaption&gt;
+    
+&lt;/figure&gt;
+
+
+&lt;h2 id=&#34;test-your-get-method:f657bc8efd67a0e2d83aeda4b346f8af&#34;&gt;Test your GET Method&lt;/h2&gt;
+
+&lt;p&gt;Now this API can be tested easily by just calling upon this URL:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://XXXXXXXXXXXX.execute-api.ap-northeast-1.amazonaws.com/test/resource_1/&#34;&gt;https://XXXXXXXXXXXX.execute-api.ap-northeast-1.amazonaws.com/test/resource_1/&lt;/a&gt;&lt;/p&gt;
+
+
+&lt;figure &gt;
+    
+        &lt;img src=&#34;http://abhipandey.com/images/lambda_basics_api_5.png&#34; alt=&#34;Check your Response from Lambda using GET&#34; /&gt;
+    
+    
+    &lt;figcaption&gt;
+        &lt;p&gt;
+        Check your Response from Lambda using GET
+        
+            
+        
+        &lt;/p&gt; 
+    &lt;/figcaption&gt;
+    
+&lt;/figure&gt;
+
+
+&lt;p&gt;If you wanted to test from a URL, it would be actually going to this URL itself from the browser.&lt;/p&gt;
+
+&lt;h1 id=&#34;misc:f657bc8efd67a0e2d83aeda4b346f8af&#34;&gt;Misc&lt;/h1&gt;
+
+&lt;h2 id=&#34;using-cli:f657bc8efd67a0e2d83aeda4b346f8af&#34;&gt;Using CLI&lt;/h2&gt;
+
+&lt;p&gt;Try the following command to get the list of your lambda functions:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ aws lambda --profile lambda.s3.1 --region ap-northeast-1 list-functions
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-json&#34;&gt;{
+    &amp;quot;Functions&amp;quot;: [
+        {
+            &amp;quot;CodeSize&amp;quot;: 317,
+            &amp;quot;FunctionArn&amp;quot;: &amp;quot;arn:aws:lambda:ap-northeast-1:XXXXXXXXXXXX:function:lambda_1&amp;quot;,
+            &amp;quot;MemorySize&amp;quot;: 128,
+            &amp;quot;Role&amp;quot;: &amp;quot;arn:aws:iam::XXXXXXXXXXXX:role/lambda_basic_execution_1&amp;quot;,
+            &amp;quot;Handler&amp;quot;: &amp;quot;lambda_function.lambda_handler&amp;quot;,
+            &amp;quot;Runtime&amp;quot;: &amp;quot;python2.7&amp;quot;,
+            &amp;quot;CodeSha256&amp;quot;: &amp;quot;.....&amp;quot;,
+            &amp;quot;FunctionName&amp;quot;: &amp;quot;lambda_1&amp;quot;,
+            &amp;quot;Timeout&amp;quot;: 183,
+            &amp;quot;LastModified&amp;quot;: &amp;quot;2015-11-15T07:49:28.367+0000&amp;quot;,
+            &amp;quot;Version&amp;quot;: &amp;quot;$LATEST&amp;quot;,
+            &amp;quot;Description&amp;quot;: &amp;quot;An Amazon SNS trigger that logs the message pushed to the SNS topic.&amp;quot;
+        },
+        {
+            &amp;quot;CodeSize&amp;quot;: 316,
+            &amp;quot;FunctionArn&amp;quot;: &amp;quot;arn:aws:lambda:ap-northeast-1:XXXXXXXXXXXX:function:lambda_2&amp;quot;,
+            &amp;quot;MemorySize&amp;quot;: 128,
+            &amp;quot;Role&amp;quot;: &amp;quot;arn:aws:iam::XXXXXXXXXXXX:role/lambda_basic_execution_1&amp;quot;,
+            &amp;quot;Handler&amp;quot;: &amp;quot;lambda_function.lambda_handler&amp;quot;,
+            &amp;quot;Runtime&amp;quot;: &amp;quot;python2.7&amp;quot;,
+            &amp;quot;CodeSha256&amp;quot;: &amp;quot;.......&amp;quot;,
+            &amp;quot;FunctionName&amp;quot;: &amp;quot;lambda_2&amp;quot;,
+            &amp;quot;Timeout&amp;quot;: 3,
+            &amp;quot;LastModified&amp;quot;: &amp;quot;2015-11-14T14:03:00.083+0000&amp;quot;,
+            &amp;quot;Version&amp;quot;: &amp;quot;$LATEST&amp;quot;,
+            &amp;quot;Description&amp;quot;: &amp;quot;An Amazon SNS trigger that logs the message pushed to the SNS topic.&amp;quot;
+        }
+    ]
+}
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;custom-policy-for-lambda-access:f657bc8efd67a0e2d83aeda4b346f8af&#34;&gt;Custom Policy for Lambda Access&lt;/h2&gt;
+
+&lt;p&gt;Validate Policy
+You can either just give &amp;ldquo;AmazonSNSFullAccess&amp;rdquo; to the user &lt;em&gt;lambda.s3.1&lt;/em&gt; or add the following Policy
+onto &lt;strong&gt;User-&amp;gt;Permission-&amp;gt;Add Inline policy-&amp;gt;custom policy-&amp;gt;Select-&amp;gt;Policy Document&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-yaml&#34;&gt;{
+  &amp;quot;Version&amp;quot;: &amp;quot;2012-10-17&amp;quot;,
+  &amp;quot;Statement&amp;quot;: [
+    {
+      &amp;quot;Action&amp;quot;: [
+        &amp;quot;sns:Publish&amp;quot;
+      ],
+      &amp;quot;Resource&amp;quot;: [
+        &amp;quot;arn:aws:sns:ap-northeast-1:YOUR_NUMBER:Commits_1&amp;quot;
+      ],
+      &amp;quot;Effect&amp;quot;: &amp;quot;Allow&amp;quot;
+    }
+  ]
+}
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

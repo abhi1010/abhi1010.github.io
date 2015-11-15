@@ -90,6 +90,55 @@
     
     <div class="post">
       <h1 class="post-title">
+        <a href="http://abhipandey.com/2008/02/membership-and-profiler-in-asp.net/">Membership and Profiler in ASP.NET</a>
+      </h1>
+      <span class="post-date">Feb 6, 2008  &middot; <a href="http://abhipandey.com/2008/02/membership-and-profiler-in-asp.net/#disqus_thread">Comments</a>
+      
+      <br/>
+      <a class="a_cat" href="http://abhipandey.com/categories/database">database</a>
+        
+      <a class="a_tag" href="http://abhipandey.com/tags/sql">sql</a>
+    
+      </span>
+      
+      <p>Whenever you are using Sql Membership and Profiler classes -
+Trying to generate reports make sure your query&rsquo;s WHERE clause is using &ldquo;indexed&rdquo; column names at least.</p>
+
+<p>Let&rsquo;s look at some of the more used tables. The index of some of the tables is given below:</p>
+
+<p><strong>Table: aspnet_membership</strong></p>
+
+<ul>
+<li><p>Clustered Index = <code>ApplicationID</code>, <code>LoweredEmail</code></p></li>
+
+<li><p>NonClustered = UserID</p></li>
+</ul>
+
+<p><strong>Table: aspnet_users</strong></p>
+
+<ul>
+<li><p>Clustered Index = <code>ApplicationID</code>, <code>LoweredUserName</code></p></li>
+
+<li><p>NonClustered Index = <code>ApplicationID</code>, <code>LastActivityDate</code></p></li>
+
+<li><p>Primary Key = <code>UserID</code></p></li>
+</ul>
+
+<p><strong>Table: aspnet_Profile</strong></p>
+
+<ul>
+<li>Clustered Index = <code>UserID</code></li>
+</ul>
+
+<blockquote>
+Bottomline - try to use ApplicationID in your queries otherwise your queries, for sure, will not run over the index at all and make it slow. This comes in effect if you are expecting high volume.
+</blockquote>
+
+      
+    </div>
+    
+    <div class="post">
+      <h1 class="post-title">
         <a href="http://abhipandey.com/2007/12/book-review-head-first-design-patterns/">Book Review: Head First Design Patterns</a>
       </h1>
       <span class="post-date">Dec 12, 2007  &middot; <a href="http://abhipandey.com/2007/12/book-review-head-first-design-patterns/#disqus_thread">Comments</a>

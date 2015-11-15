@@ -90,6 +90,59 @@
     
     <div class="post">
       <h1 class="post-title">
+        <a href="http://abhipandey.com/2014/05/usage-of-typename/">Usage of typename</a>
+      </h1>
+      <span class="post-date">May 26, 2014  &middot; <a href="http://abhipandey.com/2014/05/usage-of-typename/#disqus_thread">Comments</a>
+      
+      <br/>
+      <a class="a_cat" href="http://abhipandey.com/categories/code">code</a>
+        
+      <a class="a_tag" href="http://abhipandey.com/tags/c">c&#43;&#43;</a>
+    
+      </span>
+      
+      <p>What is wrong with the following code?</p>
+
+<script type="text/javascript" src="http://gist.github.com/0bd5e4d910e4d8a7672e.js"></script>
+
+<p>The issue is very simple but hard to notice. If you try to compile this, you will get the following errors:</p>
+
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000000; font-style: italic">    main.cpp:24:5: error: need &#39;typename&#39; before &#39;OuterStruct&lt;T2&gt;::InnerStruct&#39; because &#39;OuterStruct&lt;T2&gt;&#39; is a dependent scope</span>
+<span style="color: #000000; font-style: italic">    OuterStruct&lt;T2&gt;::InnerStruct mUsingInner;</span>
+<span style="color: #000000; font-style: italic">    ^</span>
+<span style="color: #000000; font-style: italic">    main.cpp: In function &#39;int main(int, char**)&#39;:</span>
+<span style="color: #000000; font-style: italic">    main.cpp:34:13: error: &#39;struct InnerStruct_Wrapper&lt;int&gt;&#39; has no member named &#39;mUsingInner&#39;</span>
+<span style="color: #000000; font-style: italic">    wrapper.mUsingInner = innerStrct;</span>
+</pre></div>
+
+
+<p><strong>The Issue</strong></p>
+
+<p>At least it straight away tells you something is wrong with <code>InnerStruct_Wrapper</code>. Here&rsquo;s what is happening:</p>
+
+<ul>
+<li><p>The compiler does not know that mUsingInner in that line is actually a variable of type &ldquo;OuterStruct<T2>::InnerStruct&rdquo;</p></li>
+
+<li><p>InnerStruct will only be known later when it is being instantiated</p></li>
+
+<li><p>Compiler cannot figure out what InnerStruct means here. It could be a type or a member variable</p></li>
+</ul>
+
+<p><strong>The Fix</strong></p>
+
+<p>The only way here is to help the compiler by telling it beforehand that is going to be a class or struct type. The way to tell the compiler that something like this is supposed to be a type name is to throw in the keyword &ldquo;typename&rdquo;. The &ldquo;typename&rdquo; keyword has to be used everytime you want to tell the compiler that it should expect a Type in its place.</p>
+
+<p>One place where this is used quite a lot is when templates have to implement iterators.</p>
+
+<p><strong>Full Code</strong></p>
+
+<p><strong><em>The full sample code, along with the fix</em></strong> is provided on <a href="http://coliru.stacked-crooked.com/a/b0ab70c458370048">Stacked-Crooked</a>.</p>
+
+      
+    </div>
+    
+    <div class="post">
+      <h1 class="post-title">
         <a href="http://abhipandey.com/2014/05/setting-up-your-vim...-your-style/">Setting up your VIM... Your style</a>
       </h1>
       <span class="post-date">May 19, 2014  &middot; <a href="http://abhipandey.com/2014/05/setting-up-your-vim...-your-style/#disqus_thread">Comments</a>
@@ -1406,61 +1459,6 @@
 <p>Here&rsquo;s a short code for viewing all the columns of a given table.</p>
 
 <script type="text/javascript" src="http://gist.github.com/11365686.js"></script>
-
-      
-    </div>
-    
-    <div class="post">
-      <h1 class="post-title">
-        <a href="http://abhipandey.com/2013/07/cvs-cheat-sheet/">CVS Cheat Sheet</a>
-      </h1>
-      <span class="post-date">Jul 3, 2013  &middot; <a href="http://abhipandey.com/2013/07/cvs-cheat-sheet/#disqus_thread">Comments</a>
-      
-      <br/>
-      <a class="a_cat" href="http://abhipandey.com/categories/code">code</a><a class="a_cat" href="http://abhipandey.com/categories/tips">tips</a>
-        
-      <a class="a_tag" href="http://abhipandey.com/tags/bash">bash</a><a class="a_tag" href="http://abhipandey.com/tags/cvs">cvs</a>
-    
-      </span>
-      
-      <p>I&rsquo;ve worked on CVS for a long time now and figured out that I&rsquo;d save a lot of time if I started writing alias or functions for the numerous tasks that I did on them. I will put down some of them here so you may benefit from them.</p>
-
-<p><em>Silently update and inform about the status of the files (recursive)</em></p>
-
-<pre><code>cvs -q -n update
-</code></pre>
-
-<p><em>Same as earlier but will only do so for the current folder</em></p>
-
-<pre><code>cvs -Q -n update -l
-</code></pre>
-
-<p><em>Finds out the cv[s] [m]odified list of files while also indentating them nicely with only the important data pulled out</em></p>
-
-<pre><code>cvs -Q status | egrep &quot;File: &quot; -A 4 | egrep -v &quot;Up-to-date&quot; | egrep &quot;File: &quot; -A 3 | sed -e &quot;s/ Status:/\t\tStatus:/&quot; -e &quot;s/,v$/\n-------------------------------------------------------------------------\n/&quot; -e &quot;s/.*${PWD##*/}\//Location:\t\t /&quot; -e &quot;s/Attic\///&quot; | egrep &quot;Location:|Repository|Status:|File:|--------
-</code></pre>
-
-<p><em>Recursively add all files to CVS for committing from the current directory</em></p>
-
-<pre><code>find . -type d -print | grep -v CVS | xargs cvs add
-</code></pre>
-
-<p><em>Doing a side by side diff (change the value of -W according to the width of the screen)</em></p>
-
-<pre><code>cvs -Q diff -t -y --suppress-common-lines -W 190 $*
-</code></pre>
-
-<p><em>Merging code from one branch to another</em></p>
-
-<pre><code># Creates a command that you can use to &quot;merge&quot; your code from dev head to this current branch.   
-# Ideally you want to run this command from a folder where you want the code to merge to....   
-merge()   
-{   
-BRANCH=$(cat CVS/Tag | cut -c2-)   
-CMD=$(echo cvs update -j $BRANCH -j Version_2_17_dev .)   
-echo $CMD   
-}   
-</code></pre>
 
       
     </div>

@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>Lambda Basics with Python using Github Webhooks or API Gateway &middot; Abhishek Pandey</title>
+
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+  <link rel="stylesheet" href="http://abhipandey.com/css/poole.css?ref=abc124">
+  <link rel="stylesheet" href="http://abhipandey.com/css/hyde.css?ref=abc124">
+  <link rel="stylesheet" href="http://abhipandey.com/css/poole-overrides.css?ref=abc124">
+  <link rel="stylesheet" href="http://abhipandey.com/css/hyde-overrides.css?ref=abc124">
+  <link rel="stylesheet" href="http://abhipandey.com/css/hyde-a.css?ref=abc124">
+  <link rel="stylesheet" href="http://abhipandey.com/css/custom-additions.css?ref=abc124">
+  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://abhipandey.com/touch-icon-144-precomposed.png?ref=abc124">
+  <link href="http://abhipandey.com/favicon.png?ref=abc124" rel="icon">
+
+  
+  
+  
+  
+
+  <meta name="description" content="How to execute an aws lambda command on git push">
+  <meta name="keywords" content="aws lambda,python,aws,lambda,github,git,api gateway,git push">
+  
+  
+  <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-68135443-1', 'auto');
+      ga('send', 'pageview');
+  </script>
+
+</head>
+<body class="theme-base-aa">
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      
+      <h1><a href="http://abhipandey.com/">Abhishek Pandey</a></h1>
+      <p class="lead">Coders Digest</p>
+    </div>
+
+    <ul class="sidebar-nav">
+      
+      <li class="sidebar-nav-item"><a href="http://abhipandey.com/post/">Posts</a></li>
+      
+      <li class="sidebar-nav-item"><a href="http://abhipandey.com/tags/">Tags</a></li>
+      
+      <li class="sidebar-nav-item"><a href="http://abhipandey.com/categories/">Categories</a></li>
+      
+      <li class="sidebar-nav-item"><a href="http://abhipandey.com/about/">About</a></li>
+      
+    </ul>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item">
+      
+      
+      
+      
+      
+      
+      
+      
+      </li>
+    </ul>
+
+    
+
+  </div>
+</div>
+
+
+<div class="content container">
+  <div class="post">
+    <h1>Lambda Basics with Python using Github Webhooks or API Gateway</h1>
+    <span class="post-date">Nov 4, 2015  &middot; <a href="http://abhipandey.com/2015/11/lambda-basics-with-python-using-github-webhooks-or-api-gateway/#disqus_thread">Comments</a>
+    
+    <br/>
+    
+          <a class="a_cat" href="http://abhipandey.com/categories/code">code</a><a class="a_cat" href="http://abhipandey.com/categories/continuous-delivery">continuous delivery</a>
+      
+      
+        <a class="a_tag" href="http://abhipandey.com/tags/python">python</a><a class="a_tag" href="http://abhipandey.com/tags/aws">aws</a><a class="a_tag" href="http://abhipandey.com/tags/lambda">lambda</a><a class="a_tag" href="http://abhipandey.com/tags/github">github</a><a class="a_tag" href="http://abhipandey.com/tags/git">git</a>
+      
+
+    
+    </span>
+      <div id="_toc" class="toc">
+        <nav id="TableOfContents">
+<ul>
+<li><a href="#create-sns-topic:f657bc8efd67a0e2d83aeda4b346f8af">Create SNS Topic</a></li>
+<li><a href="#create-iam-user:f657bc8efd67a0e2d83aeda4b346f8af">Create IAM user</a>
+<ul>
+<li><a href="#add-permissions:f657bc8efd67a0e2d83aeda4b346f8af">Add permissions</a></li>
+</ul></li>
+<li><a href="#setup-github-webhook:f657bc8efd67a0e2d83aeda4b346f8af">Setup GitHub webhook</a></li>
+<li><a href="#create-lambda-function:f657bc8efd67a0e2d83aeda4b346f8af">Create Lambda function</a></li>
+<li><a href="#testing-the-setup-so-far:f657bc8efd67a0e2d83aeda4b346f8af">Testing the setup so far</a>
+<ul>
+<li><a href="#testing-github-webhook:f657bc8efd67a0e2d83aeda4b346f8af">Testing GitHub webhook</a></li>
+<li><a href="#checking-aws:f657bc8efd67a0e2d83aeda4b346f8af">Checking AWS</a></li>
+</ul></li>
+<li><a href="#setup-api-gateway:f657bc8efd67a0e2d83aeda4b346f8af">Setup API Gateway</a>
+<ul>
+<li><a href="#create-api:f657bc8efd67a0e2d83aeda4b346f8af">Create API</a></li>
+<li><a href="#create-resource:f657bc8efd67a0e2d83aeda4b346f8af">Create Resource</a></li>
+<li><a href="#create-method:f657bc8efd67a0e2d83aeda4b346f8af">Create Method</a></li>
+<li><a href="#test-your-get-method:f657bc8efd67a0e2d83aeda4b346f8af">Test your GET Method</a></li>
+</ul></li>
+<li><a href="#misc:f657bc8efd67a0e2d83aeda4b346f8af">Misc</a>
+<ul>
+<li><a href="#using-cli:f657bc8efd67a0e2d83aeda4b346f8af">Using CLI</a></li>
+<li><a href="#custom-policy-for-lambda-access:f657bc8efd67a0e2d83aeda4b346f8af">Custom Policy for Lambda Access</a></li>
+</ul></li>
+</ul>
+</nav>
+      </div>
+    
+
+<p>I recently needed to call a command whenever there was a push on my Github repo.
+Since this was related to AWS tasks, I figured <code>aws lambda</code> is a good candidate.
+Here I will talk about the steps I took to enable all of this using aws lambda, python.
+As a side note, I will also elaborate on using API gateway to call upon the lambda itself.</p>
+
+<p>In a nutshell, what I will talk about:</p>
+
+<ul>
+<li>Create <strong>SNS</strong> Topic</li>
+<li>Create <strong>IAM user</strong> who can Publish</li>
+<li>Setup <strong>GitHub webhook</strong></li>
+<li>Create <strong>Lambda function</strong></li>
+<li>Setup <strong>API Gateway</strong> url that can call lambda function</li>
+</ul>
+
+<h1 id="create-sns-topic:f657bc8efd67a0e2d83aeda4b346f8af">Create SNS Topic</h1>
+
+<p>Go to <a href="https://ap-northeast-1.console.aws.amazon.com/sns/v2/home?region=ap-northeast-1#/home">AWS Console</a> and click on Create Topic.</p>
+
+
+<figure >
+    
+        <img src="/images/lambda_basics_sns_1.png" alt="Creating an API" />
+    
+    
+    <figcaption>
+        <p>
+        Creating an API
+        
+            
+        
+        </p> 
+    </figcaption>
+    
+</figure>
+
+
+<p>Note down the <code>ARN</code> because you will need that.
+In my case it is something like <code>arn:aws:sns:ap-northeast-1:XXXXXXXXXXXX:commits_1</code></p>
+
+<h1 id="create-iam-user:f657bc8efd67a0e2d83aeda4b346f8af">Create IAM user</h1>
+
+<p>We need to setup an IAM user who can publish onto this SNS we just created.
+As a shortcut you can just create a simple user and initialize it with full access rights for testing purposes.</p>
+
+<p><strong>Once on IAM page click on &ldquo;Create New Users&rdquo; button at the top.</strong>
+
+<figure >
+    
+        <img src="/images/lambda_basics_iam_1.png" alt="Creating new IAM user" />
+    
+    
+    <figcaption>
+        <p>
+        Creating new IAM user
+        
+            
+        
+        </p> 
+    </figcaption>
+    
+</figure>
+</p>
+
+<p><strong>It will then allow you to download credentials if you want</strong>
+
+<figure >
+    
+        <img src="/images/lambda_basics_iam_2.png" alt="Creating new IAM user" />
+    
+    
+    <figcaption>
+        <p>
+        Creating new IAM user
+        
+            
+        
+        </p> 
+    </figcaption>
+    
+</figure>
+</p>
+
+<h2 id="add-permissions:f657bc8efd67a0e2d83aeda4b346f8af">Add permissions</h2>
+
+<p>Once an IAM user is created, by default there are no permissions attached to the account.
+<strong>You can add permissions by going to permissions tab and clicking on &ldquo;Attach Policy&rdquo; button</strong>.
+
+<figure >
+    
+        <img src="/images/lambda_basics_iam_3.png" alt="Attach Policy" />
+    
+    
+    <figcaption>
+        <p>
+        Attach Policy
+        
+            
+        
+        </p> 
+    </figcaption>
+    
+</figure>
+</p>
+
+<h1 id="setup-github-webhook:f657bc8efd67a0e2d83aeda4b346f8af">Setup GitHub webhook</h1>
+
+<p>We need to assign a webhook for each Git commit. So let&rsquo;s do the following:</p>
+
+<ul>
+<li>Navigate to your GitHub repo</li>
+<li>Click on “Settings” in the sidebar of that repo
+
+<ul>
+<li>It has to be an actual repo settings, not profile settings</li>
+</ul></li>
+<li>Click on “Webhooks &amp; Services”</li>
+<li>Click the “Add service” dropdown, then click “AmazonSNS”
+
+<ul>
+<li>You will need the account details for the IAM user you just created</li>
+<li>The trigger will be delegated through this given IAM user</li>
+</ul></li>
+</ul>
+
+<p><strong>Add SNS Webhook</strong>
+
+<figure >
+    
+        <img src="/images/lambda_basics_webhooks_1.png" />
+    
+    
+</figure>
+</p>
+
+<p><strong>Add Account details from IAM user</strong>
+
+<figure >
+    
+        <img src="/images/lambda_basics_webhooks_2.png" />
+    
+    
+</figure>
+</p>
+
+<h1 id="create-lambda-function:f657bc8efd67a0e2d83aeda4b346f8af">Create Lambda function</h1>
+
+<p>Now that we have creater a user, assigned a trigger on Github, we need to create a function
+that will be run on an actual trigger.
+Let&rsquo;s create a lambda function by going to <a href="https://ap-northeast-1.console.aws.amazon.com/lambda/home?region=ap-northeast-1#/functions">AWS Lambda</a> and
+clicking on &ldquo;Create a Lambda Function&rdquo;.</p>
+
+<p>Filter by SNS in the given samples because we want to see SNS functions.
+
+<figure >
+    
+        <img src="/images/lambda_basics_lambda_1.png" />
+    
+    
+</figure>
+
+<em>Ensure that you select your SNS as the event source.</em></p>
+
+<p>Create a Lambda function with the following code:</p>
+
+<pre><code class="language-python">import json
+print('Loading function')
+
+def lambda_handler(event, context):
+    print(&quot;Received event: &quot; + json.dumps(event, indent=2))
+    message = event['Records'][0]['Sns']['Message']
+    print(&quot;From SNS: &quot; + message)
+    return message
+</code></pre>
+
+
+<figure >
+    
+        <img src="/images/lambda_basics_lambda_2.png" alt="Python code" />
+    
+    
+    <figcaption>
+        <p>
+        Python code
+        
+            
+        
+        </p> 
+    </figcaption>
+    
+</figure>
+
+
+<h1 id="testing-the-setup-so-far:f657bc8efd67a0e2d83aeda4b346f8af">Testing the setup so far</h1>
+
+<h2 id="testing-github-webhook:f657bc8efd67a0e2d83aeda4b346f8af">Testing GitHub webhook</h2>
+
+<p>Now that we have setup <strong>Lambda, SNS, and Github</strong> so far, it is time to test the setup.</p>
+
+<p>Go to the &ldquo;Webhooks and Services&rdquo; under you repo settings and click on &ldquo;Amazon SNS&rdquo; that is
+viewable at the bottom of that page. You will then be able to test the service.
+
+<figure >
+    
+        <img src="/images/lambda_basics_results_1.png" />
+    
+    
+</figure>
+
+There&rsquo;s a button at the top right &ldquo;Test service&rdquo;. Once you click it, GitHub will confirm that the message is indeed sent.</p>
+
+<h2 id="checking-aws:f657bc8efd67a0e2d83aeda4b346f8af">Checking AWS</h2>
+
+<p>Now that we have been able to send the message, we also need to confirm that the lambda was actually called.</p>
+
+<p>This can be done by looking at CloudWatch logs. Any lambda run will be logged under CloudWatch.
+Even normal logging is also available there.
+
+<figure >
+    
+        <img src="/images/lambda_basics_results_2.png" alt="Going to CloudWatch" />
+    
+    
+    <figcaption>
+        <p>
+        Going to CloudWatch
+        
+            
+        
+        </p> 
+    </figcaption>
+    
+</figure>
+
+
+<figure >
+    
+        <img src="/images/lambda_basics_results_3.png" alt="Checking the lambda logs" />
+    
+    
+    <figcaption>
+        <p>
+        Checking the lambda logs
+        
+            
+        
+        </p> 
+    </figcaption>
+    
+</figure>
+</p>
+
+<h1 id="setup-api-gateway:f657bc8efd67a0e2d83aeda4b346f8af">Setup API Gateway</h1>
+
+<p>After all this is done, we can even <strong>create an API along with a public facing URL</strong>
+where all these services can be called (apart from just GitHub), if you&rsquo;d like.
+So let&rsquo;s do that.</p>
+
+<h2 id="create-api:f657bc8efd67a0e2d83aeda4b346f8af">Create API</h2>
+
+
+<figure >
+    
+        <img src="/images/lambda_basics_api_1.png" alt="Creating an API" />
+    
+    
+    <figcaption>
+        <p>
+        Creating an API
+        
+            
+        
+        </p> 
+    </figcaption>
+    
+</figure>
+
+
+<h2 id="create-resource:f657bc8efd67a0e2d83aeda4b346f8af">Create Resource</h2>
+
+
+<figure >
+    
+        <img src="/images/lambda_basics_api_2.png" alt="Creating Resource" />
+    
+    
+    <figcaption>
+        <p>
+        Creating Resource
+        
+            
+        
+        </p> 
+    </figcaption>
+    
+</figure>
+
+
+<h2 id="create-method:f657bc8efd67a0e2d83aeda4b346f8af">Create Method</h2>
+
+
+<figure >
+    
+        <img src="/images/lambda_basics_api_3.png" alt="Creating Method for GET" />
+    
+    
+    <figcaption>
+        <p>
+        Creating Method for GET
+        
+            
+        
+        </p> 
+    </figcaption>
+    
+</figure>
+
+
+
+<figure >
+    
+        <img src="/images/lambda_basics_api_4.png" alt="Assign Lambda function to GET" />
+    
+    
+    <figcaption>
+        <p>
+        Assign Lambda function to GET
+        
+            
+        
+        </p> 
+    </figcaption>
+    
+</figure>
+
+
+<h2 id="test-your-get-method:f657bc8efd67a0e2d83aeda4b346f8af">Test your GET Method</h2>
+
+<p>Now this API can be tested easily by just calling upon this URL:</p>
+
+<p><a href="https://XXXXXXXXXXXX.execute-api.ap-northeast-1.amazonaws.com/test/resource_1/">https://XXXXXXXXXXXX.execute-api.ap-northeast-1.amazonaws.com/test/resource_1/</a></p>
+
+
+<figure >
+    
+        <img src="/images/lambda_basics_api_5.png" alt="Check your Response from Lambda using GET" />
+    
+    
+    <figcaption>
+        <p>
+        Check your Response from Lambda using GET
+        
+            
+        
+        </p> 
+    </figcaption>
+    
+</figure>
+
+
+<p>If you wanted to test from a URL, it would be actually going to this URL itself from the browser.</p>
+
+<h1 id="misc:f657bc8efd67a0e2d83aeda4b346f8af">Misc</h1>
+
+<h2 id="using-cli:f657bc8efd67a0e2d83aeda4b346f8af">Using CLI</h2>
+
+<p>Try the following command to get the list of your lambda functions:</p>
+
+<pre><code class="language-bash">$ aws lambda --profile lambda.s3.1 --region ap-northeast-1 list-functions
+</code></pre>
+
+<pre><code class="language-json">{
+    &quot;Functions&quot;: [
+        {
+            &quot;CodeSize&quot;: 317,
+            &quot;FunctionArn&quot;: &quot;arn:aws:lambda:ap-northeast-1:XXXXXXXXXXXX:function:lambda_1&quot;,
+            &quot;MemorySize&quot;: 128,
+            &quot;Role&quot;: &quot;arn:aws:iam::XXXXXXXXXXXX:role/lambda_basic_execution_1&quot;,
+            &quot;Handler&quot;: &quot;lambda_function.lambda_handler&quot;,
+            &quot;Runtime&quot;: &quot;python2.7&quot;,
+            &quot;CodeSha256&quot;: &quot;.....&quot;,
+            &quot;FunctionName&quot;: &quot;lambda_1&quot;,
+            &quot;Timeout&quot;: 183,
+            &quot;LastModified&quot;: &quot;2015-11-15T07:49:28.367+0000&quot;,
+            &quot;Version&quot;: &quot;$LATEST&quot;,
+            &quot;Description&quot;: &quot;An Amazon SNS trigger that logs the message pushed to the SNS topic.&quot;
+        },
+        {
+            &quot;CodeSize&quot;: 316,
+            &quot;FunctionArn&quot;: &quot;arn:aws:lambda:ap-northeast-1:XXXXXXXXXXXX:function:lambda_2&quot;,
+            &quot;MemorySize&quot;: 128,
+            &quot;Role&quot;: &quot;arn:aws:iam::XXXXXXXXXXXX:role/lambda_basic_execution_1&quot;,
+            &quot;Handler&quot;: &quot;lambda_function.lambda_handler&quot;,
+            &quot;Runtime&quot;: &quot;python2.7&quot;,
+            &quot;CodeSha256&quot;: &quot;.......&quot;,
+            &quot;FunctionName&quot;: &quot;lambda_2&quot;,
+            &quot;Timeout&quot;: 3,
+            &quot;LastModified&quot;: &quot;2015-11-14T14:03:00.083+0000&quot;,
+            &quot;Version&quot;: &quot;$LATEST&quot;,
+            &quot;Description&quot;: &quot;An Amazon SNS trigger that logs the message pushed to the SNS topic.&quot;
+        }
+    ]
+}
+
+</code></pre>
+
+<h2 id="custom-policy-for-lambda-access:f657bc8efd67a0e2d83aeda4b346f8af">Custom Policy for Lambda Access</h2>
+
+<p>Validate Policy
+You can either just give &ldquo;AmazonSNSFullAccess&rdquo; to the user <em>lambda.s3.1</em> or add the following Policy
+onto <strong>User-&gt;Permission-&gt;Add Inline policy-&gt;custom policy-&gt;Select-&gt;Policy Document</strong></p>
+
+<pre><code class="language-yaml">{
+  &quot;Version&quot;: &quot;2012-10-17&quot;,
+  &quot;Statement&quot;: [
+    {
+      &quot;Action&quot;: [
+        &quot;sns:Publish&quot;
+      ],
+      &quot;Resource&quot;: [
+        &quot;arn:aws:sns:ap-northeast-1:YOUR_NUMBER:Commits_1&quot;
+      ],
+      &quot;Effect&quot;: &quot;Allow&quot;
+    }
+  ]
+}
+</code></pre>
+
+  </div>
+  <div id="disqus_thread"></div>
+</div>
+
+
+<script type="text/javascript">
+var disqus_shortname = "abhi1010";
+(function () {
+    var s = document.createElement('script'); s.async = true;
+    s.type = 'text/javascript';
+    s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+}());
+</script>
+
+
+
+<script type="text/javascript">
+    var disqus_shortname = "abhi1010";
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+</body>
+</html>
+

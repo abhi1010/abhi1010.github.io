@@ -90,6 +90,35 @@
     
     <div class="post">
       <h1 class="post-title">
+        <a href="http://abhipandey.com/2008/05/visual-studio-2008-crashes-while-adding-items/">Visual Studio 2008 crashes while adding items</a>
+      </h1>
+      <span class="post-date">May 14, 2008  &middot; <a href="http://abhipandey.com/2008/05/visual-studio-2008-crashes-while-adding-items/#disqus_thread">Comments</a>
+      
+      <br/>
+      <a class="a_cat" href="http://abhipandey.com/categories/code">code</a>
+        
+      <a class="a_tag" href="http://abhipandey.com/tags/c-sharp">c-sharp</a><a class="a_tag" href="http://abhipandey.com/tags/visual-studio">visual studio</a>
+    
+      </span>
+      
+      <p>Had this problem cropping up since months where I was trying to add items to Visual Studio 2008 Toolbox and it kept crashing.</p>
+
+<p>Finally got a work around, you should start it in safe mode. Here&rsquo;s the procedure:</p>
+
+<pre><code>devenv /safemode
+</code></pre>
+
+<p>Then use Choose Items on toolbox and run through each of the tabs. Once you
+accept any exceptions raised on loading controls, you can then open Visual
+Studio normally and add items.</p>
+
+<p>The reason for this has to be pretty simple - I have installed way too many beta/refresh version on Visual Studio 2008, something had to give up. I can&rsquo;t really complain.</p>
+
+      
+    </div>
+    
+    <div class="post">
+      <h1 class="post-title">
         <a href="http://abhipandey.com/2008/04/google-analytics--swfaddress/">Google Analytics &amp; SWFAddress</a>
       </h1>
       <span class="post-date">Apr 6, 2008  &middot; <a href="http://abhipandey.com/2008/04/google-analytics--swfaddress/#disqus_thread">Comments</a>
@@ -439,55 +468,6 @@ attempts to perform actions which require full trust.
 
 <p><em>&ldquo;AMF enables developers to build powerful flash-based applications driven by databases and rich business layers.
 AMF.NET is a .NET gateway sitting between a Flash movie and .NET code. The goal of AMF.NET is to promote proper N-Tier development by allowing your existing business layer (written in .NET) to be consumed by Flash without requiring any modification.&rdquo;</em></p>
-
-      
-    </div>
-    
-    <div class="post">
-      <h1 class="post-title">
-        <a href="http://abhipandey.com/2008/02/membership-and-profiler-in-asp.net/">Membership and Profiler in ASP.NET</a>
-      </h1>
-      <span class="post-date">Feb 6, 2008  &middot; <a href="http://abhipandey.com/2008/02/membership-and-profiler-in-asp.net/#disqus_thread">Comments</a>
-      
-      <br/>
-      <a class="a_cat" href="http://abhipandey.com/categories/database">database</a>
-        
-      <a class="a_tag" href="http://abhipandey.com/tags/sql">sql</a>
-    
-      </span>
-      
-      <p>Whenever you are using Sql Membership and Profiler classes -
-Trying to generate reports make sure your query&rsquo;s WHERE clause is using &ldquo;indexed&rdquo; column names at least.</p>
-
-<p>Let&rsquo;s look at some of the more used tables. The index of some of the tables is given below:</p>
-
-<p><strong>Table: aspnet_membership</strong></p>
-
-<ul>
-<li><p>Clustered Index = <code>ApplicationID</code>, <code>LoweredEmail</code></p></li>
-
-<li><p>NonClustered = UserID</p></li>
-</ul>
-
-<p><strong>Table: aspnet_users</strong></p>
-
-<ul>
-<li><p>Clustered Index = <code>ApplicationID</code>, <code>LoweredUserName</code></p></li>
-
-<li><p>NonClustered Index = <code>ApplicationID</code>, <code>LastActivityDate</code></p></li>
-
-<li><p>Primary Key = <code>UserID</code></p></li>
-</ul>
-
-<p><strong>Table: aspnet_Profile</strong></p>
-
-<ul>
-<li>Clustered Index = <code>UserID</code></li>
-</ul>
-
-<blockquote>
-Bottomline - try to use ApplicationID in your queries otherwise your queries, for sure, will not run over the index at all and make it slow. This comes in effect if you are expecting high volume.
-</blockquote>
 
       
     </div>
