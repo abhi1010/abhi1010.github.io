@@ -6,13 +6,13 @@
     <description>Recent content in Hugo on Coders Digest</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 14 Sep 2015 11:14:38 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 15 Sep 2015 11:14:38 +0800</lastBuildDate>
     <atom:link href="http://abhipandey.com/tags/hugo/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Moving To Hugo</title>
       <link>http://abhipandey.com/2015/09/moving-to-hugo/</link>
-      <pubDate>Mon, 14 Sep 2015 11:14:38 +0800</pubDate>
+      <pubDate>Tue, 15 Sep 2015 11:14:38 +0800</pubDate>
       
       <guid>http://abhipandey.com/2015/09/moving-to-hugo/</guid>
       <description>
@@ -362,8 +362,8 @@ If we have to commit to two repo - for markdown as well html pages, I feel like 
 
 &lt;p&gt;I did some work with &lt;code&gt;shippable&lt;/code&gt; and started automatically creating the html pages through it.&lt;/p&gt;
 
-&lt;p&gt;I have created another article about it.
-Please &lt;a href=&#34;http://abhipandey.com/2015/09/elastic-beanstalk-deployment-automation/&#34;&gt;read it&lt;/a&gt; for further details.&lt;/p&gt;
+&lt;p&gt;I have created another article about it while taking Elastic Beanstalk as the subject. The same applies for &lt;code&gt;hugo&lt;/code&gt; though. You can find it here:
+&lt;strong&gt;&lt;a href=&#34;http://abhipandey.com/2015/09/elastic-beanstalk-deployment-automation/&#34;&gt;Elastic Beanstalk Deployment Automation&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
 
 &lt;p&gt;Once you have done it, all you need to do is:&lt;/p&gt;
 
