@@ -224,6 +224,8 @@ Bottomline - try to use ApplicationID in your queries otherwise your queries, fo
       
       <p>+++ date = &ldquo;2015-12-20 07:49:00+00:00&rdquo; title = &ldquo;Color coding your processes&rdquo; type = &ldquo;post&rdquo; tags = [&ldquo;bash&rdquo;] categories = [&ldquo;code&rdquo;] description = &ldquo;HOw to make your variables stand out from values in bash for processes&rdquo; keywords = [&ldquo;bash&rdquo;, &ldquo;process&rdquo;, &ldquo;linux terminal&rdquo;, &ldquo;terminal&rdquo;, &ldquo;process colors&rdquo;] draft = &ldquo;true&rdquo;+++</p>
 
+<p>ps -ef | egrep boxcoll | head -1  | awk &lsquo;BEGIN {RS=&ldquo;&ndash;&rdquo;}{print $0}&rsquo; | awk &lsquo;{printf &ldquo;\033[40;38;5;82m  %-30s  \033[38;5;198m %s \033[0m \n&rdquo;, $1, $2 }&rsquo;</p>
+
 <p>[ dev ]@csqdev-web01 ~ $ ps -ef | egrep uwsgi | egrep touch | head -1 | awk &lsquo;BEGIN {RS=&ldquo;&ndash;&rdquo;; FS=&ldquo;=&rdquo;; ORS=&rdquo;\n\t&ndash;&ldquo;} {printf &ldquo;\033[40;38;5;82m  %s \033[38;5;198m %s \033[0m \n&rdquo;, $1, $2 }&rsquo;
   grass-py  10332<br />
   &ndash;daemonize  /var/log/uwsgi/uwsgi-risk.log<br />
