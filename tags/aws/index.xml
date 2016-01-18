@@ -765,7 +765,7 @@ before_script:
   - git config --global push.default matching
   - mkdir -p themes
   - git clone git@github.com:abhi1010/abhi1010.github.io.git
-  - &lt;span style=&#34;color: #204a87&#34;&gt;cd &lt;/span&gt;themes
+  - &lt;span style=&#34;color: #204a87&#34;&gt;cd&lt;/span&gt; themes
   - git clone https://github.com/abhi1010/hyde-a.git
   - &lt;span style=&#34;color: #204a87&#34;&gt;cd&lt;/span&gt; ../
 
@@ -774,15 +774,15 @@ script:
 
 after_success:
   - &lt;span style=&#34;color: #204a87&#34;&gt;echo&lt;/span&gt; &lt;span style=&#34;color: #4e9a06&#34;&gt;`&lt;/span&gt;&lt;span style=&#34;color: #204a87&#34;&gt;pwd&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;`&lt;/span&gt;
-  - &lt;span style=&#34;color: #204a87&#34;&gt;export &lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;NOW_HOUR&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;$(&lt;/span&gt;date +%d-%b-%H_%M&lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;)&lt;/span&gt; 
+  - &lt;span style=&#34;color: #204a87&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;NOW_HOUR&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;$(&lt;/span&gt;date +%d-%b-%H_%M&lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;)&lt;/span&gt; 
   - git config --global user.email &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;abhi.pandey@gmail.com&amp;quot;&lt;/span&gt;
   - git config --global user.name &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;abhi1010&amp;quot;&lt;/span&gt;
   - git config --get remote.origin.url
-  - git remote &lt;span style=&#34;color: #204a87&#34;&gt;set&lt;/span&gt;-url origin git@github.com:abhi1010.github.io.git
-  - &lt;span style=&#34;color: #204a87&#34;&gt;cd &lt;/span&gt;abhi1010.github.io
+  - git remote set-url origin git@github.com:abhi1010.github.io.git
+  - &lt;span style=&#34;color: #204a87&#34;&gt;cd&lt;/span&gt; abhi1010.github.io
   - git status -s
   - &lt;span style=&#34;color: #204a87&#34;&gt;echo&lt;/span&gt; -e &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;a\n*\nq\n&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;git add -i
-  - git commit -am &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;Automated build from Shippable - &amp;#39;&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;$NOW_HOUR&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; git push
+  - git commit -am &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;Automated build from Shippable - &amp;#39;&lt;/span&gt;$NOW_HOUR &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; git push
 
 
 notifications:
@@ -862,10 +862,10 @@ I like to keep deployment scripts in another bash script, so that deployment can
 
 &lt;p&gt;Or, you may choose to have the &amp;ldquo;deployment&amp;rdquo; script from another project, if you wish. It allows you to separately maintain all the moving parts.&lt;/p&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;rm -rf &lt;span style=&#34;color: #204a87&#34;&gt;cd &lt;/span&gt;eb-reconwise
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;rm -rf &lt;span style=&#34;color: #204a87&#34;&gt;cd&lt;/span&gt; eb-reconwise
 &lt;span style=&#34;color: #204a87&#34;&gt;echo&lt;/span&gt; &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;Deploying New Dockers&amp;#39;&lt;/span&gt;
 git clone https://github.com/abhi1010/deplyment_project.git
-&lt;span style=&#34;color: #204a87&#34;&gt;cd &lt;/span&gt;deplyment_project/
+&lt;span style=&#34;color: #204a87&#34;&gt;cd&lt;/span&gt; deplyment_project/
 chmod +x deploy.sh
 eb use beanstalk_env_name
 ./deploy.sh
@@ -884,16 +884,16 @@ eb use beanstalk_env_name
   
   ENV WS &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;/ws&amp;#39;&lt;/span&gt;
   ENV CURR_HOME &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;/root&amp;#39;&lt;/span&gt;
-  WORKDIR &lt;span style=&#34;color: #000000&#34;&gt;$WS&lt;/span&gt;
+  WORKDIR $WS
   
   RUN git clone https://github.com/abhi1010/dockerprj.git &lt;span style=&#34;color: #4e9a06&#34;&gt;\&lt;/span&gt;
-   &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; . &lt;span style=&#34;color: #000000&#34;&gt;$WS&lt;/span&gt;/ve_envs/rwv2/bin/activate &lt;span style=&#34;color: #4e9a06&#34;&gt;\&lt;/span&gt;
-   &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;$WS&lt;/span&gt;/prj/rw/manage.py collectstatic --noinput
+   &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; . $WS/ve_envs/rwv2/bin/activate &lt;span style=&#34;color: #4e9a06&#34;&gt;\&lt;/span&gt;
+   &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; $WS/prj/rw/manage.py collectstatic --noinput
   
-  COPY supervisor-app.conf &lt;span style=&#34;color: #000000&#34;&gt;$WS&lt;/span&gt;/
+  COPY supervisor-app.conf $WS/
   
   RUN &lt;span style=&#34;color: #4e9a06&#34;&gt;\&lt;/span&gt;
-      cp &lt;span style=&#34;color: #000000&#34;&gt;$WS&lt;/span&gt;/supervisor-app.conf /etc/supervisor/supervisord.conf &lt;span style=&#34;color: #4e9a06&#34;&gt;\&lt;/span&gt;
+      cp $WS/supervisor-app.conf /etc/supervisor/supervisord.conf &lt;span style=&#34;color: #4e9a06&#34;&gt;\&lt;/span&gt;
    &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; chown -R www-data:www-data /var/lib/nginx
 
   VOLUME &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;[&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;/var/shared/&amp;quot;&lt;/span&gt;, &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;/etc/nginx/sites-enabled&amp;quot;&lt;/span&gt;, &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;/var/log/nginx&amp;quot;&lt;/span&gt;, &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;/ws/&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;]&lt;/span&gt;
@@ -1023,7 +1023,7 @@ eb use beanstalk_env_name
 &lt;li&gt;Finally, make sure that your folder files are setup as follows:&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #000000&#34;&gt;$ &lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;(&lt;/span&gt;master&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;)&lt;/span&gt; tree -a 
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;$ &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;(&lt;/span&gt;master&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;)&lt;/span&gt; tree -a 
 .
 &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;-- .ebextensions
 &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;   &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;-- 0000_users.config  &lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;# setup extra users&lt;/span&gt;

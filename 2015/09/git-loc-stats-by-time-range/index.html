@@ -106,7 +106,7 @@
 time. After some tinkering around, mainly to find out the correct format for time ranges, decided to use the following bash script for finding coding stats.
 Following sample is to find out lines added or removed during the year 2014.</p>
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000000">$ </span>git log --after<span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #4e9a06">&quot;2014-1-1&quot;</span> --before<span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #4e9a06">&quot;2014-12-31&quot;</span> --pretty<span style="color: #ce5c00; font-weight: bold">=</span>tformat: --numstat 
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">$ git log --after<span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #4e9a06">&quot;2014-1-1&quot;</span> --before<span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #4e9a06">&quot;2014-12-31&quot;</span> --pretty<span style="color: #ce5c00; font-weight: bold">=</span>tformat: --numstat 
     <span style="color: #000000; font-weight: bold">|</span> awk <span style="color: #4e9a06">&#39;{ if ( $2 != 0 &amp;&amp; $1 != 0 ) print $0 }&#39;</span> 
     <span style="color: #000000; font-weight: bold">|</span> gawk <span style="color: #4e9a06">&#39;{ add += $1; subs += $2; loc += $1 - $2 } END { printf &quot;Added lines: %s Removed lines: %s Total # of lines: %s\n&quot;, add, subs, loc }&#39;</span>
 </pre></div>

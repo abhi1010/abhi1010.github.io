@@ -177,7 +177,7 @@ before_script:
   - git config --global push.default matching
   - mkdir -p themes
   - git clone git@github.com:abhi1010/abhi1010.github.io.git
-  - <span style="color: #204a87">cd </span>themes
+  - <span style="color: #204a87">cd</span> themes
   - git clone https://github.com/abhi1010/hyde-a.git
   - <span style="color: #204a87">cd</span> ../
 
@@ -186,15 +186,15 @@ script:
 
 after_success:
   - <span style="color: #204a87">echo</span> <span style="color: #4e9a06">`</span><span style="color: #204a87">pwd</span><span style="color: #4e9a06">`</span>
-  - <span style="color: #204a87">export </span><span style="color: #000000">NOW_HOUR</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #204a87; font-weight: bold">$(</span>date +%d-%b-%H_%M<span style="color: #204a87; font-weight: bold">)</span> 
+  - <span style="color: #204a87">export</span> <span style="color: #000000">NOW_HOUR</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #204a87; font-weight: bold">$(</span>date +%d-%b-%H_%M<span style="color: #204a87; font-weight: bold">)</span> 
   - git config --global user.email <span style="color: #4e9a06">&quot;abhi.pandey@gmail.com&quot;</span>
   - git config --global user.name <span style="color: #4e9a06">&quot;abhi1010&quot;</span>
   - git config --get remote.origin.url
-  - git remote <span style="color: #204a87">set</span>-url origin git@github.com:abhi1010.github.io.git
-  - <span style="color: #204a87">cd </span>abhi1010.github.io
+  - git remote set-url origin git@github.com:abhi1010.github.io.git
+  - <span style="color: #204a87">cd</span> abhi1010.github.io
   - git status -s
   - <span style="color: #204a87">echo</span> -e <span style="color: #4e9a06">&quot;a\n*\nq\n&quot;</span><span style="color: #000000; font-weight: bold">|</span>git add -i
-  - git commit -am <span style="color: #4e9a06">&#39;Automated build from Shippable - &#39;</span><span style="color: #000000">$NOW_HOUR</span> <span style="color: #ce5c00; font-weight: bold">&amp;&amp;</span> git push
+  - git commit -am <span style="color: #4e9a06">&#39;Automated build from Shippable - &#39;</span>$NOW_HOUR <span style="color: #ce5c00; font-weight: bold">&amp;&amp;</span> git push
 
 
 notifications:
@@ -274,10 +274,10 @@ I like to keep deployment scripts in another bash script, so that deployment can
 
 <p>Or, you may choose to have the &ldquo;deployment&rdquo; script from another project, if you wish. It allows you to separately maintain all the moving parts.</p>
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">rm -rf <span style="color: #204a87">cd </span>eb-reconwise
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">rm -rf <span style="color: #204a87">cd</span> eb-reconwise
 <span style="color: #204a87">echo</span> <span style="color: #4e9a06">&#39;Deploying New Dockers&#39;</span>
 git clone https://github.com/abhi1010/deplyment_project.git
-<span style="color: #204a87">cd </span>deplyment_project/
+<span style="color: #204a87">cd</span> deplyment_project/
 chmod +x deploy.sh
 eb use beanstalk_env_name
 ./deploy.sh
@@ -296,16 +296,16 @@ eb use beanstalk_env_name
   
   ENV WS <span style="color: #4e9a06">&#39;/ws&#39;</span>
   ENV CURR_HOME <span style="color: #4e9a06">&#39;/root&#39;</span>
-  WORKDIR <span style="color: #000000">$WS</span>
+  WORKDIR $WS
   
   RUN git clone https://github.com/abhi1010/dockerprj.git <span style="color: #4e9a06">\</span>
-   <span style="color: #ce5c00; font-weight: bold">&amp;&amp;</span> . <span style="color: #000000">$WS</span>/ve_envs/rwv2/bin/activate <span style="color: #4e9a06">\</span>
-   <span style="color: #ce5c00; font-weight: bold">&amp;&amp;</span> <span style="color: #000000">$WS</span>/prj/rw/manage.py collectstatic --noinput
+   <span style="color: #ce5c00; font-weight: bold">&amp;&amp;</span> . $WS/ve_envs/rwv2/bin/activate <span style="color: #4e9a06">\</span>
+   <span style="color: #ce5c00; font-weight: bold">&amp;&amp;</span> $WS/prj/rw/manage.py collectstatic --noinput
   
-  COPY supervisor-app.conf <span style="color: #000000">$WS</span>/
+  COPY supervisor-app.conf $WS/
   
   RUN <span style="color: #4e9a06">\</span>
-      cp <span style="color: #000000">$WS</span>/supervisor-app.conf /etc/supervisor/supervisord.conf <span style="color: #4e9a06">\</span>
+      cp $WS/supervisor-app.conf /etc/supervisor/supervisord.conf <span style="color: #4e9a06">\</span>
    <span style="color: #ce5c00; font-weight: bold">&amp;&amp;</span> chown -R www-data:www-data /var/lib/nginx
 
   VOLUME <span style="color: #ce5c00; font-weight: bold">[</span><span style="color: #4e9a06">&quot;/var/shared/&quot;</span>, <span style="color: #4e9a06">&quot;/etc/nginx/sites-enabled&quot;</span>, <span style="color: #4e9a06">&quot;/var/log/nginx&quot;</span>, <span style="color: #4e9a06">&quot;/ws/&quot;</span><span style="color: #ce5c00; font-weight: bold">]</span>
@@ -435,7 +435,7 @@ eb use beanstalk_env_name
 <li>Finally, make sure that your folder files are setup as follows:</li>
 </ul>
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000000">$ </span><span style="color: #ce5c00; font-weight: bold">(</span>master<span style="color: #ce5c00; font-weight: bold">)</span> tree -a 
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">$ <span style="color: #ce5c00; font-weight: bold">(</span>master<span style="color: #ce5c00; font-weight: bold">)</span> tree -a 
 .
 <span style="color: #000000; font-weight: bold">|</span>-- .ebextensions
 <span style="color: #000000; font-weight: bold">|</span>   <span style="color: #000000; font-weight: bold">|</span>-- 0000_users.config  <span style="color: #8f5902; font-style: italic"># setup extra users</span>

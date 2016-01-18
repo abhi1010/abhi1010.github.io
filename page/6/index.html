@@ -222,7 +222,13 @@ Bottomline - try to use ApplicationID in your queries otherwise your queries, fo
       <span class="post-date">Jan 1, 0001  &middot; <a href="http://abhipandey.com/1/01/#disqus_thread">Comments</a>
       </span>
       
-      <p>+++ date = &ldquo;2015-12-20 07:49:00+00:00&rdquo; title = &ldquo;Color coding your processes&rdquo; type = &ldquo;post&rdquo; tags = [&ldquo;bash&rdquo;] categories = [&ldquo;code&rdquo;] description = &ldquo;HOw to make your variables stand out from values in bash for processes&rdquo; keywords = [&ldquo;bash&rdquo;, &ldquo;process&rdquo;, &ldquo;linux terminal&rdquo;, &ldquo;terminal&rdquo;, &ldquo;process colors&rdquo;] draft = &ldquo;true&rdquo;+++</p>
+      
+
+<p>+++ date = &ldquo;2015-12-20 07:49:00+00:00&rdquo; title = &ldquo;Color coding your processes&rdquo; type = &ldquo;post&rdquo; tags = [&ldquo;bash&rdquo;] categories = [&ldquo;code&rdquo;] description = &ldquo;HOw to make your variables stand out from values in bash for processes&rdquo; keywords = [&ldquo;bash&rdquo;, &ldquo;process&rdquo;, &ldquo;linux terminal&rdquo;, &ldquo;terminal&rdquo;, &ldquo;process colors&rdquo;] draft = &ldquo;true&rdquo;+++</p>
+
+<h1 id="the-following-works-very-well:e5fa17f20fc65c230036c2e0b771fea9">The following works very well</h1>
+
+<p>ps -ef | egrep evepnl | awk &lsquo;BEGIN {RS=&ldquo;&ndash;&rdquo;; FS=&ldquo;=&rdquo;; ORS=&rdquo;\n\t&ndash;&ldquo;} {printf &ldquo;\033[40;38;5;82m  %50s \033[38;5;198m %s \033[0m \n&rdquo;, $1, $2 }&rsquo;</p>
 
 <p>ps -ef | egrep boxcoll | head -1  | awk &lsquo;BEGIN {RS=&ldquo;&ndash;&rdquo;}{print $0}&rsquo; | awk &lsquo;{printf &ldquo;\033[40;38;5;82m  %-30s  \033[38;5;198m %s \033[0m \n&rdquo;, $1, $2 }&rsquo;</p>
 

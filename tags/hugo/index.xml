@@ -108,7 +108,7 @@ some of my files earlier while working on &lt;code&gt;pelican&lt;/code&gt;. Once
 &lt;p&gt;I came across &lt;a href=&#34;https://github.com/thomasf/exitwp&#34;&gt;exitwp&lt;/a&gt; which needed a bit of setup, but I was willing to give it a try.
 Here&amp;rsquo;s what I did:
 &lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;git clone https://github.com/thomasf/exitwp
-&lt;span style=&#34;color: #204a87&#34;&gt;cd &lt;/span&gt;exitwp
+&lt;span style=&#34;color: #204a87&#34;&gt;cd&lt;/span&gt; exitwp
 
 cp wordpress.2015-08-23.xml wordpress-xml/
 
@@ -123,7 +123,7 @@ exitwp.py wordpress-xml/wordpress.2015-08-23.xml
 
 &lt;p&gt;This creates a folder &lt;code&gt;build/jekyll/OLD_WORDPRESS_URL/&lt;/code&gt; with the contents inside it. Here&amp;rsquo;s my sample&lt;/p&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #000000&#34;&gt;$ &lt;/span&gt;tree
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;$ tree
 .
 &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;-- _posts
 &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;   &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;-- 2007-10-26-use-of-yield-statement.markdown
@@ -173,7 +173,7 @@ The idea would be to start a new folder, copy your markdowns there. Here&amp;rsq
 &lt;/ul&gt;
 
 &lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt; mkdir my_blog
- &lt;span style=&#34;color: #204a87&#34;&gt;cd &lt;/span&gt;my_blog
+ &lt;span style=&#34;color: #204a87&#34;&gt;cd&lt;/span&gt; my_blog
  mkdir content
  cp -r /PATH_TO/exitwp/build/jekyll/codersdigest.wordpress.com/* ./content/
  
@@ -186,7 +186,7 @@ The idea would be to start a new folder, copy your markdowns there. Here&amp;rsq
 
 &lt;p&gt;Here&amp;rsquo;s how to install it.
  &lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt; mkdir themes/
- &lt;span style=&#34;color: #204a87&#34;&gt;cd &lt;/span&gt;themes/
+ &lt;span style=&#34;color: #204a87&#34;&gt;cd&lt;/span&gt; themes/
  git clone https://github.com/zyro/hyde-x
  
 &lt;/pre&gt;&lt;/div&gt;

@@ -817,8 +817,8 @@ No matter what I tried, I was getting errors like the following:</p>
 <p>All I had to do was set <code>LC_ALL</code> to <strong>en_US.UTF-8</strong>. It would set all the locales to <code>en_US.UTF-8</code> which
 would allow <code>powerline</code> fonts work properly.</p>
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000000">$ </span><span style="color: #204a87">export </span><span style="color: #000000">LC_ALL</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #4e9a06">&quot;en_US.UTF-8&quot;</span>                                                                                                     22:58:06 
-<span style="color: #000000">$ </span>locale 
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">$ <span style="color: #204a87">export</span> <span style="color: #000000">LC_ALL</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #4e9a06">&quot;en_US.UTF-8&quot;</span>                                                                                                     22:58:06 
+$ locale 
 <span style="color: #000000">LANG</span><span style="color: #ce5c00; font-weight: bold">=</span>
 <span style="color: #000000">LC_COLLATE</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #4e9a06">&quot;en_US.UTF-8&quot;</span>
 <span style="color: #000000">LC_CTYPE</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #4e9a06">&quot;en_US.UTF-8&quot;</span>
@@ -966,7 +966,7 @@ We use it in our current setup to do a full testing and deployment onto <code>AW
 time. After some tinkering around, mainly to find out the correct format for time ranges, decided to use the following bash script for finding coding stats.
 Following sample is to find out lines added or removed during the year 2014.</p>
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000000">$ </span>git log --after<span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #4e9a06">&quot;2014-1-1&quot;</span> --before<span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #4e9a06">&quot;2014-12-31&quot;</span> --pretty<span style="color: #ce5c00; font-weight: bold">=</span>tformat: --numstat 
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">$ git log --after<span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #4e9a06">&quot;2014-1-1&quot;</span> --before<span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #4e9a06">&quot;2014-12-31&quot;</span> --pretty<span style="color: #ce5c00; font-weight: bold">=</span>tformat: --numstat 
     <span style="color: #000000; font-weight: bold">|</span> awk <span style="color: #4e9a06">&#39;{ if ( $2 != 0 &amp;&amp; $1 != 0 ) print $0 }&#39;</span> 
     <span style="color: #000000; font-weight: bold">|</span> gawk <span style="color: #4e9a06">&#39;{ add += $1; subs += $2; loc += $1 - $2 } END { printf &quot;Added lines: %s Removed lines: %s Total # of lines: %s\n&quot;, add, subs, loc }&#39;</span>
 </pre></div>
@@ -1096,7 +1096,7 @@ some of my files earlier while working on <code>pelican</code>. Once I started u
 <p>I came across <a href="https://github.com/thomasf/exitwp">exitwp</a> which needed a bit of setup, but I was willing to give it a try.
 Here&rsquo;s what I did:
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">git clone https://github.com/thomasf/exitwp
-<span style="color: #204a87">cd </span>exitwp
+<span style="color: #204a87">cd</span> exitwp
 
 cp wordpress.2015-08-23.xml wordpress-xml/
 
@@ -1111,7 +1111,7 @@ exitwp.py wordpress-xml/wordpress.2015-08-23.xml
 
 <p>This creates a folder <code>build/jekyll/OLD_WORDPRESS_URL/</code> with the contents inside it. Here&rsquo;s my sample</p>
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000000">$ </span>tree
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">$ tree
 .
 <span style="color: #000000; font-weight: bold">|</span>-- _posts
 <span style="color: #000000; font-weight: bold">|</span>   <span style="color: #000000; font-weight: bold">|</span>-- 2007-10-26-use-of-yield-statement.markdown
@@ -1161,7 +1161,7 @@ The idea would be to start a new folder, copy your markdowns there. Here&rsquo;s
 </ul>
 
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"> mkdir my_blog
- <span style="color: #204a87">cd </span>my_blog
+ <span style="color: #204a87">cd</span> my_blog
  mkdir content
  cp -r /PATH_TO/exitwp/build/jekyll/codersdigest.wordpress.com/* ./content/
  
@@ -1174,7 +1174,7 @@ The idea would be to start a new folder, copy your markdowns there. Here&rsquo;s
 
 <p>Here&rsquo;s how to install it.
  <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"> mkdir themes/
- <span style="color: #204a87">cd </span>themes/
+ <span style="color: #204a87">cd</span> themes/
  git clone https://github.com/zyro/hyde-x
  
 </pre></div>
@@ -1484,7 +1484,7 @@ before_script:
   - git config --global push.default matching
   - mkdir -p themes
   - git clone git@github.com:abhi1010/abhi1010.github.io.git
-  - <span style="color: #204a87">cd </span>themes
+  - <span style="color: #204a87">cd</span> themes
   - git clone https://github.com/abhi1010/hyde-a.git
   - <span style="color: #204a87">cd</span> ../
 
@@ -1493,15 +1493,15 @@ script:
 
 after_success:
   - <span style="color: #204a87">echo</span> <span style="color: #4e9a06">`</span><span style="color: #204a87">pwd</span><span style="color: #4e9a06">`</span>
-  - <span style="color: #204a87">export </span><span style="color: #000000">NOW_HOUR</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #204a87; font-weight: bold">$(</span>date +%d-%b-%H_%M<span style="color: #204a87; font-weight: bold">)</span> 
+  - <span style="color: #204a87">export</span> <span style="color: #000000">NOW_HOUR</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #204a87; font-weight: bold">$(</span>date +%d-%b-%H_%M<span style="color: #204a87; font-weight: bold">)</span> 
   - git config --global user.email <span style="color: #4e9a06">&quot;abhi.pandey@gmail.com&quot;</span>
   - git config --global user.name <span style="color: #4e9a06">&quot;abhi1010&quot;</span>
   - git config --get remote.origin.url
-  - git remote <span style="color: #204a87">set</span>-url origin git@github.com:abhi1010.github.io.git
-  - <span style="color: #204a87">cd </span>abhi1010.github.io
+  - git remote set-url origin git@github.com:abhi1010.github.io.git
+  - <span style="color: #204a87">cd</span> abhi1010.github.io
   - git status -s
   - <span style="color: #204a87">echo</span> -e <span style="color: #4e9a06">&quot;a\n*\nq\n&quot;</span><span style="color: #000000; font-weight: bold">|</span>git add -i
-  - git commit -am <span style="color: #4e9a06">&#39;Automated build from Shippable - &#39;</span><span style="color: #000000">$NOW_HOUR</span> <span style="color: #ce5c00; font-weight: bold">&amp;&amp;</span> git push
+  - git commit -am <span style="color: #4e9a06">&#39;Automated build from Shippable - &#39;</span>$NOW_HOUR <span style="color: #ce5c00; font-weight: bold">&amp;&amp;</span> git push
 
 
 notifications:
@@ -1581,10 +1581,10 @@ I like to keep deployment scripts in another bash script, so that deployment can
 
 <p>Or, you may choose to have the &ldquo;deployment&rdquo; script from another project, if you wish. It allows you to separately maintain all the moving parts.</p>
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">rm -rf <span style="color: #204a87">cd </span>eb-reconwise
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">rm -rf <span style="color: #204a87">cd</span> eb-reconwise
 <span style="color: #204a87">echo</span> <span style="color: #4e9a06">&#39;Deploying New Dockers&#39;</span>
 git clone https://github.com/abhi1010/deplyment_project.git
-<span style="color: #204a87">cd </span>deplyment_project/
+<span style="color: #204a87">cd</span> deplyment_project/
 chmod +x deploy.sh
 eb use beanstalk_env_name
 ./deploy.sh
@@ -1603,16 +1603,16 @@ eb use beanstalk_env_name
   
   ENV WS <span style="color: #4e9a06">&#39;/ws&#39;</span>
   ENV CURR_HOME <span style="color: #4e9a06">&#39;/root&#39;</span>
-  WORKDIR <span style="color: #000000">$WS</span>
+  WORKDIR $WS
   
   RUN git clone https://github.com/abhi1010/dockerprj.git <span style="color: #4e9a06">\</span>
-   <span style="color: #ce5c00; font-weight: bold">&amp;&amp;</span> . <span style="color: #000000">$WS</span>/ve_envs/rwv2/bin/activate <span style="color: #4e9a06">\</span>
-   <span style="color: #ce5c00; font-weight: bold">&amp;&amp;</span> <span style="color: #000000">$WS</span>/prj/rw/manage.py collectstatic --noinput
+   <span style="color: #ce5c00; font-weight: bold">&amp;&amp;</span> . $WS/ve_envs/rwv2/bin/activate <span style="color: #4e9a06">\</span>
+   <span style="color: #ce5c00; font-weight: bold">&amp;&amp;</span> $WS/prj/rw/manage.py collectstatic --noinput
   
-  COPY supervisor-app.conf <span style="color: #000000">$WS</span>/
+  COPY supervisor-app.conf $WS/
   
   RUN <span style="color: #4e9a06">\</span>
-      cp <span style="color: #000000">$WS</span>/supervisor-app.conf /etc/supervisor/supervisord.conf <span style="color: #4e9a06">\</span>
+      cp $WS/supervisor-app.conf /etc/supervisor/supervisord.conf <span style="color: #4e9a06">\</span>
    <span style="color: #ce5c00; font-weight: bold">&amp;&amp;</span> chown -R www-data:www-data /var/lib/nginx
 
   VOLUME <span style="color: #ce5c00; font-weight: bold">[</span><span style="color: #4e9a06">&quot;/var/shared/&quot;</span>, <span style="color: #4e9a06">&quot;/etc/nginx/sites-enabled&quot;</span>, <span style="color: #4e9a06">&quot;/var/log/nginx&quot;</span>, <span style="color: #4e9a06">&quot;/ws/&quot;</span><span style="color: #ce5c00; font-weight: bold">]</span>
@@ -1742,7 +1742,7 @@ eb use beanstalk_env_name
 <li>Finally, make sure that your folder files are setup as follows:</li>
 </ul>
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000000">$ </span><span style="color: #ce5c00; font-weight: bold">(</span>master<span style="color: #ce5c00; font-weight: bold">)</span> tree -a 
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">$ <span style="color: #ce5c00; font-weight: bold">(</span>master<span style="color: #ce5c00; font-weight: bold">)</span> tree -a 
 .
 <span style="color: #000000; font-weight: bold">|</span>-- .ebextensions
 <span style="color: #000000; font-weight: bold">|</span>   <span style="color: #000000; font-weight: bold">|</span>-- 0000_users.config  <span style="color: #8f5902; font-style: italic"># setup extra users</span>
