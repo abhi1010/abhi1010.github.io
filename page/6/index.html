@@ -237,7 +237,11 @@ Bottomline - try to use ApplicationID in your queries otherwise your queries, fo
 <pre><code>ee \
     | gawk 'BEGIN {FS=&quot;=&quot;; RS=&quot; --| -&quot;}{print $0}' \
     | sed -e 's/\(-\+[a-z-]\+\)=/\1 /g' \
-    | awk '{printf &quot;\033[40;38;5;82m  %-30s  \033[38;5;198m %s \033[0m \n&quot;, $1, $2 }'
+    | awk 'BEGIN    {printf &quot;-----------------\n&quot; ; }
+            {
+                if (NF &gt; 2) printf &quot;\n\033[41;5;1m%s\033[0m\n&quot;, $NF ;
+                printf &quot;\033[40;38;5;82m  %30s  \033[38;5;198m %s \033[0m \n&quot;, $1, $2
+            }'
 
 </code></pre>
 
