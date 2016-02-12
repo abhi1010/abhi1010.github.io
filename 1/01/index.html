@@ -94,6 +94,7 @@
         <nav id="TableOfContents">
 <ul>
 <li><a href="#the-following-works-very-well:e5fa17f20fc65c230036c2e0b771fea9">The following works very well</a></li>
+<li><a href="#forget-about-the-rest-this-works-the-best-so-far-due-to-sed-in-it:e5fa17f20fc65c230036c2e0b771fea9">Forget about the rest, this works the best so far, due to sed in it</a></li>
 </ul>
 </nav>
       </div>
@@ -106,6 +107,15 @@
 <p>ps -ef | egrep evepnl | awk &lsquo;BEGIN {RS=&ldquo;&ndash;&rdquo;; FS=&ldquo;=&rdquo;; ORS=&rdquo;\n\t&ndash;&ldquo;} {printf &ldquo;\033[40;38;5;82m  %50s \033[38;5;198m %s \033[0m \n&rdquo;, $1, $2 }&rsquo;</p>
 
 <p>ps -ef | egrep boxcoll | head -1  | awk &lsquo;BEGIN {RS=&ldquo;&ndash;&rdquo;}{print $0}&rsquo; | awk &lsquo;{printf &ldquo;\033[40;38;5;82m  %-30s  \033[38;5;198m %s \033[0m \n&rdquo;, $1, $2 }&rsquo;</p>
+
+<h1 id="forget-about-the-rest-this-works-the-best-so-far-due-to-sed-in-it:e5fa17f20fc65c230036c2e0b771fea9">Forget about the rest, this works the best so far, due to sed in it</h1>
+
+<pre><code>ee \
+    | gawk 'BEGIN {FS=&quot;=&quot;; RS=&quot; --| -&quot;}{print $0}' \
+    | sed -e 's/\(-\+[a-z-]\+\)=/\1 /g' \
+    | awk '{printf &quot;\033[40;38;5;82m  %-30s  \033[38;5;198m %s \033[0m \n&quot;, $1, $2 }'
+
+</code></pre>
 
 <p>[ dev ]@csqdev-web01 ~ $ ps -ef | egrep uwsgi | egrep touch | head -1 | awk &lsquo;BEGIN {RS=&ldquo;&ndash;&rdquo;; FS=&ldquo;=&rdquo;; ORS=&rdquo;\n\t&ndash;&ldquo;} {printf &ldquo;\033[40;38;5;82m  %s \033[38;5;198m %s \033[0m \n&rdquo;, $1, $2 }&rsquo;
   grass-py  10332<br />
