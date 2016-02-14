@@ -110,14 +110,17 @@
 
 <h1 id="forget-about-the-rest-this-works-the-best-so-far-due-to-sed-in-it:e5fa17f20fc65c230036c2e0b771fea9">Forget about the rest, this works the best so far, due to sed in it</h1>
 
-<pre><code>ee \
-    | gawk 'BEGIN {FS=&quot;=&quot;; RS=&quot; --| -&quot;}{print $0}' \
+<pre><code>colorme()
+{
+gawk 'BEGIN {FS=&quot;=&quot;; RS=&quot; --| -&quot;}{print $0}' \
     | sed -e 's/\(-\+[a-z-]\+\)=/\1 /g' \
-    | awk 'BEGIN    {printf &quot;-----------------\n&quot; ; }
+    | gawk 'BEGIN    {printf &quot;-----------------\n&quot; ; }
             {
                 if (NF &gt; 2) printf &quot;\n\033[41;5;1m%s\033[0m\n&quot;, $NF ;
                 printf &quot;\033[40;38;5;82m  %30s  \033[38;5;198m %s \033[0m \n&quot;, $1, $2
             }'
+
+}
 
 </code></pre>
 
