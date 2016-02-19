@@ -119,7 +119,7 @@ However, all that is required here is to know that python automatically picks up
 
 <p>For example, for running <code>uwsgi</code> I provide the full path for python as follows:</p>
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #ce5c00; font-weight: bold">[</span>program:appName<span style="color: #ce5c00; font-weight: bold">]</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #ce5c00; font-weight: bold">[</span>program:appName<span style="color: #ce5c00; font-weight: bold">]</span>
 <span style="color: #000000">stdout_logfile</span> <span style="color: #ce5c00; font-weight: bold">=</span> /var/shared/_uwsgi.log
 <span style="color: #204a87">command</span> <span style="color: #ce5c00; font-weight: bold">=</span> /ws/ve_envs/project/bin/uwsgi --touch-reload<span style="color: #ce5c00; font-weight: bold">=</span>/ws/wsgi.ini --ini /ws/wsgi.ini
 </pre></div>

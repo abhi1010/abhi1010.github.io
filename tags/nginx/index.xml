@@ -21,14 +21,14 @@
 Since &lt;code&gt;EC2&lt;/code&gt; needs to manage the &lt;code&gt;docker&lt;/code&gt; environment and serve the web interface as well, it does so by having another &lt;code&gt;nginx&lt;/code&gt; instance to serve the &lt;code&gt;nginx&lt;/code&gt; within &lt;code&gt;docker&lt;/code&gt;.
 Hence, if you had to modify the &lt;code&gt;nginx&lt;/code&gt; settings to allow bigger uploads, &lt;strong&gt;you&amp;rsquo;d have to modify the settings for &lt;code&gt;nginx&lt;/code&gt; on both - &lt;code&gt;docker&lt;/code&gt; as well as &lt;code&gt;EC2&lt;/code&gt;&lt;/strong&gt;.&lt;/p&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;    &lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;# max upload size&lt;/span&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;    &lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;# max upload size&lt;/span&gt;
     &lt;span style=&#34;color: #000000&#34;&gt;client_max_body_size&lt;/span&gt; &lt;span style=&#34;color: #0000cf; font-weight: bold&#34;&gt;10&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;M&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;;&lt;/span&gt;   &lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;# adjust to your liking&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;Also, if you don&amp;rsquo;t want to have any limit at all for uploads, then just change the &lt;code&gt;client_max_body_size&lt;/code&gt; to 0.&lt;/p&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;    &lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;# max upload size&lt;/span&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;    &lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;# max upload size&lt;/span&gt;
     &lt;span style=&#34;color: #000000&#34;&gt;client_max_body_size&lt;/span&gt; &lt;span style=&#34;color: #0000cf; font-weight: bold&#34;&gt;0&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
@@ -55,7 +55,7 @@ Hence, if you had to modify the &lt;code&gt;nginx&lt;/code&gt; settings to allow
 
 &lt;p&gt;Here&amp;rsquo;s how you&amp;rsquo;d do it. The keyword is &lt;code&gt;VOLUME&lt;/code&gt;&amp;hellip; in your &lt;code&gt;Dockerfile&lt;/code&gt;&lt;/p&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #000000&#34;&gt;VOLUME&lt;/span&gt; &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;[&lt;/span&gt; \
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;VOLUME&lt;/span&gt; &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;[&lt;/span&gt; \
     &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;/var/shared/&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt; \ 
     &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;/etc/nginx/sites-enabled&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt; \ 
     &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;/var/log/nginx&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt; \

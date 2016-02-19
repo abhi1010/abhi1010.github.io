@@ -168,7 +168,7 @@ You can create a <code>shippable.yml</code> file in your project which will be c
 
 <p>Here is one of my sample files from the project that powers this blog:</p>
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">language: python
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>language: python
 
 install:
   - pip install Pygments 
@@ -243,7 +243,7 @@ cache: <span style="color: #204a87">true</span>
 <p>You may also want to set up unit tests and regression tests as part of your <em>scripts</em>
 Just do the following then</p>
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000000">script</span><span style="color: #000000; font-weight: bold">:</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #000000">script</span><span style="color: #000000; font-weight: bold">:</span>
   <span style="color: #000000; font-weight: bold">-</span>  <span style="color: #000000">py.test-3.4 tests/test.py --maxfail=3 -s --full-trace --tb=long --junitxml=../shippable/testresults/pytests.xml</span>
 </pre></div>
 
@@ -255,7 +255,7 @@ Over there, you might want to tag your source code, so that <code>docker</code> 
 
 <p>Here&rsquo;s how to do that:</p>
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">after_success:
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>after_success:
   - git tag -f recon_prod master
   - git push -f --tags
 </pre></div>
@@ -266,7 +266,7 @@ Over there, you might want to tag your source code, so that <code>docker</code> 
 <p>Once you have approved your code commit, it is time to deploy it to <code>docker</code> on <code>beanstalk</code>.
 I like to keep deployment scripts in another bash script, so that deployment can be done in various other ways as well, if needed.</p>
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">after_success:
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>after_success:
   - main/scripts/deploy.sh 
   - <span style="color: #204a87">echo</span> <span style="color: #4e9a06">&#39;CODE DEPLOYED&#39;</span>
 </pre></div>
@@ -274,7 +274,7 @@ I like to keep deployment scripts in another bash script, so that deployment can
 
 <p>Or, you may choose to have the &ldquo;deployment&rdquo; script from another project, if you wish. It allows you to separately maintain all the moving parts.</p>
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">rm -rf <span style="color: #204a87">cd</span> eb-reconwise
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>rm -rf <span style="color: #204a87">cd</span> eb-reconwise
 <span style="color: #204a87">echo</span> <span style="color: #4e9a06">&#39;Deploying New Dockers&#39;</span>
 git clone https://github.com/abhi1010/deplyment_project.git
 <span style="color: #204a87">cd</span> deplyment_project/
@@ -289,7 +289,7 @@ eb use beanstalk_env_name
 
 <p>Now first what we need is setting up <code>docker</code> on beanstalk.</p>
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">  FROM abhi1010/base_docker
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>  FROM abhi1010/base_docker
   MAINTAINER abhi1010 &lt;codersdigest@gmail.com&gt;
   
   ENV DEBIAN_FRONTEND noninteractive
@@ -347,7 +347,7 @@ eb use beanstalk_env_name
 <li>Scripts placed in the folders are read in alphabetical order</li>
 </ul></li>
 <li>You can increase the timeout of your <code>docker</code> initialization setup if it takes too long due to multiple steps
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000000">option_settings</span><span style="color: #000000; font-weight: bold">:</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #000000">option_settings</span><span style="color: #000000; font-weight: bold">:</span>
     <span style="color: #ce5c00; font-weight: bold">-</span> <span style="color: #000000">namespace</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #000000">aws</span><span style="color: #000000; font-weight: bold">:</span><span style="color: #000000">elasticbeanstalk</span><span style="color: #000000; font-weight: bold">:</span><span style="color: #000000">command</span>
       <span style="color: #000000">option_name</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #000000">Timeout</span>
       <span style="color: #000000">value</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #0000cf; font-weight: bold">1800</span>
@@ -366,7 +366,7 @@ eb use beanstalk_env_name
 </ul></li>
 </ul>
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">files:
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>files:
   <span style="color: #4e9a06">&quot;/opt/elasticbeanstalk/hooks/appdeploy/pre/0001_create_users.sh&quot;</span>:
     mode: <span style="color: #4e9a06">&quot;000755&quot;</span> 
     owner: root
@@ -389,7 +389,7 @@ eb use beanstalk_env_name
 <li>You should also install any package that you&rsquo;d like on all <code>EC2</code> instances</li>
 </ul>
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">files:
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>files:
   <span style="color: #4e9a06">&quot;/opt/elasticbeanstalk/hooks/appdeploy/pre/0003_packages.sh&quot;</span>:
     mode: <span style="color: #4e9a06">&quot;000755&quot;</span> 
     owner: root
@@ -411,7 +411,7 @@ eb use beanstalk_env_name
 </ul></li>
 </ul>
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #ce5c00; font-weight: bold">{</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #ce5c00; font-weight: bold">{</span>
    <span style="color: #4e9a06">&quot;AWSEBDockerrunVersion&quot;</span>: <span style="color: #4e9a06">&quot;1&quot;</span>,
   <span style="color: #4e9a06">&quot;Volumes&quot;</span>: <span style="color: #ce5c00; font-weight: bold">[</span>
     <span style="color: #ce5c00; font-weight: bold">{</span>
@@ -435,7 +435,7 @@ eb use beanstalk_env_name
 <li>Finally, make sure that your folder files are setup as follows:</li>
 </ul>
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">$ <span style="color: #ce5c00; font-weight: bold">(</span>master<span style="color: #ce5c00; font-weight: bold">)</span> tree -a 
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>$ <span style="color: #ce5c00; font-weight: bold">(</span>master<span style="color: #ce5c00; font-weight: bold">)</span> tree -a 
 .
 <span style="color: #000000; font-weight: bold">|</span>-- .ebextensions
 <span style="color: #000000; font-weight: bold">|</span>   <span style="color: #000000; font-weight: bold">|</span>-- 0000_users.config  <span style="color: #8f5902; font-style: italic"># setup extra users</span>

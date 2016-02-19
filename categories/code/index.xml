@@ -6,8 +6,68 @@
     <description>Recent content in Code on Coders Digest</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 03 Jan 2016 23:26:53 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 04 Feb 2016 15:02:07 +0000</lastBuildDate>
     <atom:link href="http://abhipandey.com/categories/code/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>How to setup a local pypi mirror</title>
+      <link>http://abhipandey.com/2016/02/how-to-setup-a-local-pypi-mirror/</link>
+      <pubDate>Thu, 04 Feb 2016 15:02:07 +0000</pubDate>
+      
+      <guid>http://abhipandey.com/2016/02/how-to-setup-a-local-pypi-mirror/</guid>
+      <description>&lt;p&gt;It is quite easy to set up a local pypi server.&lt;/p&gt;
+
+&lt;p&gt;Some details can be found &lt;a href=&#34;https://pip.pypa.io/en/latest/user_guide/#installing-from-local-packages&#34;&gt;here&lt;/a&gt;.
+You can also use &lt;a href=&#34;http://doc.devpi.net/latest/quickstart-pypimirror.html&#34;&gt;devpi&lt;/a&gt; if you prefer but it
+seems overly complicated for a job that is easily achieved by pip.&lt;/p&gt;
+
+&lt;p&gt;Let&amp;rsquo;s look at how to use &lt;code&gt;pip&lt;/code&gt; for local installation.
+Firstly, it is possible to install all requirements beforehand in a separate directory.
+ We can use the following commands:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;pip install --download DIR -r requirements.txt
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If you prefer wheel, then use the following:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;pip wheel --wheel-dir DIR -r requirements.txt
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now, when we want to install from this given directory &lt;code&gt;DIR&lt;/code&gt;, then
+the following command can help:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;pip install --no-index --find-links=DIR -r requirements.txt
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If you are using these in a current setup and you feel it still slows you down then the reason would be
+one of the first few commands where the request is still going to the internet.
+If you want to speed up the whole process then perhaps you need to send out a request to the internet
+only if a new package is available in the requirements.txt file otherwise you can skip that part altogether,
+just leading onto &lt;code&gt;pip install --no-index&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;This will make your installation a flash.&lt;/p&gt;
+
+&lt;p&gt;One quick and dirty way to maintain a local copy of requirements.txt file and figure out on every commit of code change
+in the project, whether a new requirement has been added to that list. In that case, install it + update your local copy.&lt;/p&gt;
+
+&lt;p&gt;Here&amp;rsquo;s a sample code to put all changes in a single line that you can feed into &lt;code&gt;pip install&lt;/code&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;sdiff -s /tmp/1 /tmp/2 | sed -e &#39;s/&amp;lt;//g&#39; | awk &#39;BEGIN {ORS=&amp;quot; &amp;quot;} {print $1}&#39;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Breaking it down:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;sdiff&lt;/code&gt; checks if there are any new changes&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;sed&lt;/code&gt; ensures that you only get the relevant characters, not &lt;code&gt;&amp;lt;&lt;/code&gt; or &lt;code&gt;&amp;gt;&lt;/code&gt;
+
+&lt;ul&gt;
+&lt;li&gt;If you want you can put an &lt;code&gt;egrep&lt;/code&gt; before &lt;code&gt;sed&lt;/code&gt; to get only one side of the changes&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;awk&lt;/code&gt; puts all the lines together into a space separated values that can be fed into &lt;code&gt;pip install&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
     
     <item>
       <title>AngularJS 2.0 building blocks explained</title>
@@ -741,7 +801,7 @@ $ docker ps -q | xargs docker inspect | egrep &amp;quot;var.lib.docker.vfs&amp;q
 &lt;p&gt;I was having a lot of trouble getting &lt;a href=&#34;https://github.com/carlcarl/powerline-zsh&#34;&gt;&lt;em&gt;powerline&lt;/em&gt;&lt;/a&gt; to work on my mac machine.
 No matter what I tried, I was getting errors like the following:&lt;/p&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #000000; font-style: italic&#34;&gt;    .oh-my-zsh/themes/powerline.zsh-theme:100: character not in range&lt;/span&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-style: italic&#34;&gt;    .oh-my-zsh/themes/powerline.zsh-theme:100: character not in range&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -750,7 +810,7 @@ No matter what I tried, I was getting errors like the following:&lt;/p&gt;
 &lt;p&gt;All I had to do was set &lt;code&gt;LC_ALL&lt;/code&gt; to &lt;strong&gt;en_US.UTF-8&lt;/strong&gt;. It would set all the locales to &lt;code&gt;en_US.UTF-8&lt;/code&gt; which
 would allow &lt;code&gt;powerline&lt;/code&gt; fonts work properly.&lt;/p&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;$ &lt;span style=&#34;color: #204a87&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;LC_ALL&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;en_US.UTF-8&amp;quot;&lt;/span&gt;                                                                                                     22:58:06 
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;$ &lt;span style=&#34;color: #204a87&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;LC_ALL&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;en_US.UTF-8&amp;quot;&lt;/span&gt;                                                                                                     22:58:06 
 $ locale 
 &lt;span style=&#34;color: #000000&#34;&gt;LANG&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;
 &lt;span style=&#34;color: #000000&#34;&gt;LC_COLLATE&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;en_US.UTF-8&amp;quot;&lt;/span&gt;
@@ -765,13 +825,13 @@ $ locale
 
 &lt;p&gt;After this, run the following command to test your fonts again.&lt;/p&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #000000&#34;&gt;LC_CTYPE&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;en_US.UTF-8 &lt;span style=&#34;color: #204a87&#34;&gt;echo&lt;/span&gt; &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;\u2603&amp;#39;&lt;/span&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;LC_CTYPE&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;en_US.UTF-8 &lt;span style=&#34;color: #204a87&#34;&gt;echo&lt;/span&gt; &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;\u2603&amp;#39;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;Your command should work with or without &lt;code&gt;LC_CTYPE=en_US.UTF-8&lt;/code&gt;. Here&amp;rsquo;s what you expect to see now.&lt;/p&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;    ☃
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;    ☃
 &lt;/pre&gt;&lt;/div&gt;
 
 </description>
@@ -858,7 +918,7 @@ We use it in our current setup to do a full testing and deployment onto &lt;code
 
 &lt;p&gt;Here&amp;rsquo;s my &lt;strong&gt;&lt;em&gt;&lt;code&gt;.gitlab-ci.yml&lt;/code&gt;&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #000000&#34;&gt;stages&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;stages&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt;
   &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;-&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;deploy&lt;/span&gt;
 
 &lt;span style=&#34;color: #000000&#34;&gt;Git MIRROR&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt;
@@ -883,7 +943,7 @@ We use it in our current setup to do a full testing and deployment onto &lt;code
 time. After some tinkering around, mainly to find out the correct format for time ranges, decided to use the following bash script for finding coding stats.
 Following sample is to find out lines added or removed during the year 2014.&lt;/p&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;$ git log --after&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;2014-1-1&amp;quot;&lt;/span&gt; --before&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;2014-12-31&amp;quot;&lt;/span&gt; --pretty&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;tformat: --numstat 
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;$ git log --after&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;2014-1-1&amp;quot;&lt;/span&gt; --before&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;2014-12-31&amp;quot;&lt;/span&gt; --pretty&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;tformat: --numstat 
     &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; awk &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;{ if ( $2 != 0 &amp;amp;&amp;amp; $1 != 0 ) print $0 }&amp;#39;&lt;/span&gt; 
     &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; gawk &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;{ add += $1; subs += $2; loc += $1 - $2 } END { printf &amp;quot;Added lines: %s Removed lines: %s Total # of lines: %s\n&amp;quot;, add, subs, loc }&amp;#39;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
@@ -895,7 +955,7 @@ Following sample is to find out lines added or removed during the year 2014.&lt;
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;You will notice in the second line that I am doing the following:
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #000000; font-style: italic&#34;&gt; if ( $2 != 0 &amp;amp;&amp;amp; $1 != 0 ) &lt;/span&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-style: italic&#34;&gt; if ( $2 != 0 &amp;amp;&amp;amp; $1 != 0 ) &lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/p&gt;
 
@@ -976,7 +1036,7 @@ It was also extremely easy to make theme changes and see them in action, straigh
 
 &lt;p&gt;Running it on mac, installation was pretty straightforward using &lt;code&gt;brew&lt;/code&gt;&lt;/p&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;brew install hugo
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;brew install hugo
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -985,7 +1045,7 @@ I knew that I would be presenting a lot of code on my site and one of my main pr
 I had to manage a lot of styling for code sections which was not fun.
 So I decided to install &lt;code&gt;Pygments&lt;/code&gt; on default &lt;code&gt;python&lt;/code&gt; by doing:&lt;/p&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;pip install Pygments
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;pip install Pygments
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -1004,7 +1064,7 @@ some of my files earlier while working on &lt;code&gt;pelican&lt;/code&gt;. Once
 
 &lt;p&gt;I came across &lt;a href=&#34;https://github.com/thomasf/exitwp&#34;&gt;exitwp&lt;/a&gt; which needed a bit of setup, but I was willing to give it a try.
 Here&amp;rsquo;s what I did:
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;git clone https://github.com/thomasf/exitwp
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;git clone https://github.com/thomasf/exitwp
 &lt;span style=&#34;color: #204a87&#34;&gt;cd&lt;/span&gt; exitwp
 
 cp wordpress.2015-08-23.xml wordpress-xml/
@@ -1020,7 +1080,7 @@ exitwp.py wordpress-xml/wordpress.2015-08-23.xml
 
 &lt;p&gt;This creates a folder &lt;code&gt;build/jekyll/OLD_WORDPRESS_URL/&lt;/code&gt; with the contents inside it. Here&amp;rsquo;s my sample&lt;/p&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;$ tree
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;$ tree
 .
 &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;-- _posts
 &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;   &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;-- 2007-10-26-use-of-yield-statement.markdown
@@ -1069,7 +1129,7 @@ The idea would be to start a new folder, copy your markdowns there. Here&amp;rsq
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt; mkdir my_blog
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt; mkdir my_blog
  &lt;span style=&#34;color: #204a87&#34;&gt;cd&lt;/span&gt; my_blog
  mkdir content
  cp -r /PATH_TO/exitwp/build/jekyll/codersdigest.wordpress.com/* ./content/
@@ -1082,7 +1142,7 @@ The idea would be to start a new folder, copy your markdowns there. Here&amp;rsq
 &lt;p&gt;Let&amp;rsquo;s start with a simple theme &lt;a href=&#34;https://github.com/zyro/hyde-x&#34;&gt;hyde-x&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;Here&amp;rsquo;s how to install it.
- &lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt; mkdir themes/
+ &lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt; mkdir themes/
  &lt;span style=&#34;color: #204a87&#34;&gt;cd&lt;/span&gt; themes/
  git clone https://github.com/zyro/hyde-x
  
@@ -1093,7 +1153,7 @@ The idea would be to start a new folder, copy your markdowns there. Here&amp;rsq
 
 &lt;p&gt;Here&amp;rsquo;s how the folders look now. Use this for comparison.&lt;/p&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;tree -L 2
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;tree -L 2
 .
 &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;-- config.toml
 &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;-- content
@@ -1128,7 +1188,7 @@ The idea would be to start a new folder, copy your markdowns there. Here&amp;rsq
 &lt;p&gt;Your config file could be as follows. Do note that I am also trying to build a menu for myself on the sidebar for better tracking.
 It can be found under &lt;code&gt;[[menu.&lt;/code&gt;&lt;/p&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #000000&#34;&gt;baseurl = &amp;quot;your_github_url&amp;quot;&lt;/span&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;baseurl = &amp;quot;your_github_url&amp;quot;&lt;/span&gt;
 &lt;span style=&#34;color: #000000&#34;&gt;languageCode = &amp;quot;en-us&amp;quot;&lt;/span&gt;
 &lt;span style=&#34;color: #000000&#34;&gt;title = &amp;quot;title&amp;quot;&lt;/span&gt;
 &lt;span style=&#34;color: #000000&#34;&gt;contentdir = &amp;quot;content&amp;quot;&lt;/span&gt;
@@ -1174,7 +1234,7 @@ It can be found under &lt;code&gt;[[menu.&lt;/code&gt;&lt;/p&gt;
 &lt;h2 id=&#34;run-hugo:5b4a6d9bf657db7e28a56367aab9ae4c&#34;&gt;Run hugo&lt;/h2&gt;
 
 &lt;p&gt;Now that we have setup the contents, themes
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #8f5902&#34;&gt;$&lt;/span&gt; hugo server
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #8f5902&#34;&gt;$&lt;/span&gt; hugo server
 &lt;span style=&#34;color: #000000; font-style: italic&#34;&gt;    0 draft content&lt;/span&gt;
 &lt;span style=&#34;color: #000000; font-style: italic&#34;&gt;    0 future content &lt;/span&gt;
 &lt;span style=&#34;color: #000000; font-style: italic&#34;&gt;    42 pages created&lt;/span&gt;
@@ -1284,13 +1344,13 @@ It will also commit to the &lt;code&gt;GitHub Pages&lt;/code&gt; for you and the
       <guid>http://abhipandey.com/2015/09/using-external-tools-with-git-diff/</guid>
       <description>&lt;p&gt;If you want to view what has changed since one commit to another, it is quite easy to view the diff.&lt;/p&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;git diff 5fad06c..0a504fa
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;git diff 5fad06c..0a504fa
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;You will get something like this:&lt;/p&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #000080; font-weight: bold&#34;&gt;diff --git a/modules/file_1.erb b/modules/file_1.erb&lt;/span&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #000080; font-weight: bold&#34;&gt;diff --git a/modules/file_1.erb b/modules/file_1.erb&lt;/span&gt;
 &lt;span style=&#34;color: #000080; font-weight: bold&#34;&gt;index 0538da0..6621d93 100644&lt;/span&gt;
 &lt;span style=&#34;color: #a40000&#34;&gt;--- a/modules/file_1.erb&lt;/span&gt;
 &lt;span style=&#34;color: #00A000&#34;&gt;+++ b/modules/file_1.erb&lt;/span&gt;
@@ -1307,12 +1367,12 @@ It will also commit to the &lt;code&gt;GitHub Pages&lt;/code&gt; for you and the
 
 
 &lt;p&gt;What if you wanted a use an external tool like &lt;code&gt;meld&lt;/code&gt; to view the diff, in a nice beautiful side by side view? You&amp;rsquo;d have to modify your settings to tell that to &lt;code&gt;git&lt;/code&gt;.
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;git config --global diff.tool meld
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;git config --global diff.tool meld
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/p&gt;
 
 &lt;p&gt;Finally, then to view the diff:
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;git difftool 5fad06c..0a504fa
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;git difftool 5fad06c..0a504fa
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/p&gt;
 </description>
@@ -1368,7 +1428,7 @@ You can create a &lt;code&gt;shippable.yml&lt;/code&gt; file in your project whi
 
 &lt;p&gt;Here is one of my sample files from the project that powers this blog:&lt;/p&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;language: python
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;language: python
 
 install:
   - pip install Pygments 
@@ -1443,7 +1503,7 @@ cache: &lt;span style=&#34;color: #204a87&#34;&gt;true&lt;/span&gt;
 &lt;p&gt;You may also want to set up unit tests and regression tests as part of your &lt;em&gt;scripts&lt;/em&gt;
 Just do the following then&lt;/p&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #000000&#34;&gt;script&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;script&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt;
   &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;-&lt;/span&gt;  &lt;span style=&#34;color: #000000&#34;&gt;py.test-3.4 tests/test.py --maxfail=3 -s --full-trace --tb=long --junitxml=../shippable/testresults/pytests.xml&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
@@ -1455,7 +1515,7 @@ Over there, you might want to tag your source code, so that &lt;code&gt;docker&l
 
 &lt;p&gt;Here&amp;rsquo;s how to do that:&lt;/p&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;after_success:
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;after_success:
   - git tag -f recon_prod master
   - git push -f --tags
 &lt;/pre&gt;&lt;/div&gt;
@@ -1466,7 +1526,7 @@ Over there, you might want to tag your source code, so that &lt;code&gt;docker&l
 &lt;p&gt;Once you have approved your code commit, it is time to deploy it to &lt;code&gt;docker&lt;/code&gt; on &lt;code&gt;beanstalk&lt;/code&gt;.
 I like to keep deployment scripts in another bash script, so that deployment can be done in various other ways as well, if needed.&lt;/p&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;after_success:
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;after_success:
   - main/scripts/deploy.sh 
   - &lt;span style=&#34;color: #204a87&#34;&gt;echo&lt;/span&gt; &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;CODE DEPLOYED&amp;#39;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
@@ -1474,7 +1534,7 @@ I like to keep deployment scripts in another bash script, so that deployment can
 
 &lt;p&gt;Or, you may choose to have the &amp;ldquo;deployment&amp;rdquo; script from another project, if you wish. It allows you to separately maintain all the moving parts.&lt;/p&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;rm -rf &lt;span style=&#34;color: #204a87&#34;&gt;cd&lt;/span&gt; eb-reconwise
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;rm -rf &lt;span style=&#34;color: #204a87&#34;&gt;cd&lt;/span&gt; eb-reconwise
 &lt;span style=&#34;color: #204a87&#34;&gt;echo&lt;/span&gt; &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;Deploying New Dockers&amp;#39;&lt;/span&gt;
 git clone https://github.com/abhi1010/deplyment_project.git
 &lt;span style=&#34;color: #204a87&#34;&gt;cd&lt;/span&gt; deplyment_project/
@@ -1489,7 +1549,7 @@ eb use beanstalk_env_name
 
 &lt;p&gt;Now first what we need is setting up &lt;code&gt;docker&lt;/code&gt; on beanstalk.&lt;/p&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;  FROM abhi1010/base_docker
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;  FROM abhi1010/base_docker
   MAINTAINER abhi1010 &amp;lt;codersdigest@gmail.com&amp;gt;
   
   ENV DEBIAN_FRONTEND noninteractive
@@ -1547,7 +1607,7 @@ eb use beanstalk_env_name
 &lt;li&gt;Scripts placed in the folders are read in alphabetical order&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;li&gt;You can increase the timeout of your &lt;code&gt;docker&lt;/code&gt; initialization setup if it takes too long due to multiple steps
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #000000&#34;&gt;option_settings&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;option_settings&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt;
     &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;-&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;namespace&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;aws&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;elasticbeanstalk&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;command&lt;/span&gt;
       &lt;span style=&#34;color: #000000&#34;&gt;option_name&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;Timeout&lt;/span&gt;
       &lt;span style=&#34;color: #000000&#34;&gt;value&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #0000cf; font-weight: bold&#34;&gt;1800&lt;/span&gt;
@@ -1566,7 +1626,7 @@ eb use beanstalk_env_name
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;files:
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;files:
   &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;/opt/elasticbeanstalk/hooks/appdeploy/pre/0001_create_users.sh&amp;quot;&lt;/span&gt;:
     mode: &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;000755&amp;quot;&lt;/span&gt; 
     owner: root
@@ -1589,7 +1649,7 @@ eb use beanstalk_env_name
 &lt;li&gt;You should also install any package that you&amp;rsquo;d like on all &lt;code&gt;EC2&lt;/code&gt; instances&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;files:
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;files:
   &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;/opt/elasticbeanstalk/hooks/appdeploy/pre/0003_packages.sh&amp;quot;&lt;/span&gt;:
     mode: &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;000755&amp;quot;&lt;/span&gt; 
     owner: root
@@ -1611,7 +1671,7 @@ eb use beanstalk_env_name
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;{&lt;/span&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;{&lt;/span&gt;
    &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;AWSEBDockerrunVersion&amp;quot;&lt;/span&gt;: &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;1&amp;quot;&lt;/span&gt;,
   &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;Volumes&amp;quot;&lt;/span&gt;: &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;[&lt;/span&gt;
     &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;{&lt;/span&gt;
@@ -1635,7 +1695,7 @@ eb use beanstalk_env_name
 &lt;li&gt;Finally, make sure that your folder files are setup as follows:&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;$ &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;(&lt;/span&gt;master&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;)&lt;/span&gt; tree -a 
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;$ &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;(&lt;/span&gt;master&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;)&lt;/span&gt; tree -a 
 .
 &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;-- .ebextensions
 &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;   &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;-- 0000_users.config  &lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;# setup extra users&lt;/span&gt;
@@ -1677,14 +1737,14 @@ eb use beanstalk_env_name
 Since &lt;code&gt;EC2&lt;/code&gt; needs to manage the &lt;code&gt;docker&lt;/code&gt; environment and serve the web interface as well, it does so by having another &lt;code&gt;nginx&lt;/code&gt; instance to serve the &lt;code&gt;nginx&lt;/code&gt; within &lt;code&gt;docker&lt;/code&gt;.
 Hence, if you had to modify the &lt;code&gt;nginx&lt;/code&gt; settings to allow bigger uploads, &lt;strong&gt;you&amp;rsquo;d have to modify the settings for &lt;code&gt;nginx&lt;/code&gt; on both - &lt;code&gt;docker&lt;/code&gt; as well as &lt;code&gt;EC2&lt;/code&gt;&lt;/strong&gt;.&lt;/p&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;    &lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;# max upload size&lt;/span&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;    &lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;# max upload size&lt;/span&gt;
     &lt;span style=&#34;color: #000000&#34;&gt;client_max_body_size&lt;/span&gt; &lt;span style=&#34;color: #0000cf; font-weight: bold&#34;&gt;10&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;M&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;;&lt;/span&gt;   &lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;# adjust to your liking&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;Also, if you don&amp;rsquo;t want to have any limit at all for uploads, then just change the &lt;code&gt;client_max_body_size&lt;/code&gt; to 0.&lt;/p&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;    &lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;# max upload size&lt;/span&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;    &lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;# max upload size&lt;/span&gt;
     &lt;span style=&#34;color: #000000&#34;&gt;client_max_body_size&lt;/span&gt; &lt;span style=&#34;color: #0000cf; font-weight: bold&#34;&gt;0&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
@@ -1719,7 +1779,7 @@ Hence, if you had to modify the &lt;code&gt;nginx&lt;/code&gt; settings to allow
 
 &lt;p&gt;Here&amp;rsquo;s a sample code:&lt;/p&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;    &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;[&lt;/span&gt;program:source-updater&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;]&lt;/span&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;    &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;[&lt;/span&gt;program:source-updater&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;]&lt;/span&gt;
     &lt;span style=&#34;color: #000000&#34;&gt;redirect_stderr&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #204a87&#34;&gt;true&lt;/span&gt;
     &lt;span style=&#34;color: #000000&#34;&gt;stdout_logfile&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt; /shared/source_code_updater.log
     &lt;span style=&#34;color: #000000&#34;&gt;directory&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt; /ws/
@@ -1744,7 +1804,7 @@ Hence, if you had to modify the &lt;code&gt;nginx&lt;/code&gt; settings to allow
 
 &lt;p&gt;With that idea, do a checkout and update the source code according to specific tag:&lt;/p&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;    git checkout -f tags/your_tag_name
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;    git checkout -f tags/your_tag_name
     git pull origin tags/your_tag_name
 &lt;/pre&gt;&lt;/div&gt;
 
@@ -1756,7 +1816,7 @@ The simplest way to achieve it using the config parameter of &lt;code&gt;uwsgi&l
 
 &lt;p&gt;Just remember to setup &lt;code&gt;supervisord&lt;/code&gt; in your &lt;code&gt;Dockerfile&lt;/code&gt; with this config parameter.&lt;/p&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;[&lt;/span&gt;program:app-uwsgi&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;]&lt;/span&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;[&lt;/span&gt;program:app-uwsgi&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;]&lt;/span&gt;
 &lt;span style=&#34;color: #000000&#34;&gt;redirect_stderr&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #204a87&#34;&gt;true&lt;/span&gt;
 &lt;span style=&#34;color: #000000&#34;&gt;stdout_logfile&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt; /var/shared/_uwsgi.log
 &lt;span style=&#34;color: #204a87&#34;&gt;command&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt; /ws/ve_envs/rwv2/bin/uwsgi --touch-reload&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;/ws/wsgi.ini --ini /ws/wsgi.ini
@@ -1787,7 +1847,7 @@ The simplest way to achieve it using the config parameter of &lt;code&gt;uwsgi&l
 
 &lt;p&gt;Here&amp;rsquo;s how you&amp;rsquo;d do it. The keyword is &lt;code&gt;VOLUME&lt;/code&gt;&amp;hellip; in your &lt;code&gt;Dockerfile&lt;/code&gt;&lt;/p&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #000000&#34;&gt;VOLUME&lt;/span&gt; &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;[&lt;/span&gt; \
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;VOLUME&lt;/span&gt; &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;[&lt;/span&gt; \
     &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;/var/shared/&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt; \ 
     &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;/etc/nginx/sites-enabled&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt; \ 
     &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;/var/log/nginx&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt; \
@@ -2062,67 +2122,6 @@ fab serve
 my &lt;a href=&#34;https://github.com/abhi1010/d3wiki&#34;&gt;github repo&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;You will find all this code and setup so that your life is easier. Just start with d3 wiki along with virtual environment and you will be fine.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Docker Container cleanup on Elastic Beanstalk</title>
-      <link>http://abhipandey.com/2015/08/docker-container-cleanup-on-elastic-beanstalk/</link>
-      <pubDate>Fri, 07 Aug 2015 14:59:18 -0400</pubDate>
-      
-      <guid>http://abhipandey.com/2015/08/docker-container-cleanup-on-elastic-beanstalk/</guid>
-      <description>
-
-&lt;p&gt;Sometimes you may notice that old containers are not cleaned up from Beanstalk environment. This may be due to your container still running as a ghost on the background. One way to find out about this is to quickly look into your
-&lt;code&gt;/var/lib/docker/vfs/dir&lt;/code&gt; directory whether it has too many folders.&lt;/p&gt;
-
-&lt;p&gt;Next, find out what container processes you have going on.
-&lt;code&gt;[root@ip dir]# docker ps -a&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;You might see something like this:&lt;/p&gt;
-
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #000000; font-style: italic&#34;&gt;    CONTAINER ID        IMAGE                              COMMAND             CREATED             STATUS              PORTS               NAMES&lt;/span&gt;
-&lt;span style=&#34;color: #000000; font-style: italic&#34;&gt;    1611e5ebe2c0        aws_beanstalk/staging-app:latest   &amp;quot;supervisord -n&amp;quot;    About an hour ago                                           boring_galileo&lt;/span&gt;
-&lt;span style=&#34;color: #000000; font-style: italic&#34;&gt;    e59d0dd8bba1        aws_beanstalk/staging-app:latest   &amp;quot;supervisord -n&amp;quot;    About an hour ago                                           desperate_yalow&lt;/span&gt;
-&lt;span style=&#34;color: #000000; font-style: italic&#34;&gt;    3844d0e18c47        aws_beanstalk/staging-app:latest   &amp;quot;supervisord -n&amp;quot;    2 hours ago         Up 8 minutes        80/tcp              pensive_jang&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;Ideally, we want to &amp;ldquo;forcibly remove&amp;rdquo; all images (and hence the folders from &lt;code&gt;/var/lib/docker/vfs/dir&lt;/code&gt; directory) that are not in use anymore.
-Just run the following to test whether it works:&lt;/p&gt;
-
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #000000; font-style: italic&#34;&gt;    docker rmi -f `docker images -aq`&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;You might run into trouble where docker says that all those images already have a container that is running them. This means those container are orphaned but not killed as we thought them to be. Let&amp;rsquo;s remove the shared volumes if any, for each one of them.&lt;/p&gt;
-
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #000000; font-style: italic&#34;&gt;    docker rm -fv `docker ps -aq` &lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;This will&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;kill the container&lt;/li&gt;
-&lt;li&gt;unlink the volumes&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;You should see a lot more space now on your beanstalk instance.
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #000000; font-style: italic&#34;&gt;    [root@ip dir]# df -h&lt;/span&gt;
-&lt;span style=&#34;color: #000000; font-style: italic&#34;&gt;    Filesystem      Size  Used Avail Use% Mounted on&lt;/span&gt;
-&lt;span style=&#34;color: #000000; font-style: italic&#34;&gt;    /dev/xvda1      7.8G  1.8G  5.9G  24% /&lt;/span&gt;
-&lt;span style=&#34;color: #000000; font-style: italic&#34;&gt;    devtmpfs        490M   96K  490M   1% /dev&lt;/span&gt;
-&lt;span style=&#34;color: #000000; font-style: italic&#34;&gt;    tmpfs           499M     0  499M   0% /dev/shm&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/p&gt;
-
-&lt;h1 id=&#34;last-resort:57533ab22b2cfb33b4a75f9cd178e950&#34;&gt;Last Resort&lt;/h1&gt;
-
-&lt;p&gt;If you feel that all this is not working, then you can try one of the scripts provided by &lt;code&gt;docker&lt;/code&gt; itself at
-&lt;a href=&#34;https://github.com/docker/docker/blob/master/contrib/nuke-graph-directory.sh&#34;&gt;GitHub&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;It will delete the folders under &lt;code&gt;/var/lib/docker&lt;/code&gt; and try to do it responsibly.&lt;/p&gt;
 </description>
     </item>
     

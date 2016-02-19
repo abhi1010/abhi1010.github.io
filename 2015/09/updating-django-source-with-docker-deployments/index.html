@@ -130,7 +130,7 @@
 
 <p>Here&rsquo;s a sample code:</p>
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">    <span style="color: #ce5c00; font-weight: bold">[</span>program:source-updater<span style="color: #ce5c00; font-weight: bold">]</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>    <span style="color: #ce5c00; font-weight: bold">[</span>program:source-updater<span style="color: #ce5c00; font-weight: bold">]</span>
     <span style="color: #000000">redirect_stderr</span> <span style="color: #ce5c00; font-weight: bold">=</span> <span style="color: #204a87">true</span>
     <span style="color: #000000">stdout_logfile</span> <span style="color: #ce5c00; font-weight: bold">=</span> /shared/source_code_updater.log
     <span style="color: #000000">directory</span> <span style="color: #ce5c00; font-weight: bold">=</span> /ws/
@@ -155,7 +155,7 @@
 
 <p>With that idea, do a checkout and update the source code according to specific tag:</p>
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">    git checkout -f tags/your_tag_name
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>    git checkout -f tags/your_tag_name
     git pull origin tags/your_tag_name
 </pre></div>
 
@@ -167,7 +167,7 @@ The simplest way to achieve it using the config parameter of <code>uwsgi</code>:
 
 <p>Just remember to setup <code>supervisord</code> in your <code>Dockerfile</code> with this config parameter.</p>
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #ce5c00; font-weight: bold">[</span>program:app-uwsgi<span style="color: #ce5c00; font-weight: bold">]</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #ce5c00; font-weight: bold">[</span>program:app-uwsgi<span style="color: #ce5c00; font-weight: bold">]</span>
 <span style="color: #000000">redirect_stderr</span> <span style="color: #ce5c00; font-weight: bold">=</span> <span style="color: #204a87">true</span>
 <span style="color: #000000">stdout_logfile</span> <span style="color: #ce5c00; font-weight: bold">=</span> /var/shared/_uwsgi.log
 <span style="color: #204a87">command</span> <span style="color: #ce5c00; font-weight: bold">=</span> /ws/ve_envs/rwv2/bin/uwsgi --touch-reload<span style="color: #ce5c00; font-weight: bold">=</span>/ws/wsgi.ini --ini /ws/wsgi.ini

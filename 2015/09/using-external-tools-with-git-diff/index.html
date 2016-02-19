@@ -104,13 +104,13 @@
       </div>
     <p>If you want to view what has changed since one commit to another, it is quite easy to view the diff.</p>
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">git diff 5fad06c..0a504fa
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>git diff 5fad06c..0a504fa
 </pre></div>
 
 
 <p>You will get something like this:</p>
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000080; font-weight: bold">diff --git a/modules/file_1.erb b/modules/file_1.erb</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #000080; font-weight: bold">diff --git a/modules/file_1.erb b/modules/file_1.erb</span>
 <span style="color: #000080; font-weight: bold">index 0538da0..6621d93 100644</span>
 <span style="color: #a40000">--- a/modules/file_1.erb</span>
 <span style="color: #00A000">+++ b/modules/file_1.erb</span>
@@ -127,12 +127,12 @@
 
 
 <p>What if you wanted a use an external tool like <code>meld</code> to view the diff, in a nice beautiful side by side view? You&rsquo;d have to modify your settings to tell that to <code>git</code>.
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">git config --global diff.tool meld
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>git config --global diff.tool meld
 </pre></div>
 </p>
 
 <p>Finally, then to view the diff:
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">git difftool 5fad06c..0a504fa
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>git difftool 5fad06c..0a504fa
 </pre></div>
 </p>
 

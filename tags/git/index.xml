@@ -528,7 +528,7 @@ We use it in our current setup to do a full testing and deployment onto &lt;code
 
 &lt;p&gt;Here&amp;rsquo;s my &lt;strong&gt;&lt;em&gt;&lt;code&gt;.gitlab-ci.yml&lt;/code&gt;&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #000000&#34;&gt;stages&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;stages&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt;
   &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;-&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;deploy&lt;/span&gt;
 
 &lt;span style=&#34;color: #000000&#34;&gt;Git MIRROR&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt;
@@ -553,7 +553,7 @@ We use it in our current setup to do a full testing and deployment onto &lt;code
 time. After some tinkering around, mainly to find out the correct format for time ranges, decided to use the following bash script for finding coding stats.
 Following sample is to find out lines added or removed during the year 2014.&lt;/p&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;$ git log --after&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;2014-1-1&amp;quot;&lt;/span&gt; --before&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;2014-12-31&amp;quot;&lt;/span&gt; --pretty&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;tformat: --numstat 
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;$ git log --after&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;2014-1-1&amp;quot;&lt;/span&gt; --before&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;2014-12-31&amp;quot;&lt;/span&gt; --pretty&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;tformat: --numstat 
     &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; awk &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;{ if ( $2 != 0 &amp;amp;&amp;amp; $1 != 0 ) print $0 }&amp;#39;&lt;/span&gt; 
     &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; gawk &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;{ add += $1; subs += $2; loc += $1 - $2 } END { printf &amp;quot;Added lines: %s Removed lines: %s Total # of lines: %s\n&amp;quot;, add, subs, loc }&amp;#39;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
@@ -565,7 +565,7 @@ Following sample is to find out lines added or removed during the year 2014.&lt;
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;You will notice in the second line that I am doing the following:
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #000000; font-style: italic&#34;&gt; if ( $2 != 0 &amp;amp;&amp;amp; $1 != 0 ) &lt;/span&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-style: italic&#34;&gt; if ( $2 != 0 &amp;amp;&amp;amp; $1 != 0 ) &lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/p&gt;
 
@@ -584,13 +584,13 @@ It may also remove some numbers that were actually valid commits but mostly it i
       <guid>http://abhipandey.com/2015/09/using-external-tools-with-git-diff/</guid>
       <description>&lt;p&gt;If you want to view what has changed since one commit to another, it is quite easy to view the diff.&lt;/p&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;git diff 5fad06c..0a504fa
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;git diff 5fad06c..0a504fa
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;You will get something like this:&lt;/p&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #000080; font-weight: bold&#34;&gt;diff --git a/modules/file_1.erb b/modules/file_1.erb&lt;/span&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #000080; font-weight: bold&#34;&gt;diff --git a/modules/file_1.erb b/modules/file_1.erb&lt;/span&gt;
 &lt;span style=&#34;color: #000080; font-weight: bold&#34;&gt;index 0538da0..6621d93 100644&lt;/span&gt;
 &lt;span style=&#34;color: #a40000&#34;&gt;--- a/modules/file_1.erb&lt;/span&gt;
 &lt;span style=&#34;color: #00A000&#34;&gt;+++ b/modules/file_1.erb&lt;/span&gt;
@@ -607,12 +607,12 @@ It may also remove some numbers that were actually valid commits but mostly it i
 
 
 &lt;p&gt;What if you wanted a use an external tool like &lt;code&gt;meld&lt;/code&gt; to view the diff, in a nice beautiful side by side view? You&amp;rsquo;d have to modify your settings to tell that to &lt;code&gt;git&lt;/code&gt;.
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;git config --global diff.tool meld
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;git config --global diff.tool meld
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/p&gt;
 
 &lt;p&gt;Finally, then to view the diff:
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;git difftool 5fad06c..0a504fa
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;git difftool 5fad06c..0a504fa
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/p&gt;
 </description>
@@ -646,7 +646,7 @@ It may also remove some numbers that were actually valid commits but mostly it i
 
 &lt;p&gt;Here&amp;rsquo;s a sample code:&lt;/p&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;    &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;[&lt;/span&gt;program:source-updater&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;]&lt;/span&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;    &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;[&lt;/span&gt;program:source-updater&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;]&lt;/span&gt;
     &lt;span style=&#34;color: #000000&#34;&gt;redirect_stderr&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #204a87&#34;&gt;true&lt;/span&gt;
     &lt;span style=&#34;color: #000000&#34;&gt;stdout_logfile&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt; /shared/source_code_updater.log
     &lt;span style=&#34;color: #000000&#34;&gt;directory&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt; /ws/
@@ -671,7 +671,7 @@ It may also remove some numbers that were actually valid commits but mostly it i
 
 &lt;p&gt;With that idea, do a checkout and update the source code according to specific tag:&lt;/p&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;    git checkout -f tags/your_tag_name
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;    git checkout -f tags/your_tag_name
     git pull origin tags/your_tag_name
 &lt;/pre&gt;&lt;/div&gt;
 
@@ -683,7 +683,7 @@ The simplest way to achieve it using the config parameter of &lt;code&gt;uwsgi&l
 
 &lt;p&gt;Just remember to setup &lt;code&gt;supervisord&lt;/code&gt; in your &lt;code&gt;Dockerfile&lt;/code&gt; with this config parameter.&lt;/p&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;[&lt;/span&gt;program:app-uwsgi&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;]&lt;/span&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;[&lt;/span&gt;program:app-uwsgi&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;]&lt;/span&gt;
 &lt;span style=&#34;color: #000000&#34;&gt;redirect_stderr&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #204a87&#34;&gt;true&lt;/span&gt;
 &lt;span style=&#34;color: #000000&#34;&gt;stdout_logfile&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt; /var/shared/_uwsgi.log
 &lt;span style=&#34;color: #204a87&#34;&gt;command&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt; /ws/ve_envs/rwv2/bin/uwsgi --touch-reload&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;/ws/wsgi.ini --ini /ws/wsgi.ini

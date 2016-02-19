@@ -123,7 +123,7 @@
 <p>I was having a lot of trouble getting <a href="https://github.com/carlcarl/powerline-zsh"><em>powerline</em></a> to work on my mac machine.
 No matter what I tried, I was getting errors like the following:</p>
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000000; font-style: italic">    .oh-my-zsh/themes/powerline.zsh-theme:100: character not in range</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #000000; font-style: italic">    .oh-my-zsh/themes/powerline.zsh-theme:100: character not in range</span>
 </pre></div>
 
 
@@ -132,7 +132,7 @@ No matter what I tried, I was getting errors like the following:</p>
 <p>All I had to do was set <code>LC_ALL</code> to <strong>en_US.UTF-8</strong>. It would set all the locales to <code>en_US.UTF-8</code> which
 would allow <code>powerline</code> fonts work properly.</p>
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">$ <span style="color: #204a87">export</span> <span style="color: #000000">LC_ALL</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #4e9a06">&quot;en_US.UTF-8&quot;</span>                                                                                                     22:58:06 
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>$ <span style="color: #204a87">export</span> <span style="color: #000000">LC_ALL</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #4e9a06">&quot;en_US.UTF-8&quot;</span>                                                                                                     22:58:06 
 $ locale 
 <span style="color: #000000">LANG</span><span style="color: #ce5c00; font-weight: bold">=</span>
 <span style="color: #000000">LC_COLLATE</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #4e9a06">&quot;en_US.UTF-8&quot;</span>
@@ -147,13 +147,13 @@ $ locale
 
 <p>After this, run the following command to test your fonts again.</p>
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000000">LC_CTYPE</span><span style="color: #ce5c00; font-weight: bold">=</span>en_US.UTF-8 <span style="color: #204a87">echo</span> <span style="color: #4e9a06">&#39;\u2603&#39;</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #000000">LC_CTYPE</span><span style="color: #ce5c00; font-weight: bold">=</span>en_US.UTF-8 <span style="color: #204a87">echo</span> <span style="color: #4e9a06">&#39;\u2603&#39;</span>
 </pre></div>
 
 
 <p>Your command should work with or without <code>LC_CTYPE=en_US.UTF-8</code>. Here&rsquo;s what you expect to see now.</p>
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">    ☃
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>    ☃
 </pre></div>
 
 

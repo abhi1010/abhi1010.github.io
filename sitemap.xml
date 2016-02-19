@@ -3,8 +3,13 @@
   
   <url>
     <loc>http://abhipandey.com/</loc>
-    <lastmod>2016-01-03T23:26:53+08:00</lastmod>
+    <lastmod>2016-02-04T15:02:07+00:00</lastmod>
     <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://abhipandey.com/2016/02/how-to-setup-a-local-pypi-mirror/</loc>
+    <lastmod>2016-02-04T15:02:07+00:00</lastmod>
   </url>
   
   <url>

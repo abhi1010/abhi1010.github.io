@@ -6,8 +6,68 @@
     <description>Recent content in Python on Coders Digest</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 04 Nov 2015 07:49:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 04 Feb 2016 15:02:07 +0000</lastBuildDate>
     <atom:link href="http://abhipandey.com/tags/python/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>How to setup a local pypi mirror</title>
+      <link>http://abhipandey.com/2016/02/how-to-setup-a-local-pypi-mirror/</link>
+      <pubDate>Thu, 04 Feb 2016 15:02:07 +0000</pubDate>
+      
+      <guid>http://abhipandey.com/2016/02/how-to-setup-a-local-pypi-mirror/</guid>
+      <description>&lt;p&gt;It is quite easy to set up a local pypi server.&lt;/p&gt;
+
+&lt;p&gt;Some details can be found &lt;a href=&#34;https://pip.pypa.io/en/latest/user_guide/#installing-from-local-packages&#34;&gt;here&lt;/a&gt;.
+You can also use &lt;a href=&#34;http://doc.devpi.net/latest/quickstart-pypimirror.html&#34;&gt;devpi&lt;/a&gt; if you prefer but it
+seems overly complicated for a job that is easily achieved by pip.&lt;/p&gt;
+
+&lt;p&gt;Let&amp;rsquo;s look at how to use &lt;code&gt;pip&lt;/code&gt; for local installation.
+Firstly, it is possible to install all requirements beforehand in a separate directory.
+ We can use the following commands:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;pip install --download DIR -r requirements.txt
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If you prefer wheel, then use the following:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;pip wheel --wheel-dir DIR -r requirements.txt
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now, when we want to install from this given directory &lt;code&gt;DIR&lt;/code&gt;, then
+the following command can help:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;pip install --no-index --find-links=DIR -r requirements.txt
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If you are using these in a current setup and you feel it still slows you down then the reason would be
+one of the first few commands where the request is still going to the internet.
+If you want to speed up the whole process then perhaps you need to send out a request to the internet
+only if a new package is available in the requirements.txt file otherwise you can skip that part altogether,
+just leading onto &lt;code&gt;pip install --no-index&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;This will make your installation a flash.&lt;/p&gt;
+
+&lt;p&gt;One quick and dirty way to maintain a local copy of requirements.txt file and figure out on every commit of code change
+in the project, whether a new requirement has been added to that list. In that case, install it + update your local copy.&lt;/p&gt;
+
+&lt;p&gt;Here&amp;rsquo;s a sample code to put all changes in a single line that you can feed into &lt;code&gt;pip install&lt;/code&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;sdiff -s /tmp/1 /tmp/2 | sed -e &#39;s/&amp;lt;//g&#39; | awk &#39;BEGIN {ORS=&amp;quot; &amp;quot;} {print $1}&#39;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Breaking it down:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;sdiff&lt;/code&gt; checks if there are any new changes&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;sed&lt;/code&gt; ensures that you only get the relevant characters, not &lt;code&gt;&amp;lt;&lt;/code&gt; or &lt;code&gt;&amp;gt;&lt;/code&gt;
+
+&lt;ul&gt;
+&lt;li&gt;If you want you can put an &lt;code&gt;egrep&lt;/code&gt; before &lt;code&gt;sed&lt;/code&gt; to get only one side of the changes&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;awk&lt;/code&gt; puts all the lines together into a space separated values that can be fed into &lt;code&gt;pip install&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
     
     <item>
       <title>Lambda Basics with Python using Github Webhooks or API Gateway</title>
@@ -497,7 +557,7 @@ You can create a &lt;code&gt;shippable.yml&lt;/code&gt; file in your project whi
 
 &lt;p&gt;Here is one of my sample files from the project that powers this blog:&lt;/p&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;language: python
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;language: python
 
 install:
   - pip install Pygments 
@@ -572,7 +632,7 @@ cache: &lt;span style=&#34;color: #204a87&#34;&gt;true&lt;/span&gt;
 &lt;p&gt;You may also want to set up unit tests and regression tests as part of your &lt;em&gt;scripts&lt;/em&gt;
 Just do the following then&lt;/p&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #000000&#34;&gt;script&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;script&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt;
   &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;-&lt;/span&gt;  &lt;span style=&#34;color: #000000&#34;&gt;py.test-3.4 tests/test.py --maxfail=3 -s --full-trace --tb=long --junitxml=../shippable/testresults/pytests.xml&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
@@ -584,7 +644,7 @@ Over there, you might want to tag your source code, so that &lt;code&gt;docker&l
 
 &lt;p&gt;Here&amp;rsquo;s how to do that:&lt;/p&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;after_success:
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;after_success:
   - git tag -f recon_prod master
   - git push -f --tags
 &lt;/pre&gt;&lt;/div&gt;
@@ -595,7 +655,7 @@ Over there, you might want to tag your source code, so that &lt;code&gt;docker&l
 &lt;p&gt;Once you have approved your code commit, it is time to deploy it to &lt;code&gt;docker&lt;/code&gt; on &lt;code&gt;beanstalk&lt;/code&gt;.
 I like to keep deployment scripts in another bash script, so that deployment can be done in various other ways as well, if needed.&lt;/p&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;after_success:
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;after_success:
   - main/scripts/deploy.sh 
   - &lt;span style=&#34;color: #204a87&#34;&gt;echo&lt;/span&gt; &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;CODE DEPLOYED&amp;#39;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
@@ -603,7 +663,7 @@ I like to keep deployment scripts in another bash script, so that deployment can
 
 &lt;p&gt;Or, you may choose to have the &amp;ldquo;deployment&amp;rdquo; script from another project, if you wish. It allows you to separately maintain all the moving parts.&lt;/p&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;rm -rf &lt;span style=&#34;color: #204a87&#34;&gt;cd&lt;/span&gt; eb-reconwise
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;rm -rf &lt;span style=&#34;color: #204a87&#34;&gt;cd&lt;/span&gt; eb-reconwise
 &lt;span style=&#34;color: #204a87&#34;&gt;echo&lt;/span&gt; &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;Deploying New Dockers&amp;#39;&lt;/span&gt;
 git clone https://github.com/abhi1010/deplyment_project.git
 &lt;span style=&#34;color: #204a87&#34;&gt;cd&lt;/span&gt; deplyment_project/
@@ -618,7 +678,7 @@ eb use beanstalk_env_name
 
 &lt;p&gt;Now first what we need is setting up &lt;code&gt;docker&lt;/code&gt; on beanstalk.&lt;/p&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;  FROM abhi1010/base_docker
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;  FROM abhi1010/base_docker
   MAINTAINER abhi1010 &amp;lt;codersdigest@gmail.com&amp;gt;
   
   ENV DEBIAN_FRONTEND noninteractive
@@ -676,7 +736,7 @@ eb use beanstalk_env_name
 &lt;li&gt;Scripts placed in the folders are read in alphabetical order&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;li&gt;You can increase the timeout of your &lt;code&gt;docker&lt;/code&gt; initialization setup if it takes too long due to multiple steps
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #000000&#34;&gt;option_settings&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;option_settings&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt;
     &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;-&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;namespace&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;aws&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;elasticbeanstalk&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;command&lt;/span&gt;
       &lt;span style=&#34;color: #000000&#34;&gt;option_name&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;Timeout&lt;/span&gt;
       &lt;span style=&#34;color: #000000&#34;&gt;value&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #0000cf; font-weight: bold&#34;&gt;1800&lt;/span&gt;
@@ -695,7 +755,7 @@ eb use beanstalk_env_name
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;files:
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;files:
   &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;/opt/elasticbeanstalk/hooks/appdeploy/pre/0001_create_users.sh&amp;quot;&lt;/span&gt;:
     mode: &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;000755&amp;quot;&lt;/span&gt; 
     owner: root
@@ -718,7 +778,7 @@ eb use beanstalk_env_name
 &lt;li&gt;You should also install any package that you&amp;rsquo;d like on all &lt;code&gt;EC2&lt;/code&gt; instances&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;files:
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;files:
   &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;/opt/elasticbeanstalk/hooks/appdeploy/pre/0003_packages.sh&amp;quot;&lt;/span&gt;:
     mode: &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;000755&amp;quot;&lt;/span&gt; 
     owner: root
@@ -740,7 +800,7 @@ eb use beanstalk_env_name
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;{&lt;/span&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;{&lt;/span&gt;
    &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;AWSEBDockerrunVersion&amp;quot;&lt;/span&gt;: &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;1&amp;quot;&lt;/span&gt;,
   &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;Volumes&amp;quot;&lt;/span&gt;: &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;[&lt;/span&gt;
     &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;{&lt;/span&gt;
@@ -764,7 +824,7 @@ eb use beanstalk_env_name
 &lt;li&gt;Finally, make sure that your folder files are setup as follows:&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;$ &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;(&lt;/span&gt;master&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;)&lt;/span&gt; tree -a 
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;$ &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;(&lt;/span&gt;master&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;)&lt;/span&gt; tree -a 
 .
 &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;-- .ebextensions
 &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;   &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;-- 0000_users.config  &lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;# setup extra users&lt;/span&gt;
@@ -817,7 +877,7 @@ However, all that is required here is to know that python automatically picks up
 
 &lt;p&gt;For example, for running &lt;code&gt;uwsgi&lt;/code&gt; I provide the full path for python as follows:&lt;/p&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;[&lt;/span&gt;program:appName&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;]&lt;/span&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;[&lt;/span&gt;program:appName&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;]&lt;/span&gt;
 &lt;span style=&#34;color: #000000&#34;&gt;stdout_logfile&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt; /var/shared/_uwsgi.log
 &lt;span style=&#34;color: #204a87&#34;&gt;command&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt; /ws/ve_envs/project/bin/uwsgi --touch-reload&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;/ws/wsgi.ini --ini /ws/wsgi.ini
 &lt;/pre&gt;&lt;/div&gt;

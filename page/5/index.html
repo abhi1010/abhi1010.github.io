@@ -90,6 +90,99 @@
     
     <div class="post">
       <h1 class="post-title">
+        <a href="http://abhipandey.com/2012/09/radix-sort/">Radix Sort</a>
+      </h1>
+      <span class="post-date">Sep 13, 2012  &middot; <a href="http://abhipandey.com/2012/09/radix-sort/#disqus_thread">Comments</a>
+      
+      <br/>
+      <a class="a_cat" href="http://abhipandey.com/categories/code">code</a>
+        
+      <a class="a_tag" href="http://abhipandey.com/tags/sorting">sorting</a><a class="a_tag" href="http://abhipandey.com/tags/algo">algo</a><a class="a_tag" href="http://abhipandey.com/tags/c">c&#43;&#43;</a>
+    
+      </span>
+      
+      <p>It is a non-comparative <em>integer</em> sorting algorithm. It sorts data by grouping keys by the individual digits which share the same significant position and value. Think <em>Tens, Hundreds, Thousands</em> etc. Some pointers about Radix Sort:</p>
+
+<ul>
+<li>Even though it is an integer sorting algorithm, it is not restricted just to integers. Integers can also represent strings of characters</li>
+<li>Two types of radix sort are:
+
+<ul>
+<li>LSD (Least Significant Digit): Short keys come before long keys</li>
+<li>MSD (Most Significant Digit) Sorting: Lexicographic Order. Better for strings.</li>
+</ul></li>
+<li>Uses Counting Sort as Sub Routine (which takes extra memory)
+
+<ul>
+<li>If memory is not really a concern, forget about this issue</li>
+</ul></li>
+<li>Radix Sort, with at most d digits, takes O(d*(n+b)) time where b is the base</li>
+<li>Use Radix Sort over Counting Sort when the numbers range from 1 to n-square for example.</li>
+</ul>
+
+<p><strong>Numbers</strong></p>
+
+<p>Let&rsquo;s look at the stats from the algorithm:</p>
+
+<table style="border-bottom:lightblue solid;text-align:center;border-left:lightblue solid;background-color:#efefef;width:100%;border-collapse:collapse;border-top:lightblue solid;border-right:lightblue solid;" border="1" > <tbody > <tr >
+<td style="width:25%;" >
+</td>
+<td style="width:25%;" >**# of Items in Array**
+</td>
+<td style="width:25%;" >**Time Taken**
+</td>
+<td style="width:25%;" >**Average for 100 numbers**
+</td> </tr> <tr >
+<td rowspan="3" >**Random**
+</td>
+<td >10
+</td>
+<td >0.033351
+</td>
+<td >0.33351
+</td> </tr> <tr style="background-color:#efefef;color:#008000;" >
+<td >1K
+</td>
+<td >3.22004
+</td>
+<td >0.322004
+</td> </tr> <tr >
+<td >1M
+</td>
+<td >5650.9
+</td>
+<td >0.56509
+</td> </tr> <tr >
+<td rowspan="3" >**Sorted**
+</td>
+<td >10
+</td>
+<td >0.020659
+</td>
+<td >0.20659
+</td> </tr> <tr >
+<td >1K
+</td>
+<td >3.26273
+</td>
+<td >0.326273
+</td> </tr> <tr >
+<td >1M
+</td>
+<td >5683.91
+</td>
+<td >0.568391
+</td> </tr> </tbody> </table>
+
+<p><strong>Code</strong></p>
+
+<p>As always, the code is available at <a href="https://github.com/abhi1010/Algorithms">https://github.com/abhi1010/Algorithms</a> for easier access.</p>
+
+      
+    </div>
+    
+    <div class="post">
+      <h1 class="post-title">
         <a href="http://abhipandey.com/2012/09/counting-sort/">Counting Sort</a>
       </h1>
       <span class="post-date">Sep 11, 2012  &middot; <a href="http://abhipandey.com/2012/09/counting-sort/#disqus_thread">Comments</a>
@@ -579,24 +672,6 @@ attempts to perform actions which require full trust.
 <p>Following is an interesting link that talks about a lot of topics.</p>
 
 <p><a href="http://weblogs.asp.net/scottgu/archive/2008/01/24/jan-24th-links-asp-net-asp-net-ajax-visual-studio-net-iis.aspx">http://weblogs.asp.net/scottgu/archive/2008/01/24/jan-24th-links-asp-net-asp-net-ajax-visual-studio-net-iis.aspx</a></p>
-
-      
-    </div>
-    
-    <div class="post">
-      <h1 class="post-title">
-        <a href="http://abhipandey.com/2008/03/recursively-read-directories-and-list-all-files-under-it/">Recursively read directories and list all files under it</a>
-      </h1>
-      <span class="post-date">Mar 4, 2008  &middot; <a href="http://abhipandey.com/2008/03/recursively-read-directories-and-list-all-files-under-it/#disqus_thread">Comments</a>
-      
-      <br/>
-      <a class="a_cat" href="http://abhipandey.com/categories/code">code</a>
-        
-      <a class="a_tag" href="http://abhipandey.com/tags/c-sharp">c-sharp</a>
-    
-      </span>
-      
-      <script type="text/javascript" src="http://gist.github.com/a1bcc60b383a0bc72d5f.js"></script>
 
       
     </div>

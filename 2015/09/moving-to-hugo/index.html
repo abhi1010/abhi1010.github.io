@@ -184,7 +184,7 @@ It was also extremely easy to make theme changes and see them in action, straigh
 
 <p>Running it on mac, installation was pretty straightforward using <code>brew</code></p>
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">brew install hugo
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>brew install hugo
 </pre></div>
 
 
@@ -193,7 +193,7 @@ I knew that I would be presenting a lot of code on my site and one of my main pr
 I had to manage a lot of styling for code sections which was not fun.
 So I decided to install <code>Pygments</code> on default <code>python</code> by doing:</p>
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">pip install Pygments
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>pip install Pygments
 </pre></div>
 
 
@@ -212,7 +212,7 @@ some of my files earlier while working on <code>pelican</code>. Once I started u
 
 <p>I came across <a href="https://github.com/thomasf/exitwp">exitwp</a> which needed a bit of setup, but I was willing to give it a try.
 Here&rsquo;s what I did:
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">git clone https://github.com/thomasf/exitwp
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>git clone https://github.com/thomasf/exitwp
 <span style="color: #204a87">cd</span> exitwp
 
 cp wordpress.2015-08-23.xml wordpress-xml/
@@ -228,7 +228,7 @@ exitwp.py wordpress-xml/wordpress.2015-08-23.xml
 
 <p>This creates a folder <code>build/jekyll/OLD_WORDPRESS_URL/</code> with the contents inside it. Here&rsquo;s my sample</p>
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">$ tree
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>$ tree
 .
 <span style="color: #000000; font-weight: bold">|</span>-- _posts
 <span style="color: #000000; font-weight: bold">|</span>   <span style="color: #000000; font-weight: bold">|</span>-- 2007-10-26-use-of-yield-statement.markdown
@@ -277,7 +277,7 @@ The idea would be to start a new folder, copy your markdowns there. Here&rsquo;s
 </ul></li>
 </ul>
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"> mkdir my_blog
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span> mkdir my_blog
  <span style="color: #204a87">cd</span> my_blog
  mkdir content
  cp -r /PATH_TO/exitwp/build/jekyll/codersdigest.wordpress.com/* ./content/
@@ -290,7 +290,7 @@ The idea would be to start a new folder, copy your markdowns there. Here&rsquo;s
 <p>Let&rsquo;s start with a simple theme <a href="https://github.com/zyro/hyde-x">hyde-x</a></p>
 
 <p>Here&rsquo;s how to install it.
- <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"> mkdir themes/
+ <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span> mkdir themes/
  <span style="color: #204a87">cd</span> themes/
  git clone https://github.com/zyro/hyde-x
  
@@ -301,7 +301,7 @@ The idea would be to start a new folder, copy your markdowns there. Here&rsquo;s
 
 <p>Here&rsquo;s how the folders look now. Use this for comparison.</p>
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">tree -L 2
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>tree -L 2
 .
 <span style="color: #000000; font-weight: bold">|</span>-- config.toml
 <span style="color: #000000; font-weight: bold">|</span>-- content
@@ -336,7 +336,7 @@ The idea would be to start a new folder, copy your markdowns there. Here&rsquo;s
 <p>Your config file could be as follows. Do note that I am also trying to build a menu for myself on the sidebar for better tracking.
 It can be found under <code>[[menu.</code></p>
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000000">baseurl = &quot;your_github_url&quot;</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #000000">baseurl = &quot;your_github_url&quot;</span>
 <span style="color: #000000">languageCode = &quot;en-us&quot;</span>
 <span style="color: #000000">title = &quot;title&quot;</span>
 <span style="color: #000000">contentdir = &quot;content&quot;</span>
@@ -382,7 +382,7 @@ It can be found under <code>[[menu.</code></p>
 <h2 id="run-hugo:5b4a6d9bf657db7e28a56367aab9ae4c">Run hugo</h2>
 
 <p>Now that we have setup the contents, themes
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #8f5902">$</span> hugo server
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #8f5902">$</span> hugo server
 <span style="color: #000000; font-style: italic">    0 draft content</span>
 <span style="color: #000000; font-style: italic">    0 future content </span>
 <span style="color: #000000; font-style: italic">    42 pages created</span>

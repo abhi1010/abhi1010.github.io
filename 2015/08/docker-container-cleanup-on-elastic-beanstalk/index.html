@@ -116,7 +116,7 @@
 
 <p>You might see something like this:</p>
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000000; font-style: italic">    CONTAINER ID        IMAGE                              COMMAND             CREATED             STATUS              PORTS               NAMES</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #000000; font-style: italic">    CONTAINER ID        IMAGE                              COMMAND             CREATED             STATUS              PORTS               NAMES</span>
 <span style="color: #000000; font-style: italic">    1611e5ebe2c0        aws_beanstalk/staging-app:latest   &quot;supervisord -n&quot;    About an hour ago                                           boring_galileo</span>
 <span style="color: #000000; font-style: italic">    e59d0dd8bba1        aws_beanstalk/staging-app:latest   &quot;supervisord -n&quot;    About an hour ago                                           desperate_yalow</span>
 <span style="color: #000000; font-style: italic">    3844d0e18c47        aws_beanstalk/staging-app:latest   &quot;supervisord -n&quot;    2 hours ago         Up 8 minutes        80/tcp              pensive_jang</span>
@@ -126,13 +126,13 @@
 <p>Ideally, we want to &ldquo;forcibly remove&rdquo; all images (and hence the folders from <code>/var/lib/docker/vfs/dir</code> directory) that are not in use anymore.
 Just run the following to test whether it works:</p>
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000000; font-style: italic">    docker rmi -f `docker images -aq`</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #000000; font-style: italic">    docker rmi -f `docker images -aq`</span>
 </pre></div>
 
 
 <p>You might run into trouble where docker says that all those images already have a container that is running them. This means those container are orphaned but not killed as we thought them to be. Let&rsquo;s remove the shared volumes if any, for each one of them.</p>
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000000; font-style: italic">    docker rm -fv `docker ps -aq` </span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #000000; font-style: italic">    docker rm -fv `docker ps -aq` </span>
 </pre></div>
 
 
@@ -144,7 +144,7 @@ Just run the following to test whether it works:</p>
 </ul>
 
 <p>You should see a lot more space now on your beanstalk instance.
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000000; font-style: italic">    [root@ip dir]# df -h</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #000000; font-style: italic">    [root@ip dir]# df -h</span>
 <span style="color: #000000; font-style: italic">    Filesystem      Size  Used Avail Use% Mounted on</span>
 <span style="color: #000000; font-style: italic">    /dev/xvda1      7.8G  1.8G  5.9G  24% /</span>
 <span style="color: #000000; font-style: italic">    devtmpfs        490M   96K  490M   1% /dev</span>

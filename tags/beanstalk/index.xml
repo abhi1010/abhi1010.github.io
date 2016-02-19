@@ -153,7 +153,7 @@ We use it in our current setup to do a full testing and deployment onto &lt;code
 
 &lt;p&gt;Here&amp;rsquo;s my &lt;strong&gt;&lt;em&gt;&lt;code&gt;.gitlab-ci.yml&lt;/code&gt;&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #000000&#34;&gt;stages&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;stages&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt;
   &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;-&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;deploy&lt;/span&gt;
 
 &lt;span style=&#34;color: #000000&#34;&gt;Git MIRROR&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt;
@@ -218,7 +218,7 @@ You can create a &lt;code&gt;shippable.yml&lt;/code&gt; file in your project whi
 
 &lt;p&gt;Here is one of my sample files from the project that powers this blog:&lt;/p&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;language: python
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;language: python
 
 install:
   - pip install Pygments 
@@ -293,7 +293,7 @@ cache: &lt;span style=&#34;color: #204a87&#34;&gt;true&lt;/span&gt;
 &lt;p&gt;You may also want to set up unit tests and regression tests as part of your &lt;em&gt;scripts&lt;/em&gt;
 Just do the following then&lt;/p&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #000000&#34;&gt;script&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;script&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt;
   &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;-&lt;/span&gt;  &lt;span style=&#34;color: #000000&#34;&gt;py.test-3.4 tests/test.py --maxfail=3 -s --full-trace --tb=long --junitxml=../shippable/testresults/pytests.xml&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
@@ -305,7 +305,7 @@ Over there, you might want to tag your source code, so that &lt;code&gt;docker&l
 
 &lt;p&gt;Here&amp;rsquo;s how to do that:&lt;/p&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;after_success:
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;after_success:
   - git tag -f recon_prod master
   - git push -f --tags
 &lt;/pre&gt;&lt;/div&gt;
@@ -316,7 +316,7 @@ Over there, you might want to tag your source code, so that &lt;code&gt;docker&l
 &lt;p&gt;Once you have approved your code commit, it is time to deploy it to &lt;code&gt;docker&lt;/code&gt; on &lt;code&gt;beanstalk&lt;/code&gt;.
 I like to keep deployment scripts in another bash script, so that deployment can be done in various other ways as well, if needed.&lt;/p&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;after_success:
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;after_success:
   - main/scripts/deploy.sh 
   - &lt;span style=&#34;color: #204a87&#34;&gt;echo&lt;/span&gt; &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;CODE DEPLOYED&amp;#39;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
@@ -324,7 +324,7 @@ I like to keep deployment scripts in another bash script, so that deployment can
 
 &lt;p&gt;Or, you may choose to have the &amp;ldquo;deployment&amp;rdquo; script from another project, if you wish. It allows you to separately maintain all the moving parts.&lt;/p&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;rm -rf &lt;span style=&#34;color: #204a87&#34;&gt;cd&lt;/span&gt; eb-reconwise
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;rm -rf &lt;span style=&#34;color: #204a87&#34;&gt;cd&lt;/span&gt; eb-reconwise
 &lt;span style=&#34;color: #204a87&#34;&gt;echo&lt;/span&gt; &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;Deploying New Dockers&amp;#39;&lt;/span&gt;
 git clone https://github.com/abhi1010/deplyment_project.git
 &lt;span style=&#34;color: #204a87&#34;&gt;cd&lt;/span&gt; deplyment_project/
@@ -339,7 +339,7 @@ eb use beanstalk_env_name
 
 &lt;p&gt;Now first what we need is setting up &lt;code&gt;docker&lt;/code&gt; on beanstalk.&lt;/p&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;  FROM abhi1010/base_docker
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;  FROM abhi1010/base_docker
   MAINTAINER abhi1010 &amp;lt;codersdigest@gmail.com&amp;gt;
   
   ENV DEBIAN_FRONTEND noninteractive
@@ -397,7 +397,7 @@ eb use beanstalk_env_name
 &lt;li&gt;Scripts placed in the folders are read in alphabetical order&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;li&gt;You can increase the timeout of your &lt;code&gt;docker&lt;/code&gt; initialization setup if it takes too long due to multiple steps
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #000000&#34;&gt;option_settings&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;option_settings&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt;
     &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;-&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;namespace&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;aws&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;elasticbeanstalk&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;command&lt;/span&gt;
       &lt;span style=&#34;color: #000000&#34;&gt;option_name&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;Timeout&lt;/span&gt;
       &lt;span style=&#34;color: #000000&#34;&gt;value&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #0000cf; font-weight: bold&#34;&gt;1800&lt;/span&gt;
@@ -416,7 +416,7 @@ eb use beanstalk_env_name
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;files:
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;files:
   &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;/opt/elasticbeanstalk/hooks/appdeploy/pre/0001_create_users.sh&amp;quot;&lt;/span&gt;:
     mode: &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;000755&amp;quot;&lt;/span&gt; 
     owner: root
@@ -439,7 +439,7 @@ eb use beanstalk_env_name
 &lt;li&gt;You should also install any package that you&amp;rsquo;d like on all &lt;code&gt;EC2&lt;/code&gt; instances&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;files:
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;files:
   &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;/opt/elasticbeanstalk/hooks/appdeploy/pre/0003_packages.sh&amp;quot;&lt;/span&gt;:
     mode: &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;000755&amp;quot;&lt;/span&gt; 
     owner: root
@@ -461,7 +461,7 @@ eb use beanstalk_env_name
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;{&lt;/span&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;{&lt;/span&gt;
    &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;AWSEBDockerrunVersion&amp;quot;&lt;/span&gt;: &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;1&amp;quot;&lt;/span&gt;,
   &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;Volumes&amp;quot;&lt;/span&gt;: &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;[&lt;/span&gt;
     &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;{&lt;/span&gt;
@@ -485,7 +485,7 @@ eb use beanstalk_env_name
 &lt;li&gt;Finally, make sure that your folder files are setup as follows:&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;$ &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;(&lt;/span&gt;master&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;)&lt;/span&gt; tree -a 
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;$ &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;(&lt;/span&gt;master&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;)&lt;/span&gt; tree -a 
 .
 &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;-- .ebextensions
 &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;   &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;-- 0000_users.config  &lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;# setup extra users&lt;/span&gt;
@@ -527,14 +527,14 @@ eb use beanstalk_env_name
 Since &lt;code&gt;EC2&lt;/code&gt; needs to manage the &lt;code&gt;docker&lt;/code&gt; environment and serve the web interface as well, it does so by having another &lt;code&gt;nginx&lt;/code&gt; instance to serve the &lt;code&gt;nginx&lt;/code&gt; within &lt;code&gt;docker&lt;/code&gt;.
 Hence, if you had to modify the &lt;code&gt;nginx&lt;/code&gt; settings to allow bigger uploads, &lt;strong&gt;you&amp;rsquo;d have to modify the settings for &lt;code&gt;nginx&lt;/code&gt; on both - &lt;code&gt;docker&lt;/code&gt; as well as &lt;code&gt;EC2&lt;/code&gt;&lt;/strong&gt;.&lt;/p&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;    &lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;# max upload size&lt;/span&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;    &lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;# max upload size&lt;/span&gt;
     &lt;span style=&#34;color: #000000&#34;&gt;client_max_body_size&lt;/span&gt; &lt;span style=&#34;color: #0000cf; font-weight: bold&#34;&gt;10&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;M&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;;&lt;/span&gt;   &lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;# adjust to your liking&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;Also, if you don&amp;rsquo;t want to have any limit at all for uploads, then just change the &lt;code&gt;client_max_body_size&lt;/code&gt; to 0.&lt;/p&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;    &lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;# max upload size&lt;/span&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;    &lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;# max upload size&lt;/span&gt;
     &lt;span style=&#34;color: #000000&#34;&gt;client_max_body_size&lt;/span&gt; &lt;span style=&#34;color: #0000cf; font-weight: bold&#34;&gt;0&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
@@ -561,7 +561,7 @@ Hence, if you had to modify the &lt;code&gt;nginx&lt;/code&gt; settings to allow
 
 &lt;p&gt;Here&amp;rsquo;s how you&amp;rsquo;d do it. The keyword is &lt;code&gt;VOLUME&lt;/code&gt;&amp;hellip; in your &lt;code&gt;Dockerfile&lt;/code&gt;&lt;/p&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #000000&#34;&gt;VOLUME&lt;/span&gt; &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;[&lt;/span&gt; \
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;VOLUME&lt;/span&gt; &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;[&lt;/span&gt; \
     &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;/var/shared/&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt; \ 
     &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;/etc/nginx/sites-enabled&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt; \ 
     &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;/var/log/nginx&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt; \
@@ -588,7 +588,7 @@ Hence, if you had to modify the &lt;code&gt;nginx&lt;/code&gt; settings to allow
 
 &lt;p&gt;You might see something like this:&lt;/p&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #000000; font-style: italic&#34;&gt;    CONTAINER ID        IMAGE                              COMMAND             CREATED             STATUS              PORTS               NAMES&lt;/span&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-style: italic&#34;&gt;    CONTAINER ID        IMAGE                              COMMAND             CREATED             STATUS              PORTS               NAMES&lt;/span&gt;
 &lt;span style=&#34;color: #000000; font-style: italic&#34;&gt;    1611e5ebe2c0        aws_beanstalk/staging-app:latest   &amp;quot;supervisord -n&amp;quot;    About an hour ago                                           boring_galileo&lt;/span&gt;
 &lt;span style=&#34;color: #000000; font-style: italic&#34;&gt;    e59d0dd8bba1        aws_beanstalk/staging-app:latest   &amp;quot;supervisord -n&amp;quot;    About an hour ago                                           desperate_yalow&lt;/span&gt;
 &lt;span style=&#34;color: #000000; font-style: italic&#34;&gt;    3844d0e18c47        aws_beanstalk/staging-app:latest   &amp;quot;supervisord -n&amp;quot;    2 hours ago         Up 8 minutes        80/tcp              pensive_jang&lt;/span&gt;
@@ -598,13 +598,13 @@ Hence, if you had to modify the &lt;code&gt;nginx&lt;/code&gt; settings to allow
 &lt;p&gt;Ideally, we want to &amp;ldquo;forcibly remove&amp;rdquo; all images (and hence the folders from &lt;code&gt;/var/lib/docker/vfs/dir&lt;/code&gt; directory) that are not in use anymore.
 Just run the following to test whether it works:&lt;/p&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #000000; font-style: italic&#34;&gt;    docker rmi -f `docker images -aq`&lt;/span&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-style: italic&#34;&gt;    docker rmi -f `docker images -aq`&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;You might run into trouble where docker says that all those images already have a container that is running them. This means those container are orphaned but not killed as we thought them to be. Let&amp;rsquo;s remove the shared volumes if any, for each one of them.&lt;/p&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #000000; font-style: italic&#34;&gt;    docker rm -fv `docker ps -aq` &lt;/span&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-style: italic&#34;&gt;    docker rm -fv `docker ps -aq` &lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -616,7 +616,7 @@ Just run the following to test whether it works:&lt;/p&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;You should see a lot more space now on your beanstalk instance.
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #000000; font-style: italic&#34;&gt;    [root@ip dir]# df -h&lt;/span&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-style: italic&#34;&gt;    [root@ip dir]# df -h&lt;/span&gt;
 &lt;span style=&#34;color: #000000; font-style: italic&#34;&gt;    Filesystem      Size  Used Avail Use% Mounted on&lt;/span&gt;
 &lt;span style=&#34;color: #000000; font-style: italic&#34;&gt;    /dev/xvda1      7.8G  1.8G  5.9G  24% /&lt;/span&gt;
 &lt;span style=&#34;color: #000000; font-style: italic&#34;&gt;    devtmpfs        490M   96K  490M   1% /dev&lt;/span&gt;

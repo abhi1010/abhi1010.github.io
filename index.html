@@ -90,6 +90,74 @@
     
     <div class="post">
       <h1 class="post-title">
+        <a href="http://abhipandey.com/2016/02/how-to-setup-a-local-pypi-mirror/">How to setup a local pypi mirror</a>
+      </h1>
+      <span class="post-date">Feb 4, 2016  &middot; <a href="http://abhipandey.com/2016/02/how-to-setup-a-local-pypi-mirror/#disqus_thread">Comments</a>
+      
+      <br/>
+      <a class="a_cat" href="http://abhipandey.com/categories/code">code</a>
+        
+      <a class="a_tag" href="http://abhipandey.com/tags/pip">pip</a><a class="a_tag" href="http://abhipandey.com/tags/python">python</a>
+    
+      </span>
+      
+      <p>It is quite easy to set up a local pypi server.</p>
+
+<p>Some details can be found <a href="https://pip.pypa.io/en/latest/user_guide/#installing-from-local-packages">here</a>.
+You can also use <a href="http://doc.devpi.net/latest/quickstart-pypimirror.html">devpi</a> if you prefer but it
+seems overly complicated for a job that is easily achieved by pip.</p>
+
+<p>Let&rsquo;s look at how to use <code>pip</code> for local installation.
+Firstly, it is possible to install all requirements beforehand in a separate directory.
+ We can use the following commands:</p>
+
+<pre><code class="language-bash">pip install --download DIR -r requirements.txt
+</code></pre>
+
+<p>If you prefer wheel, then use the following:</p>
+
+<pre><code class="language-bash">pip wheel --wheel-dir DIR -r requirements.txt
+</code></pre>
+
+<p>Now, when we want to install from this given directory <code>DIR</code>, then
+the following command can help:</p>
+
+<pre><code class="language-bash">pip install --no-index --find-links=DIR -r requirements.txt
+</code></pre>
+
+<p>If you are using these in a current setup and you feel it still slows you down then the reason would be
+one of the first few commands where the request is still going to the internet.
+If you want to speed up the whole process then perhaps you need to send out a request to the internet
+only if a new package is available in the requirements.txt file otherwise you can skip that part altogether,
+just leading onto <code>pip install --no-index</code></p>
+
+<p>This will make your installation a flash.</p>
+
+<p>One quick and dirty way to maintain a local copy of requirements.txt file and figure out on every commit of code change
+in the project, whether a new requirement has been added to that list. In that case, install it + update your local copy.</p>
+
+<p>Here&rsquo;s a sample code to put all changes in a single line that you can feed into <code>pip install</code></p>
+
+<pre><code class="language-bash">sdiff -s /tmp/1 /tmp/2 | sed -e 's/&lt;//g' | awk 'BEGIN {ORS=&quot; &quot;} {print $1}'
+</code></pre>
+
+<p>Breaking it down:</p>
+
+<ul>
+<li><code>sdiff</code> checks if there are any new changes</li>
+<li><code>sed</code> ensures that you only get the relevant characters, not <code>&lt;</code> or <code>&gt;</code>
+
+<ul>
+<li>If you want you can put an <code>egrep</code> before <code>sed</code> to get only one side of the changes</li>
+</ul></li>
+<li><code>awk</code> puts all the lines together into a space separated values that can be fed into <code>pip install</code></li>
+</ul>
+
+      
+    </div>
+    
+    <div class="post">
+      <h1 class="post-title">
         <a href="http://abhipandey.com/2016/01/angularjs-2.0-building-blocks-explained/">AngularJS 2.0 building blocks explained</a>
       </h1>
       <span class="post-date">Jan 3, 2016  &middot; <a href="http://abhipandey.com/2016/01/angularjs-2.0-building-blocks-explained/#disqus_thread">Comments</a>
@@ -920,7 +988,7 @@ $ docker ps -q | xargs docker inspect | egrep &quot;var.lib.docker.vfs&quot;
 <p>I was having a lot of trouble getting <a href="https://github.com/carlcarl/powerline-zsh"><em>powerline</em></a> to work on my mac machine.
 No matter what I tried, I was getting errors like the following:</p>
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000000; font-style: italic">    .oh-my-zsh/themes/powerline.zsh-theme:100: character not in range</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #000000; font-style: italic">    .oh-my-zsh/themes/powerline.zsh-theme:100: character not in range</span>
 </pre></div>
 
 
@@ -929,7 +997,7 @@ No matter what I tried, I was getting errors like the following:</p>
 <p>All I had to do was set <code>LC_ALL</code> to <strong>en_US.UTF-8</strong>. It would set all the locales to <code>en_US.UTF-8</code> which
 would allow <code>powerline</code> fonts work properly.</p>
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">$ <span style="color: #204a87">export</span> <span style="color: #000000">LC_ALL</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #4e9a06">&quot;en_US.UTF-8&quot;</span>                                                                                                     22:58:06 
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>$ <span style="color: #204a87">export</span> <span style="color: #000000">LC_ALL</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #4e9a06">&quot;en_US.UTF-8&quot;</span>                                                                                                     22:58:06 
 $ locale 
 <span style="color: #000000">LANG</span><span style="color: #ce5c00; font-weight: bold">=</span>
 <span style="color: #000000">LC_COLLATE</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #4e9a06">&quot;en_US.UTF-8&quot;</span>
@@ -944,13 +1012,13 @@ $ locale
 
 <p>After this, run the following command to test your fonts again.</p>
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000000">LC_CTYPE</span><span style="color: #ce5c00; font-weight: bold">=</span>en_US.UTF-8 <span style="color: #204a87">echo</span> <span style="color: #4e9a06">&#39;\u2603&#39;</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #000000">LC_CTYPE</span><span style="color: #ce5c00; font-weight: bold">=</span>en_US.UTF-8 <span style="color: #204a87">echo</span> <span style="color: #4e9a06">&#39;\u2603&#39;</span>
 </pre></div>
 
 
 <p>Your command should work with or without <code>LC_CTYPE=en_US.UTF-8</code>. Here&rsquo;s what you expect to see now.</p>
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">    ☃
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>    ☃
 </pre></div>
 
 
@@ -1045,7 +1113,7 @@ We use it in our current setup to do a full testing and deployment onto <code>AW
 
 <p>Here&rsquo;s my <strong><em><code>.gitlab-ci.yml</code></em></strong></p>
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000000">stages</span><span style="color: #000000; font-weight: bold">:</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #000000">stages</span><span style="color: #000000; font-weight: bold">:</span>
   <span style="color: #000000; font-weight: bold">-</span> <span style="color: #000000">deploy</span>
 
 <span style="color: #000000">Git MIRROR</span><span style="color: #000000; font-weight: bold">:</span>
@@ -1078,7 +1146,7 @@ We use it in our current setup to do a full testing and deployment onto <code>AW
 time. After some tinkering around, mainly to find out the correct format for time ranges, decided to use the following bash script for finding coding stats.
 Following sample is to find out lines added or removed during the year 2014.</p>
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">$ git log --after<span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #4e9a06">&quot;2014-1-1&quot;</span> --before<span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #4e9a06">&quot;2014-12-31&quot;</span> --pretty<span style="color: #ce5c00; font-weight: bold">=</span>tformat: --numstat 
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>$ git log --after<span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #4e9a06">&quot;2014-1-1&quot;</span> --before<span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #4e9a06">&quot;2014-12-31&quot;</span> --pretty<span style="color: #ce5c00; font-weight: bold">=</span>tformat: --numstat 
     <span style="color: #000000; font-weight: bold">|</span> awk <span style="color: #4e9a06">&#39;{ if ( $2 != 0 &amp;&amp; $1 != 0 ) print $0 }&#39;</span> 
     <span style="color: #000000; font-weight: bold">|</span> gawk <span style="color: #4e9a06">&#39;{ add += $1; subs += $2; loc += $1 - $2 } END { printf &quot;Added lines: %s Removed lines: %s Total # of lines: %s\n&quot;, add, subs, loc }&#39;</span>
 </pre></div>
@@ -1090,7 +1158,7 @@ Following sample is to find out lines added or removed during the year 2014.</p>
 </code></pre>
 
 <p>You will notice in the second line that I am doing the following:
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000000; font-style: italic"> if ( $2 != 0 &amp;&amp; $1 != 0 ) </span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #000000; font-style: italic"> if ( $2 != 0 &amp;&amp; $1 != 0 ) </span>
 </pre></div>
 </p>
 
@@ -1179,7 +1247,7 @@ It was also extremely easy to make theme changes and see them in action, straigh
 
 <p>Running it on mac, installation was pretty straightforward using <code>brew</code></p>
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">brew install hugo
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>brew install hugo
 </pre></div>
 
 
@@ -1188,7 +1256,7 @@ I knew that I would be presenting a lot of code on my site and one of my main pr
 I had to manage a lot of styling for code sections which was not fun.
 So I decided to install <code>Pygments</code> on default <code>python</code> by doing:</p>
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">pip install Pygments
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>pip install Pygments
 </pre></div>
 
 
@@ -1207,7 +1275,7 @@ some of my files earlier while working on <code>pelican</code>. Once I started u
 
 <p>I came across <a href="https://github.com/thomasf/exitwp">exitwp</a> which needed a bit of setup, but I was willing to give it a try.
 Here&rsquo;s what I did:
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">git clone https://github.com/thomasf/exitwp
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>git clone https://github.com/thomasf/exitwp
 <span style="color: #204a87">cd</span> exitwp
 
 cp wordpress.2015-08-23.xml wordpress-xml/
@@ -1223,7 +1291,7 @@ exitwp.py wordpress-xml/wordpress.2015-08-23.xml
 
 <p>This creates a folder <code>build/jekyll/OLD_WORDPRESS_URL/</code> with the contents inside it. Here&rsquo;s my sample</p>
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">$ tree
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>$ tree
 .
 <span style="color: #000000; font-weight: bold">|</span>-- _posts
 <span style="color: #000000; font-weight: bold">|</span>   <span style="color: #000000; font-weight: bold">|</span>-- 2007-10-26-use-of-yield-statement.markdown
@@ -1272,7 +1340,7 @@ The idea would be to start a new folder, copy your markdowns there. Here&rsquo;s
 </ul></li>
 </ul>
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"> mkdir my_blog
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span> mkdir my_blog
  <span style="color: #204a87">cd</span> my_blog
  mkdir content
  cp -r /PATH_TO/exitwp/build/jekyll/codersdigest.wordpress.com/* ./content/
@@ -1285,7 +1353,7 @@ The idea would be to start a new folder, copy your markdowns there. Here&rsquo;s
 <p>Let&rsquo;s start with a simple theme <a href="https://github.com/zyro/hyde-x">hyde-x</a></p>
 
 <p>Here&rsquo;s how to install it.
- <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"> mkdir themes/
+ <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span> mkdir themes/
  <span style="color: #204a87">cd</span> themes/
  git clone https://github.com/zyro/hyde-x
  
@@ -1296,7 +1364,7 @@ The idea would be to start a new folder, copy your markdowns there. Here&rsquo;s
 
 <p>Here&rsquo;s how the folders look now. Use this for comparison.</p>
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">tree -L 2
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>tree -L 2
 .
 <span style="color: #000000; font-weight: bold">|</span>-- config.toml
 <span style="color: #000000; font-weight: bold">|</span>-- content
@@ -1331,7 +1399,7 @@ The idea would be to start a new folder, copy your markdowns there. Here&rsquo;s
 <p>Your config file could be as follows. Do note that I am also trying to build a menu for myself on the sidebar for better tracking.
 It can be found under <code>[[menu.</code></p>
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000000">baseurl = &quot;your_github_url&quot;</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #000000">baseurl = &quot;your_github_url&quot;</span>
 <span style="color: #000000">languageCode = &quot;en-us&quot;</span>
 <span style="color: #000000">title = &quot;title&quot;</span>
 <span style="color: #000000">contentdir = &quot;content&quot;</span>
@@ -1377,7 +1445,7 @@ It can be found under <code>[[menu.</code></p>
 <h2 id="run-hugo:5b4a6d9bf657db7e28a56367aab9ae4c">Run hugo</h2>
 
 <p>Now that we have setup the contents, themes
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #8f5902">$</span> hugo server
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #8f5902">$</span> hugo server
 <span style="color: #000000; font-style: italic">    0 draft content</span>
 <span style="color: #000000; font-style: italic">    0 future content </span>
 <span style="color: #000000; font-style: italic">    42 pages created</span>
@@ -1476,56 +1544,6 @@ If we have to commit to two repo - for markdown as well html pages, I feel like 
 
 <p><code>Shippable</code> will pick it up from there. It will download the theme and create the html files.
 It will also commit to the <code>GitHub Pages</code> for you and the site will be live automatically!</p>
-
-      
-    </div>
-    
-    <div class="post">
-      <h1 class="post-title">
-        <a href="http://abhipandey.com/2015/09/using-external-tools-with-git-diff/">Using External Tools with Git Diff</a>
-      </h1>
-      <span class="post-date">Sep 10, 2015  &middot; <a href="http://abhipandey.com/2015/09/using-external-tools-with-git-diff/#disqus_thread">Comments</a>
-      
-      <br/>
-      <a class="a_cat" href="http://abhipandey.com/categories/code">code</a>
-        
-      <a class="a_tag" href="http://abhipandey.com/tags/git">git</a>
-    
-      </span>
-      
-      <p>If you want to view what has changed since one commit to another, it is quite easy to view the diff.</p>
-
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">git diff 5fad06c..0a504fa
-</pre></div>
-
-
-<p>You will get something like this:</p>
-
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000080; font-weight: bold">diff --git a/modules/file_1.erb b/modules/file_1.erb</span>
-<span style="color: #000080; font-weight: bold">index 0538da0..6621d93 100644</span>
-<span style="color: #a40000">--- a/modules/file_1.erb</span>
-<span style="color: #00A000">+++ b/modules/file_1.erb</span>
-<span style="color: #800080; font-weight: bold">@@ -5,8 +5,8 @@</span>
- 
-   // Algo settings
-   &quot;Carbo&quot;: {
-<span style="color: #a40000">-    &quot;active-instrument&quot;: &quot;SGX/NK15&quot;,</span>
-<span style="color: #a40000">-    &quot;hedge-instrument&quot;: &quot;SGX/NK16&quot;,</span>
-<span style="color: #00A000">+    &quot;active-instrument&quot;: &quot;SGX/NK17&quot;,</span>
-<span style="color: #00A000">+    &quot;hedge-instrument&quot;: &quot;SGX/NK18&quot;,</span>
-     &quot;owner-app-id&quot;: &quot;abhi1010&quot;,
-</pre></div>
-
-
-<p>What if you wanted a use an external tool like <code>meld</code> to view the diff, in a nice beautiful side by side view? You&rsquo;d have to modify your settings to tell that to <code>git</code>.
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">git config --global diff.tool meld
-</pre></div>
-</p>
-
-<p>Finally, then to view the diff:
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">git difftool 5fad06c..0a504fa
-</pre></div>
-</p>
 
       
     </div>

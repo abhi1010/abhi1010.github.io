@@ -37,7 +37,7 @@
 
 &lt;p&gt;Here&amp;rsquo;s a sample code:&lt;/p&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;    &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;[&lt;/span&gt;program:source-updater&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;]&lt;/span&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;    &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;[&lt;/span&gt;program:source-updater&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;]&lt;/span&gt;
     &lt;span style=&#34;color: #000000&#34;&gt;redirect_stderr&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #204a87&#34;&gt;true&lt;/span&gt;
     &lt;span style=&#34;color: #000000&#34;&gt;stdout_logfile&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt; /shared/source_code_updater.log
     &lt;span style=&#34;color: #000000&#34;&gt;directory&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt; /ws/
@@ -62,7 +62,7 @@
 
 &lt;p&gt;With that idea, do a checkout and update the source code according to specific tag:&lt;/p&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;    git checkout -f tags/your_tag_name
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;    git checkout -f tags/your_tag_name
     git pull origin tags/your_tag_name
 &lt;/pre&gt;&lt;/div&gt;
 
@@ -74,7 +74,7 @@ The simplest way to achieve it using the config parameter of &lt;code&gt;uwsgi&l
 
 &lt;p&gt;Just remember to setup &lt;code&gt;supervisord&lt;/code&gt; in your &lt;code&gt;Dockerfile&lt;/code&gt; with this config parameter.&lt;/p&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;[&lt;/span&gt;program:app-uwsgi&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;]&lt;/span&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;[&lt;/span&gt;program:app-uwsgi&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;]&lt;/span&gt;
 &lt;span style=&#34;color: #000000&#34;&gt;redirect_stderr&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #204a87&#34;&gt;true&lt;/span&gt;
 &lt;span style=&#34;color: #000000&#34;&gt;stdout_logfile&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt; /var/shared/_uwsgi.log
 &lt;span style=&#34;color: #204a87&#34;&gt;command&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt; /ws/ve_envs/rwv2/bin/uwsgi --touch-reload&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;/ws/wsgi.ini --ini /ws/wsgi.ini

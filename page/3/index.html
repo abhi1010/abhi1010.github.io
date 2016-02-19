@@ -90,6 +90,44 @@
     
     <div class="post">
       <h1 class="post-title">
+        <a href="http://abhipandey.com/2014/06/removing-duplicates-from-linked-list/">Removing Duplicates from Linked List</a>
+      </h1>
+      <span class="post-date">Jun 7, 2014  &middot; <a href="http://abhipandey.com/2014/06/removing-duplicates-from-linked-list/#disqus_thread">Comments</a>
+      
+      <br/>
+      <a class="a_cat" href="http://abhipandey.com/categories/code">code</a>
+        
+      <a class="a_tag" href="http://abhipandey.com/tags/c">c&#43;&#43;</a><a class="a_tag" href="http://abhipandey.com/tags/algo">algo</a><a class="a_tag" href="http://abhipandey.com/tags/linked-list">linked list</a>
+    
+      </span>
+      
+      
+
+<p>Duplicates can be removed in many ways:</p>
+
+<ul>
+<li><p>Create a new Linked List containing only unique items</p></li>
+
+<li><p>Iterate through the Linked List and keep removing items that are being repeated</p></li>
+</ul>
+
+<p>The internal structure itself for the algo can either be map or set based. When using map the Node itself can be saved thereby making your life easier if you are creating a new Linked List. However sets can be very useful if we are just iterating through the Linked List and simply deleting items that are being repetetive. This is also a great spacesaver. Hence we decided to go down this path.</p>
+
+<h1 id="code:33d170712a3b1643edfc33b9f231740c">Code</h1>
+
+<p>As usual the <a href="https://github.com/abhi1010/Algorithms/blob/master/Algo_codes/Node.cpp">code</a> is available here:</p>
+
+<p><a href="https://github.com/abhi1010/Algorithms">https://github.com/abhi1010/Algorithms</a></p>
+
+<p>Here&rsquo;s a small sample as to how to do it:</p>
+
+<script type="text/javascript" src="http://gist.github.com/e2b7117c20d0f591896f.js"></script>
+
+      
+    </div>
+    
+    <div class="post">
+      <h1 class="post-title">
         <a href="http://abhipandey.com/2014/06/deleting-a-node-from-singly-linked-list/">Deleting a Node from Singly Linked List</a>
       </h1>
       <span class="post-date">Jun 7, 2014  &middot; <a href="http://abhipandey.com/2014/06/deleting-a-node-from-singly-linked-list/#disqus_thread">Comments</a>
@@ -150,7 +188,7 @@
 
 <p>The issue is very simple but hard to notice. If you try to compile this, you will get the following errors:</p>
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #000000; font-style: italic">    main.cpp:24:5: error: need &#39;typename&#39; before &#39;OuterStruct&lt;T2&gt;::InnerStruct&#39; because &#39;OuterStruct&lt;T2&gt;&#39; is a dependent scope</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #000000; font-style: italic">    main.cpp:24:5: error: need &#39;typename&#39; before &#39;OuterStruct&lt;T2&gt;::InnerStruct&#39; because &#39;OuterStruct&lt;T2&gt;&#39; is a dependent scope</span>
 <span style="color: #000000; font-style: italic">    OuterStruct&lt;T2&gt;::InnerStruct mUsingInner;</span>
 <span style="color: #000000; font-style: italic">    ^</span>
 <span style="color: #000000; font-style: italic">    main.cpp: In function &#39;int main(int, char**)&#39;:</span>
@@ -1338,120 +1376,6 @@
 <!-- more -->
 
 <script type="text/javascript" src="http://gist.github.com/ee13f57720471c8feea2.js"></script>
-
-      
-    </div>
-    
-    <div class="post">
-      <h1 class="post-title">
-        <a href="http://abhipandey.com/2013/10/ideas-for-shared-memory-in-linux/">Ideas for Shared Memory in Linux</a>
-      </h1>
-      <span class="post-date">Oct 13, 2013  &middot; <a href="http://abhipandey.com/2013/10/ideas-for-shared-memory-in-linux/#disqus_thread">Comments</a>
-      
-      <br/>
-      <a class="a_cat" href="http://abhipandey.com/categories/code">code</a>
-        
-      <a class="a_tag" href="http://abhipandey.com/tags/c-sharp">c-sharp</a>
-    
-      </span>
-      
-      <p>I have been doing extensive research today regarding shared memory in linux before I embark on a new project in which shaving time off process communication latency is extremely important. I found some very interesting links as well. Let’s break them down:</p>
-
-<table>
-<thead>
-<tr>
-<th>Topic</th>
-<th>Description</th>
-<th>Link</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td>Theory/Explanation</td>
-<td>Some articles that explain how to get started</td>
-<td><a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2006/n2044.html">open-std</a></td>
-</tr>
-
-<tr>
-<td>Content in the first column</td>
-<td>Content in the second column</td>
-<td>lkd</td>
-</tr>
-
-<tr>
-<td></td>
-<td>IPC Mechanisms – some recommendations. Mainly talks about softwares like Boost, dBus dBus used to work using kernel levels but lately have come up with a patch that bypasses kernels</td>
-<td><a href="http://stackoverflow.com/questions/1906166/inter-process-communication-recommendation">Stackoverflow</a></td>
-</tr>
-
-<tr>
-<td></td>
-<td>What every programmer should know about memory</td>
-<td><a href="http://lwn.net/Articles/255364/">LWN</a></td>
-</tr>
-
-<tr>
-<td></td>
-<td>Linux IPC</td>
-<td><a href="http://www.tldp.org/LDP/tlk/ipc/ipc.html">TLDP</a></td>
-</tr>
-
-<tr>
-<td></td>
-<td>Cache Friendly Code</td>
-<td><a href="http://stackoverflow.com/questions/16699247/what-is-cache-friendly-code/16699282#16699282">Stackoverflow</a></td>
-</tr>
-
-<tr>
-<td></td>
-<td>Helpful Articles     Which linux IPC technique to use?</td>
-<td><a href="http://stackoverflow.com/questions/2281204/which-linux-ipc-technique-to-use">Stackoverflow</a></td>
-</tr>
-
-<tr>
-<td></td>
-<td>Inter process communication – talks about shared memory</td>
-<td><a href="http://www.advancedlinuxprogramming.com/alp-folder/alp-ch05-ipc.pdf">ALP</a></td>
-</tr>
-
-<tr>
-<td></td>
-<td>Linux Poll Events on Shared Memory</td>
-<td><a href="http://stackoverflow.com/questions/11470322/cause-a-linux-poll-event-on-a-shared-memory-file">Stackoverflow</a></td>
-</tr>
-
-<tr>
-<td></td>
-<td>Using semaphores in Shared Memory</td>
-<td><a href="http://stackoverflow.com/questions/10772860/semaphores-and-shared-memory-in-linux">Stackoverflow</a></td>
-</tr>
-
-<tr>
-<td></td>
-<td>Sharing semaphores between Shared Memory</td>
-<td><a href="http://stackoverflow.com/questions/8359322/how-to-share-semaphores-between-processes-using-shared-memory?rq=1">Stackoverflow</a></td>
-</tr>
-
-<tr>
-<td></td>
-<td>Sharing memory between processes</td>
-<td><a href="http://stackoverflow.com/questions/11583281/sharing-memory-between-two-processes">Stackoverflow</a></td>
-</tr>
-
-<tr>
-<td></td>
-<td>Reserving memory at kernel boot up (DMA)</td>
-<td><a href="http://stackoverflow.com/questions/647783/direct-memory-access-in-linux?rq=1">Stackoverflow</a></td>
-</tr>
-
-<tr>
-<td>Extra</td>
-<td>IPC Shared memory samples</td>
-<td><a href="http://linuxgazette.net/104/ramankutty.html">linuxgazette</a></td>
-</tr>
-</tbody>
-</table>
 
       
     </div>
