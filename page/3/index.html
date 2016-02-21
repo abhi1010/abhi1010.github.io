@@ -90,6 +90,43 @@
     
     <div class="post">
       <h1 class="post-title">
+        <a href="http://abhipandey.com/2014/06/find-the-kth-to-last-element-of-a-singly-linked-list/">Find the Kth to Last Element of a Singly Linked List</a>
+      </h1>
+      <span class="post-date">Jun 8, 2014  &middot; <a href="http://abhipandey.com/2014/06/find-the-kth-to-last-element-of-a-singly-linked-list/#disqus_thread">Comments</a>
+      
+      <br/>
+      <a class="a_cat" href="http://abhipandey.com/categories/code">code</a>
+        
+      <a class="a_tag" href="http://abhipandey.com/tags/c">c&#43;&#43;</a><a class="a_tag" href="http://abhipandey.com/tags/algo">algo</a><a class="a_tag" href="http://abhipandey.com/tags/linked-list">linked list</a>
+    
+      </span>
+      
+      <p>It is possible to a recursive solutions but I will use a simple runner logic. Recursive solutions are usually less optimal.</p>
+
+<p>Note here that, in our logic K=1 would return the last element in the linked list. Similarly, K=2 would return the second last element.</p>
+
+<p>The suggested solution here is to use two pointers:</p>
+
+<ul>
+<li>One pointer will first travel K items into the list</li>
+<li>Once that is done, both the pointers start travelling together, one item at a time</li>
+<li>They keep travelling until the end of linked list is found</li>
+<li>In that situation, the first pointer is at the end of the list, but the second pointer would have only reached till Kth element - this is what you want</li>
+</ul>
+
+<p>Let&rsquo;s have a look at the code:</p>
+
+<script type="text/javascript" src="http://gist.github.com/43e289a9877fb9293680.js"></script>
+
+<p>As usual the code is available <a href="https://github.com/abhi1010/Algorithms/blob/master/Algo_codes/Node.cpp">here</a>:</p>
+
+<p><a href="https://github.com/abhi1010/Algorithms">https://github.com/abhi1010/Algorithms</a></p>
+
+      
+    </div>
+    
+    <div class="post">
+      <h1 class="post-title">
         <a href="http://abhipandey.com/2014/06/removing-duplicates-from-linked-list/">Removing Duplicates from Linked List</a>
       </h1>
       <span class="post-date">Jun 7, 2014  &middot; <a href="http://abhipandey.com/2014/06/removing-duplicates-from-linked-list/#disqus_thread">Comments</a>
@@ -1338,44 +1375,6 @@
 </code></pre>
 
 <p>There could be lot more actions (regular vim stuff) that you could do like yanking or indenting.</p>
-
-      
-    </div>
-    
-    <div class="post">
-      <h1 class="post-title">
-        <a href="http://abhipandey.com/2013/11/reading-excel-in-c/">Reading Excel in C#</a>
-      </h1>
-      <span class="post-date">Nov 9, 2013  &middot; <a href="http://abhipandey.com/2013/11/reading-excel-in-c/#disqus_thread">Comments</a>
-      
-      <br/>
-      <a class="a_cat" href="http://abhipandey.com/categories/code">code</a>
-        
-      <a class="a_tag" href="http://abhipandey.com/tags/c-sharp">c-sharp</a><a class="a_tag" href="http://abhipandey.com/tags/excel">excel</a>
-    
-      </span>
-      
-      <p>Recently had to work on an Excel and update its content when some events were triggered on a Bloomberg terminal. I couldn&rsquo;t find any code for reading the excel file using C# so thought of putting that up.</p>
-
-<p>There were a few things to learn:</p>
-
-<ul>
-<li><p>Excel support is not available by default so make sure to add Microsoft.Office.Interop.Excel as a reference</p></li>
-
-<li><p>Sometime indexing to reference the Workbooks or Worksheets may not work so try out other values</p></li>
-
-<li><ul>
-<li>I remember this was not a problem with Visual Studio 2010 but something must have happened in Visual Studio 2012</li>
-</ul></li>
-
-<li><p>It is also possible to try Workbook names to try and retrieve them</p></li>
-</ul>
-
-<p>Please follow the shortened code to read an Excel file after the break.</p>
-
-<!-- more -->
-
-<script type="text/javascript" src="http://gist.github.com/ee13f57720471c8feea2.js"></script>
 
       
     </div>

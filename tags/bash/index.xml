@@ -6,8 +6,74 @@
     <description>Recent content in Bash on Coders Digest</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 28 Sep 2015 08:46:09 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 09 Feb 2016 17:00:59 +0800</lastBuildDate>
     <atom:link href="http://abhipandey.com/tags/bash/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Color your process listings</title>
+      <link>http://abhipandey.com/2016/02/color-your-process-listings/</link>
+      <pubDate>Tue, 09 Feb 2016 17:00:59 +0800</pubDate>
+      
+      <guid>http://abhipandey.com/2016/02/color-your-process-listings/</guid>
+      <description>&lt;p&gt;Many a times I am grepping for a process that is running on a prod server with lots of different configuration
+parameters. However, since there are so many of them, it is very difficult to view a particular parameter itself
+and find out what value was assigned to it. I wanted to make it easier on the eyes and decided to color code the
+parameters and separate them out from the values.
+Here&amp;rsquo;s the bash function I pulled out.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;colorme()
+{
+  gawk &#39;BEGIN {RS=&amp;quot; --| -&amp;quot;; }{print $0}&#39; \
+  | sed -e &#39;s/\([[:alpha:]]\+\)=/\1 /g&#39; \
+  | gawk &#39;BEGIN    {printf &amp;quot;-----------------\n&amp;quot; ; }
+            {
+                if (NF &amp;gt; 2) printf &amp;quot;\n\033[41;5;1m%s\033[0m\n&amp;quot;, $NF ;
+                printf &amp;quot;\033[40;38;5;82m  %30s  \033[38;5;198m %s \033[0m \n&amp;quot;, $1, $2
+            }&#39;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The idea is as follows:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Have a bash function that can be piped onto any command; perhaps &lt;code&gt;ps -ef&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Paragraph style viewing for each process&lt;/li&gt;
+&lt;li&gt;Break down every parameter into separate lines using &lt;code&gt;gawk&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Use &lt;code&gt;sed&lt;/code&gt; to convert config params in the &lt;code&gt;--rate=10&lt;/code&gt; into something like &lt;code&gt;rate 10&lt;/code&gt;, just like others&lt;/li&gt;
+&lt;li&gt;Use &lt;code&gt;gawk&lt;/code&gt; again to add colors on every pair of &lt;code&gt;key value&lt;/code&gt; line&lt;/li&gt;
+&lt;li&gt;Keys are right aligned, green in color and values are right aligned, red in color so it&amp;rsquo;s very easy to view&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Here is a sample command I wanted to test out.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;/opt/py27env/bin/python manage.py main-service-name --daemonize \
+    --alias-svc=mainsvc01 --application-id=app03/mainsvc01 --monitoring-service-name=mainsvc01 \
+    --log-level=DEBUG --solace-session-prop-host=server.prod --solace-session-prop-username=testing \
+    --solace-session-prop-password=testing --solace-session-prop-vpn=testing \
+    --solace-session-prop-cache-name=test_dc \
+    --rate=10
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Here is the result from my tests:
+
+&lt;figure &gt;
+    
+        &lt;img src=&#34;http://abhipandey.com/images/bash_process_color_coding_1.png&#34; alt=&#34;Color coded process listing&#34; /&gt;
+    
+    
+    &lt;figcaption&gt;
+        &lt;p&gt;
+        Color coded process listing
+        
+            
+        
+        &lt;/p&gt; 
+    &lt;/figcaption&gt;
+    
+&lt;/figure&gt;
+&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Powerline for zsh</title>
