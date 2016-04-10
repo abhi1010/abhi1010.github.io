@@ -968,7 +968,12 @@
 &lt;li&gt;&lt;p&gt;Always takes O(n*log(n)) time - worst case or best case&lt;/p&gt;&lt;/li&gt;
 
 &lt;li&gt;&lt;ul&gt;
-&lt;li&gt;Pros and cons to both&lt;/li&gt;
+&lt;li&gt;Pros and cons to both
+
+
+
+
+&lt;br /&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 
 &lt;li&gt;&lt;p&gt;Simple implementations require additional space to hold heap of size n&lt;/p&gt;&lt;/li&gt;
@@ -1001,7 +1006,15 @@
 &lt;li&gt;&lt;p&gt;Second version (HeapSort_2) and third version (HeapSort_3) are very similar to each other with very minor differences but the performance is different. Still some improvements can be made but for now HeapSort_3 seems to be better&lt;/p&gt;&lt;/li&gt;
 
 &lt;li&gt;&lt;ul&gt;
-&lt;li&gt;There&amp;rsquo;s still scope for both the versions to be better&lt;/li&gt;
+&lt;li&gt;There&amp;rsquo;s still scope for both the versions to be better
+
+
+
+
+
+
+
+&lt;br /&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 
@@ -1309,7 +1322,7 @@
 &lt;li&gt;* Preserves the order of equal elements&lt;/li&gt;
 &lt;li&gt;Merge Sort does about 39% lower comparisons, in worst case, compared to Quicksort&amp;rsquo;s average case&lt;/li&gt;
 &lt;li&gt;The algo almost always behaves in the same way; taking relatively the same amount of time, whether sorted or unsorted arrays
-&amp;lt;!&amp;ndash; more &amp;ndash;&amp;gt;&lt;/li&gt;
+&lt;!-- more --&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h2 id=&#34;testing-notes:19e6e9293aeb00484ea655d2aac941c9&#34;&gt;Testing Notes&lt;/h2&gt;
@@ -1684,7 +1697,8 @@
 &lt;li&gt;If memory is not really a concern, forget about this issue&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;li&gt;Radix Sort, with at most d digits, takes O(d*(n+b)) time where b is the base&lt;/li&gt;
-&lt;li&gt;Use Radix Sort over Counting Sort when the numbers range from 1 to n-square for example.&lt;/li&gt;
+&lt;li&gt;Use Radix Sort over Counting Sort when the numbers range from 1 to n-square for example.
+&lt;br /&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;&lt;strong&gt;Numbers&lt;/strong&gt;&lt;/p&gt;
@@ -1763,7 +1777,12 @@
 &lt;li&gt;&lt;p&gt;Linear sorting algo with O(n+k) when the elements range from 1 to k&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;On&lt;/li&gt;
+&lt;li&gt;On
+
+
+
+
+&lt;br /&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 
 &lt;li&gt;&lt;p&gt;It is really good when the numbers range from 1 to n which means the max between them is not going to be very high&lt;/p&gt;&lt;/li&gt;

@@ -357,10 +357,10 @@ my &lt;a href=&#34;https://github.com/abhi1010/d3wiki&#34;&gt;github repo&lt;/a&
     
     <item>
       <title>Tokenize a String using C&#43;&#43;</title>
-      <link>http://abhipandey.com/2014/04/tokenize-a-string-using-c/</link>
+      <link>http://abhipandey.com/2014/04/tokenize-a-string-using-c&#43;&#43;/</link>
       <pubDate>Tue, 08 Apr 2014 07:00:00 +0000</pubDate>
       
-      <guid>http://abhipandey.com/2014/04/tokenize-a-string-using-c/</guid>
+      <guid>http://abhipandey.com/2014/04/tokenize-a-string-using-c&#43;&#43;/</guid>
       <description>&lt;p&gt;Here&amp;rsquo;s a short snippet to split a string into multiple tokens; into a vector. As you will see that, if you run the code, boost version performs better because you can choose a number of delimiters to split your string instead of the vanilla version using the normal C++ code. Of course, you may also write your own code to do something like this but I was looking to do some short snippets.&lt;/p&gt;
 
 &lt;script type=&#34;text/javascript&#34; src=&#34;http://gist.github.com/554885a7235f4047dae6.js&#34;&gt;&lt;/script&gt;

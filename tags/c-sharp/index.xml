@@ -25,7 +25,12 @@
 &lt;li&gt;&lt;p&gt;Sometime indexing to reference the Workbooks or Worksheets may not work so try out other values&lt;/p&gt;&lt;/li&gt;
 
 &lt;li&gt;&lt;ul&gt;
-&lt;li&gt;I remember this was not a problem with Visual Studio 2010 but something must have happened in Visual Studio 2012&lt;/li&gt;
+&lt;li&gt;I remember this was not a problem with Visual Studio 2010 but something must have happened in Visual Studio 2012
+
+
+
+
+&lt;br /&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 
 &lt;li&gt;&lt;p&gt;It is also possible to try Workbook names to try and retrieve them&lt;/p&gt;&lt;/li&gt;
@@ -285,7 +290,11 @@ Studio normally and add items.&lt;/p&gt;
 &lt;li&gt;&lt;p&gt;Take care of the naming convention for the js file.&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;If your control&amp;rsquo;s namespace is ExtendedControls, then while &amp;ldquo;Registering&amp;rdquo; it in the control&amp;rsquo;s class you should give the JS file&amp;rsquo;s name as &amp;ldquo;ExtendedControls.CustomControl_JS.js&amp;rdquo; where &amp;ldquo;CustomControl_JS.js&amp;rdquo; is the name of the javascript file. Basically, another shortcut to learn it is whatever is the name of the project/assembly that you are creating, you have to append that name before the file name. **Follow this logic strictly, otherwise you will be left high and dry. **&lt;/li&gt;
+&lt;li&gt;If your control&amp;rsquo;s namespace is ExtendedControls, then while &amp;ldquo;Registering&amp;rdquo; it in the control&amp;rsquo;s class you should give the JS file&amp;rsquo;s name as &amp;ldquo;ExtendedControls.CustomControl_JS.js&amp;rdquo; where &amp;ldquo;CustomControl_JS.js&amp;rdquo; is the name of the javascript file. Basically, another shortcut to learn it is whatever is the name of the project/assembly that you are creating, you have to append that name before the file name. **Follow this logic strictly, otherwise you will be left high and dry. **
+
+&lt;br /&gt;
+
+&lt;br /&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 
 &lt;li&gt;&lt;p&gt;You should also remember to register this name inside AssemblyInfo.cs class (&amp;ldquo;ExtendedControls.CustomControl_JS.js&amp;rdquo; as per our example here).&lt;/p&gt;&lt;/li&gt;

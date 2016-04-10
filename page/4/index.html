@@ -90,6 +90,46 @@
     
     <div class="post">
       <h1 class="post-title">
+        <a href="http://abhipandey.com/2014/02/global-search-in-vim/">Global Search in VIM</a>
+      </h1>
+      <span class="post-date">Feb 11, 2014  &middot; <a href="http://abhipandey.com/2014/02/global-search-in-vim/#disqus_thread">Comments</a>
+      
+      <br/>
+      <a class="a_cat" href="http://abhipandey.com/categories/code">code</a>
+        
+      <a class="a_tag" href="http://abhipandey.com/tags/bash">bash</a><a class="a_tag" href="http://abhipandey.com/tags/vim">vim</a>
+    
+      </span>
+      
+      <p>You must be knowing about regular VIM search</p>
+
+<pre><code>%s/SEARCH/REPLACE/CMD
+</code></pre>
+
+<p>However, sometimes you do not want to replace something but just see all instances of the a word or phrase. In such cases, global search is really useful when on vim. The syntax is simpler than normal search-replace:</p>
+
+<pre><code>:[range]g[lobal]/{pattern}/[cmd]
+</code></pre>
+
+<p>This will show all instances of the &ldquo;SEARCH&rdquo; term within the VIM window. There&rsquo;s another version of the same command which is as follows:</p>
+
+<pre><code>:[range]g[lobal]!/{pattern}/[cmd]
+</code></pre>
+
+<p>This is similar to the previous command but the only difference is that this command contains &ldquo;!&rdquo; which signifies that the command will be executed on all lines <code>NOT</code> matching the <code>pattern</code>.</p>
+
+<p>One example here would be to delete all lines in a file containing a particular word:</p>
+
+<pre><code>:g/deleteMe/d
+</code></pre>
+
+<p>There could be lot more actions (regular vim stuff) that you could do like yanking or indenting.</p>
+
+      
+    </div>
+    
+    <div class="post">
+      <h1 class="post-title">
         <a href="http://abhipandey.com/2013/11/reading-excel-in-c/">Reading Excel in C#</a>
       </h1>
       <span class="post-date">Nov 9, 2013  &middot; <a href="http://abhipandey.com/2013/11/reading-excel-in-c/#disqus_thread">Comments</a>
@@ -111,7 +151,12 @@
 <li><p>Sometime indexing to reference the Workbooks or Worksheets may not work so try out other values</p></li>
 
 <li><ul>
-<li>I remember this was not a problem with Visual Studio 2010 but something must have happened in Visual Studio 2012</li>
+<li>I remember this was not a problem with Visual Studio 2010 but something must have happened in Visual Studio 2012
+
+
+
+
+<br /></li>
 </ul></li>
 
 <li><p>It is also possible to try Workbook names to try and retrieve them</p></li>
@@ -465,7 +510,7 @@ echo $CMD
       <br/>
       <a class="a_cat" href="http://abhipandey.com/categories/code">code</a>
         
-      <a class="a_tag" href="http://abhipandey.com/tags/c">c&#43;&#43;</a>
+      <a class="a_tag" href="http://abhipandey.com/tags/c&#43;&#43;">c&#43;&#43;</a>
     
       </span>
       
@@ -510,7 +555,7 @@ echo $CMD
       <br/>
       <a class="a_cat" href="http://abhipandey.com/categories/code">code</a>
         
-      <a class="a_tag" href="http://abhipandey.com/tags/sorting">sorting</a><a class="a_tag" href="http://abhipandey.com/tags/algo">algo</a><a class="a_tag" href="http://abhipandey.com/tags/c">c&#43;&#43;</a>
+      <a class="a_tag" href="http://abhipandey.com/tags/sorting">sorting</a><a class="a_tag" href="http://abhipandey.com/tags/algo">algo</a><a class="a_tag" href="http://abhipandey.com/tags/c&#43;&#43;">c&#43;&#43;</a>
     
       </span>
       
@@ -526,7 +571,12 @@ echo $CMD
 <li><p>Always takes O(n*log(n)) time - worst case or best case</p></li>
 
 <li><ul>
-<li>Pros and cons to both</li>
+<li>Pros and cons to both
+
+
+
+
+<br /></li>
 </ul></li>
 
 <li><p>Simple implementations require additional space to hold heap of size n</p></li>
@@ -559,7 +609,15 @@ echo $CMD
 <li><p>Second version (HeapSort_2) and third version (HeapSort_3) are very similar to each other with very minor differences but the performance is different. Still some improvements can be made but for now HeapSort_3 seems to be better</p></li>
 
 <li><ul>
-<li>There&rsquo;s still scope for both the versions to be better</li>
+<li>There&rsquo;s still scope for both the versions to be better
+
+
+
+
+
+
+
+<br /></li>
 </ul></li>
 </ul></li>
 
@@ -860,7 +918,7 @@ echo $CMD
       <br/>
       <a class="a_cat" href="http://abhipandey.com/categories/code">code</a>
         
-      <a class="a_tag" href="http://abhipandey.com/tags/sorting">sorting</a><a class="a_tag" href="http://abhipandey.com/tags/algo">algo</a><a class="a_tag" href="http://abhipandey.com/tags/c">c&#43;&#43;</a>
+      <a class="a_tag" href="http://abhipandey.com/tags/sorting">sorting</a><a class="a_tag" href="http://abhipandey.com/tags/algo">algo</a><a class="a_tag" href="http://abhipandey.com/tags/c&#43;&#43;">c&#43;&#43;</a>
     
       </span>
       
@@ -875,7 +933,7 @@ echo $CMD
 <li>* Preserves the order of equal elements</li>
 <li>Merge Sort does about 39% lower comparisons, in worst case, compared to Quicksort&rsquo;s average case</li>
 <li>The algo almost always behaves in the same way; taking relatively the same amount of time, whether sorted or unsorted arrays
-&lt;!&ndash; more &ndash;&gt;</li>
+<!-- more --></li>
 </ul>
 
 <h2 id="testing-notes:19e6e9293aeb00484ea655d2aac941c9">Testing Notes</h2>
@@ -1002,105 +1060,6 @@ echo $CMD
 <td >4664.16
 </td>
 <td >0.466416
-</td> </tr> </tbody> </table>
-
-      
-    </div>
-    
-    <div class="post">
-      <h1 class="post-title">
-        <a href="http://abhipandey.com/2012/09/quick-sort/">Quick Sort</a>
-      </h1>
-      <span class="post-date">Sep 22, 2012  &middot; <a href="http://abhipandey.com/2012/09/quick-sort/#disqus_thread">Comments</a>
-      
-      <br/>
-      <a class="a_cat" href="http://abhipandey.com/categories/code">code</a>
-        
-      <a class="a_tag" href="http://abhipandey.com/tags/sorting">sorting</a><a class="a_tag" href="http://abhipandey.com/tags/algo">algo</a><a class="a_tag" href="http://abhipandey.com/tags/c">c&#43;&#43;</a>
-    
-      </span>
-      
-      
-
-<p>Quick Sort is an efficient divide and conquer algorithm performed in two phases - partition and sorting phase.</p>
-
-<p>Here are few pointers to remember about Quick Sort:</p>
-
-<ul>
-<li>Partitioning places all the elements less than the pivot in the left part of the array and greater elements in the right part</li>
-<li>Pivot element stays in its place</li>
-<li>After partitioning no element moves to the other side, of the pivot</li>
-<li>* This allows you to sort the elements, to the left or right of the pivot, independent of the other side</li>
-<li>Complexity is O(n log n)</li>
-<li>Often fast for small arrays with a few distinct values, repeated many times</li>
-<li>It is a conquer-and-divide algo; with most of the work happening during partitioning phase</li>
-<li>If you had to choose the optimum pivot then it should the median of the given array</li>
-<li>Not a stable sort</li>
-</ul>
-
-<h2 id="testing-notes:bc3cdebe8a50650a5fd63bed57e56314">Testing Notes</h2>
-
-<ul>
-<li>Currently we have only one version of the code. We may try to do another version that is not recursive because putting the functions on stack will take up some memory and time</li>
-<li>Another version could be trying to use the pivot from the middle and then compare how do the random numbers compare against the sorted numbers</li>
-</ul>
-
-<h2 id="code:bc3cdebe8a50650a5fd63bed57e56314">Code</h2>
-
-<p>As usual the <a href="https://github.com/abhi1010/Algorithms/blob/master/Algo_codes/QuickSort.cpp">code</a> is available here:</p>
-
-<p><a href="https://github.com/abhi1010/Algorithms">https://github.com/abhi1010/Algorithms</a></p>
-
-<h2 id="numbers:bc3cdebe8a50650a5fd63bed57e56314">Numbers</h2>
-
-<table style="border-bottom:lightblue solid;text-align:center;border-left:lightblue solid;background-color:#efefef;width:100%;border-collapse:collapse;border-top:lightblue solid;border-right:lightblue solid;" border="1" > <tbody > <tr >
-<td style="width:25%;" >
-</td>
-<td style="width:25%;" >**# of Items in Array**
-</td>
-<td style="width:25%;" >**Time Taken**
-</td>
-<td style="width:25%;" >**Average for 100 numbers**
-</td> </tr> <tr >
-<td rowspan="3" >**Random**
-</td>
-<td >10
-</td>
-<td >0.072972
-</td>
-<td >0.72972
-</td> </tr> <tr >
-<td >1K
-</td>
-<td >2.74698
-</td>
-<td >0.274698
-</td> </tr> <tr >
-<td >1M
-</td>
-<td >4640.77
-</td>
-<td >0.464077
-</td> </tr> <tr >
-<td rowspan="3" >**Sorted**
-</td>
-<td >10
-</td>
-<td >0.042773
-</td>
-<td >0.42773
-</td> </tr> <tr >
-<td >1K
-</td>
-<td >1.84335
-</td>
-<td >0.184335
-</td> </tr> <tr >
-<td >1M
-</td>
-<td >2473.42
-</td>
-<td >0.247342
 </td> </tr> </tbody> </table>
 
       

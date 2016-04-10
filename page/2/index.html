@@ -90,6 +90,47 @@
     
     <div class="post">
       <h1 class="post-title">
+        <a href="http://abhipandey.com/2015/09/git-loc-stats-by-time-range/">Git LOC Stats by Time Range</a>
+      </h1>
+      <span class="post-date">Sep 17, 2015  &middot; <a href="http://abhipandey.com/2015/09/git-loc-stats-by-time-range/#disqus_thread">Comments</a>
+      
+      <br/>
+      <a class="a_cat" href="http://abhipandey.com/categories/code">code</a>
+        
+      <a class="a_tag" href="http://abhipandey.com/tags/bash">bash</a><a class="a_tag" href="http://abhipandey.com/tags/git">git</a>
+    
+      </span>
+      
+      <p>Recently had an interest in seeing how many LOC were committed to the code base over a particular period of
+time. After some tinkering around, mainly to find out the correct format for time ranges, decided to use the following bash script for finding coding stats.
+Following sample is to find out lines added or removed during the year 2014.</p>
+
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>$ git log --after<span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #4e9a06">&quot;2014-1-1&quot;</span> --before<span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #4e9a06">&quot;2014-12-31&quot;</span> --pretty<span style="color: #ce5c00; font-weight: bold">=</span>tformat: --numstat 
+    <span style="color: #000000; font-weight: bold">|</span> awk <span style="color: #4e9a06">&#39;{ if ( $2 != 0 &amp;&amp; $1 != 0 ) print $0 }&#39;</span> 
+    <span style="color: #000000; font-weight: bold">|</span> gawk <span style="color: #4e9a06">&#39;{ add += $1; subs += $2; loc += $1 - $2 } END { printf &quot;Added lines: %s Removed lines: %s Total # of lines: %s\n&quot;, add, subs, loc }&#39;</span>
+</pre></div>
+
+
+<p>The result will be as follows:</p>
+
+<pre><code>Added lines: 327505 Removed lines: 243860 Total # of lines: 83645
+</code></pre>
+
+<p>You will notice in the second line that I am doing the following:
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #000000; font-style: italic"> if ( $2 != 0 &amp;&amp; $1 != 0 ) </span>
+</pre></div>
+</p>
+
+<p>This is simply to discard off any commit numbers that were pure addition or deletion (with no corresponding delete or add in the same commit).
+It may also remove some numbers that were actually valid commits but mostly it is to protect ourselves against any library or API that we may have added or replaced during that time period.</p>
+
+<p>For time range, you may even use something like <code>--since=&quot;1 year ago&quot;</code> and that will also yield similar results.</p>
+
+      
+    </div>
+    
+    <div class="post">
+      <h1 class="post-title">
         <a href="http://abhipandey.com/2015/09/moving-to-hugo/">Moving To Hugo</a>
       </h1>
       <span class="post-date">Sep 15, 2015  &middot; <a href="http://abhipandey.com/2015/09/moving-to-hugo/#disqus_thread">Comments</a>
@@ -599,7 +640,7 @@ after_success:
   - <span style="color: #204a87">cd</span> abhi1010.github.io
   - git status -s
   - <span style="color: #204a87">echo</span> -e <span style="color: #4e9a06">&quot;a\n*\nq\n&quot;</span><span style="color: #000000; font-weight: bold">|</span>git add -i
-  - git commit -am <span style="color: #4e9a06">&#39;Automated build from Shippable - &#39;</span>$NOW_HOUR <span style="color: #ce5c00; font-weight: bold">&amp;&amp;</span> git push
+  - git commit -am <span style="color: #4e9a06">&#39;Automated build from Shippable - &#39;</span><span style="color: #000000">$NOW_HOUR</span> <span style="color: #ce5c00; font-weight: bold">&amp;&amp;</span> git push
 
 
 notifications:
@@ -701,16 +742,16 @@ eb use beanstalk_env_name
   
   ENV WS <span style="color: #4e9a06">&#39;/ws&#39;</span>
   ENV CURR_HOME <span style="color: #4e9a06">&#39;/root&#39;</span>
-  WORKDIR $WS
+  WORKDIR <span style="color: #000000">$WS</span>
   
   RUN git clone https://github.com/abhi1010/dockerprj.git <span style="color: #4e9a06">\</span>
-   <span style="color: #ce5c00; font-weight: bold">&amp;&amp;</span> . $WS/ve_envs/rwv2/bin/activate <span style="color: #4e9a06">\</span>
-   <span style="color: #ce5c00; font-weight: bold">&amp;&amp;</span> $WS/prj/rw/manage.py collectstatic --noinput
+   <span style="color: #ce5c00; font-weight: bold">&amp;&amp;</span> . <span style="color: #000000">$WS</span>/ve_envs/rwv2/bin/activate <span style="color: #4e9a06">\</span>
+   <span style="color: #ce5c00; font-weight: bold">&amp;&amp;</span> <span style="color: #000000">$WS</span>/prj/rw/manage.py collectstatic --noinput
   
-  COPY supervisor-app.conf $WS/
+  COPY supervisor-app.conf <span style="color: #000000">$WS</span>/
   
   RUN <span style="color: #4e9a06">\</span>
-      cp $WS/supervisor-app.conf /etc/supervisor/supervisord.conf <span style="color: #4e9a06">\</span>
+      cp <span style="color: #000000">$WS</span>/supervisor-app.conf /etc/supervisor/supervisord.conf <span style="color: #4e9a06">\</span>
    <span style="color: #ce5c00; font-weight: bold">&amp;&amp;</span> chown -R www-data:www-data /var/lib/nginx
 
   VOLUME <span style="color: #ce5c00; font-weight: bold">[</span><span style="color: #4e9a06">&quot;/var/shared/&quot;</span>, <span style="color: #4e9a06">&quot;/etc/nginx/sites-enabled&quot;</span>, <span style="color: #4e9a06">&quot;/var/log/nginx&quot;</span>, <span style="color: #4e9a06">&quot;/ws/&quot;</span><span style="color: #ce5c00; font-weight: bold">]</span>
@@ -767,7 +808,8 @@ eb use beanstalk_env_name
 
 <ul>
 <li>Create a file called <code>00001.ftp.config</code></li>
-<li>Use <code>pre</code> folder to setup accounts</li>
+<li>Use <code>pre</code> folder to setup accounts
+<br /></li>
 </ul></li>
 </ul>
 
@@ -1409,46 +1451,6 @@ Just run the following to test whether it works:</p>
 <a href="https://github.com/docker/docker/blob/master/contrib/nuke-graph-directory.sh">GitHub</a></p>
 
 <p>It will delete the folders under <code>/var/lib/docker</code> and try to do it responsibly.</p>
-
-      
-    </div>
-    
-    <div class="post">
-      <h1 class="post-title">
-        <a href="http://abhipandey.com/2014/06/partition-linked-list-around-a-value-x/">Partition Linked List around a Value X</a>
-      </h1>
-      <span class="post-date">Jun 9, 2014  &middot; <a href="http://abhipandey.com/2014/06/partition-linked-list-around-a-value-x/#disqus_thread">Comments</a>
-      
-      <br/>
-      <a class="a_cat" href="http://abhipandey.com/categories/code">code</a>
-        
-      <a class="a_tag" href="http://abhipandey.com/tags/c">c&#43;&#43;</a><a class="a_tag" href="http://abhipandey.com/tags/algo">algo</a><a class="a_tag" href="http://abhipandey.com/tags/linked-list">linked list</a>
-    
-      </span>
-      
-      
-
-<p>How do you partition a list around a value x, such that all nodes less than x come before all nodes greater than or equal to x?</p>
-
-<p>Well, there are some solutions possible. The solution, I came up with, is a bit convoluted but let me tell the idea behind it. You want to track the following:</p>
-
-<ul>
-<li><p>Two pointers to remember the beginning of the <em>lower</em> and <em>higher</em> series each</p></li>
-
-<li><p>One pointer (<em>current</em>) to iterate through the Linked List</p></li>
-
-<li><p>The list may itself start with higher or lower value compared to the <em>middleValue</em>. Thus we need to remember the beginning of the lower series (<em>lowerSeries</em>) as this is what we will send back</p></li>
-</ul>
-
-<p>Now that we have this out of the way, let&rsquo;s look at the code:</p>
-
-<script type="text/javascript" src="http://gist.github.com/3ada1d15b5bda319a54c.js"></script>
-
-<h1 id="code:8a20b19b0e16e5ac875728276c435d4c">Code</h1>
-
-<p>As usual the code is available <a href="https://github.com/abhi1010/Algorithms/blob/master/Algo_codes/Node.cpp">here</a>:</p>
-
-<p><a href="https://github.com/abhi1010/Algorithms">https://github.com/abhi1010/Algorithms</a></p>
 
       
     </div>

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Algo on Coders Digest</title>
-    <link>http://abhipandey.com/tags/algo/</link>
-    <description>Recent content in Algo on Coders Digest</description>
+    <title>C&#43;&#43; on Coders Digest</title>
+    <link>http://abhipandey.com/tags/c&#43;&#43;/</link>
+    <description>Recent content in C&#43;&#43; on Coders Digest</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 09 Jun 2014 15:02:07 +0000</lastBuildDate>
-    <atom:link href="http://abhipandey.com/tags/algo/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://abhipandey.com/tags/c&#43;&#43;/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Partition Linked List around a Value X</title>
@@ -132,6 +132,97 @@
 &lt;p&gt;As usual the code is available &lt;a href=&#34;https://github.com/abhi1010/Algorithms/blob/master/Algo_codes/Node.cpp&#34;&gt;here&lt;/a&gt;:&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&#34;https://github.com/abhi1010/Algorithms&#34;&gt;https://github.com/abhi1010/Algorithms&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Usage of typename</title>
+      <link>http://abhipandey.com/2014/05/usage-of-typename/</link>
+      <pubDate>Mon, 26 May 2014 14:19:15 +0000</pubDate>
+      
+      <guid>http://abhipandey.com/2014/05/usage-of-typename/</guid>
+      <description>&lt;p&gt;What is wrong with the following code?&lt;/p&gt;
+
+&lt;script type=&#34;text/javascript&#34; src=&#34;http://gist.github.com/0bd5e4d910e4d8a7672e.js&#34;&gt;&lt;/script&gt;
+
+&lt;p&gt;The issue is very simple but hard to notice. If you try to compile this, you will get the following errors:&lt;/p&gt;
+
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-style: italic&#34;&gt;    main.cpp:24:5: error: need &amp;#39;typename&amp;#39; before &amp;#39;OuterStruct&amp;lt;T2&amp;gt;::InnerStruct&amp;#39; because &amp;#39;OuterStruct&amp;lt;T2&amp;gt;&amp;#39; is a dependent scope&lt;/span&gt;
+&lt;span style=&#34;color: #000000; font-style: italic&#34;&gt;    OuterStruct&amp;lt;T2&amp;gt;::InnerStruct mUsingInner;&lt;/span&gt;
+&lt;span style=&#34;color: #000000; font-style: italic&#34;&gt;    ^&lt;/span&gt;
+&lt;span style=&#34;color: #000000; font-style: italic&#34;&gt;    main.cpp: In function &amp;#39;int main(int, char**)&amp;#39;:&lt;/span&gt;
+&lt;span style=&#34;color: #000000; font-style: italic&#34;&gt;    main.cpp:34:13: error: &amp;#39;struct InnerStruct_Wrapper&amp;lt;int&amp;gt;&amp;#39; has no member named &amp;#39;mUsingInner&amp;#39;&lt;/span&gt;
+&lt;span style=&#34;color: #000000; font-style: italic&#34;&gt;    wrapper.mUsingInner = innerStrct;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;strong&gt;The Issue&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;At least it straight away tells you something is wrong with &lt;code&gt;InnerStruct_Wrapper&lt;/code&gt;. Here&amp;rsquo;s what is happening:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;The compiler does not know that mUsingInner in that line is actually a variable of type &amp;ldquo;OuterStruct&lt;T2&gt;::InnerStruct&amp;rdquo;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;InnerStruct will only be known later when it is being instantiated&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Compiler cannot figure out what InnerStruct means here. It could be a type or a member variable&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;The Fix&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;The only way here is to help the compiler by telling it beforehand that is going to be a class or struct type. The way to tell the compiler that something like this is supposed to be a type name is to throw in the keyword &amp;ldquo;typename&amp;rdquo;. The &amp;ldquo;typename&amp;rdquo; keyword has to be used everytime you want to tell the compiler that it should expect a Type in its place.&lt;/p&gt;
+
+&lt;p&gt;One place where this is used quite a lot is when templates have to implement iterators.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Full Code&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;The full sample code, along with the fix&lt;/em&gt;&lt;/strong&gt; is provided on &lt;a href=&#34;http://coliru.stacked-crooked.com/a/b0ab70c458370048&#34;&gt;Stacked-Crooked&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>32 bit vs 64 bit</title>
+      <link>http://abhipandey.com/2014/04/32-bit-vs-64-bit/</link>
+      <pubDate>Tue, 15 Apr 2014 02:40:00 +0000</pubDate>
+      
+      <guid>http://abhipandey.com/2014/04/32-bit-vs-64-bit/</guid>
+      <description>
+
+&lt;h3 id=&#34;when-to-use-64-bit:781115a00a27c6c773035866d9644c43&#34;&gt;When to use 64-bit?&lt;/h3&gt;
+
+&lt;p&gt;If your application needs more than 2-4gb of data&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;If your application intensively uses 64-bit arithmetic&lt;/li&gt;
+&lt;li&gt;* 32-bit x86 compiled applications are restricted to x86 instruction set, even when run on on a 64-bit machine&lt;/li&gt;
+&lt;li&gt;x64 supports 16 registers compared to just 8 in x86. If your code is computation intensive this may help a great deal&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;when-to-use-32-bit:781115a00a27c6c773035866d9644c43&#34;&gt;When to use 32-bit?&lt;/h3&gt;
+
+&lt;p&gt;After reading so many great things about 32 bit, why would anybody still want to code against 32-bit? Simple reason - code compiled in 32-bit takes lesser memory. For example, a pointer in 64-bit machine is 8 bytes compared to 4 bytes with 32-bit. Now imagine how many pointers do you have going around in your code?&lt;/p&gt;
+
+&lt;h3 id=&#34;when-to-not-use-64-bit:781115a00a27c6c773035866d9644c43&#34;&gt;When to not use 64-bit?&lt;/h3&gt;
+
+&lt;p&gt;Sometimes if your code is running on a machine that does not have too much of space then it is a never a great idea to use 64-bit compilation because the same task can probably be done much better using 32-bit version. L2 and L3 caches will be utilized a lot more in 64-bit code (and a lot earlier as well) compared to 32-bit; on such systems.&lt;/p&gt;
+
+&lt;h3 id=&#34;summary:781115a00a27c6c773035866d9644c43&#34;&gt;Summary&lt;/h3&gt;
+
+&lt;p&gt;Always benchmark your code and ensure that the application actually needs more than 2-4Gb of space.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Tokenize a String using C&#43;&#43;</title>
+      <link>http://abhipandey.com/2014/04/tokenize-a-string-using-c&#43;&#43;/</link>
+      <pubDate>Tue, 08 Apr 2014 07:00:00 +0000</pubDate>
+      
+      <guid>http://abhipandey.com/2014/04/tokenize-a-string-using-c&#43;&#43;/</guid>
+      <description>&lt;p&gt;Here&amp;rsquo;s a short snippet to split a string into multiple tokens; into a vector. As you will see that, if you run the code, boost version performs better because you can choose a number of delimiters to split your string instead of the vanilla version using the normal C++ code. Of course, you may also write your own code to do something like this but I was looking to do some short snippets.&lt;/p&gt;
+
+&lt;script type=&#34;text/javascript&#34; src=&#34;http://gist.github.com/554885a7235f4047dae6.js&#34;&gt;&lt;/script&gt;
+
+&lt;p&gt;I have &lt;strong&gt;posted my code on &lt;a href=&#34;http://coliru.stacked-crooked.com/a/01e1c68ffd0199cd&#34;&gt;Stacked-Crooked&lt;/a&gt;&lt;/strong&gt; which you can view along with the output as well. It shows C++ doesn&amp;rsquo;t perform so well.&lt;/p&gt;
 </description>
     </item>
     
@@ -1073,6 +1164,43 @@
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Multiple Inheritance</title>
+      <link>http://abhipandey.com/2012/10/multiple-inheritance/</link>
+      <pubDate>Tue, 23 Oct 2012 14:21:00 +0000</pubDate>
+      
+      <guid>http://abhipandey.com/2012/10/multiple-inheritance/</guid>
+      <description>&lt;p&gt;What is the output to the following code?&lt;/p&gt;
+
+&lt;script type=&#34;text/javascript&#34; src=&#34;http://gist.github.com/8fac0155f30551df8bca.js&#34;&gt;&lt;/script&gt;
+
+&lt;!-- more --&gt;
+
+&lt;p&gt;&lt;em&gt;Output&lt;/em&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Foo FooToo Bar FootTooBar
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;em&gt;Why?&lt;/em&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;An instance of FooTooBar needs to be created according to main()&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;To create that instance, we first need the base classes too, hence FooToo and Bar classes&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Now notice the keyword virtual everytime inheritance is defined&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;This does half the magic by ensuring that the member data instances are shared with any other inclusions of that same base in further derived classes&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;This is very handy for multiple inheritance&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;As an exercise you may try to remove virtual from some derived class and see what results you get.&lt;/p&gt;
 </description>
     </item>
     

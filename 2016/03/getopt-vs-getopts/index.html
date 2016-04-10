@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>getopt vs getopts &middot; Abhishek Pandey</title>
+
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+  <link rel="stylesheet" href="http://abhipandey.com/css/poole.css?ref=abc124">
+  <link rel="stylesheet" href="http://abhipandey.com/css/hyde.css?ref=abc124">
+  <link rel="stylesheet" href="http://abhipandey.com/css/poole-overrides.css?ref=abc124">
+  <link rel="stylesheet" href="http://abhipandey.com/css/hyde-overrides.css?ref=abc124">
+  <link rel="stylesheet" href="http://abhipandey.com/css/hyde-a.css?ref=abc124">
+  <link rel="stylesheet" href="http://abhipandey.com/css/custom-additions.css?ref=abc124">
+  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://abhipandey.com/touch-icon-144-precomposed.png?ref=abc124">
+  <link href="http://abhipandey.com/favicon.png?ref=abc124" rel="icon">
+
+  
+  
+  
+  
+
+  <meta name="description" content="Use getopt or getopts">
+  <meta name="keywords" content="getopt,getopts,bash,linux">
+  
+  
+  <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-68135443-1', 'auto');
+      ga('send', 'pageview');
+  </script>
+
+</head>
+<body class="theme-base-aa">
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      
+      <h1><a href="http://abhipandey.com/">Coder&rsquo;s Digest</a></h1>
+      <a href="http://abhipandey.com/"><p>Abhishek Pandey</p></a>
+    </div>
+
+    <ul class="sidebar-nav">
+      
+      <li class="sidebar-nav-item"><a href="http://abhipandey.com/post/">Posts</a></li>
+      
+      <li class="sidebar-nav-item"><a href="http://abhipandey.com/tags/">Tags</a></li>
+      
+      <li class="sidebar-nav-item"><a href="http://abhipandey.com/categories/">Categories</a></li>
+      
+      <li class="sidebar-nav-item"><a href="http://abhipandey.com/about/">About</a></li>
+      
+    </ul>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item">
+      
+      
+      
+      
+      
+      
+      
+      
+      </li>
+    </ul>
+
+    
+
+  </div>
+</div>
+
+
+<div class="content container">
+  <div class="post">
+    <h1>getopt vs getopts</h1>
+    <span class="post-date">Mar 18, 2016  &middot; <a href="http://abhipandey.com/2016/03/getopt-vs-getopts/#disqus_thread">Comments</a>
+    
+    <br/>
+    
+          <a class="a_cat" href="http://abhipandey.com/categories/code">code</a>
+      
+      
+        <a class="a_tag" href="http://abhipandey.com/tags/bash">bash</a>
+      
+
+    
+    </span>
+      <div id="_toc" class="toc">
+        <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#getopt:dd7aaebbdbc744c7f56cf7dcd59142a2">getopt</a></li>
+<li><a href="#getopts:dd7aaebbdbc744c7f56cf7dcd59142a2">getopts</a></li>
+<li><a href="#what-if-i-really-wanted-long-options-with-getopts:dd7aaebbdbc744c7f56cf7dcd59142a2">What if I really wanted long options with <em>getopts</em>?</a></li>
+</ul></li>
+</ul>
+</nav>
+      </div>
+    
+
+<p>Should you use <code>getopt</code> or <code>getopts</code> in your bash scripts?</p>
+
+<p>The answer can be a bit tricky but mostly straight forward.</p>
+
+<h2 id="getopt:dd7aaebbdbc744c7f56cf7dcd59142a2">getopt</h2>
+
+<p>Generally, try to stay away from <strong>getopt</strong> for the following reasons:</p>
+
+<ul>
+<li>External utility</li>
+<li>Traditional versions can&rsquo;t handle empty argument strings, or arguments with embedded whitespace</li>
+<li>For the loops to work perfectly, you must provide the values in the same sequence as the for loop itself; which is
+very hard to control</li>
+<li>Mostly a way to standardize the parameters</li>
+</ul>
+
+<p>The only time I could think of using <em>getopt</em> is when I really want to use a long variable name and there&rsquo;s just a single one.</p>
+
+<p>Here&rsquo;a a sample for <em>getopt</em></p>
+
+<pre><code class="language-bash">#!/bin/bash
+
+#Check the number of arguments. If none are passed, print help and exit.
+NUMARGS=$#
+# echo -e \\n&quot;Number of arguments: $NUMARGS&quot;
+if [ $NUMARGS -eq 0 ]; then
+  HELP
+fi
+
+OPTS=`getopt -o vhns: --long verbose,dry-run,help,stack-size: -n 'parse-options' -- &quot;$@&quot;`
+
+eval set -- &quot;$OPTS&quot;
+
+while getopt dir:,env: FLAG; do
+  case $FLAG in
+    -dir)
+      DIR=$OPTARG
+      echo &quot;-dir used: $OPTARG&quot;
+      ;;
+    -env)
+      PYENV=$OPTARG
+      echo &quot;-env used: $OPTARG&quot;
+      ;;
+    h)  #show help
+      HELP
+      ;;
+    \?) #unrecognized option - show help
+      echo -e \\n&quot;Option -${BOLD}$OPTARG${NORM} not allowed.&quot;
+      HELP
+      ;;
+  esac
+done
+
+shift $((OPTIND-1))  #This tells getopts to move on to the next argument.
+
+</code></pre>
+
+<h2 id="getopts:dd7aaebbdbc744c7f56cf7dcd59142a2">getopts</h2>
+
+<p>Whereas, <strong>getopts</strong> is:</p>
+
+<ul>
+<li>Portable and works in any POSIX shell</li>
+<li>Lenient with usage of &ldquo;-a -b&rdquo; as well as &ldquo;-ab&rdquo;</li>
+<li>Understands &ldquo;&ndash;&rdquo; as the option terminator</li>
+</ul>
+
+<p>Here&rsquo;s a sample for <em>getopts</em></p>
+
+<pre><code class="language-bash">
+SCRIPT=`basename ${BASH_SOURCE[0]}`
+
+## Let's do some admin work to find out the variables to be used here
+BOLD='\e[1;31m'         # Bold Red
+REV='\e[1;32m'       # Bold Green
+
+#Help function
+function HELP {
+  echo -e &quot;${REV}Basic usage:${OFF} ${BOLD}$SCRIPT -d helloworld ${OFF}&quot;\\n
+  echo -e &quot;${REV}The following switches are recognized. $OFF &quot;
+  echo -e &quot;${REV}-p ${OFF}  --Sets the environment to use for installing python ${OFF}. Default is ${BOLD} /usr/bin ${OFF}&quot;
+  echo -e &quot;${REV}-d ${OFF}  --Sets the directory whose virtualenv is to be setup. Default is ${BOLD} local folder (.) ${OFF}&quot;
+  echo -e &quot;${REV}-v ${OFF}  --Sets the python version that you want to install. Default is ${BOLD} 2.7 ${OFF}&quot;
+  echo -e &quot;${REV}-h${OFF}  --Displays this help message. No further functions are performed.&quot;\\n
+  echo -e &quot;Example: ${BOLD}$SCRIPT -d helloworld -p /opt/py27env/bin -v 2.7 ${OFF}&quot;\\n
+  exit 1
+}
+
+PYENV='/usr/bin'
+DIR='.'
+VERSION='2.7'
+
+# In case you wanted to check what variables were passed
+# echo &quot;flags = $*&quot;
+
+while getopts p:d:v:h FLAG; do
+  case $FLAG in
+    d)
+      DIR=$OPTARG
+      ;;
+    p)
+      PYENV=$OPTARG
+      ;;
+    v)
+      VERSION=$OPTARG
+      ;;
+    h)
+      HELP
+      ;;
+    \?) #unrecognized option - show help
+      echo -e \\n&quot;Option -${BOLD}$OPTARG${OFF} not allowed.&quot;
+      HELP
+      ;;
+  esac
+done
+</code></pre>
+
+<h2 id="what-if-i-really-wanted-long-options-with-getopts:dd7aaebbdbc744c7f56cf7dcd59142a2">What if I really wanted long options with <em>getopts</em>?</h2>
+
+<p><em>getopts</em> function can be used to parse long options by putting a dash character followed by a colon into the OPTSPEC.
+Sharing <a href="http://stackoverflow.com/a/7680682/142650">the solution from this link</a>.</p>
+
+<pre><code class="language-bash">#!/usr/bin/env bash 
+OPTSPEC=&quot;:hv-:&quot;
+while getopts &quot;$OPTSPEC&quot; optchar; do
+    case &quot;${optchar}&quot; in
+        -)
+            case &quot;${OPTARG}&quot; in
+                loglevel)
+                    val=&quot;${!OPTIND}&quot;; OPTIND=$(( $OPTIND + 1 ))
+                    echo &quot;Parsing option: '--${OPTARG}', value: '${val}'&quot; &gt;&amp;2;
+                    ;;
+                loglevel=*)
+                    val=${OPTARG#*=}
+                    opt=${OPTARG%=$val}
+                    echo &quot;Parsing option: '--${opt}', value: '${val}'&quot; &gt;&amp;2
+                    ;;
+                *)
+                    if [ &quot;$OPTERR&quot; = 1 ] &amp;&amp; [ &quot;${OPTSPEC:0:1}&quot; != &quot;:&quot; ]; then
+                        echo &quot;Unknown option --${OPTARG}&quot; &gt;&amp;2
+                    fi
+                    ;;
+            esac;;
+        h)
+            echo &quot;usage: $0 [-v] [--loglevel[=]&lt;value&gt;]&quot; &gt;&amp;2
+            exit 2
+            ;;
+        v)
+            echo &quot;Parsing option: '-${optchar}'&quot; &gt;&amp;2
+            ;;
+        *)
+            if [ &quot;$OPTERR&quot; != 1 ] || [ &quot;${OPTSPEC:0:1}&quot; = &quot;:&quot; ]; then
+                echo &quot;Non-option argument: '-${OPTARG}'&quot; &gt;&amp;2
+            fi
+            ;;
+    esac
+done
+</code></pre>
+
+  </div>
+  <div id="disqus_thread"></div>
+</div>
+
+
+<script type="text/javascript">
+var disqus_shortname = "abhi1010";
+(function () {
+    var s = document.createElement('script'); s.async = true;
+    s.type = 'text/javascript';
+    s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+}());
+</script>
+
+
+
+<script type="text/javascript">
+    var disqus_shortname = "abhi1010";
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+</body>
+</html>
+

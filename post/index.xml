@@ -6,8 +6,177 @@
     <description>Recent content in Posts on Coders Digest</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 09 Feb 2016 17:00:59 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 18 Mar 2016 20:20:21 +0800</lastBuildDate>
     <atom:link href="http://abhipandey.com/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>getopt vs getopts</title>
+      <link>http://abhipandey.com/2016/03/getopt-vs-getopts/</link>
+      <pubDate>Fri, 18 Mar 2016 20:20:21 +0800</pubDate>
+      
+      <guid>http://abhipandey.com/2016/03/getopt-vs-getopts/</guid>
+      <description>
+
+&lt;p&gt;Should you use &lt;code&gt;getopt&lt;/code&gt; or &lt;code&gt;getopts&lt;/code&gt; in your bash scripts?&lt;/p&gt;
+
+&lt;p&gt;The answer can be a bit tricky but mostly straight forward.&lt;/p&gt;
+
+&lt;h2 id=&#34;getopt:dd7aaebbdbc744c7f56cf7dcd59142a2&#34;&gt;getopt&lt;/h2&gt;
+
+&lt;p&gt;Generally, try to stay away from &lt;strong&gt;getopt&lt;/strong&gt; for the following reasons:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;External utility&lt;/li&gt;
+&lt;li&gt;Traditional versions can&amp;rsquo;t handle empty argument strings, or arguments with embedded whitespace&lt;/li&gt;
+&lt;li&gt;For the loops to work perfectly, you must provide the values in the same sequence as the for loop itself; which is
+very hard to control&lt;/li&gt;
+&lt;li&gt;Mostly a way to standardize the parameters&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The only time I could think of using &lt;em&gt;getopt&lt;/em&gt; is when I really want to use a long variable name and there&amp;rsquo;s just a single one.&lt;/p&gt;
+
+&lt;p&gt;Here&amp;rsquo;a a sample for &lt;em&gt;getopt&lt;/em&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;#!/bin/bash
+
+#Check the number of arguments. If none are passed, print help and exit.
+NUMARGS=$#
+# echo -e \\n&amp;quot;Number of arguments: $NUMARGS&amp;quot;
+if [ $NUMARGS -eq 0 ]; then
+  HELP
+fi
+
+OPTS=`getopt -o vhns: --long verbose,dry-run,help,stack-size: -n &#39;parse-options&#39; -- &amp;quot;$@&amp;quot;`
+
+eval set -- &amp;quot;$OPTS&amp;quot;
+
+while getopt dir:,env: FLAG; do
+  case $FLAG in
+    -dir)
+      DIR=$OPTARG
+      echo &amp;quot;-dir used: $OPTARG&amp;quot;
+      ;;
+    -env)
+      PYENV=$OPTARG
+      echo &amp;quot;-env used: $OPTARG&amp;quot;
+      ;;
+    h)  #show help
+      HELP
+      ;;
+    \?) #unrecognized option - show help
+      echo -e \\n&amp;quot;Option -${BOLD}$OPTARG${NORM} not allowed.&amp;quot;
+      HELP
+      ;;
+  esac
+done
+
+shift $((OPTIND-1))  #This tells getopts to move on to the next argument.
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;getopts:dd7aaebbdbc744c7f56cf7dcd59142a2&#34;&gt;getopts&lt;/h2&gt;
+
+&lt;p&gt;Whereas, &lt;strong&gt;getopts&lt;/strong&gt; is:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Portable and works in any POSIX shell&lt;/li&gt;
+&lt;li&gt;Lenient with usage of &amp;ldquo;-a -b&amp;rdquo; as well as &amp;ldquo;-ab&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;Understands &amp;ldquo;&amp;ndash;&amp;rdquo; as the option terminator&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Here&amp;rsquo;s a sample for &lt;em&gt;getopts&lt;/em&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;
+SCRIPT=`basename ${BASH_SOURCE[0]}`
+
+## Let&#39;s do some admin work to find out the variables to be used here
+BOLD=&#39;\e[1;31m&#39;         # Bold Red
+REV=&#39;\e[1;32m&#39;       # Bold Green
+
+#Help function
+function HELP {
+  echo -e &amp;quot;${REV}Basic usage:${OFF} ${BOLD}$SCRIPT -d helloworld ${OFF}&amp;quot;\\n
+  echo -e &amp;quot;${REV}The following switches are recognized. $OFF &amp;quot;
+  echo -e &amp;quot;${REV}-p ${OFF}  --Sets the environment to use for installing python ${OFF}. Default is ${BOLD} /usr/bin ${OFF}&amp;quot;
+  echo -e &amp;quot;${REV}-d ${OFF}  --Sets the directory whose virtualenv is to be setup. Default is ${BOLD} local folder (.) ${OFF}&amp;quot;
+  echo -e &amp;quot;${REV}-v ${OFF}  --Sets the python version that you want to install. Default is ${BOLD} 2.7 ${OFF}&amp;quot;
+  echo -e &amp;quot;${REV}-h${OFF}  --Displays this help message. No further functions are performed.&amp;quot;\\n
+  echo -e &amp;quot;Example: ${BOLD}$SCRIPT -d helloworld -p /opt/py27env/bin -v 2.7 ${OFF}&amp;quot;\\n
+  exit 1
+}
+
+PYENV=&#39;/usr/bin&#39;
+DIR=&#39;.&#39;
+VERSION=&#39;2.7&#39;
+
+# In case you wanted to check what variables were passed
+# echo &amp;quot;flags = $*&amp;quot;
+
+while getopts p:d:v:h FLAG; do
+  case $FLAG in
+    d)
+      DIR=$OPTARG
+      ;;
+    p)
+      PYENV=$OPTARG
+      ;;
+    v)
+      VERSION=$OPTARG
+      ;;
+    h)
+      HELP
+      ;;
+    \?) #unrecognized option - show help
+      echo -e \\n&amp;quot;Option -${BOLD}$OPTARG${OFF} not allowed.&amp;quot;
+      HELP
+      ;;
+  esac
+done
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;what-if-i-really-wanted-long-options-with-getopts:dd7aaebbdbc744c7f56cf7dcd59142a2&#34;&gt;What if I really wanted long options with &lt;em&gt;getopts&lt;/em&gt;?&lt;/h2&gt;
+
+&lt;p&gt;&lt;em&gt;getopts&lt;/em&gt; function can be used to parse long options by putting a dash character followed by a colon into the OPTSPEC.
+Sharing &lt;a href=&#34;http://stackoverflow.com/a/7680682/142650&#34;&gt;the solution from this link&lt;/a&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;#!/usr/bin/env bash 
+OPTSPEC=&amp;quot;:hv-:&amp;quot;
+while getopts &amp;quot;$OPTSPEC&amp;quot; optchar; do
+    case &amp;quot;${optchar}&amp;quot; in
+        -)
+            case &amp;quot;${OPTARG}&amp;quot; in
+                loglevel)
+                    val=&amp;quot;${!OPTIND}&amp;quot;; OPTIND=$(( $OPTIND + 1 ))
+                    echo &amp;quot;Parsing option: &#39;--${OPTARG}&#39;, value: &#39;${val}&#39;&amp;quot; &amp;gt;&amp;amp;2;
+                    ;;
+                loglevel=*)
+                    val=${OPTARG#*=}
+                    opt=${OPTARG%=$val}
+                    echo &amp;quot;Parsing option: &#39;--${opt}&#39;, value: &#39;${val}&#39;&amp;quot; &amp;gt;&amp;amp;2
+                    ;;
+                *)
+                    if [ &amp;quot;$OPTERR&amp;quot; = 1 ] &amp;amp;&amp;amp; [ &amp;quot;${OPTSPEC:0:1}&amp;quot; != &amp;quot;:&amp;quot; ]; then
+                        echo &amp;quot;Unknown option --${OPTARG}&amp;quot; &amp;gt;&amp;amp;2
+                    fi
+                    ;;
+            esac;;
+        h)
+            echo &amp;quot;usage: $0 [-v] [--loglevel[=]&amp;lt;value&amp;gt;]&amp;quot; &amp;gt;&amp;amp;2
+            exit 2
+            ;;
+        v)
+            echo &amp;quot;Parsing option: &#39;-${optchar}&#39;&amp;quot; &amp;gt;&amp;amp;2
+            ;;
+        *)
+            if [ &amp;quot;$OPTERR&amp;quot; != 1 ] || [ &amp;quot;${OPTSPEC:0:1}&amp;quot; = &amp;quot;:&amp;quot; ]; then
+                echo &amp;quot;Non-option argument: &#39;-${OPTARG}&#39;&amp;quot; &amp;gt;&amp;amp;2
+            fi
+            ;;
+    esac
+done
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
     
     <item>
       <title>Color your process listings</title>
@@ -944,9 +1113,9 @@ $ locale
 
 &lt;p&gt;After this, run the following command to test your fonts again.&lt;/p&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;LC_CTYPE&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;en_US.UTF-8 &lt;span style=&#34;color: #204a87&#34;&gt;echo&lt;/span&gt; &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;\u2603&amp;#39;&lt;/span&gt;
+&lt;p&gt;&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;LC_CTYPE&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;en_US.UTF-8 &lt;span style=&#34;color: #204a87&#34;&gt;echo&lt;/span&gt; &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;\u2603&amp;#39;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-
+&lt;/p&gt;
 
 &lt;p&gt;Your command should work with or without &lt;code&gt;LC_CTYPE=en_US.UTF-8&lt;/code&gt;. Here&amp;rsquo;s what you expect to see now.&lt;/p&gt;
 
@@ -1573,7 +1742,7 @@ after_success:
   - &lt;span style=&#34;color: #204a87&#34;&gt;cd&lt;/span&gt; abhi1010.github.io
   - git status -s
   - &lt;span style=&#34;color: #204a87&#34;&gt;echo&lt;/span&gt; -e &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;a\n*\nq\n&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;git add -i
-  - git commit -am &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;Automated build from Shippable - &amp;#39;&lt;/span&gt;$NOW_HOUR &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; git push
+  - git commit -am &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;Automated build from Shippable - &amp;#39;&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;$NOW_HOUR&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; git push
 
 
 notifications:
@@ -1675,16 +1844,16 @@ eb use beanstalk_env_name
   
   ENV WS &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;/ws&amp;#39;&lt;/span&gt;
   ENV CURR_HOME &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;/root&amp;#39;&lt;/span&gt;
-  WORKDIR $WS
+  WORKDIR &lt;span style=&#34;color: #000000&#34;&gt;$WS&lt;/span&gt;
   
   RUN git clone https://github.com/abhi1010/dockerprj.git &lt;span style=&#34;color: #4e9a06&#34;&gt;\&lt;/span&gt;
-   &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; . $WS/ve_envs/rwv2/bin/activate &lt;span style=&#34;color: #4e9a06&#34;&gt;\&lt;/span&gt;
-   &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; $WS/prj/rw/manage.py collectstatic --noinput
+   &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; . &lt;span style=&#34;color: #000000&#34;&gt;$WS&lt;/span&gt;/ve_envs/rwv2/bin/activate &lt;span style=&#34;color: #4e9a06&#34;&gt;\&lt;/span&gt;
+   &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;$WS&lt;/span&gt;/prj/rw/manage.py collectstatic --noinput
   
-  COPY supervisor-app.conf $WS/
+  COPY supervisor-app.conf &lt;span style=&#34;color: #000000&#34;&gt;$WS&lt;/span&gt;/
   
   RUN &lt;span style=&#34;color: #4e9a06&#34;&gt;\&lt;/span&gt;
-      cp $WS/supervisor-app.conf /etc/supervisor/supervisord.conf &lt;span style=&#34;color: #4e9a06&#34;&gt;\&lt;/span&gt;
+      cp &lt;span style=&#34;color: #000000&#34;&gt;$WS&lt;/span&gt;/supervisor-app.conf /etc/supervisor/supervisord.conf &lt;span style=&#34;color: #4e9a06&#34;&gt;\&lt;/span&gt;
    &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; chown -R www-data:www-data /var/lib/nginx
 
   VOLUME &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;[&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;/var/shared/&amp;quot;&lt;/span&gt;, &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;/etc/nginx/sites-enabled&amp;quot;&lt;/span&gt;, &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;/var/log/nginx&amp;quot;&lt;/span&gt;, &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;/ws/&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;]&lt;/span&gt;
@@ -1741,7 +1910,8 @@ eb use beanstalk_env_name
 
 &lt;ul&gt;
 &lt;li&gt;Create a file called &lt;code&gt;00001.ftp.config&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Use &lt;code&gt;pre&lt;/code&gt; folder to setup accounts&lt;/li&gt;
+&lt;li&gt;Use &lt;code&gt;pre&lt;/code&gt; folder to setup accounts
+&lt;br /&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
@@ -1867,82 +2037,6 @@ Hence, if you had to modify the &lt;code&gt;nginx&lt;/code&gt; settings to allow
     &lt;span style=&#34;color: #000000&#34;&gt;client_max_body_size&lt;/span&gt; &lt;span style=&#34;color: #0000cf; font-weight: bold&#34;&gt;0&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
-</description>
-    </item>
-    
-    <item>
-      <title>Updating Django Source with Docker Deployments</title>
-      <link>http://abhipandey.com/2015/09/updating-django-source-with-docker-deployments/</link>
-      <pubDate>Fri, 04 Sep 2015 00:11:51 +0800</pubDate>
-      
-      <guid>http://abhipandey.com/2015/09/updating-django-source-with-docker-deployments/</guid>
-      <description>
-
-&lt;p&gt;While deploying docker multiple times, you may not want to copy over your &lt;code&gt;Django&lt;/code&gt; source code every time you do a deployment.&lt;/p&gt;
-
-&lt;h1 id=&#34;setting-up-supervisord:8ef139736ad377184214844940ced19b&#34;&gt;Setting up &lt;code&gt;supervisord&lt;/code&gt;&lt;/h1&gt;
-
-&lt;p&gt;Luckily there is an easy way to manage this. Since you are working with &lt;code&gt;Django&lt;/code&gt;, there is a good chance that you are also managing the processes (like &lt;code&gt;uwsgi&lt;/code&gt;) with &lt;code&gt;supervisord&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;Here are some of the steps that you can take with &lt;code&gt;supervisord&lt;/code&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Set up a new process in &lt;code&gt;supervisord&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Do not allow it to &lt;em&gt;&lt;code&gt;autorestart&lt;/code&gt;&lt;/em&gt; since it will be a one-shot process&lt;/li&gt;
-&lt;li&gt;Call another script in any format to update the source code
-
-&lt;ul&gt;
-&lt;li&gt;As an example, I use &lt;code&gt;bash&lt;/code&gt; to update my source code through &lt;code&gt;git&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Here&amp;rsquo;s a sample code:&lt;/p&gt;
-
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;    &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;[&lt;/span&gt;program:source-updater&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;]&lt;/span&gt;
-    &lt;span style=&#34;color: #000000&#34;&gt;redirect_stderr&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #204a87&#34;&gt;true&lt;/span&gt;
-    &lt;span style=&#34;color: #000000&#34;&gt;stdout_logfile&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt; /shared/source_code_updater.log
-    &lt;span style=&#34;color: #000000&#34;&gt;directory&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt; /ws/
-    &lt;span style=&#34;color: #204a87&#34;&gt;command&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt; /ws/source_code_updater.sh
-    &lt;span style=&#34;color: #000000&#34;&gt;autorestart&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;False
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;h1 id=&#34;updating-the-source-code:8ef139736ad377184214844940ced19b&#34;&gt;Updating the source code&lt;/h1&gt;
-
-&lt;p&gt;Few things are important to note in a &lt;code&gt;docker&lt;/code&gt; deployment:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Not every commit needs to be deployed&lt;/li&gt;
-&lt;li&gt;Filter your commits to only allow &lt;strong&gt;&lt;em&gt;deployable&lt;/em&gt;&lt;/strong&gt; code to be updated on &lt;code&gt;docker&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Include regression, unit and system tests to be part of your build process&lt;/li&gt;
-&lt;li&gt;Once everything has been confirmed to be working, tag your code so that you know it is worthy of going to docker&lt;/li&gt;
-&lt;li&gt;Another way would be to manage this process through branches and merge only if everything passes&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;docker&lt;/code&gt; deployments would build off this merged branch or tagged version&lt;/li&gt;
-&lt;li&gt;This way even if you have made 10 commits while fixing a bug and are still in the process of fixing it, you know it won&amp;rsquo;t go to &lt;code&gt;docker&lt;/code&gt; deployment&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;With that idea, do a checkout and update the source code according to specific tag:&lt;/p&gt;
-
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;    git checkout -f tags/your_tag_name
-    git pull origin tags/your_tag_name
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;h1 id=&#34;telling-uwsgi-about-the-updated-source-code:8ef139736ad377184214844940ced19b&#34;&gt;Telling &lt;code&gt;uwsgi&lt;/code&gt; about the updated source code&lt;/h1&gt;
-
-&lt;p&gt;Once you have updated your source code, you need to re-load the project onto &lt;code&gt;uwsgi&lt;/code&gt; so that &lt;code&gt;nginx&lt;/code&gt; or &lt;code&gt;apache&lt;/code&gt; can pick it up.
-The simplest way to achieve it using the config parameter of &lt;code&gt;uwsgi&lt;/code&gt;: &lt;code&gt;--touch-reload&lt;/code&gt;. It will &lt;em&gt;reload uWSGI if the specified file is modified/touched&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;Just remember to setup &lt;code&gt;supervisord&lt;/code&gt; in your &lt;code&gt;Dockerfile&lt;/code&gt; with this config parameter.&lt;/p&gt;
-
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;[&lt;/span&gt;program:app-uwsgi&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;]&lt;/span&gt;
-&lt;span style=&#34;color: #000000&#34;&gt;redirect_stderr&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #204a87&#34;&gt;true&lt;/span&gt;
-&lt;span style=&#34;color: #000000&#34;&gt;stdout_logfile&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt; /var/shared/_uwsgi.log
-&lt;span style=&#34;color: #204a87&#34;&gt;command&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt; /ws/ve_envs/rwv2/bin/uwsgi --touch-reload&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;/ws/wsgi.ini --ini /ws/wsgi.ini
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;You can choose any file. I choose &lt;code&gt;uwsgi.ini&lt;/code&gt; because the contents never really need to change in it.&lt;/p&gt;
 </description>
     </item>
     

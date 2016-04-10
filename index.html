@@ -90,6 +90,183 @@
     
     <div class="post">
       <h1 class="post-title">
+        <a href="http://abhipandey.com/2016/03/getopt-vs-getopts/">getopt vs getopts</a>
+      </h1>
+      <span class="post-date">Mar 18, 2016  &middot; <a href="http://abhipandey.com/2016/03/getopt-vs-getopts/#disqus_thread">Comments</a>
+      
+      <br/>
+      <a class="a_cat" href="http://abhipandey.com/categories/code">code</a>
+        
+      <a class="a_tag" href="http://abhipandey.com/tags/bash">bash</a>
+    
+      </span>
+      
+      
+
+<p>Should you use <code>getopt</code> or <code>getopts</code> in your bash scripts?</p>
+
+<p>The answer can be a bit tricky but mostly straight forward.</p>
+
+<h2 id="getopt:dd7aaebbdbc744c7f56cf7dcd59142a2">getopt</h2>
+
+<p>Generally, try to stay away from <strong>getopt</strong> for the following reasons:</p>
+
+<ul>
+<li>External utility</li>
+<li>Traditional versions can&rsquo;t handle empty argument strings, or arguments with embedded whitespace</li>
+<li>For the loops to work perfectly, you must provide the values in the same sequence as the for loop itself; which is
+very hard to control</li>
+<li>Mostly a way to standardize the parameters</li>
+</ul>
+
+<p>The only time I could think of using <em>getopt</em> is when I really want to use a long variable name and there&rsquo;s just a single one.</p>
+
+<p>Here&rsquo;a a sample for <em>getopt</em></p>
+
+<pre><code class="language-bash">#!/bin/bash
+
+#Check the number of arguments. If none are passed, print help and exit.
+NUMARGS=$#
+# echo -e \\n&quot;Number of arguments: $NUMARGS&quot;
+if [ $NUMARGS -eq 0 ]; then
+  HELP
+fi
+
+OPTS=`getopt -o vhns: --long verbose,dry-run,help,stack-size: -n 'parse-options' -- &quot;$@&quot;`
+
+eval set -- &quot;$OPTS&quot;
+
+while getopt dir:,env: FLAG; do
+  case $FLAG in
+    -dir)
+      DIR=$OPTARG
+      echo &quot;-dir used: $OPTARG&quot;
+      ;;
+    -env)
+      PYENV=$OPTARG
+      echo &quot;-env used: $OPTARG&quot;
+      ;;
+    h)  #show help
+      HELP
+      ;;
+    \?) #unrecognized option - show help
+      echo -e \\n&quot;Option -${BOLD}$OPTARG${NORM} not allowed.&quot;
+      HELP
+      ;;
+  esac
+done
+
+shift $((OPTIND-1))  #This tells getopts to move on to the next argument.
+
+</code></pre>
+
+<h2 id="getopts:dd7aaebbdbc744c7f56cf7dcd59142a2">getopts</h2>
+
+<p>Whereas, <strong>getopts</strong> is:</p>
+
+<ul>
+<li>Portable and works in any POSIX shell</li>
+<li>Lenient with usage of &ldquo;-a -b&rdquo; as well as &ldquo;-ab&rdquo;</li>
+<li>Understands &ldquo;&ndash;&rdquo; as the option terminator</li>
+</ul>
+
+<p>Here&rsquo;s a sample for <em>getopts</em></p>
+
+<pre><code class="language-bash">
+SCRIPT=`basename ${BASH_SOURCE[0]}`
+
+## Let's do some admin work to find out the variables to be used here
+BOLD='\e[1;31m'         # Bold Red
+REV='\e[1;32m'       # Bold Green
+
+#Help function
+function HELP {
+  echo -e &quot;${REV}Basic usage:${OFF} ${BOLD}$SCRIPT -d helloworld ${OFF}&quot;\\n
+  echo -e &quot;${REV}The following switches are recognized. $OFF &quot;
+  echo -e &quot;${REV}-p ${OFF}  --Sets the environment to use for installing python ${OFF}. Default is ${BOLD} /usr/bin ${OFF}&quot;
+  echo -e &quot;${REV}-d ${OFF}  --Sets the directory whose virtualenv is to be setup. Default is ${BOLD} local folder (.) ${OFF}&quot;
+  echo -e &quot;${REV}-v ${OFF}  --Sets the python version that you want to install. Default is ${BOLD} 2.7 ${OFF}&quot;
+  echo -e &quot;${REV}-h${OFF}  --Displays this help message. No further functions are performed.&quot;\\n
+  echo -e &quot;Example: ${BOLD}$SCRIPT -d helloworld -p /opt/py27env/bin -v 2.7 ${OFF}&quot;\\n
+  exit 1
+}
+
+PYENV='/usr/bin'
+DIR='.'
+VERSION='2.7'
+
+# In case you wanted to check what variables were passed
+# echo &quot;flags = $*&quot;
+
+while getopts p:d:v:h FLAG; do
+  case $FLAG in
+    d)
+      DIR=$OPTARG
+      ;;
+    p)
+      PYENV=$OPTARG
+      ;;
+    v)
+      VERSION=$OPTARG
+      ;;
+    h)
+      HELP
+      ;;
+    \?) #unrecognized option - show help
+      echo -e \\n&quot;Option -${BOLD}$OPTARG${OFF} not allowed.&quot;
+      HELP
+      ;;
+  esac
+done
+</code></pre>
+
+<h2 id="what-if-i-really-wanted-long-options-with-getopts:dd7aaebbdbc744c7f56cf7dcd59142a2">What if I really wanted long options with <em>getopts</em>?</h2>
+
+<p><em>getopts</em> function can be used to parse long options by putting a dash character followed by a colon into the OPTSPEC.
+Sharing <a href="http://stackoverflow.com/a/7680682/142650">the solution from this link</a>.</p>
+
+<pre><code class="language-bash">#!/usr/bin/env bash 
+OPTSPEC=&quot;:hv-:&quot;
+while getopts &quot;$OPTSPEC&quot; optchar; do
+    case &quot;${optchar}&quot; in
+        -)
+            case &quot;${OPTARG}&quot; in
+                loglevel)
+                    val=&quot;${!OPTIND}&quot;; OPTIND=$(( $OPTIND + 1 ))
+                    echo &quot;Parsing option: '--${OPTARG}', value: '${val}'&quot; &gt;&amp;2;
+                    ;;
+                loglevel=*)
+                    val=${OPTARG#*=}
+                    opt=${OPTARG%=$val}
+                    echo &quot;Parsing option: '--${opt}', value: '${val}'&quot; &gt;&amp;2
+                    ;;
+                *)
+                    if [ &quot;$OPTERR&quot; = 1 ] &amp;&amp; [ &quot;${OPTSPEC:0:1}&quot; != &quot;:&quot; ]; then
+                        echo &quot;Unknown option --${OPTARG}&quot; &gt;&amp;2
+                    fi
+                    ;;
+            esac;;
+        h)
+            echo &quot;usage: $0 [-v] [--loglevel[=]&lt;value&gt;]&quot; &gt;&amp;2
+            exit 2
+            ;;
+        v)
+            echo &quot;Parsing option: '-${optchar}'&quot; &gt;&amp;2
+            ;;
+        *)
+            if [ &quot;$OPTERR&quot; != 1 ] || [ &quot;${OPTSPEC:0:1}&quot; = &quot;:&quot; ]; then
+                echo &quot;Non-option argument: '-${OPTARG}'&quot; &gt;&amp;2
+            fi
+            ;;
+    esac
+done
+</code></pre>
+
+      
+    </div>
+    
+    <div class="post">
+      <h1 class="post-title">
         <a href="http://abhipandey.com/2016/02/color-your-process-listings/">Color your process listings</a>
       </h1>
       <span class="post-date">Feb 9, 2016  &middot; <a href="http://abhipandey.com/2016/02/color-your-process-listings/#disqus_thread">Comments</a>
@@ -1086,9 +1263,9 @@ $ locale
 
 <p>After this, run the following command to test your fonts again.</p>
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #000000">LC_CTYPE</span><span style="color: #ce5c00; font-weight: bold">=</span>en_US.UTF-8 <span style="color: #204a87">echo</span> <span style="color: #4e9a06">&#39;\u2603&#39;</span>
+<p><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #000000">LC_CTYPE</span><span style="color: #ce5c00; font-weight: bold">=</span>en_US.UTF-8 <span style="color: #204a87">echo</span> <span style="color: #4e9a06">&#39;\u2603&#39;</span>
 </pre></div>
-
+</p>
 
 <p>Your command should work with or without <code>LC_CTYPE=en_US.UTF-8</code>. Here&rsquo;s what you expect to see now.</p>
 
@@ -1199,47 +1376,6 @@ We use it in our current setup to do a full testing and deployment onto <code>AW
 
 <p><em>Note:</em> Remember to use variables in <code>Gitlab CI</code> to set up your bitbucket username and password.
   <strong>This had to be done</strong> because you can&rsquo;t have any ssh key from <code>Gitlab</code> to add it to <code>Bitbucket</code></p>
-
-      
-    </div>
-    
-    <div class="post">
-      <h1 class="post-title">
-        <a href="http://abhipandey.com/2015/09/git-loc-stats-by-time-range/">Git LOC Stats by Time Range</a>
-      </h1>
-      <span class="post-date">Sep 17, 2015  &middot; <a href="http://abhipandey.com/2015/09/git-loc-stats-by-time-range/#disqus_thread">Comments</a>
-      
-      <br/>
-      <a class="a_cat" href="http://abhipandey.com/categories/code">code</a>
-        
-      <a class="a_tag" href="http://abhipandey.com/tags/bash">bash</a><a class="a_tag" href="http://abhipandey.com/tags/git">git</a>
-    
-      </span>
-      
-      <p>Recently had an interest in seeing how many LOC were committed to the code base over a particular period of
-time. After some tinkering around, mainly to find out the correct format for time ranges, decided to use the following bash script for finding coding stats.
-Following sample is to find out lines added or removed during the year 2014.</p>
-
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>$ git log --after<span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #4e9a06">&quot;2014-1-1&quot;</span> --before<span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #4e9a06">&quot;2014-12-31&quot;</span> --pretty<span style="color: #ce5c00; font-weight: bold">=</span>tformat: --numstat 
-    <span style="color: #000000; font-weight: bold">|</span> awk <span style="color: #4e9a06">&#39;{ if ( $2 != 0 &amp;&amp; $1 != 0 ) print $0 }&#39;</span> 
-    <span style="color: #000000; font-weight: bold">|</span> gawk <span style="color: #4e9a06">&#39;{ add += $1; subs += $2; loc += $1 - $2 } END { printf &quot;Added lines: %s Removed lines: %s Total # of lines: %s\n&quot;, add, subs, loc }&#39;</span>
-</pre></div>
-
-
-<p>The result will be as follows:</p>
-
-<pre><code>Added lines: 327505 Removed lines: 243860 Total # of lines: 83645
-</code></pre>
-
-<p>You will notice in the second line that I am doing the following:
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #000000; font-style: italic"> if ( $2 != 0 &amp;&amp; $1 != 0 ) </span>
-</pre></div>
-</p>
-
-<p>This is simply to discard off any commit numbers that were pure addition or deletion (with no corresponding delete or add in the same commit).
-It may also remove some numbers that were actually valid commits but mostly it is to protect ourselves against any library or API that we may have added or replaced during that time period.</p>
-
-<p>For time range, you may even use something like <code>--since=&quot;1 year ago&quot;</code> and that will also yield similar results.</p>
 
       
     </div>

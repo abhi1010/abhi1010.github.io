@@ -244,7 +244,7 @@ after_success:
   - &lt;span style=&#34;color: #204a87&#34;&gt;cd&lt;/span&gt; abhi1010.github.io
   - git status -s
   - &lt;span style=&#34;color: #204a87&#34;&gt;echo&lt;/span&gt; -e &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;a\n*\nq\n&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;git add -i
-  - git commit -am &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;Automated build from Shippable - &amp;#39;&lt;/span&gt;$NOW_HOUR &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; git push
+  - git commit -am &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;Automated build from Shippable - &amp;#39;&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;$NOW_HOUR&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; git push
 
 
 notifications:
@@ -346,16 +346,16 @@ eb use beanstalk_env_name
   
   ENV WS &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;/ws&amp;#39;&lt;/span&gt;
   ENV CURR_HOME &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;/root&amp;#39;&lt;/span&gt;
-  WORKDIR $WS
+  WORKDIR &lt;span style=&#34;color: #000000&#34;&gt;$WS&lt;/span&gt;
   
   RUN git clone https://github.com/abhi1010/dockerprj.git &lt;span style=&#34;color: #4e9a06&#34;&gt;\&lt;/span&gt;
-   &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; . $WS/ve_envs/rwv2/bin/activate &lt;span style=&#34;color: #4e9a06&#34;&gt;\&lt;/span&gt;
-   &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; $WS/prj/rw/manage.py collectstatic --noinput
+   &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; . &lt;span style=&#34;color: #000000&#34;&gt;$WS&lt;/span&gt;/ve_envs/rwv2/bin/activate &lt;span style=&#34;color: #4e9a06&#34;&gt;\&lt;/span&gt;
+   &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;$WS&lt;/span&gt;/prj/rw/manage.py collectstatic --noinput
   
-  COPY supervisor-app.conf $WS/
+  COPY supervisor-app.conf &lt;span style=&#34;color: #000000&#34;&gt;$WS&lt;/span&gt;/
   
   RUN &lt;span style=&#34;color: #4e9a06&#34;&gt;\&lt;/span&gt;
-      cp $WS/supervisor-app.conf /etc/supervisor/supervisord.conf &lt;span style=&#34;color: #4e9a06&#34;&gt;\&lt;/span&gt;
+      cp &lt;span style=&#34;color: #000000&#34;&gt;$WS&lt;/span&gt;/supervisor-app.conf /etc/supervisor/supervisord.conf &lt;span style=&#34;color: #4e9a06&#34;&gt;\&lt;/span&gt;
    &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; chown -R www-data:www-data /var/lib/nginx
 
   VOLUME &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;[&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;/var/shared/&amp;quot;&lt;/span&gt;, &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;/etc/nginx/sites-enabled&amp;quot;&lt;/span&gt;, &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;/var/log/nginx&amp;quot;&lt;/span&gt;, &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;/ws/&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;]&lt;/span&gt;
@@ -412,7 +412,8 @@ eb use beanstalk_env_name
 
 &lt;ul&gt;
 &lt;li&gt;Create a file called &lt;code&gt;00001.ftp.config&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Use &lt;code&gt;pre&lt;/code&gt; folder to setup accounts&lt;/li&gt;
+&lt;li&gt;Use &lt;code&gt;pre&lt;/code&gt; folder to setup accounts
+&lt;br /&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 

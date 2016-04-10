@@ -25,7 +25,12 @@
 &lt;li&gt;&lt;p&gt;Sometime indexing to reference the Workbooks or Worksheets may not work so try out other values&lt;/p&gt;&lt;/li&gt;
 
 &lt;li&gt;&lt;ul&gt;
-&lt;li&gt;I remember this was not a problem with Visual Studio 2010 but something must have happened in Visual Studio 2012&lt;/li&gt;
+&lt;li&gt;I remember this was not a problem with Visual Studio 2010 but something must have happened in Visual Studio 2012
+
+
+
+
+&lt;br /&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 
 &lt;li&gt;&lt;p&gt;It is also possible to try Workbook names to try and retrieve them&lt;/p&gt;&lt;/li&gt;

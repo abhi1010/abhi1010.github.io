@@ -194,7 +194,7 @@ after_success:
   - <span style="color: #204a87">cd</span> abhi1010.github.io
   - git status -s
   - <span style="color: #204a87">echo</span> -e <span style="color: #4e9a06">&quot;a\n*\nq\n&quot;</span><span style="color: #000000; font-weight: bold">|</span>git add -i
-  - git commit -am <span style="color: #4e9a06">&#39;Automated build from Shippable - &#39;</span>$NOW_HOUR <span style="color: #ce5c00; font-weight: bold">&amp;&amp;</span> git push
+  - git commit -am <span style="color: #4e9a06">&#39;Automated build from Shippable - &#39;</span><span style="color: #000000">$NOW_HOUR</span> <span style="color: #ce5c00; font-weight: bold">&amp;&amp;</span> git push
 
 
 notifications:
@@ -296,16 +296,16 @@ eb use beanstalk_env_name
   
   ENV WS <span style="color: #4e9a06">&#39;/ws&#39;</span>
   ENV CURR_HOME <span style="color: #4e9a06">&#39;/root&#39;</span>
-  WORKDIR $WS
+  WORKDIR <span style="color: #000000">$WS</span>
   
   RUN git clone https://github.com/abhi1010/dockerprj.git <span style="color: #4e9a06">\</span>
-   <span style="color: #ce5c00; font-weight: bold">&amp;&amp;</span> . $WS/ve_envs/rwv2/bin/activate <span style="color: #4e9a06">\</span>
-   <span style="color: #ce5c00; font-weight: bold">&amp;&amp;</span> $WS/prj/rw/manage.py collectstatic --noinput
+   <span style="color: #ce5c00; font-weight: bold">&amp;&amp;</span> . <span style="color: #000000">$WS</span>/ve_envs/rwv2/bin/activate <span style="color: #4e9a06">\</span>
+   <span style="color: #ce5c00; font-weight: bold">&amp;&amp;</span> <span style="color: #000000">$WS</span>/prj/rw/manage.py collectstatic --noinput
   
-  COPY supervisor-app.conf $WS/
+  COPY supervisor-app.conf <span style="color: #000000">$WS</span>/
   
   RUN <span style="color: #4e9a06">\</span>
-      cp $WS/supervisor-app.conf /etc/supervisor/supervisord.conf <span style="color: #4e9a06">\</span>
+      cp <span style="color: #000000">$WS</span>/supervisor-app.conf /etc/supervisor/supervisord.conf <span style="color: #4e9a06">\</span>
    <span style="color: #ce5c00; font-weight: bold">&amp;&amp;</span> chown -R www-data:www-data /var/lib/nginx
 
   VOLUME <span style="color: #ce5c00; font-weight: bold">[</span><span style="color: #4e9a06">&quot;/var/shared/&quot;</span>, <span style="color: #4e9a06">&quot;/etc/nginx/sites-enabled&quot;</span>, <span style="color: #4e9a06">&quot;/var/log/nginx&quot;</span>, <span style="color: #4e9a06">&quot;/ws/&quot;</span><span style="color: #ce5c00; font-weight: bold">]</span>
@@ -362,7 +362,8 @@ eb use beanstalk_env_name
 
 <ul>
 <li>Create a file called <code>00001.ftp.config</code></li>
-<li>Use <code>pre</code> folder to setup accounts</li>
+<li>Use <code>pre</code> folder to setup accounts
+<br /></li>
 </ul></li>
 </ul>
 
