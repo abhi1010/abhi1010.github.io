@@ -107,18 +107,17 @@ parameters. However, since there are so many of them, it is very difficult to vi
 and find out what value was assigned to it. I wanted to make it easier on the eyes and decided to color code the
 parameters and separate them out from the values.
 Here&rsquo;s the bash function I pulled out.</p>
-
-<pre><code class="language-bash">colorme()
-{
-  gawk 'BEGIN {RS=&quot; --| -&quot;; }{print $0}' \
-  | sed -e 's/\([[:alpha:]]\+\)=/\1 /g' \
-  | gawk 'BEGIN    {printf &quot;-----------------\n&quot; ; }
-            {
-                if (NF &gt; 2) printf &quot;\n\033[41;5;1m%s\033[0m\n&quot;, $NF ;
-                printf &quot;\033[40;38;5;82m  %30s  \033[38;5;198m %s \033[0m \n&quot;, $1, $2
-            }'
-}
-</code></pre>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>colorme<span style="color: #ce5c00; font-weight: bold">()</span>
+<span style="color: #ce5c00; font-weight: bold">{</span>
+  gawk <span style="color: #4e9a06">&#39;BEGIN {RS=&quot; --| -&quot;; }{print $0}&#39;</span> <span style="color: #4e9a06">\</span>
+  <span style="color: #000000; font-weight: bold">|</span> sed -e <span style="color: #4e9a06">&#39;s/\([[:alpha:]]\+\)=/\1 /g&#39;</span> <span style="color: #4e9a06">\</span>
+  <span style="color: #000000; font-weight: bold">|</span> gawk <span style="color: #4e9a06">&#39;BEGIN    {printf &quot;-----------------\n&quot; ; }</span>
+<span style="color: #4e9a06">            {</span>
+<span style="color: #4e9a06">                if (NF &gt; 2) printf &quot;\n\033[41;5;1m%s\033[0m\n&quot;, $NF ;</span>
+<span style="color: #4e9a06">                printf &quot;\033[40;38;5;82m  %30s  \033[38;5;198m %s \033[0m \n&quot;, $1, $2</span>
+<span style="color: #4e9a06">            }&#39;</span>
+<span style="color: #ce5c00; font-weight: bold">}</span>
+</pre></div>
 
 <p>The idea is as follows:</p>
 
@@ -132,14 +131,13 @@ Here&rsquo;s the bash function I pulled out.</p>
 </ul>
 
 <p>Here is a sample command I wanted to test out.</p>
-
-<pre><code class="language-bash">/opt/py27env/bin/python manage.py main-service-name --daemonize \
-    --alias-svc=mainsvc01 --application-id=app03/mainsvc01 --monitoring-service-name=mainsvc01 \
-    --log-level=DEBUG --solace-session-prop-host=server.prod --solace-session-prop-username=testing \
-    --solace-session-prop-password=testing --solace-session-prop-vpn=testing \
-    --solace-session-prop-cache-name=test_dc \
-    --rate=10
-</code></pre>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>/opt/py27env/bin/python manage.py main-service-name --daemonize <span style="color: #4e9a06">\</span>
+    --alias-svc<span style="color: #ce5c00; font-weight: bold">=</span>mainsvc01 --application-id<span style="color: #ce5c00; font-weight: bold">=</span>app03/mainsvc01 --monitoring-service-name<span style="color: #ce5c00; font-weight: bold">=</span>mainsvc01 <span style="color: #4e9a06">\</span>
+    --log-level<span style="color: #ce5c00; font-weight: bold">=</span>DEBUG --solace-session-prop-host<span style="color: #ce5c00; font-weight: bold">=</span>server.prod --solace-session-prop-username<span style="color: #ce5c00; font-weight: bold">=</span>testing <span style="color: #4e9a06">\</span>
+    --solace-session-prop-password<span style="color: #ce5c00; font-weight: bold">=</span>testing --solace-session-prop-vpn<span style="color: #ce5c00; font-weight: bold">=</span>testing <span style="color: #4e9a06">\</span>
+    --solace-session-prop-cache-name<span style="color: #ce5c00; font-weight: bold">=</span>test_dc <span style="color: #4e9a06">\</span>
+    --rate<span style="color: #ce5c00; font-weight: bold">=</span>10
+</pre></div>
 
 <p>Here is the result from my tests:
 

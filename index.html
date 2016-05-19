@@ -122,43 +122,41 @@ very hard to control</li>
 <p>The only time I could think of using <em>getopt</em> is when I really want to use a long variable name and there&rsquo;s just a single one.</p>
 
 <p>Here&rsquo;a a sample for <em>getopt</em></p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #8f5902; font-style: italic">#!/bin/bash</span>
 
-<pre><code class="language-bash">#!/bin/bash
-
-#Check the number of arguments. If none are passed, print help and exit.
-NUMARGS=$#
-# echo -e \\n&quot;Number of arguments: $NUMARGS&quot;
-if [ $NUMARGS -eq 0 ]; then
+<span style="color: #8f5902; font-style: italic">#Check the number of arguments. If none are passed, print help and exit.</span>
+<span style="color: #000000">NUMARGS</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #000000">$#</span>
+<span style="color: #8f5902; font-style: italic"># echo -e \\n&quot;Number of arguments: $NUMARGS&quot;</span>
+<span style="color: #204a87; font-weight: bold">if</span> <span style="color: #ce5c00; font-weight: bold">[</span> <span style="color: #000000">$NUMARGS</span> -eq <span style="color: #0000cf; font-weight: bold">0</span> <span style="color: #ce5c00; font-weight: bold">]</span><span style="color: #000000; font-weight: bold">;</span> <span style="color: #204a87; font-weight: bold">then</span>
   HELP
-fi
+<span style="color: #204a87; font-weight: bold">fi</span>
 
-OPTS=`getopt -o vhns: --long verbose,dry-run,help,stack-size: -n 'parse-options' -- &quot;$@&quot;`
+<span style="color: #000000">OPTS</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #4e9a06">`</span>getopt -o vhns: --long verbose,dry-run,help,stack-size: -n <span style="color: #4e9a06">&#39;parse-options&#39;</span> -- <span style="color: #4e9a06">&quot;</span><span style="color: #000000">$@</span><span style="color: #4e9a06">&quot;`</span>
 
-eval set -- &quot;$OPTS&quot;
+<span style="color: #204a87">eval</span> <span style="color: #204a87">set</span> -- <span style="color: #4e9a06">&quot;</span><span style="color: #000000">$OPTS</span><span style="color: #4e9a06">&quot;</span>
 
-while getopt dir:,env: FLAG; do
-  case $FLAG in
-    -dir)
-      DIR=$OPTARG
-      echo &quot;-dir used: $OPTARG&quot;
-      ;;
-    -env)
-      PYENV=$OPTARG
-      echo &quot;-env used: $OPTARG&quot;
-      ;;
-    h)  #show help
+<span style="color: #204a87; font-weight: bold">while</span> getopt dir:,env: FLAG<span style="color: #000000; font-weight: bold">;</span> <span style="color: #204a87; font-weight: bold">do</span>
+  <span style="color: #204a87; font-weight: bold">case</span> <span style="color: #000000">$FLAG</span> in
+    -dir<span style="color: #ce5c00; font-weight: bold">)</span>
+      <span style="color: #000000">DIR</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #000000">$OPTARG</span>
+      <span style="color: #204a87">echo</span> <span style="color: #4e9a06">&quot;-dir used: </span><span style="color: #000000">$OPTARG</span><span style="color: #4e9a06">&quot;</span>
+      <span style="color: #000000; font-weight: bold">;;</span>
+    -env<span style="color: #ce5c00; font-weight: bold">)</span>
+      <span style="color: #000000">PYENV</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #000000">$OPTARG</span>
+      <span style="color: #204a87">echo</span> <span style="color: #4e9a06">&quot;-env used: </span><span style="color: #000000">$OPTARG</span><span style="color: #4e9a06">&quot;</span>
+      <span style="color: #000000; font-weight: bold">;;</span>
+    h<span style="color: #ce5c00; font-weight: bold">)</span>  <span style="color: #8f5902; font-style: italic">#show help</span>
       HELP
-      ;;
-    \?) #unrecognized option - show help
-      echo -e \\n&quot;Option -${BOLD}$OPTARG${NORM} not allowed.&quot;
+      <span style="color: #000000; font-weight: bold">;;</span>
+    <span style="color: #4e9a06">\?</span><span style="color: #ce5c00; font-weight: bold">)</span> <span style="color: #8f5902; font-style: italic">#unrecognized option - show help</span>
+      <span style="color: #204a87">echo</span> -e <span style="color: #4e9a06">\\</span>n<span style="color: #4e9a06">&quot;Option -${</span><span style="color: #000000">BOLD</span><span style="color: #4e9a06">}</span><span style="color: #000000">$OPTARG</span><span style="color: #4e9a06">${</span><span style="color: #000000">NORM</span><span style="color: #4e9a06">} not allowed.&quot;</span>
       HELP
-      ;;
-  esac
-done
+      <span style="color: #000000; font-weight: bold">;;</span>
+  <span style="color: #204a87; font-weight: bold">esac</span>
+<span style="color: #204a87; font-weight: bold">done</span>
 
-shift $((OPTIND-1))  #This tells getopts to move on to the next argument.
-
-</code></pre>
+<span style="color: #204a87">shift</span> <span style="color: #204a87; font-weight: bold">$((</span>OPTIND-1<span style="color: #204a87; font-weight: bold">))</span>  <span style="color: #8f5902; font-style: italic">#This tells getopts to move on to the next argument.</span>
+</pre></div>
 
 <h2 id="getopts:dd7aaebbdbc744c7f56cf7dcd59142a2">getopts</h2>
 
@@ -171,96 +169,93 @@ shift $((OPTIND-1))  #This tells getopts to move on to the next argument.
 </ul>
 
 <p>Here&rsquo;s a sample for <em>getopts</em></p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #000000">SCRIPT</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #4e9a06">`</span>basename <span style="color: #4e9a06">${</span><span style="color: #000000">BASH_SOURCE</span><span style="color: #000000; font-weight: bold">[0]</span><span style="color: #4e9a06">}`</span>
 
-<pre><code class="language-bash">
-SCRIPT=`basename ${BASH_SOURCE[0]}`
+<span style="color: #8f5902; font-style: italic">## Let&#39;s do some admin work to find out the variables to be used here</span>
+<span style="color: #000000">BOLD</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #4e9a06">&#39;\e[1;31m&#39;</span>         <span style="color: #8f5902; font-style: italic"># Bold Red</span>
+<span style="color: #000000">REV</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #4e9a06">&#39;\e[1;32m&#39;</span>       <span style="color: #8f5902; font-style: italic"># Bold Green</span>
 
-## Let's do some admin work to find out the variables to be used here
-BOLD='\e[1;31m'         # Bold Red
-REV='\e[1;32m'       # Bold Green
+<span style="color: #8f5902; font-style: italic">#Help function</span>
+<span style="color: #204a87; font-weight: bold">function</span> HELP <span style="color: #ce5c00; font-weight: bold">{</span>
+  <span style="color: #204a87">echo</span> -e <span style="color: #4e9a06">&quot;${</span><span style="color: #000000">REV</span><span style="color: #4e9a06">}Basic usage:${</span><span style="color: #000000">OFF</span><span style="color: #4e9a06">} ${</span><span style="color: #000000">BOLD</span><span style="color: #4e9a06">}</span><span style="color: #000000">$SCRIPT</span><span style="color: #4e9a06"> -d helloworld ${</span><span style="color: #000000">OFF</span><span style="color: #4e9a06">}&quot;\\</span>n
+  <span style="color: #204a87">echo</span> -e <span style="color: #4e9a06">&quot;${</span><span style="color: #000000">REV</span><span style="color: #4e9a06">}The following switches are recognized. </span><span style="color: #000000">$OFF</span><span style="color: #4e9a06"> &quot;</span>
+  <span style="color: #204a87">echo</span> -e <span style="color: #4e9a06">&quot;${</span><span style="color: #000000">REV</span><span style="color: #4e9a06">}-p ${</span><span style="color: #000000">OFF</span><span style="color: #4e9a06">}  --Sets the environment to use for installing python ${</span><span style="color: #000000">OFF</span><span style="color: #4e9a06">}. Default is ${</span><span style="color: #000000">BOLD</span><span style="color: #4e9a06">} /usr/bin ${</span><span style="color: #000000">OFF</span><span style="color: #4e9a06">}&quot;</span>
+  <span style="color: #204a87">echo</span> -e <span style="color: #4e9a06">&quot;${</span><span style="color: #000000">REV</span><span style="color: #4e9a06">}-d ${</span><span style="color: #000000">OFF</span><span style="color: #4e9a06">}  --Sets the directory whose virtualenv is to be setup. Default is ${</span><span style="color: #000000">BOLD</span><span style="color: #4e9a06">} local folder (.) ${</span><span style="color: #000000">OFF</span><span style="color: #4e9a06">}&quot;</span>
+  <span style="color: #204a87">echo</span> -e <span style="color: #4e9a06">&quot;${</span><span style="color: #000000">REV</span><span style="color: #4e9a06">}-v ${</span><span style="color: #000000">OFF</span><span style="color: #4e9a06">}  --Sets the python version that you want to install. Default is ${</span><span style="color: #000000">BOLD</span><span style="color: #4e9a06">} 2.7 ${</span><span style="color: #000000">OFF</span><span style="color: #4e9a06">}&quot;</span>
+  <span style="color: #204a87">echo</span> -e <span style="color: #4e9a06">&quot;${</span><span style="color: #000000">REV</span><span style="color: #4e9a06">}-h${</span><span style="color: #000000">OFF</span><span style="color: #4e9a06">}  --Displays this help message. No further functions are performed.&quot;\\</span>n
+  <span style="color: #204a87">echo</span> -e <span style="color: #4e9a06">&quot;Example: ${</span><span style="color: #000000">BOLD</span><span style="color: #4e9a06">}</span><span style="color: #000000">$SCRIPT</span><span style="color: #4e9a06"> -d helloworld -p /opt/py27env/bin -v 2.7 ${</span><span style="color: #000000">OFF</span><span style="color: #4e9a06">}&quot;\\</span>n
+  <span style="color: #204a87">exit</span> 1
+<span style="color: #ce5c00; font-weight: bold">}</span>
 
-#Help function
-function HELP {
-  echo -e &quot;${REV}Basic usage:${OFF} ${BOLD}$SCRIPT -d helloworld ${OFF}&quot;\\n
-  echo -e &quot;${REV}The following switches are recognized. $OFF &quot;
-  echo -e &quot;${REV}-p ${OFF}  --Sets the environment to use for installing python ${OFF}. Default is ${BOLD} /usr/bin ${OFF}&quot;
-  echo -e &quot;${REV}-d ${OFF}  --Sets the directory whose virtualenv is to be setup. Default is ${BOLD} local folder (.) ${OFF}&quot;
-  echo -e &quot;${REV}-v ${OFF}  --Sets the python version that you want to install. Default is ${BOLD} 2.7 ${OFF}&quot;
-  echo -e &quot;${REV}-h${OFF}  --Displays this help message. No further functions are performed.&quot;\\n
-  echo -e &quot;Example: ${BOLD}$SCRIPT -d helloworld -p /opt/py27env/bin -v 2.7 ${OFF}&quot;\\n
-  exit 1
-}
+<span style="color: #000000">PYENV</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #4e9a06">&#39;/usr/bin&#39;</span>
+<span style="color: #000000">DIR</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #4e9a06">&#39;.&#39;</span>
+<span style="color: #000000">VERSION</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #4e9a06">&#39;2.7&#39;</span>
 
-PYENV='/usr/bin'
-DIR='.'
-VERSION='2.7'
+<span style="color: #8f5902; font-style: italic"># In case you wanted to check what variables were passed</span>
+<span style="color: #8f5902; font-style: italic"># echo &quot;flags = $*&quot;</span>
 
-# In case you wanted to check what variables were passed
-# echo &quot;flags = $*&quot;
-
-while getopts p:d:v:h FLAG; do
-  case $FLAG in
-    d)
-      DIR=$OPTARG
-      ;;
-    p)
-      PYENV=$OPTARG
-      ;;
-    v)
-      VERSION=$OPTARG
-      ;;
-    h)
+<span style="color: #204a87; font-weight: bold">while</span> <span style="color: #204a87">getopts</span> p:d:v:h FLAG<span style="color: #000000; font-weight: bold">;</span> <span style="color: #204a87; font-weight: bold">do</span>
+  <span style="color: #204a87; font-weight: bold">case</span> <span style="color: #000000">$FLAG</span> in
+    d<span style="color: #ce5c00; font-weight: bold">)</span>
+      <span style="color: #000000">DIR</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #000000">$OPTARG</span>
+      <span style="color: #000000; font-weight: bold">;;</span>
+    p<span style="color: #ce5c00; font-weight: bold">)</span>
+      <span style="color: #000000">PYENV</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #000000">$OPTARG</span>
+      <span style="color: #000000; font-weight: bold">;;</span>
+    v<span style="color: #ce5c00; font-weight: bold">)</span>
+      <span style="color: #000000">VERSION</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #000000">$OPTARG</span>
+      <span style="color: #000000; font-weight: bold">;;</span>
+    h<span style="color: #ce5c00; font-weight: bold">)</span>
       HELP
-      ;;
-    \?) #unrecognized option - show help
-      echo -e \\n&quot;Option -${BOLD}$OPTARG${OFF} not allowed.&quot;
+      <span style="color: #000000; font-weight: bold">;;</span>
+    <span style="color: #4e9a06">\?</span><span style="color: #ce5c00; font-weight: bold">)</span> <span style="color: #8f5902; font-style: italic">#unrecognized option - show help</span>
+      <span style="color: #204a87">echo</span> -e <span style="color: #4e9a06">\\</span>n<span style="color: #4e9a06">&quot;Option -${</span><span style="color: #000000">BOLD</span><span style="color: #4e9a06">}</span><span style="color: #000000">$OPTARG</span><span style="color: #4e9a06">${</span><span style="color: #000000">OFF</span><span style="color: #4e9a06">} not allowed.&quot;</span>
       HELP
-      ;;
-  esac
-done
-</code></pre>
+      <span style="color: #000000; font-weight: bold">;;</span>
+  <span style="color: #204a87; font-weight: bold">esac</span>
+<span style="color: #204a87; font-weight: bold">done</span>
+</pre></div>
 
 <h2 id="what-if-i-really-wanted-long-options-with-getopts:dd7aaebbdbc744c7f56cf7dcd59142a2">What if I really wanted long options with <em>getopts</em>?</h2>
 
 <p><em>getopts</em> function can be used to parse long options by putting a dash character followed by a colon into the OPTSPEC.
 Sharing <a href="http://stackoverflow.com/a/7680682/142650">the solution from this link</a>.</p>
-
-<pre><code class="language-bash">#!/usr/bin/env bash 
-OPTSPEC=&quot;:hv-:&quot;
-while getopts &quot;$OPTSPEC&quot; optchar; do
-    case &quot;${optchar}&quot; in
-        -)
-            case &quot;${OPTARG}&quot; in
-                loglevel)
-                    val=&quot;${!OPTIND}&quot;; OPTIND=$(( $OPTIND + 1 ))
-                    echo &quot;Parsing option: '--${OPTARG}', value: '${val}'&quot; &gt;&amp;2;
-                    ;;
-                loglevel=*)
-                    val=${OPTARG#*=}
-                    opt=${OPTARG%=$val}
-                    echo &quot;Parsing option: '--${opt}', value: '${val}'&quot; &gt;&amp;2
-                    ;;
-                *)
-                    if [ &quot;$OPTERR&quot; = 1 ] &amp;&amp; [ &quot;${OPTSPEC:0:1}&quot; != &quot;:&quot; ]; then
-                        echo &quot;Unknown option --${OPTARG}&quot; &gt;&amp;2
-                    fi
-                    ;;
-            esac;;
-        h)
-            echo &quot;usage: $0 [-v] [--loglevel[=]&lt;value&gt;]&quot; &gt;&amp;2
-            exit 2
-            ;;
-        v)
-            echo &quot;Parsing option: '-${optchar}'&quot; &gt;&amp;2
-            ;;
-        *)
-            if [ &quot;$OPTERR&quot; != 1 ] || [ &quot;${OPTSPEC:0:1}&quot; = &quot;:&quot; ]; then
-                echo &quot;Non-option argument: '-${OPTARG}'&quot; &gt;&amp;2
-            fi
-            ;;
-    esac
-done
-</code></pre>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #8f5902; font-style: italic">#!/usr/bin/env bash </span>
+<span style="color: #000000">OPTSPEC</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #4e9a06">&quot;:hv-:&quot;</span>
+<span style="color: #204a87; font-weight: bold">while</span> <span style="color: #204a87">getopts</span> <span style="color: #4e9a06">&quot;</span><span style="color: #000000">$OPTSPEC</span><span style="color: #4e9a06">&quot;</span> optchar<span style="color: #000000; font-weight: bold">;</span> <span style="color: #204a87; font-weight: bold">do</span>
+    <span style="color: #204a87; font-weight: bold">case</span> <span style="color: #4e9a06">&quot;${</span><span style="color: #000000">optchar</span><span style="color: #4e9a06">}&quot;</span> in
+        -<span style="color: #ce5c00; font-weight: bold">)</span>
+            <span style="color: #204a87; font-weight: bold">case</span> <span style="color: #4e9a06">&quot;${</span><span style="color: #000000">OPTARG</span><span style="color: #4e9a06">}&quot;</span> in
+                loglevel<span style="color: #ce5c00; font-weight: bold">)</span>
+                    <span style="color: #000000">val</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #4e9a06">&quot;${</span><span style="color: #000000; font-weight: bold">!OPTIND</span><span style="color: #4e9a06">}&quot;</span><span style="color: #000000; font-weight: bold">;</span> <span style="color: #000000">OPTIND</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #204a87; font-weight: bold">$((</span> <span style="color: #000000">$OPTIND</span> <span style="color: #ce5c00; font-weight: bold">+</span> <span style="color: #0000cf; font-weight: bold">1</span> <span style="color: #204a87; font-weight: bold">))</span>
+                    <span style="color: #204a87">echo</span> <span style="color: #4e9a06">&quot;Parsing option: &#39;--${</span><span style="color: #000000">OPTARG</span><span style="color: #4e9a06">}&#39;, value: &#39;${</span><span style="color: #000000">val</span><span style="color: #4e9a06">}&#39;&quot;</span> &gt;<span style="color: #000000; font-weight: bold">&amp;</span>2<span style="color: #000000; font-weight: bold">;</span>
+                    <span style="color: #000000; font-weight: bold">;;</span>
+                <span style="color: #000000">loglevel</span><span style="color: #ce5c00; font-weight: bold">=</span>*<span style="color: #ce5c00; font-weight: bold">)</span>
+                    <span style="color: #000000">val</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #4e9a06">${</span><span style="color: #000000">OPTARG</span><span style="color: #000000; font-weight: bold">#*=</span><span style="color: #4e9a06">}</span>
+                    <span style="color: #000000">opt</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #4e9a06">${</span><span style="color: #000000">OPTARG</span><span style="color: #000000; font-weight: bold">%=</span><span style="color: #000000">$val</span><span style="color: #4e9a06">}</span>
+                    <span style="color: #204a87">echo</span> <span style="color: #4e9a06">&quot;Parsing option: &#39;--${</span><span style="color: #000000">opt</span><span style="color: #4e9a06">}&#39;, value: &#39;${</span><span style="color: #000000">val</span><span style="color: #4e9a06">}&#39;&quot;</span> &gt;<span style="color: #000000; font-weight: bold">&amp;</span>2
+                    <span style="color: #000000; font-weight: bold">;;</span>
+                *<span style="color: #ce5c00; font-weight: bold">)</span>
+                    <span style="color: #204a87; font-weight: bold">if</span> <span style="color: #ce5c00; font-weight: bold">[</span> <span style="color: #4e9a06">&quot;</span><span style="color: #000000">$OPTERR</span><span style="color: #4e9a06">&quot;</span> <span style="color: #ce5c00; font-weight: bold">=</span> <span style="color: #0000cf; font-weight: bold">1</span> <span style="color: #ce5c00; font-weight: bold">]</span> <span style="color: #ce5c00; font-weight: bold">&amp;&amp;</span> <span style="color: #ce5c00; font-weight: bold">[</span> <span style="color: #4e9a06">&quot;${</span><span style="color: #000000">OPTSPEC</span><span style="color: #000000; font-weight: bold">:</span><span style="color: #000000">0</span><span style="color: #000000; font-weight: bold">:</span><span style="color: #000000">1</span><span style="color: #4e9a06">}&quot;</span> !<span style="color: #ce5c00; font-weight: bold">=</span> <span style="color: #4e9a06">&quot;:&quot;</span> <span style="color: #ce5c00; font-weight: bold">]</span><span style="color: #000000; font-weight: bold">;</span> <span style="color: #204a87; font-weight: bold">then</span>
+                        <span style="color: #204a87">echo</span> <span style="color: #4e9a06">&quot;Unknown option --${</span><span style="color: #000000">OPTARG</span><span style="color: #4e9a06">}&quot;</span> &gt;<span style="color: #000000; font-weight: bold">&amp;</span>2
+                    <span style="color: #204a87; font-weight: bold">fi</span>
+                    <span style="color: #000000; font-weight: bold">;;</span>
+            <span style="color: #204a87; font-weight: bold">esac</span><span style="color: #000000; font-weight: bold">;;</span>
+        h<span style="color: #ce5c00; font-weight: bold">)</span>
+            <span style="color: #204a87">echo</span> <span style="color: #4e9a06">&quot;usage: </span><span style="color: #000000">$0</span><span style="color: #4e9a06"> [-v] [--loglevel[=]&lt;value&gt;]&quot;</span> &gt;<span style="color: #000000; font-weight: bold">&amp;</span>2
+            <span style="color: #204a87">exit</span> 2
+            <span style="color: #000000; font-weight: bold">;;</span>
+        v<span style="color: #ce5c00; font-weight: bold">)</span>
+            <span style="color: #204a87">echo</span> <span style="color: #4e9a06">&quot;Parsing option: &#39;-${</span><span style="color: #000000">optchar</span><span style="color: #4e9a06">}&#39;&quot;</span> &gt;<span style="color: #000000; font-weight: bold">&amp;</span>2
+            <span style="color: #000000; font-weight: bold">;;</span>
+        *<span style="color: #ce5c00; font-weight: bold">)</span>
+            <span style="color: #204a87; font-weight: bold">if</span> <span style="color: #ce5c00; font-weight: bold">[</span> <span style="color: #4e9a06">&quot;</span><span style="color: #000000">$OPTERR</span><span style="color: #4e9a06">&quot;</span> !<span style="color: #ce5c00; font-weight: bold">=</span> <span style="color: #0000cf; font-weight: bold">1</span> <span style="color: #ce5c00; font-weight: bold">]</span> <span style="color: #ce5c00; font-weight: bold">||</span> <span style="color: #ce5c00; font-weight: bold">[</span> <span style="color: #4e9a06">&quot;${</span><span style="color: #000000">OPTSPEC</span><span style="color: #000000; font-weight: bold">:</span><span style="color: #000000">0</span><span style="color: #000000; font-weight: bold">:</span><span style="color: #000000">1</span><span style="color: #4e9a06">}&quot;</span> <span style="color: #ce5c00; font-weight: bold">=</span> <span style="color: #4e9a06">&quot;:&quot;</span> <span style="color: #ce5c00; font-weight: bold">]</span><span style="color: #000000; font-weight: bold">;</span> <span style="color: #204a87; font-weight: bold">then</span>
+                <span style="color: #204a87">echo</span> <span style="color: #4e9a06">&quot;Non-option argument: &#39;-${</span><span style="color: #000000">OPTARG</span><span style="color: #4e9a06">}&#39;&quot;</span> &gt;<span style="color: #000000; font-weight: bold">&amp;</span>2
+            <span style="color: #204a87; font-weight: bold">fi</span>
+            <span style="color: #000000; font-weight: bold">;;</span>
+    <span style="color: #204a87; font-weight: bold">esac</span>
+<span style="color: #204a87; font-weight: bold">done</span>
+</pre></div>
 
       
     </div>
@@ -283,18 +278,17 @@ parameters. However, since there are so many of them, it is very difficult to vi
 and find out what value was assigned to it. I wanted to make it easier on the eyes and decided to color code the
 parameters and separate them out from the values.
 Here&rsquo;s the bash function I pulled out.</p>
-
-<pre><code class="language-bash">colorme()
-{
-  gawk 'BEGIN {RS=&quot; --| -&quot;; }{print $0}' \
-  | sed -e 's/\([[:alpha:]]\+\)=/\1 /g' \
-  | gawk 'BEGIN    {printf &quot;-----------------\n&quot; ; }
-            {
-                if (NF &gt; 2) printf &quot;\n\033[41;5;1m%s\033[0m\n&quot;, $NF ;
-                printf &quot;\033[40;38;5;82m  %30s  \033[38;5;198m %s \033[0m \n&quot;, $1, $2
-            }'
-}
-</code></pre>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>colorme<span style="color: #ce5c00; font-weight: bold">()</span>
+<span style="color: #ce5c00; font-weight: bold">{</span>
+  gawk <span style="color: #4e9a06">&#39;BEGIN {RS=&quot; --| -&quot;; }{print $0}&#39;</span> <span style="color: #4e9a06">\</span>
+  <span style="color: #000000; font-weight: bold">|</span> sed -e <span style="color: #4e9a06">&#39;s/\([[:alpha:]]\+\)=/\1 /g&#39;</span> <span style="color: #4e9a06">\</span>
+  <span style="color: #000000; font-weight: bold">|</span> gawk <span style="color: #4e9a06">&#39;BEGIN    {printf &quot;-----------------\n&quot; ; }</span>
+<span style="color: #4e9a06">            {</span>
+<span style="color: #4e9a06">                if (NF &gt; 2) printf &quot;\n\033[41;5;1m%s\033[0m\n&quot;, $NF ;</span>
+<span style="color: #4e9a06">                printf &quot;\033[40;38;5;82m  %30s  \033[38;5;198m %s \033[0m \n&quot;, $1, $2</span>
+<span style="color: #4e9a06">            }&#39;</span>
+<span style="color: #ce5c00; font-weight: bold">}</span>
+</pre></div>
 
 <p>The idea is as follows:</p>
 
@@ -308,14 +302,13 @@ Here&rsquo;s the bash function I pulled out.</p>
 </ul>
 
 <p>Here is a sample command I wanted to test out.</p>
-
-<pre><code class="language-bash">/opt/py27env/bin/python manage.py main-service-name --daemonize \
-    --alias-svc=mainsvc01 --application-id=app03/mainsvc01 --monitoring-service-name=mainsvc01 \
-    --log-level=DEBUG --solace-session-prop-host=server.prod --solace-session-prop-username=testing \
-    --solace-session-prop-password=testing --solace-session-prop-vpn=testing \
-    --solace-session-prop-cache-name=test_dc \
-    --rate=10
-</code></pre>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>/opt/py27env/bin/python manage.py main-service-name --daemonize <span style="color: #4e9a06">\</span>
+    --alias-svc<span style="color: #ce5c00; font-weight: bold">=</span>mainsvc01 --application-id<span style="color: #ce5c00; font-weight: bold">=</span>app03/mainsvc01 --monitoring-service-name<span style="color: #ce5c00; font-weight: bold">=</span>mainsvc01 <span style="color: #4e9a06">\</span>
+    --log-level<span style="color: #ce5c00; font-weight: bold">=</span>DEBUG --solace-session-prop-host<span style="color: #ce5c00; font-weight: bold">=</span>server.prod --solace-session-prop-username<span style="color: #ce5c00; font-weight: bold">=</span>testing <span style="color: #4e9a06">\</span>
+    --solace-session-prop-password<span style="color: #ce5c00; font-weight: bold">=</span>testing --solace-session-prop-vpn<span style="color: #ce5c00; font-weight: bold">=</span>testing <span style="color: #4e9a06">\</span>
+    --solace-session-prop-cache-name<span style="color: #ce5c00; font-weight: bold">=</span>test_dc <span style="color: #4e9a06">\</span>
+    --rate<span style="color: #ce5c00; font-weight: bold">=</span>10
+</pre></div>
 
 <p>Here is the result from my tests:
 
@@ -361,20 +354,17 @@ seems overly complicated for a job that is easily achieved by pip.</p>
 <p>Let&rsquo;s look at how to use <code>pip</code> for local installation.
 Firstly, it is possible to install all requirements beforehand in a separate directory.
  We can use the following commands:</p>
-
-<pre><code class="language-bash">pip install --download DIR -r requirements.txt
-</code></pre>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>pip install --download DIR -r requirements.txt
+</pre></div>
 
 <p>If you prefer wheel, then use the following:</p>
-
-<pre><code class="language-bash">pip wheel --wheel-dir DIR -r requirements.txt
-</code></pre>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>pip wheel --wheel-dir DIR -r requirements.txt
+</pre></div>
 
 <p>Now, when we want to install from this given directory <code>DIR</code>, then
 the following command can help:</p>
-
-<pre><code class="language-bash">pip install --no-index --find-links=DIR -r requirements.txt
-</code></pre>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>pip install --no-index --find-links<span style="color: #ce5c00; font-weight: bold">=</span>DIR -r requirements.txt
+</pre></div>
 
 <p>If you are using these in a current setup and you feel it still slows you down then the reason would be
 one of the first few commands where the request is still going to the internet.
@@ -388,9 +378,8 @@ just leading onto <code>pip install --no-index</code></p>
 in the project, whether a new requirement has been added to that list. In that case, install it + update your local copy.</p>
 
 <p>Here&rsquo;s a sample code to put all changes in a single line that you can feed into <code>pip install</code></p>
-
-<pre><code class="language-bash">sdiff -s /tmp/1 /tmp/2 | sed -e 's/&lt;//g' | awk 'BEGIN {ORS=&quot; &quot;} {print $1}'
-</code></pre>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>sdiff -s /tmp/1 /tmp/2 <span style="color: #000000; font-weight: bold">|</span> sed -e <span style="color: #4e9a06">&#39;s/&lt;//g&#39;</span> <span style="color: #000000; font-weight: bold">|</span> awk <span style="color: #4e9a06">&#39;BEGIN {ORS=&quot; &quot;} {print $1}&#39;</span>
+</pre></div>
 
 <p>Breaking it down:</p>
 
@@ -473,12 +462,11 @@ in the project, whether a new requirement has been added to that list. In that c
 <h1 id="data-binding:ac9495c8eabea9a6ff20ce0b92d45cca">Data Binding</h1>
 
 <p>Following are the four possible ways of data binding:</p>
-
-<pre><code class="language-html">&lt;div&gt;{{hero.name}}&lt;/div&gt;
-&lt;hero-detail [hero]=&quot;selectedHero&quot;&gt;&lt;/hero-detail&gt;
-&lt;div (click)=&quot;selectHero(hero)&quot;&gt;&lt;/div&gt;
-&lt;input [(ngModel)]=&quot;hero.name&quot;&gt;
-</code></pre>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #000000; font-weight: bold">&lt;</span><span style="color: #204a87; font-weight: bold">div</span><span style="color: #000000; font-weight: bold">&gt;</span>{{hero.name}}<span style="color: #000000; font-weight: bold">&lt;/</span><span style="color: #204a87; font-weight: bold">div</span><span style="color: #000000; font-weight: bold">&gt;</span>
+<span style="color: #000000; font-weight: bold">&lt;</span><span style="color: #204a87; font-weight: bold">hero-detail</span> <span style="color: #a40000; border: 1px solid #ef2929">[</span><span style="color: #c4a000">hero</span><span style="color: #a40000; border: 1px solid #ef2929">]=&quot;</span><span style="color: #c4a000">selectedHero</span><span style="color: #a40000; border: 1px solid #ef2929">&quot;</span><span style="color: #000000; font-weight: bold">&gt;&lt;/</span><span style="color: #204a87; font-weight: bold">hero-detail</span><span style="color: #000000; font-weight: bold">&gt;</span>
+<span style="color: #000000; font-weight: bold">&lt;</span><span style="color: #204a87; font-weight: bold">div</span> <span style="color: #a40000; border: 1px solid #ef2929">(</span><span style="color: #c4a000">click</span><span style="color: #a40000; border: 1px solid #ef2929">)=&quot;</span><span style="color: #c4a000">selectHero</span><span style="color: #a40000; border: 1px solid #ef2929">(</span><span style="color: #c4a000">hero</span><span style="color: #a40000; border: 1px solid #ef2929">)&quot;</span><span style="color: #000000; font-weight: bold">&gt;&lt;/</span><span style="color: #204a87; font-weight: bold">div</span><span style="color: #000000; font-weight: bold">&gt;</span>
+<span style="color: #000000; font-weight: bold">&lt;</span><span style="color: #204a87; font-weight: bold">input</span> <span style="color: #a40000; border: 1px solid #ef2929">[(</span><span style="color: #c4a000">ngModel</span><span style="color: #a40000; border: 1px solid #ef2929">)]=&quot;</span><span style="color: #c4a000">hero</span><span style="color: #a40000; border: 1px solid #ef2929">.</span><span style="color: #c4a000">name</span><span style="color: #a40000; border: 1px solid #ef2929">&quot;</span><span style="color: #000000; font-weight: bold">&gt;</span>
+</pre></div>
 
 <ol>
 <li>The &ldquo;interpolation&rdquo; displays the component&rsquo;s hero.name property value within the <div> tags</li>
@@ -500,9 +488,8 @@ Two other examples are:</p>
 <p><strong>Example:</strong></p>
 
 <p>The <code>ngModel</code> directive, which implements two-way data binding, is an example of an attribute directive.</p>
-
-<pre><code class="language-html">&lt;input [(ngModel)]=&quot;hero.name&quot;&gt;
-</code></pre>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #000000; font-weight: bold">&lt;</span><span style="color: #204a87; font-weight: bold">input</span> <span style="color: #a40000; border: 1px solid #ef2929">[(</span><span style="color: #c4a000">ngModel</span><span style="color: #a40000; border: 1px solid #ef2929">)]=&quot;</span><span style="color: #c4a000">hero</span><span style="color: #a40000; border: 1px solid #ef2929">.</span><span style="color: #c4a000">name</span><span style="color: #a40000; border: 1px solid #ef2929">&quot;</span><span style="color: #000000; font-weight: bold">&gt;</span>
+</pre></div>
 
 <p><strong>Other examples:</strong> ngSwitch, ngStyle, ngClass</p>
 
@@ -698,16 +685,15 @@ clicking on &ldquo;Create a Lambda Function&rdquo;.</p>
 <em>Ensure that you select your SNS as the event source.</em></p>
 
 <p>Create a Lambda function with the following code:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #204a87; font-weight: bold">import</span> <span style="color: #000000">json</span>
+<span style="color: #204a87; font-weight: bold">print</span><span style="color: #000000; font-weight: bold">(</span><span style="color: #4e9a06">&#39;Loading function&#39;</span><span style="color: #000000; font-weight: bold">)</span>
 
-<pre><code class="language-python">import json
-print('Loading function')
-
-def lambda_handler(event, context):
-    print(&quot;Received event: &quot; + json.dumps(event, indent=2))
-    message = event['Records'][0]['Sns']['Message']
-    print(&quot;From SNS: &quot; + message)
-    return message
-</code></pre>
+<span style="color: #204a87; font-weight: bold">def</span> <span style="color: #000000">lambda_handler</span><span style="color: #000000; font-weight: bold">(</span><span style="color: #000000">event</span><span style="color: #000000; font-weight: bold">,</span> <span style="color: #000000">context</span><span style="color: #000000; font-weight: bold">):</span>
+    <span style="color: #204a87; font-weight: bold">print</span><span style="color: #000000; font-weight: bold">(</span><span style="color: #4e9a06">&quot;Received event: &quot;</span> <span style="color: #ce5c00; font-weight: bold">+</span> <span style="color: #000000">json</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">dumps</span><span style="color: #000000; font-weight: bold">(</span><span style="color: #000000">event</span><span style="color: #000000; font-weight: bold">,</span> <span style="color: #000000">indent</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #0000cf; font-weight: bold">2</span><span style="color: #000000; font-weight: bold">))</span>
+    <span style="color: #000000">message</span> <span style="color: #ce5c00; font-weight: bold">=</span> <span style="color: #000000">event</span><span style="color: #000000; font-weight: bold">[</span><span style="color: #4e9a06">&#39;Records&#39;</span><span style="color: #000000; font-weight: bold">][</span><span style="color: #0000cf; font-weight: bold">0</span><span style="color: #000000; font-weight: bold">][</span><span style="color: #4e9a06">&#39;Sns&#39;</span><span style="color: #000000; font-weight: bold">][</span><span style="color: #4e9a06">&#39;Message&#39;</span><span style="color: #000000; font-weight: bold">]</span>
+    <span style="color: #204a87; font-weight: bold">print</span><span style="color: #000000; font-weight: bold">(</span><span style="color: #4e9a06">&quot;From SNS: &quot;</span> <span style="color: #ce5c00; font-weight: bold">+</span> <span style="color: #000000">message</span><span style="color: #000000; font-weight: bold">)</span>
+    <span style="color: #204a87; font-weight: bold">return</span> <span style="color: #000000">message</span>
+</pre></div>
 
 
 <figure >
@@ -901,66 +887,62 @@ So let&rsquo;s do that.</p>
 <h2 id="using-cli:f657bc8efd67a0e2d83aeda4b346f8af">Using CLI</h2>
 
 <p>Try the following command to get the list of your lambda functions:</p>
-
-<pre><code class="language-bash">$ aws lambda --profile lambda.s3.1 --region ap-northeast-1 list-functions
-</code></pre>
-
-<pre><code class="language-json">{
-    &quot;Functions&quot;: [
-        {
-            &quot;CodeSize&quot;: 317,
-            &quot;FunctionArn&quot;: &quot;arn:aws:lambda:ap-northeast-1:XXXXXXXXXXXX:function:lambda_1&quot;,
-            &quot;MemorySize&quot;: 128,
-            &quot;Role&quot;: &quot;arn:aws:iam::XXXXXXXXXXXX:role/lambda_basic_execution_1&quot;,
-            &quot;Handler&quot;: &quot;lambda_function.lambda_handler&quot;,
-            &quot;Runtime&quot;: &quot;python2.7&quot;,
-            &quot;CodeSha256&quot;: &quot;.....&quot;,
-            &quot;FunctionName&quot;: &quot;lambda_1&quot;,
-            &quot;Timeout&quot;: 183,
-            &quot;LastModified&quot;: &quot;2015-11-15T07:49:28.367+0000&quot;,
-            &quot;Version&quot;: &quot;$LATEST&quot;,
-            &quot;Description&quot;: &quot;An Amazon SNS trigger that logs the message pushed to the SNS topic.&quot;
-        },
-        {
-            &quot;CodeSize&quot;: 316,
-            &quot;FunctionArn&quot;: &quot;arn:aws:lambda:ap-northeast-1:XXXXXXXXXXXX:function:lambda_2&quot;,
-            &quot;MemorySize&quot;: 128,
-            &quot;Role&quot;: &quot;arn:aws:iam::XXXXXXXXXXXX:role/lambda_basic_execution_1&quot;,
-            &quot;Handler&quot;: &quot;lambda_function.lambda_handler&quot;,
-            &quot;Runtime&quot;: &quot;python2.7&quot;,
-            &quot;CodeSha256&quot;: &quot;.......&quot;,
-            &quot;FunctionName&quot;: &quot;lambda_2&quot;,
-            &quot;Timeout&quot;: 3,
-            &quot;LastModified&quot;: &quot;2015-11-14T14:03:00.083+0000&quot;,
-            &quot;Version&quot;: &quot;$LATEST&quot;,
-            &quot;Description&quot;: &quot;An Amazon SNS trigger that logs the message pushed to the SNS topic.&quot;
-        }
-    ]
-}
-
-</code></pre>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>$ aws lambda --profile lambda.s3.1 --region ap-northeast-1 list-functions
+</pre></div>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #000000; font-weight: bold">{</span>
+    <span style="color: #204a87; font-weight: bold">&quot;Functions&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #000000; font-weight: bold">[</span>
+        <span style="color: #000000; font-weight: bold">{</span>
+            <span style="color: #204a87; font-weight: bold">&quot;CodeSize&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #0000cf; font-weight: bold">317</span><span style="color: #000000; font-weight: bold">,</span>
+            <span style="color: #204a87; font-weight: bold">&quot;FunctionArn&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #4e9a06">&quot;arn:aws:lambda:ap-northeast-1:XXXXXXXXXXXX:function:lambda_1&quot;</span><span style="color: #000000; font-weight: bold">,</span>
+            <span style="color: #204a87; font-weight: bold">&quot;MemorySize&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #0000cf; font-weight: bold">128</span><span style="color: #000000; font-weight: bold">,</span>
+            <span style="color: #204a87; font-weight: bold">&quot;Role&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #4e9a06">&quot;arn:aws:iam::XXXXXXXXXXXX:role/lambda_basic_execution_1&quot;</span><span style="color: #000000; font-weight: bold">,</span>
+            <span style="color: #204a87; font-weight: bold">&quot;Handler&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #4e9a06">&quot;lambda_function.lambda_handler&quot;</span><span style="color: #000000; font-weight: bold">,</span>
+            <span style="color: #204a87; font-weight: bold">&quot;Runtime&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #4e9a06">&quot;python2.7&quot;</span><span style="color: #000000; font-weight: bold">,</span>
+            <span style="color: #204a87; font-weight: bold">&quot;CodeSha256&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #4e9a06">&quot;.....&quot;</span><span style="color: #000000; font-weight: bold">,</span>
+            <span style="color: #204a87; font-weight: bold">&quot;FunctionName&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #4e9a06">&quot;lambda_1&quot;</span><span style="color: #000000; font-weight: bold">,</span>
+            <span style="color: #204a87; font-weight: bold">&quot;Timeout&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #0000cf; font-weight: bold">183</span><span style="color: #000000; font-weight: bold">,</span>
+            <span style="color: #204a87; font-weight: bold">&quot;LastModified&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #4e9a06">&quot;2015-11-15T07:49:28.367+0000&quot;</span><span style="color: #000000; font-weight: bold">,</span>
+            <span style="color: #204a87; font-weight: bold">&quot;Version&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #4e9a06">&quot;$LATEST&quot;</span><span style="color: #000000; font-weight: bold">,</span>
+            <span style="color: #204a87; font-weight: bold">&quot;Description&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #4e9a06">&quot;An Amazon SNS trigger that logs the message pushed to the SNS topic.&quot;</span>
+        <span style="color: #000000; font-weight: bold">},</span>
+        <span style="color: #000000; font-weight: bold">{</span>
+            <span style="color: #204a87; font-weight: bold">&quot;CodeSize&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #0000cf; font-weight: bold">316</span><span style="color: #000000; font-weight: bold">,</span>
+            <span style="color: #204a87; font-weight: bold">&quot;FunctionArn&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #4e9a06">&quot;arn:aws:lambda:ap-northeast-1:XXXXXXXXXXXX:function:lambda_2&quot;</span><span style="color: #000000; font-weight: bold">,</span>
+            <span style="color: #204a87; font-weight: bold">&quot;MemorySize&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #0000cf; font-weight: bold">128</span><span style="color: #000000; font-weight: bold">,</span>
+            <span style="color: #204a87; font-weight: bold">&quot;Role&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #4e9a06">&quot;arn:aws:iam::XXXXXXXXXXXX:role/lambda_basic_execution_1&quot;</span><span style="color: #000000; font-weight: bold">,</span>
+            <span style="color: #204a87; font-weight: bold">&quot;Handler&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #4e9a06">&quot;lambda_function.lambda_handler&quot;</span><span style="color: #000000; font-weight: bold">,</span>
+            <span style="color: #204a87; font-weight: bold">&quot;Runtime&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #4e9a06">&quot;python2.7&quot;</span><span style="color: #000000; font-weight: bold">,</span>
+            <span style="color: #204a87; font-weight: bold">&quot;CodeSha256&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #4e9a06">&quot;.......&quot;</span><span style="color: #000000; font-weight: bold">,</span>
+            <span style="color: #204a87; font-weight: bold">&quot;FunctionName&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #4e9a06">&quot;lambda_2&quot;</span><span style="color: #000000; font-weight: bold">,</span>
+            <span style="color: #204a87; font-weight: bold">&quot;Timeout&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #0000cf; font-weight: bold">3</span><span style="color: #000000; font-weight: bold">,</span>
+            <span style="color: #204a87; font-weight: bold">&quot;LastModified&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #4e9a06">&quot;2015-11-14T14:03:00.083+0000&quot;</span><span style="color: #000000; font-weight: bold">,</span>
+            <span style="color: #204a87; font-weight: bold">&quot;Version&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #4e9a06">&quot;$LATEST&quot;</span><span style="color: #000000; font-weight: bold">,</span>
+            <span style="color: #204a87; font-weight: bold">&quot;Description&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #4e9a06">&quot;An Amazon SNS trigger that logs the message pushed to the SNS topic.&quot;</span>
+        <span style="color: #000000; font-weight: bold">}</span>
+    <span style="color: #000000; font-weight: bold">]</span>
+<span style="color: #000000; font-weight: bold">}</span>
+</pre></div>
 
 <h2 id="custom-policy-for-lambda-access:f657bc8efd67a0e2d83aeda4b346f8af">Custom Policy for Lambda Access</h2>
 
 <p>Validate Policy
 You can either just give &ldquo;AmazonSNSFullAccess&rdquo; to the user <em>lambda.s3.1</em> or add the following Policy
 onto <strong>User-&gt;Permission-&gt;Add Inline policy-&gt;custom policy-&gt;Select-&gt;Policy Document</strong></p>
-
-<pre><code class="language-yaml">{
-  &quot;Version&quot;: &quot;2012-10-17&quot;,
-  &quot;Statement&quot;: [
-    {
-      &quot;Action&quot;: [
-        &quot;sns:Publish&quot;
-      ],
-      &quot;Resource&quot;: [
-        &quot;arn:aws:sns:ap-northeast-1:YOUR_NUMBER:Commits_1&quot;
-      ],
-      &quot;Effect&quot;: &quot;Allow&quot;
-    }
-  ]
-}
-</code></pre>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #000000; font-weight: bold">{</span>
+  <span style="color: #4e9a06">&quot;Version&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #4e9a06">&quot;2012-10-17&quot;</span><span style="color: #000000; font-weight: bold">,</span>
+  <span style="color: #4e9a06">&quot;Statement&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #000000; font-weight: bold">[</span>
+    <span style="color: #000000; font-weight: bold">{</span>
+      <span style="color: #4e9a06">&quot;Action&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #000000; font-weight: bold">[</span>
+        <span style="color: #4e9a06">&quot;sns:Publish&quot;</span>
+      <span style="color: #000000; font-weight: bold">],</span>
+      <span style="color: #4e9a06">&quot;Resource&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #000000; font-weight: bold">[</span>
+        <span style="color: #4e9a06">&quot;arn:aws:sns:ap-northeast-1:YOUR_NUMBER:Commits_1&quot;</span>
+      <span style="color: #000000; font-weight: bold">],</span>
+      <span style="color: #4e9a06">&quot;Effect&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #4e9a06">&quot;Allow&quot;</span>
+    <span style="color: #000000; font-weight: bold">}</span>
+  <span style="color: #000000; font-weight: bold">]</span>
+<span style="color: #000000; font-weight: bold">}</span>
+</pre></div>
 
       
     </div>
@@ -986,11 +968,10 @@ onto <strong>User-&gt;Permission-&gt;Add Inline policy-&gt;custom policy-&gt;Sel
 </ul>
 
 <p>Here&rsquo;s what I would see:</p>
-
-<pre><code class="language-bash">$ vim release.sh 
-Warning: Cannot find word list &quot;en.utf-8.spl&quot; or &quot;en.ascii.spl&quot;
-Press ENTER or type command to continue
-</code></pre>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>$ vim release.sh 
+Warning: Cannot find word list <span style="color: #4e9a06">&quot;en.utf-8.spl&quot;</span> or <span style="color: #4e9a06">&quot;en.ascii.spl&quot;</span>
+Press ENTER or <span style="color: #204a87">type</span> <span style="color: #204a87">command</span> to <span style="color: #204a87; font-weight: bold">continue</span>
+</pre></div>
 
 <p>I googled a lot regarding this but didn&rsquo;t find anything straight forward.
 When all options failed I recalled that it is looking for the spell files in a specific folder.
@@ -1000,8 +981,7 @@ Hence I decided to do a lookup for them:</p>
 </code></pre>
 
 <p>I got a lot of options:</p>
-
-<pre><code class="language-bash">$ locate en.utf-8
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>$ locate en.utf-8
 
 /usr/local/Cellar/macvim/7.4-73/MacVim.app/Contents/Resources/vim/runtime/spell/en.utf-8.spl
 /usr/local/Cellar/macvim/7.4-73/MacVim.app/Contents/Resources/vim/runtime/spell/en.utf-8.sug
@@ -1009,12 +989,11 @@ Hence I decided to do a lookup for them:</p>
 /usr/local/Cellar/vim/7.4.712/share/vim/vim74/spell/en.utf-8.sug
 /usr/share/vim/vim73/spell/en.utf-8.spl
 /usr/share/vim/vim73/spell/en.utf-8.sug
-</code></pre>
+</pre></div>
 
 <p>One of the options was to change the <code>runtimepath</code> to let it know about the spell folders.</p>
-
-<pre><code class="language-bash">let &amp;runtimepath=(&quot;~/.vim/,/usr/local/Cellar/vim/7.4.712/share/vim/vim74/spell/,&quot; . &amp;runtimepath)
-</code></pre>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #204a87">let</span> <span style="color: #000000; font-weight: bold">&amp;</span><span style="color: #000000">runtimepath</span><span style="color: #ce5c00; font-weight: bold">=(</span><span style="color: #4e9a06">&quot;~/.vim/,/usr/local/Cellar/vim/7.4.712/share/vim/vim74/spell/,&quot;</span> . <span style="color: #000000; font-weight: bold">&amp;</span>runtimepath<span style="color: #ce5c00; font-weight: bold">)</span>
+</pre></div>
 
 <p>When that failed too and nothing else worked, I decided to copy out the file and give it a try:</p>
 
@@ -1160,47 +1139,41 @@ Such sadistic directories can be found at <code>/var/lib/docker/vfs/</code>.</p>
 <p>We can automate the removal.</p>
 
 <p><strong>First</strong>, let&rsquo;s find the directories that we should <strong><em><code>not</code></em></strong> delete.</p>
-
-<pre><code class="language-bash"># These directories are in use
-$ docker ps -q | xargs docker inspect | egrep &quot;var.lib.docker.vfs&quot;
-</code></pre>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #8f5902; font-style: italic"># These directories are in use</span>
+$ docker ps -q <span style="color: #000000; font-weight: bold">|</span> xargs docker inspect <span style="color: #000000; font-weight: bold">|</span> egrep <span style="color: #4e9a06">&quot;var.lib.docker.vfs&quot;</span>
+</pre></div>
 
 <p>You will see something like this:</p>
-
-<pre><code class="language-bash">$ docker ps -q | xargs docker inspect | egrep &quot;var.lib.docker.vfs&quot;
-  &quot;/etc/nginx/sites-enabled&quot;: &quot;/var/lib/docker/vfs/dir/ed53e780472dbf5057780182bd12ae1cb7930fce73f5f7071bad1b456076dc95&quot;,
-  &quot;/var/log/nginx&quot;: &quot;/var/lib/docker/vfs/dir/26c3ac02631b0eab5d6d3a4c5e6664b43974f217ca24b9369f3f12f186601147&quot;,
-  &quot;/ws&quot;: &quot;/var/lib/docker/vfs/dir/ecd74d6b7e73c25d5e5f6b450a7b162bfb8e44c649c2af951843954538500dba&quot;
-</code></pre>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>$ docker ps -q <span style="color: #000000; font-weight: bold">|</span> xargs docker inspect <span style="color: #000000; font-weight: bold">|</span> egrep <span style="color: #4e9a06">&quot;var.lib.docker.vfs&quot;</span>
+  <span style="color: #4e9a06">&quot;/etc/nginx/sites-enabled&quot;</span>: <span style="color: #4e9a06">&quot;/var/lib/docker/vfs/dir/ed53e780472dbf5057780182bd12ae1cb7930fce73f5f7071bad1b456076dc95&quot;</span>,
+  <span style="color: #4e9a06">&quot;/var/log/nginx&quot;</span>: <span style="color: #4e9a06">&quot;/var/lib/docker/vfs/dir/26c3ac02631b0eab5d6d3a4c5e6664b43974f217ca24b9369f3f12f186601147&quot;</span>,
+  <span style="color: #4e9a06">&quot;/ws&quot;</span>: <span style="color: #4e9a06">&quot;/var/lib/docker/vfs/dir/ecd74d6b7e73c25d5e5f6b450a7b162bfb8e44c649c2af951843954538500dba&quot;</span>
+</pre></div>
 
 <h1 id="fire-drill:d49d62c8188452b3ac07603c34a3f7b0">Fire Drill</h1>
 
 <p><strong>Find out all directories that should stay</strong></p>
-
-<pre><code class="language-bash">$ docker ps -q \
- | xargs docker inspect \
- | egrep &quot;var.lib.docker.vfs&quot; \
- | sed -e 's/.*dir.//g' -e 's/&quot;.*//g' \
- | sort \
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>$ docker ps -q <span style="color: #4e9a06">\</span>
+ <span style="color: #000000; font-weight: bold">|</span> xargs docker inspect <span style="color: #4e9a06">\</span>
+ <span style="color: #000000; font-weight: bold">|</span> egrep <span style="color: #4e9a06">&quot;var.lib.docker.vfs&quot;</span> <span style="color: #4e9a06">\</span>
+ <span style="color: #000000; font-weight: bold">|</span> sed -e <span style="color: #4e9a06">&#39;s/.*dir.//g&#39;</span> -e <span style="color: #4e9a06">&#39;s/&quot;.*//g&#39;</span> <span style="color: #4e9a06">\</span>
+ <span style="color: #000000; font-weight: bold">|</span> sort <span style="color: #4e9a06">\</span>
  &gt; /tmp/curr.dirs 
-</code></pre>
+</pre></div>
 
 <p><strong>Find out all directories within <code>/var/lib/docker/vfs/dir</code></strong></p>
-
-<pre><code class="language-bash">$ sudo ls /var/lib/docker/vfs/dir/ | sort &gt; /tmp/all.dirs
-</code></pre>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>$ sudo ls /var/lib/docker/vfs/dir/ <span style="color: #000000; font-weight: bold">|</span> sort &gt; /tmp/all.dirs
+</pre></div>
 
 <p><strong>Find out the directories from <code>all.dirs</code> that should be deleted (not in use by current docker instances)</strong></p>
-
-<pre><code class="language-bash">$ sdiff -s /tmp/all.dirs /tmp/curr.dirs
-</code></pre>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>$ sdiff -s /tmp/all.dirs /tmp/curr.dirs
+</pre></div>
 
 <h1 id="removing-the-directories-for-good:d49d62c8188452b3ac07603c34a3f7b0">Removing the directories for good</h1>
-
-<pre><code class="language-bash">$ sdiff -s -w 300 /tmp/all.dirs /tmp/curr.dirs \
-   | sed -e 's/. &lt;//g' -e 's/^/\/var\/lib\/docker\/vfs\/dir\//g' \
-   | xargs sudo  rm -rf 
-</code></pre>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>$ sdiff -s -w <span style="color: #0000cf; font-weight: bold">300</span> /tmp/all.dirs /tmp/curr.dirs <span style="color: #4e9a06">\</span>
+   <span style="color: #000000; font-weight: bold">|</span> sed -e <span style="color: #4e9a06">&#39;s/. &lt;//g&#39;</span> -e <span style="color: #4e9a06">&#39;s/^/\/var\/lib\/docker\/vfs\/dir\//g&#39;</span> <span style="color: #4e9a06">\</span>
+   <span style="color: #000000; font-weight: bold">|</span> xargs sudo  rm -rf 
+</pre></div>
 
       
     </div>

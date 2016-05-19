@@ -295,16 +295,15 @@ clicking on &ldquo;Create a Lambda Function&rdquo;.</p>
 <em>Ensure that you select your SNS as the event source.</em></p>
 
 <p>Create a Lambda function with the following code:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #204a87; font-weight: bold">import</span> <span style="color: #000000">json</span>
+<span style="color: #204a87; font-weight: bold">print</span><span style="color: #000000; font-weight: bold">(</span><span style="color: #4e9a06">&#39;Loading function&#39;</span><span style="color: #000000; font-weight: bold">)</span>
 
-<pre><code class="language-python">import json
-print('Loading function')
-
-def lambda_handler(event, context):
-    print(&quot;Received event: &quot; + json.dumps(event, indent=2))
-    message = event['Records'][0]['Sns']['Message']
-    print(&quot;From SNS: &quot; + message)
-    return message
-</code></pre>
+<span style="color: #204a87; font-weight: bold">def</span> <span style="color: #000000">lambda_handler</span><span style="color: #000000; font-weight: bold">(</span><span style="color: #000000">event</span><span style="color: #000000; font-weight: bold">,</span> <span style="color: #000000">context</span><span style="color: #000000; font-weight: bold">):</span>
+    <span style="color: #204a87; font-weight: bold">print</span><span style="color: #000000; font-weight: bold">(</span><span style="color: #4e9a06">&quot;Received event: &quot;</span> <span style="color: #ce5c00; font-weight: bold">+</span> <span style="color: #000000">json</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">dumps</span><span style="color: #000000; font-weight: bold">(</span><span style="color: #000000">event</span><span style="color: #000000; font-weight: bold">,</span> <span style="color: #000000">indent</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #0000cf; font-weight: bold">2</span><span style="color: #000000; font-weight: bold">))</span>
+    <span style="color: #000000">message</span> <span style="color: #ce5c00; font-weight: bold">=</span> <span style="color: #000000">event</span><span style="color: #000000; font-weight: bold">[</span><span style="color: #4e9a06">&#39;Records&#39;</span><span style="color: #000000; font-weight: bold">][</span><span style="color: #0000cf; font-weight: bold">0</span><span style="color: #000000; font-weight: bold">][</span><span style="color: #4e9a06">&#39;Sns&#39;</span><span style="color: #000000; font-weight: bold">][</span><span style="color: #4e9a06">&#39;Message&#39;</span><span style="color: #000000; font-weight: bold">]</span>
+    <span style="color: #204a87; font-weight: bold">print</span><span style="color: #000000; font-weight: bold">(</span><span style="color: #4e9a06">&quot;From SNS: &quot;</span> <span style="color: #ce5c00; font-weight: bold">+</span> <span style="color: #000000">message</span><span style="color: #000000; font-weight: bold">)</span>
+    <span style="color: #204a87; font-weight: bold">return</span> <span style="color: #000000">message</span>
+</pre></div>
 
 
 <figure >
@@ -498,66 +497,62 @@ So let&rsquo;s do that.</p>
 <h2 id="using-cli:f657bc8efd67a0e2d83aeda4b346f8af">Using CLI</h2>
 
 <p>Try the following command to get the list of your lambda functions:</p>
-
-<pre><code class="language-bash">$ aws lambda --profile lambda.s3.1 --region ap-northeast-1 list-functions
-</code></pre>
-
-<pre><code class="language-json">{
-    &quot;Functions&quot;: [
-        {
-            &quot;CodeSize&quot;: 317,
-            &quot;FunctionArn&quot;: &quot;arn:aws:lambda:ap-northeast-1:XXXXXXXXXXXX:function:lambda_1&quot;,
-            &quot;MemorySize&quot;: 128,
-            &quot;Role&quot;: &quot;arn:aws:iam::XXXXXXXXXXXX:role/lambda_basic_execution_1&quot;,
-            &quot;Handler&quot;: &quot;lambda_function.lambda_handler&quot;,
-            &quot;Runtime&quot;: &quot;python2.7&quot;,
-            &quot;CodeSha256&quot;: &quot;.....&quot;,
-            &quot;FunctionName&quot;: &quot;lambda_1&quot;,
-            &quot;Timeout&quot;: 183,
-            &quot;LastModified&quot;: &quot;2015-11-15T07:49:28.367+0000&quot;,
-            &quot;Version&quot;: &quot;$LATEST&quot;,
-            &quot;Description&quot;: &quot;An Amazon SNS trigger that logs the message pushed to the SNS topic.&quot;
-        },
-        {
-            &quot;CodeSize&quot;: 316,
-            &quot;FunctionArn&quot;: &quot;arn:aws:lambda:ap-northeast-1:XXXXXXXXXXXX:function:lambda_2&quot;,
-            &quot;MemorySize&quot;: 128,
-            &quot;Role&quot;: &quot;arn:aws:iam::XXXXXXXXXXXX:role/lambda_basic_execution_1&quot;,
-            &quot;Handler&quot;: &quot;lambda_function.lambda_handler&quot;,
-            &quot;Runtime&quot;: &quot;python2.7&quot;,
-            &quot;CodeSha256&quot;: &quot;.......&quot;,
-            &quot;FunctionName&quot;: &quot;lambda_2&quot;,
-            &quot;Timeout&quot;: 3,
-            &quot;LastModified&quot;: &quot;2015-11-14T14:03:00.083+0000&quot;,
-            &quot;Version&quot;: &quot;$LATEST&quot;,
-            &quot;Description&quot;: &quot;An Amazon SNS trigger that logs the message pushed to the SNS topic.&quot;
-        }
-    ]
-}
-
-</code></pre>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>$ aws lambda --profile lambda.s3.1 --region ap-northeast-1 list-functions
+</pre></div>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #000000; font-weight: bold">{</span>
+    <span style="color: #204a87; font-weight: bold">&quot;Functions&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #000000; font-weight: bold">[</span>
+        <span style="color: #000000; font-weight: bold">{</span>
+            <span style="color: #204a87; font-weight: bold">&quot;CodeSize&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #0000cf; font-weight: bold">317</span><span style="color: #000000; font-weight: bold">,</span>
+            <span style="color: #204a87; font-weight: bold">&quot;FunctionArn&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #4e9a06">&quot;arn:aws:lambda:ap-northeast-1:XXXXXXXXXXXX:function:lambda_1&quot;</span><span style="color: #000000; font-weight: bold">,</span>
+            <span style="color: #204a87; font-weight: bold">&quot;MemorySize&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #0000cf; font-weight: bold">128</span><span style="color: #000000; font-weight: bold">,</span>
+            <span style="color: #204a87; font-weight: bold">&quot;Role&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #4e9a06">&quot;arn:aws:iam::XXXXXXXXXXXX:role/lambda_basic_execution_1&quot;</span><span style="color: #000000; font-weight: bold">,</span>
+            <span style="color: #204a87; font-weight: bold">&quot;Handler&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #4e9a06">&quot;lambda_function.lambda_handler&quot;</span><span style="color: #000000; font-weight: bold">,</span>
+            <span style="color: #204a87; font-weight: bold">&quot;Runtime&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #4e9a06">&quot;python2.7&quot;</span><span style="color: #000000; font-weight: bold">,</span>
+            <span style="color: #204a87; font-weight: bold">&quot;CodeSha256&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #4e9a06">&quot;.....&quot;</span><span style="color: #000000; font-weight: bold">,</span>
+            <span style="color: #204a87; font-weight: bold">&quot;FunctionName&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #4e9a06">&quot;lambda_1&quot;</span><span style="color: #000000; font-weight: bold">,</span>
+            <span style="color: #204a87; font-weight: bold">&quot;Timeout&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #0000cf; font-weight: bold">183</span><span style="color: #000000; font-weight: bold">,</span>
+            <span style="color: #204a87; font-weight: bold">&quot;LastModified&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #4e9a06">&quot;2015-11-15T07:49:28.367+0000&quot;</span><span style="color: #000000; font-weight: bold">,</span>
+            <span style="color: #204a87; font-weight: bold">&quot;Version&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #4e9a06">&quot;$LATEST&quot;</span><span style="color: #000000; font-weight: bold">,</span>
+            <span style="color: #204a87; font-weight: bold">&quot;Description&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #4e9a06">&quot;An Amazon SNS trigger that logs the message pushed to the SNS topic.&quot;</span>
+        <span style="color: #000000; font-weight: bold">},</span>
+        <span style="color: #000000; font-weight: bold">{</span>
+            <span style="color: #204a87; font-weight: bold">&quot;CodeSize&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #0000cf; font-weight: bold">316</span><span style="color: #000000; font-weight: bold">,</span>
+            <span style="color: #204a87; font-weight: bold">&quot;FunctionArn&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #4e9a06">&quot;arn:aws:lambda:ap-northeast-1:XXXXXXXXXXXX:function:lambda_2&quot;</span><span style="color: #000000; font-weight: bold">,</span>
+            <span style="color: #204a87; font-weight: bold">&quot;MemorySize&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #0000cf; font-weight: bold">128</span><span style="color: #000000; font-weight: bold">,</span>
+            <span style="color: #204a87; font-weight: bold">&quot;Role&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #4e9a06">&quot;arn:aws:iam::XXXXXXXXXXXX:role/lambda_basic_execution_1&quot;</span><span style="color: #000000; font-weight: bold">,</span>
+            <span style="color: #204a87; font-weight: bold">&quot;Handler&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #4e9a06">&quot;lambda_function.lambda_handler&quot;</span><span style="color: #000000; font-weight: bold">,</span>
+            <span style="color: #204a87; font-weight: bold">&quot;Runtime&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #4e9a06">&quot;python2.7&quot;</span><span style="color: #000000; font-weight: bold">,</span>
+            <span style="color: #204a87; font-weight: bold">&quot;CodeSha256&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #4e9a06">&quot;.......&quot;</span><span style="color: #000000; font-weight: bold">,</span>
+            <span style="color: #204a87; font-weight: bold">&quot;FunctionName&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #4e9a06">&quot;lambda_2&quot;</span><span style="color: #000000; font-weight: bold">,</span>
+            <span style="color: #204a87; font-weight: bold">&quot;Timeout&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #0000cf; font-weight: bold">3</span><span style="color: #000000; font-weight: bold">,</span>
+            <span style="color: #204a87; font-weight: bold">&quot;LastModified&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #4e9a06">&quot;2015-11-14T14:03:00.083+0000&quot;</span><span style="color: #000000; font-weight: bold">,</span>
+            <span style="color: #204a87; font-weight: bold">&quot;Version&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #4e9a06">&quot;$LATEST&quot;</span><span style="color: #000000; font-weight: bold">,</span>
+            <span style="color: #204a87; font-weight: bold">&quot;Description&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #4e9a06">&quot;An Amazon SNS trigger that logs the message pushed to the SNS topic.&quot;</span>
+        <span style="color: #000000; font-weight: bold">}</span>
+    <span style="color: #000000; font-weight: bold">]</span>
+<span style="color: #000000; font-weight: bold">}</span>
+</pre></div>
 
 <h2 id="custom-policy-for-lambda-access:f657bc8efd67a0e2d83aeda4b346f8af">Custom Policy for Lambda Access</h2>
 
 <p>Validate Policy
 You can either just give &ldquo;AmazonSNSFullAccess&rdquo; to the user <em>lambda.s3.1</em> or add the following Policy
 onto <strong>User-&gt;Permission-&gt;Add Inline policy-&gt;custom policy-&gt;Select-&gt;Policy Document</strong></p>
-
-<pre><code class="language-yaml">{
-  &quot;Version&quot;: &quot;2012-10-17&quot;,
-  &quot;Statement&quot;: [
-    {
-      &quot;Action&quot;: [
-        &quot;sns:Publish&quot;
-      ],
-      &quot;Resource&quot;: [
-        &quot;arn:aws:sns:ap-northeast-1:YOUR_NUMBER:Commits_1&quot;
-      ],
-      &quot;Effect&quot;: &quot;Allow&quot;
-    }
-  ]
-}
-</code></pre>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #000000; font-weight: bold">{</span>
+  <span style="color: #4e9a06">&quot;Version&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #4e9a06">&quot;2012-10-17&quot;</span><span style="color: #000000; font-weight: bold">,</span>
+  <span style="color: #4e9a06">&quot;Statement&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #000000; font-weight: bold">[</span>
+    <span style="color: #000000; font-weight: bold">{</span>
+      <span style="color: #4e9a06">&quot;Action&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #000000; font-weight: bold">[</span>
+        <span style="color: #4e9a06">&quot;sns:Publish&quot;</span>
+      <span style="color: #000000; font-weight: bold">],</span>
+      <span style="color: #4e9a06">&quot;Resource&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #000000; font-weight: bold">[</span>
+        <span style="color: #4e9a06">&quot;arn:aws:sns:ap-northeast-1:YOUR_NUMBER:Commits_1&quot;</span>
+      <span style="color: #000000; font-weight: bold">],</span>
+      <span style="color: #4e9a06">&quot;Effect&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #4e9a06">&quot;Allow&quot;</span>
+    <span style="color: #000000; font-weight: bold">}</span>
+  <span style="color: #000000; font-weight: bold">]</span>
+<span style="color: #000000; font-weight: bold">}</span>
+</pre></div>
 
   </div>
   <div id="disqus_thread"></div>

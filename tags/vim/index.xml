@@ -23,11 +23,10 @@
 &lt;/ul&gt;
 
 &lt;p&gt;Here&amp;rsquo;s what I would see:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ vim release.sh 
-Warning: Cannot find word list &amp;quot;en.utf-8.spl&amp;quot; or &amp;quot;en.ascii.spl&amp;quot;
-Press ENTER or type command to continue
-&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;$ vim release.sh 
+Warning: Cannot find word list &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;en.utf-8.spl&amp;quot;&lt;/span&gt; or &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;en.ascii.spl&amp;quot;&lt;/span&gt;
+Press ENTER or &lt;span style=&#34;color: #204a87&#34;&gt;type&lt;/span&gt; &lt;span style=&#34;color: #204a87&#34;&gt;command&lt;/span&gt; to &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;continue&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;I googled a lot regarding this but didn&amp;rsquo;t find anything straight forward.
 When all options failed I recalled that it is looking for the spell files in a specific folder.
@@ -37,8 +36,7 @@ Hence I decided to do a lookup for them:&lt;/p&gt;
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;I got a lot of options:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ locate en.utf-8
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;$ locate en.utf-8
 
 /usr/local/Cellar/macvim/7.4-73/MacVim.app/Contents/Resources/vim/runtime/spell/en.utf-8.spl
 /usr/local/Cellar/macvim/7.4-73/MacVim.app/Contents/Resources/vim/runtime/spell/en.utf-8.sug
@@ -46,12 +44,11 @@ Hence I decided to do a lookup for them:&lt;/p&gt;
 /usr/local/Cellar/vim/7.4.712/share/vim/vim74/spell/en.utf-8.sug
 /usr/share/vim/vim73/spell/en.utf-8.spl
 /usr/share/vim/vim73/spell/en.utf-8.sug
-&lt;/code&gt;&lt;/pre&gt;
+&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;One of the options was to change the &lt;code&gt;runtimepath&lt;/code&gt; to let it know about the spell folders.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;let &amp;amp;runtimepath=(&amp;quot;~/.vim/,/usr/local/Cellar/vim/7.4.712/share/vim/vim74/spell/,&amp;quot; . &amp;amp;runtimepath)
-&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #204a87&#34;&gt;let&lt;/span&gt; &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;runtimepath&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=(&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;~/.vim/,/usr/local/Cellar/vim/7.4.712/share/vim/vim74/spell/,&amp;quot;&lt;/span&gt; . &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;&amp;amp;&lt;/span&gt;runtimepath&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;When that failed too and nothing else worked, I decided to copy out the file and give it a try:&lt;/p&gt;
 

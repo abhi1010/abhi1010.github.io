@@ -68,12 +68,11 @@
 &lt;h1 id=&#34;data-binding:ac9495c8eabea9a6ff20ce0b92d45cca&#34;&gt;Data Binding&lt;/h1&gt;
 
 &lt;p&gt;Following are the four possible ways of data binding:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;div&amp;gt;{{hero.name}}&amp;lt;/div&amp;gt;
-&amp;lt;hero-detail [hero]=&amp;quot;selectedHero&amp;quot;&amp;gt;&amp;lt;/hero-detail&amp;gt;
-&amp;lt;div (click)=&amp;quot;selectHero(hero)&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
-&amp;lt;input [(ngModel)]=&amp;quot;hero.name&amp;quot;&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;div&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;&amp;gt;&lt;/span&gt;{{hero.name}}&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;&amp;lt;/&lt;/span&gt;&lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;div&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;hero-detail&lt;/span&gt; &lt;span style=&#34;color: #a40000; border: 1px solid #ef2929&#34;&gt;[&lt;/span&gt;&lt;span style=&#34;color: #c4a000&#34;&gt;hero&lt;/span&gt;&lt;span style=&#34;color: #a40000; border: 1px solid #ef2929&#34;&gt;]=&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #c4a000&#34;&gt;selectedHero&lt;/span&gt;&lt;span style=&#34;color: #a40000; border: 1px solid #ef2929&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;&amp;gt;&amp;lt;/&lt;/span&gt;&lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;hero-detail&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;div&lt;/span&gt; &lt;span style=&#34;color: #a40000; border: 1px solid #ef2929&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #c4a000&#34;&gt;click&lt;/span&gt;&lt;span style=&#34;color: #a40000; border: 1px solid #ef2929&#34;&gt;)=&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #c4a000&#34;&gt;selectHero&lt;/span&gt;&lt;span style=&#34;color: #a40000; border: 1px solid #ef2929&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #c4a000&#34;&gt;hero&lt;/span&gt;&lt;span style=&#34;color: #a40000; border: 1px solid #ef2929&#34;&gt;)&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;&amp;gt;&amp;lt;/&lt;/span&gt;&lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;div&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;input&lt;/span&gt; &lt;span style=&#34;color: #a40000; border: 1px solid #ef2929&#34;&gt;[(&lt;/span&gt;&lt;span style=&#34;color: #c4a000&#34;&gt;ngModel&lt;/span&gt;&lt;span style=&#34;color: #a40000; border: 1px solid #ef2929&#34;&gt;)]=&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #c4a000&#34;&gt;hero&lt;/span&gt;&lt;span style=&#34;color: #a40000; border: 1px solid #ef2929&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #c4a000&#34;&gt;name&lt;/span&gt;&lt;span style=&#34;color: #a40000; border: 1px solid #ef2929&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
 
 &lt;ol&gt;
 &lt;li&gt;The &amp;ldquo;interpolation&amp;rdquo; displays the component&amp;rsquo;s hero.name property value within the &lt;div&gt; tags&lt;/li&gt;
@@ -95,9 +94,8 @@ Two other examples are:&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Example:&lt;/strong&gt;&lt;/p&gt;
 
 &lt;p&gt;The &lt;code&gt;ngModel&lt;/code&gt; directive, which implements two-way data binding, is an example of an attribute directive.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;input [(ngModel)]=&amp;quot;hero.name&amp;quot;&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;input&lt;/span&gt; &lt;span style=&#34;color: #a40000; border: 1px solid #ef2929&#34;&gt;[(&lt;/span&gt;&lt;span style=&#34;color: #c4a000&#34;&gt;ngModel&lt;/span&gt;&lt;span style=&#34;color: #a40000; border: 1px solid #ef2929&#34;&gt;)]=&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #c4a000&#34;&gt;hero&lt;/span&gt;&lt;span style=&#34;color: #a40000; border: 1px solid #ef2929&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #c4a000&#34;&gt;name&lt;/span&gt;&lt;span style=&#34;color: #a40000; border: 1px solid #ef2929&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;&lt;strong&gt;Other examples:&lt;/strong&gt; ngSwitch, ngStyle, ngClass&lt;/p&gt;
 

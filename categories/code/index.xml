@@ -36,43 +36,41 @@ very hard to control&lt;/li&gt;
 &lt;p&gt;The only time I could think of using &lt;em&gt;getopt&lt;/em&gt; is when I really want to use a long variable name and there&amp;rsquo;s just a single one.&lt;/p&gt;
 
 &lt;p&gt;Here&amp;rsquo;a a sample for &lt;em&gt;getopt&lt;/em&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;#!/bin/bash&lt;/span&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;#!/bin/bash
-
-#Check the number of arguments. If none are passed, print help and exit.
-NUMARGS=$#
-# echo -e \\n&amp;quot;Number of arguments: $NUMARGS&amp;quot;
-if [ $NUMARGS -eq 0 ]; then
+&lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;#Check the number of arguments. If none are passed, print help and exit.&lt;/span&gt;
+&lt;span style=&#34;color: #000000&#34;&gt;NUMARGS&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;$#&lt;/span&gt;
+&lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;# echo -e \\n&amp;quot;Number of arguments: $NUMARGS&amp;quot;&lt;/span&gt;
+&lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;[&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;$NUMARGS&lt;/span&gt; -eq &lt;span style=&#34;color: #0000cf; font-weight: bold&#34;&gt;0&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;]&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;;&lt;/span&gt; &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;then&lt;/span&gt;
   HELP
-fi
+&lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;fi&lt;/span&gt;
 
-OPTS=`getopt -o vhns: --long verbose,dry-run,help,stack-size: -n &#39;parse-options&#39; -- &amp;quot;$@&amp;quot;`
+&lt;span style=&#34;color: #000000&#34;&gt;OPTS&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;`&lt;/span&gt;getopt -o vhns: --long verbose,dry-run,help,stack-size: -n &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;parse-options&amp;#39;&lt;/span&gt; -- &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;$@&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;`&lt;/span&gt;
 
-eval set -- &amp;quot;$OPTS&amp;quot;
+&lt;span style=&#34;color: #204a87&#34;&gt;eval&lt;/span&gt; &lt;span style=&#34;color: #204a87&#34;&gt;set&lt;/span&gt; -- &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;$OPTS&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;&lt;/span&gt;
 
-while getopt dir:,env: FLAG; do
-  case $FLAG in
-    -dir)
-      DIR=$OPTARG
-      echo &amp;quot;-dir used: $OPTARG&amp;quot;
-      ;;
-    -env)
-      PYENV=$OPTARG
-      echo &amp;quot;-env used: $OPTARG&amp;quot;
-      ;;
-    h)  #show help
+&lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;while&lt;/span&gt; getopt dir:,env: FLAG&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;;&lt;/span&gt; &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;do&lt;/span&gt;
+  &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;case&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;$FLAG&lt;/span&gt; in
+    -dir&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;)&lt;/span&gt;
+      &lt;span style=&#34;color: #000000&#34;&gt;DIR&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;$OPTARG&lt;/span&gt;
+      &lt;span style=&#34;color: #204a87&#34;&gt;echo&lt;/span&gt; &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;-dir used: &lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;$OPTARG&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;&lt;/span&gt;
+      &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;;;&lt;/span&gt;
+    -env&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;)&lt;/span&gt;
+      &lt;span style=&#34;color: #000000&#34;&gt;PYENV&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;$OPTARG&lt;/span&gt;
+      &lt;span style=&#34;color: #204a87&#34;&gt;echo&lt;/span&gt; &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;-env used: &lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;$OPTARG&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;&lt;/span&gt;
+      &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;;;&lt;/span&gt;
+    h&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;)&lt;/span&gt;  &lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;#show help&lt;/span&gt;
       HELP
-      ;;
-    \?) #unrecognized option - show help
-      echo -e \\n&amp;quot;Option -${BOLD}$OPTARG${NORM} not allowed.&amp;quot;
+      &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;;;&lt;/span&gt;
+    &lt;span style=&#34;color: #4e9a06&#34;&gt;\?&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;)&lt;/span&gt; &lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;#unrecognized option - show help&lt;/span&gt;
+      &lt;span style=&#34;color: #204a87&#34;&gt;echo&lt;/span&gt; -e &lt;span style=&#34;color: #4e9a06&#34;&gt;\\&lt;/span&gt;n&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;Option -${&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;BOLD&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;}&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;$OPTARG&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;${&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;NORM&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;} not allowed.&amp;quot;&lt;/span&gt;
       HELP
-      ;;
-  esac
-done
+      &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;;;&lt;/span&gt;
+  &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;esac&lt;/span&gt;
+&lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;done&lt;/span&gt;
 
-shift $((OPTIND-1))  #This tells getopts to move on to the next argument.
-
-&lt;/code&gt;&lt;/pre&gt;
+&lt;span style=&#34;color: #204a87&#34;&gt;shift&lt;/span&gt; &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;$((&lt;/span&gt;OPTIND-1&lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;))&lt;/span&gt;  &lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;#This tells getopts to move on to the next argument.&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
 
 &lt;h2 id=&#34;getopts:dd7aaebbdbc744c7f56cf7dcd59142a2&#34;&gt;getopts&lt;/h2&gt;
 
@@ -85,96 +83,93 @@ shift $((OPTIND-1))  #This tells getopts to move on to the next argument.
 &lt;/ul&gt;
 
 &lt;p&gt;Here&amp;rsquo;s a sample for &lt;em&gt;getopts&lt;/em&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;SCRIPT&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;`&lt;/span&gt;basename &lt;span style=&#34;color: #4e9a06&#34;&gt;${&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;BASH_SOURCE&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;[0]&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;}`&lt;/span&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;
-SCRIPT=`basename ${BASH_SOURCE[0]}`
+&lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;## Let&amp;#39;s do some admin work to find out the variables to be used here&lt;/span&gt;
+&lt;span style=&#34;color: #000000&#34;&gt;BOLD&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;\e[1;31m&amp;#39;&lt;/span&gt;         &lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;# Bold Red&lt;/span&gt;
+&lt;span style=&#34;color: #000000&#34;&gt;REV&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;\e[1;32m&amp;#39;&lt;/span&gt;       &lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;# Bold Green&lt;/span&gt;
 
-## Let&#39;s do some admin work to find out the variables to be used here
-BOLD=&#39;\e[1;31m&#39;         # Bold Red
-REV=&#39;\e[1;32m&#39;       # Bold Green
+&lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;#Help function&lt;/span&gt;
+&lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;function&lt;/span&gt; HELP &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;{&lt;/span&gt;
+  &lt;span style=&#34;color: #204a87&#34;&gt;echo&lt;/span&gt; -e &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;${&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;REV&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;}Basic usage:${&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;OFF&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;} ${&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;BOLD&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;}&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;$SCRIPT&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt; -d helloworld ${&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;OFF&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;}&amp;quot;\\&lt;/span&gt;n
+  &lt;span style=&#34;color: #204a87&#34;&gt;echo&lt;/span&gt; -e &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;${&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;REV&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;}The following switches are recognized. &lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;$OFF&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt; &amp;quot;&lt;/span&gt;
+  &lt;span style=&#34;color: #204a87&#34;&gt;echo&lt;/span&gt; -e &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;${&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;REV&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;}-p ${&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;OFF&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;}  --Sets the environment to use for installing python ${&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;OFF&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;}. Default is ${&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;BOLD&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;} /usr/bin ${&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;OFF&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;}&amp;quot;&lt;/span&gt;
+  &lt;span style=&#34;color: #204a87&#34;&gt;echo&lt;/span&gt; -e &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;${&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;REV&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;}-d ${&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;OFF&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;}  --Sets the directory whose virtualenv is to be setup. Default is ${&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;BOLD&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;} local folder (.) ${&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;OFF&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;}&amp;quot;&lt;/span&gt;
+  &lt;span style=&#34;color: #204a87&#34;&gt;echo&lt;/span&gt; -e &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;${&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;REV&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;}-v ${&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;OFF&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;}  --Sets the python version that you want to install. Default is ${&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;BOLD&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;} 2.7 ${&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;OFF&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;}&amp;quot;&lt;/span&gt;
+  &lt;span style=&#34;color: #204a87&#34;&gt;echo&lt;/span&gt; -e &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;${&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;REV&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;}-h${&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;OFF&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;}  --Displays this help message. No further functions are performed.&amp;quot;\\&lt;/span&gt;n
+  &lt;span style=&#34;color: #204a87&#34;&gt;echo&lt;/span&gt; -e &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;Example: ${&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;BOLD&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;}&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;$SCRIPT&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt; -d helloworld -p /opt/py27env/bin -v 2.7 ${&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;OFF&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;}&amp;quot;\\&lt;/span&gt;n
+  &lt;span style=&#34;color: #204a87&#34;&gt;exit&lt;/span&gt; 1
+&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;}&lt;/span&gt;
 
-#Help function
-function HELP {
-  echo -e &amp;quot;${REV}Basic usage:${OFF} ${BOLD}$SCRIPT -d helloworld ${OFF}&amp;quot;\\n
-  echo -e &amp;quot;${REV}The following switches are recognized. $OFF &amp;quot;
-  echo -e &amp;quot;${REV}-p ${OFF}  --Sets the environment to use for installing python ${OFF}. Default is ${BOLD} /usr/bin ${OFF}&amp;quot;
-  echo -e &amp;quot;${REV}-d ${OFF}  --Sets the directory whose virtualenv is to be setup. Default is ${BOLD} local folder (.) ${OFF}&amp;quot;
-  echo -e &amp;quot;${REV}-v ${OFF}  --Sets the python version that you want to install. Default is ${BOLD} 2.7 ${OFF}&amp;quot;
-  echo -e &amp;quot;${REV}-h${OFF}  --Displays this help message. No further functions are performed.&amp;quot;\\n
-  echo -e &amp;quot;Example: ${BOLD}$SCRIPT -d helloworld -p /opt/py27env/bin -v 2.7 ${OFF}&amp;quot;\\n
-  exit 1
-}
+&lt;span style=&#34;color: #000000&#34;&gt;PYENV&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;/usr/bin&amp;#39;&lt;/span&gt;
+&lt;span style=&#34;color: #000000&#34;&gt;DIR&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;.&amp;#39;&lt;/span&gt;
+&lt;span style=&#34;color: #000000&#34;&gt;VERSION&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;2.7&amp;#39;&lt;/span&gt;
 
-PYENV=&#39;/usr/bin&#39;
-DIR=&#39;.&#39;
-VERSION=&#39;2.7&#39;
+&lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;# In case you wanted to check what variables were passed&lt;/span&gt;
+&lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;# echo &amp;quot;flags = $*&amp;quot;&lt;/span&gt;
 
-# In case you wanted to check what variables were passed
-# echo &amp;quot;flags = $*&amp;quot;
-
-while getopts p:d:v:h FLAG; do
-  case $FLAG in
-    d)
-      DIR=$OPTARG
-      ;;
-    p)
-      PYENV=$OPTARG
-      ;;
-    v)
-      VERSION=$OPTARG
-      ;;
-    h)
+&lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;while&lt;/span&gt; &lt;span style=&#34;color: #204a87&#34;&gt;getopts&lt;/span&gt; p:d:v:h FLAG&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;;&lt;/span&gt; &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;do&lt;/span&gt;
+  &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;case&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;$FLAG&lt;/span&gt; in
+    d&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;)&lt;/span&gt;
+      &lt;span style=&#34;color: #000000&#34;&gt;DIR&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;$OPTARG&lt;/span&gt;
+      &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;;;&lt;/span&gt;
+    p&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;)&lt;/span&gt;
+      &lt;span style=&#34;color: #000000&#34;&gt;PYENV&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;$OPTARG&lt;/span&gt;
+      &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;;;&lt;/span&gt;
+    v&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;)&lt;/span&gt;
+      &lt;span style=&#34;color: #000000&#34;&gt;VERSION&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;$OPTARG&lt;/span&gt;
+      &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;;;&lt;/span&gt;
+    h&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;)&lt;/span&gt;
       HELP
-      ;;
-    \?) #unrecognized option - show help
-      echo -e \\n&amp;quot;Option -${BOLD}$OPTARG${OFF} not allowed.&amp;quot;
+      &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;;;&lt;/span&gt;
+    &lt;span style=&#34;color: #4e9a06&#34;&gt;\?&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;)&lt;/span&gt; &lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;#unrecognized option - show help&lt;/span&gt;
+      &lt;span style=&#34;color: #204a87&#34;&gt;echo&lt;/span&gt; -e &lt;span style=&#34;color: #4e9a06&#34;&gt;\\&lt;/span&gt;n&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;Option -${&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;BOLD&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;}&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;$OPTARG&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;${&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;OFF&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;} not allowed.&amp;quot;&lt;/span&gt;
       HELP
-      ;;
-  esac
-done
-&lt;/code&gt;&lt;/pre&gt;
+      &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;;;&lt;/span&gt;
+  &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;esac&lt;/span&gt;
+&lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;done&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
 
 &lt;h2 id=&#34;what-if-i-really-wanted-long-options-with-getopts:dd7aaebbdbc744c7f56cf7dcd59142a2&#34;&gt;What if I really wanted long options with &lt;em&gt;getopts&lt;/em&gt;?&lt;/h2&gt;
 
 &lt;p&gt;&lt;em&gt;getopts&lt;/em&gt; function can be used to parse long options by putting a dash character followed by a colon into the OPTSPEC.
 Sharing &lt;a href=&#34;http://stackoverflow.com/a/7680682/142650&#34;&gt;the solution from this link&lt;/a&gt;.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;#!/usr/bin/env bash 
-OPTSPEC=&amp;quot;:hv-:&amp;quot;
-while getopts &amp;quot;$OPTSPEC&amp;quot; optchar; do
-    case &amp;quot;${optchar}&amp;quot; in
-        -)
-            case &amp;quot;${OPTARG}&amp;quot; in
-                loglevel)
-                    val=&amp;quot;${!OPTIND}&amp;quot;; OPTIND=$(( $OPTIND + 1 ))
-                    echo &amp;quot;Parsing option: &#39;--${OPTARG}&#39;, value: &#39;${val}&#39;&amp;quot; &amp;gt;&amp;amp;2;
-                    ;;
-                loglevel=*)
-                    val=${OPTARG#*=}
-                    opt=${OPTARG%=$val}
-                    echo &amp;quot;Parsing option: &#39;--${opt}&#39;, value: &#39;${val}&#39;&amp;quot; &amp;gt;&amp;amp;2
-                    ;;
-                *)
-                    if [ &amp;quot;$OPTERR&amp;quot; = 1 ] &amp;amp;&amp;amp; [ &amp;quot;${OPTSPEC:0:1}&amp;quot; != &amp;quot;:&amp;quot; ]; then
-                        echo &amp;quot;Unknown option --${OPTARG}&amp;quot; &amp;gt;&amp;amp;2
-                    fi
-                    ;;
-            esac;;
-        h)
-            echo &amp;quot;usage: $0 [-v] [--loglevel[=]&amp;lt;value&amp;gt;]&amp;quot; &amp;gt;&amp;amp;2
-            exit 2
-            ;;
-        v)
-            echo &amp;quot;Parsing option: &#39;-${optchar}&#39;&amp;quot; &amp;gt;&amp;amp;2
-            ;;
-        *)
-            if [ &amp;quot;$OPTERR&amp;quot; != 1 ] || [ &amp;quot;${OPTSPEC:0:1}&amp;quot; = &amp;quot;:&amp;quot; ]; then
-                echo &amp;quot;Non-option argument: &#39;-${OPTARG}&#39;&amp;quot; &amp;gt;&amp;amp;2
-            fi
-            ;;
-    esac
-done
-&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;#!/usr/bin/env bash &lt;/span&gt;
+&lt;span style=&#34;color: #000000&#34;&gt;OPTSPEC&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;:hv-:&amp;quot;&lt;/span&gt;
+&lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;while&lt;/span&gt; &lt;span style=&#34;color: #204a87&#34;&gt;getopts&lt;/span&gt; &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;$OPTSPEC&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;&lt;/span&gt; optchar&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;;&lt;/span&gt; &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;do&lt;/span&gt;
+    &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;case&lt;/span&gt; &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;${&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;optchar&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;}&amp;quot;&lt;/span&gt; in
+        -&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;)&lt;/span&gt;
+            &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;case&lt;/span&gt; &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;${&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;OPTARG&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;}&amp;quot;&lt;/span&gt; in
+                loglevel&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;)&lt;/span&gt;
+                    &lt;span style=&#34;color: #000000&#34;&gt;val&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;${&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;!OPTIND&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;}&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;;&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;OPTIND&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;$((&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;$OPTIND&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color: #0000cf; font-weight: bold&#34;&gt;1&lt;/span&gt; &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;))&lt;/span&gt;
+                    &lt;span style=&#34;color: #204a87&#34;&gt;echo&lt;/span&gt; &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;Parsing option: &amp;#39;--${&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;OPTARG&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;}&amp;#39;, value: &amp;#39;${&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;val&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;}&amp;#39;&amp;quot;&lt;/span&gt; &amp;gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;&amp;amp;&lt;/span&gt;2&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;;&lt;/span&gt;
+                    &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;;;&lt;/span&gt;
+                &lt;span style=&#34;color: #000000&#34;&gt;loglevel&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;*&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;)&lt;/span&gt;
+                    &lt;span style=&#34;color: #000000&#34;&gt;val&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;${&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;OPTARG&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;#*=&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;}&lt;/span&gt;
+                    &lt;span style=&#34;color: #000000&#34;&gt;opt&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;${&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;OPTARG&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;%=&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;$val&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;}&lt;/span&gt;
+                    &lt;span style=&#34;color: #204a87&#34;&gt;echo&lt;/span&gt; &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;Parsing option: &amp;#39;--${&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;opt&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;}&amp;#39;, value: &amp;#39;${&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;val&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;}&amp;#39;&amp;quot;&lt;/span&gt; &amp;gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;&amp;amp;&lt;/span&gt;2
+                    &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;;;&lt;/span&gt;
+                *&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;)&lt;/span&gt;
+                    &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;[&lt;/span&gt; &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;$OPTERR&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #0000cf; font-weight: bold&#34;&gt;1&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;]&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;[&lt;/span&gt; &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;${&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;OPTSPEC&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;0&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;1&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;}&amp;quot;&lt;/span&gt; !&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;:&amp;quot;&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;]&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;;&lt;/span&gt; &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;then&lt;/span&gt;
+                        &lt;span style=&#34;color: #204a87&#34;&gt;echo&lt;/span&gt; &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;Unknown option --${&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;OPTARG&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;}&amp;quot;&lt;/span&gt; &amp;gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;&amp;amp;&lt;/span&gt;2
+                    &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;fi&lt;/span&gt;
+                    &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;;;&lt;/span&gt;
+            &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;esac&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;;;&lt;/span&gt;
+        h&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;)&lt;/span&gt;
+            &lt;span style=&#34;color: #204a87&#34;&gt;echo&lt;/span&gt; &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;usage: &lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;$0&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt; [-v] [--loglevel[=]&amp;lt;value&amp;gt;]&amp;quot;&lt;/span&gt; &amp;gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;&amp;amp;&lt;/span&gt;2
+            &lt;span style=&#34;color: #204a87&#34;&gt;exit&lt;/span&gt; 2
+            &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;;;&lt;/span&gt;
+        v&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;)&lt;/span&gt;
+            &lt;span style=&#34;color: #204a87&#34;&gt;echo&lt;/span&gt; &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;Parsing option: &amp;#39;-${&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;optchar&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;}&amp;#39;&amp;quot;&lt;/span&gt; &amp;gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;&amp;amp;&lt;/span&gt;2
+            &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;;;&lt;/span&gt;
+        *&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;)&lt;/span&gt;
+            &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;[&lt;/span&gt; &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;$OPTERR&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;&lt;/span&gt; !&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #0000cf; font-weight: bold&#34;&gt;1&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;]&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;||&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;[&lt;/span&gt; &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;${&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;OPTSPEC&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;0&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;1&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;}&amp;quot;&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;:&amp;quot;&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;]&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;;&lt;/span&gt; &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;then&lt;/span&gt;
+                &lt;span style=&#34;color: #204a87&#34;&gt;echo&lt;/span&gt; &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;Non-option argument: &amp;#39;-${&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;OPTARG&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;}&amp;#39;&amp;quot;&lt;/span&gt; &amp;gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;&amp;amp;&lt;/span&gt;2
+            &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;fi&lt;/span&gt;
+            &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;;;&lt;/span&gt;
+    &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;esac&lt;/span&gt;
+&lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;done&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
 </description>
     </item>
     
@@ -189,18 +184,17 @@ parameters. However, since there are so many of them, it is very difficult to vi
 and find out what value was assigned to it. I wanted to make it easier on the eyes and decided to color code the
 parameters and separate them out from the values.
 Here&amp;rsquo;s the bash function I pulled out.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;colorme()
-{
-  gawk &#39;BEGIN {RS=&amp;quot; --| -&amp;quot;; }{print $0}&#39; \
-  | sed -e &#39;s/\([[:alpha:]]\+\)=/\1 /g&#39; \
-  | gawk &#39;BEGIN    {printf &amp;quot;-----------------\n&amp;quot; ; }
-            {
-                if (NF &amp;gt; 2) printf &amp;quot;\n\033[41;5;1m%s\033[0m\n&amp;quot;, $NF ;
-                printf &amp;quot;\033[40;38;5;82m  %30s  \033[38;5;198m %s \033[0m \n&amp;quot;, $1, $2
-            }&#39;
-}
-&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;colorme&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;()&lt;/span&gt;
+&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;{&lt;/span&gt;
+  gawk &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;BEGIN {RS=&amp;quot; --| -&amp;quot;; }{print $0}&amp;#39;&lt;/span&gt; &lt;span style=&#34;color: #4e9a06&#34;&gt;\&lt;/span&gt;
+  &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; sed -e &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;s/\([[:alpha:]]\+\)=/\1 /g&amp;#39;&lt;/span&gt; &lt;span style=&#34;color: #4e9a06&#34;&gt;\&lt;/span&gt;
+  &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; gawk &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;BEGIN    {printf &amp;quot;-----------------\n&amp;quot; ; }&lt;/span&gt;
+&lt;span style=&#34;color: #4e9a06&#34;&gt;            {&lt;/span&gt;
+&lt;span style=&#34;color: #4e9a06&#34;&gt;                if (NF &amp;gt; 2) printf &amp;quot;\n\033[41;5;1m%s\033[0m\n&amp;quot;, $NF ;&lt;/span&gt;
+&lt;span style=&#34;color: #4e9a06&#34;&gt;                printf &amp;quot;\033[40;38;5;82m  %30s  \033[38;5;198m %s \033[0m \n&amp;quot;, $1, $2&lt;/span&gt;
+&lt;span style=&#34;color: #4e9a06&#34;&gt;            }&amp;#39;&lt;/span&gt;
+&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;The idea is as follows:&lt;/p&gt;
 
@@ -214,14 +208,13 @@ Here&amp;rsquo;s the bash function I pulled out.&lt;/p&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;Here is a sample command I wanted to test out.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;/opt/py27env/bin/python manage.py main-service-name --daemonize \
-    --alias-svc=mainsvc01 --application-id=app03/mainsvc01 --monitoring-service-name=mainsvc01 \
-    --log-level=DEBUG --solace-session-prop-host=server.prod --solace-session-prop-username=testing \
-    --solace-session-prop-password=testing --solace-session-prop-vpn=testing \
-    --solace-session-prop-cache-name=test_dc \
-    --rate=10
-&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;/opt/py27env/bin/python manage.py main-service-name --daemonize &lt;span style=&#34;color: #4e9a06&#34;&gt;\&lt;/span&gt;
+    --alias-svc&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;mainsvc01 --application-id&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;app03/mainsvc01 --monitoring-service-name&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;mainsvc01 &lt;span style=&#34;color: #4e9a06&#34;&gt;\&lt;/span&gt;
+    --log-level&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;DEBUG --solace-session-prop-host&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;server.prod --solace-session-prop-username&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;testing &lt;span style=&#34;color: #4e9a06&#34;&gt;\&lt;/span&gt;
+    --solace-session-prop-password&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;testing --solace-session-prop-vpn&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;testing &lt;span style=&#34;color: #4e9a06&#34;&gt;\&lt;/span&gt;
+    --solace-session-prop-cache-name&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;test_dc &lt;span style=&#34;color: #4e9a06&#34;&gt;\&lt;/span&gt;
+    --rate&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;10
+&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;Here is the result from my tests:
 
@@ -259,20 +252,17 @@ seems overly complicated for a job that is easily achieved by pip.&lt;/p&gt;
 &lt;p&gt;Let&amp;rsquo;s look at how to use &lt;code&gt;pip&lt;/code&gt; for local installation.
 Firstly, it is possible to install all requirements beforehand in a separate directory.
  We can use the following commands:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;pip install --download DIR -r requirements.txt
-&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;pip install --download DIR -r requirements.txt
+&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;If you prefer wheel, then use the following:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;pip wheel --wheel-dir DIR -r requirements.txt
-&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;pip wheel --wheel-dir DIR -r requirements.txt
+&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;Now, when we want to install from this given directory &lt;code&gt;DIR&lt;/code&gt;, then
 the following command can help:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;pip install --no-index --find-links=DIR -r requirements.txt
-&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;pip install --no-index --find-links&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;DIR -r requirements.txt
+&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;If you are using these in a current setup and you feel it still slows you down then the reason would be
 one of the first few commands where the request is still going to the internet.
@@ -286,9 +276,8 @@ just leading onto &lt;code&gt;pip install --no-index&lt;/code&gt;&lt;/p&gt;
 in the project, whether a new requirement has been added to that list. In that case, install it + update your local copy.&lt;/p&gt;
 
 &lt;p&gt;Here&amp;rsquo;s a sample code to put all changes in a single line that you can feed into &lt;code&gt;pip install&lt;/code&gt;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;sdiff -s /tmp/1 /tmp/2 | sed -e &#39;s/&amp;lt;//g&#39; | awk &#39;BEGIN {ORS=&amp;quot; &amp;quot;} {print $1}&#39;
-&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;sdiff -s /tmp/1 /tmp/2 &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; sed -e &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;s/&amp;lt;//g&amp;#39;&lt;/span&gt; &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; awk &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;BEGIN {ORS=&amp;quot; &amp;quot;} {print $1}&amp;#39;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;Breaking it down:&lt;/p&gt;
 
@@ -363,12 +352,11 @@ in the project, whether a new requirement has been added to that list. In that c
 &lt;h1 id=&#34;data-binding:ac9495c8eabea9a6ff20ce0b92d45cca&#34;&gt;Data Binding&lt;/h1&gt;
 
 &lt;p&gt;Following are the four possible ways of data binding:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;div&amp;gt;{{hero.name}}&amp;lt;/div&amp;gt;
-&amp;lt;hero-detail [hero]=&amp;quot;selectedHero&amp;quot;&amp;gt;&amp;lt;/hero-detail&amp;gt;
-&amp;lt;div (click)=&amp;quot;selectHero(hero)&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
-&amp;lt;input [(ngModel)]=&amp;quot;hero.name&amp;quot;&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;div&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;&amp;gt;&lt;/span&gt;{{hero.name}}&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;&amp;lt;/&lt;/span&gt;&lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;div&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;hero-detail&lt;/span&gt; &lt;span style=&#34;color: #a40000; border: 1px solid #ef2929&#34;&gt;[&lt;/span&gt;&lt;span style=&#34;color: #c4a000&#34;&gt;hero&lt;/span&gt;&lt;span style=&#34;color: #a40000; border: 1px solid #ef2929&#34;&gt;]=&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #c4a000&#34;&gt;selectedHero&lt;/span&gt;&lt;span style=&#34;color: #a40000; border: 1px solid #ef2929&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;&amp;gt;&amp;lt;/&lt;/span&gt;&lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;hero-detail&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;div&lt;/span&gt; &lt;span style=&#34;color: #a40000; border: 1px solid #ef2929&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #c4a000&#34;&gt;click&lt;/span&gt;&lt;span style=&#34;color: #a40000; border: 1px solid #ef2929&#34;&gt;)=&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #c4a000&#34;&gt;selectHero&lt;/span&gt;&lt;span style=&#34;color: #a40000; border: 1px solid #ef2929&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #c4a000&#34;&gt;hero&lt;/span&gt;&lt;span style=&#34;color: #a40000; border: 1px solid #ef2929&#34;&gt;)&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;&amp;gt;&amp;lt;/&lt;/span&gt;&lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;div&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;input&lt;/span&gt; &lt;span style=&#34;color: #a40000; border: 1px solid #ef2929&#34;&gt;[(&lt;/span&gt;&lt;span style=&#34;color: #c4a000&#34;&gt;ngModel&lt;/span&gt;&lt;span style=&#34;color: #a40000; border: 1px solid #ef2929&#34;&gt;)]=&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #c4a000&#34;&gt;hero&lt;/span&gt;&lt;span style=&#34;color: #a40000; border: 1px solid #ef2929&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #c4a000&#34;&gt;name&lt;/span&gt;&lt;span style=&#34;color: #a40000; border: 1px solid #ef2929&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
 
 &lt;ol&gt;
 &lt;li&gt;The &amp;ldquo;interpolation&amp;rdquo; displays the component&amp;rsquo;s hero.name property value within the &lt;div&gt; tags&lt;/li&gt;
@@ -390,9 +378,8 @@ Two other examples are:&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Example:&lt;/strong&gt;&lt;/p&gt;
 
 &lt;p&gt;The &lt;code&gt;ngModel&lt;/code&gt; directive, which implements two-way data binding, is an example of an attribute directive.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;input [(ngModel)]=&amp;quot;hero.name&amp;quot;&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;input&lt;/span&gt; &lt;span style=&#34;color: #a40000; border: 1px solid #ef2929&#34;&gt;[(&lt;/span&gt;&lt;span style=&#34;color: #c4a000&#34;&gt;ngModel&lt;/span&gt;&lt;span style=&#34;color: #a40000; border: 1px solid #ef2929&#34;&gt;)]=&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #c4a000&#34;&gt;hero&lt;/span&gt;&lt;span style=&#34;color: #a40000; border: 1px solid #ef2929&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #c4a000&#34;&gt;name&lt;/span&gt;&lt;span style=&#34;color: #a40000; border: 1px solid #ef2929&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;&lt;strong&gt;Other examples:&lt;/strong&gt; ngSwitch, ngStyle, ngClass&lt;/p&gt;
 
@@ -580,16 +567,15 @@ clicking on &amp;ldquo;Create a Lambda Function&amp;rdquo;.&lt;/p&gt;
 &lt;em&gt;Ensure that you select your SNS as the event source.&lt;/em&gt;&lt;/p&gt;
 
 &lt;p&gt;Create a Lambda function with the following code:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;import&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;json&lt;/span&gt;
+&lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;print&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;Loading function&amp;#39;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;)&lt;/span&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;import json
-print(&#39;Loading function&#39;)
-
-def lambda_handler(event, context):
-    print(&amp;quot;Received event: &amp;quot; + json.dumps(event, indent=2))
-    message = event[&#39;Records&#39;][0][&#39;Sns&#39;][&#39;Message&#39;]
-    print(&amp;quot;From SNS: &amp;quot; + message)
-    return message
-&lt;/code&gt;&lt;/pre&gt;
+&lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;lambda_handler&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;event&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;context&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;):&lt;/span&gt;
+    &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;print&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;Received event: &amp;quot;&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;json&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;dumps&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;event&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;indent&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #0000cf; font-weight: bold&#34;&gt;2&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;))&lt;/span&gt;
+    &lt;span style=&#34;color: #000000&#34;&gt;message&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;event&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;[&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;Records&amp;#39;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;][&lt;/span&gt;&lt;span style=&#34;color: #0000cf; font-weight: bold&#34;&gt;0&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;][&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;Sns&amp;#39;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;][&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;Message&amp;#39;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;]&lt;/span&gt;
+    &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;print&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;From SNS: &amp;quot;&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;message&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;)&lt;/span&gt;
+    &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;message&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;figure &gt;
@@ -783,66 +769,62 @@ So let&amp;rsquo;s do that.&lt;/p&gt;
 &lt;h2 id=&#34;using-cli:f657bc8efd67a0e2d83aeda4b346f8af&#34;&gt;Using CLI&lt;/h2&gt;
 
 &lt;p&gt;Try the following command to get the list of your lambda functions:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ aws lambda --profile lambda.s3.1 --region ap-northeast-1 list-functions
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-json&#34;&gt;{
-    &amp;quot;Functions&amp;quot;: [
-        {
-            &amp;quot;CodeSize&amp;quot;: 317,
-            &amp;quot;FunctionArn&amp;quot;: &amp;quot;arn:aws:lambda:ap-northeast-1:XXXXXXXXXXXX:function:lambda_1&amp;quot;,
-            &amp;quot;MemorySize&amp;quot;: 128,
-            &amp;quot;Role&amp;quot;: &amp;quot;arn:aws:iam::XXXXXXXXXXXX:role/lambda_basic_execution_1&amp;quot;,
-            &amp;quot;Handler&amp;quot;: &amp;quot;lambda_function.lambda_handler&amp;quot;,
-            &amp;quot;Runtime&amp;quot;: &amp;quot;python2.7&amp;quot;,
-            &amp;quot;CodeSha256&amp;quot;: &amp;quot;.....&amp;quot;,
-            &amp;quot;FunctionName&amp;quot;: &amp;quot;lambda_1&amp;quot;,
-            &amp;quot;Timeout&amp;quot;: 183,
-            &amp;quot;LastModified&amp;quot;: &amp;quot;2015-11-15T07:49:28.367+0000&amp;quot;,
-            &amp;quot;Version&amp;quot;: &amp;quot;$LATEST&amp;quot;,
-            &amp;quot;Description&amp;quot;: &amp;quot;An Amazon SNS trigger that logs the message pushed to the SNS topic.&amp;quot;
-        },
-        {
-            &amp;quot;CodeSize&amp;quot;: 316,
-            &amp;quot;FunctionArn&amp;quot;: &amp;quot;arn:aws:lambda:ap-northeast-1:XXXXXXXXXXXX:function:lambda_2&amp;quot;,
-            &amp;quot;MemorySize&amp;quot;: 128,
-            &amp;quot;Role&amp;quot;: &amp;quot;arn:aws:iam::XXXXXXXXXXXX:role/lambda_basic_execution_1&amp;quot;,
-            &amp;quot;Handler&amp;quot;: &amp;quot;lambda_function.lambda_handler&amp;quot;,
-            &amp;quot;Runtime&amp;quot;: &amp;quot;python2.7&amp;quot;,
-            &amp;quot;CodeSha256&amp;quot;: &amp;quot;.......&amp;quot;,
-            &amp;quot;FunctionName&amp;quot;: &amp;quot;lambda_2&amp;quot;,
-            &amp;quot;Timeout&amp;quot;: 3,
-            &amp;quot;LastModified&amp;quot;: &amp;quot;2015-11-14T14:03:00.083+0000&amp;quot;,
-            &amp;quot;Version&amp;quot;: &amp;quot;$LATEST&amp;quot;,
-            &amp;quot;Description&amp;quot;: &amp;quot;An Amazon SNS trigger that logs the message pushed to the SNS topic.&amp;quot;
-        }
-    ]
-}
-
-&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;$ aws lambda --profile lambda.s3.1 --region ap-northeast-1 list-functions
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;{&lt;/span&gt;
+    &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;&amp;quot;Functions&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;[&lt;/span&gt;
+        &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;{&lt;/span&gt;
+            &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;&amp;quot;CodeSize&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #0000cf; font-weight: bold&#34;&gt;317&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt;
+            &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;&amp;quot;FunctionArn&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;arn:aws:lambda:ap-northeast-1:XXXXXXXXXXXX:function:lambda_1&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt;
+            &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;&amp;quot;MemorySize&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #0000cf; font-weight: bold&#34;&gt;128&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt;
+            &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;&amp;quot;Role&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;arn:aws:iam::XXXXXXXXXXXX:role/lambda_basic_execution_1&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt;
+            &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;&amp;quot;Handler&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;lambda_function.lambda_handler&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt;
+            &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;&amp;quot;Runtime&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;python2.7&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt;
+            &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;&amp;quot;CodeSha256&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;.....&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt;
+            &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;&amp;quot;FunctionName&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;lambda_1&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt;
+            &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;&amp;quot;Timeout&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #0000cf; font-weight: bold&#34;&gt;183&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt;
+            &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;&amp;quot;LastModified&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;2015-11-15T07:49:28.367+0000&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt;
+            &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;&amp;quot;Version&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;$LATEST&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt;
+            &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;&amp;quot;Description&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;An Amazon SNS trigger that logs the message pushed to the SNS topic.&amp;quot;&lt;/span&gt;
+        &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;},&lt;/span&gt;
+        &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;{&lt;/span&gt;
+            &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;&amp;quot;CodeSize&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #0000cf; font-weight: bold&#34;&gt;316&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt;
+            &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;&amp;quot;FunctionArn&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;arn:aws:lambda:ap-northeast-1:XXXXXXXXXXXX:function:lambda_2&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt;
+            &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;&amp;quot;MemorySize&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #0000cf; font-weight: bold&#34;&gt;128&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt;
+            &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;&amp;quot;Role&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;arn:aws:iam::XXXXXXXXXXXX:role/lambda_basic_execution_1&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt;
+            &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;&amp;quot;Handler&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;lambda_function.lambda_handler&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt;
+            &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;&amp;quot;Runtime&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;python2.7&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt;
+            &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;&amp;quot;CodeSha256&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;.......&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt;
+            &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;&amp;quot;FunctionName&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;lambda_2&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt;
+            &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;&amp;quot;Timeout&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #0000cf; font-weight: bold&#34;&gt;3&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt;
+            &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;&amp;quot;LastModified&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;2015-11-14T14:03:00.083+0000&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt;
+            &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;&amp;quot;Version&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;$LATEST&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt;
+            &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;&amp;quot;Description&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;An Amazon SNS trigger that logs the message pushed to the SNS topic.&amp;quot;&lt;/span&gt;
+        &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;}&lt;/span&gt;
+    &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;]&lt;/span&gt;
+&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
 
 &lt;h2 id=&#34;custom-policy-for-lambda-access:f657bc8efd67a0e2d83aeda4b346f8af&#34;&gt;Custom Policy for Lambda Access&lt;/h2&gt;
 
 &lt;p&gt;Validate Policy
 You can either just give &amp;ldquo;AmazonSNSFullAccess&amp;rdquo; to the user &lt;em&gt;lambda.s3.1&lt;/em&gt; or add the following Policy
 onto &lt;strong&gt;User-&amp;gt;Permission-&amp;gt;Add Inline policy-&amp;gt;custom policy-&amp;gt;Select-&amp;gt;Policy Document&lt;/strong&gt;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-yaml&#34;&gt;{
-  &amp;quot;Version&amp;quot;: &amp;quot;2012-10-17&amp;quot;,
-  &amp;quot;Statement&amp;quot;: [
-    {
-      &amp;quot;Action&amp;quot;: [
-        &amp;quot;sns:Publish&amp;quot;
-      ],
-      &amp;quot;Resource&amp;quot;: [
-        &amp;quot;arn:aws:sns:ap-northeast-1:YOUR_NUMBER:Commits_1&amp;quot;
-      ],
-      &amp;quot;Effect&amp;quot;: &amp;quot;Allow&amp;quot;
-    }
-  ]
-}
-&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;{&lt;/span&gt;
+  &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;Version&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;2012-10-17&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt;
+  &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;Statement&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;[&lt;/span&gt;
+    &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;{&lt;/span&gt;
+      &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;Action&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;[&lt;/span&gt;
+        &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;sns:Publish&amp;quot;&lt;/span&gt;
+      &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;],&lt;/span&gt;
+      &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;Resource&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;[&lt;/span&gt;
+        &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;arn:aws:sns:ap-northeast-1:YOUR_NUMBER:Commits_1&amp;quot;&lt;/span&gt;
+      &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;],&lt;/span&gt;
+      &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;Effect&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;Allow&amp;quot;&lt;/span&gt;
+    &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;}&lt;/span&gt;
+  &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;]&lt;/span&gt;
+&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
 </description>
     </item>
     
@@ -965,47 +947,41 @@ Such sadistic directories can be found at &lt;code&gt;/var/lib/docker/vfs/&lt;/c
 &lt;p&gt;We can automate the removal.&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;First&lt;/strong&gt;, let&amp;rsquo;s find the directories that we should &lt;strong&gt;&lt;em&gt;&lt;code&gt;not&lt;/code&gt;&lt;/em&gt;&lt;/strong&gt; delete.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# These directories are in use
-$ docker ps -q | xargs docker inspect | egrep &amp;quot;var.lib.docker.vfs&amp;quot;
-&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;# These directories are in use&lt;/span&gt;
+$ docker ps -q &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; xargs docker inspect &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; egrep &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;var.lib.docker.vfs&amp;quot;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;You will see something like this:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ docker ps -q | xargs docker inspect | egrep &amp;quot;var.lib.docker.vfs&amp;quot;
-  &amp;quot;/etc/nginx/sites-enabled&amp;quot;: &amp;quot;/var/lib/docker/vfs/dir/ed53e780472dbf5057780182bd12ae1cb7930fce73f5f7071bad1b456076dc95&amp;quot;,
-  &amp;quot;/var/log/nginx&amp;quot;: &amp;quot;/var/lib/docker/vfs/dir/26c3ac02631b0eab5d6d3a4c5e6664b43974f217ca24b9369f3f12f186601147&amp;quot;,
-  &amp;quot;/ws&amp;quot;: &amp;quot;/var/lib/docker/vfs/dir/ecd74d6b7e73c25d5e5f6b450a7b162bfb8e44c649c2af951843954538500dba&amp;quot;
-&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;$ docker ps -q &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; xargs docker inspect &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; egrep &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;var.lib.docker.vfs&amp;quot;&lt;/span&gt;
+  &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;/etc/nginx/sites-enabled&amp;quot;&lt;/span&gt;: &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;/var/lib/docker/vfs/dir/ed53e780472dbf5057780182bd12ae1cb7930fce73f5f7071bad1b456076dc95&amp;quot;&lt;/span&gt;,
+  &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;/var/log/nginx&amp;quot;&lt;/span&gt;: &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;/var/lib/docker/vfs/dir/26c3ac02631b0eab5d6d3a4c5e6664b43974f217ca24b9369f3f12f186601147&amp;quot;&lt;/span&gt;,
+  &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;/ws&amp;quot;&lt;/span&gt;: &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;/var/lib/docker/vfs/dir/ecd74d6b7e73c25d5e5f6b450a7b162bfb8e44c649c2af951843954538500dba&amp;quot;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
 
 &lt;h1 id=&#34;fire-drill:d49d62c8188452b3ac07603c34a3f7b0&#34;&gt;Fire Drill&lt;/h1&gt;
 
 &lt;p&gt;&lt;strong&gt;Find out all directories that should stay&lt;/strong&gt;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ docker ps -q \
- | xargs docker inspect \
- | egrep &amp;quot;var.lib.docker.vfs&amp;quot; \
- | sed -e &#39;s/.*dir.//g&#39; -e &#39;s/&amp;quot;.*//g&#39; \
- | sort \
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;$ docker ps -q &lt;span style=&#34;color: #4e9a06&#34;&gt;\&lt;/span&gt;
+ &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; xargs docker inspect &lt;span style=&#34;color: #4e9a06&#34;&gt;\&lt;/span&gt;
+ &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; egrep &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;var.lib.docker.vfs&amp;quot;&lt;/span&gt; &lt;span style=&#34;color: #4e9a06&#34;&gt;\&lt;/span&gt;
+ &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; sed -e &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;s/.*dir.//g&amp;#39;&lt;/span&gt; -e &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;s/&amp;quot;.*//g&amp;#39;&lt;/span&gt; &lt;span style=&#34;color: #4e9a06&#34;&gt;\&lt;/span&gt;
+ &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; sort &lt;span style=&#34;color: #4e9a06&#34;&gt;\&lt;/span&gt;
  &amp;gt; /tmp/curr.dirs 
-&lt;/code&gt;&lt;/pre&gt;
+&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;&lt;strong&gt;Find out all directories within &lt;code&gt;/var/lib/docker/vfs/dir&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ sudo ls /var/lib/docker/vfs/dir/ | sort &amp;gt; /tmp/all.dirs
-&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;$ sudo ls /var/lib/docker/vfs/dir/ &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; sort &amp;gt; /tmp/all.dirs
+&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;&lt;strong&gt;Find out the directories from &lt;code&gt;all.dirs&lt;/code&gt; that should be deleted (not in use by current docker instances)&lt;/strong&gt;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ sdiff -s /tmp/all.dirs /tmp/curr.dirs
-&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;$ sdiff -s /tmp/all.dirs /tmp/curr.dirs
+&lt;/pre&gt;&lt;/div&gt;
 
 &lt;h1 id=&#34;removing-the-directories-for-good:d49d62c8188452b3ac07603c34a3f7b0&#34;&gt;Removing the directories for good&lt;/h1&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ sdiff -s -w 300 /tmp/all.dirs /tmp/curr.dirs \
-   | sed -e &#39;s/. &amp;lt;//g&#39; -e &#39;s/^/\/var\/lib\/docker\/vfs\/dir\//g&#39; \
-   | xargs sudo  rm -rf 
-&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;$ sdiff -s -w &lt;span style=&#34;color: #0000cf; font-weight: bold&#34;&gt;300&lt;/span&gt; /tmp/all.dirs /tmp/curr.dirs &lt;span style=&#34;color: #4e9a06&#34;&gt;\&lt;/span&gt;
+   &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; sed -e &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;s/. &amp;lt;//g&amp;#39;&lt;/span&gt; -e &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;s/^/\/var\/lib\/docker\/vfs\/dir\//g&amp;#39;&lt;/span&gt; &lt;span style=&#34;color: #4e9a06&#34;&gt;\&lt;/span&gt;
+   &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; xargs sudo  rm -rf 
+&lt;/pre&gt;&lt;/div&gt;
 </description>
     </item>
     

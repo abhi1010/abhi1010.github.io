@@ -24,20 +24,17 @@ seems overly complicated for a job that is easily achieved by pip.&lt;/p&gt;
 &lt;p&gt;Let&amp;rsquo;s look at how to use &lt;code&gt;pip&lt;/code&gt; for local installation.
 Firstly, it is possible to install all requirements beforehand in a separate directory.
  We can use the following commands:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;pip install --download DIR -r requirements.txt
-&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;pip install --download DIR -r requirements.txt
+&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;If you prefer wheel, then use the following:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;pip wheel --wheel-dir DIR -r requirements.txt
-&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;pip wheel --wheel-dir DIR -r requirements.txt
+&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;Now, when we want to install from this given directory &lt;code&gt;DIR&lt;/code&gt;, then
 the following command can help:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;pip install --no-index --find-links=DIR -r requirements.txt
-&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;pip install --no-index --find-links&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;DIR -r requirements.txt
+&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;If you are using these in a current setup and you feel it still slows you down then the reason would be
 one of the first few commands where the request is still going to the internet.
@@ -51,9 +48,8 @@ just leading onto &lt;code&gt;pip install --no-index&lt;/code&gt;&lt;/p&gt;
 in the project, whether a new requirement has been added to that list. In that case, install it + update your local copy.&lt;/p&gt;
 
 &lt;p&gt;Here&amp;rsquo;s a sample code to put all changes in a single line that you can feed into &lt;code&gt;pip install&lt;/code&gt;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;sdiff -s /tmp/1 /tmp/2 | sed -e &#39;s/&amp;lt;//g&#39; | awk &#39;BEGIN {ORS=&amp;quot; &amp;quot;} {print $1}&#39;
-&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;sdiff -s /tmp/1 /tmp/2 &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; sed -e &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;s/&amp;lt;//g&amp;#39;&lt;/span&gt; &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; awk &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;BEGIN {ORS=&amp;quot; &amp;quot;} {print $1}&amp;#39;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;Breaking it down:&lt;/p&gt;
 

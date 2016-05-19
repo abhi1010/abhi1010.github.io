@@ -111,20 +111,17 @@ seems overly complicated for a job that is easily achieved by pip.</p>
 <p>Let&rsquo;s look at how to use <code>pip</code> for local installation.
 Firstly, it is possible to install all requirements beforehand in a separate directory.
  We can use the following commands:</p>
-
-<pre><code class="language-bash">pip install --download DIR -r requirements.txt
-</code></pre>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>pip install --download DIR -r requirements.txt
+</pre></div>
 
 <p>If you prefer wheel, then use the following:</p>
-
-<pre><code class="language-bash">pip wheel --wheel-dir DIR -r requirements.txt
-</code></pre>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>pip wheel --wheel-dir DIR -r requirements.txt
+</pre></div>
 
 <p>Now, when we want to install from this given directory <code>DIR</code>, then
 the following command can help:</p>
-
-<pre><code class="language-bash">pip install --no-index --find-links=DIR -r requirements.txt
-</code></pre>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>pip install --no-index --find-links<span style="color: #ce5c00; font-weight: bold">=</span>DIR -r requirements.txt
+</pre></div>
 
 <p>If you are using these in a current setup and you feel it still slows you down then the reason would be
 one of the first few commands where the request is still going to the internet.
@@ -138,9 +135,8 @@ just leading onto <code>pip install --no-index</code></p>
 in the project, whether a new requirement has been added to that list. In that case, install it + update your local copy.</p>
 
 <p>Here&rsquo;s a sample code to put all changes in a single line that you can feed into <code>pip install</code></p>
-
-<pre><code class="language-bash">sdiff -s /tmp/1 /tmp/2 | sed -e 's/&lt;//g' | awk 'BEGIN {ORS=&quot; &quot;} {print $1}'
-</code></pre>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>sdiff -s /tmp/1 /tmp/2 <span style="color: #000000; font-weight: bold">|</span> sed -e <span style="color: #4e9a06">&#39;s/&lt;//g&#39;</span> <span style="color: #000000; font-weight: bold">|</span> awk <span style="color: #4e9a06">&#39;BEGIN {ORS=&quot; &quot;} {print $1}&#39;</span>
+</pre></div>
 
 <p>Breaking it down:</p>
 

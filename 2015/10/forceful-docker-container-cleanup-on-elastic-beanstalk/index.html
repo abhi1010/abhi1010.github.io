@@ -120,47 +120,41 @@ Such sadistic directories can be found at <code>/var/lib/docker/vfs/</code>.</p>
 <p>We can automate the removal.</p>
 
 <p><strong>First</strong>, let&rsquo;s find the directories that we should <strong><em><code>not</code></em></strong> delete.</p>
-
-<pre><code class="language-bash"># These directories are in use
-$ docker ps -q | xargs docker inspect | egrep &quot;var.lib.docker.vfs&quot;
-</code></pre>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #8f5902; font-style: italic"># These directories are in use</span>
+$ docker ps -q <span style="color: #000000; font-weight: bold">|</span> xargs docker inspect <span style="color: #000000; font-weight: bold">|</span> egrep <span style="color: #4e9a06">&quot;var.lib.docker.vfs&quot;</span>
+</pre></div>
 
 <p>You will see something like this:</p>
-
-<pre><code class="language-bash">$ docker ps -q | xargs docker inspect | egrep &quot;var.lib.docker.vfs&quot;
-  &quot;/etc/nginx/sites-enabled&quot;: &quot;/var/lib/docker/vfs/dir/ed53e780472dbf5057780182bd12ae1cb7930fce73f5f7071bad1b456076dc95&quot;,
-  &quot;/var/log/nginx&quot;: &quot;/var/lib/docker/vfs/dir/26c3ac02631b0eab5d6d3a4c5e6664b43974f217ca24b9369f3f12f186601147&quot;,
-  &quot;/ws&quot;: &quot;/var/lib/docker/vfs/dir/ecd74d6b7e73c25d5e5f6b450a7b162bfb8e44c649c2af951843954538500dba&quot;
-</code></pre>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>$ docker ps -q <span style="color: #000000; font-weight: bold">|</span> xargs docker inspect <span style="color: #000000; font-weight: bold">|</span> egrep <span style="color: #4e9a06">&quot;var.lib.docker.vfs&quot;</span>
+  <span style="color: #4e9a06">&quot;/etc/nginx/sites-enabled&quot;</span>: <span style="color: #4e9a06">&quot;/var/lib/docker/vfs/dir/ed53e780472dbf5057780182bd12ae1cb7930fce73f5f7071bad1b456076dc95&quot;</span>,
+  <span style="color: #4e9a06">&quot;/var/log/nginx&quot;</span>: <span style="color: #4e9a06">&quot;/var/lib/docker/vfs/dir/26c3ac02631b0eab5d6d3a4c5e6664b43974f217ca24b9369f3f12f186601147&quot;</span>,
+  <span style="color: #4e9a06">&quot;/ws&quot;</span>: <span style="color: #4e9a06">&quot;/var/lib/docker/vfs/dir/ecd74d6b7e73c25d5e5f6b450a7b162bfb8e44c649c2af951843954538500dba&quot;</span>
+</pre></div>
 
 <h1 id="fire-drill:d49d62c8188452b3ac07603c34a3f7b0">Fire Drill</h1>
 
 <p><strong>Find out all directories that should stay</strong></p>
-
-<pre><code class="language-bash">$ docker ps -q \
- | xargs docker inspect \
- | egrep &quot;var.lib.docker.vfs&quot; \
- | sed -e 's/.*dir.//g' -e 's/&quot;.*//g' \
- | sort \
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>$ docker ps -q <span style="color: #4e9a06">\</span>
+ <span style="color: #000000; font-weight: bold">|</span> xargs docker inspect <span style="color: #4e9a06">\</span>
+ <span style="color: #000000; font-weight: bold">|</span> egrep <span style="color: #4e9a06">&quot;var.lib.docker.vfs&quot;</span> <span style="color: #4e9a06">\</span>
+ <span style="color: #000000; font-weight: bold">|</span> sed -e <span style="color: #4e9a06">&#39;s/.*dir.//g&#39;</span> -e <span style="color: #4e9a06">&#39;s/&quot;.*//g&#39;</span> <span style="color: #4e9a06">\</span>
+ <span style="color: #000000; font-weight: bold">|</span> sort <span style="color: #4e9a06">\</span>
  &gt; /tmp/curr.dirs 
-</code></pre>
+</pre></div>
 
 <p><strong>Find out all directories within <code>/var/lib/docker/vfs/dir</code></strong></p>
-
-<pre><code class="language-bash">$ sudo ls /var/lib/docker/vfs/dir/ | sort &gt; /tmp/all.dirs
-</code></pre>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>$ sudo ls /var/lib/docker/vfs/dir/ <span style="color: #000000; font-weight: bold">|</span> sort &gt; /tmp/all.dirs
+</pre></div>
 
 <p><strong>Find out the directories from <code>all.dirs</code> that should be deleted (not in use by current docker instances)</strong></p>
-
-<pre><code class="language-bash">$ sdiff -s /tmp/all.dirs /tmp/curr.dirs
-</code></pre>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>$ sdiff -s /tmp/all.dirs /tmp/curr.dirs
+</pre></div>
 
 <h1 id="removing-the-directories-for-good:d49d62c8188452b3ac07603c34a3f7b0">Removing the directories for good</h1>
-
-<pre><code class="language-bash">$ sdiff -s -w 300 /tmp/all.dirs /tmp/curr.dirs \
-   | sed -e 's/. &lt;//g' -e 's/^/\/var\/lib\/docker\/vfs\/dir\//g' \
-   | xargs sudo  rm -rf 
-</code></pre>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>$ sdiff -s -w <span style="color: #0000cf; font-weight: bold">300</span> /tmp/all.dirs /tmp/curr.dirs <span style="color: #4e9a06">\</span>
+   <span style="color: #000000; font-weight: bold">|</span> sed -e <span style="color: #4e9a06">&#39;s/. &lt;//g&#39;</span> -e <span style="color: #4e9a06">&#39;s/^/\/var\/lib\/docker\/vfs\/dir\//g&#39;</span> <span style="color: #4e9a06">\</span>
+   <span style="color: #000000; font-weight: bold">|</span> xargs sudo  rm -rf 
+</pre></div>
 
   </div>
   <div id="disqus_thread"></div>

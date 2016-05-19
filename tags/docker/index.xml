@@ -28,47 +28,41 @@ Such sadistic directories can be found at &lt;code&gt;/var/lib/docker/vfs/&lt;/c
 &lt;p&gt;We can automate the removal.&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;First&lt;/strong&gt;, let&amp;rsquo;s find the directories that we should &lt;strong&gt;&lt;em&gt;&lt;code&gt;not&lt;/code&gt;&lt;/em&gt;&lt;/strong&gt; delete.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# These directories are in use
-$ docker ps -q | xargs docker inspect | egrep &amp;quot;var.lib.docker.vfs&amp;quot;
-&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;# These directories are in use&lt;/span&gt;
+$ docker ps -q &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; xargs docker inspect &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; egrep &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;var.lib.docker.vfs&amp;quot;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;You will see something like this:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ docker ps -q | xargs docker inspect | egrep &amp;quot;var.lib.docker.vfs&amp;quot;
-  &amp;quot;/etc/nginx/sites-enabled&amp;quot;: &amp;quot;/var/lib/docker/vfs/dir/ed53e780472dbf5057780182bd12ae1cb7930fce73f5f7071bad1b456076dc95&amp;quot;,
-  &amp;quot;/var/log/nginx&amp;quot;: &amp;quot;/var/lib/docker/vfs/dir/26c3ac02631b0eab5d6d3a4c5e6664b43974f217ca24b9369f3f12f186601147&amp;quot;,
-  &amp;quot;/ws&amp;quot;: &amp;quot;/var/lib/docker/vfs/dir/ecd74d6b7e73c25d5e5f6b450a7b162bfb8e44c649c2af951843954538500dba&amp;quot;
-&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;$ docker ps -q &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; xargs docker inspect &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; egrep &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;var.lib.docker.vfs&amp;quot;&lt;/span&gt;
+  &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;/etc/nginx/sites-enabled&amp;quot;&lt;/span&gt;: &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;/var/lib/docker/vfs/dir/ed53e780472dbf5057780182bd12ae1cb7930fce73f5f7071bad1b456076dc95&amp;quot;&lt;/span&gt;,
+  &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;/var/log/nginx&amp;quot;&lt;/span&gt;: &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;/var/lib/docker/vfs/dir/26c3ac02631b0eab5d6d3a4c5e6664b43974f217ca24b9369f3f12f186601147&amp;quot;&lt;/span&gt;,
+  &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;/ws&amp;quot;&lt;/span&gt;: &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;/var/lib/docker/vfs/dir/ecd74d6b7e73c25d5e5f6b450a7b162bfb8e44c649c2af951843954538500dba&amp;quot;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
 
 &lt;h1 id=&#34;fire-drill:d49d62c8188452b3ac07603c34a3f7b0&#34;&gt;Fire Drill&lt;/h1&gt;
 
 &lt;p&gt;&lt;strong&gt;Find out all directories that should stay&lt;/strong&gt;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ docker ps -q \
- | xargs docker inspect \
- | egrep &amp;quot;var.lib.docker.vfs&amp;quot; \
- | sed -e &#39;s/.*dir.//g&#39; -e &#39;s/&amp;quot;.*//g&#39; \
- | sort \
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;$ docker ps -q &lt;span style=&#34;color: #4e9a06&#34;&gt;\&lt;/span&gt;
+ &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; xargs docker inspect &lt;span style=&#34;color: #4e9a06&#34;&gt;\&lt;/span&gt;
+ &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; egrep &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;var.lib.docker.vfs&amp;quot;&lt;/span&gt; &lt;span style=&#34;color: #4e9a06&#34;&gt;\&lt;/span&gt;
+ &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; sed -e &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;s/.*dir.//g&amp;#39;&lt;/span&gt; -e &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;s/&amp;quot;.*//g&amp;#39;&lt;/span&gt; &lt;span style=&#34;color: #4e9a06&#34;&gt;\&lt;/span&gt;
+ &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; sort &lt;span style=&#34;color: #4e9a06&#34;&gt;\&lt;/span&gt;
  &amp;gt; /tmp/curr.dirs 
-&lt;/code&gt;&lt;/pre&gt;
+&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;&lt;strong&gt;Find out all directories within &lt;code&gt;/var/lib/docker/vfs/dir&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ sudo ls /var/lib/docker/vfs/dir/ | sort &amp;gt; /tmp/all.dirs
-&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;$ sudo ls /var/lib/docker/vfs/dir/ &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; sort &amp;gt; /tmp/all.dirs
+&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;&lt;strong&gt;Find out the directories from &lt;code&gt;all.dirs&lt;/code&gt; that should be deleted (not in use by current docker instances)&lt;/strong&gt;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ sdiff -s /tmp/all.dirs /tmp/curr.dirs
-&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;$ sdiff -s /tmp/all.dirs /tmp/curr.dirs
+&lt;/pre&gt;&lt;/div&gt;
 
 &lt;h1 id=&#34;removing-the-directories-for-good:d49d62c8188452b3ac07603c34a3f7b0&#34;&gt;Removing the directories for good&lt;/h1&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ sdiff -s -w 300 /tmp/all.dirs /tmp/curr.dirs \
-   | sed -e &#39;s/. &amp;lt;//g&#39; -e &#39;s/^/\/var\/lib\/docker\/vfs\/dir\//g&#39; \
-   | xargs sudo  rm -rf 
-&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;$ sdiff -s -w &lt;span style=&#34;color: #0000cf; font-weight: bold&#34;&gt;300&lt;/span&gt; /tmp/all.dirs /tmp/curr.dirs &lt;span style=&#34;color: #4e9a06&#34;&gt;\&lt;/span&gt;
+   &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; sed -e &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;s/. &amp;lt;//g&amp;#39;&lt;/span&gt; -e &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;s/^/\/var\/lib\/docker\/vfs\/dir\//g&amp;#39;&lt;/span&gt; &lt;span style=&#34;color: #4e9a06&#34;&gt;\&lt;/span&gt;
+   &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; xargs sudo  rm -rf 
+&lt;/pre&gt;&lt;/div&gt;
 </description>
     </item>
     

@@ -166,12 +166,11 @@
 <h1 id="data-binding:ac9495c8eabea9a6ff20ce0b92d45cca">Data Binding</h1>
 
 <p>Following are the four possible ways of data binding:</p>
-
-<pre><code class="language-html">&lt;div&gt;{{hero.name}}&lt;/div&gt;
-&lt;hero-detail [hero]=&quot;selectedHero&quot;&gt;&lt;/hero-detail&gt;
-&lt;div (click)=&quot;selectHero(hero)&quot;&gt;&lt;/div&gt;
-&lt;input [(ngModel)]=&quot;hero.name&quot;&gt;
-</code></pre>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #000000; font-weight: bold">&lt;</span><span style="color: #204a87; font-weight: bold">div</span><span style="color: #000000; font-weight: bold">&gt;</span>{{hero.name}}<span style="color: #000000; font-weight: bold">&lt;/</span><span style="color: #204a87; font-weight: bold">div</span><span style="color: #000000; font-weight: bold">&gt;</span>
+<span style="color: #000000; font-weight: bold">&lt;</span><span style="color: #204a87; font-weight: bold">hero-detail</span> <span style="color: #a40000; border: 1px solid #ef2929">[</span><span style="color: #c4a000">hero</span><span style="color: #a40000; border: 1px solid #ef2929">]=&quot;</span><span style="color: #c4a000">selectedHero</span><span style="color: #a40000; border: 1px solid #ef2929">&quot;</span><span style="color: #000000; font-weight: bold">&gt;&lt;/</span><span style="color: #204a87; font-weight: bold">hero-detail</span><span style="color: #000000; font-weight: bold">&gt;</span>
+<span style="color: #000000; font-weight: bold">&lt;</span><span style="color: #204a87; font-weight: bold">div</span> <span style="color: #a40000; border: 1px solid #ef2929">(</span><span style="color: #c4a000">click</span><span style="color: #a40000; border: 1px solid #ef2929">)=&quot;</span><span style="color: #c4a000">selectHero</span><span style="color: #a40000; border: 1px solid #ef2929">(</span><span style="color: #c4a000">hero</span><span style="color: #a40000; border: 1px solid #ef2929">)&quot;</span><span style="color: #000000; font-weight: bold">&gt;&lt;/</span><span style="color: #204a87; font-weight: bold">div</span><span style="color: #000000; font-weight: bold">&gt;</span>
+<span style="color: #000000; font-weight: bold">&lt;</span><span style="color: #204a87; font-weight: bold">input</span> <span style="color: #a40000; border: 1px solid #ef2929">[(</span><span style="color: #c4a000">ngModel</span><span style="color: #a40000; border: 1px solid #ef2929">)]=&quot;</span><span style="color: #c4a000">hero</span><span style="color: #a40000; border: 1px solid #ef2929">.</span><span style="color: #c4a000">name</span><span style="color: #a40000; border: 1px solid #ef2929">&quot;</span><span style="color: #000000; font-weight: bold">&gt;</span>
+</pre></div>
 
 <ol>
 <li>The &ldquo;interpolation&rdquo; displays the component&rsquo;s hero.name property value within the <div> tags</li>
@@ -193,9 +192,8 @@ Two other examples are:</p>
 <p><strong>Example:</strong></p>
 
 <p>The <code>ngModel</code> directive, which implements two-way data binding, is an example of an attribute directive.</p>
-
-<pre><code class="language-html">&lt;input [(ngModel)]=&quot;hero.name&quot;&gt;
-</code></pre>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #000000; font-weight: bold">&lt;</span><span style="color: #204a87; font-weight: bold">input</span> <span style="color: #a40000; border: 1px solid #ef2929">[(</span><span style="color: #c4a000">ngModel</span><span style="color: #a40000; border: 1px solid #ef2929">)]=&quot;</span><span style="color: #c4a000">hero</span><span style="color: #a40000; border: 1px solid #ef2929">.</span><span style="color: #c4a000">name</span><span style="color: #a40000; border: 1px solid #ef2929">&quot;</span><span style="color: #000000; font-weight: bold">&gt;</span>
+</pre></div>
 
 <p><strong>Other examples:</strong> ngSwitch, ngStyle, ngClass</p>
 
