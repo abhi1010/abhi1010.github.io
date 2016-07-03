@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>Getting list of Issues from JIRA under current sprint &middot; Abhishek Pandey</title>
+
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+  <link rel="stylesheet" href="http://abhipandey.com/css/poole.css?ref=abc124">
+  <link rel="stylesheet" href="http://abhipandey.com/css/hyde.css?ref=abc124">
+  <link rel="stylesheet" href="http://abhipandey.com/css/poole-overrides.css?ref=abc124">
+  <link rel="stylesheet" href="http://abhipandey.com/css/hyde-overrides.css?ref=abc124">
+  <link rel="stylesheet" href="http://abhipandey.com/css/hyde-a.css?ref=abc124">
+  <link rel="stylesheet" href="http://abhipandey.com/css/custom-additions.css?ref=abc124">
+  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://abhipandey.com/touch-icon-144-precomposed.png?ref=abc124">
+  <link href="http://abhipandey.com/favicon.png?ref=abc124" rel="icon">
+
+  
+  
+  
+  
+
+  <meta name="description" content="Getting all types of issues from JIRA">
+  <meta name="keywords" content="jira,atlassian,python,sprint,agile">
+  
+  
+  <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-68135443-1', 'auto');
+      ga('send', 'pageview');
+  </script>
+
+</head>
+<body class="theme-base-aa">
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      
+      <h1><a href="http://abhipandey.com/">Coder&rsquo;s Digest</a></h1>
+      <a href="http://abhipandey.com/"><p>Abhishek Pandey</p></a>
+    </div>
+
+    <ul class="sidebar-nav">
+      
+      <li class="sidebar-nav-item"><a href="http://abhipandey.com/post/">Posts</a></li>
+      
+      <li class="sidebar-nav-item"><a href="http://abhipandey.com/tags/">Tags</a></li>
+      
+      <li class="sidebar-nav-item"><a href="http://abhipandey.com/categories/">Categories</a></li>
+      
+      <li class="sidebar-nav-item"><a href="http://abhipandey.com/about/">About</a></li>
+      
+    </ul>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item">
+      
+      
+      
+      
+      
+      
+      
+      
+      </li>
+    </ul>
+
+    
+
+  </div>
+</div>
+
+
+<div class="content container">
+  <div class="post">
+    <h1>Getting list of Issues from JIRA under current sprint</h1>
+    <span class="post-date">May 13, 2016  &middot; <a href="http://abhipandey.com/2016/05/getting-list-of-issues-from-jira-under-current-sprint/#disqus_thread">Comments</a>
+    
+    <br/>
+    
+          <a class="a_cat" href="http://abhipandey.com/categories/code">code</a><a class="a_cat" href="http://abhipandey.com/categories/tips">tips</a>
+      
+      
+        <a class="a_tag" href="http://abhipandey.com/tags/jira">jira</a><a class="a_tag" href="http://abhipandey.com/tags/python">python</a>
+      
+
+    
+    </span>
+      <div id="_toc" class="toc">
+        <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#requirements:db34945a6ca4a4e74ac4f8bf32367167">Requirements</a></li>
+<li><a href="#the-code:db34945a6ca4a4e74ac4f8bf32367167">The code</a></li>
+</ul></li>
+</ul>
+</nav>
+      </div>
+    
+
+<p>When you are working on <em>Agile Boards in JIRA</em>, you may want to retrieve
+all the issues related to a particular board or the sprint.
+Usually you&rsquo;d find issues in progress under the dashboard of the sprint itself.</p>
+
+<p><em>Python JIRA</em> allows you only a few options:</p>
+
+<ul>
+<li><a href="https://jira.readthedocs.io/en/latest/api.html#jira.JIRA.incompleted_issues">incompleted issues</a></li>
+<li><a href="https://jira.readthedocs.io/en/latest/api.html#jira.JIRA.completed_issues">completed issues</a></li>
+<li><a href="https://jira.readthedocs.io/en/latest/api.html#jira.JIRA.removed_issues">removed issues</a></li>
+</ul>
+
+<p>As you will also notice from <a href="https://jira.readthedocs.io/en/latest/api.html#jira.JIRA.sprints">jira docs</a>
+the <code>sprints</code> function in there only provides you sprints.</p>
+
+<p>What it fails to provide is the issues under the sprint
+for which work through a different subquery under the hood.</p>
+
+<p>The code here intends to provide a full list of all the issues, based on
+a sprint name - complete or incomplete - that belong to a given sprint name.
+You can modify the code easily to suit your needs.</p>
+
+<h2 id="requirements:db34945a6ca4a4e74ac4f8bf32367167">Requirements</h2>
+
+<p>First things first, you need to install jira through <code>pypi</code> for the code.</p>
+
+<pre><code>pip install jira
+</code></pre>
+
+<h2 id="the-code:db34945a6ca4a4e74ac4f8bf32367167">The code</h2>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #204a87; font-weight: bold">from</span> <span style="color: #000000">jira.resources</span> <span style="color: #204a87; font-weight: bold">import</span> <span style="color: #000000">Issue</span>
+<span style="color: #204a87; font-weight: bold">from</span> <span style="color: #000000">jira.client</span> <span style="color: #204a87; font-weight: bold">import</span> <span style="color: #000000">JIRA</span>
+
+<span style="color: #204a87; font-weight: bold">def</span> <span style="color: #000000">sprints</span><span style="color: #000000; font-weight: bold">(</span><span style="color: #000000">username</span><span style="color: #000000; font-weight: bold">,</span> 
+            <span style="color: #000000">ldp_password</span><span style="color: #000000; font-weight: bold">,</span>
+            <span style="color: #000000">sprint_name</span><span style="color: #000000; font-weight: bold">,</span>
+            <span style="color: #000000">type_of_issues_to_pull</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #000000; font-weight: bold">[</span>
+                  <span style="color: #4e9a06">&#39;completedIssues&#39;</span><span style="color: #000000; font-weight: bold">,</span> 
+                  <span style="color: #4e9a06">&#39;incompletedIssues&#39;</span><span style="color: #000000; font-weight: bold">,</span>
+                  <span style="color: #4e9a06">&#39;issuesNotCompletedInCurrentSprint&#39;</span><span style="color: #000000; font-weight: bold">,</span>
+                  <span style="color: #4e9a06">&#39;issuesCompletedInAnotherSprint&#39;</span><span style="color: #000000; font-weight: bold">]):</span>
+    <span style="color: #204a87; font-weight: bold">def</span> <span style="color: #000000">sprint_issues</span><span style="color: #000000; font-weight: bold">(</span><span style="color: #000000">cls</span><span style="color: #000000; font-weight: bold">,</span> <span style="color: #000000">board_id</span><span style="color: #000000; font-weight: bold">,</span> <span style="color: #000000">sprint_id</span><span style="color: #000000; font-weight: bold">):</span>
+        <span style="color: #000000">r_json</span> <span style="color: #ce5c00; font-weight: bold">=</span> <span style="color: #000000">cls</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">_get_json</span><span style="color: #000000; font-weight: bold">(</span>
+            <span style="color: #4e9a06">&#39;rapid/charts/sprintreport?rapidViewId=%s&amp;sprintId=%s&#39;</span> <span style="color: #ce5c00; font-weight: bold">%</span> <span style="color: #000000; font-weight: bold">(</span>
+                <span style="color: #000000">board_id</span><span style="color: #000000; font-weight: bold">,</span> <span style="color: #000000">sprint_id</span><span style="color: #000000; font-weight: bold">),</span>
+            <span style="color: #000000">base</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #000000">cls</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">AGILE_BASE_URL</span><span style="color: #000000; font-weight: bold">)</span>
+
+        <span style="color: #000000">issues</span> <span style="color: #ce5c00; font-weight: bold">=</span> <span style="color: #000000; font-weight: bold">[]</span>
+        <span style="color: #204a87; font-weight: bold">for</span> <span style="color: #000000">t</span> <span style="color: #204a87; font-weight: bold">in</span> <span style="color: #000000">type_of_issues_to_pull</span><span style="color: #000000; font-weight: bold">:</span>
+            <span style="color: #204a87; font-weight: bold">if</span> <span style="color: #000000">t</span> <span style="color: #204a87; font-weight: bold">in</span> <span style="color: #000000">r_json</span><span style="color: #000000; font-weight: bold">[</span><span style="color: #4e9a06">&#39;contents&#39;</span><span style="color: #000000; font-weight: bold">]:</span>
+                <span style="color: #000000">issues</span> <span style="color: #ce5c00; font-weight: bold">+=</span> <span style="color: #000000; font-weight: bold">[</span><span style="color: #000000">Issue</span><span style="color: #000000; font-weight: bold">(</span><span style="color: #000000">cls</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">_options</span><span style="color: #000000; font-weight: bold">,</span> <span style="color: #000000">cls</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">_session</span><span style="color: #000000; font-weight: bold">,</span> <span style="color: #000000">raw_issues_json</span><span style="color: #000000; font-weight: bold">)</span>
+                           <span style="color: #204a87; font-weight: bold">for</span> <span style="color: #000000">raw_issues_json</span> <span style="color: #204a87; font-weight: bold">in</span>
+                           <span style="color: #000000">r_json</span><span style="color: #000000; font-weight: bold">[</span><span style="color: #4e9a06">&#39;contents&#39;</span><span style="color: #000000; font-weight: bold">][</span><span style="color: #000000">t</span><span style="color: #000000; font-weight: bold">]]</span>
+        <span style="color: #204a87; font-weight: bold">return</span> <span style="color: #000000; font-weight: bold">{</span><span style="color: #000000">x</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">key</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #000000">x</span> <span style="color: #204a87; font-weight: bold">for</span> <span style="color: #000000">x</span> <span style="color: #204a87; font-weight: bold">in</span> <span style="color: #000000">issues</span><span style="color: #000000; font-weight: bold">}</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">values</span><span style="color: #000000; font-weight: bold">()</span>
+
+    <span style="color: #000000">fmt_full</span> <span style="color: #ce5c00; font-weight: bold">=</span> <span style="color: #4e9a06">&#39;Sprint: {} \n\nIssues:{}&#39;</span>
+    <span style="color: #000000">fmt_issues</span> <span style="color: #ce5c00; font-weight: bold">=</span> <span style="color: #4e9a06">&#39;\n- {}: {}&#39;</span>
+    <span style="color: #000000">issues_str</span> <span style="color: #ce5c00; font-weight: bold">=</span> <span style="color: #4e9a06">&#39;&#39;</span>
+    <span style="color: #000000">milestone_str</span> <span style="color: #ce5c00; font-weight: bold">=</span> <span style="color: #4e9a06">&#39;&#39;</span>
+
+    <span style="color: #000000">options</span> <span style="color: #ce5c00; font-weight: bold">=</span> <span style="color: #000000; font-weight: bold">{</span>
+        <span style="color: #4e9a06">&#39;server&#39;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #4e9a06">&#39;http://jira/&#39;</span><span style="color: #000000; font-weight: bold">,</span>
+        <span style="color: #4e9a06">&#39;verify&#39;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #3465a4">True</span><span style="color: #000000; font-weight: bold">,</span>
+        <span style="color: #4e9a06">&#39;basic_auth&#39;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #000000; font-weight: bold">(</span><span style="color: #000000">username</span><span style="color: #000000; font-weight: bold">,</span> <span style="color: #000000">ldp_password</span><span style="color: #000000; font-weight: bold">),</span>
+    <span style="color: #000000; font-weight: bold">}</span>
+    <span style="color: #000000">gh</span> <span style="color: #ce5c00; font-weight: bold">=</span> <span style="color: #000000">JIRA</span><span style="color: #000000; font-weight: bold">(</span><span style="color: #000000">options</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #000000">options</span><span style="color: #000000; font-weight: bold">,</span> <span style="color: #000000">basic_auth</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #000000; font-weight: bold">(</span><span style="color: #000000">username</span><span style="color: #000000; font-weight: bold">,</span> <span style="color: #000000">ldp_password</span><span style="color: #000000; font-weight: bold">))</span>
+
+    <span style="color: #8f5902; font-style: italic"># Get all boards viewable by anonymous users.</span>
+    <span style="color: #000000">boards</span> <span style="color: #ce5c00; font-weight: bold">=</span> <span style="color: #000000">gh</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">boards</span><span style="color: #000000; font-weight: bold">()</span>
+    <span style="color: #000000">board</span> <span style="color: #ce5c00; font-weight: bold">=</span> <span style="color: #000000; font-weight: bold">[</span><span style="color: #000000">b</span> <span style="color: #204a87; font-weight: bold">for</span> <span style="color: #000000">b</span> <span style="color: #204a87; font-weight: bold">in</span> <span style="color: #000000">boards</span> <span style="color: #204a87; font-weight: bold">if</span> <span style="color: #000000">b</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">name</span> <span style="color: #ce5c00; font-weight: bold">==</span> <span style="color: #000000">sprint_name</span><span style="color: #000000; font-weight: bold">][</span><span style="color: #0000cf; font-weight: bold">0</span><span style="color: #000000; font-weight: bold">]</span>
+
+    <span style="color: #000000">sprints</span> <span style="color: #ce5c00; font-weight: bold">=</span> <span style="color: #000000">gh</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">sprints</span><span style="color: #000000; font-weight: bold">(</span><span style="color: #000000">board</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">id</span><span style="color: #000000; font-weight: bold">)</span>
+
+    <span style="color: #204a87; font-weight: bold">for</span> <span style="color: #000000">sprint</span> <span style="color: #204a87; font-weight: bold">in</span> <span style="color: #204a87">sorted</span><span style="color: #000000; font-weight: bold">([</span><span style="color: #000000">s</span> <span style="color: #204a87; font-weight: bold">for</span> <span style="color: #000000">s</span> <span style="color: #204a87; font-weight: bold">in</span> <span style="color: #000000">sprints</span>
+                   <span style="color: #204a87; font-weight: bold">if</span> <span style="color: #000000">s</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">raw</span><span style="color: #000000; font-weight: bold">[</span><span style="color: #4e9a06">u&#39;state&#39;</span><span style="color: #000000; font-weight: bold">]</span> <span style="color: #ce5c00; font-weight: bold">==</span> <span style="color: #4e9a06">u&#39;ACTIVE&#39;</span><span style="color: #000000; font-weight: bold">],</span>
+                <span style="color: #000000">key</span> <span style="color: #ce5c00; font-weight: bold">=</span> <span style="color: #204a87; font-weight: bold">lambda</span> <span style="color: #000000">x</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #000000">x</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">raw</span><span style="color: #000000; font-weight: bold">[</span><span style="color: #4e9a06">u&#39;sequence&#39;</span><span style="color: #000000; font-weight: bold">]):</span>
+        <span style="color: #000000">milestone_str</span> <span style="color: #ce5c00; font-weight: bold">=</span> <span style="color: #204a87">str</span><span style="color: #000000; font-weight: bold">(</span><span style="color: #000000">sprint</span><span style="color: #000000; font-weight: bold">)</span>
+        <span style="color: #000000">issues</span> <span style="color: #ce5c00; font-weight: bold">=</span> <span style="color: #000000">sprint_issues</span><span style="color: #000000; font-weight: bold">(</span><span style="color: #000000">gh</span><span style="color: #000000; font-weight: bold">,</span> <span style="color: #000000">board</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">id</span><span style="color: #000000; font-weight: bold">,</span> <span style="color: #000000">sprint</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">id</span><span style="color: #000000; font-weight: bold">)</span>
+        <span style="color: #204a87; font-weight: bold">for</span> <span style="color: #000000">issue</span> <span style="color: #204a87; font-weight: bold">in</span> <span style="color: #000000">issues</span><span style="color: #000000; font-weight: bold">:</span>
+            <span style="color: #000000">issues_str</span> <span style="color: #ce5c00; font-weight: bold">+=</span> <span style="color: #000000">fmt_issues</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">format</span><span style="color: #000000; font-weight: bold">(</span><span style="color: #000000">issue</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">key</span><span style="color: #000000; font-weight: bold">,</span> <span style="color: #000000">issue</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">summary</span><span style="color: #000000; font-weight: bold">)</span>
+
+    <span style="color: #000000">result</span> <span style="color: #ce5c00; font-weight: bold">=</span> <span style="color: #000000">fmt_full</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">format</span><span style="color: #000000; font-weight: bold">(</span>
+        <span style="color: #000000">milestone_str</span><span style="color: #000000; font-weight: bold">,</span>
+        <span style="color: #000000">issues_str</span>
+    <span style="color: #000000; font-weight: bold">)</span>
+    <span style="color: #204a87; font-weight: bold">print</span><span style="color: #000000; font-weight: bold">(</span><span style="color: #000000">result</span><span style="color: #000000; font-weight: bold">)</span>
+    <span style="color: #204a87; font-weight: bold">return</span> <span style="color: #000000">result</span>
+</pre></div>
+
+<p>You can call the function with the following command:</p>
+
+<pre><code>sprints(&lt;username&gt;, &lt;password&gt;, &lt;sprint_name&gt;)
+</code></pre>
+
+<p>You will get results that are similar to the following:</p>
+
+<blockquote>
+<pre><code>Sprint: SPRINT_NAME
+
+Issues:
+- PROJECT-437: Description of the issue
+- PROJECT-447: Description of the issue
+</code></pre>
+</blockquote>
+
+  </div>
+  <div id="disqus_thread"></div>
+</div>
+
+
+<script type="text/javascript">
+var disqus_shortname = "abhi1010";
+(function () {
+    var s = document.createElement('script'); s.async = true;
+    s.type = 'text/javascript';
+    s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+}());
+</script>
+
+
+
+<script type="text/javascript">
+    var disqus_shortname = "abhi1010";
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+</body>
+</html>
+

@@ -162,6 +162,129 @@ You can do that with the following commands:</p>
     
     <div class="post">
       <h1 class="post-title">
+        <a href="http://abhipandey.com/2016/05/getting-list-of-issues-from-jira-under-current-sprint/">Getting list of Issues from JIRA under current sprint</a>
+      </h1>
+      <span class="post-date">May 13, 2016  &middot; <a href="http://abhipandey.com/2016/05/getting-list-of-issues-from-jira-under-current-sprint/#disqus_thread">Comments</a>
+      
+      <br/>
+      <a class="a_cat" href="http://abhipandey.com/categories/code">code</a><a class="a_cat" href="http://abhipandey.com/categories/tips">tips</a>
+        
+      <a class="a_tag" href="http://abhipandey.com/tags/jira">jira</a><a class="a_tag" href="http://abhipandey.com/tags/python">python</a>
+    
+      </span>
+      
+      
+
+<p>When you are working on <em>Agile Boards in JIRA</em>, you may want to retrieve
+all the issues related to a particular board or the sprint.
+Usually you&rsquo;d find issues in progress under the dashboard of the sprint itself.</p>
+
+<p><em>Python JIRA</em> allows you only a few options:</p>
+
+<ul>
+<li><a href="https://jira.readthedocs.io/en/latest/api.html#jira.JIRA.incompleted_issues">incompleted issues</a></li>
+<li><a href="https://jira.readthedocs.io/en/latest/api.html#jira.JIRA.completed_issues">completed issues</a></li>
+<li><a href="https://jira.readthedocs.io/en/latest/api.html#jira.JIRA.removed_issues">removed issues</a></li>
+</ul>
+
+<p>As you will also notice from <a href="https://jira.readthedocs.io/en/latest/api.html#jira.JIRA.sprints">jira docs</a>
+the <code>sprints</code> function in there only provides you sprints.</p>
+
+<p>What it fails to provide is the issues under the sprint
+for which work through a different subquery under the hood.</p>
+
+<p>The code here intends to provide a full list of all the issues, based on
+a sprint name - complete or incomplete - that belong to a given sprint name.
+You can modify the code easily to suit your needs.</p>
+
+<h2 id="requirements:db34945a6ca4a4e74ac4f8bf32367167">Requirements</h2>
+
+<p>First things first, you need to install jira through <code>pypi</code> for the code.</p>
+
+<pre><code>pip install jira
+</code></pre>
+
+<h2 id="the-code:db34945a6ca4a4e74ac4f8bf32367167">The code</h2>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #204a87; font-weight: bold">from</span> <span style="color: #000000">jira.resources</span> <span style="color: #204a87; font-weight: bold">import</span> <span style="color: #000000">Issue</span>
+<span style="color: #204a87; font-weight: bold">from</span> <span style="color: #000000">jira.client</span> <span style="color: #204a87; font-weight: bold">import</span> <span style="color: #000000">JIRA</span>
+
+<span style="color: #204a87; font-weight: bold">def</span> <span style="color: #000000">sprints</span><span style="color: #000000; font-weight: bold">(</span><span style="color: #000000">username</span><span style="color: #000000; font-weight: bold">,</span> 
+            <span style="color: #000000">ldp_password</span><span style="color: #000000; font-weight: bold">,</span>
+            <span style="color: #000000">sprint_name</span><span style="color: #000000; font-weight: bold">,</span>
+            <span style="color: #000000">type_of_issues_to_pull</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #000000; font-weight: bold">[</span>
+                  <span style="color: #4e9a06">&#39;completedIssues&#39;</span><span style="color: #000000; font-weight: bold">,</span> 
+                  <span style="color: #4e9a06">&#39;incompletedIssues&#39;</span><span style="color: #000000; font-weight: bold">,</span>
+                  <span style="color: #4e9a06">&#39;issuesNotCompletedInCurrentSprint&#39;</span><span style="color: #000000; font-weight: bold">,</span>
+                  <span style="color: #4e9a06">&#39;issuesCompletedInAnotherSprint&#39;</span><span style="color: #000000; font-weight: bold">]):</span>
+    <span style="color: #204a87; font-weight: bold">def</span> <span style="color: #000000">sprint_issues</span><span style="color: #000000; font-weight: bold">(</span><span style="color: #000000">cls</span><span style="color: #000000; font-weight: bold">,</span> <span style="color: #000000">board_id</span><span style="color: #000000; font-weight: bold">,</span> <span style="color: #000000">sprint_id</span><span style="color: #000000; font-weight: bold">):</span>
+        <span style="color: #000000">r_json</span> <span style="color: #ce5c00; font-weight: bold">=</span> <span style="color: #000000">cls</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">_get_json</span><span style="color: #000000; font-weight: bold">(</span>
+            <span style="color: #4e9a06">&#39;rapid/charts/sprintreport?rapidViewId=%s&amp;sprintId=%s&#39;</span> <span style="color: #ce5c00; font-weight: bold">%</span> <span style="color: #000000; font-weight: bold">(</span>
+                <span style="color: #000000">board_id</span><span style="color: #000000; font-weight: bold">,</span> <span style="color: #000000">sprint_id</span><span style="color: #000000; font-weight: bold">),</span>
+            <span style="color: #000000">base</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #000000">cls</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">AGILE_BASE_URL</span><span style="color: #000000; font-weight: bold">)</span>
+
+        <span style="color: #000000">issues</span> <span style="color: #ce5c00; font-weight: bold">=</span> <span style="color: #000000; font-weight: bold">[]</span>
+        <span style="color: #204a87; font-weight: bold">for</span> <span style="color: #000000">t</span> <span style="color: #204a87; font-weight: bold">in</span> <span style="color: #000000">type_of_issues_to_pull</span><span style="color: #000000; font-weight: bold">:</span>
+            <span style="color: #204a87; font-weight: bold">if</span> <span style="color: #000000">t</span> <span style="color: #204a87; font-weight: bold">in</span> <span style="color: #000000">r_json</span><span style="color: #000000; font-weight: bold">[</span><span style="color: #4e9a06">&#39;contents&#39;</span><span style="color: #000000; font-weight: bold">]:</span>
+                <span style="color: #000000">issues</span> <span style="color: #ce5c00; font-weight: bold">+=</span> <span style="color: #000000; font-weight: bold">[</span><span style="color: #000000">Issue</span><span style="color: #000000; font-weight: bold">(</span><span style="color: #000000">cls</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">_options</span><span style="color: #000000; font-weight: bold">,</span> <span style="color: #000000">cls</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">_session</span><span style="color: #000000; font-weight: bold">,</span> <span style="color: #000000">raw_issues_json</span><span style="color: #000000; font-weight: bold">)</span>
+                           <span style="color: #204a87; font-weight: bold">for</span> <span style="color: #000000">raw_issues_json</span> <span style="color: #204a87; font-weight: bold">in</span>
+                           <span style="color: #000000">r_json</span><span style="color: #000000; font-weight: bold">[</span><span style="color: #4e9a06">&#39;contents&#39;</span><span style="color: #000000; font-weight: bold">][</span><span style="color: #000000">t</span><span style="color: #000000; font-weight: bold">]]</span>
+        <span style="color: #204a87; font-weight: bold">return</span> <span style="color: #000000; font-weight: bold">{</span><span style="color: #000000">x</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">key</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #000000">x</span> <span style="color: #204a87; font-weight: bold">for</span> <span style="color: #000000">x</span> <span style="color: #204a87; font-weight: bold">in</span> <span style="color: #000000">issues</span><span style="color: #000000; font-weight: bold">}</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">values</span><span style="color: #000000; font-weight: bold">()</span>
+
+    <span style="color: #000000">fmt_full</span> <span style="color: #ce5c00; font-weight: bold">=</span> <span style="color: #4e9a06">&#39;Sprint: {} \n\nIssues:{}&#39;</span>
+    <span style="color: #000000">fmt_issues</span> <span style="color: #ce5c00; font-weight: bold">=</span> <span style="color: #4e9a06">&#39;\n- {}: {}&#39;</span>
+    <span style="color: #000000">issues_str</span> <span style="color: #ce5c00; font-weight: bold">=</span> <span style="color: #4e9a06">&#39;&#39;</span>
+    <span style="color: #000000">milestone_str</span> <span style="color: #ce5c00; font-weight: bold">=</span> <span style="color: #4e9a06">&#39;&#39;</span>
+
+    <span style="color: #000000">options</span> <span style="color: #ce5c00; font-weight: bold">=</span> <span style="color: #000000; font-weight: bold">{</span>
+        <span style="color: #4e9a06">&#39;server&#39;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #4e9a06">&#39;http://jira/&#39;</span><span style="color: #000000; font-weight: bold">,</span>
+        <span style="color: #4e9a06">&#39;verify&#39;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #3465a4">True</span><span style="color: #000000; font-weight: bold">,</span>
+        <span style="color: #4e9a06">&#39;basic_auth&#39;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #000000; font-weight: bold">(</span><span style="color: #000000">username</span><span style="color: #000000; font-weight: bold">,</span> <span style="color: #000000">ldp_password</span><span style="color: #000000; font-weight: bold">),</span>
+    <span style="color: #000000; font-weight: bold">}</span>
+    <span style="color: #000000">gh</span> <span style="color: #ce5c00; font-weight: bold">=</span> <span style="color: #000000">JIRA</span><span style="color: #000000; font-weight: bold">(</span><span style="color: #000000">options</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #000000">options</span><span style="color: #000000; font-weight: bold">,</span> <span style="color: #000000">basic_auth</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #000000; font-weight: bold">(</span><span style="color: #000000">username</span><span style="color: #000000; font-weight: bold">,</span> <span style="color: #000000">ldp_password</span><span style="color: #000000; font-weight: bold">))</span>
+
+    <span style="color: #8f5902; font-style: italic"># Get all boards viewable by anonymous users.</span>
+    <span style="color: #000000">boards</span> <span style="color: #ce5c00; font-weight: bold">=</span> <span style="color: #000000">gh</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">boards</span><span style="color: #000000; font-weight: bold">()</span>
+    <span style="color: #000000">board</span> <span style="color: #ce5c00; font-weight: bold">=</span> <span style="color: #000000; font-weight: bold">[</span><span style="color: #000000">b</span> <span style="color: #204a87; font-weight: bold">for</span> <span style="color: #000000">b</span> <span style="color: #204a87; font-weight: bold">in</span> <span style="color: #000000">boards</span> <span style="color: #204a87; font-weight: bold">if</span> <span style="color: #000000">b</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">name</span> <span style="color: #ce5c00; font-weight: bold">==</span> <span style="color: #000000">sprint_name</span><span style="color: #000000; font-weight: bold">][</span><span style="color: #0000cf; font-weight: bold">0</span><span style="color: #000000; font-weight: bold">]</span>
+
+    <span style="color: #000000">sprints</span> <span style="color: #ce5c00; font-weight: bold">=</span> <span style="color: #000000">gh</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">sprints</span><span style="color: #000000; font-weight: bold">(</span><span style="color: #000000">board</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">id</span><span style="color: #000000; font-weight: bold">)</span>
+
+    <span style="color: #204a87; font-weight: bold">for</span> <span style="color: #000000">sprint</span> <span style="color: #204a87; font-weight: bold">in</span> <span style="color: #204a87">sorted</span><span style="color: #000000; font-weight: bold">([</span><span style="color: #000000">s</span> <span style="color: #204a87; font-weight: bold">for</span> <span style="color: #000000">s</span> <span style="color: #204a87; font-weight: bold">in</span> <span style="color: #000000">sprints</span>
+                   <span style="color: #204a87; font-weight: bold">if</span> <span style="color: #000000">s</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">raw</span><span style="color: #000000; font-weight: bold">[</span><span style="color: #4e9a06">u&#39;state&#39;</span><span style="color: #000000; font-weight: bold">]</span> <span style="color: #ce5c00; font-weight: bold">==</span> <span style="color: #4e9a06">u&#39;ACTIVE&#39;</span><span style="color: #000000; font-weight: bold">],</span>
+                <span style="color: #000000">key</span> <span style="color: #ce5c00; font-weight: bold">=</span> <span style="color: #204a87; font-weight: bold">lambda</span> <span style="color: #000000">x</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #000000">x</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">raw</span><span style="color: #000000; font-weight: bold">[</span><span style="color: #4e9a06">u&#39;sequence&#39;</span><span style="color: #000000; font-weight: bold">]):</span>
+        <span style="color: #000000">milestone_str</span> <span style="color: #ce5c00; font-weight: bold">=</span> <span style="color: #204a87">str</span><span style="color: #000000; font-weight: bold">(</span><span style="color: #000000">sprint</span><span style="color: #000000; font-weight: bold">)</span>
+        <span style="color: #000000">issues</span> <span style="color: #ce5c00; font-weight: bold">=</span> <span style="color: #000000">sprint_issues</span><span style="color: #000000; font-weight: bold">(</span><span style="color: #000000">gh</span><span style="color: #000000; font-weight: bold">,</span> <span style="color: #000000">board</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">id</span><span style="color: #000000; font-weight: bold">,</span> <span style="color: #000000">sprint</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">id</span><span style="color: #000000; font-weight: bold">)</span>
+        <span style="color: #204a87; font-weight: bold">for</span> <span style="color: #000000">issue</span> <span style="color: #204a87; font-weight: bold">in</span> <span style="color: #000000">issues</span><span style="color: #000000; font-weight: bold">:</span>
+            <span style="color: #000000">issues_str</span> <span style="color: #ce5c00; font-weight: bold">+=</span> <span style="color: #000000">fmt_issues</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">format</span><span style="color: #000000; font-weight: bold">(</span><span style="color: #000000">issue</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">key</span><span style="color: #000000; font-weight: bold">,</span> <span style="color: #000000">issue</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">summary</span><span style="color: #000000; font-weight: bold">)</span>
+
+    <span style="color: #000000">result</span> <span style="color: #ce5c00; font-weight: bold">=</span> <span style="color: #000000">fmt_full</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">format</span><span style="color: #000000; font-weight: bold">(</span>
+        <span style="color: #000000">milestone_str</span><span style="color: #000000; font-weight: bold">,</span>
+        <span style="color: #000000">issues_str</span>
+    <span style="color: #000000; font-weight: bold">)</span>
+    <span style="color: #204a87; font-weight: bold">print</span><span style="color: #000000; font-weight: bold">(</span><span style="color: #000000">result</span><span style="color: #000000; font-weight: bold">)</span>
+    <span style="color: #204a87; font-weight: bold">return</span> <span style="color: #000000">result</span>
+</pre></div>
+
+<p>You can call the function with the following command:</p>
+
+<pre><code>sprints(&lt;username&gt;, &lt;password&gt;, &lt;sprint_name&gt;)
+</code></pre>
+
+<p>You will get results that are similar to the following:</p>
+
+<blockquote>
+<pre><code>Sprint: SPRINT_NAME
+
+Issues:
+- PROJECT-437: Description of the issue
+- PROJECT-447: Description of the issue
+</code></pre>
+</blockquote>
+
+      
+    </div>
+    
+    <div class="post">
+      <h1 class="post-title">
         <a href="http://abhipandey.com/2016/03/getopt-vs-getopts/">getopt vs getopts</a>
       </h1>
       <span class="post-date">Mar 18, 2016  &middot; <a href="http://abhipandey.com/2016/03/getopt-vs-getopts/#disqus_thread">Comments</a>
@@ -1246,77 +1369,6 @@ $ docker ps -q <span style="color: #000000; font-weight: bold">|</span> xargs do
    <span style="color: #000000; font-weight: bold">|</span> sed -e <span style="color: #4e9a06">&#39;s/. &lt;//g&#39;</span> -e <span style="color: #4e9a06">&#39;s/^/\/var\/lib\/docker\/vfs\/dir\//g&#39;</span> <span style="color: #4e9a06">\</span>
    <span style="color: #000000; font-weight: bold">|</span> xargs sudo  rm -rf 
 </pre></div>
-
-      
-    </div>
-    
-    <div class="post">
-      <h1 class="post-title">
-        <a href="http://abhipandey.com/2015/09/powerline-for-zsh/">Powerline for zsh</a>
-      </h1>
-      <span class="post-date">Sep 28, 2015  &middot; <a href="http://abhipandey.com/2015/09/powerline-for-zsh/#disqus_thread">Comments</a>
-      
-      <br/>
-      <a class="a_cat" href="http://abhipandey.com/categories/code">code</a>
-        
-      <a class="a_tag" href="http://abhipandey.com/tags/zsh">zsh</a><a class="a_tag" href="http://abhipandey.com/tags/bash">bash</a>
-    
-      </span>
-      
-      
-<figure >
-    
-        <img src="/images/powerline-for-zsh.png" alt="Powerline" />
-    
-    
-    <figcaption>
-        <p>
-        Powerline
-        
-            
-        
-        </p> 
-    </figcaption>
-    
-</figure>
-
-
-<p>I was having a lot of trouble getting <a href="https://github.com/carlcarl/powerline-zsh"><em>powerline</em></a> to work on my mac machine.
-No matter what I tried, I was getting errors like the following:</p>
-
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #000000; font-style: italic">    .oh-my-zsh/themes/powerline.zsh-theme:100: character not in range</span>
-</pre></div>
-
-
-<p>Finally got it to work after multiple attempts on <code>bash</code> and <code>zsh</code>.</p>
-
-<p>All I had to do was set <code>LC_ALL</code> to <strong>en_US.UTF-8</strong>. It would set all the locales to <code>en_US.UTF-8</code> which
-would allow <code>powerline</code> fonts work properly.</p>
-
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>$ <span style="color: #204a87">export</span> <span style="color: #000000">LC_ALL</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #4e9a06">&quot;en_US.UTF-8&quot;</span>                                                                                                     22:58:06 
-$ locale 
-<span style="color: #000000">LANG</span><span style="color: #ce5c00; font-weight: bold">=</span>
-<span style="color: #000000">LC_COLLATE</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #4e9a06">&quot;en_US.UTF-8&quot;</span>
-<span style="color: #000000">LC_CTYPE</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #4e9a06">&quot;en_US.UTF-8&quot;</span>
-<span style="color: #000000">LC_MESSAGES</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #4e9a06">&quot;en_US.UTF-8&quot;</span>
-<span style="color: #000000">LC_MONETARY</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #4e9a06">&quot;en_US.UTF-8&quot;</span>
-<span style="color: #000000">LC_NUMERIC</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #4e9a06">&quot;en_US.UTF-8&quot;</span>
-<span style="color: #000000">LC_TIME</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #4e9a06">&quot;en_US.UTF-8&quot;</span>
-<span style="color: #000000">LC_ALL</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #4e9a06">&quot;en_US.UTF-8&quot;</span>
-</pre></div>
-
-
-<p>After this, run the following command to test your fonts again.</p>
-
-<p><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #000000">LC_CTYPE</span><span style="color: #ce5c00; font-weight: bold">=</span>en_US.UTF-8 <span style="color: #204a87">echo</span> <span style="color: #4e9a06">&#39;\u2603&#39;</span>
-</pre></div>
-</p>
-
-<p>Your command should work with or without <code>LC_CTYPE=en_US.UTF-8</code>. Here&rsquo;s what you expect to see now.</p>
-
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>    ☃
-</pre></div>
-
 
       
     </div>
