@@ -6,8 +6,72 @@
     <description>Recent content in Posts on Coders Digest</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 18 Mar 2016 20:20:21 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 28 Jun 2016 23:26:44 +0800</lastBuildDate>
     <atom:link href="http://abhipandey.com/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Protobuf on Docker</title>
+      <link>http://abhipandey.com/2016/06/protobuf-on-docker/</link>
+      <pubDate>Tue, 28 Jun 2016 23:26:44 +0800</pubDate>
+      
+      <guid>http://abhipandey.com/2016/06/protobuf-on-docker/</guid>
+      <description>
+
+&lt;p&gt;Found it really strange that nobody had mentioned on their blog how to
+compile &lt;code&gt;Protobuf&lt;/code&gt; in python with &lt;strong&gt;C++&lt;/strong&gt; implementation.&lt;/p&gt;
+
+&lt;p&gt;I had been having a lot of trouble with the compilation of python protobuf.
+After struggling with it for a few months on and off I decided to give &lt;strong&gt;&lt;code&gt;Docker&lt;/code&gt;&lt;/strong&gt;
+ a try as I realized that my own Fedora OS may be the one having troubles.
+ Thought of starting with &lt;strong&gt;Ubuntu&lt;/strong&gt; Docker as I&amp;rsquo;ve had success with it earlier
+ with such compilation scripts. Luckily it all worked out successfully again
+ for protobuf.&lt;/p&gt;
+
+&lt;p&gt;Then I tried Docker for &lt;strong&gt;Centos 7 and Fedora 23&lt;/strong&gt;, both of which had not
+ been working for me in any shape.&lt;/p&gt;
+
+&lt;p&gt;The source code of the &lt;strong&gt;Dockerfiles&lt;/strong&gt; are available on Github here:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/abhi1010/protobuf-on-docker&#34;&gt;github/abhi1010/protobuf-on-docker&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;We are running all the steps through the docker image so that the steps can be replicated
+ with any &lt;a href=&#34;https://github.com/google/protobuf/releases&#34;&gt;protobuf source code release&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Here&amp;rsquo;s what we will be doing:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Create &lt;code&gt;protoc&lt;/code&gt; compiler by compiling C++ files&lt;/li&gt;
+&lt;li&gt;Compile &lt;a href=&#34;https://github.com/google/protobuf/tree/master/python#c-implementation&#34;&gt;C++ implementation for &lt;code&gt;python&lt;/code&gt;&lt;/a&gt;
+using the just created &lt;code&gt;protoc&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Dockerfiles are available for the following Operating Systems:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/abhi1010/protobuf-on-docker/blob/master/centos-7.1/Dockerfile&#34;&gt;Centos 7&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/abhi1010/protobuf-on-docker/blob/master/fedora-23/Dockerfile&#34;&gt;Fedora 23&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/abhi1010/protobuf-on-docker/blob/master/ubuntu-15/Dockerfile&#34;&gt;Ubuntu 15&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;where-to-find-the-files-inside-the-docker-images:59fece5fea31b5834dfd3c1b99d2e930&#34;&gt;Where to find the files inside the Docker images&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;protoc&lt;/code&gt; compiler is available at &lt;code&gt;/ws/protoc-3.2&lt;/code&gt; folder inside the images&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;python&lt;/code&gt; version (compiled from c++) is available at &lt;code&gt;/ws/protobuf-3.0.0-beta-3.2/python/dist/&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;You can copy out the files using the following commands:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;id&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;$(&lt;/span&gt;sudo docker create &amp;lt;image_name&amp;gt;&lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;)&lt;/span&gt;
+sudo docker cp &lt;span style=&#34;color: #000000&#34;&gt;$id&lt;/span&gt;:/ws/protoc-3.2 ./
+sudo docker cp &lt;span style=&#34;color: #000000&#34;&gt;$id&lt;/span&gt;:/ws/protobuf-3.0.0-beta-3.2/python/dist/*.tar ./
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Just remember to change the rights as the files will belong to &lt;code&gt;root&lt;/code&gt; by default.
+You can do that with the following commands:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;sudo chown -R &amp;lt;USERNAME&amp;gt;:&amp;lt;USERNAME&amp;gt; *
+&lt;/pre&gt;&lt;/div&gt;
+</description>
+    </item>
     
     <item>
       <title>getopt vs getopts</title>
@@ -1984,32 +2048,6 @@ eb use beanstalk_env_name
 &lt;/ul&gt;
 
 &lt;p&gt;And that&amp;rsquo;s it! Once you commit your code, &lt;code&gt;shippable&lt;/code&gt; will run the tests, tag your code and finally download this &lt;em&gt;deployment&lt;/em&gt; project and deploy it to &lt;code&gt;beanstalk&lt;/code&gt; through &lt;code&gt;docker&lt;/code&gt; containers.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Nginx Upload limits on Beanstalk Docker</title>
-      <link>http://abhipandey.com/2015/09/nginx-upload-limits-on-beanstalk-docker/</link>
-      <pubDate>Fri, 04 Sep 2015 00:14:35 +0800</pubDate>
-      
-      <guid>http://abhipandey.com/2015/09/nginx-upload-limits-on-beanstalk-docker/</guid>
-      <description>&lt;p&gt;If I am not wrong, &lt;code&gt;nginx&lt;/code&gt; only allows you to upload up till max 2Mb of data by default. If you are doing a &lt;code&gt;docker&lt;/code&gt; deployment on &lt;code&gt;beanstalk&lt;/code&gt; you may to remember to change that not once but twice!&lt;/p&gt;
-
-&lt;p&gt;As you may know already, &lt;code&gt;beanstalk&lt;/code&gt; creates an &lt;code&gt;EC2&lt;/code&gt; instance to manage the &lt;code&gt;docker&lt;/code&gt; environment.&lt;br /&gt;
-Since &lt;code&gt;EC2&lt;/code&gt; needs to manage the &lt;code&gt;docker&lt;/code&gt; environment and serve the web interface as well, it does so by having another &lt;code&gt;nginx&lt;/code&gt; instance to serve the &lt;code&gt;nginx&lt;/code&gt; within &lt;code&gt;docker&lt;/code&gt;.
-Hence, if you had to modify the &lt;code&gt;nginx&lt;/code&gt; settings to allow bigger uploads, &lt;strong&gt;you&amp;rsquo;d have to modify the settings for &lt;code&gt;nginx&lt;/code&gt; on both - &lt;code&gt;docker&lt;/code&gt; as well as &lt;code&gt;EC2&lt;/code&gt;&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;    &lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;# max upload size&lt;/span&gt;
-    &lt;span style=&#34;color: #000000&#34;&gt;client_max_body_size&lt;/span&gt; &lt;span style=&#34;color: #0000cf; font-weight: bold&#34;&gt;10&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;M&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;;&lt;/span&gt;   &lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;# adjust to your liking&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;Also, if you don&amp;rsquo;t want to have any limit at all for uploads, then just change the &lt;code&gt;client_max_body_size&lt;/code&gt; to 0.&lt;/p&gt;
-
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;    &lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;# max upload size&lt;/span&gt;
-    &lt;span style=&#34;color: #000000&#34;&gt;client_max_body_size&lt;/span&gt; &lt;span style=&#34;color: #0000cf; font-weight: bold&#34;&gt;0&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;;&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
 </description>
     </item>
     

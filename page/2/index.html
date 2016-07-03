@@ -90,6 +90,110 @@
     
     <div class="post">
       <h1 class="post-title">
+        <a href="http://abhipandey.com/2015/09/automated-git-mirror-with-github-or-gitlab-or-bitbucket/">Automated Git Mirror With GitHub or Gitlab or Bitbucket</a>
+      </h1>
+      <span class="post-date">Sep 27, 2015  &middot; <a href="http://abhipandey.com/2015/09/automated-git-mirror-with-github-or-gitlab-or-bitbucket/#disqus_thread">Comments</a>
+      
+      <br/>
+      <a class="a_cat" href="http://abhipandey.com/categories/continuous-delivery">continuous delivery</a><a class="a_cat" href="http://abhipandey.com/categories/code">code</a>
+        
+      <a class="a_tag" href="http://abhipandey.com/tags/aws">aws</a><a class="a_tag" href="http://abhipandey.com/tags/beanstalk">beanstalk</a><a class="a_tag" href="http://abhipandey.com/tags/deployment">deployment</a><a class="a_tag" href="http://abhipandey.com/tags/git">git</a>
+    
+      </span>
+      
+      
+
+<h1 id="experience-with-gitlab-ci:e8d2b63c4e2d32c203d45ddfe7306ca8">Experience with Gitlab CI</h1>
+
+
+<figure >
+    
+        <img src="/images/git_mirror_with_gitlab__ci.png" alt="Git Mirror from Gitlab to Bitbucket using Gitlab CI" />
+    
+    
+    <figcaption>
+        <p>
+        Git Mirror from Gitlab to Bitbucket using Gitlab CI
+        
+            
+        
+        </p> 
+    </figcaption>
+    
+</figure>
+
+
+<p>Had to move from <code>BitBucket</code> to <code>Gitlab</code>; which is really great, btw. However, there was one tiny issue here - <code>Gitlab</code> was not supported by <code>Shippable</code>.
+As you may know already <code>Shippable</code> is a hosted cloud platform that provides hosted continuous integration.
+We use it in our current setup to do a full testing and deployment onto <code>AWS Elastic Beanstalk</code>.</p>
+
+<p>Since we were moving to <code>Gitlab</code> I wanted to continue using <code>Shippable</code> for our prod deployments. <code>Shippable</code> only supports <code>Github</code> or <code>Bitbucket</code> and therein lies the problem.
+<code>Gitlab</code> did not work with <code>Circl CI</code> or <code>Travis CI</code> or <code>Shippable</code> or <code>Wercker</code> so I tried using <code>Gitlab CI</code>.</p>
+
+<p>However, there were some issues with it:</p>
+
+<ul>
+<li>Runs the tasks as standalone but are not part of a <code>Docker</code> process
+
+<ul>
+<li>This means <code>Gitlab CI</code> does not work similar to <code>Circl CI</code> or <code>Travis CI</code> or <code>Shippable</code> or <code>Wercker</code></li>
+</ul></li>
+<li>Sometimes CI takes long to be triggered even though it registers you to be running right after your commit</li>
+<li>The terms are a bit different compared to the other cloud based continuous integration sites
+
+<ul>
+<li><code>Gitlab CI</code> supposedly tries to improve upon other tools but in the process ensures that you need to learn CI again if you want to use them</li>
+</ul></li>
+</ul>
+
+<p>I tried using the same yaml was <code>Shippable</code> but it was just not working with too many errors being reported and not to mention, having to wait for an hour during the worst period to see results.
+<code>Shippable</code> on the other hand, would hand over the console and results within 5 minutes of my commits. Decided to ditch <code>Gitlab CI</code>.</p>
+
+<h1 id="using-git-mirror:e8d2b63c4e2d32c203d45ddfe7306ca8">Using Git Mirror</h1>
+
+<p>Since <code>Gitlab CI</code> was clearing not working I decided to continue using <code>Shippable</code>. The only issue was, code had to exist in <code>Bitbucket</code>.
+ For that, I needed a git mirror from <code>Gitlab</code> to <code>Bitbucket</code>. Looking into docs I found this link - <a href="http://docs.shippable.com/using_gitlab/">http://docs.shippable.com/using_gitlab/</a>.
+ Other options mentioned setting up configs to add a mirror. For example, look here:</p>
+
+<ul>
+<li><a href="http://stackoverflow.com/questions/21551929/how-to-make-a-github-mirror-to-bitbucket">http://stackoverflow.com/questions/21551929/how-to-make-a-github-mirror-to-bitbucket</a></li>
+<li><a href="https://github.com/git-mirror-sync/git-mirror-sync">git mirror sync as a service</a></li>
+<li><a href="http://stackoverflow.com/questions/22906917/how-to-move-git-repository-with-all-branches-from-bitbucket-to-github">http://stackoverflow.com/questions/22906917/how-to-move-git-repository-with-all-branches-from-bitbucket-to-github</a></li>
+</ul>
+
+<p>I had a major problem with all the options - every developer had to set it up for this to work on every commit.</p>
+
+<p>I looked into webhooks and triggers on <code>Gitlab</code> but webhooks would have old code (unless I updated the code manually before loading).</p>
+
+<p><strong>Finally, the only way I saw fit to fix this issue was the <code>Gitlab CI</code> itself.</strong> I set up a git push as a one-step CI on <code>Gitlab</code> itself.
+ This would do the following:</p>
+
+<ul>
+<li>A commit on <code>Gitlab</code> leads to CI enabling this <code>git push --mirror</code> through the file <code>.gitlab-ci.yml</code></li>
+<li>When the commit is mirrored on <code>Bitbucket</code>, the webhook there is registered with <code>Shippable</code> which triggers the actual deployment through <code>shippable.yml</code></li>
+<li>In a way <code>Shippable</code> doesn&rsquo;t need to know anything about <code>Gitlab</code> which is great</li>
+</ul>
+
+<p>Here&rsquo;s my <strong><em><code>.gitlab-ci.yml</code></em></strong></p>
+
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #000000">stages</span><span style="color: #000000; font-weight: bold">:</span>
+  <span style="color: #000000; font-weight: bold">-</span> <span style="color: #000000">deploy</span>
+
+<span style="color: #000000">Git MIRROR</span><span style="color: #000000; font-weight: bold">:</span>
+  <span style="color: #000000">stage</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #000000">deploy</span>
+  <span style="color: #000000">script</span><span style="color: #000000; font-weight: bold">:</span>
+    <span style="color: #000000; font-weight: bold">-</span> <span style="color: #000000">git push --mirror https://BITBUCKET_USERNAME:BITBUCKET_PASSWORD@bitbucket.org/group/repo.git</span>
+</pre></div>
+
+
+<p><em>Note:</em> Remember to use variables in <code>Gitlab CI</code> to set up your bitbucket username and password.
+  <strong>This had to be done</strong> because you can&rsquo;t have any ssh key from <code>Gitlab</code> to add it to <code>Bitbucket</code></p>
+
+      
+    </div>
+    
+    <div class="post">
+      <h1 class="post-title">
         <a href="http://abhipandey.com/2015/09/git-loc-stats-by-time-range/">Git LOC Stats by Time Range</a>
       </h1>
       <span class="post-date">Sep 17, 2015  &middot; <a href="http://abhipandey.com/2015/09/git-loc-stats-by-time-range/#disqus_thread">Comments</a>
@@ -1375,75 +1479,6 @@ fab serve
 my <a href="https://github.com/abhi1010/d3wiki">github repo</a></p>
 
 <p>You will find all this code and setup so that your life is easier. Just start with d3 wiki along with virtual environment and you will be fine.</p>
-
-      
-    </div>
-    
-    <div class="post">
-      <h1 class="post-title">
-        <a href="http://abhipandey.com/2015/08/docker-container-cleanup-on-elastic-beanstalk/">Docker Container cleanup on Elastic Beanstalk</a>
-      </h1>
-      <span class="post-date">Aug 7, 2015  &middot; <a href="http://abhipandey.com/2015/08/docker-container-cleanup-on-elastic-beanstalk/#disqus_thread">Comments</a>
-      
-      <br/>
-      <a class="a_cat" href="http://abhipandey.com/categories/continuous-delivery">continuous delivery</a><a class="a_cat" href="http://abhipandey.com/categories/code">code</a>
-        
-      <a class="a_tag" href="http://abhipandey.com/tags/aws">aws</a><a class="a_tag" href="http://abhipandey.com/tags/beanstalk">beanstalk</a><a class="a_tag" href="http://abhipandey.com/tags/docker">docker</a>
-    
-      </span>
-      
-      
-
-<p>Sometimes you may notice that old containers are not cleaned up from Beanstalk environment. This may be due to your container still running as a ghost on the background. One way to find out about this is to quickly look into your
-<code>/var/lib/docker/vfs/dir</code> directory whether it has too many folders.</p>
-
-<p>Next, find out what container processes you have going on.
-<code>[root@ip dir]# docker ps -a</code></p>
-
-<p>You might see something like this:</p>
-
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #000000; font-style: italic">    CONTAINER ID        IMAGE                              COMMAND             CREATED             STATUS              PORTS               NAMES</span>
-<span style="color: #000000; font-style: italic">    1611e5ebe2c0        aws_beanstalk/staging-app:latest   &quot;supervisord -n&quot;    About an hour ago                                           boring_galileo</span>
-<span style="color: #000000; font-style: italic">    e59d0dd8bba1        aws_beanstalk/staging-app:latest   &quot;supervisord -n&quot;    About an hour ago                                           desperate_yalow</span>
-<span style="color: #000000; font-style: italic">    3844d0e18c47        aws_beanstalk/staging-app:latest   &quot;supervisord -n&quot;    2 hours ago         Up 8 minutes        80/tcp              pensive_jang</span>
-</pre></div>
-
-
-<p>Ideally, we want to &ldquo;forcibly remove&rdquo; all images (and hence the folders from <code>/var/lib/docker/vfs/dir</code> directory) that are not in use anymore.
-Just run the following to test whether it works:</p>
-
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #000000; font-style: italic">    docker rmi -f `docker images -aq`</span>
-</pre></div>
-
-
-<p>You might run into trouble where docker says that all those images already have a container that is running them. This means those container are orphaned but not killed as we thought them to be. Let&rsquo;s remove the shared volumes if any, for each one of them.</p>
-
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #000000; font-style: italic">    docker rm -fv `docker ps -aq` </span>
-</pre></div>
-
-
-<p>This will</p>
-
-<ul>
-<li>kill the container</li>
-<li>unlink the volumes</li>
-</ul>
-
-<p>You should see a lot more space now on your beanstalk instance.
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #000000; font-style: italic">    [root@ip dir]# df -h</span>
-<span style="color: #000000; font-style: italic">    Filesystem      Size  Used Avail Use% Mounted on</span>
-<span style="color: #000000; font-style: italic">    /dev/xvda1      7.8G  1.8G  5.9G  24% /</span>
-<span style="color: #000000; font-style: italic">    devtmpfs        490M   96K  490M   1% /dev</span>
-<span style="color: #000000; font-style: italic">    tmpfs           499M     0  499M   0% /dev/shm</span>
-</pre></div>
-</p>
-
-<h1 id="last-resort:57533ab22b2cfb33b4a75f9cd178e950">Last Resort</h1>
-
-<p>If you feel that all this is not working, then you can try one of the scripts provided by <code>docker</code> itself at
-<a href="https://github.com/docker/docker/blob/master/contrib/nuke-graph-directory.sh">GitHub</a></p>
-
-<p>It will delete the folders under <code>/var/lib/docker</code> and try to do it responsibly.</p>
 
       
     </div>

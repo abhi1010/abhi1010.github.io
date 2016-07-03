@@ -90,6 +90,162 @@
     
     <div class="post">
       <h1 class="post-title">
+        <a href="http://abhipandey.com/2012/10/merge-sort/">Merge Sort</a>
+      </h1>
+      <span class="post-date">Oct 6, 2012  &middot; <a href="http://abhipandey.com/2012/10/merge-sort/#disqus_thread">Comments</a>
+      
+      <br/>
+      <a class="a_cat" href="http://abhipandey.com/categories/code">code</a>
+        
+      <a class="a_tag" href="http://abhipandey.com/tags/sorting">sorting</a><a class="a_tag" href="http://abhipandey.com/tags/algo">algo</a><a class="a_tag" href="http://abhipandey.com/tags/c&#43;&#43;">c&#43;&#43;</a>
+    
+      </span>
+      
+      
+
+<p>Merge Sort</p>
+
+<ul>
+<li>Complexity is O(n log n)</li>
+<li>Needs more space to merge - proportional to the size of the array</li>
+<li>Stable Sort</li>
+<li>* Preserves the order of equal elements</li>
+<li>Merge Sort does about 39% lower comparisons, in worst case, compared to Quicksort&rsquo;s average case</li>
+<li>The algo almost always behaves in the same way; taking relatively the same amount of time, whether sorted or unsorted arrays
+<!-- more --></li>
+</ul>
+
+<h2 id="testing-notes:19e6e9293aeb00484ea655d2aac941c9">Testing Notes</h2>
+
+<ul>
+<li>Started testing the algo with two versions.</li>
+<li>* First version creates two temporary arrays
+
+<ul>
+<li>First version creates only one temporary array</li>
+</ul></li>
+<li>The sole difference between them is the one that makes second implementation better</li>
+</ul>
+
+<h2 id="code:19e6e9293aeb00484ea655d2aac941c9">Code</h2>
+
+<p>As usual the <a href="https://github.com/abhi1010/Algorithms/blob/master/Algo_codes/MergeSort.cpp">code</a> is available here:</p>
+
+<p><a href="https://github.com/abhi1010/Algorithms">https://github.com/abhi1010/Algorithms</a></p>
+
+<h2 id="numbers:19e6e9293aeb00484ea655d2aac941c9">Numbers</h2>
+
+<table style="border-bottom:lightblue solid;text-align:center;border-left:lightblue solid;background-color:#efefef;width:100%;border-collapse:collapse;border-top:lightblue solid;border-right:lightblue solid;" border="1" > <tbody > <tr >
+<td style="width:25%;" >
+
+### Merge Sort
+
+</td>
+<td style="width:25%;" >**# of Items in Array**
+</td>
+<td style="width:25%;" >**Time Taken**
+</td>
+<td style="width:25%;" >**Average for 100 numbers**
+</td> </tr> <tr >
+<td rowspan="3" >**Random**
+</td>
+<td >10
+</td>
+<td >0.047464
+</td>
+<td >0.47464
+</td> </tr> <tr >
+<td >1K
+</td>
+<td >5.41906
+</td>
+<td >0.541906
+</td> </tr> <tr >
+<td >1M
+</td>
+<td >8444.11
+</td>
+<td >0.844411
+</td> </tr> <tr >
+<td rowspan="3" >**Sorted**
+</td>
+<td >10
+</td>
+<td >0.027155
+</td>
+<td >0.27155
+</td> </tr> <tr >
+<td >1K
+</td>
+<td >4.47016
+</td>
+<td >0.447016
+</td> </tr> <tr >
+<td >1M
+</td>
+<td >6323.05
+</td>
+<td >0.632305
+</td> </tr> </tbody> </table>
+
+<table style="border-bottom:lightblue solid;text-align:center;border-left:lightblue solid;background-color:#efefef;width:100%;border-collapse:collapse;border-top:lightblue solid;border-right:lightblue solid;" border="1" > <tbody > <tr >
+<td style="width:25%;" >
+
+### Merge Sort 2
+
+</td>
+<td style="width:25%;" >**# of Items in Array**
+</td>
+<td style="width:25%;" >**Time Taken**
+</td>
+<td style="width:25%;" >**Average for 100 numbers**
+</td> </tr> <tr >
+<td rowspan="3" >**Random**
+</td>
+<td >10
+</td>
+<td >0.033668
+</td>
+<td >0.33668
+</td> </tr> <tr >
+<td >1K
+</td>
+<td >3.89374
+</td>
+<td >0.389374
+</td> </tr> <tr >
+<td >1M
+</td>
+<td >7076.04
+</td>
+<td >0.707604
+</td> </tr> <tr >
+<td rowspan="3" >**Sorted**
+</td>
+<td >10
+</td>
+<td >0.019034
+</td>
+<td >0.19034
+</td> </tr> <tr >
+<td >1K
+</td>
+<td >2.7833
+</td>
+<td >0.27833
+</td> </tr> <tr >
+<td >1M
+</td>
+<td >4664.16
+</td>
+<td >0.466416
+</td> </tr> </tbody> </table>
+
+      
+    </div>
+    
+    <div class="post">
+      <h1 class="post-title">
         <a href="http://abhipandey.com/2012/09/quick-sort/">Quick Sort</a>
       </h1>
       <span class="post-date">Sep 22, 2012  &middot; <a href="http://abhipandey.com/2012/09/quick-sort/#disqus_thread">Comments</a>
@@ -725,133 +881,6 @@ attempts to perform actions which require full trust.
 <p><a href="http://msdn2.microsoft.com/en-us/library/ms998271.aspx#paght000002_step2">http://msdn2.microsoft.com/en-us/library/ms998271.aspx#paght000002_step2</a></p>
 
 <p><a href="http://msdn2.microsoft.com/en-us/library/bb355989.aspx#paght000003_step4">http://msdn2.microsoft.com/en-us/library/bb355989.aspx#paght000003_step4</a></p>
-
-      
-    </div>
-    
-    <div class="post">
-      <h1 class="post-title">
-        <a href="http://abhipandey.com/2008/03/creating-custom-web-controls/">Creating Custom Web Controls</a>
-      </h1>
-      <span class="post-date">Mar 8, 2008  &middot; <a href="http://abhipandey.com/2008/03/creating-custom-web-controls/#disqus_thread">Comments</a>
-      
-      <br/>
-      <a class="a_cat" href="http://abhipandey.com/categories/code">code</a>
-        
-      <a class="a_tag" href="http://abhipandey.com/tags/c-sharp">c-sharp</a>
-    
-      </span>
-      
-      <p>How do you extend a control? Let&rsquo;s figure it out.</p>
-
-<p><strong>Why would you want to extend existing controls?</strong></p>
-
-<p>Because some functionality may not exist exactly as you may need it. For example, let&rsquo;s take up ImageButton control example. It is a great control but it falls short when it comes to real world scenario. Mostly websites do a hover image clickable button where the text or background color of the button changes once you hover your mouse over it.</p>
-
-<p><strong>How to Extend?</strong></p>
-
-<p>_I assume that you use C# code but there is not going to be any difference even if you wanted to do in VB.Net. _</p>
-
-<p>Create a project for creating custom web control library. It automatically includes a C# class that says something like</p>
-
-<pre><code>&lt;span style=&quot;color:#0000ff;&quot;&gt;public&lt;/span&gt; &lt;span style=&quot;color:#0000ff;&quot;&gt;class&lt;/span&gt; WebCustomControl1 : WebControl
-</code></pre>
-
-<p>Now ask yourself, what do you want to extend? A GridView? Replace WebControl with GridView. Let&rsquo;s follow our example with Hover Image Button Control. If you recall .Net already has ImageButton control that accepts one url for the image to be shown for that button, let&rsquo;s extend that one to include two Images rather than just one. In that case I would replace WebControl with ImageButton since I am going to extend ImageButton control. Let&rsquo;s call it HoverImageButton. Hence, the line changes to some thing like this:</p>
-
-<pre><code>&lt;span style=&quot;color:#0000ff;&quot;&gt;public&lt;/span&gt; &lt;span style=&quot;color:#0000ff;&quot;&gt;class&lt;/span&gt; HoverImageButton : ImageButton
-</code></pre>
-
-<p>The class also includes a property called Text for you so that you can see that and figure out how to use properties in custom web controls. It also includes attributes that start off just before the property itself. It is used by Visual Studio for showing this property on Properties pane. It is definitely a very useful feature.</p>
-
-<p>You can change this property to anything you like. Since we are creating a HoverImageButton control we want a property to save another url for the hover image&rsquo;s source. Let&rsquo;s change Text to &ldquo;ImageHoverUrl&rdquo;. ImageButton already has a property called &ldquo;ImageUrl&rdquo; and it belongs to &ldquo;Appearance&rdquo; group in Visual Studio Properties window. Notice the similarity in &ldquo;ImageHoverUrl&rdquo; and ImageUrl so that they appear together in Properties window. Sometimes, little deeds go a long way.</p>
-
-<p><strong>Writing JS file</strong></p>
-
-<p>Now let&rsquo;s add a javascript file to the project. Add one function called &ldquo;ShowImageHoverButton()&rdquo; that takes in two parameters, the control&rsquo;s id and the new image to be shown for that control. The control image&rsquo;s source is changed everytime when this function is called. We can call this function on mouse out and on mouse over events.</p>
-
-<p>That&rsquo;s all you need to do for this control.</p>
-
-<p><strong>Linking JS and Custom Control them together</strong></p>
-
-<p>This is a very simple process. You have the javascript file and you know for sure that the control will be loaded into the webpage, so you need a mechanism inside the control so that you can tell that &ldquo;hey, include this javascript file whenever you have this control on a page&rdquo;.</p>
-
-<p>This is how you do that.</p>
-
-<script type="text/javascript" src="http://gist.github.com/bfb075b6787d2616fde6.js"></script>
-
-<p>Please note that the name of the javascript file is &ldquo;HoverImageButtonJS.js&rdquo;. ExtendedControls is the name of the project/assembly that I have created for this custom web control.</p>
-
-<p>How to assign javascript functions to the control?</p>
-
-<p>Now the next problem is how would you tell the control that call this javscript function function on &ldquo;mouseover&rdquo;? We use OnInit function for this process. We override the function and make use of the control&rsquo;s Attributes property.</p>
-
-<p>What is Attributes property for anyway? Well, it adds any extra &ldquo;property&rdquo; or &ldquo;style&rdquo; that you may want to add to the control when it is rendered to the client.</p>
-
-<p>Let&rsquo;s see how that&rsquo;s done.</p>
-
-<script type="text/javascript" src="http://gist.github.com/d0b66ef7b0f076e88042.js"></script>
-
-<p>Over here, I have told the class to include <code>&quot;onmouseover=ShowImageHoverButton(this, 'IMAGE_SOURCE')&quot;</code> as a property.</p>
-
-<p>This is how it is rendered on the client browser:</p>
-
-<script type="text/javascript" src="http://gist.github.com/6df972bf94b736545419.js"></script>
-
-<p><strong>Add the javascript file also to the AssemblyInfo.cs class</strong></p>
-
-<p>For the control library to properly include the js file, you have to add the js file in AssemblyInfo.cs class as well. This is how it is done:</p>
-
-<pre><code>[assembly: WebResource(&lt;span style=&quot;color:#006080;&quot;&gt;&quot;ExtendedControls.HoverImageButtonJS.js&quot;&lt;/span&gt;, &lt;span style=&quot;color:#006080;&quot;&gt;&quot;text/javascript&quot;&lt;/span&gt;)]
-</code></pre>
-
-<p><strong>Test Drive!</strong></p>
-
-<p>That&rsquo;s all. A few simple steps and your control is ready to be tested. Still, let&rsquo;s not rush and see the steps required:</p>
-
-<ul>
-<li><p>Add this control&rsquo;s library to any web project.</p></li>
-
-<li><p>Register the dll on web.config. This makes the control available automatically on all the pages.</p></li>
-</ul>
-
-<script type="text/javascript" src="http://gist.github.com/88222d3f94911fbec6f4.js"></script>
-
-<ul>
-<li>Go to the design view of any page. Open up the Toolbox pane and you will automatically see the name appear &ldquo;HoverImageButton&rdquo;. Double click and you are ready to go!!</li>
-</ul>
-
-<p><strong>Easy as it may sound but it may not be that smooth a ride for you.</strong></p>
-
-<p>Just take care of few pointers and you should be fine. Here they go:</p>
-
-<ul>
-<li><p>The JScript file that you have added sometimes doesn&rsquo;t get linked properly to the control. Right click on the js file and check it&rsquo;s properties. It&rsquo;s compile action should be &ldquo;Embed Content&rdquo; rather than anything else. That way everytime you compile this control, this js file gets &ldquo;embedded&rdquo; into the control&rsquo;s library.</p></li>
-
-<li><p>Take care of the naming convention for the js file.</p>
-
-<ul>
-<li>If your control&rsquo;s namespace is ExtendedControls, then while &ldquo;Registering&rdquo; it in the control&rsquo;s class you should give the JS file&rsquo;s name as &ldquo;ExtendedControls.CustomControl_JS.js&rdquo; where &ldquo;CustomControl_JS.js&rdquo; is the name of the javascript file. Basically, another shortcut to learn it is whatever is the name of the project/assembly that you are creating, you have to append that name before the file name. **Follow this logic strictly, otherwise you will be left high and dry. **
-
-<br />
-
-<br /></li>
-</ul></li>
-
-<li><p>You should also remember to register this name inside AssemblyInfo.cs class (&ldquo;ExtendedControls.CustomControl_JS.js&rdquo; as per our example here).</p></li>
-
-<li><p>If you want Visual Studio Design support then remember to add the attributes that define where can you see the custom properties of this control in the &ldquo;Properties&rdquo; pane.</p></li>
-
-<li><p>Whenever you are putting your code files inside some folder, try to keep the JS files in the root folder.</p>
-
-<ul>
-<li>When I tried putting them inside the folder it did not work, i took them out to the root folder and it worked instantly. I have not tried changing the JS file names but I am sure you can figure out some solution.</li>
-</ul></li>
-</ul>
-
-<p><strong>Here&rsquo;s all the code in case somebody needs it:</strong></p>
-
-<script type="text/javascript" src="http://gist.github.com/135e9bbf44f3d9a53cb8.js"></script>
 
       
     </div>
