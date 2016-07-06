@@ -63,7 +63,21 @@ using the just created &lt;code&gt;protoc&lt;/code&gt;&lt;/li&gt;
 &lt;p&gt;You can copy out the files using the following commands:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;id&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;$(&lt;/span&gt;sudo docker create &amp;lt;image_name&amp;gt;&lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;)&lt;/span&gt;
 sudo docker cp &lt;span style=&#34;color: #000000&#34;&gt;$id&lt;/span&gt;:/ws/protoc-3.2 ./
-sudo docker cp &lt;span style=&#34;color: #000000&#34;&gt;$id&lt;/span&gt;:/ws/protobuf-3.0.0-beta-3.2/python/dist/*.tar ./
+sudo docker cp &lt;span style=&#34;color: #000000&#34;&gt;$id&lt;/span&gt;:/ws/protobuf-3.0.0-beta-3.2/python/dist/*.gz ./
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;In case you get an error like the following, &lt;em&gt;remove&lt;/em&gt; &lt;code&gt;*.gz&lt;/code&gt; from the cp command:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;zsh: no matches found: e7c8a9102e1cd07b4c471c331bc4deba2222278eb22be1e79ecaa14e914ed654:/ws/protobuf-3.0.0-beta-3.2/python/dist/*.gz
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Your second cp command then becomes:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo docker cp $id:/ws/protobuf-3.0.0-beta-3.2/python/dist/ ./
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Once done, you can remove the created container with the following command:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;sudo docker rm -v &lt;span style=&#34;color: #000000&#34;&gt;$id&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;Just remember to change the rights as the files will belong to &lt;code&gt;root&lt;/code&gt; by default.

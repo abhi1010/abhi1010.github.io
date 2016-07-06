@@ -157,7 +157,21 @@ using the just created <code>protoc</code></li>
 <p>You can copy out the files using the following commands:</p>
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #000000">id</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #204a87; font-weight: bold">$(</span>sudo docker create &lt;image_name&gt;<span style="color: #204a87; font-weight: bold">)</span>
 sudo docker cp <span style="color: #000000">$id</span>:/ws/protoc-3.2 ./
-sudo docker cp <span style="color: #000000">$id</span>:/ws/protobuf-3.0.0-beta-3.2/python/dist/*.tar ./
+sudo docker cp <span style="color: #000000">$id</span>:/ws/protobuf-3.0.0-beta-3.2/python/dist/*.gz ./
+</pre></div>
+
+<p>In case you get an error like the following, <em>remove</em> <code>*.gz</code> from the cp command:</p>
+
+<pre><code>zsh: no matches found: e7c8a9102e1cd07b4c471c331bc4deba2222278eb22be1e79ecaa14e914ed654:/ws/protobuf-3.0.0-beta-3.2/python/dist/*.gz
+</code></pre>
+
+<p>Your second cp command then becomes:</p>
+
+<pre><code>sudo docker cp $id:/ws/protobuf-3.0.0-beta-3.2/python/dist/ ./
+</code></pre>
+
+<p>Once done, you can remove the created container with the following command:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>sudo docker rm -v <span style="color: #000000">$id</span>
 </pre></div>
 
 <p>Just remember to change the rights as the files will belong to <code>root</code> by default.
