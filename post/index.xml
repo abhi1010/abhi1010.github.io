@@ -6,8 +6,167 @@
     <description>Recent content in Posts on Coders Digest</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 28 Jun 2016 23:26:44 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 05 Jul 2016 23:26:44 +0800</lastBuildDate>
     <atom:link href="http://abhipandey.com/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Gitlab CLI API reference</title>
+      <link>http://abhipandey.com/2016/07/gitlab-cli-api-reference/</link>
+      <pubDate>Tue, 05 Jul 2016 23:26:44 +0800</pubDate>
+      
+      <guid>http://abhipandey.com/2016/07/gitlab-cli-api-reference/</guid>
+      <description>
+
+&lt;p&gt;Here&amp;rsquo;s a short tutorial on setting up gitlab cli for yourselves.
+It is extremely user friendly and you can take almost any action that you need.
+Anything that the UI provides is also available over cli or web services -
+both of which have examples here.&lt;/p&gt;
+
+&lt;p&gt;Let&amp;rsquo;s get started.&lt;/p&gt;
+
+&lt;h2 id=&#34;gitlab-cli:67f66bdf501059124272bbdeb0fc5217&#34;&gt;gitlab cli&lt;/h2&gt;
+
+&lt;h3 id=&#34;installing-the-gitlab-cli:67f66bdf501059124272bbdeb0fc5217&#34;&gt;Installing the gitlab CLI&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;# http://narkoz.github.io/gitlab/configuration
+gem install gitlab
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;configuration:67f66bdf501059124272bbdeb0fc5217&#34;&gt;Configuration&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #204a87&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;GITLAB_API_ENDPOINT&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;http://gitlab.com/api/v3&amp;#39;&lt;/span&gt;
+&lt;span style=&#34;color: #204a87&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;GITLAB_API_PRIVATE_TOKEN&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;YOUR_TOKEN_&amp;#39;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3 id=&#34;available-commands:67f66bdf501059124272bbdeb0fc5217&#34;&gt;Available commands&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;$ gitlab
++-----------------+
+&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;   Help Topics   &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;
++-----------------+
+&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; Branches        &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;
++-----------------+
+&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; Commits         &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;
++-----------------+
+&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; Groups          &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;
++-----------------+
+&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; Issues          &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;
++-----------------+
+&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; Labels          &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;
++-----------------+
+&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; MergeRequests   &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;
++-----------------+
+&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; Milestones      &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;
++-----------------+
+&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; Namespaces      &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;
++-----------------+
+&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; Notes           &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;
++-----------------+
+&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; Projects        &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;
++-----------------+
+&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; Repositories    &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;
++-----------------+
+&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; RepositoryFiles &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;
++-----------------+
+&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; Snippets        &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;
++-----------------+
+&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; SystemHooks     &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;
++-----------------+
+&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; Users           &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;
++-----------------+
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3 id=&#34;sample-cli-commands:67f66bdf501059124272bbdeb0fc5217&#34;&gt;Sample CLI commands&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;# Check the list of Projects&lt;/span&gt;
+$ gitlab projects
+
+&lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;# Based on the response, we know reconwisev2 is ID 487928&lt;/span&gt;
+&lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;# Let&amp;#39;s find out the list of labels in it&lt;/span&gt;
+$ gitlab labels 487928
++---------------------+---------+--------------------+--------------+-------------------+---------------------------+------------+
+&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;                                                      Gitlab.labels &lt;span style=&#34;color: #0000cf; font-weight: bold&#34;&gt;487928&lt;/span&gt;                                                      &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;
++---------------------+---------+--------------------+--------------+-------------------+---------------------------+------------+
+&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; closed_issues_count &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; color   &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; description        &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; name         &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; open_issues_count &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; open_merge_requests_count &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; subscribed &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;
++---------------------+---------+--------------------+--------------+-------------------+---------------------------+------------+
+&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; &lt;span style=&#34;color: #0000cf; font-weight: bold&#34;&gt;2&lt;/span&gt;                   &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; &lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;#ff0000 | null               | !Blocker     | 0                 | 0                         | false      |&lt;/span&gt;
++---------------------+---------+--------------------+--------------+-------------------+---------------------------+------------+
+&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; &lt;span style=&#34;color: #0000cf; font-weight: bold&#34;&gt;2&lt;/span&gt;                   &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; &lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;#0033cc | null               | #AWS         | 8                 | 0                         | false      |&lt;/span&gt;
++---------------------+---------+--------------------+--------------+-------------------+---------------------------+------------+
+&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; &lt;span style=&#34;color: #0000cf; font-weight: bold&#34;&gt;27&lt;/span&gt;                  &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; &lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;#428bca | null               | #Bug         | 2                 | 0                         | false      |&lt;/span&gt;
++---------------------+---------+--------------------+--------------+-------------------+---------------------------+------------+
+&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; &lt;span style=&#34;color: #0000cf; font-weight: bold&#34;&gt;3&lt;/span&gt;                   &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; &lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;#0033cc | null               | #Feature     | 29                | 0                         | false      |&lt;/span&gt;
++---------------------+---------+--------------------+--------------+-------------------+---------------------------+------------+
+&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; &lt;span style=&#34;color: #0000cf; font-weight: bold&#34;&gt;7&lt;/span&gt;                   &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; &lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;#5843ad | null               | #Improvement | 22                | 0                         | false      |&lt;/span&gt;
++---------------------+---------+--------------------+--------------+-------------------+---------------------------+------------+
+&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; &lt;span style=&#34;color: #0000cf; font-weight: bold&#34;&gt;1&lt;/span&gt;                   &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; &lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;#428bca |                    | #Support     | 1                 | 0                         | false      |&lt;/span&gt;
++---------------------+---------+--------------------+--------------+-------------------+---------------------------+------------+
+&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; &lt;span style=&#34;color: #0000cf; font-weight: bold&#34;&gt;28&lt;/span&gt;                  &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; &lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;#f0ad4e | null               | $GH          | 12                | 0                         | false      |&lt;/span&gt;
++---------------------+---------+--------------------+--------------+-------------------+---------------------------+------------+
+&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; &lt;span style=&#34;color: #0000cf; font-weight: bold&#34;&gt;0&lt;/span&gt;                   &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; &lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;#f0ad4e |                    | $IFAST       | 4                 | 0                         | false      |&lt;/span&gt;
++---------------------+---------+--------------------+--------------+-------------------+---------------------------+------------+
+&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; &lt;span style=&#34;color: #0000cf; font-weight: bold&#34;&gt;25&lt;/span&gt;                  &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; &lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;#ff0000 | null               | 1-Critical   | 7                 | 0                         | false      |&lt;/span&gt;
++---------------------+---------+--------------------+--------------+-------------------+---------------------------+------------+
+&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; &lt;span style=&#34;color: #0000cf; font-weight: bold&#34;&gt;2&lt;/span&gt;                   &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; &lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;#ad4363 | null               | 2-Important  | 20                | 0                         | false      |&lt;/span&gt;
++---------------------+---------+--------------------+--------------+-------------------+---------------------------+------------+
+&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; &lt;span style=&#34;color: #0000cf; font-weight: bold&#34;&gt;5&lt;/span&gt;                   &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; &lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;#ad4363 | null               | 3-Normal     | 18                | 0                         | false      |&lt;/span&gt;
++---------------------+---------+--------------------+--------------+-------------------+---------------------------+------------+
+&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; &lt;span style=&#34;color: #0000cf; font-weight: bold&#34;&gt;2&lt;/span&gt;                   &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; &lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;#d491a5 |                    | 4-Trivial    | 6                 | 0                         | false      |&lt;/span&gt;
++---------------------+---------+--------------------+--------------+-------------------+---------------------------+------------+
+&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; &lt;span style=&#34;color: #0000cf; font-weight: bold&#34;&gt;0&lt;/span&gt;                   &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; &lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;#a8d695 | null               | ^In-Progress | 3                 | 1                         | false      |&lt;/span&gt;
++---------------------+---------+--------------------+--------------+-------------------+---------------------------+------------+
+&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; &lt;span style=&#34;color: #0000cf; font-weight: bold&#34;&gt;0&lt;/span&gt;                   &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; &lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;#69d100 | Completed/Finished | ^Resolved    | 0                 | 1                         | false      |&lt;/span&gt;
++---------------------+---------+--------------------+--------------+-------------------+---------------------------+------------+
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3 id=&#34;sample-curl-commands:67f66bdf501059124272bbdeb0fc5217&#34;&gt;Sample CURL commands&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;Check the list of Projects&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;https://gitlab.com/api/v3/projects/?private_token=YOUR_TOKEN
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This will return you a big JSON with the list of your projects in gitlab.&lt;/p&gt;
+
+&lt;p&gt;Based on the response, we know that the project is ID 487928
+Let&amp;rsquo;s find out the list of labels in it.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;https://gitlab.com/api/v3/projects/487928/labels/?private_token=YOUR_TOKEN
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The response is a bit like this:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;[&lt;/span&gt;
+
+    &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;{&lt;/span&gt;
+        &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;&amp;quot;name&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;!Blocker&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt;
+        &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;&amp;quot;color&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;#ff0000&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt;
+        &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;&amp;quot;description&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;null&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt;
+        &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;&amp;quot;open_issues_count&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #0000cf; font-weight: bold&#34;&gt;0&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt;
+        &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;&amp;quot;closed_issues_count&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #0000cf; font-weight: bold&#34;&gt;2&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt;
+        &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;&amp;quot;open_merge_requests_count&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #0000cf; font-weight: bold&#34;&gt;0&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt;
+        &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;&amp;quot;subscribed&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;false&lt;/span&gt;
+    &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;},&lt;/span&gt;
+    &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;{&lt;/span&gt;
+        &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;&amp;quot;name&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;#AWS&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt;
+        &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;&amp;quot;color&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;#0033cc&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt;
+        &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;&amp;quot;description&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;null&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt;
+        &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;&amp;quot;open_issues_count&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #0000cf; font-weight: bold&#34;&gt;8&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt;
+        &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;&amp;quot;closed_issues_count&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #0000cf; font-weight: bold&#34;&gt;2&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt;
+        &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;&amp;quot;open_merge_requests_count&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #0000cf; font-weight: bold&#34;&gt;0&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt;
+        &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;&amp;quot;subscribed&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;false&lt;/span&gt;
+    &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;},&lt;/span&gt;
+    &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;{&lt;/span&gt;
+        &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;&amp;quot;name&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;#Bug&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt;
+        &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;&amp;quot;color&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;#428bca&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt;
+        &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;&amp;quot;description&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;null&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt;
+        &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;&amp;quot;open_issues_count&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #0000cf; font-weight: bold&#34;&gt;2&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt;
+        &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;&amp;quot;closed_issues_count&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #0000cf; font-weight: bold&#34;&gt;27&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt;
+        &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;&amp;quot;open_merge_requests_count&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #0000cf; font-weight: bold&#34;&gt;0&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt;
+        &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;&amp;quot;subscribed&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;false&lt;/span&gt;
+    &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;},&lt;/span&gt;
+    &lt;span style=&#34;color: #a40000; border: 1px solid #ef2929&#34;&gt;....&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;More documentation is available &lt;a href=&#34;https://github.com/gitlabhq/gitlabhq/tree/master/doc/api&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Protobuf on Docker</title>
@@ -1787,48 +1946,6 @@ If we have to commit to two repo - for markdown as well html pages, I feel like 
 
 &lt;p&gt;&lt;code&gt;Shippable&lt;/code&gt; will pick it up from there. It will download the theme and create the html files.
 It will also commit to the &lt;code&gt;GitHub Pages&lt;/code&gt; for you and the site will be live automatically!&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Using External Tools with Git Diff</title>
-      <link>http://abhipandey.com/2015/09/using-external-tools-with-git-diff/</link>
-      <pubDate>Thu, 10 Sep 2015 00:18:24 +0800</pubDate>
-      
-      <guid>http://abhipandey.com/2015/09/using-external-tools-with-git-diff/</guid>
-      <description>&lt;p&gt;If you want to view what has changed since one commit to another, it is quite easy to view the diff.&lt;/p&gt;
-
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;git diff 5fad06c..0a504fa
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;You will get something like this:&lt;/p&gt;
-
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #000080; font-weight: bold&#34;&gt;diff --git a/modules/file_1.erb b/modules/file_1.erb&lt;/span&gt;
-&lt;span style=&#34;color: #000080; font-weight: bold&#34;&gt;index 0538da0..6621d93 100644&lt;/span&gt;
-&lt;span style=&#34;color: #a40000&#34;&gt;--- a/modules/file_1.erb&lt;/span&gt;
-&lt;span style=&#34;color: #00A000&#34;&gt;+++ b/modules/file_1.erb&lt;/span&gt;
-&lt;span style=&#34;color: #800080; font-weight: bold&#34;&gt;@@ -5,8 +5,8 @@&lt;/span&gt;
- 
-   // Algo settings
-   &amp;quot;Carbo&amp;quot;: {
-&lt;span style=&#34;color: #a40000&#34;&gt;-    &amp;quot;active-instrument&amp;quot;: &amp;quot;SGX/NK15&amp;quot;,&lt;/span&gt;
-&lt;span style=&#34;color: #a40000&#34;&gt;-    &amp;quot;hedge-instrument&amp;quot;: &amp;quot;SGX/NK16&amp;quot;,&lt;/span&gt;
-&lt;span style=&#34;color: #00A000&#34;&gt;+    &amp;quot;active-instrument&amp;quot;: &amp;quot;SGX/NK17&amp;quot;,&lt;/span&gt;
-&lt;span style=&#34;color: #00A000&#34;&gt;+    &amp;quot;hedge-instrument&amp;quot;: &amp;quot;SGX/NK18&amp;quot;,&lt;/span&gt;
-     &amp;quot;owner-app-id&amp;quot;: &amp;quot;abhi1010&amp;quot;,
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;What if you wanted a use an external tool like &lt;code&gt;meld&lt;/code&gt; to view the diff, in a nice beautiful side by side view? You&amp;rsquo;d have to modify your settings to tell that to &lt;code&gt;git&lt;/code&gt;.
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;git config --global diff.tool meld
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/p&gt;
-
-&lt;p&gt;Finally, then to view the diff:
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;git difftool 5fad06c..0a504fa
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/p&gt;
 </description>
     </item>
     

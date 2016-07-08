@@ -90,6 +90,173 @@
     
     <div class="post">
       <h1 class="post-title">
+        <a href="http://abhipandey.com/2016/07/gitlab-cli-api-reference/">Gitlab CLI API reference</a>
+      </h1>
+      <span class="post-date">Jul 5, 2016  &middot; <a href="http://abhipandey.com/2016/07/gitlab-cli-api-reference/#disqus_thread">Comments</a>
+      
+      <br/>
+      <a class="a_cat" href="http://abhipandey.com/categories/code">code</a><a class="a_cat" href="http://abhipandey.com/categories/continuous-delivery">continuous delivery</a><a class="a_cat" href="http://abhipandey.com/categories/tips">tips</a>
+        
+      <a class="a_tag" href="http://abhipandey.com/tags/python">python</a>
+    
+      </span>
+      
+      
+
+<p>Here&rsquo;s a short tutorial on setting up gitlab cli for yourselves.
+It is extremely user friendly and you can take almost any action that you need.
+Anything that the UI provides is also available over cli or web services -
+both of which have examples here.</p>
+
+<p>Let&rsquo;s get started.</p>
+
+<h2 id="gitlab-cli:67f66bdf501059124272bbdeb0fc5217">gitlab cli</h2>
+
+<h3 id="installing-the-gitlab-cli:67f66bdf501059124272bbdeb0fc5217">Installing the gitlab CLI</h3>
+
+<pre><code># http://narkoz.github.io/gitlab/configuration
+gem install gitlab
+</code></pre>
+
+<h3 id="configuration:67f66bdf501059124272bbdeb0fc5217">Configuration</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #204a87">export</span> <span style="color: #000000">GITLAB_API_ENDPOINT</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #4e9a06">&#39;http://gitlab.com/api/v3&#39;</span>
+<span style="color: #204a87">export</span> <span style="color: #000000">GITLAB_API_PRIVATE_TOKEN</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #4e9a06">&#39;YOUR_TOKEN_&#39;</span>
+</pre></div>
+
+<h3 id="available-commands:67f66bdf501059124272bbdeb0fc5217">Available commands</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>$ gitlab
++-----------------+
+<span style="color: #000000; font-weight: bold">|</span>   Help Topics   <span style="color: #000000; font-weight: bold">|</span>
++-----------------+
+<span style="color: #000000; font-weight: bold">|</span> Branches        <span style="color: #000000; font-weight: bold">|</span>
++-----------------+
+<span style="color: #000000; font-weight: bold">|</span> Commits         <span style="color: #000000; font-weight: bold">|</span>
++-----------------+
+<span style="color: #000000; font-weight: bold">|</span> Groups          <span style="color: #000000; font-weight: bold">|</span>
++-----------------+
+<span style="color: #000000; font-weight: bold">|</span> Issues          <span style="color: #000000; font-weight: bold">|</span>
++-----------------+
+<span style="color: #000000; font-weight: bold">|</span> Labels          <span style="color: #000000; font-weight: bold">|</span>
++-----------------+
+<span style="color: #000000; font-weight: bold">|</span> MergeRequests   <span style="color: #000000; font-weight: bold">|</span>
++-----------------+
+<span style="color: #000000; font-weight: bold">|</span> Milestones      <span style="color: #000000; font-weight: bold">|</span>
++-----------------+
+<span style="color: #000000; font-weight: bold">|</span> Namespaces      <span style="color: #000000; font-weight: bold">|</span>
++-----------------+
+<span style="color: #000000; font-weight: bold">|</span> Notes           <span style="color: #000000; font-weight: bold">|</span>
++-----------------+
+<span style="color: #000000; font-weight: bold">|</span> Projects        <span style="color: #000000; font-weight: bold">|</span>
++-----------------+
+<span style="color: #000000; font-weight: bold">|</span> Repositories    <span style="color: #000000; font-weight: bold">|</span>
++-----------------+
+<span style="color: #000000; font-weight: bold">|</span> RepositoryFiles <span style="color: #000000; font-weight: bold">|</span>
++-----------------+
+<span style="color: #000000; font-weight: bold">|</span> Snippets        <span style="color: #000000; font-weight: bold">|</span>
++-----------------+
+<span style="color: #000000; font-weight: bold">|</span> SystemHooks     <span style="color: #000000; font-weight: bold">|</span>
++-----------------+
+<span style="color: #000000; font-weight: bold">|</span> Users           <span style="color: #000000; font-weight: bold">|</span>
++-----------------+
+</pre></div>
+
+<h3 id="sample-cli-commands:67f66bdf501059124272bbdeb0fc5217">Sample CLI commands</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #8f5902; font-style: italic"># Check the list of Projects</span>
+$ gitlab projects
+
+<span style="color: #8f5902; font-style: italic"># Based on the response, we know reconwisev2 is ID 487928</span>
+<span style="color: #8f5902; font-style: italic"># Let&#39;s find out the list of labels in it</span>
+$ gitlab labels 487928
++---------------------+---------+--------------------+--------------+-------------------+---------------------------+------------+
+<span style="color: #000000; font-weight: bold">|</span>                                                      Gitlab.labels <span style="color: #0000cf; font-weight: bold">487928</span>                                                      <span style="color: #000000; font-weight: bold">|</span>
++---------------------+---------+--------------------+--------------+-------------------+---------------------------+------------+
+<span style="color: #000000; font-weight: bold">|</span> closed_issues_count <span style="color: #000000; font-weight: bold">|</span> color   <span style="color: #000000; font-weight: bold">|</span> description        <span style="color: #000000; font-weight: bold">|</span> name         <span style="color: #000000; font-weight: bold">|</span> open_issues_count <span style="color: #000000; font-weight: bold">|</span> open_merge_requests_count <span style="color: #000000; font-weight: bold">|</span> subscribed <span style="color: #000000; font-weight: bold">|</span>
++---------------------+---------+--------------------+--------------+-------------------+---------------------------+------------+
+<span style="color: #000000; font-weight: bold">|</span> <span style="color: #0000cf; font-weight: bold">2</span>                   <span style="color: #000000; font-weight: bold">|</span> <span style="color: #8f5902; font-style: italic">#ff0000 | null               | !Blocker     | 0                 | 0                         | false      |</span>
++---------------------+---------+--------------------+--------------+-------------------+---------------------------+------------+
+<span style="color: #000000; font-weight: bold">|</span> <span style="color: #0000cf; font-weight: bold">2</span>                   <span style="color: #000000; font-weight: bold">|</span> <span style="color: #8f5902; font-style: italic">#0033cc | null               | #AWS         | 8                 | 0                         | false      |</span>
++---------------------+---------+--------------------+--------------+-------------------+---------------------------+------------+
+<span style="color: #000000; font-weight: bold">|</span> <span style="color: #0000cf; font-weight: bold">27</span>                  <span style="color: #000000; font-weight: bold">|</span> <span style="color: #8f5902; font-style: italic">#428bca | null               | #Bug         | 2                 | 0                         | false      |</span>
++---------------------+---------+--------------------+--------------+-------------------+---------------------------+------------+
+<span style="color: #000000; font-weight: bold">|</span> <span style="color: #0000cf; font-weight: bold">3</span>                   <span style="color: #000000; font-weight: bold">|</span> <span style="color: #8f5902; font-style: italic">#0033cc | null               | #Feature     | 29                | 0                         | false      |</span>
++---------------------+---------+--------------------+--------------+-------------------+---------------------------+------------+
+<span style="color: #000000; font-weight: bold">|</span> <span style="color: #0000cf; font-weight: bold">7</span>                   <span style="color: #000000; font-weight: bold">|</span> <span style="color: #8f5902; font-style: italic">#5843ad | null               | #Improvement | 22                | 0                         | false      |</span>
++---------------------+---------+--------------------+--------------+-------------------+---------------------------+------------+
+<span style="color: #000000; font-weight: bold">|</span> <span style="color: #0000cf; font-weight: bold">1</span>                   <span style="color: #000000; font-weight: bold">|</span> <span style="color: #8f5902; font-style: italic">#428bca |                    | #Support     | 1                 | 0                         | false      |</span>
++---------------------+---------+--------------------+--------------+-------------------+---------------------------+------------+
+<span style="color: #000000; font-weight: bold">|</span> <span style="color: #0000cf; font-weight: bold">28</span>                  <span style="color: #000000; font-weight: bold">|</span> <span style="color: #8f5902; font-style: italic">#f0ad4e | null               | $GH          | 12                | 0                         | false      |</span>
++---------------------+---------+--------------------+--------------+-------------------+---------------------------+------------+
+<span style="color: #000000; font-weight: bold">|</span> <span style="color: #0000cf; font-weight: bold">0</span>                   <span style="color: #000000; font-weight: bold">|</span> <span style="color: #8f5902; font-style: italic">#f0ad4e |                    | $IFAST       | 4                 | 0                         | false      |</span>
++---------------------+---------+--------------------+--------------+-------------------+---------------------------+------------+
+<span style="color: #000000; font-weight: bold">|</span> <span style="color: #0000cf; font-weight: bold">25</span>                  <span style="color: #000000; font-weight: bold">|</span> <span style="color: #8f5902; font-style: italic">#ff0000 | null               | 1-Critical   | 7                 | 0                         | false      |</span>
++---------------------+---------+--------------------+--------------+-------------------+---------------------------+------------+
+<span style="color: #000000; font-weight: bold">|</span> <span style="color: #0000cf; font-weight: bold">2</span>                   <span style="color: #000000; font-weight: bold">|</span> <span style="color: #8f5902; font-style: italic">#ad4363 | null               | 2-Important  | 20                | 0                         | false      |</span>
++---------------------+---------+--------------------+--------------+-------------------+---------------------------+------------+
+<span style="color: #000000; font-weight: bold">|</span> <span style="color: #0000cf; font-weight: bold">5</span>                   <span style="color: #000000; font-weight: bold">|</span> <span style="color: #8f5902; font-style: italic">#ad4363 | null               | 3-Normal     | 18                | 0                         | false      |</span>
++---------------------+---------+--------------------+--------------+-------------------+---------------------------+------------+
+<span style="color: #000000; font-weight: bold">|</span> <span style="color: #0000cf; font-weight: bold">2</span>                   <span style="color: #000000; font-weight: bold">|</span> <span style="color: #8f5902; font-style: italic">#d491a5 |                    | 4-Trivial    | 6                 | 0                         | false      |</span>
++---------------------+---------+--------------------+--------------+-------------------+---------------------------+------------+
+<span style="color: #000000; font-weight: bold">|</span> <span style="color: #0000cf; font-weight: bold">0</span>                   <span style="color: #000000; font-weight: bold">|</span> <span style="color: #8f5902; font-style: italic">#a8d695 | null               | ^In-Progress | 3                 | 1                         | false      |</span>
++---------------------+---------+--------------------+--------------+-------------------+---------------------------+------------+
+<span style="color: #000000; font-weight: bold">|</span> <span style="color: #0000cf; font-weight: bold">0</span>                   <span style="color: #000000; font-weight: bold">|</span> <span style="color: #8f5902; font-style: italic">#69d100 | Completed/Finished | ^Resolved    | 0                 | 1                         | false      |</span>
++---------------------+---------+--------------------+--------------+-------------------+---------------------------+------------+
+</pre></div>
+
+<h3 id="sample-curl-commands:67f66bdf501059124272bbdeb0fc5217">Sample CURL commands</h3>
+
+<p><strong>Check the list of Projects</strong></p>
+
+<pre><code>https://gitlab.com/api/v3/projects/?private_token=YOUR_TOKEN
+</code></pre>
+
+<p>This will return you a big JSON with the list of your projects in gitlab.</p>
+
+<p>Based on the response, we know that the project is ID 487928
+Let&rsquo;s find out the list of labels in it.</p>
+
+<pre><code>https://gitlab.com/api/v3/projects/487928/labels/?private_token=YOUR_TOKEN
+</code></pre>
+
+<p>The response is a bit like this:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #000000; font-weight: bold">[</span>
+
+    <span style="color: #000000; font-weight: bold">{</span>
+        <span style="color: #204a87; font-weight: bold">&quot;name&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #4e9a06">&quot;!Blocker&quot;</span><span style="color: #000000; font-weight: bold">,</span>
+        <span style="color: #204a87; font-weight: bold">&quot;color&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #4e9a06">&quot;#ff0000&quot;</span><span style="color: #000000; font-weight: bold">,</span>
+        <span style="color: #204a87; font-weight: bold">&quot;description&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #204a87; font-weight: bold">null</span><span style="color: #000000; font-weight: bold">,</span>
+        <span style="color: #204a87; font-weight: bold">&quot;open_issues_count&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #0000cf; font-weight: bold">0</span><span style="color: #000000; font-weight: bold">,</span>
+        <span style="color: #204a87; font-weight: bold">&quot;closed_issues_count&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #0000cf; font-weight: bold">2</span><span style="color: #000000; font-weight: bold">,</span>
+        <span style="color: #204a87; font-weight: bold">&quot;open_merge_requests_count&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #0000cf; font-weight: bold">0</span><span style="color: #000000; font-weight: bold">,</span>
+        <span style="color: #204a87; font-weight: bold">&quot;subscribed&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #204a87; font-weight: bold">false</span>
+    <span style="color: #000000; font-weight: bold">},</span>
+    <span style="color: #000000; font-weight: bold">{</span>
+        <span style="color: #204a87; font-weight: bold">&quot;name&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #4e9a06">&quot;#AWS&quot;</span><span style="color: #000000; font-weight: bold">,</span>
+        <span style="color: #204a87; font-weight: bold">&quot;color&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #4e9a06">&quot;#0033cc&quot;</span><span style="color: #000000; font-weight: bold">,</span>
+        <span style="color: #204a87; font-weight: bold">&quot;description&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #204a87; font-weight: bold">null</span><span style="color: #000000; font-weight: bold">,</span>
+        <span style="color: #204a87; font-weight: bold">&quot;open_issues_count&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #0000cf; font-weight: bold">8</span><span style="color: #000000; font-weight: bold">,</span>
+        <span style="color: #204a87; font-weight: bold">&quot;closed_issues_count&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #0000cf; font-weight: bold">2</span><span style="color: #000000; font-weight: bold">,</span>
+        <span style="color: #204a87; font-weight: bold">&quot;open_merge_requests_count&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #0000cf; font-weight: bold">0</span><span style="color: #000000; font-weight: bold">,</span>
+        <span style="color: #204a87; font-weight: bold">&quot;subscribed&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #204a87; font-weight: bold">false</span>
+    <span style="color: #000000; font-weight: bold">},</span>
+    <span style="color: #000000; font-weight: bold">{</span>
+        <span style="color: #204a87; font-weight: bold">&quot;name&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #4e9a06">&quot;#Bug&quot;</span><span style="color: #000000; font-weight: bold">,</span>
+        <span style="color: #204a87; font-weight: bold">&quot;color&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #4e9a06">&quot;#428bca&quot;</span><span style="color: #000000; font-weight: bold">,</span>
+        <span style="color: #204a87; font-weight: bold">&quot;description&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #204a87; font-weight: bold">null</span><span style="color: #000000; font-weight: bold">,</span>
+        <span style="color: #204a87; font-weight: bold">&quot;open_issues_count&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #0000cf; font-weight: bold">2</span><span style="color: #000000; font-weight: bold">,</span>
+        <span style="color: #204a87; font-weight: bold">&quot;closed_issues_count&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #0000cf; font-weight: bold">27</span><span style="color: #000000; font-weight: bold">,</span>
+        <span style="color: #204a87; font-weight: bold">&quot;open_merge_requests_count&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #0000cf; font-weight: bold">0</span><span style="color: #000000; font-weight: bold">,</span>
+        <span style="color: #204a87; font-weight: bold">&quot;subscribed&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #204a87; font-weight: bold">false</span>
+    <span style="color: #000000; font-weight: bold">},</span>
+    <span style="color: #a40000; border: 1px solid #ef2929">....</span>
+</pre></div>
+
+<p>More documentation is available <a href="https://github.com/gitlabhq/gitlabhq/tree/master/doc/api">here</a></p>
+
+      
+    </div>
+    
+    <div class="post">
+      <h1 class="post-title">
         <a href="http://abhipandey.com/2016/06/protobuf-on-docker/">Protobuf on Docker</a>
       </h1>
       <span class="post-date">Jun 28, 2016  &middot; <a href="http://abhipandey.com/2016/06/protobuf-on-docker/#disqus_thread">Comments</a>
@@ -1322,71 +1489,6 @@ configuring an <strong>A</strong> record with your DNS provider.</p>
       
     </div>
     
-    <div class="post">
-      <h1 class="post-title">
-        <a href="http://abhipandey.com/2015/10/forceful-docker-container-cleanup-on-elastic-beanstalk/">Forceful Docker Container cleanup on Elastic Beanstalk</a>
-      </h1>
-      <span class="post-date">Oct 7, 2015  &middot; <a href="http://abhipandey.com/2015/10/forceful-docker-container-cleanup-on-elastic-beanstalk/#disqus_thread">Comments</a>
-      
-      <br/>
-      <a class="a_cat" href="http://abhipandey.com/categories/continuous-delivery">continuous delivery</a><a class="a_cat" href="http://abhipandey.com/categories/code">code</a>
-        
-      <a class="a_tag" href="http://abhipandey.com/tags/aws">aws</a><a class="a_tag" href="http://abhipandey.com/tags/beanstalk">beanstalk</a><a class="a_tag" href="http://abhipandey.com/tags/docker">docker</a>
-    
-      </span>
-      
-      
-
-<p><strong><em><code>Note</code></em></strong>: <em><em>If you are not sure of what you are doing here, don&rsquo;t touch it.
-This is all sensitive stuff and a minor mistake can bring down your production.</em></em></p>
-
-<p>Sometimes, because of so many deployments happening and sharing volumes between dockers instances, the space runs out on production server.</p>
-
-<p>I found some ways to fix this but the most brutal way to leave the orphaned directories behind forever is to remove them.
-Such sadistic directories can be found at <code>/var/lib/docker/vfs/</code>.</p>
-
-<p>We can automate the removal.</p>
-
-<p><strong>First</strong>, let&rsquo;s find the directories that we should <strong><em><code>not</code></em></strong> delete.</p>
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #8f5902; font-style: italic"># These directories are in use</span>
-$ docker ps -q <span style="color: #000000; font-weight: bold">|</span> xargs docker inspect <span style="color: #000000; font-weight: bold">|</span> egrep <span style="color: #4e9a06">&quot;var.lib.docker.vfs&quot;</span>
-</pre></div>
-
-<p>You will see something like this:</p>
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>$ docker ps -q <span style="color: #000000; font-weight: bold">|</span> xargs docker inspect <span style="color: #000000; font-weight: bold">|</span> egrep <span style="color: #4e9a06">&quot;var.lib.docker.vfs&quot;</span>
-  <span style="color: #4e9a06">&quot;/etc/nginx/sites-enabled&quot;</span>: <span style="color: #4e9a06">&quot;/var/lib/docker/vfs/dir/ed53e780472dbf5057780182bd12ae1cb7930fce73f5f7071bad1b456076dc95&quot;</span>,
-  <span style="color: #4e9a06">&quot;/var/log/nginx&quot;</span>: <span style="color: #4e9a06">&quot;/var/lib/docker/vfs/dir/26c3ac02631b0eab5d6d3a4c5e6664b43974f217ca24b9369f3f12f186601147&quot;</span>,
-  <span style="color: #4e9a06">&quot;/ws&quot;</span>: <span style="color: #4e9a06">&quot;/var/lib/docker/vfs/dir/ecd74d6b7e73c25d5e5f6b450a7b162bfb8e44c649c2af951843954538500dba&quot;</span>
-</pre></div>
-
-<h1 id="fire-drill:d49d62c8188452b3ac07603c34a3f7b0">Fire Drill</h1>
-
-<p><strong>Find out all directories that should stay</strong></p>
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>$ docker ps -q <span style="color: #4e9a06">\</span>
- <span style="color: #000000; font-weight: bold">|</span> xargs docker inspect <span style="color: #4e9a06">\</span>
- <span style="color: #000000; font-weight: bold">|</span> egrep <span style="color: #4e9a06">&quot;var.lib.docker.vfs&quot;</span> <span style="color: #4e9a06">\</span>
- <span style="color: #000000; font-weight: bold">|</span> sed -e <span style="color: #4e9a06">&#39;s/.*dir.//g&#39;</span> -e <span style="color: #4e9a06">&#39;s/&quot;.*//g&#39;</span> <span style="color: #4e9a06">\</span>
- <span style="color: #000000; font-weight: bold">|</span> sort <span style="color: #4e9a06">\</span>
- &gt; /tmp/curr.dirs 
-</pre></div>
-
-<p><strong>Find out all directories within <code>/var/lib/docker/vfs/dir</code></strong></p>
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>$ sudo ls /var/lib/docker/vfs/dir/ <span style="color: #000000; font-weight: bold">|</span> sort &gt; /tmp/all.dirs
-</pre></div>
-
-<p><strong>Find out the directories from <code>all.dirs</code> that should be deleted (not in use by current docker instances)</strong></p>
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>$ sdiff -s /tmp/all.dirs /tmp/curr.dirs
-</pre></div>
-
-<h1 id="removing-the-directories-for-good:d49d62c8188452b3ac07603c34a3f7b0">Removing the directories for good</h1>
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>$ sdiff -s -w <span style="color: #0000cf; font-weight: bold">300</span> /tmp/all.dirs /tmp/curr.dirs <span style="color: #4e9a06">\</span>
-   <span style="color: #000000; font-weight: bold">|</span> sed -e <span style="color: #4e9a06">&#39;s/. &lt;//g&#39;</span> -e <span style="color: #4e9a06">&#39;s/^/\/var\/lib\/docker\/vfs\/dir\//g&#39;</span> <span style="color: #4e9a06">\</span>
-   <span style="color: #000000; font-weight: bold">|</span> xargs sudo  rm -rf 
-</pre></div>
-
-      
-    </div>
-    
     
     
     <ul class="pagination">
@@ -1419,12 +1521,15 @@ $ docker ps -q <span style="color: #000000; font-weight: bold">|</span> xargs do
         ><a href="/page/6/">6</a></li>
         
         <li
+        ><a href="/page/7/">7</a></li>
+        
+        <li
         >
         <a href="/page/2/" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
         </li>
         
         <li>
-            <a href="/page/6/" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+            <a href="/page/7/" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
         </li>
         
     </ul>

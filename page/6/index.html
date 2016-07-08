@@ -90,6 +90,38 @@
     
     <div class="post">
       <h1 class="post-title">
+        <a href="http://abhipandey.com/2008/03/tag-your-namespaces/">Tag your namespaces</a>
+      </h1>
+      <span class="post-date">Mar 31, 2008  &middot; <a href="http://abhipandey.com/2008/03/tag-your-namespaces/#disqus_thread">Comments</a>
+      
+      <br/>
+      <a class="a_cat" href="http://abhipandey.com/categories/code">code</a>
+        
+      <a class="a_tag" href="http://abhipandey.com/tags/c-sharp">c-sharp</a>
+    
+      </span>
+      
+      <p>Recently discovered a nifty little feature on .Net and though of sharing it.</p>
+
+<p>You can tag an assembly by giving it a name and then use this name throughout your class to access the classes inside this namespace.</p>
+
+<pre><code>&lt;span style=&quot;color:#0000ff;&quot;&gt;using&lt;/span&gt; asp=CompanyName.Data;
+</code></pre>
+
+<p>Now all the classes inside CompanyName.Data namespace can be accessed using the name asp (as if it was an instance of the namespace).</p>
+
+<p>One thing to note, however, is that the classes inside this namespace cannot be accessed directly and the word &ldquo;asp&rdquo; has to be used.</p>
+
+<p>Let&rsquo;s see an example to understand it.
+<script type="text/javascript" src="http://gist.github.com/ad4f3fc47ffa870a48f9.js"></script></p>
+
+<p>This function, btw, is going through a namespace called <code>Company.AspFunctions</code> and we give it a tag <code>asp</code> to access all classes under it by its tag instead. Date_Format() fn is a static function inside Conn Class. Basically it takes your &ldquo;asp style&rdquo; datetime strings and returns you the correct date in <code>yyyyMMdd</code> format.</p>
+
+      
+    </div>
+    
+    <div class="post">
+      <h1 class="post-title">
         <a href="http://abhipandey.com/2008/03/how-to-protect-from-sql-injections-in-asp.net/">How to protect from SQL Injections in ASP.NET</a>
       </h1>
       <span class="post-date">Mar 11, 2008  &middot; <a href="http://abhipandey.com/2008/03/how-to-protect-from-sql-injections-in-asp.net/#disqus_thread">Comments</a>
@@ -460,32 +492,6 @@ Bottomline - try to use ApplicationID in your queries otherwise your queries, fo
       
     </div>
     
-    <div class="post">
-      <h1 class="post-title">
-        <a href="http://abhipandey.com/2007/10/use-of-yield-statement/">Use of yield statement</a>
-      </h1>
-      <span class="post-date">Oct 26, 2007  &middot; <a href="http://abhipandey.com/2007/10/use-of-yield-statement/#disqus_thread">Comments</a>
-      
-      <br/>
-      <a class="a_cat" href="http://abhipandey.com/categories/code">code</a>
-        
-      <a class="a_tag" href="http://abhipandey.com/tags/c-sharp">c-sharp</a>
-    
-      </span>
-      
-      <p>It might be a little late for this to appear but I have no qualms in accepting that I have finally embraced yield statement and see it as an excellent way of writing codes.</p>
-
-<p>I have had my fair share of writing small code fragments to read/process/write files and more often than that it is excel files. So I thought, there has to be an easier way than just creating common functions for Connections and processing functions - at that time yield statement came to the rescue. I have always had to read the excel file, one line after another - pretty much like a DataTable if you ask me.</p>
-
-<p>The best way to put the whole process of reading the excel file is to automate reading, iterating and closing of the excel files. It is done by yield statement as I can &ldquo;yield&rdquo; the data of the excel through DataReader (OdbcDataReader in my case).</p>
-
-<script type="text/javascript" src="http://gist.github.com/36ecc206fc5f61f4b4bc.js"></script>
-
-<p>This way, the function is always common - it is always supposed to read the excel, iterate through it. The data that I need is always in the DataReader so I thought let&rsquo;s just return the data itself! The rest of the function is pretty much normal. The biggest gain is that I don&rsquo;t have to change the structure of the function. The same function can now be used for multiple excel sheets. Have a look at the code.</p>
-
-      
-    </div>
-    
     
     
     <ul class="pagination">
@@ -518,12 +524,15 @@ Bottomline - try to use ApplicationID in your queries otherwise your queries, fo
         class="active"><a href="/page/6/">6</a></li>
         
         <li
-        class="disabled">
-        <a href="" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
+        ><a href="/page/7/">7</a></li>
+        
+        <li
+        >
+        <a href="/page/7/" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
         </li>
         
         <li>
-            <a href="/page/6/" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+            <a href="/page/7/" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
         </li>
         
     </ul>

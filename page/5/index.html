@@ -90,6 +90,51 @@
     
     <div class="post">
       <h1 class="post-title">
+        <a href="http://abhipandey.com/2012/10/multiple-inheritance/">Multiple Inheritance</a>
+      </h1>
+      <span class="post-date">Oct 23, 2012  &middot; <a href="http://abhipandey.com/2012/10/multiple-inheritance/#disqus_thread">Comments</a>
+      
+      <br/>
+      <a class="a_cat" href="http://abhipandey.com/categories/code">code</a>
+        
+      <a class="a_tag" href="http://abhipandey.com/tags/c&#43;&#43;">c&#43;&#43;</a>
+    
+      </span>
+      
+      <p>What is the output to the following code?</p>
+
+<script type="text/javascript" src="http://gist.github.com/8fac0155f30551df8bca.js"></script>
+
+<!-- more -->
+
+<p><em>Output</em></p>
+
+<pre><code>Foo FooToo Bar FootTooBar
+</code></pre>
+
+<p><em>Why?</em></p>
+
+<ol>
+<li><p>An instance of FooTooBar needs to be created according to main()</p></li>
+
+<li><p>To create that instance, we first need the base classes too, hence FooToo and Bar classes</p></li>
+
+<li><p>Now notice the keyword virtual everytime inheritance is defined</p>
+
+<ul>
+<li><p>This does half the magic by ensuring that the member data instances are shared with any other inclusions of that same base in further derived classes</p></li>
+
+<li><p>This is very handy for multiple inheritance</p></li>
+</ul></li>
+</ol>
+
+<p>As an exercise you may try to remove virtual from some derived class and see what results you get.</p>
+
+      
+    </div>
+    
+    <div class="post">
+      <h1 class="post-title">
         <a href="http://abhipandey.com/2012/10/heap-sort/">Heap Sort</a>
       </h1>
       <span class="post-date">Oct 17, 2012  &middot; <a href="http://abhipandey.com/2012/10/heap-sort/#disqus_thread">Comments</a>
@@ -1194,38 +1239,6 @@ attempts to perform actions which require full trust.
       
     </div>
     
-    <div class="post">
-      <h1 class="post-title">
-        <a href="http://abhipandey.com/2008/03/tag-your-namespaces/">Tag your namespaces</a>
-      </h1>
-      <span class="post-date">Mar 31, 2008  &middot; <a href="http://abhipandey.com/2008/03/tag-your-namespaces/#disqus_thread">Comments</a>
-      
-      <br/>
-      <a class="a_cat" href="http://abhipandey.com/categories/code">code</a>
-        
-      <a class="a_tag" href="http://abhipandey.com/tags/c-sharp">c-sharp</a>
-    
-      </span>
-      
-      <p>Recently discovered a nifty little feature on .Net and though of sharing it.</p>
-
-<p>You can tag an assembly by giving it a name and then use this name throughout your class to access the classes inside this namespace.</p>
-
-<pre><code>&lt;span style=&quot;color:#0000ff;&quot;&gt;using&lt;/span&gt; asp=CompanyName.Data;
-</code></pre>
-
-<p>Now all the classes inside CompanyName.Data namespace can be accessed using the name asp (as if it was an instance of the namespace).</p>
-
-<p>One thing to note, however, is that the classes inside this namespace cannot be accessed directly and the word &ldquo;asp&rdquo; has to be used.</p>
-
-<p>Let&rsquo;s see an example to understand it.
-<script type="text/javascript" src="http://gist.github.com/ad4f3fc47ffa870a48f9.js"></script></p>
-
-<p>This function, btw, is going through a namespace called <code>Company.AspFunctions</code> and we give it a tag <code>asp</code> to access all classes under it by its tag instead. Date_Format() fn is a static function inside Conn Class. Basically it takes your &ldquo;asp style&rdquo; datetime strings and returns you the correct date in <code>yyyyMMdd</code> format.</p>
-
-      
-    </div>
-    
     
     
     <ul class="pagination">
@@ -1258,12 +1271,15 @@ attempts to perform actions which require full trust.
         ><a href="/page/6/">6</a></li>
         
         <li
+        ><a href="/page/7/">7</a></li>
+        
+        <li
         >
         <a href="/page/6/" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
         </li>
         
         <li>
-            <a href="/page/6/" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+            <a href="/page/7/" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
         </li>
         
     </ul>
