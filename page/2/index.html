@@ -90,6 +90,114 @@
     
     <div class="post">
       <h1 class="post-title">
+        <a href="http://abhipandey.com/2015/10/setting-up-custom-domain-with-github-pages/">Setting up custom domain with Github Pages</a>
+      </h1>
+      <span class="post-date">Oct 24, 2015  &middot; <a href="http://abhipandey.com/2015/10/setting-up-custom-domain-with-github-pages/#disqus_thread">Comments</a>
+      
+      <br/>
+      <a class="a_cat" href="http://abhipandey.com/categories/continuous-delivery">continuous delivery</a><a class="a_cat" href="http://abhipandey.com/categories/code">code</a>
+        
+      <a class="a_tag" href="http://abhipandey.com/tags/aws">aws</a><a class="a_tag" href="http://abhipandey.com/tags/route-53">route 53</a><a class="a_tag" href="http://abhipandey.com/tags/github">github</a>
+    
+      </span>
+      
+      
+
+<p>Let&rsquo;s take the example of my domain itself <code>abhipandey.com</code> that I want to serve from <code>abhi1010.github.io</code>.
+ We will need to do it in two steps:</p>
+
+<ul>
+<li>Setup CNAME on github
+
+<ul>
+<li>So that github knows about your domain</li>
+</ul></li>
+<li>Setup <strong>A</strong> record on AWS Route 53
+
+<ul>
+<li>So that domain can be registered</li>
+</ul></li>
+</ul>
+
+<h1 id="change-cname:75bfc49f34e22778d17e9b1837e9218b">Change CNAME</h1>
+
+<p>If we want to tell github about the domain name, it is rather simple: <em>create a CNAME file with the content being
+the name of the domain itself</em>
+Do <em>note</em> here that the default redirect of your domain will be the value in your CNAME file.</p>
+
+<p>Here&rsquo;s my <a href="https://github.com/abhi1010/abhi1010.github.io/blob/master/CNAME">CNAME file</a> content:</p>
+
+<pre><code>abhipandey.com
+</code></pre>
+
+<p>You don&rsquo;t really need <strong>www</strong>. If you do put <em>www.abhipandey.com</em> github will figure out and redirect properly.
+The difference is abhipandey.com is a top-level domain (TLD), while <em>www.abhipandey.com</em> is a subdomain.</p>
+
+<p>Essentially:</p>
+
+<blockquote>
+<p>If your CNAME file contains <em>abhipandey.com</em>, then <em>www.abhipandey.com</em> will redirect to <em>abhipandey.com</em>.</p>
+
+<p>If your CNAME file contains <em>www.abhipandey.com</em>, then <em>abhipandey.com</em> will redirect to <em>www.abhipandey.com</em>.</p>
+</blockquote>
+
+<h1 id="creating-a-record:75bfc49f34e22778d17e9b1837e9218b">Creating A Record</h1>
+
+
+<figure >
+    
+        <img src="/images/custom-domain-name-with-github-pages-and-amazon-route-53_1.png" alt="Setting up A record" />
+    
+    
+    <figcaption>
+        <p>
+        Setting up A record
+        
+            
+        
+        </p> 
+    </figcaption>
+    
+</figure>
+
+
+<p>Next is to go to Amazon Route 53 console, and create an A record with the following IPs:</p>
+
+<pre><code>192.30.252.153
+192.30.252.154
+</code></pre>
+
+<h1 id="setup-subdomain:75bfc49f34e22778d17e9b1837e9218b">Setup subdomain</h1>
+
+
+<figure >
+    
+        <img src="/images/custom-domain-name-with-github-pages-and-amazon-route-53_2.png" alt="Setting up subdomain" />
+    
+    
+    <figcaption>
+        <p>
+        Setting up subdomain
+        
+            
+        
+        </p> 
+    </figcaption>
+    
+</figure>
+
+
+<p>If you configure both an apex domain (e.g. <em>abhipandey.com</em>) and a matching www subdomain (e.g. <em>www.abhipandey.com</em>),
+GitHub&rsquo;s servers will automatically create redirects between the two.</p>
+
+<p>You can also also look up <a href="https://help.github.com/articles/tips-for-configuring-an-a-record-with-your-dns-provider/">GitHub Tips</a> for
+configuring an <strong>A</strong> record with your DNS provider.</p>
+
+      
+    </div>
+    
+    <div class="post">
+      <h1 class="post-title">
         <a href="http://abhipandey.com/2015/10/forceful-docker-container-cleanup-on-elastic-beanstalk/">Forceful Docker Container cleanup on Elastic Beanstalk</a>
       </h1>
       <span class="post-date">Oct 7, 2015  &middot; <a href="http://abhipandey.com/2015/10/forceful-docker-container-cleanup-on-elastic-beanstalk/#disqus_thread">Comments</a>
@@ -1267,47 +1375,6 @@ The simplest way to achieve it using the config parameter of <code>uwsgi</code>:
 
 
 <p>You can choose any file. I choose <code>uwsgi.ini</code> because the contents never really need to change in it.</p>
-
-      
-    </div>
-    
-    <div class="post">
-      <h1 class="post-title">
-        <a href="http://abhipandey.com/2015/09/multiple-virtual-environments-in-docker/">Multiple Virtual Environments in Docker</a>
-      </h1>
-      <span class="post-date">Sep 3, 2015  &middot; <a href="http://abhipandey.com/2015/09/multiple-virtual-environments-in-docker/#disqus_thread">Comments</a>
-      
-      <br/>
-      <a class="a_cat" href="http://abhipandey.com/categories/continuous-delivery">continuous delivery</a>
-        
-      <a class="a_tag" href="http://abhipandey.com/tags/docker">docker</a><a class="a_tag" href="http://abhipandey.com/tags/python">python</a><a class="a_tag" href="http://abhipandey.com/tags/deployment">deployment</a><a class="a_tag" href="http://abhipandey.com/tags/supervisord">supervisord</a>
-    
-      </span>
-      
-      <p>It may seem like a daunting task to have multiple python projects running in their own virtual environments in docker as you want to manage the running of the tasks from a single source - let&rsquo;s say <code>supervisord</code>.
-However, all that is required here is to know that python automatically picks up the location of the virtual environments if you provide full path to the virtual environment&rsquo;s python.</p>
-
-<p>For example, in my docker environment, I have virtual environment install at the following location:</p>
-
-<pre><code>/ws/ve_envs/rwv1/
-</code></pre>
-
-<p>To enable a project with this virtual environment, I can run the following:</p>
-
-<pre><code>/ws/ve_envs/rwv1/bin/python3.4 PYTHON_PROJECT_FILE_TO_RUN.py
-</code></pre>
-
-<p>Similarly, other projects can be set up in the same way.</p>
-
-<p>For example, for running <code>uwsgi</code> I provide the full path for python as follows:</p>
-
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #ce5c00; font-weight: bold">[</span>program:appName<span style="color: #ce5c00; font-weight: bold">]</span>
-<span style="color: #000000">stdout_logfile</span> <span style="color: #ce5c00; font-weight: bold">=</span> /var/shared/_uwsgi.log
-<span style="color: #204a87">command</span> <span style="color: #ce5c00; font-weight: bold">=</span> /ws/ve_envs/project/bin/uwsgi --touch-reload<span style="color: #ce5c00; font-weight: bold">=</span>/ws/wsgi.ini --ini /ws/wsgi.ini
-</pre></div>
-
-
-<p>You might want to read about <code>--touch-reload</code> in my <a href="http://abhipandey.com/2015/09/updating-django-source-with-docker-deployments/">other post.</a></p>
 
       
     </div>

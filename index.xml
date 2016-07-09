@@ -6,8 +6,140 @@
     <description>Recent content on Coders Digest</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 05 Jul 2016 23:26:44 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 07 Jul 2016 23:26:44 +0800</lastBuildDate>
     <atom:link href="http://abhipandey.com/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Systemd tutorial</title>
+      <link>http://abhipandey.com/2016/07/systemd-tutorial/</link>
+      <pubDate>Thu, 07 Jul 2016 23:26:44 +0800</pubDate>
+      
+      <guid>http://abhipandey.com/2016/07/systemd-tutorial/</guid>
+      <description>
+
+&lt;p&gt;&lt;code&gt;Systemd&lt;/code&gt; usually requires two files:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;service file&lt;/li&gt;
+&lt;li&gt;timer file&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&#34;service-files:53e68713291c95ac35204af0e42c2530&#34;&gt;Service files&lt;/h2&gt;
+
+&lt;p&gt;Here you provide the details you&amp;rsquo;d use to&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Start/stop a service&lt;/li&gt;
+&lt;li&gt;Define the type of service
+
+&lt;ul&gt;
+&lt;li&gt;Can be &lt;em&gt;simple&lt;/em&gt;, &lt;em&gt;forking&lt;/em&gt;, &lt;em&gt;oneshot&lt;/em&gt;, &lt;em&gt;dbus&lt;/em&gt;, &lt;em&gt;notify&lt;/em&gt; or &lt;em&gt;idle&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;How to kill the service&lt;/li&gt;
+&lt;li&gt;Ability to restart&lt;/li&gt;
+&lt;li&gt;Path for starting up&lt;/li&gt;
+&lt;li&gt;Timeout for the service startup or shutdown&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Service is usually made up of 3 sections:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Unit&lt;/li&gt;
+&lt;li&gt;Service&lt;/li&gt;
+&lt;li&gt;Install
+
+&lt;ul&gt;
+&lt;li&gt;Usually prefer &lt;code&gt;multi-user.target&lt;/code&gt; for your installation&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;One example is as follows:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[Unit]
+Description=Foo
+
+[Service]
+ExecStart=/usr/sbin/foo-daemon
+
+[Install]
+WantedBy=multi-user.target
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Here&amp;rsquo;s what your regular &lt;code&gt;Service&lt;/code&gt; section would look like:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;User=&amp;lt;YOUR_LINUX_ACCOUNT&amp;gt;
+Group=&amp;lt;YOUR_LINUX_GROUP&amp;gt;
+WorkingDirectory=&amp;lt;PROJECT_FOLDER&amp;gt;
+Type=forking
+KillMode=process
+Restart=always
+ExecStart=&amp;lt;COMMAND_TO_START&amp;gt;
+ExecStop=&amp;lt;COMMAND_TO_STOP&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;timers:53e68713291c95ac35204af0e42c2530&#34;&gt;Timers&lt;/h2&gt;
+
+&lt;p&gt;Timer files contain information about a timer controlled and
+supervised by systemd, for timer-based activation.
+This is possibly a better replacement for cron jobs.
+However, the changes are a bit different.&lt;/p&gt;
+
+&lt;p&gt;To set up a timer, you need the following options:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;OnActiveSec&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;OnBootSec&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;OnStartupSec&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;OnUnitActiveSec&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;OnUnitInactiveSec&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;They all help you set up your timers relative to different starting points.&lt;/p&gt;
+
+&lt;p&gt;Some other options you could use are:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;OnCalendar&lt;/em&gt;
+
+&lt;ul&gt;
+&lt;li&gt;This is your friend if you are looking for cron job replacement
+Please check the references below to look for some samples on how to set up
+your cron jobs in the correct format. It is not exactly same as cron job styles&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;AccuracySec&lt;/em&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Based on the timer, how close to the actual time should this timer wake up&lt;/li&gt;
+&lt;li&gt;Use the value of 1us to be the smallest and most accurate&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Persistent&lt;/em&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Maybe you want to save the information about the timestamps whenever
+the service is shutting down. In that case, the information will be saved
+on the hard disk. It will be used along with boot and active &lt;em&gt;sec&lt;/em&gt; information.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Here&amp;rsquo;s one simple sample for setting a timer&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[Timer]
+AccuracySec=1us
+Persistent=false
+OnBootSec=80
+OnCalendar=*:0/20
+Unit=myjob.service
+
+[Install]
+WantedBy=timers.target
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;some-references:53e68713291c95ac35204af0e42c2530&#34;&gt;Some references:&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://wiki.archlinux.org/index.php/Systemd/Timers&#34;&gt;https://wiki.archlinux.org/index.php/Systemd/Timers&lt;/a&gt;
+&lt;a href=&#34;https://www.certdepot.net/rhel7-use-systemd-timers/&#34;&gt;https://www.certdepot.net/rhel7-use-systemd-timers/&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Gitlab CLI API reference</title>
@@ -1576,376 +1708,6 @@ Following sample is to find out lines added or removed during the year 2014.&lt;
 It may also remove some numbers that were actually valid commits but mostly it is to protect ourselves against any library or API that we may have added or replaced during that time period.&lt;/p&gt;
 
 &lt;p&gt;For time range, you may even use something like &lt;code&gt;--since=&amp;quot;1 year ago&amp;quot;&lt;/code&gt; and that will also yield similar results.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Moving To Hugo</title>
-      <link>http://abhipandey.com/2015/09/moving-to-hugo/</link>
-      <pubDate>Tue, 15 Sep 2015 11:14:38 +0800</pubDate>
-      
-      <guid>http://abhipandey.com/2015/09/moving-to-hugo/</guid>
-      <description>
-
-
-&lt;figure &gt;
-    
-        &lt;img src=&#34;http://abhipandey.com/images/moving_to_hugo__demo.png&#34; alt=&#34;Create your own blog&#34; /&gt;
-    
-    
-    &lt;figcaption&gt;
-        &lt;p&gt;
-        Create your own blog
-        
-            
-        
-        &lt;/p&gt; 
-    &lt;/figcaption&gt;
-    
-&lt;/figure&gt;
-
-
-&lt;p&gt;My blogging experience started with &lt;code&gt;blogspot&lt;/code&gt;. It was great until I realized that I needed something that was responsive.
-The layout looked nice on 1024x768 but with the new generation of screens it started to look narrow.
-I hated the look of the website when it seemed that I was wasting a lot of white space on the web pages.
- I moved to &lt;code&gt;wordpress.com&lt;/code&gt; to give that a try when they started their responsive themes.
- The website looked great after a lot of customization but after writing some posts there,
- I realized that I had to &lt;strong&gt;micro-manage&lt;/strong&gt; a lot of styling every time I was writing some new section, like special blocks or tables.
- The post writing was fun only for a short while. The enthusiasm died down pretty soon.&lt;/p&gt;
-
-&lt;h1 id=&#34;options:5b4a6d9bf657db7e28a56367aab9ae4c&#34;&gt;Options&lt;/h1&gt;
-
-&lt;p&gt;I stopped blogging for a while for such reasons. Eventually I heard about &lt;code&gt;Jekyll&lt;/code&gt; and was again motivated to try it.
- However, since I had also moved from &lt;code&gt;C++&lt;/code&gt; to &lt;code&gt;Python&lt;/code&gt; I figured there&amp;rsquo;s bound to be something that&amp;rsquo;s gonna be related to &lt;code&gt;Python&lt;/code&gt;
- so that I can quickly jump in and navigate my way into the code base should there be a need (and who doesn&amp;rsquo;t find reason to do that?).
- &lt;code&gt;Jekyll&lt;/code&gt; was &lt;code&gt;ruby&lt;/code&gt; based and that was holding me back a bit.
- During my research I found out three options:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;Jekyll&lt;/code&gt;
-
-&lt;ul&gt;
-&lt;li&gt;A lot of mileage but based on &lt;code&gt;ruby&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;Pelican&lt;/code&gt;
-
-&lt;ul&gt;
-&lt;li&gt;During my testing everything was great about it. Even setting up themes was extremely easy. Anything I tried, worked at my first try.&lt;/li&gt;
-&lt;li&gt;The biggest drawback against &lt;code&gt;pelican&lt;/code&gt; and &lt;code&gt;jekyll&lt;/code&gt; was that the bigger the number of posts get the longer it takes for compilation to take place&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;Hugo&lt;/code&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Was deemed to have the best build times of 1ms per page&lt;/li&gt;
-&lt;li&gt;Extremely easy setup with &lt;code&gt;livereload&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Lots of other smaller features but just these two items were enough to get me sold on &lt;code&gt;hugo&lt;/code&gt;.
-&lt;code&gt;livereload&lt;/code&gt; is a killer feature as it means you don&amp;rsquo;t have to keep on rebuilding your site every time you want to view how the contents affect your site.
-It was also extremely easy to make theme changes and see them in action, straight away. We will see details of this, later.&lt;/li&gt;
-&lt;li&gt;Was already using &lt;code&gt;pelican&lt;/code&gt; but decided to give &lt;code&gt;hugo&lt;/code&gt; a weekend and see it from there. I am glad I did.&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&#34;installing-hugo:5b4a6d9bf657db7e28a56367aab9ae4c&#34;&gt;Installing hugo&lt;/h1&gt;
-
-&lt;p&gt;Running it on mac, installation was pretty straightforward using &lt;code&gt;brew&lt;/code&gt;&lt;/p&gt;
-
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;brew install hugo
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;I wanted to setup &lt;code&gt;Pygments&lt;/code&gt; as well for code scripts as well.
-I knew that I would be presenting a lot of code on my site and one of my main problems with site like wordpress was that
-I had to manage a lot of styling for code sections which was not fun.
-So I decided to install &lt;code&gt;Pygments&lt;/code&gt; on default &lt;code&gt;python&lt;/code&gt; by doing:&lt;/p&gt;
-
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;pip install Pygments
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;h1 id=&#34;exporting-wordpress:5b4a6d9bf657db7e28a56367aab9ae4c&#34;&gt;Exporting wordpress&lt;/h1&gt;
-
-&lt;p&gt;Since I wanted to move all of my wordpress content into hugo I really needed to export everything from wordpress.
-I found this link on wordpress to export all of the contents out into xml file.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;https://wordpress.com/wp-admin/export.php?type=export&#34;&gt;https://wordpress.com/wp-admin/export.php?type=export&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;The next task was to convert the xml file into markdown files so that &lt;code&gt;hugo&lt;/code&gt; could use them. However, I had already converted
-some of my files earlier while working on &lt;code&gt;pelican&lt;/code&gt;. Once I started using them I realized that my contents were not looking as expecting when I was iterating through
- various themes. Sometimes things looked okay and other times not. I figured it &lt;em&gt;must be something to do with how markdown was laid down from the xml file&lt;/em&gt; because
-  the tags and categories were missing. I double checked the wordpress xml file but it contained the tags and categories that I was looking for.
-  It was time to start digging again.&lt;/p&gt;
-
-&lt;p&gt;I came across &lt;a href=&#34;https://github.com/thomasf/exitwp&#34;&gt;exitwp&lt;/a&gt; which needed a bit of setup, but I was willing to give it a try.
-Here&amp;rsquo;s what I did:
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;git clone https://github.com/thomasf/exitwp
-&lt;span style=&#34;color: #204a87&#34;&gt;cd&lt;/span&gt; exitwp
-
-cp wordpress.2015-08-23.xml wordpress-xml/
-
-
-&lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;# install dependencies&lt;/span&gt;
-pip install --upgrade -r pip_requirements.txt
-
-&lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;# Run cmd with path to xml (optional if you have only one file)&lt;/span&gt;
-exitwp.py wordpress-xml/wordpress.2015-08-23.xml
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/p&gt;
-
-&lt;p&gt;This creates a folder &lt;code&gt;build/jekyll/OLD_WORDPRESS_URL/&lt;/code&gt; with the contents inside it. Here&amp;rsquo;s my sample&lt;/p&gt;
-
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;$ tree
-.
-&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;-- _posts
-&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;   &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;-- 2007-10-26-use-of-yield-statement.markdown
-&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;   &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;-- 2007-11-23-dynamically-increase-label-size-autosize.markdown
-&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;   &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;-- 2007-12-12-book-review-head-first-design-patterns.markdown
-&lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;# ...............&lt;/span&gt;
-&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;   &lt;span style=&#34;color: #4e9a06&#34;&gt;`&lt;/span&gt;-- 2015-08-07-docker-container-cleanup-on-elastic-beanstalk.markdown
-&lt;span style=&#34;color: #4e9a06&#34;&gt;`&lt;/span&gt;-- about
-    &lt;span style=&#34;color: #4e9a06&#34;&gt;`&lt;/span&gt;-- index.markdown
-
-&lt;span style=&#34;color: #0000cf; font-weight: bold&#34;&gt;2&lt;/span&gt; directories, &lt;span style=&#34;color: #0000cf; font-weight: bold&#34;&gt;42&lt;/span&gt; files
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;You are ready to test with &lt;code&gt;hugo&lt;/code&gt; now.&lt;/p&gt;
-
-&lt;h1 id=&#34;using-hugo:5b4a6d9bf657db7e28a56367aab9ae4c&#34;&gt;Using hugo&lt;/h1&gt;
-
-&lt;p&gt;Now that we have made some markdown files, we just want to see how it looks like on default &lt;code&gt;hugo&lt;/code&gt; setup.&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;hugo&lt;/code&gt; documentation mentions says that all you need to do is call it with your input files.
-The idea would be to start a new folder, copy your markdowns there. Here&amp;rsquo;s what we need:&lt;/p&gt;
-
-&lt;h2 id=&#34;setup:5b4a6d9bf657db7e28a56367aab9ae4c&#34;&gt;Setup&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;config.toml&lt;/code&gt; file for all the configuration that will be used by &lt;code&gt;hugo&lt;/code&gt; to build the site&lt;/li&gt;
-&lt;li&gt;Markdown to be put in &lt;code&gt;content&lt;/code&gt; folder&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;themes/{THEME_NAME}&lt;/code&gt; folder container the actual theme in &lt;code&gt;{THEME_NAME}&lt;/code&gt; folder&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Other minor things to note here:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Output html files are put in &lt;code&gt;public&lt;/code&gt; folder.
-
-&lt;ul&gt;
-&lt;li&gt;It is usually a good idea to keep separate folders for testing and production otherwise you may inadvertently commit your dev test pages (thanks to &lt;code&gt;livereload&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;I have seen hugo to complain quite a lot if you have your static files within &lt;code&gt;themes/{THEME}/static&lt;/code&gt; folder
-
-&lt;ul&gt;
-&lt;li&gt;You can get around it in two ways.&lt;/li&gt;
-&lt;li&gt;Create a symbolic link from within your blogging folder by calling &lt;code&gt;ln -s themes/hyde-x/static static&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Copy the &lt;code&gt;static&lt;/code&gt; folder as is in to the main folder location, as is by calling &lt;code&gt;cp -r themes/hyde-x/static/ ./&lt;/code&gt;. However, do this &lt;em&gt;only&lt;/em&gt; if you don&amp;rsquo;t intend to mkae any changes&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt; mkdir my_blog
- &lt;span style=&#34;color: #204a87&#34;&gt;cd&lt;/span&gt; my_blog
- mkdir content
- cp -r /PATH_TO/exitwp/build/jekyll/codersdigest.wordpress.com/* ./content/
- 
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;h2 id=&#34;theme:5b4a6d9bf657db7e28a56367aab9ae4c&#34;&gt;Theme&lt;/h2&gt;
-
-&lt;p&gt;Let&amp;rsquo;s start with a simple theme &lt;a href=&#34;https://github.com/zyro/hyde-x&#34;&gt;hyde-x&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Here&amp;rsquo;s how to install it.
- &lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt; mkdir themes/
- &lt;span style=&#34;color: #204a87&#34;&gt;cd&lt;/span&gt; themes/
- git clone https://github.com/zyro/hyde-x
- 
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/p&gt;
-
-&lt;h2 id=&#34;folder-structure:5b4a6d9bf657db7e28a56367aab9ae4c&#34;&gt;Folder structure&lt;/h2&gt;
-
-&lt;p&gt;Here&amp;rsquo;s how the folders look now. Use this for comparison.&lt;/p&gt;
-
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;tree -L 2
-.
-&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;-- config.toml
-&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;-- content
-&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;   &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;-- _posts
-&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;   &lt;span style=&#34;color: #4e9a06&#34;&gt;`&lt;/span&gt;-- about
-&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;-- public
-&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;   &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;-- 404.html
-&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;   &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;-- _posts
-&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;   &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;-- about
-&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;   &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;-- categories
-&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;   &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;-- css
-&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;   &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;-- favicon.png
-&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;   &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;-- index.html
-&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;   &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;-- index.xml
-&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;   &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;-- js
-&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;   &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;-- page
-&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;   &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;-- sitemap.xml
-&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;   &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;-- tags
-&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;   &lt;span style=&#34;color: #4e9a06&#34;&gt;`&lt;/span&gt;-- touch-icon-144-precomposed.png
-&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;-- static
-&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;   &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;-- css
-&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;   &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;-- favicon.png
-&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;   &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;-- js
-&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;   &lt;span style=&#34;color: #4e9a06&#34;&gt;`&lt;/span&gt;-- touch-icon-144-precomposed.png
-&lt;span style=&#34;color: #4e9a06&#34;&gt;`&lt;/span&gt;-- themes
-    &lt;span style=&#34;color: #4e9a06&#34;&gt;`&lt;/span&gt;-- hyde-x
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;h2 id=&#34;config:5b4a6d9bf657db7e28a56367aab9ae4c&#34;&gt;Config&lt;/h2&gt;
-
-&lt;p&gt;Your config file could be as follows. Do note that I am also trying to build a menu for myself on the sidebar for better tracking.
-It can be found under &lt;code&gt;[[menu.&lt;/code&gt;&lt;/p&gt;
-
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;baseurl = &amp;quot;your_github_url&amp;quot;&lt;/span&gt;
-&lt;span style=&#34;color: #000000&#34;&gt;languageCode = &amp;quot;en-us&amp;quot;&lt;/span&gt;
-&lt;span style=&#34;color: #000000&#34;&gt;title = &amp;quot;title&amp;quot;&lt;/span&gt;
-&lt;span style=&#34;color: #000000&#34;&gt;contentdir = &amp;quot;content&amp;quot;&lt;/span&gt;
-&lt;span style=&#34;color: #000000&#34;&gt;layoutdir = &amp;quot;layouts&amp;quot;&lt;/span&gt;
-&lt;span style=&#34;color: #000000&#34;&gt;publishdir = &amp;quot;public&amp;quot;&lt;/span&gt;
-&lt;span style=&#34;color: #000000&#34;&gt;theme = &amp;quot;hyde-x&amp;quot;&lt;/span&gt;
-
-&lt;span style=&#34;color: #000000&#34;&gt;pygmentsstyle = &amp;quot;native&amp;quot;&lt;/span&gt;
-&lt;span style=&#34;color: #000000&#34;&gt;pygmentsuseclasses = false&lt;/span&gt;
-
-&lt;span style=&#34;color: #000000&#34;&gt;[author]&lt;/span&gt;
-    &lt;span style=&#34;color: #000000&#34;&gt;name = &amp;quot;your name&amp;quot;&lt;/span&gt;
-
-&lt;span style=&#34;color: #000000&#34;&gt;[permalinks]&lt;/span&gt;
-    &lt;span style=&#34;color: #000000&#34;&gt;# Change the permalink format for the &amp;#39;post&amp;#39; content type.&lt;/span&gt;
-    &lt;span style=&#34;color: #000000&#34;&gt;# This defines how your folder is structured&lt;/span&gt;
-    &lt;span style=&#34;color: #000000&#34;&gt;post = &amp;quot;/:year/:month/:title/&amp;quot;&lt;/span&gt;
-
-&lt;span style=&#34;color: #000000&#34;&gt;[taxonomies]&lt;/span&gt;
-    &lt;span style=&#34;color: #000000&#34;&gt;# I wanted to use tags and categories&lt;/span&gt;
-    &lt;span style=&#34;color: #000000&#34;&gt;category = &amp;quot;categories&amp;quot;&lt;/span&gt;
-    &lt;span style=&#34;color: #000000&#34;&gt;tag = &amp;quot;tags&amp;quot;&lt;/span&gt;
-
-&lt;span style=&#34;color: #000000&#34;&gt;[[menu.main]]&lt;/span&gt;
-    &lt;span style=&#34;color: #000000&#34;&gt;name = &amp;quot;Posts&amp;quot;&lt;/span&gt;
-    &lt;span style=&#34;color: #000000&#34;&gt;pre = &amp;quot;&amp;lt;i class=&amp;#39;fa fa-heart&amp;#39;&amp;gt;&amp;lt;/i&amp;gt;&amp;quot;&lt;/span&gt;
-    &lt;span style=&#34;color: #000000&#34;&gt;weight = -110&lt;/span&gt;
-    &lt;span style=&#34;color: #000000&#34;&gt;identifier = &amp;quot;posts&amp;quot;&lt;/span&gt;
-    &lt;span style=&#34;color: #000000&#34;&gt;url = &amp;quot;/post/&amp;quot;&lt;/span&gt;
-&lt;span style=&#34;color: #000000&#34;&gt;[[menu.main]]&lt;/span&gt;
-    &lt;span style=&#34;color: #000000&#34;&gt;name = &amp;quot;Tags&amp;quot;&lt;/span&gt;
-    &lt;span style=&#34;color: #000000&#34;&gt;pre = &amp;quot;&amp;lt;i class=&amp;#39;fa fa-road&amp;#39;&amp;gt;&amp;lt;/i&amp;gt;&amp;quot;&lt;/span&gt;
-    &lt;span style=&#34;color: #000000&#34;&gt;weight = -109&lt;/span&gt;
-    &lt;span style=&#34;color: #000000&#34;&gt;url = &amp;quot;/tags/&amp;quot;&lt;/span&gt;
-&lt;span style=&#34;color: #000000&#34;&gt;[[menu.main]]&lt;/span&gt;
-    &lt;span style=&#34;color: #000000&#34;&gt;name = &amp;quot;Categories&amp;quot;&lt;/span&gt;
-    &lt;span style=&#34;color: #000000&#34;&gt;pre = &amp;quot;&amp;lt;i class=&amp;#39;fa fa-road&amp;#39;&amp;gt;&amp;lt;/i&amp;gt;&amp;quot;&lt;/span&gt;
-    &lt;span style=&#34;color: #000000&#34;&gt;weight = -108&lt;/span&gt;
-    &lt;span style=&#34;color: #000000&#34;&gt;url = &amp;quot;/categories/&amp;quot;&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;h2 id=&#34;run-hugo:5b4a6d9bf657db7e28a56367aab9ae4c&#34;&gt;Run hugo&lt;/h2&gt;
-
-&lt;p&gt;Now that we have setup the contents, themes
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #8f5902&#34;&gt;$&lt;/span&gt; hugo server
-&lt;span style=&#34;color: #000000; font-style: italic&#34;&gt;    0 draft content&lt;/span&gt;
-&lt;span style=&#34;color: #000000; font-style: italic&#34;&gt;    0 future content &lt;/span&gt;
-&lt;span style=&#34;color: #000000; font-style: italic&#34;&gt;    42 pages created&lt;/span&gt;
-&lt;span style=&#34;color: #000000; font-style: italic&#34;&gt;    0 paginator pages created&lt;/span&gt;
-&lt;span style=&#34;color: #000000; font-style: italic&#34;&gt;    18 tags created&lt;/span&gt;
-&lt;span style=&#34;color: #000000; font-style: italic&#34;&gt;    6 categories created&lt;/span&gt;
-&lt;span style=&#34;color: #000000; font-style: italic&#34;&gt;    in 53 ms&lt;/span&gt;
-&lt;span style=&#34;color: #000000; font-style: italic&#34;&gt;    Serving pages from /Users/your_username/code/githubs/_tmp/_del/public&lt;/span&gt;
-&lt;span style=&#34;color: #000000; font-style: italic&#34;&gt;    Web Server is available at http://127.0.0.1:1313/&lt;/span&gt;
-&lt;span style=&#34;color: #000000; font-style: italic&#34;&gt;    Press Ctrl+C to stop&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/p&gt;
-
-&lt;h2 id=&#34;final-look:5b4a6d9bf657db7e28a56367aab9ae4c&#34;&gt;Final look&lt;/h2&gt;
-
-&lt;p&gt;You&amp;rsquo;re done. How does it look?!&lt;/p&gt;
-
-
-&lt;figure &gt;
-    
-        &lt;img src=&#34;http://abhipandey.com/images/moving_to_hugo__blog_sample.png&#34; alt=&#34;Your sidebar&#34; /&gt;
-    
-    
-    &lt;figcaption&gt;
-        &lt;p&gt;
-        Your sidebar
-        
-            
-        
-        &lt;/p&gt; 
-    &lt;/figcaption&gt;
-    
-&lt;/figure&gt;
-
-
-&lt;h2 id=&#34;going-further:5b4a6d9bf657db7e28a56367aab9ae4c&#34;&gt;Going further&lt;/h2&gt;
-
-&lt;p&gt;This is only the beginning. There are still a few loose ends to tie up.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Are you happy enough with the theme?
-
-&lt;ul&gt;
-&lt;li&gt;If not, you can always try &lt;a href=&#34;http://gohugo.io/themes/installing/&#34;&gt;more themes&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;What about code highlighting? Would you like more changes?
-
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;hyde-x&lt;/code&gt; also provides it&amp;rsquo;s own version of highlighting through css files. You can use &lt;a href=&#34;https://github.com/zyro/hyde-x#tips&#34;&gt;&lt;code&gt;params&lt;/code&gt; to control that&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;I wasn&amp;rsquo;t happy with the code highlights as well the default layout the themes were providing. I created my own adaptation of &lt;code&gt;hyde-x&lt;/code&gt; called &lt;a href=&#34;https://github.com/abhi1010/hyde-a&#34;&gt;&lt;code&gt;hyde-a&lt;/code&gt;&lt;/a&gt;
-Some changes I made were:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Tags and Categories didn&amp;rsquo;t have their own proper &lt;code&gt;listing&lt;/code&gt; or &lt;code&gt;single&lt;/code&gt; templates&lt;/li&gt;
-&lt;li&gt;Every time you clicked on a tag/category, the list of all articles related to that term was also not shown properly&lt;/li&gt;
-&lt;li&gt;Post listing only included title and date. I was looking for related tag and category for each post&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;I fixed all of those with &lt;a href=&#34;https://github.com/abhi1010/hyde-a&#34;&gt;&lt;code&gt;hyde-a&lt;/code&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;hosting-your-blog:5b4a6d9bf657db7e28a56367aab9ae4c&#34;&gt;Hosting your blog&lt;/h2&gt;
-
-&lt;p&gt;Now that we have created the blog, how about hosting it?
-We have use a free service like &lt;a href=&#34;https://pages.github.com/&#34;&gt;GitHub Pages&lt;/a&gt;
-Once we commit your html pages (the &lt;code&gt;output&lt;/code&gt;) onto github on a different repo it will show up directly on &lt;code&gt;github.io&lt;/code&gt; as well.
-There are some concepts that you want to know. Learn some at [octopress])(&lt;a href=&#34;http://octopress.org/docs/deploying/github/&#34;&gt;http://octopress.org/docs/deploying/github/&lt;/a&gt;).&lt;/p&gt;
-
-&lt;p&gt;Create your own repo using the following logic:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;You must use the &lt;code&gt;username.github.io&lt;/code&gt; naming scheme.&lt;/li&gt;
-&lt;li&gt;Content from the master branch will be used to build and publish your GitHub Pages site.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&#34;automating-your-blog-generation:5b4a6d9bf657db7e28a56367aab9ae4c&#34;&gt;Automating your blog generation&lt;/h1&gt;
-
-&lt;p&gt;Now that our blog is generated, we need to automate the process of creating the html from the markdown.
-If we have to commit to two repo - for markdown as well html pages, I feel like is too much of work.&lt;/p&gt;
-
-&lt;p&gt;I did some work with &lt;code&gt;shippable&lt;/code&gt; and started automatically creating the html pages through it.&lt;/p&gt;
-
-&lt;p&gt;I have created another article about it while taking Elastic Beanstalk as the subject. The same applies for &lt;code&gt;hugo&lt;/code&gt; though. You can find it here:&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;&lt;a href=&#34;http://abhipandey.com/2015/09/elastic-beanstalk-deployment-automation/&#34;&gt;Elastic Beanstalk Deployment Automation&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;Once you have done it, all you need to do is:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Locally write your markdown files&lt;/li&gt;
-&lt;li&gt;Test using &lt;code&gt;hugo server -w&lt;/code&gt; to use &lt;code&gt;livereload&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Commit your markdown&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;code&gt;Shippable&lt;/code&gt; will pick it up from there. It will download the theme and create the html files.
-It will also commit to the &lt;code&gt;GitHub Pages&lt;/code&gt; for you and the site will be live automatically!&lt;/p&gt;
 </description>
     </item>
     

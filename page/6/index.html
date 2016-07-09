@@ -90,6 +90,37 @@
     
     <div class="post">
       <h1 class="post-title">
+        <a href="http://abhipandey.com/2008/03/full-trust-on-mapped-drive/">Full Trust on Mapped Drive</a>
+      </h1>
+      <span class="post-date">Mar 31, 2008  &middot; <a href="http://abhipandey.com/2008/03/full-trust-on-mapped-drive/#disqus_thread">Comments</a>
+      
+      <br/>
+      <a class="a_cat" href="http://abhipandey.com/categories/code">code</a><a class="a_cat" href="http://abhipandey.com/categories/tips">tips</a>
+        
+      <a class="a_tag" href="http://abhipandey.com/tags/visual-studio">visual studio</a>
+    
+      </span>
+      
+      <p>Sometimes, when opening a web project from another mapped drive (not your own computer&rsquo;s hard disk) Visual Studio may complain something like this:</p>
+
+<pre><code>The project location is not trusted.
+
+Running the application may result in security exceptions when it
+attempts to perform actions which require full trust.
+</code></pre>
+
+<p>The problem here is that .Net does not want to fully adhere to all security policies as your hard disk to this mapped drive as well as it does not know what kind of data it might have. If you want it to fully trust this mapped drive then you will have to use caspol for this purpose. Here&rsquo;s how it is done:</p>
+
+<pre><code>c:\&gt;caspol -q -machine -addgroup 1 -url file://W:/* FullTrust -name &quot;W Drive&quot;
+</code></pre>
+
+<p>Once this new code group is in place, any new .NET processes you start will give any assemblies on the W drive full trust<strong>.</strong></p>
+
+      
+    </div>
+    
+    <div class="post">
+      <h1 class="post-title">
         <a href="http://abhipandey.com/2008/03/tag-your-namespaces/">Tag your namespaces</a>
       </h1>
       <span class="post-date">Mar 31, 2008  &middot; <a href="http://abhipandey.com/2008/03/tag-your-namespaces/#disqus_thread">Comments</a>
@@ -462,32 +493,6 @@ Bottomline - try to use ApplicationID in your queries otherwise your queries, fo
 <p>The code for this book can be picked up at <a href="http://www.wickedlysmart.com">www.wickedlysmart.com</a>.</p>
 
 <p>Although this book is written for Java developers but it should suit C# and VB.NET. The website includes code for C# as well donated by a reader of the book.</p>
-
-      
-    </div>
-    
-    <div class="post">
-      <h1 class="post-title">
-        <a href="http://abhipandey.com/2007/11/dynamically-increase-label-size-autosize/">Dynamically increase Label size [AutoSize]</a>
-      </h1>
-      <span class="post-date">Nov 23, 2007  &middot; <a href="http://abhipandey.com/2007/11/dynamically-increase-label-size-autosize/#disqus_thread">Comments</a>
-      
-      <br/>
-      <a class="a_cat" href="http://abhipandey.com/categories/code">code</a>
-        
-      <a class="a_tag" href="http://abhipandey.com/tags/c-sharp">c-sharp</a>
-    
-      </span>
-      
-      <p>Recently I had to work on a windows form where the Labels are added dynamically onto the form. Some of you may think that setting AutoSize to true would fix the problem but it works only when you already have added that Label control onto the form, not when you are adding it dynamically.</p>
-
-<p>Despair not, there&rsquo;s still a solution. Just create a label and set it&rsquo;s text first then call this function:</p>
-
-<script type="text/javascript" src="http://gist.github.com/e8390c5868a86998a7d5.js"></script>
-
-<p>If you do some testing it may not work on Compact Framework. Here&rsquo;s how to get around that issue again.</p>
-
-<script type="text/javascript" src="http://gist.github.com/f488949a5d79b6d86544.js"></script>
 
       
     </div>

@@ -90,6 +90,146 @@
     
     <div class="post">
       <h1 class="post-title">
+        <a href="http://abhipandey.com/2016/07/systemd-tutorial/">Systemd tutorial</a>
+      </h1>
+      <span class="post-date">Jul 7, 2016  &middot; <a href="http://abhipandey.com/2016/07/systemd-tutorial/#disqus_thread">Comments</a>
+      
+      <br/>
+      <a class="a_cat" href="http://abhipandey.com/categories/code">code</a><a class="a_cat" href="http://abhipandey.com/categories/continuous-delivery">continuous delivery</a><a class="a_cat" href="http://abhipandey.com/categories/tips">tips</a>
+        
+      <a class="a_tag" href="http://abhipandey.com/tags/linux">linux</a><a class="a_tag" href="http://abhipandey.com/tags/bash">bash</a>
+    
+      </span>
+      
+      
+
+<p><code>Systemd</code> usually requires two files:</p>
+
+<ol>
+<li>service file</li>
+<li>timer file</li>
+</ol>
+
+<h2 id="service-files:53e68713291c95ac35204af0e42c2530">Service files</h2>
+
+<p>Here you provide the details you&rsquo;d use to</p>
+
+<ul>
+<li>Start/stop a service</li>
+<li>Define the type of service
+
+<ul>
+<li>Can be <em>simple</em>, <em>forking</em>, <em>oneshot</em>, <em>dbus</em>, <em>notify</em> or <em>idle</em></li>
+</ul></li>
+<li>How to kill the service</li>
+<li>Ability to restart</li>
+<li>Path for starting up</li>
+<li>Timeout for the service startup or shutdown</li>
+</ul>
+
+<p>Service is usually made up of 3 sections:</p>
+
+<ol>
+<li>Unit</li>
+<li>Service</li>
+<li>Install
+
+<ul>
+<li>Usually prefer <code>multi-user.target</code> for your installation</li>
+</ul></li>
+</ol>
+
+<p>One example is as follows:</p>
+
+<pre><code>[Unit]
+Description=Foo
+
+[Service]
+ExecStart=/usr/sbin/foo-daemon
+
+[Install]
+WantedBy=multi-user.target
+</code></pre>
+
+<p>Here&rsquo;s what your regular <code>Service</code> section would look like:</p>
+
+<pre><code>User=&lt;YOUR_LINUX_ACCOUNT&gt;
+Group=&lt;YOUR_LINUX_GROUP&gt;
+WorkingDirectory=&lt;PROJECT_FOLDER&gt;
+Type=forking
+KillMode=process
+Restart=always
+ExecStart=&lt;COMMAND_TO_START&gt;
+ExecStop=&lt;COMMAND_TO_STOP&gt;
+</code></pre>
+
+<h2 id="timers:53e68713291c95ac35204af0e42c2530">Timers</h2>
+
+<p>Timer files contain information about a timer controlled and
+supervised by systemd, for timer-based activation.
+This is possibly a better replacement for cron jobs.
+However, the changes are a bit different.</p>
+
+<p>To set up a timer, you need the following options:</p>
+
+<ul>
+<li><em>OnActiveSec</em></li>
+<li><em>OnBootSec</em></li>
+<li><em>OnStartupSec</em></li>
+<li><em>OnUnitActiveSec</em></li>
+<li><em>OnUnitInactiveSec</em></li>
+</ul>
+
+<p>They all help you set up your timers relative to different starting points.</p>
+
+<p>Some other options you could use are:</p>
+
+<ul>
+<li><em>OnCalendar</em>
+
+<ul>
+<li>This is your friend if you are looking for cron job replacement
+Please check the references below to look for some samples on how to set up
+your cron jobs in the correct format. It is not exactly same as cron job styles</li>
+</ul></li>
+<li><em>AccuracySec</em>
+
+<ul>
+<li>Based on the timer, how close to the actual time should this timer wake up</li>
+<li>Use the value of 1us to be the smallest and most accurate</li>
+</ul></li>
+<li><em>Persistent</em>
+
+<ul>
+<li>Maybe you want to save the information about the timestamps whenever
+the service is shutting down. In that case, the information will be saved
+on the hard disk. It will be used along with boot and active <em>sec</em> information.</li>
+</ul></li>
+</ul>
+
+<p>Here&rsquo;s one simple sample for setting a timer</p>
+
+<pre><code>[Timer]
+AccuracySec=1us
+Persistent=false
+OnBootSec=80
+OnCalendar=*:0/20
+Unit=myjob.service
+
+[Install]
+WantedBy=timers.target
+</code></pre>
+
+<h2 id="some-references:53e68713291c95ac35204af0e42c2530">Some references:</h2>
+
+<p><a href="https://wiki.archlinux.org/index.php/Systemd/Timers">https://wiki.archlinux.org/index.php/Systemd/Timers</a>
+<a href="https://www.certdepot.net/rhel7-use-systemd-timers/">https://www.certdepot.net/rhel7-use-systemd-timers/</a></p>
+
+      
+    </div>
+    
+    <div class="post">
+      <h1 class="post-title">
         <a href="http://abhipandey.com/2016/07/gitlab-cli-api-reference/">Gitlab CLI API reference</a>
       </h1>
       <span class="post-date">Jul 5, 2016  &middot; <a href="http://abhipandey.com/2016/07/gitlab-cli-api-reference/#disqus_thread">Comments</a>
@@ -1377,114 +1517,6 @@ Hence I decided to do a lookup for them:</p>
 </code></pre>
 
 <p>To my surprise, that worked!</p>
-
-      
-    </div>
-    
-    <div class="post">
-      <h1 class="post-title">
-        <a href="http://abhipandey.com/2015/10/setting-up-custom-domain-with-github-pages/">Setting up custom domain with Github Pages</a>
-      </h1>
-      <span class="post-date">Oct 24, 2015  &middot; <a href="http://abhipandey.com/2015/10/setting-up-custom-domain-with-github-pages/#disqus_thread">Comments</a>
-      
-      <br/>
-      <a class="a_cat" href="http://abhipandey.com/categories/continuous-delivery">continuous delivery</a><a class="a_cat" href="http://abhipandey.com/categories/code">code</a>
-        
-      <a class="a_tag" href="http://abhipandey.com/tags/aws">aws</a><a class="a_tag" href="http://abhipandey.com/tags/route-53">route 53</a><a class="a_tag" href="http://abhipandey.com/tags/github">github</a>
-    
-      </span>
-      
-      
-
-<p>Let&rsquo;s take the example of my domain itself <code>abhipandey.com</code> that I want to serve from <code>abhi1010.github.io</code>.
- We will need to do it in two steps:</p>
-
-<ul>
-<li>Setup CNAME on github
-
-<ul>
-<li>So that github knows about your domain</li>
-</ul></li>
-<li>Setup <strong>A</strong> record on AWS Route 53
-
-<ul>
-<li>So that domain can be registered</li>
-</ul></li>
-</ul>
-
-<h1 id="change-cname:75bfc49f34e22778d17e9b1837e9218b">Change CNAME</h1>
-
-<p>If we want to tell github about the domain name, it is rather simple: <em>create a CNAME file with the content being
-the name of the domain itself</em>
-Do <em>note</em> here that the default redirect of your domain will be the value in your CNAME file.</p>
-
-<p>Here&rsquo;s my <a href="https://github.com/abhi1010/abhi1010.github.io/blob/master/CNAME">CNAME file</a> content:</p>
-
-<pre><code>abhipandey.com
-</code></pre>
-
-<p>You don&rsquo;t really need <strong>www</strong>. If you do put <em>www.abhipandey.com</em> github will figure out and redirect properly.
-The difference is abhipandey.com is a top-level domain (TLD), while <em>www.abhipandey.com</em> is a subdomain.</p>
-
-<p>Essentially:</p>
-
-<blockquote>
-<p>If your CNAME file contains <em>abhipandey.com</em>, then <em>www.abhipandey.com</em> will redirect to <em>abhipandey.com</em>.</p>
-
-<p>If your CNAME file contains <em>www.abhipandey.com</em>, then <em>abhipandey.com</em> will redirect to <em>www.abhipandey.com</em>.</p>
-</blockquote>
-
-<h1 id="creating-a-record:75bfc49f34e22778d17e9b1837e9218b">Creating A Record</h1>
-
-
-<figure >
-    
-        <img src="/images/custom-domain-name-with-github-pages-and-amazon-route-53_1.png" alt="Setting up A record" />
-    
-    
-    <figcaption>
-        <p>
-        Setting up A record
-        
-            
-        
-        </p> 
-    </figcaption>
-    
-</figure>
-
-
-<p>Next is to go to Amazon Route 53 console, and create an A record with the following IPs:</p>
-
-<pre><code>192.30.252.153
-192.30.252.154
-</code></pre>
-
-<h1 id="setup-subdomain:75bfc49f34e22778d17e9b1837e9218b">Setup subdomain</h1>
-
-
-<figure >
-    
-        <img src="/images/custom-domain-name-with-github-pages-and-amazon-route-53_2.png" alt="Setting up subdomain" />
-    
-    
-    <figcaption>
-        <p>
-        Setting up subdomain
-        
-            
-        
-        </p> 
-    </figcaption>
-    
-</figure>
-
-
-<p>If you configure both an apex domain (e.g. <em>abhipandey.com</em>) and a matching www subdomain (e.g. <em>www.abhipandey.com</em>),
-GitHub&rsquo;s servers will automatically create redirects between the two.</p>
-
-<p>You can also also look up <a href="https://help.github.com/articles/tips-for-configuring-an-a-record-with-your-dns-provider/">GitHub Tips</a> for
-configuring an <strong>A</strong> record with your DNS provider.</p>
 
       
     </div>

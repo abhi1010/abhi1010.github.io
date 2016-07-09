@@ -6,8 +6,140 @@
     <description>Recent content in Tips on Coders Digest</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 05 Jul 2016 23:26:44 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 07 Jul 2016 23:26:44 +0800</lastBuildDate>
     <atom:link href="http://abhipandey.com/categories/tips/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Systemd tutorial</title>
+      <link>http://abhipandey.com/2016/07/systemd-tutorial/</link>
+      <pubDate>Thu, 07 Jul 2016 23:26:44 +0800</pubDate>
+      
+      <guid>http://abhipandey.com/2016/07/systemd-tutorial/</guid>
+      <description>
+
+&lt;p&gt;&lt;code&gt;Systemd&lt;/code&gt; usually requires two files:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;service file&lt;/li&gt;
+&lt;li&gt;timer file&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&#34;service-files:53e68713291c95ac35204af0e42c2530&#34;&gt;Service files&lt;/h2&gt;
+
+&lt;p&gt;Here you provide the details you&amp;rsquo;d use to&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Start/stop a service&lt;/li&gt;
+&lt;li&gt;Define the type of service
+
+&lt;ul&gt;
+&lt;li&gt;Can be &lt;em&gt;simple&lt;/em&gt;, &lt;em&gt;forking&lt;/em&gt;, &lt;em&gt;oneshot&lt;/em&gt;, &lt;em&gt;dbus&lt;/em&gt;, &lt;em&gt;notify&lt;/em&gt; or &lt;em&gt;idle&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;How to kill the service&lt;/li&gt;
+&lt;li&gt;Ability to restart&lt;/li&gt;
+&lt;li&gt;Path for starting up&lt;/li&gt;
+&lt;li&gt;Timeout for the service startup or shutdown&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Service is usually made up of 3 sections:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Unit&lt;/li&gt;
+&lt;li&gt;Service&lt;/li&gt;
+&lt;li&gt;Install
+
+&lt;ul&gt;
+&lt;li&gt;Usually prefer &lt;code&gt;multi-user.target&lt;/code&gt; for your installation&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;One example is as follows:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[Unit]
+Description=Foo
+
+[Service]
+ExecStart=/usr/sbin/foo-daemon
+
+[Install]
+WantedBy=multi-user.target
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Here&amp;rsquo;s what your regular &lt;code&gt;Service&lt;/code&gt; section would look like:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;User=&amp;lt;YOUR_LINUX_ACCOUNT&amp;gt;
+Group=&amp;lt;YOUR_LINUX_GROUP&amp;gt;
+WorkingDirectory=&amp;lt;PROJECT_FOLDER&amp;gt;
+Type=forking
+KillMode=process
+Restart=always
+ExecStart=&amp;lt;COMMAND_TO_START&amp;gt;
+ExecStop=&amp;lt;COMMAND_TO_STOP&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;timers:53e68713291c95ac35204af0e42c2530&#34;&gt;Timers&lt;/h2&gt;
+
+&lt;p&gt;Timer files contain information about a timer controlled and
+supervised by systemd, for timer-based activation.
+This is possibly a better replacement for cron jobs.
+However, the changes are a bit different.&lt;/p&gt;
+
+&lt;p&gt;To set up a timer, you need the following options:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;OnActiveSec&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;OnBootSec&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;OnStartupSec&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;OnUnitActiveSec&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;OnUnitInactiveSec&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;They all help you set up your timers relative to different starting points.&lt;/p&gt;
+
+&lt;p&gt;Some other options you could use are:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;OnCalendar&lt;/em&gt;
+
+&lt;ul&gt;
+&lt;li&gt;This is your friend if you are looking for cron job replacement
+Please check the references below to look for some samples on how to set up
+your cron jobs in the correct format. It is not exactly same as cron job styles&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;AccuracySec&lt;/em&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Based on the timer, how close to the actual time should this timer wake up&lt;/li&gt;
+&lt;li&gt;Use the value of 1us to be the smallest and most accurate&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Persistent&lt;/em&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Maybe you want to save the information about the timestamps whenever
+the service is shutting down. In that case, the information will be saved
+on the hard disk. It will be used along with boot and active &lt;em&gt;sec&lt;/em&gt; information.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Here&amp;rsquo;s one simple sample for setting a timer&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[Timer]
+AccuracySec=1us
+Persistent=false
+OnBootSec=80
+OnCalendar=*:0/20
+Unit=myjob.service
+
+[Install]
+WantedBy=timers.target
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;some-references:53e68713291c95ac35204af0e42c2530&#34;&gt;Some references:&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://wiki.archlinux.org/index.php/Systemd/Timers&#34;&gt;https://wiki.archlinux.org/index.php/Systemd/Timers&lt;/a&gt;
+&lt;a href=&#34;https://www.certdepot.net/rhel7-use-systemd-timers/&#34;&gt;https://www.certdepot.net/rhel7-use-systemd-timers/&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Gitlab CLI API reference</title>
