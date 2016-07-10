@@ -90,6 +90,90 @@
     
     <div class="post">
       <h1 class="post-title">
+        <a href="http://abhipandey.com/2015/09/updating-django-source-with-docker-deployments/">Updating Django Source with Docker Deployments</a>
+      </h1>
+      <span class="post-date">Sep 4, 2015  &middot; <a href="http://abhipandey.com/2015/09/updating-django-source-with-docker-deployments/#disqus_thread">Comments</a>
+      
+      <br/>
+      <a class="a_cat" href="http://abhipandey.com/categories/code">code</a><a class="a_cat" href="http://abhipandey.com/categories/continuous-delivery">continuous delivery</a>
+        
+      <a class="a_tag" href="http://abhipandey.com/tags/docker">docker</a><a class="a_tag" href="http://abhipandey.com/tags/django">django</a><a class="a_tag" href="http://abhipandey.com/tags/uwsgi">uwsgi</a><a class="a_tag" href="http://abhipandey.com/tags/git">git</a><a class="a_tag" href="http://abhipandey.com/tags/supervisord">supervisord</a>
+    
+      </span>
+      
+      
+
+<p>While deploying docker multiple times, you may not want to copy over your <code>Django</code> source code every time you do a deployment.</p>
+
+<h1 id="setting-up-supervisord:8ef139736ad377184214844940ced19b">Setting up <code>supervisord</code></h1>
+
+<p>Luckily there is an easy way to manage this. Since you are working with <code>Django</code>, there is a good chance that you are also managing the processes (like <code>uwsgi</code>) with <code>supervisord</code>.</p>
+
+<p>Here are some of the steps that you can take with <code>supervisord</code></p>
+
+<ul>
+<li>Set up a new process in <code>supervisord</code></li>
+<li>Do not allow it to <em><code>autorestart</code></em> since it will be a one-shot process</li>
+<li>Call another script in any format to update the source code
+
+<ul>
+<li>As an example, I use <code>bash</code> to update my source code through <code>git</code></li>
+</ul></li>
+</ul>
+
+<p>Here&rsquo;s a sample code:</p>
+
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>    <span style="color: #ce5c00; font-weight: bold">[</span>program:source-updater<span style="color: #ce5c00; font-weight: bold">]</span>
+    <span style="color: #000000">redirect_stderr</span> <span style="color: #ce5c00; font-weight: bold">=</span> <span style="color: #204a87">true</span>
+    <span style="color: #000000">stdout_logfile</span> <span style="color: #ce5c00; font-weight: bold">=</span> /shared/source_code_updater.log
+    <span style="color: #000000">directory</span> <span style="color: #ce5c00; font-weight: bold">=</span> /ws/
+    <span style="color: #204a87">command</span> <span style="color: #ce5c00; font-weight: bold">=</span> /ws/source_code_updater.sh
+    <span style="color: #000000">autorestart</span><span style="color: #ce5c00; font-weight: bold">=</span>False
+</pre></div>
+
+
+<h1 id="updating-the-source-code:8ef139736ad377184214844940ced19b">Updating the source code</h1>
+
+<p>Few things are important to note in a <code>docker</code> deployment:</p>
+
+<ul>
+<li>Not every commit needs to be deployed</li>
+<li>Filter your commits to only allow <strong><em>deployable</em></strong> code to be updated on <code>docker</code></li>
+<li>Include regression, unit and system tests to be part of your build process</li>
+<li>Once everything has been confirmed to be working, tag your code so that you know it is worthy of going to docker</li>
+<li>Another way would be to manage this process through branches and merge only if everything passes</li>
+<li><code>docker</code> deployments would build off this merged branch or tagged version</li>
+<li>This way even if you have made 10 commits while fixing a bug and are still in the process of fixing it, you know it won&rsquo;t go to <code>docker</code> deployment</li>
+</ul>
+
+<p>With that idea, do a checkout and update the source code according to specific tag:</p>
+
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>    git checkout -f tags/your_tag_name
+    git pull origin tags/your_tag_name
+</pre></div>
+
+
+<h1 id="telling-uwsgi-about-the-updated-source-code:8ef139736ad377184214844940ced19b">Telling <code>uwsgi</code> about the updated source code</h1>
+
+<p>Once you have updated your source code, you need to re-load the project onto <code>uwsgi</code> so that <code>nginx</code> or <code>apache</code> can pick it up.
+The simplest way to achieve it using the config parameter of <code>uwsgi</code>: <code>--touch-reload</code>. It will <em>reload uWSGI if the specified file is modified/touched</em></p>
+
+<p>Just remember to setup <code>supervisord</code> in your <code>Dockerfile</code> with this config parameter.</p>
+
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #ce5c00; font-weight: bold">[</span>program:app-uwsgi<span style="color: #ce5c00; font-weight: bold">]</span>
+<span style="color: #000000">redirect_stderr</span> <span style="color: #ce5c00; font-weight: bold">=</span> <span style="color: #204a87">true</span>
+<span style="color: #000000">stdout_logfile</span> <span style="color: #ce5c00; font-weight: bold">=</span> /var/shared/_uwsgi.log
+<span style="color: #204a87">command</span> <span style="color: #ce5c00; font-weight: bold">=</span> /ws/ve_envs/rwv2/bin/uwsgi --touch-reload<span style="color: #ce5c00; font-weight: bold">=</span>/ws/wsgi.ini --ini /ws/wsgi.ini
+</pre></div>
+
+
+<p>You can choose any file. I choose <code>uwsgi.ini</code> because the contents never really need to change in it.</p>
+
+      
+    </div>
+    
+    <div class="post">
+      <h1 class="post-title">
         <a href="http://abhipandey.com/2015/09/multiple-virtual-environments-in-docker/">Multiple Virtual Environments in Docker</a>
       </h1>
       <span class="post-date">Sep 3, 2015  &middot; <a href="http://abhipandey.com/2015/09/multiple-virtual-environments-in-docker/#disqus_thread">Comments</a>
@@ -712,41 +796,6 @@ Just run the following to test whether it works:</p>
 <p><strong>Full Code</strong></p>
 
 <p><strong><em>The full sample code, along with the fix</em></strong> is provided on <a href="http://coliru.stacked-crooked.com/a/b0ab70c458370048">Stacked-Crooked</a>.</p>
-
-      
-    </div>
-    
-    <div class="post">
-      <h1 class="post-title">
-        <a href="http://abhipandey.com/2014/05/setting-up-your-vim...-your-style/">Setting up your VIM... Your style</a>
-      </h1>
-      <span class="post-date">May 19, 2014  &middot; <a href="http://abhipandey.com/2014/05/setting-up-your-vim...-your-style/#disqus_thread">Comments</a>
-      
-      <br/>
-      <a class="a_cat" href="http://abhipandey.com/categories/code">code</a>
-        
-      <a class="a_tag" href="http://abhipandey.com/tags/bash">bash</a><a class="a_tag" href="http://abhipandey.com/tags/vim">vim</a><a class="a_tag" href="http://abhipandey.com/tags/tips">tips</a>
-    
-      </span>
-      
-      <p>Writing code using VIM can be a bit overwhelming but it helps creating a few shortcuts there to make your life easier. Here I will discuss a few.</p>
-
-<ul>
-<li>First of all, it is always a good idea to set up your tabs and spaces</li>
-<li>Set up shortcuts for:
-
-<ul>
-<li><code>Toggling of Auto-Indent</code> while pasting source text; very useful in code (<em>F2</em> in my provided script)</li>
-<li><code>Toggling of Auto-Scroll</code> of Split windows (<em>F3</em> in my provided script)</li>
-<li><code>Macro for Folding functions</code> within the source code (<em><em>@q</em></em> in my provided script)</li>
-<li><code>Smart case search</code> - based on whether the input is in caps or not</li>
-<li><code>Toggling of Mouse Usage</code> in VIM window - to allow quick selection of text (<em>F12</em> in my provided script)</li>
-</ul></li>
-</ul>
-
-<p>Please see the provided script below to have a look.</p>
-
-<script type="text/javascript" src="http://gist.github.com/6f190c9f3afd42881ef5.js"></script>
 
       
     </div>

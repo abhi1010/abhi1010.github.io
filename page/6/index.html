@@ -90,6 +90,31 @@
     
     <div class="post">
       <h1 class="post-title">
+        <a href="http://abhipandey.com/2008/04/google-analytics--swfaddress/">Google Analytics &amp; SWFAddress</a>
+      </h1>
+      <span class="post-date">Apr 6, 2008  &middot; <a href="http://abhipandey.com/2008/04/google-analytics--swfaddress/#disqus_thread">Comments</a>
+      
+      <br/>
+      <a class="a_cat" href="http://abhipandey.com/categories/code">code</a><a class="a_cat" href="http://abhipandey.com/categories/tips">tips</a>
+        
+      <a class="a_tag" href="http://abhipandey.com/tags/flash">flash</a>
+    
+      </span>
+      
+      <p>Recently found a bug slash issue with Google Analytics new javscript software (post-urchin v5). I had written the internal documentation for the company standards and somehow when those standards were put into practice, SWFAddress feature of flash stopped working the moment google analytics feature was enabled. Worst of all, the web pages failed to load! To cap it off, the website was working perfectly fine on Firefox 2, 3 and IE 7!! It was having trouble only on IE6.</p>
+
+<p>I tried a lot of ways but none seem to worked. Finally found a blog that remotely talked about SWFAddress!</p>
+
+<p>Well, the problem turns out that SWFAddress uses <code>ExternalInterface.call()</code> instead of <code>getUrl()</code> function internally and they don&rsquo;t go well together if used together.</p>
+
+<p>The solution was simple, since flash is using SWFAddress feature, every <code>getUrl</code> should be replaced with <code>ExternalInterface.call()</code>.
+ Needless to say, everything seemed perfect again.</p>
+
+      
+    </div>
+    
+    <div class="post">
+      <h1 class="post-title">
         <a href="http://abhipandey.com/2008/03/full-trust-on-mapped-drive/">Full Trust on Mapped Drive</a>
       </h1>
       <span class="post-date">Mar 31, 2008  &middot; <a href="http://abhipandey.com/2008/03/full-trust-on-mapped-drive/#disqus_thread">Comments</a>
@@ -467,32 +492,6 @@ Trying to generate reports make sure your query&rsquo;s WHERE clause is using &l
 <blockquote>
 Bottomline - try to use ApplicationID in your queries otherwise your queries, for sure, will not run over the index at all and make it slow. This comes in effect if you are expecting high volume.
 </blockquote>
-
-      
-    </div>
-    
-    <div class="post">
-      <h1 class="post-title">
-        <a href="http://abhipandey.com/2007/12/book-review-head-first-design-patterns/">Book Review: Head First Design Patterns</a>
-      </h1>
-      <span class="post-date">Dec 12, 2007  &middot; <a href="http://abhipandey.com/2007/12/book-review-head-first-design-patterns/#disqus_thread">Comments</a>
-      
-      <br/>
-      <a class="a_cat" href="http://abhipandey.com/categories/code">code</a><a class="a_cat" href="http://abhipandey.com/categories/design-patterns">design patterns</a>
-        
-      <a class="a_tag" href="http://abhipandey.com/tags/java">java</a>
-    
-      </span>
-      
-      <p>What an amazing book this is! It is a must read for any developer who wants to develop long term codes/projects.</p>
-
-<p>The book looks at mostly the more important design patterns. The distinctive feature that stands out in this book is how it manages to make each pattern stand out against each other. It gives comparison between similar-looking patterns where necessary. It make the patterns &ldquo;debate&rdquo; against each other, get the birds-eye-view from &ldquo;patterns guru and grasshopper discussion&rdquo;, UML like &ldquo;class diagrams with notes&rdquo; to show how everything is gelling together.</p>
-
-<p>It starts off every pattern with the basic situation and come up with a code how a normal developer would code - then give that situation a twist and show us mortal beings how to code again using a pattern! It is a perfect setup for even a novice to get it straight into his head.</p>
-
-<p>The code for this book can be picked up at <a href="http://www.wickedlysmart.com">www.wickedlysmart.com</a>.</p>
-
-<p>Although this book is written for Java developers but it should suit C# and VB.NET. The website includes code for C# as well donated by a reader of the book.</p>
 
       
     </div>

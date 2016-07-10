@@ -90,6 +90,64 @@
     
     <div class="post">
       <h1 class="post-title">
+        <a href="http://abhipandey.com/2015/10/vim-cannot-find-word-list/">vim cannot find word list</a>
+      </h1>
+      <span class="post-date">Oct 31, 2015  &middot; <a href="http://abhipandey.com/2015/10/vim-cannot-find-word-list/#disqus_thread">Comments</a>
+      
+      <br/>
+      <a class="a_cat" href="http://abhipandey.com/categories/tips">tips</a>
+        
+      <a class="a_tag" href="http://abhipandey.com/tags/vim">vim</a>
+    
+      </span>
+      
+      <p>After installing <a href="http://vim.spf13.com/">spf13 vim</a> every time I would open a file I had trouble with two things on my mac:</p>
+
+<ul>
+<li>File opening would halt in the middle with the following error :  <strong>Cannot find word list &ldquo;en.utf-8.spl&rdquo; or &ldquo;en.ascii.spl&rdquo;</strong></li>
+<li>Syntax highlighting also failed thereafter</li>
+</ul>
+
+<p>Here&rsquo;s what I would see:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>$ vim release.sh 
+Warning: Cannot find word list <span style="color: #4e9a06">&quot;en.utf-8.spl&quot;</span> or <span style="color: #4e9a06">&quot;en.ascii.spl&quot;</span>
+Press ENTER or <span style="color: #204a87">type</span> <span style="color: #204a87">command</span> to <span style="color: #204a87; font-weight: bold">continue</span>
+</pre></div>
+
+<p>I googled a lot regarding this but didn&rsquo;t find anything straight forward.
+When all options failed I recalled that it is looking for the spell files in a specific folder.
+Hence I decided to do a lookup for them:</p>
+
+<pre><code>locate en.utf-8
+</code></pre>
+
+<p>I got a lot of options:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>$ locate en.utf-8
+
+/usr/local/Cellar/macvim/7.4-73/MacVim.app/Contents/Resources/vim/runtime/spell/en.utf-8.spl
+/usr/local/Cellar/macvim/7.4-73/MacVim.app/Contents/Resources/vim/runtime/spell/en.utf-8.sug
+/usr/local/Cellar/vim/7.4.712/share/vim/vim74/spell/en.utf-8.spl
+/usr/local/Cellar/vim/7.4.712/share/vim/vim74/spell/en.utf-8.sug
+/usr/share/vim/vim73/spell/en.utf-8.spl
+/usr/share/vim/vim73/spell/en.utf-8.sug
+</pre></div>
+
+<p>One of the options was to change the <code>runtimepath</code> to let it know about the spell folders.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #204a87">let</span> <span style="color: #000000; font-weight: bold">&amp;</span><span style="color: #000000">runtimepath</span><span style="color: #ce5c00; font-weight: bold">=(</span><span style="color: #4e9a06">&quot;~/.vim/,/usr/local/Cellar/vim/7.4.712/share/vim/vim74/spell/,&quot;</span> . <span style="color: #000000; font-weight: bold">&amp;</span>runtimepath<span style="color: #ce5c00; font-weight: bold">)</span>
+</pre></div>
+
+<p>When that failed too and nothing else worked, I decided to copy out the file and give it a try:</p>
+
+<pre><code>cp /usr/local/Cellar/vim/7.4.712/share/vim/vim74/spell/en.utf-8.spl ~/.vim/spell
+</code></pre>
+
+<p>To my surprise, that worked!</p>
+
+      
+    </div>
+    
+    <div class="post">
+      <h1 class="post-title">
         <a href="http://abhipandey.com/2015/10/setting-up-custom-domain-with-github-pages/">Setting up custom domain with Github Pages</a>
       </h1>
       <span class="post-date">Oct 24, 2015  &middot; <a href="http://abhipandey.com/2015/10/setting-up-custom-domain-with-github-pages/#disqus_thread">Comments</a>
@@ -1291,90 +1349,6 @@ Hence, if you had to modify the <code>nginx</code> settings to allow bigger uplo
     <span style="color: #000000">client_max_body_size</span> <span style="color: #0000cf; font-weight: bold">0</span><span style="color: #000000; font-weight: bold">;</span>
 </pre></div>
 
-
-      
-    </div>
-    
-    <div class="post">
-      <h1 class="post-title">
-        <a href="http://abhipandey.com/2015/09/updating-django-source-with-docker-deployments/">Updating Django Source with Docker Deployments</a>
-      </h1>
-      <span class="post-date">Sep 4, 2015  &middot; <a href="http://abhipandey.com/2015/09/updating-django-source-with-docker-deployments/#disqus_thread">Comments</a>
-      
-      <br/>
-      <a class="a_cat" href="http://abhipandey.com/categories/code">code</a><a class="a_cat" href="http://abhipandey.com/categories/continuous-delivery">continuous delivery</a>
-        
-      <a class="a_tag" href="http://abhipandey.com/tags/docker">docker</a><a class="a_tag" href="http://abhipandey.com/tags/django">django</a><a class="a_tag" href="http://abhipandey.com/tags/uwsgi">uwsgi</a><a class="a_tag" href="http://abhipandey.com/tags/git">git</a><a class="a_tag" href="http://abhipandey.com/tags/supervisord">supervisord</a>
-    
-      </span>
-      
-      
-
-<p>While deploying docker multiple times, you may not want to copy over your <code>Django</code> source code every time you do a deployment.</p>
-
-<h1 id="setting-up-supervisord:8ef139736ad377184214844940ced19b">Setting up <code>supervisord</code></h1>
-
-<p>Luckily there is an easy way to manage this. Since you are working with <code>Django</code>, there is a good chance that you are also managing the processes (like <code>uwsgi</code>) with <code>supervisord</code>.</p>
-
-<p>Here are some of the steps that you can take with <code>supervisord</code></p>
-
-<ul>
-<li>Set up a new process in <code>supervisord</code></li>
-<li>Do not allow it to <em><code>autorestart</code></em> since it will be a one-shot process</li>
-<li>Call another script in any format to update the source code
-
-<ul>
-<li>As an example, I use <code>bash</code> to update my source code through <code>git</code></li>
-</ul></li>
-</ul>
-
-<p>Here&rsquo;s a sample code:</p>
-
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>    <span style="color: #ce5c00; font-weight: bold">[</span>program:source-updater<span style="color: #ce5c00; font-weight: bold">]</span>
-    <span style="color: #000000">redirect_stderr</span> <span style="color: #ce5c00; font-weight: bold">=</span> <span style="color: #204a87">true</span>
-    <span style="color: #000000">stdout_logfile</span> <span style="color: #ce5c00; font-weight: bold">=</span> /shared/source_code_updater.log
-    <span style="color: #000000">directory</span> <span style="color: #ce5c00; font-weight: bold">=</span> /ws/
-    <span style="color: #204a87">command</span> <span style="color: #ce5c00; font-weight: bold">=</span> /ws/source_code_updater.sh
-    <span style="color: #000000">autorestart</span><span style="color: #ce5c00; font-weight: bold">=</span>False
-</pre></div>
-
-
-<h1 id="updating-the-source-code:8ef139736ad377184214844940ced19b">Updating the source code</h1>
-
-<p>Few things are important to note in a <code>docker</code> deployment:</p>
-
-<ul>
-<li>Not every commit needs to be deployed</li>
-<li>Filter your commits to only allow <strong><em>deployable</em></strong> code to be updated on <code>docker</code></li>
-<li>Include regression, unit and system tests to be part of your build process</li>
-<li>Once everything has been confirmed to be working, tag your code so that you know it is worthy of going to docker</li>
-<li>Another way would be to manage this process through branches and merge only if everything passes</li>
-<li><code>docker</code> deployments would build off this merged branch or tagged version</li>
-<li>This way even if you have made 10 commits while fixing a bug and are still in the process of fixing it, you know it won&rsquo;t go to <code>docker</code> deployment</li>
-</ul>
-
-<p>With that idea, do a checkout and update the source code according to specific tag:</p>
-
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>    git checkout -f tags/your_tag_name
-    git pull origin tags/your_tag_name
-</pre></div>
-
-
-<h1 id="telling-uwsgi-about-the-updated-source-code:8ef139736ad377184214844940ced19b">Telling <code>uwsgi</code> about the updated source code</h1>
-
-<p>Once you have updated your source code, you need to re-load the project onto <code>uwsgi</code> so that <code>nginx</code> or <code>apache</code> can pick it up.
-The simplest way to achieve it using the config parameter of <code>uwsgi</code>: <code>--touch-reload</code>. It will <em>reload uWSGI if the specified file is modified/touched</em></p>
-
-<p>Just remember to setup <code>supervisord</code> in your <code>Dockerfile</code> with this config parameter.</p>
-
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #ce5c00; font-weight: bold">[</span>program:app-uwsgi<span style="color: #ce5c00; font-weight: bold">]</span>
-<span style="color: #000000">redirect_stderr</span> <span style="color: #ce5c00; font-weight: bold">=</span> <span style="color: #204a87">true</span>
-<span style="color: #000000">stdout_logfile</span> <span style="color: #ce5c00; font-weight: bold">=</span> /var/shared/_uwsgi.log
-<span style="color: #204a87">command</span> <span style="color: #ce5c00; font-weight: bold">=</span> /ws/ve_envs/rwv2/bin/uwsgi --touch-reload<span style="color: #ce5c00; font-weight: bold">=</span>/ws/wsgi.ini --ini /ws/wsgi.ini
-</pre></div>
-
-
-<p>You can choose any file. I choose <code>uwsgi.ini</code> because the contents never really need to change in it.</p>
 
       
     </div>

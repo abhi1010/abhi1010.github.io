@@ -247,6 +247,202 @@ You can do that with the following commands:&lt;/p&gt;
     </item>
     
     <item>
+      <title>Using TODO in Fedora</title>
+      <link>http://abhipandey.com/2016/06/using-todo-in-fedora/</link>
+      <pubDate>Wed, 22 Jun 2016 21:17:56 +0800</pubDate>
+      
+      <guid>http://abhipandey.com/2016/06/using-todo-in-fedora/</guid>
+      <description>
+
+&lt;p&gt;I recently started using Fedora for work and had to manage a lot of tasks on various projects.
+The list was big enough and there&amp;rsquo;s no proper support for Evernote in linux, my trusty todo list manager
+or ToDo list manager by AbstractSpoon. Decided to try post-it notes but my list was changing on an
+ad-hoc basis. Finally came across an &lt;a href=&#34;https://extensions.gnome.org/extension/570/todotxt/&#34;&gt;extension Todo.txt&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Turned out this was just what I was looking for. I started putting all of my tasks in it, with proper categorization.
+Behind the scenes it is an extremely simple app which has only two files, both saved in &lt;code&gt;~/.local/share/todo.txt/&lt;/code&gt; folder.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;done.txt&lt;/li&gt;
+&lt;li&gt;todo.txt&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The tasks are initially put as simple text in &lt;strong&gt;todo.txt&lt;/strong&gt; and are moved to &lt;strong&gt;done.txt&lt;/strong&gt; once marked complete.
+It is extremely useful that todo.txt app has UI as well as the files which are user friendly.&lt;/p&gt;
+
+&lt;h2 id=&#34;finding-tasks-completed-in-the-last-week:45bde4e2871e2b6baf64650e1fb2e828&#34;&gt;Finding tasks completed in the last week&lt;/h2&gt;
+
+&lt;p&gt;During weekly meetings I found it difficult to mention all the tasks that
+I had been working on for the whole of the previous week. Thinking about todo
+tasks, I thought of using a bash script to print out the tasks from the last
+ 8 days. After all, the files did contain a whole long list of tasks.&lt;/p&gt;
+
+&lt;p&gt;Here was the idea that I had in mind:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Read &lt;strong&gt;done.txt&lt;/strong&gt; and &lt;strong&gt;todo.txt&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Highlight the tasks differently from both files so it&amp;rsquo;s easy to
+see what has been completed already
+
+&lt;ul&gt;
+&lt;li&gt;Chose green color for done and red for todo&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Highlight the categories differently - chose yellow&lt;/li&gt;
+&lt;li&gt;Show all the tasks completed in the last 8 days
+
+&lt;ul&gt;
+&lt;li&gt;Also provide the option to chose any number of days&lt;/li&gt;
+&lt;li&gt;Helps on those days when I wanna see more than 8 days&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Show all the tasks in todo&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Here&amp;rsquo;s the script for that:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;todos&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;()&lt;/span&gt;
+&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;{&lt;/span&gt;
+    &lt;span style=&#34;color: #000000&#34;&gt;TODOFILE&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;~/.local/share/todo.txt/todo.txt
+    &lt;span style=&#34;color: #000000&#34;&gt;DONEFILE&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;~/.local/share/todo.txt/done.txt
+    &lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;# echo $TODOFILE&lt;/span&gt;
+    &lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;# echo $DONEFILE &amp;quot;\n&amp;quot;&lt;/span&gt;
+
+    lastXdays&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;()&lt;/span&gt;
+    &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;{&lt;/span&gt;
+        search&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;()&lt;/span&gt;•
+        &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;{&lt;/span&gt;
+            &lt;span style=&#34;color: #000000&#34;&gt;DAY&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;$1&lt;/span&gt;
+            cat &lt;span style=&#34;color: #000000&#34;&gt;$TODOFILE&lt;/span&gt; &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;GREP_COLOR&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;1;31&amp;quot;&lt;/span&gt; grep --color&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;always &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39; [a-Z[].*&amp;#39;&lt;/span&gt; &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;GREP_COLOR&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;3;33&amp;quot;&lt;/span&gt; grep --color&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;always  &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;\+.*&amp;quot;&lt;/span&gt;
+            egrep &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;$(&lt;/span&gt;date &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;+%Y-%m-%d&amp;#39;&lt;/span&gt; --date&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;$DAY&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39; days ago&amp;#39;&lt;/span&gt;&lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;)&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;$DONEFILE&lt;/span&gt; &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;GREP_COLOR&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;1;32&amp;quot;&lt;/span&gt; grep --color&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;always &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39; [a-Z].*&amp;#39;&lt;/span&gt; &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;GREP_COLOR&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;03;33&amp;quot;&lt;/span&gt; grep --color&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;always  &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;\+.*&amp;quot;&lt;/span&gt;
+        &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;}&lt;/span&gt;
+        &lt;span style=&#34;color: #000000&#34;&gt;END&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;$1&lt;/span&gt;
+        &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;for&lt;/span&gt; i in &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;$(&lt;/span&gt;seq &lt;span style=&#34;color: #0000cf; font-weight: bold&#34;&gt;0&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;$END&lt;/span&gt;&lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;)&lt;/span&gt;
+            &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;do&lt;/span&gt;
+                search &lt;span style=&#34;color: #000000&#34;&gt;$i&lt;/span&gt;
+            &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;done&lt;/span&gt;
+
+    &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;}&lt;/span&gt;
+    &lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;# First arg, if given, or default value of 8&lt;/span&gt;
+    &lt;span style=&#34;color: #000000&#34;&gt;DAYS&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;${&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;1&lt;/span&gt;&lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;:-&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;8&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;}&lt;/span&gt;
+    lastXdays &lt;span style=&#34;color: #000000&#34;&gt;$DAYS&lt;/span&gt; &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; sort -u
+&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Now, when I run this command, it gives me the following:&lt;/p&gt;
+
+
+&lt;figure &gt;
+    
+        &lt;img src=&#34;http://abhipandey.com/images/todo-in-fedora.png&#34; alt=&#34;My TODOs&#34; /&gt;
+    
+    
+    &lt;figcaption&gt;
+        &lt;p&gt;
+        My TODOs
+        
+            
+        
+        &lt;/p&gt; 
+    &lt;/figcaption&gt;
+    
+&lt;/figure&gt;
+
+
+&lt;h2 id=&#34;sharing-the-tasks:45bde4e2871e2b6baf64650e1fb2e828&#34;&gt;Sharing the tasks&lt;/h2&gt;
+
+&lt;p&gt;I work with different teams which means sharing with them the latest updates
+on different days of the week. I used to run my &lt;code&gt;todos&lt;/code&gt; command on bash
+before going for the meeting but I realized this was getting very mundane and
+I was spending a lot of time remembering the tasks I had done.&lt;/p&gt;
+
+&lt;p&gt;I decided to make it easy by sharing the tasks with the rest of the team
+automatically. Enter &lt;code&gt;crontab&lt;/code&gt; and &lt;em&gt;python&amp;rsquo;s&lt;/em&gt; &lt;code&gt;invoke&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Here are the steps we will need:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Setup cronjob&lt;/li&gt;
+&lt;li&gt;Cron job will call upon a bash script&lt;/li&gt;
+&lt;li&gt;Bash script will call &lt;em&gt;python&lt;/em&gt;&amp;rsquo;s invoke
+
+&lt;ul&gt;
+&lt;li&gt;Here we call upon a bash script to provide us the results of &lt;code&gt;todos&lt;/code&gt;
+in bash and then use that to send an email based on the &lt;code&gt;--mailgroup&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Simply taking the output of &lt;code&gt;todos&lt;/code&gt; in &lt;em&gt;bash&lt;/em&gt; will give us a lot of
+unreadable characters. Especially the ones where we try and color code
+the response so it&amp;rsquo;s easy on the eyes - &lt;strong&gt;3;33&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;You can install &lt;code&gt;aha&lt;/code&gt; to convert the ANSI terminal colors to html color
+codes. This way when we mail the contents to team members, it will display
+properly.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&#34;crontab:45bde4e2871e2b6baf64650e1fb2e828&#34;&gt;crontab&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #0000cf; font-weight: bold&#34;&gt;45&lt;/span&gt; &lt;span style=&#34;color: #0000cf; font-weight: bold&#34;&gt;09&lt;/span&gt; * * &lt;span style=&#34;color: #0000cf; font-weight: bold&#34;&gt;1&lt;/span&gt; /usr/bin/bash /PATH_TO_BASH_SCRIPT/crons.sh --mailgroup&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;&amp;lt;TEAM_MAIL&amp;gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3 id=&#34;crons-sh:45bde4e2871e2b6baf64650e1fb2e828&#34;&gt;crons.sh&lt;/h3&gt;
+
+&lt;p&gt;The &lt;code&gt;crons.sh&lt;/code&gt; itself is really simple, which calls upon the &lt;code&gt;invoke&lt;/code&gt; task:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;# ----- crons.sh --------&lt;/span&gt;
+&lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;# Activate the virtual env&lt;/span&gt;
+&lt;span style=&#34;color: #204a87&#34;&gt;source&lt;/span&gt; ~/code/venvs/ve_opt/bin/activate
+
+&lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;# Go to the directory containing the invoke script&lt;/span&gt;
+&lt;span style=&#34;color: #204a87&#34;&gt;cd&lt;/span&gt; ~/code/scripts/
+
+&lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;# Run the invoke, pass the cmd line params, as is (which means mailgroup)&lt;/span&gt;
+inv share_todos &lt;span style=&#34;color: #000000&#34;&gt;$*&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3 id=&#34;tasks-py:45bde4e2871e2b6baf64650e1fb2e828&#34;&gt;tasks.py&lt;/h3&gt;
+
+&lt;p&gt;Now it is time for contents of &lt;code&gt;invoke&lt;/code&gt;&amp;rsquo;s &lt;strong&gt;tasks.py&lt;/strong&gt;.
+We want to ensure that the font is big enough.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #5c35cc; font-weight: bold&#34;&gt;@task&lt;/span&gt;
+&lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;share_todos&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;mailgroup&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;):&lt;/span&gt;
+    &lt;span style=&#34;color: #000000&#34;&gt;process_out&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;subprocess&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;check_output&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;([&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;/FULL_PATH_TO/_htmltodos.sh&amp;#39;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;])&lt;/span&gt;\
+        &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;replace&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;&amp;lt;body&amp;gt;&amp;#39;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt;
+                 &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;&amp;lt;body style=&amp;quot;font-weight:900; font-size:1.3em;&amp;quot;&amp;gt;&amp;#39;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;)&lt;/span&gt;
+    &lt;span style=&#34;color: #000000&#34;&gt;mail&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;(&lt;/span&gt;
+        &lt;span style=&#34;color: #000000&#34;&gt;process_out&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt;
+        &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;My todos @ {}&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;format&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;datetime&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;datetime&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;now&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;()&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;strftime&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;%c&amp;#39;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;)),&lt;/span&gt;
+        &lt;span style=&#34;color: #000000&#34;&gt;mailgroup&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3 id=&#34;htmltodos-sh:45bde4e2871e2b6baf64650e1fb2e828&#34;&gt;_htmltodos.sh&lt;/h3&gt;
+
+&lt;p&gt;We will use &lt;code&gt;aha&lt;/code&gt; to convert the ANSI terminal colors to html color codes.
+Also, we will replace some color codes that &lt;code&gt;aha&lt;/code&gt; creates because
+it is not really nice looking.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;#!/usr/bin/bash&lt;/span&gt;
+&lt;span style=&#34;color: #204a87&#34;&gt;source&lt;/span&gt; ~/.bashrc
+
+todos &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; /usr/local/bin/aha &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; sed -e &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;s/color:olive/color:DeepSkyBlue; font-style:italic;/g&amp;#39;&lt;/span&gt; -e &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;s/color:green;/color:LimeGreen;/g&amp;#39;&lt;/span&gt; -e &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;s/&amp;lt;pre&amp;gt;/&amp;lt;pre style=&amp;quot;color:gray;&amp;quot;&amp;gt;/g&amp;#39;&lt;/span&gt;
+&lt;span style=&#34;color: #204a87&#34;&gt;exit&lt;/span&gt; 0
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3 id=&#34;the-result:45bde4e2871e2b6baf64650e1fb2e828&#34;&gt;The result&lt;/h3&gt;
+
+
+&lt;figure &gt;
+    
+        &lt;img src=&#34;http://abhipandey.com/images/todo-in-email.png&#34; alt=&#34;The email look&#34; /&gt;
+    
+    
+    &lt;figcaption&gt;
+        &lt;p&gt;
+        The email look
+        
+            
+        
+        &lt;/p&gt; 
+    &lt;/figcaption&gt;
+    
+&lt;/figure&gt;
+
+</description>
+    </item>
+    
+    <item>
       <title>Getting list of Issues from JIRA under current sprint</title>
       <link>http://abhipandey.com/2016/05/getting-list-of-issues-from-jira-under-current-sprint/</link>
       <pubDate>Fri, 13 May 2016 21:17:56 +0800</pubDate>
