@@ -1,0 +1,886 @@
+
+
+<!DOCTYPE html>
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<body>
+
+<div class="w3-container w3-orange">
+  <h1>Git Shortcuts</h1>
+  <p>Cheat Sheet</p>
+</div>
+
+<div class="w3-row-padding">
+
+
+
+
+<div class="w3-third">
+  <h2>git add</h2>
+
+    <table class="table table-bordered">
+
+        <tr>
+            <td>ga</td>
+            <td></td>
+        </tr>
+
+        <tr>
+            <td>gaa</td>
+            <td>--all</td>
+        </tr>
+
+        <tr>
+            <td>gapa</td>
+            <td>--patch</td>
+        </tr>
+
+        <tr>
+            <td>gwip</td>
+            <td>-A; git rm $(git ls-files --deleted) 2> /dev/null; git commit -m "--wip--"</td>
+        </tr>
+    </table>
+</div>
+
+
+<div class="w3-third">
+  <h2>git bisect</h2>
+
+    <table class="table table-bordered">
+
+        <tr>
+            <td>gbs</td>
+            <td></td>
+        </tr>
+
+        <tr>
+            <td>gbsb</td>
+            <td>bad</td>
+        </tr>
+
+        <tr>
+            <td>gbsg</td>
+            <td>good</td>
+        </tr>
+
+        <tr>
+            <td>gbsr</td>
+            <td>reset</td>
+        </tr>
+
+        <tr>
+            <td>gbss</td>
+            <td>start</td>
+        </tr>
+    </table>
+</div>
+
+
+<div class="w3-third">
+  <h2>git blame</h2>
+
+    <table class="table table-bordered">
+
+        <tr>
+            <td>gbl</td>
+            <td>-b -w</td>
+        </tr>
+    </table>
+</div>
+
+
+<div class="w3-third">
+  <h2>git branch</h2>
+
+    <table class="table table-bordered">
+
+        <tr>
+            <td>gb</td>
+            <td></td>
+        </tr>
+
+        <tr>
+            <td>gbda</td>
+            <td>--merged \| command grep -vE "^(\*\|\s*master\s*$)" \| command xargs -n 1 git branch -d</td>
+        </tr>
+
+        <tr>
+            <td>gbnm</td>
+            <td>--no-merged</td>
+        </tr>
+
+        <tr>
+            <td>gbr</td>
+            <td>--remote</td>
+        </tr>
+
+        <tr>
+            <td>ggsup</td>
+            <td>--set-upstream-to = origin/$(current_branch)</td>
+        </tr>
+
+        <tr>
+            <td>gba</td>
+            <td>-a</td>
+        </tr>
+    </table>
+</div>
+
+
+<div class="w3-third">
+  <h2>git checkout</h2>
+
+    <table class="table table-bordered">
+
+        <tr>
+            <td>gco</td>
+            <td></td>
+        </tr>
+
+        <tr>
+            <td>gcb</td>
+            <td>-b</td>
+        </tr>
+
+        <tr>
+            <td>gcd</td>
+            <td>develop</td>
+        </tr>
+
+        <tr>
+            <td>gcm</td>
+            <td>master</td>
+        </tr>
+    </table>
+</div>
+
+
+<div class="w3-third">
+  <h2>git cherry-pick</h2>
+
+    <table class="table table-bordered">
+
+        <tr>
+            <td>gcp</td>
+            <td></td>
+        </tr>
+
+        <tr>
+            <td>gcpa</td>
+            <td>--abort</td>
+        </tr>
+
+        <tr>
+            <td>gcpc</td>
+            <td>--continue</td>
+        </tr>
+    </table>
+</div>
+
+
+<div class="w3-third">
+  <h2>git clean</h2>
+
+    <table class="table table-bordered">
+
+        <tr>
+            <td>gclean</td>
+            <td>-df</td>
+        </tr>
+    </table>
+</div>
+
+
+<div class="w3-third">
+  <h2>git clone</h2>
+
+    <table class="table table-bordered">
+
+        <tr>
+            <td>gcl</td>
+            <td>--recursive</td>
+        </tr>
+    </table>
+</div>
+
+
+<div class="w3-third">
+  <h2>git commit</h2>
+
+    <table class="table table-bordered">
+
+        <tr>
+            <td>gcs</td>
+            <td>-S</td>
+        </tr>
+
+        <tr>
+            <td>gcam</td>
+            <td>-a -m</td>
+        </tr>
+
+        <tr>
+            <td>gcmsg</td>
+            <td>-m</td>
+        </tr>
+
+        <tr>
+            <td>gc</td>
+            <td>-v</td>
+        </tr>
+
+        <tr>
+            <td>gc!</td>
+            <td>-v --amend</td>
+        </tr>
+
+        <tr>
+            <td>gca</td>
+            <td>-v -a</td>
+        </tr>
+
+        <tr>
+            <td>gca!</td>
+            <td>-v -a --amend</td>
+        </tr>
+
+        <tr>
+            <td>gcan!</td>
+            <td>-v -a -s --no-edit --amend</td>
+        </tr>
+    </table>
+</div>
+
+
+<div class="w3-third">
+  <h2>git config</h2>
+
+    <table class="table table-bordered">
+
+        <tr>
+            <td>gcf</td>
+            <td>--list</td>
+        </tr>
+    </table>
+</div>
+
+
+<div class="w3-third">
+  <h2>git diff</h2>
+
+    <table class="table table-bordered">
+
+        <tr>
+            <td>gd</td>
+            <td></td>
+        </tr>
+
+        <tr>
+            <td>gdca</td>
+            <td>--cached</td>
+        </tr>
+
+        <tr>
+            <td>gdw</td>
+            <td>--word-diff</td>
+        </tr>
+    </table>
+</div>
+
+
+<div class="w3-third">
+  <h2>git diff-tree</h2>
+
+    <table class="table table-bordered">
+
+        <tr>
+            <td>gdt</td>
+            <td>--no-commit-id --name-only -r</td>
+        </tr>
+    </table>
+</div>
+
+
+<div class="w3-third">
+  <h2>git fetch</h2>
+
+    <table class="table table-bordered">
+
+        <tr>
+            <td>gf</td>
+            <td></td>
+        </tr>
+
+        <tr>
+            <td>gfa</td>
+            <td>--all --prune</td>
+        </tr>
+
+        <tr>
+            <td>gfo</td>
+            <td>origin</td>
+        </tr>
+    </table>
+</div>
+
+
+<div class="w3-third">
+  <h2>git gui</h2>
+
+    <table class="table table-bordered">
+
+        <tr>
+            <td>gg</td>
+            <td>citool</td>
+        </tr>
+
+        <tr>
+            <td>gga</td>
+            <td>citool --amend</td>
+        </tr>
+    </table>
+</div>
+
+
+<div class="w3-third">
+  <h2>git help</h2>
+
+    <table class="table table-bordered">
+
+        <tr>
+            <td>ghh</td>
+            <td></td>
+        </tr>
+    </table>
+</div>
+
+
+<div class="w3-third">
+  <h2>git log</h2>
+
+    <table class="table table-bordered">
+
+        <tr>
+            <td>glgg</td>
+            <td>--graph --color</td>
+        </tr>
+
+        <tr>
+            <td>glgga</td>
+            <td>--graph --decorate --all</td>
+        </tr>
+
+        <tr>
+            <td>glgm</td>
+            <td>--graph --max-count = 10</td>
+        </tr>
+
+        <tr>
+            <td>glol</td>
+            <td>--graph --pretty = format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit</td>
+        </tr>
+
+        <tr>
+            <td>glola</td>
+            <td>--graph --pretty = format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --all</td>
+        </tr>
+
+        <tr>
+            <td>glo</td>
+            <td>--oneline --decorate --color</td>
+        </tr>
+
+        <tr>
+            <td>glog</td>
+            <td>--oneline --decorate --color --graph</td>
+        </tr>
+
+        <tr>
+            <td>glg</td>
+            <td>--stat --color</td>
+        </tr>
+
+        <tr>
+            <td>glgp</td>
+            <td>--stat --color -p</td>
+        </tr>
+
+        <tr>
+            <td>gunwip</td>
+            <td>-n 1 \| grep -q -c "\-\-wip\-\-" && git reset HEAD~1</td>
+        </tr>
+    </table>
+</div>
+
+
+<div class="w3-third">
+  <h2>git ls-files</h2>
+
+    <table class="table table-bordered">
+
+        <tr>
+            <td>gignored</td>
+            <td>-v \| grep "^[[:lower:]]"</td>
+        </tr>
+    </table>
+</div>
+
+
+<div class="w3-third">
+  <h2>git merge</h2>
+
+    <table class="table table-bordered">
+
+        <tr>
+            <td>gm</td>
+            <td></td>
+        </tr>
+
+        <tr>
+            <td>gmom</td>
+            <td>origin/master</td>
+        </tr>
+
+        <tr>
+            <td>gmum</td>
+            <td>upstream/master</td>
+        </tr>
+    </table>
+</div>
+
+
+<div class="w3-third">
+  <h2>git mergetool</h2>
+
+    <table class="table table-bordered">
+
+        <tr>
+            <td>gmt</td>
+            <td>--no-prompt</td>
+        </tr>
+
+        <tr>
+            <td>gmtvim</td>
+            <td>--no-prompt --tool = vimdiff</td>
+        </tr>
+    </table>
+</div>
+
+
+<div class="w3-third">
+  <h2>MISC</h2>
+
+    <table class="table table-bordered">
+
+        <tr>
+            <td>gke</td>
+            <td>\gitk --all $(git log -g --pretty = format:%h)</td>
+        </tr>
+
+        <tr>
+            <td>gk</td>
+            <td>\gitk --all --branches</td>
+        </tr>
+
+        <tr>
+            <td>glp</td>
+            <td>_git_log_prettily</td>
+        </tr>
+
+        <tr>
+            <td>grt</td>
+            <td>cd $(git rev-parse --show-toplevel \|\| echo ".")</td>
+        </tr>
+
+        <tr>
+            <td>ggpull</td>
+            <td>ggl</td>
+        </tr>
+
+        <tr>
+            <td>ggpush</td>
+            <td>ggp</td>
+        </tr>
+
+        <tr>
+            <td>ggpur</td>
+            <td>ggu</td>
+        </tr>
+    </table>
+</div>
+
+
+<div class="w3-third">
+  <h2>git pull</h2>
+
+    <table class="table table-bordered">
+
+        <tr>
+            <td>gl</td>
+            <td></td>
+        </tr>
+
+        <tr>
+            <td>gup</td>
+            <td>--rebase</td>
+        </tr>
+
+        <tr>
+            <td>gupv</td>
+            <td>--rebase -v</td>
+        </tr>
+
+        <tr>
+            <td>glum</td>
+            <td>upstream master</td>
+        </tr>
+    </table>
+</div>
+
+
+<div class="w3-third">
+  <h2>git push</h2>
+
+    <table class="table table-bordered">
+
+        <tr>
+            <td>gp</td>
+            <td></td>
+        </tr>
+
+        <tr>
+            <td>gpd</td>
+            <td>--dry-run</td>
+        </tr>
+
+        <tr>
+            <td>gpsup</td>
+            <td>--set-upstream origin $(current_branch)</td>
+        </tr>
+
+        <tr>
+            <td>gpv</td>
+            <td>-v</td>
+        </tr>
+
+        <tr>
+            <td>gpoat</td>
+            <td>origin --all && git push origin --tags</td>
+        </tr>
+
+        <tr>
+            <td>gpu</td>
+            <td>upstream</td>
+        </tr>
+    </table>
+</div>
+
+
+<div class="w3-third">
+  <h2>git rebase</h2>
+
+    <table class="table table-bordered">
+
+        <tr>
+            <td>grb</td>
+            <td></td>
+        </tr>
+
+        <tr>
+            <td>grba</td>
+            <td>--abort</td>
+        </tr>
+
+        <tr>
+            <td>grbc</td>
+            <td>--continue</td>
+        </tr>
+
+        <tr>
+            <td>grbs</td>
+            <td>--skip</td>
+        </tr>
+
+        <tr>
+            <td>grbi</td>
+            <td>-i</td>
+        </tr>
+
+        <tr>
+            <td>grbm</td>
+            <td>master</td>
+        </tr>
+    </table>
+</div>
+
+
+<div class="w3-third">
+  <h2>git remote</h2>
+
+    <table class="table table-bordered">
+
+        <tr>
+            <td>gr</td>
+            <td></td>
+        </tr>
+
+        <tr>
+            <td>grv</td>
+            <td>-v</td>
+        </tr>
+
+        <tr>
+            <td>gra</td>
+            <td>add</td>
+        </tr>
+
+        <tr>
+            <td>grrm</td>
+            <td>remove</td>
+        </tr>
+
+        <tr>
+            <td>grmv</td>
+            <td>rename</td>
+        </tr>
+
+        <tr>
+            <td>grset</td>
+            <td>set-url</td>
+        </tr>
+
+        <tr>
+            <td>grup</td>
+            <td>update</td>
+        </tr>
+    </table>
+</div>
+
+
+<div class="w3-third">
+  <h2>git reset</h2>
+
+    <table class="table table-bordered">
+
+        <tr>
+            <td>gru</td>
+            <td>--</td>
+        </tr>
+
+        <tr>
+            <td>gpristine</td>
+            <td>--hard && git clean -dfx</td>
+        </tr>
+
+        <tr>
+            <td>grh</td>
+            <td>HEAD</td>
+        </tr>
+
+        <tr>
+            <td>grhh</td>
+            <td>HEAD --hard</td>
+        </tr>
+    </table>
+</div>
+
+
+<div class="w3-third">
+  <h2>git shortlog</h2>
+
+    <table class="table table-bordered">
+
+        <tr>
+            <td>gcount</td>
+            <td>-sn</td>
+        </tr>
+    </table>
+</div>
+
+
+<div class="w3-third">
+  <h2>git show</h2>
+
+    <table class="table table-bordered">
+
+        <tr>
+            <td>gsps</td>
+            <td>--pretty = short --show-signature</td>
+        </tr>
+    </table>
+</div>
+
+
+<div class="w3-third">
+  <h2>git stash</h2>
+
+    <table class="table table-bordered">
+
+        <tr>
+            <td>gsta</td>
+            <td></td>
+        </tr>
+
+        <tr>
+            <td>gstaa</td>
+            <td>apply</td>
+        </tr>
+
+        <tr>
+            <td>gstc</td>
+            <td>clear</td>
+        </tr>
+
+        <tr>
+            <td>gstd</td>
+            <td>drop</td>
+        </tr>
+
+        <tr>
+            <td>gstl</td>
+            <td>list</td>
+        </tr>
+
+        <tr>
+            <td>gstp</td>
+            <td>pop</td>
+        </tr>
+
+        <tr>
+            <td>gsts</td>
+            <td>show --text</td>
+        </tr>
+    </table>
+</div>
+
+
+<div class="w3-third">
+  <h2>git status</h2>
+
+    <table class="table table-bordered">
+
+        <tr>
+            <td>gst</td>
+            <td></td>
+        </tr>
+
+        <tr>
+            <td>gss</td>
+            <td>-s</td>
+        </tr>
+
+        <tr>
+            <td>gsb</td>
+            <td>-sb</td>
+        </tr>
+    </table>
+</div>
+
+
+<div class="w3-third">
+  <h2>git submodule</h2>
+
+    <table class="table table-bordered">
+
+        <tr>
+            <td>gsi</td>
+            <td>init</td>
+        </tr>
+
+        <tr>
+            <td>gsu</td>
+            <td>update</td>
+        </tr>
+    </table>
+</div>
+
+
+<div class="w3-third">
+  <h2>git svn</h2>
+
+    <table class="table table-bordered">
+
+        <tr>
+            <td>gsd</td>
+            <td>dcommit</td>
+        </tr>
+
+        <tr>
+            <td>git-svn-dcommit-push</td>
+            <td>dcommit && git push github master:svntrunk</td>
+        </tr>
+
+        <tr>
+            <td>gsr</td>
+            <td>rebase</td>
+        </tr>
+    </table>
+</div>
+
+
+<div class="w3-third">
+  <h2>git tag</h2>
+
+    <table class="table table-bordered">
+
+        <tr>
+            <td>gts</td>
+            <td>-s</td>
+        </tr>
+    </table>
+</div>
+
+
+<div class="w3-third">
+  <h2>git update-index</h2>
+
+    <table class="table table-bordered">
+
+        <tr>
+            <td>gignore</td>
+            <td>--assume-unchanged</td>
+        </tr>
+
+        <tr>
+            <td>gunignore</td>
+            <td>--no-assume-unchanged</td>
+        </tr>
+    </table>
+</div>
+
+
+<div class="w3-third">
+  <h2>git verify-tag</h2>
+
+    <table class="table table-bordered">
+
+        <tr>
+            <td>gvt</td>
+            <td></td>
+        </tr>
+    </table>
+</div>
+
+
+<div class="w3-third">
+  <h2>git whatchanged</h2>
+
+    <table class="table table-bordered">
+
+        <tr>
+            <td>gwch</td>
+            <td>-p --abbrev-commit --pretty = medium</td>
+        </tr>
+    </table>
+</div>
+
+</div>
+
+</body>
+</html>
