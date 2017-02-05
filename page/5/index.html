@@ -90,6 +90,61 @@
     
     <div class="post">
       <h1 class="post-title">
+        <a href="http://abhipandey.com/2013/07/cvs-cheat-sheet/">CVS Cheat Sheet</a>
+      </h1>
+      <span class="post-date">Jul 3, 2013  &middot; <a href="http://abhipandey.com/2013/07/cvs-cheat-sheet/#disqus_thread">Comments</a>
+      
+      <br/>
+      <a class="a_cat" href="http://abhipandey.com/categories/code">code</a><a class="a_cat" href="http://abhipandey.com/categories/tips">tips</a>
+        
+      <a class="a_tag" href="http://abhipandey.com/tags/bash">bash</a><a class="a_tag" href="http://abhipandey.com/tags/cvs">cvs</a>
+    
+      </span>
+      
+      <p>I&rsquo;ve worked on CVS for a long time now and figured out that I&rsquo;d save a lot of time if I started writing alias or functions for the numerous tasks that I did on them. I will put down some of them here so you may benefit from them.</p>
+
+<p><em>Silently update and inform about the status of the files (recursive)</em></p>
+
+<pre><code>cvs -q -n update
+</code></pre>
+
+<p><em>Same as earlier but will only do so for the current folder</em></p>
+
+<pre><code>cvs -Q -n update -l
+</code></pre>
+
+<p><em>Finds out the cv[s] [m]odified list of files while also indentating them nicely with only the important data pulled out</em></p>
+
+<pre><code>cvs -Q status | egrep &quot;File: &quot; -A 4 | egrep -v &quot;Up-to-date&quot; | egrep &quot;File: &quot; -A 3 | sed -e &quot;s/ Status:/\t\tStatus:/&quot; -e &quot;s/,v$/\n-------------------------------------------------------------------------\n/&quot; -e &quot;s/.*${PWD##*/}\//Location:\t\t /&quot; -e &quot;s/Attic\///&quot; | egrep &quot;Location:|Repository|Status:|File:|--------
+</code></pre>
+
+<p><em>Recursively add all files to CVS for committing from the current directory</em></p>
+
+<pre><code>find . -type d -print | grep -v CVS | xargs cvs add
+</code></pre>
+
+<p><em>Doing a side by side diff (change the value of -W according to the width of the screen)</em></p>
+
+<pre><code>cvs -Q diff -t -y --suppress-common-lines -W 190 $*
+</code></pre>
+
+<p><em>Merging code from one branch to another</em></p>
+
+<pre><code># Creates a command that you can use to &quot;merge&quot; your code from dev head to this current branch.   
+# Ideally you want to run this command from a folder where you want the code to merge to....   
+merge()   
+{   
+BRANCH=$(cat CVS/Tag | cut -c2-)   
+CMD=$(echo cvs update -j $BRANCH -j Version_2_17_dev .)   
+echo $CMD   
+}   
+</code></pre>
+
+      
+    </div>
+    
+    <div class="post">
+      <h1 class="post-title">
         <a href="http://abhipandey.com/2013/06/cursor-control-in-vim-search/">Cursor Control in VIM Search</a>
       </h1>
       <span class="post-date">Jun 11, 2013  &middot; <a href="http://abhipandey.com/2013/06/cursor-control-in-vim-search/#disqus_thread">Comments</a>
@@ -1261,35 +1316,6 @@
 </tr>
 </tbody>
 </table></p>
-
-      
-    </div>
-    
-    <div class="post">
-      <h1 class="post-title">
-        <a href="http://abhipandey.com/2008/05/visual-studio-2008-crashes-while-adding-items/">Visual Studio 2008 crashes while adding items</a>
-      </h1>
-      <span class="post-date">May 14, 2008  &middot; <a href="http://abhipandey.com/2008/05/visual-studio-2008-crashes-while-adding-items/#disqus_thread">Comments</a>
-      
-      <br/>
-      <a class="a_cat" href="http://abhipandey.com/categories/code">code</a>
-        
-      <a class="a_tag" href="http://abhipandey.com/tags/c-sharp">c-sharp</a><a class="a_tag" href="http://abhipandey.com/tags/visual-studio">visual studio</a>
-    
-      </span>
-      
-      <p>Had this problem cropping up since months where I was trying to add items to Visual Studio 2008 Toolbox and it kept crashing.</p>
-
-<p>Finally got a work around, you should start it in safe mode. Here&rsquo;s the procedure:</p>
-
-<pre><code>devenv /safemode
-</code></pre>
-
-<p>Then use Choose Items on toolbox and run through each of the tabs. Once you
-accept any exceptions raised on loading controls, you can then open Visual
-Studio normally and add items.</p>
-
-<p>The reason for this has to be pretty simple - I have installed way too many beta/refresh version on Visual Studio 2008, something had to give up. I can&rsquo;t really complain.</p>
 
       
     </div>

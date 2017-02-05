@@ -6,8 +6,77 @@
     <description>Recent content in Tips on Coders Digest</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 22 Jun 2016 21:17:56 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 13 Nov 2016 00:33:29 +0800</lastBuildDate>
     <atom:link href="http://abhipandey.com/tags/tips/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Running invoke from other folders</title>
+      <link>http://abhipandey.com/2016/11/running-invoke-from-other-folders/</link>
+      <pubDate>Sun, 13 Nov 2016 00:33:29 +0800</pubDate>
+      
+      <guid>http://abhipandey.com/2016/11/running-invoke-from-other-folders/</guid>
+      <description>&lt;p&gt;While working on big projects, sometimes, you have &lt;code&gt;invoke&lt;/code&gt; tasks lying around
+in different places. It wouldn&amp;rsquo;t make sense to merge them together
+but rather help each other out as and when needed.&lt;/p&gt;
+
+&lt;p&gt;One such way for this would be to search for invoke tasks from other folders
+and run them directly when they can be used.&lt;/p&gt;
+
+&lt;p&gt;I had to go for this approach for a monolithic repo where multiple projects
+were being built in mostly similar style with minor modifications.
+All of them would have the same set of commands along with same style of running those commands.
+I didn&amp;rsquo;t want to set up the same &lt;code&gt;invoke&lt;/code&gt; task for all individual projects but rather
+a common set of tasks that could be re-used by each one of them.&lt;/p&gt;
+
+&lt;p&gt;Hence, here&amp;rsquo;s what I did:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;I knew for a fact that most sub-projects needed the same command to build themselves.
+I didn&amp;rsquo;t want to use the same command over and over again in each of the projects.
+I would rather use the command in the general space and override it only when a sub-project
+requires a special version of the build command.&lt;/li&gt;
+&lt;li&gt;When the general &lt;code&gt;invoke&lt;/code&gt; was called to do any task, it would first check
+whether, the sub-project for which the command was to run, the command was already
+available for the given sub-project itself.
+
+&lt;ul&gt;
+&lt;li&gt;If yes, this would mean that sub-project intends to
+override the default command in it&amp;rsquo;s own style&lt;/li&gt;
+&lt;li&gt;If no, then the default version is to run&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;em&gt;Here&amp;rsquo;s the simplilfied version of the code.&lt;/em&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;import&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;subproces&lt;/span&gt;
+&lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;import&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;os&lt;/span&gt;
+
+&lt;span style=&#34;color: #5c35cc; font-weight: bold&#34;&gt;@contextmanager&lt;/span&gt;
+&lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;cd&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;path&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;):&lt;/span&gt;
+    &lt;span style=&#34;color: #000000&#34;&gt;old&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;os&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;getcwd&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;()&lt;/span&gt;
+    &lt;span style=&#34;color: #000000&#34;&gt;os&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;chdir&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;path&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;)&lt;/span&gt;
+    &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;try&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt;
+        &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;yield&lt;/span&gt;
+    &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;finally&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt;
+        &lt;span style=&#34;color: #000000&#34;&gt;os&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;chdir&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;old&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;)&lt;/span&gt;
+
+
+&lt;span style=&#34;color: #5c35cc; font-weight: bold&#34;&gt;@task&lt;/span&gt;
+&lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;build&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;():&lt;/span&gt;
+    &lt;span style=&#34;color: #000000&#34;&gt;folder_to_run_the_command_on&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;/home/folder&amp;#39;&lt;/span&gt;
+    &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;with&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;cd&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;folder_to_run_the_command_on&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;):&lt;/span&gt;
+        &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;print&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;Finding tasks...&amp;#39;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;)&lt;/span&gt;
+        &lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;# List all the possible commands that you can run on that folder&lt;/span&gt;
+        &lt;span style=&#34;color: #000000&#34;&gt;res&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;subprocess&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;check_output&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;([&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;invoke&amp;#39;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt; &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;-l&amp;#39;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;])&lt;/span&gt;
+        &lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;# does it contain this command that we need to run?&lt;/span&gt;
+        &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;build&amp;#39;&lt;/span&gt;  &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;in&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;res&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt;
+            &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;print&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;Found the build command in &amp;quot;{}&amp;quot; folder&amp;#39;&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;format&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;folder_to_run_the_command_on&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;)&lt;/span&gt;
+            &lt;span style=&#34;color: #000000&#34;&gt;run&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;invoke build&amp;#39;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;)&lt;/span&gt;
+        &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;else&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt;
+            &lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;# we need to run the generic version of build command&lt;/span&gt;
+            &lt;span style=&#34;color: #000000&#34;&gt;build_internal&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;()&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+</description>
+    </item>
     
     <item>
       <title>Using TODO in Fedora</title>

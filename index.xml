@@ -6,8 +6,77 @@
     <description>Recent content on Coders Digest</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 07 Jul 2016 23:26:44 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 13 Nov 2016 00:33:29 +0800</lastBuildDate>
     <atom:link href="http://abhipandey.com/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Running invoke from other folders</title>
+      <link>http://abhipandey.com/2016/11/running-invoke-from-other-folders/</link>
+      <pubDate>Sun, 13 Nov 2016 00:33:29 +0800</pubDate>
+      
+      <guid>http://abhipandey.com/2016/11/running-invoke-from-other-folders/</guid>
+      <description>&lt;p&gt;While working on big projects, sometimes, you have &lt;code&gt;invoke&lt;/code&gt; tasks lying around
+in different places. It wouldn&amp;rsquo;t make sense to merge them together
+but rather help each other out as and when needed.&lt;/p&gt;
+
+&lt;p&gt;One such way for this would be to search for invoke tasks from other folders
+and run them directly when they can be used.&lt;/p&gt;
+
+&lt;p&gt;I had to go for this approach for a monolithic repo where multiple projects
+were being built in mostly similar style with minor modifications.
+All of them would have the same set of commands along with same style of running those commands.
+I didn&amp;rsquo;t want to set up the same &lt;code&gt;invoke&lt;/code&gt; task for all individual projects but rather
+a common set of tasks that could be re-used by each one of them.&lt;/p&gt;
+
+&lt;p&gt;Hence, here&amp;rsquo;s what I did:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;I knew for a fact that most sub-projects needed the same command to build themselves.
+I didn&amp;rsquo;t want to use the same command over and over again in each of the projects.
+I would rather use the command in the general space and override it only when a sub-project
+requires a special version of the build command.&lt;/li&gt;
+&lt;li&gt;When the general &lt;code&gt;invoke&lt;/code&gt; was called to do any task, it would first check
+whether, the sub-project for which the command was to run, the command was already
+available for the given sub-project itself.
+
+&lt;ul&gt;
+&lt;li&gt;If yes, this would mean that sub-project intends to
+override the default command in it&amp;rsquo;s own style&lt;/li&gt;
+&lt;li&gt;If no, then the default version is to run&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;em&gt;Here&amp;rsquo;s the simplilfied version of the code.&lt;/em&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;import&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;subproces&lt;/span&gt;
+&lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;import&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;os&lt;/span&gt;
+
+&lt;span style=&#34;color: #5c35cc; font-weight: bold&#34;&gt;@contextmanager&lt;/span&gt;
+&lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;cd&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;path&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;):&lt;/span&gt;
+    &lt;span style=&#34;color: #000000&#34;&gt;old&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;os&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;getcwd&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;()&lt;/span&gt;
+    &lt;span style=&#34;color: #000000&#34;&gt;os&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;chdir&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;path&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;)&lt;/span&gt;
+    &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;try&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt;
+        &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;yield&lt;/span&gt;
+    &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;finally&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt;
+        &lt;span style=&#34;color: #000000&#34;&gt;os&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;chdir&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;old&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;)&lt;/span&gt;
+
+
+&lt;span style=&#34;color: #5c35cc; font-weight: bold&#34;&gt;@task&lt;/span&gt;
+&lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;build&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;():&lt;/span&gt;
+    &lt;span style=&#34;color: #000000&#34;&gt;folder_to_run_the_command_on&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;/home/folder&amp;#39;&lt;/span&gt;
+    &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;with&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;cd&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;folder_to_run_the_command_on&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;):&lt;/span&gt;
+        &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;print&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;Finding tasks...&amp;#39;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;)&lt;/span&gt;
+        &lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;# List all the possible commands that you can run on that folder&lt;/span&gt;
+        &lt;span style=&#34;color: #000000&#34;&gt;res&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;subprocess&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;check_output&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;([&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;invoke&amp;#39;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt; &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;-l&amp;#39;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;])&lt;/span&gt;
+        &lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;# does it contain this command that we need to run?&lt;/span&gt;
+        &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;build&amp;#39;&lt;/span&gt;  &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;in&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;res&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt;
+            &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;print&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;Found the build command in &amp;quot;{}&amp;quot; folder&amp;#39;&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;format&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;folder_to_run_the_command_on&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;)&lt;/span&gt;
+            &lt;span style=&#34;color: #000000&#34;&gt;run&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;invoke build&amp;#39;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;)&lt;/span&gt;
+        &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;else&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt;
+            &lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;# we need to run the generic version of build command&lt;/span&gt;
+            &lt;span style=&#34;color: #000000&#34;&gt;build_internal&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;()&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+</description>
+    </item>
     
     <item>
       <title>Systemd tutorial</title>
@@ -1775,102 +1844,6 @@ $ locale
 &lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;    ☃
 &lt;/pre&gt;&lt;/div&gt;
 
-</description>
-    </item>
-    
-    <item>
-      <title>Automated Git Mirror With GitHub or Gitlab or Bitbucket</title>
-      <link>http://abhipandey.com/2015/09/automated-git-mirror-with-github-or-gitlab-or-bitbucket/</link>
-      <pubDate>Sun, 27 Sep 2015 13:30:10 +0800</pubDate>
-      
-      <guid>http://abhipandey.com/2015/09/automated-git-mirror-with-github-or-gitlab-or-bitbucket/</guid>
-      <description>
-
-&lt;h1 id=&#34;experience-with-gitlab-ci:e8d2b63c4e2d32c203d45ddfe7306ca8&#34;&gt;Experience with Gitlab CI&lt;/h1&gt;
-
-
-&lt;figure &gt;
-    
-        &lt;img src=&#34;http://abhipandey.com/images/git_mirror_with_gitlab__ci.png&#34; alt=&#34;Git Mirror from Gitlab to Bitbucket using Gitlab CI&#34; /&gt;
-    
-    
-    &lt;figcaption&gt;
-        &lt;p&gt;
-        Git Mirror from Gitlab to Bitbucket using Gitlab CI
-        
-            
-        
-        &lt;/p&gt; 
-    &lt;/figcaption&gt;
-    
-&lt;/figure&gt;
-
-
-&lt;p&gt;Had to move from &lt;code&gt;BitBucket&lt;/code&gt; to &lt;code&gt;Gitlab&lt;/code&gt;; which is really great, btw. However, there was one tiny issue here - &lt;code&gt;Gitlab&lt;/code&gt; was not supported by &lt;code&gt;Shippable&lt;/code&gt;.
-As you may know already &lt;code&gt;Shippable&lt;/code&gt; is a hosted cloud platform that provides hosted continuous integration.
-We use it in our current setup to do a full testing and deployment onto &lt;code&gt;AWS Elastic Beanstalk&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;Since we were moving to &lt;code&gt;Gitlab&lt;/code&gt; I wanted to continue using &lt;code&gt;Shippable&lt;/code&gt; for our prod deployments. &lt;code&gt;Shippable&lt;/code&gt; only supports &lt;code&gt;Github&lt;/code&gt; or &lt;code&gt;Bitbucket&lt;/code&gt; and therein lies the problem.
-&lt;code&gt;Gitlab&lt;/code&gt; did not work with &lt;code&gt;Circl CI&lt;/code&gt; or &lt;code&gt;Travis CI&lt;/code&gt; or &lt;code&gt;Shippable&lt;/code&gt; or &lt;code&gt;Wercker&lt;/code&gt; so I tried using &lt;code&gt;Gitlab CI&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;However, there were some issues with it:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Runs the tasks as standalone but are not part of a &lt;code&gt;Docker&lt;/code&gt; process
-
-&lt;ul&gt;
-&lt;li&gt;This means &lt;code&gt;Gitlab CI&lt;/code&gt; does not work similar to &lt;code&gt;Circl CI&lt;/code&gt; or &lt;code&gt;Travis CI&lt;/code&gt; or &lt;code&gt;Shippable&lt;/code&gt; or &lt;code&gt;Wercker&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;Sometimes CI takes long to be triggered even though it registers you to be running right after your commit&lt;/li&gt;
-&lt;li&gt;The terms are a bit different compared to the other cloud based continuous integration sites
-
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;Gitlab CI&lt;/code&gt; supposedly tries to improve upon other tools but in the process ensures that you need to learn CI again if you want to use them&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;I tried using the same yaml was &lt;code&gt;Shippable&lt;/code&gt; but it was just not working with too many errors being reported and not to mention, having to wait for an hour during the worst period to see results.
-&lt;code&gt;Shippable&lt;/code&gt; on the other hand, would hand over the console and results within 5 minutes of my commits. Decided to ditch &lt;code&gt;Gitlab CI&lt;/code&gt;.&lt;/p&gt;
-
-&lt;h1 id=&#34;using-git-mirror:e8d2b63c4e2d32c203d45ddfe7306ca8&#34;&gt;Using Git Mirror&lt;/h1&gt;
-
-&lt;p&gt;Since &lt;code&gt;Gitlab CI&lt;/code&gt; was clearing not working I decided to continue using &lt;code&gt;Shippable&lt;/code&gt;. The only issue was, code had to exist in &lt;code&gt;Bitbucket&lt;/code&gt;.
- For that, I needed a git mirror from &lt;code&gt;Gitlab&lt;/code&gt; to &lt;code&gt;Bitbucket&lt;/code&gt;. Looking into docs I found this link - &lt;a href=&#34;http://docs.shippable.com/using_gitlab/&#34;&gt;http://docs.shippable.com/using_gitlab/&lt;/a&gt;.
- Other options mentioned setting up configs to add a mirror. For example, look here:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://stackoverflow.com/questions/21551929/how-to-make-a-github-mirror-to-bitbucket&#34;&gt;http://stackoverflow.com/questions/21551929/how-to-make-a-github-mirror-to-bitbucket&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/git-mirror-sync/git-mirror-sync&#34;&gt;git mirror sync as a service&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://stackoverflow.com/questions/22906917/how-to-move-git-repository-with-all-branches-from-bitbucket-to-github&#34;&gt;http://stackoverflow.com/questions/22906917/how-to-move-git-repository-with-all-branches-from-bitbucket-to-github&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;I had a major problem with all the options - every developer had to set it up for this to work on every commit.&lt;/p&gt;
-
-&lt;p&gt;I looked into webhooks and triggers on &lt;code&gt;Gitlab&lt;/code&gt; but webhooks would have old code (unless I updated the code manually before loading).&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Finally, the only way I saw fit to fix this issue was the &lt;code&gt;Gitlab CI&lt;/code&gt; itself.&lt;/strong&gt; I set up a git push as a one-step CI on &lt;code&gt;Gitlab&lt;/code&gt; itself.
- This would do the following:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;A commit on &lt;code&gt;Gitlab&lt;/code&gt; leads to CI enabling this &lt;code&gt;git push --mirror&lt;/code&gt; through the file &lt;code&gt;.gitlab-ci.yml&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;When the commit is mirrored on &lt;code&gt;Bitbucket&lt;/code&gt;, the webhook there is registered with &lt;code&gt;Shippable&lt;/code&gt; which triggers the actual deployment through &lt;code&gt;shippable.yml&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;In a way &lt;code&gt;Shippable&lt;/code&gt; doesn&amp;rsquo;t need to know anything about &lt;code&gt;Gitlab&lt;/code&gt; which is great&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Here&amp;rsquo;s my &lt;strong&gt;&lt;em&gt;&lt;code&gt;.gitlab-ci.yml&lt;/code&gt;&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
-
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;stages&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt;
-  &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;-&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;deploy&lt;/span&gt;
-
-&lt;span style=&#34;color: #000000&#34;&gt;Git MIRROR&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt;
-  &lt;span style=&#34;color: #000000&#34;&gt;stage&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;deploy&lt;/span&gt;
-  &lt;span style=&#34;color: #000000&#34;&gt;script&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt;
-    &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;-&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;git push --mirror https://BITBUCKET_USERNAME:BITBUCKET_PASSWORD@bitbucket.org/group/repo.git&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;&lt;em&gt;Note:&lt;/em&gt; Remember to use variables in &lt;code&gt;Gitlab CI&lt;/code&gt; to set up your bitbucket username and password.
-  &lt;strong&gt;This had to be done&lt;/strong&gt; because you can&amp;rsquo;t have any ssh key from &lt;code&gt;Gitlab&lt;/code&gt; to add it to &lt;code&gt;Bitbucket&lt;/code&gt;&lt;/p&gt;
 </description>
     </item>
     

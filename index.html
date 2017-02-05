@@ -90,6 +90,83 @@
     
     <div class="post">
       <h1 class="post-title">
+        <a href="http://abhipandey.com/2016/11/running-invoke-from-other-folders/">Running invoke from other folders</a>
+      </h1>
+      <span class="post-date">Nov 13, 2016  &middot; <a href="http://abhipandey.com/2016/11/running-invoke-from-other-folders/#disqus_thread">Comments</a>
+      
+      <br/>
+      <a class="a_cat" href="http://abhipandey.com/categories/code">code</a>
+        
+      <a class="a_tag" href="http://abhipandey.com/tags/tips">tips</a><a class="a_tag" href="http://abhipandey.com/tags/python">python</a>
+    
+      </span>
+      
+      <p>While working on big projects, sometimes, you have <code>invoke</code> tasks lying around
+in different places. It wouldn&rsquo;t make sense to merge them together
+but rather help each other out as and when needed.</p>
+
+<p>One such way for this would be to search for invoke tasks from other folders
+and run them directly when they can be used.</p>
+
+<p>I had to go for this approach for a monolithic repo where multiple projects
+were being built in mostly similar style with minor modifications.
+All of them would have the same set of commands along with same style of running those commands.
+I didn&rsquo;t want to set up the same <code>invoke</code> task for all individual projects but rather
+a common set of tasks that could be re-used by each one of them.</p>
+
+<p>Hence, here&rsquo;s what I did:</p>
+
+<ol>
+<li>I knew for a fact that most sub-projects needed the same command to build themselves.
+I didn&rsquo;t want to use the same command over and over again in each of the projects.
+I would rather use the command in the general space and override it only when a sub-project
+requires a special version of the build command.</li>
+<li>When the general <code>invoke</code> was called to do any task, it would first check
+whether, the sub-project for which the command was to run, the command was already
+available for the given sub-project itself.
+
+<ul>
+<li>If yes, this would mean that sub-project intends to
+override the default command in it&rsquo;s own style</li>
+<li>If no, then the default version is to run</li>
+</ul></li>
+</ol>
+
+<p><em>Here&rsquo;s the simplilfied version of the code.</em></p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #204a87; font-weight: bold">import</span> <span style="color: #000000">subproces</span>
+<span style="color: #204a87; font-weight: bold">import</span> <span style="color: #000000">os</span>
+
+<span style="color: #5c35cc; font-weight: bold">@contextmanager</span>
+<span style="color: #204a87; font-weight: bold">def</span> <span style="color: #000000">cd</span><span style="color: #000000; font-weight: bold">(</span><span style="color: #000000">path</span><span style="color: #000000; font-weight: bold">):</span>
+    <span style="color: #000000">old</span> <span style="color: #ce5c00; font-weight: bold">=</span> <span style="color: #000000">os</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">getcwd</span><span style="color: #000000; font-weight: bold">()</span>
+    <span style="color: #000000">os</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">chdir</span><span style="color: #000000; font-weight: bold">(</span><span style="color: #000000">path</span><span style="color: #000000; font-weight: bold">)</span>
+    <span style="color: #204a87; font-weight: bold">try</span><span style="color: #000000; font-weight: bold">:</span>
+        <span style="color: #204a87; font-weight: bold">yield</span>
+    <span style="color: #204a87; font-weight: bold">finally</span><span style="color: #000000; font-weight: bold">:</span>
+        <span style="color: #000000">os</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">chdir</span><span style="color: #000000; font-weight: bold">(</span><span style="color: #000000">old</span><span style="color: #000000; font-weight: bold">)</span>
+
+
+<span style="color: #5c35cc; font-weight: bold">@task</span>
+<span style="color: #204a87; font-weight: bold">def</span> <span style="color: #000000">build</span><span style="color: #000000; font-weight: bold">():</span>
+    <span style="color: #000000">folder_to_run_the_command_on</span> <span style="color: #ce5c00; font-weight: bold">=</span> <span style="color: #4e9a06">&#39;/home/folder&#39;</span>
+    <span style="color: #204a87; font-weight: bold">with</span> <span style="color: #000000">cd</span><span style="color: #000000; font-weight: bold">(</span><span style="color: #000000">folder_to_run_the_command_on</span><span style="color: #000000; font-weight: bold">):</span>
+        <span style="color: #204a87; font-weight: bold">print</span><span style="color: #000000; font-weight: bold">(</span><span style="color: #4e9a06">&#39;Finding tasks...&#39;</span><span style="color: #000000; font-weight: bold">)</span>
+        <span style="color: #8f5902; font-style: italic"># List all the possible commands that you can run on that folder</span>
+        <span style="color: #000000">res</span> <span style="color: #ce5c00; font-weight: bold">=</span> <span style="color: #000000">subprocess</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">check_output</span><span style="color: #000000; font-weight: bold">([</span><span style="color: #4e9a06">&#39;invoke&#39;</span><span style="color: #000000; font-weight: bold">,</span> <span style="color: #4e9a06">&#39;-l&#39;</span><span style="color: #000000; font-weight: bold">])</span>
+        <span style="color: #8f5902; font-style: italic"># does it contain this command that we need to run?</span>
+        <span style="color: #204a87; font-weight: bold">if</span> <span style="color: #4e9a06">&#39;build&#39;</span>  <span style="color: #204a87; font-weight: bold">in</span> <span style="color: #000000">res</span><span style="color: #000000; font-weight: bold">:</span>
+            <span style="color: #204a87; font-weight: bold">print</span><span style="color: #000000; font-weight: bold">(</span><span style="color: #4e9a06">&#39;Found the build command in &quot;{}&quot; folder&#39;</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">format</span><span style="color: #000000; font-weight: bold">(</span><span style="color: #000000">folder_to_run_the_command_on</span><span style="color: #000000; font-weight: bold">)</span>
+            <span style="color: #000000">run</span><span style="color: #000000; font-weight: bold">(</span><span style="color: #4e9a06">&#39;invoke build&#39;</span><span style="color: #000000; font-weight: bold">)</span>
+        <span style="color: #204a87; font-weight: bold">else</span><span style="color: #000000; font-weight: bold">:</span>
+            <span style="color: #8f5902; font-style: italic"># we need to run the generic version of build command</span>
+            <span style="color: #000000">build_internal</span><span style="color: #000000; font-weight: bold">()</span>
+</pre></div>
+
+      
+    </div>
+    
+    <div class="post">
+      <h1 class="post-title">
         <a href="http://abhipandey.com/2016/07/systemd-tutorial/">Systemd tutorial</a>
       </h1>
       <span class="post-date">Jul 7, 2016  &middot; <a href="http://abhipandey.com/2016/07/systemd-tutorial/#disqus_thread">Comments</a>
@@ -1222,447 +1299,6 @@ Two other examples are:</p>
 <p>A way to supply a new class instance with all the requirements. In TypeScript this can be achieved by providing everything inside the constructor.</p>
 
 <p>An <code>Injector</code> maintains a list of service instances it has created previously so that it can reuse those if needed. The way it achieves this is by utilizing <code>provider</code> which is used within each <code>Component</code>.</p>
-
-      
-    </div>
-    
-    <div class="post">
-      <h1 class="post-title">
-        <a href="http://abhipandey.com/2015/11/lambda-basics-with-python-using-github-webhooks-or-api-gateway/">Lambda Basics with Python using Github Webhooks or API Gateway</a>
-      </h1>
-      <span class="post-date">Nov 4, 2015  &middot; <a href="http://abhipandey.com/2015/11/lambda-basics-with-python-using-github-webhooks-or-api-gateway/#disqus_thread">Comments</a>
-      
-      <br/>
-      <a class="a_cat" href="http://abhipandey.com/categories/code">code</a><a class="a_cat" href="http://abhipandey.com/categories/continuous-delivery">continuous delivery</a>
-        
-      <a class="a_tag" href="http://abhipandey.com/tags/python">python</a><a class="a_tag" href="http://abhipandey.com/tags/aws">aws</a><a class="a_tag" href="http://abhipandey.com/tags/lambda">lambda</a><a class="a_tag" href="http://abhipandey.com/tags/github">github</a><a class="a_tag" href="http://abhipandey.com/tags/git">git</a>
-    
-      </span>
-      
-      
-
-<p>I recently needed to call a command whenever there was a push on my Github repo.
-Since this was related to AWS tasks, I figured <code>aws lambda</code> is a good candidate.
-Here I will talk about the steps I took to enable all of this using aws lambda, python.
-As a side note, I will also elaborate on using API gateway to call upon the lambda itself.</p>
-
-<p>In a nutshell, what I will talk about:</p>
-
-<ul>
-<li>Create <strong>SNS</strong> Topic</li>
-<li>Create <strong>IAM user</strong> who can Publish</li>
-<li>Setup <strong>GitHub webhook</strong></li>
-<li>Create <strong>Lambda function</strong></li>
-<li>Setup <strong>API Gateway</strong> url that can call lambda function</li>
-</ul>
-
-<h1 id="create-sns-topic:f657bc8efd67a0e2d83aeda4b346f8af">Create SNS Topic</h1>
-
-<p>Go to <a href="https://ap-northeast-1.console.aws.amazon.com/sns/v2/home?region=ap-northeast-1#/home">AWS Console</a> and click on Create Topic.</p>
-
-
-<figure >
-    
-        <img src="/images/lambda_basics_sns_1.png" alt="Creating an API" />
-    
-    
-    <figcaption>
-        <p>
-        Creating an API
-        
-            
-        
-        </p> 
-    </figcaption>
-    
-</figure>
-
-
-<p>Note down the <code>ARN</code> because you will need that.
-In my case it is something like <code>arn:aws:sns:ap-northeast-1:XXXXXXXXXXXX:commits_1</code></p>
-
-<h1 id="create-iam-user:f657bc8efd67a0e2d83aeda4b346f8af">Create IAM user</h1>
-
-<p>We need to setup an IAM user who can publish onto this SNS we just created.
-As a shortcut you can just create a simple user and initialize it with full access rights for testing purposes.</p>
-
-<p><strong>Once on IAM page click on &ldquo;Create New Users&rdquo; button at the top.</strong>
-
-<figure >
-    
-        <img src="/images/lambda_basics_iam_1.png" alt="Creating new IAM user" />
-    
-    
-    <figcaption>
-        <p>
-        Creating new IAM user
-        
-            
-        
-        </p> 
-    </figcaption>
-    
-</figure>
-</p>
-
-<p><strong>It will then allow you to download credentials if you want</strong>
-
-<figure >
-    
-        <img src="/images/lambda_basics_iam_2.png" alt="Creating new IAM user" />
-    
-    
-    <figcaption>
-        <p>
-        Creating new IAM user
-        
-            
-        
-        </p> 
-    </figcaption>
-    
-</figure>
-</p>
-
-<h2 id="add-permissions:f657bc8efd67a0e2d83aeda4b346f8af">Add permissions</h2>
-
-<p>Once an IAM user is created, by default there are no permissions attached to the account.
-<strong>You can add permissions by going to permissions tab and clicking on &ldquo;Attach Policy&rdquo; button</strong>.
-
-<figure >
-    
-        <img src="/images/lambda_basics_iam_3.png" alt="Attach Policy" />
-    
-    
-    <figcaption>
-        <p>
-        Attach Policy
-        
-            
-        
-        </p> 
-    </figcaption>
-    
-</figure>
-</p>
-
-<h1 id="setup-github-webhook:f657bc8efd67a0e2d83aeda4b346f8af">Setup GitHub webhook</h1>
-
-<p>We need to assign a webhook for each Git commit. So let&rsquo;s do the following:</p>
-
-<ul>
-<li>Navigate to your GitHub repo</li>
-<li>Click on “Settings” in the sidebar of that repo
-
-<ul>
-<li>It has to be an actual repo settings, not profile settings</li>
-</ul></li>
-<li>Click on “Webhooks &amp; Services”</li>
-<li>Click the “Add service” dropdown, then click “AmazonSNS”
-
-<ul>
-<li>You will need the account details for the IAM user you just created</li>
-<li>The trigger will be delegated through this given IAM user</li>
-</ul></li>
-</ul>
-
-<p><strong>Add SNS Webhook</strong>
-
-<figure >
-    
-        <img src="/images/lambda_basics_webhooks_1.png" />
-    
-    
-</figure>
-</p>
-
-<p><strong>Add Account details from IAM user</strong>
-
-<figure >
-    
-        <img src="/images/lambda_basics_webhooks_2.png" />
-    
-    
-</figure>
-</p>
-
-<h1 id="create-lambda-function:f657bc8efd67a0e2d83aeda4b346f8af">Create Lambda function</h1>
-
-<p>Now that we have creater a user, assigned a trigger on Github, we need to create a function
-that will be run on an actual trigger.
-Let&rsquo;s create a lambda function by going to <a href="https://ap-northeast-1.console.aws.amazon.com/lambda/home?region=ap-northeast-1#/functions">AWS Lambda</a> and
-clicking on &ldquo;Create a Lambda Function&rdquo;.</p>
-
-<p>Filter by SNS in the given samples because we want to see SNS functions.
-
-<figure >
-    
-        <img src="/images/lambda_basics_lambda_1.png" />
-    
-    
-</figure>
-
-<em>Ensure that you select your SNS as the event source.</em></p>
-
-<p>Create a Lambda function with the following code:</p>
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #204a87; font-weight: bold">import</span> <span style="color: #000000">json</span>
-<span style="color: #204a87; font-weight: bold">print</span><span style="color: #000000; font-weight: bold">(</span><span style="color: #4e9a06">&#39;Loading function&#39;</span><span style="color: #000000; font-weight: bold">)</span>
-
-<span style="color: #204a87; font-weight: bold">def</span> <span style="color: #000000">lambda_handler</span><span style="color: #000000; font-weight: bold">(</span><span style="color: #000000">event</span><span style="color: #000000; font-weight: bold">,</span> <span style="color: #000000">context</span><span style="color: #000000; font-weight: bold">):</span>
-    <span style="color: #204a87; font-weight: bold">print</span><span style="color: #000000; font-weight: bold">(</span><span style="color: #4e9a06">&quot;Received event: &quot;</span> <span style="color: #ce5c00; font-weight: bold">+</span> <span style="color: #000000">json</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">dumps</span><span style="color: #000000; font-weight: bold">(</span><span style="color: #000000">event</span><span style="color: #000000; font-weight: bold">,</span> <span style="color: #000000">indent</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #0000cf; font-weight: bold">2</span><span style="color: #000000; font-weight: bold">))</span>
-    <span style="color: #000000">message</span> <span style="color: #ce5c00; font-weight: bold">=</span> <span style="color: #000000">event</span><span style="color: #000000; font-weight: bold">[</span><span style="color: #4e9a06">&#39;Records&#39;</span><span style="color: #000000; font-weight: bold">][</span><span style="color: #0000cf; font-weight: bold">0</span><span style="color: #000000; font-weight: bold">][</span><span style="color: #4e9a06">&#39;Sns&#39;</span><span style="color: #000000; font-weight: bold">][</span><span style="color: #4e9a06">&#39;Message&#39;</span><span style="color: #000000; font-weight: bold">]</span>
-    <span style="color: #204a87; font-weight: bold">print</span><span style="color: #000000; font-weight: bold">(</span><span style="color: #4e9a06">&quot;From SNS: &quot;</span> <span style="color: #ce5c00; font-weight: bold">+</span> <span style="color: #000000">message</span><span style="color: #000000; font-weight: bold">)</span>
-    <span style="color: #204a87; font-weight: bold">return</span> <span style="color: #000000">message</span>
-</pre></div>
-
-
-<figure >
-    
-        <img src="/images/lambda_basics_lambda_2.png" alt="Python code" />
-    
-    
-    <figcaption>
-        <p>
-        Python code
-        
-            
-        
-        </p> 
-    </figcaption>
-    
-</figure>
-
-
-<h1 id="testing-the-setup-so-far:f657bc8efd67a0e2d83aeda4b346f8af">Testing the setup so far</h1>
-
-<h2 id="testing-github-webhook:f657bc8efd67a0e2d83aeda4b346f8af">Testing GitHub webhook</h2>
-
-<p>Now that we have setup <strong>Lambda, SNS, and Github</strong> so far, it is time to test the setup.</p>
-
-<p>Go to the &ldquo;Webhooks and Services&rdquo; under you repo settings and click on &ldquo;Amazon SNS&rdquo; that is
-viewable at the bottom of that page. You will then be able to test the service.
-
-<figure >
-    
-        <img src="/images/lambda_basics_results_1.png" />
-    
-    
-</figure>
-
-There&rsquo;s a button at the top right &ldquo;Test service&rdquo;. Once you click it, GitHub will confirm that the message is indeed sent.</p>
-
-<h2 id="checking-aws:f657bc8efd67a0e2d83aeda4b346f8af">Checking AWS</h2>
-
-<p>Now that we have been able to send the message, we also need to confirm that the lambda was actually called.</p>
-
-<p>This can be done by looking at CloudWatch logs. Any lambda run will be logged under CloudWatch.
-Even normal logging is also available there.
-
-<figure >
-    
-        <img src="/images/lambda_basics_results_2.png" alt="Going to CloudWatch" />
-    
-    
-    <figcaption>
-        <p>
-        Going to CloudWatch
-        
-            
-        
-        </p> 
-    </figcaption>
-    
-</figure>
-
-
-<figure >
-    
-        <img src="/images/lambda_basics_results_3.png" alt="Checking the lambda logs" />
-    
-    
-    <figcaption>
-        <p>
-        Checking the lambda logs
-        
-            
-        
-        </p> 
-    </figcaption>
-    
-</figure>
-</p>
-
-<h1 id="setup-api-gateway:f657bc8efd67a0e2d83aeda4b346f8af">Setup API Gateway</h1>
-
-<p>After all this is done, we can even <strong>create an API along with a public facing URL</strong>
-where all these services can be called (apart from just GitHub), if you&rsquo;d like.
-So let&rsquo;s do that.</p>
-
-<h2 id="create-api:f657bc8efd67a0e2d83aeda4b346f8af">Create API</h2>
-
-
-<figure >
-    
-        <img src="/images/lambda_basics_api_1.png" alt="Creating an API" />
-    
-    
-    <figcaption>
-        <p>
-        Creating an API
-        
-            
-        
-        </p> 
-    </figcaption>
-    
-</figure>
-
-
-<h2 id="create-resource:f657bc8efd67a0e2d83aeda4b346f8af">Create Resource</h2>
-
-
-<figure >
-    
-        <img src="/images/lambda_basics_api_2.png" alt="Creating Resource" />
-    
-    
-    <figcaption>
-        <p>
-        Creating Resource
-        
-            
-        
-        </p> 
-    </figcaption>
-    
-</figure>
-
-
-<h2 id="create-method:f657bc8efd67a0e2d83aeda4b346f8af">Create Method</h2>
-
-
-<figure >
-    
-        <img src="/images/lambda_basics_api_3.png" alt="Creating Method for GET" />
-    
-    
-    <figcaption>
-        <p>
-        Creating Method for GET
-        
-            
-        
-        </p> 
-    </figcaption>
-    
-</figure>
-
-
-
-<figure >
-    
-        <img src="/images/lambda_basics_api_4.png" alt="Assign Lambda function to GET" />
-    
-    
-    <figcaption>
-        <p>
-        Assign Lambda function to GET
-        
-            
-        
-        </p> 
-    </figcaption>
-    
-</figure>
-
-
-<h2 id="test-your-get-method:f657bc8efd67a0e2d83aeda4b346f8af">Test your GET Method</h2>
-
-<p>Now this API can be tested easily by just calling upon this URL:</p>
-
-<p><a href="https://XXXXXXXXXXXX.execute-api.ap-northeast-1.amazonaws.com/test/resource_1/">https://XXXXXXXXXXXX.execute-api.ap-northeast-1.amazonaws.com/test/resource_1/</a></p>
-
-
-<figure >
-    
-        <img src="/images/lambda_basics_api_5.png" alt="Check your Response from Lambda using GET" />
-    
-    
-    <figcaption>
-        <p>
-        Check your Response from Lambda using GET
-        
-            
-        
-        </p> 
-    </figcaption>
-    
-</figure>
-
-
-<p>If you wanted to test from a URL, it would be actually going to this URL itself from the browser.</p>
-
-<h1 id="misc:f657bc8efd67a0e2d83aeda4b346f8af">Misc</h1>
-
-<h2 id="using-cli:f657bc8efd67a0e2d83aeda4b346f8af">Using CLI</h2>
-
-<p>Try the following command to get the list of your lambda functions:</p>
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>$ aws lambda --profile lambda.s3.1 --region ap-northeast-1 list-functions
-</pre></div>
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #000000; font-weight: bold">{</span>
-    <span style="color: #204a87; font-weight: bold">&quot;Functions&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #000000; font-weight: bold">[</span>
-        <span style="color: #000000; font-weight: bold">{</span>
-            <span style="color: #204a87; font-weight: bold">&quot;CodeSize&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #0000cf; font-weight: bold">317</span><span style="color: #000000; font-weight: bold">,</span>
-            <span style="color: #204a87; font-weight: bold">&quot;FunctionArn&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #4e9a06">&quot;arn:aws:lambda:ap-northeast-1:XXXXXXXXXXXX:function:lambda_1&quot;</span><span style="color: #000000; font-weight: bold">,</span>
-            <span style="color: #204a87; font-weight: bold">&quot;MemorySize&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #0000cf; font-weight: bold">128</span><span style="color: #000000; font-weight: bold">,</span>
-            <span style="color: #204a87; font-weight: bold">&quot;Role&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #4e9a06">&quot;arn:aws:iam::XXXXXXXXXXXX:role/lambda_basic_execution_1&quot;</span><span style="color: #000000; font-weight: bold">,</span>
-            <span style="color: #204a87; font-weight: bold">&quot;Handler&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #4e9a06">&quot;lambda_function.lambda_handler&quot;</span><span style="color: #000000; font-weight: bold">,</span>
-            <span style="color: #204a87; font-weight: bold">&quot;Runtime&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #4e9a06">&quot;python2.7&quot;</span><span style="color: #000000; font-weight: bold">,</span>
-            <span style="color: #204a87; font-weight: bold">&quot;CodeSha256&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #4e9a06">&quot;.....&quot;</span><span style="color: #000000; font-weight: bold">,</span>
-            <span style="color: #204a87; font-weight: bold">&quot;FunctionName&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #4e9a06">&quot;lambda_1&quot;</span><span style="color: #000000; font-weight: bold">,</span>
-            <span style="color: #204a87; font-weight: bold">&quot;Timeout&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #0000cf; font-weight: bold">183</span><span style="color: #000000; font-weight: bold">,</span>
-            <span style="color: #204a87; font-weight: bold">&quot;LastModified&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #4e9a06">&quot;2015-11-15T07:49:28.367+0000&quot;</span><span style="color: #000000; font-weight: bold">,</span>
-            <span style="color: #204a87; font-weight: bold">&quot;Version&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #4e9a06">&quot;$LATEST&quot;</span><span style="color: #000000; font-weight: bold">,</span>
-            <span style="color: #204a87; font-weight: bold">&quot;Description&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #4e9a06">&quot;An Amazon SNS trigger that logs the message pushed to the SNS topic.&quot;</span>
-        <span style="color: #000000; font-weight: bold">},</span>
-        <span style="color: #000000; font-weight: bold">{</span>
-            <span style="color: #204a87; font-weight: bold">&quot;CodeSize&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #0000cf; font-weight: bold">316</span><span style="color: #000000; font-weight: bold">,</span>
-            <span style="color: #204a87; font-weight: bold">&quot;FunctionArn&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #4e9a06">&quot;arn:aws:lambda:ap-northeast-1:XXXXXXXXXXXX:function:lambda_2&quot;</span><span style="color: #000000; font-weight: bold">,</span>
-            <span style="color: #204a87; font-weight: bold">&quot;MemorySize&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #0000cf; font-weight: bold">128</span><span style="color: #000000; font-weight: bold">,</span>
-            <span style="color: #204a87; font-weight: bold">&quot;Role&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #4e9a06">&quot;arn:aws:iam::XXXXXXXXXXXX:role/lambda_basic_execution_1&quot;</span><span style="color: #000000; font-weight: bold">,</span>
-            <span style="color: #204a87; font-weight: bold">&quot;Handler&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #4e9a06">&quot;lambda_function.lambda_handler&quot;</span><span style="color: #000000; font-weight: bold">,</span>
-            <span style="color: #204a87; font-weight: bold">&quot;Runtime&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #4e9a06">&quot;python2.7&quot;</span><span style="color: #000000; font-weight: bold">,</span>
-            <span style="color: #204a87; font-weight: bold">&quot;CodeSha256&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #4e9a06">&quot;.......&quot;</span><span style="color: #000000; font-weight: bold">,</span>
-            <span style="color: #204a87; font-weight: bold">&quot;FunctionName&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #4e9a06">&quot;lambda_2&quot;</span><span style="color: #000000; font-weight: bold">,</span>
-            <span style="color: #204a87; font-weight: bold">&quot;Timeout&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #0000cf; font-weight: bold">3</span><span style="color: #000000; font-weight: bold">,</span>
-            <span style="color: #204a87; font-weight: bold">&quot;LastModified&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #4e9a06">&quot;2015-11-14T14:03:00.083+0000&quot;</span><span style="color: #000000; font-weight: bold">,</span>
-            <span style="color: #204a87; font-weight: bold">&quot;Version&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #4e9a06">&quot;$LATEST&quot;</span><span style="color: #000000; font-weight: bold">,</span>
-            <span style="color: #204a87; font-weight: bold">&quot;Description&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #4e9a06">&quot;An Amazon SNS trigger that logs the message pushed to the SNS topic.&quot;</span>
-        <span style="color: #000000; font-weight: bold">}</span>
-    <span style="color: #000000; font-weight: bold">]</span>
-<span style="color: #000000; font-weight: bold">}</span>
-</pre></div>
-
-<h2 id="custom-policy-for-lambda-access:f657bc8efd67a0e2d83aeda4b346f8af">Custom Policy for Lambda Access</h2>
-
-<p>Validate Policy
-You can either just give &ldquo;AmazonSNSFullAccess&rdquo; to the user <em>lambda.s3.1</em> or add the following Policy
-onto <strong>User-&gt;Permission-&gt;Add Inline policy-&gt;custom policy-&gt;Select-&gt;Policy Document</strong></p>
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #000000; font-weight: bold">{</span>
-  <span style="color: #4e9a06">&quot;Version&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #4e9a06">&quot;2012-10-17&quot;</span><span style="color: #000000; font-weight: bold">,</span>
-  <span style="color: #4e9a06">&quot;Statement&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #000000; font-weight: bold">[</span>
-    <span style="color: #000000; font-weight: bold">{</span>
-      <span style="color: #4e9a06">&quot;Action&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #000000; font-weight: bold">[</span>
-        <span style="color: #4e9a06">&quot;sns:Publish&quot;</span>
-      <span style="color: #000000; font-weight: bold">],</span>
-      <span style="color: #4e9a06">&quot;Resource&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #000000; font-weight: bold">[</span>
-        <span style="color: #4e9a06">&quot;arn:aws:sns:ap-northeast-1:YOUR_NUMBER:Commits_1&quot;</span>
-      <span style="color: #000000; font-weight: bold">],</span>
-      <span style="color: #4e9a06">&quot;Effect&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #4e9a06">&quot;Allow&quot;</span>
-    <span style="color: #000000; font-weight: bold">}</span>
-  <span style="color: #000000; font-weight: bold">]</span>
-<span style="color: #000000; font-weight: bold">}</span>
-</pre></div>
 
       
     </div>
