@@ -7,7 +7,9 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 13 May 2016 21:17:56 +0800</lastBuildDate>
-    <atom:link href="http://abhipandey.com/tags/jira/index.xml" rel="self" type="application/rss+xml" />
+    
+	<atom:link href="http://abhipandey.com/tags/jira/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>Getting list of Issues from JIRA under current sprint</title>
@@ -15,113 +17,9 @@
       <pubDate>Fri, 13 May 2016 21:17:56 +0800</pubDate>
       
       <guid>http://abhipandey.com/2016/05/getting-list-of-issues-from-jira-under-current-sprint/</guid>
-      <description>
-
-&lt;p&gt;When you are working on &lt;em&gt;Agile Boards in JIRA&lt;/em&gt;, you may want to retrieve
-all the issues related to a particular board or the sprint.
-Usually you&amp;rsquo;d find issues in progress under the dashboard of the sprint itself.&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;Python JIRA&lt;/em&gt; allows you only a few options:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://jira.readthedocs.io/en/latest/api.html#jira.JIRA.incompleted_issues&#34;&gt;incompleted issues&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://jira.readthedocs.io/en/latest/api.html#jira.JIRA.completed_issues&#34;&gt;completed issues&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://jira.readthedocs.io/en/latest/api.html#jira.JIRA.removed_issues&#34;&gt;removed issues&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;As you will also notice from &lt;a href=&#34;https://jira.readthedocs.io/en/latest/api.html#jira.JIRA.sprints&#34;&gt;jira docs&lt;/a&gt;
-the &lt;code&gt;sprints&lt;/code&gt; function in there only provides you sprints.&lt;/p&gt;
-
-&lt;p&gt;What it fails to provide is the issues under the sprint
-for which work through a different subquery under the hood.&lt;/p&gt;
-
-&lt;p&gt;The code here intends to provide a full list of all the issues, based on
-a sprint name - complete or incomplete - that belong to a given sprint name.
-You can modify the code easily to suit your needs.&lt;/p&gt;
-
-&lt;h2 id=&#34;requirements:db34945a6ca4a4e74ac4f8bf32367167&#34;&gt;Requirements&lt;/h2&gt;
-
-&lt;p&gt;First things first, you need to install jira through &lt;code&gt;pypi&lt;/code&gt; for the code.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;pip install jira
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;the-code:db34945a6ca4a4e74ac4f8bf32367167&#34;&gt;The code&lt;/h2&gt;
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;from&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;jira.resources&lt;/span&gt; &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;import&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;Issue&lt;/span&gt;
-&lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;from&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;jira.client&lt;/span&gt; &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;import&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;JIRA&lt;/span&gt;
-
-&lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;sprints&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;username&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt; 
-            &lt;span style=&#34;color: #000000&#34;&gt;ldp_password&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt;
-            &lt;span style=&#34;color: #000000&#34;&gt;sprint_name&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt;
-            &lt;span style=&#34;color: #000000&#34;&gt;type_of_issues_to_pull&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;[&lt;/span&gt;
-                  &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;completedIssues&amp;#39;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt; 
-                  &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;incompletedIssues&amp;#39;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt;
-                  &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;issuesNotCompletedInCurrentSprint&amp;#39;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt;
-                  &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;issuesCompletedInAnotherSprint&amp;#39;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;]):&lt;/span&gt;
-    &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;sprint_issues&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;cls&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;board_id&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;sprint_id&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;):&lt;/span&gt;
-        &lt;span style=&#34;color: #000000&#34;&gt;r_json&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;cls&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;_get_json&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;(&lt;/span&gt;
-            &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;rapid/charts/sprintreport?rapidViewId=%s&amp;amp;sprintId=%s&amp;#39;&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;%&lt;/span&gt; &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;(&lt;/span&gt;
-                &lt;span style=&#34;color: #000000&#34;&gt;board_id&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;sprint_id&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;),&lt;/span&gt;
-            &lt;span style=&#34;color: #000000&#34;&gt;base&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;cls&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;AGILE_BASE_URL&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;)&lt;/span&gt;
-
-        &lt;span style=&#34;color: #000000&#34;&gt;issues&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;[]&lt;/span&gt;
-        &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;for&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;t&lt;/span&gt; &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;in&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;type_of_issues_to_pull&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt;
-            &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;t&lt;/span&gt; &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;in&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;r_json&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;[&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;contents&amp;#39;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;]:&lt;/span&gt;
-                &lt;span style=&#34;color: #000000&#34;&gt;issues&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;+=&lt;/span&gt; &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;[&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;Issue&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;cls&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;_options&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;cls&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;_session&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;raw_issues_json&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;)&lt;/span&gt;
-                           &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;for&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;raw_issues_json&lt;/span&gt; &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;in&lt;/span&gt;
-                           &lt;span style=&#34;color: #000000&#34;&gt;r_json&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;[&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;contents&amp;#39;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;][&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;t&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;]]&lt;/span&gt;
-        &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;{&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;x&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;key&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;x&lt;/span&gt; &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;for&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;x&lt;/span&gt; &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;in&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;issues&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;}&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;values&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;()&lt;/span&gt;
-
-    &lt;span style=&#34;color: #000000&#34;&gt;fmt_full&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;Sprint: {} \n\nIssues:{}&amp;#39;&lt;/span&gt;
-    &lt;span style=&#34;color: #000000&#34;&gt;fmt_issues&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;\n- {}: {}&amp;#39;&lt;/span&gt;
-    &lt;span style=&#34;color: #000000&#34;&gt;issues_str&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;&amp;#39;&lt;/span&gt;
-    &lt;span style=&#34;color: #000000&#34;&gt;milestone_str&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;&amp;#39;&lt;/span&gt;
-
-    &lt;span style=&#34;color: #000000&#34;&gt;options&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;{&lt;/span&gt;
-        &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;server&amp;#39;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;http://jira/&amp;#39;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt;
-        &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;verify&amp;#39;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #3465a4&#34;&gt;True&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt;
-        &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;basic_auth&amp;#39;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;username&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;ldp_password&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;),&lt;/span&gt;
-    &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;}&lt;/span&gt;
-    &lt;span style=&#34;color: #000000&#34;&gt;gh&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;JIRA&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;options&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;options&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;basic_auth&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;username&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;ldp_password&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;))&lt;/span&gt;
-
-    &lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;# Get all boards viewable by anonymous users.&lt;/span&gt;
-    &lt;span style=&#34;color: #000000&#34;&gt;boards&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;gh&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;boards&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;()&lt;/span&gt;
-    &lt;span style=&#34;color: #000000&#34;&gt;board&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;[&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;b&lt;/span&gt; &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;for&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;b&lt;/span&gt; &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;in&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;boards&lt;/span&gt; &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;b&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;name&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;==&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;sprint_name&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;][&lt;/span&gt;&lt;span style=&#34;color: #0000cf; font-weight: bold&#34;&gt;0&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;]&lt;/span&gt;
-
-    &lt;span style=&#34;color: #000000&#34;&gt;sprints&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;gh&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;sprints&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;board&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;id&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;)&lt;/span&gt;
-
-    &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;for&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;sprint&lt;/span&gt; &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;in&lt;/span&gt; &lt;span style=&#34;color: #204a87&#34;&gt;sorted&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;([&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;s&lt;/span&gt; &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;for&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;s&lt;/span&gt; &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;in&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;sprints&lt;/span&gt;
-                   &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;s&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;raw&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;[&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;u&amp;#39;state&amp;#39;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;]&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;==&lt;/span&gt; &lt;span style=&#34;color: #4e9a06&#34;&gt;u&amp;#39;ACTIVE&amp;#39;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;],&lt;/span&gt;
-                &lt;span style=&#34;color: #000000&#34;&gt;key&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;lambda&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;x&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;x&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;raw&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;[&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;u&amp;#39;sequence&amp;#39;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;]):&lt;/span&gt;
-        &lt;span style=&#34;color: #000000&#34;&gt;milestone_str&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #204a87&#34;&gt;str&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;sprint&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;)&lt;/span&gt;
-        &lt;span style=&#34;color: #000000&#34;&gt;issues&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;sprint_issues&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;gh&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;board&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;id&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;sprint&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;id&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;)&lt;/span&gt;
-        &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;for&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;issue&lt;/span&gt; &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;in&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;issues&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt;
-            &lt;span style=&#34;color: #000000&#34;&gt;issues_str&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;+=&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;fmt_issues&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;format&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;issue&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;key&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;issue&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;summary&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;)&lt;/span&gt;
-
-    &lt;span style=&#34;color: #000000&#34;&gt;result&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;fmt_full&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;format&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;(&lt;/span&gt;
-        &lt;span style=&#34;color: #000000&#34;&gt;milestone_str&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt;
-        &lt;span style=&#34;color: #000000&#34;&gt;issues_str&lt;/span&gt;
-    &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;)&lt;/span&gt;
-    &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;print&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;result&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;)&lt;/span&gt;
-    &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;result&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;You can call the function with the following command:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;sprints(&amp;lt;username&amp;gt;, &amp;lt;password&amp;gt;, &amp;lt;sprint_name&amp;gt;)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;You will get results that are similar to the following:&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;pre&gt;&lt;code&gt;Sprint: SPRINT_NAME
-
-Issues:
-- PROJECT-437: Description of the issue
-- PROJECT-447: Description of the issue
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/blockquote&gt;
-</description>
+      <description>When you are working on Agile Boards in JIRA, you may want to retrieve all the issues related to a particular board or the sprint. Usually you&amp;rsquo;d find issues in progress under the dashboard of the sprint itself.
+Python JIRA allows you only a few options:
+ incompleted issues completed issues removed issues  As you will also notice from jira docs the sprints function in there only provides you sprints.</description>
     </item>
     
   </channel>

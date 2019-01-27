@@ -7,7 +7,9 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 24 Oct 2015 14:59:18 -0400</lastBuildDate>
-    <atom:link href="http://abhipandey.com/tags/route-53/index.xml" rel="self" type="application/rss+xml" />
+    
+	<atom:link href="http://abhipandey.com/tags/route-53/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>Setting up custom domain with Github Pages</title>
@@ -15,98 +17,8 @@
       <pubDate>Sat, 24 Oct 2015 14:59:18 -0400</pubDate>
       
       <guid>http://abhipandey.com/2015/10/setting-up-custom-domain-with-github-pages/</guid>
-      <description>
-
-&lt;p&gt;Let&amp;rsquo;s take the example of my domain itself &lt;code&gt;abhipandey.com&lt;/code&gt; that I want to serve from &lt;code&gt;abhi1010.github.io&lt;/code&gt;.
- We will need to do it in two steps:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Setup CNAME on github
-
-&lt;ul&gt;
-&lt;li&gt;So that github knows about your domain&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;Setup &lt;strong&gt;A&lt;/strong&gt; record on AWS Route 53
-
-&lt;ul&gt;
-&lt;li&gt;So that domain can be registered&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&#34;change-cname:75bfc49f34e22778d17e9b1837e9218b&#34;&gt;Change CNAME&lt;/h1&gt;
-
-&lt;p&gt;If we want to tell github about the domain name, it is rather simple: &lt;em&gt;create a CNAME file with the content being
-the name of the domain itself&lt;/em&gt;
-Do &lt;em&gt;note&lt;/em&gt; here that the default redirect of your domain will be the value in your CNAME file.&lt;/p&gt;
-
-&lt;p&gt;Here&amp;rsquo;s my &lt;a href=&#34;https://github.com/abhi1010/abhi1010.github.io/blob/master/CNAME&#34;&gt;CNAME file&lt;/a&gt; content:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;abhipandey.com
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;You don&amp;rsquo;t really need &lt;strong&gt;www&lt;/strong&gt;. If you do put &lt;em&gt;www.abhipandey.com&lt;/em&gt; github will figure out and redirect properly.
-The difference is abhipandey.com is a top-level domain (TLD), while &lt;em&gt;www.abhipandey.com&lt;/em&gt; is a subdomain.&lt;/p&gt;
-
-&lt;p&gt;Essentially:&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;If your CNAME file contains &lt;em&gt;abhipandey.com&lt;/em&gt;, then &lt;em&gt;www.abhipandey.com&lt;/em&gt; will redirect to &lt;em&gt;abhipandey.com&lt;/em&gt;.&lt;/p&gt;
-
-&lt;p&gt;If your CNAME file contains &lt;em&gt;www.abhipandey.com&lt;/em&gt;, then &lt;em&gt;abhipandey.com&lt;/em&gt; will redirect to &lt;em&gt;www.abhipandey.com&lt;/em&gt;.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h1 id=&#34;creating-a-record:75bfc49f34e22778d17e9b1837e9218b&#34;&gt;Creating A Record&lt;/h1&gt;
-
-
-&lt;figure &gt;
-    
-        &lt;img src=&#34;http://abhipandey.com/images/custom-domain-name-with-github-pages-and-amazon-route-53_1.png&#34; alt=&#34;Setting up A record&#34; /&gt;
-    
-    
-    &lt;figcaption&gt;
-        &lt;p&gt;
-        Setting up A record
-        
-            
-        
-        &lt;/p&gt; 
-    &lt;/figcaption&gt;
-    
-&lt;/figure&gt;
-
-
-&lt;p&gt;Next is to go to Amazon Route 53 console, and create an A record with the following IPs:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;192.30.252.153
-192.30.252.154
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h1 id=&#34;setup-subdomain:75bfc49f34e22778d17e9b1837e9218b&#34;&gt;Setup subdomain&lt;/h1&gt;
-
-
-&lt;figure &gt;
-    
-        &lt;img src=&#34;http://abhipandey.com/images/custom-domain-name-with-github-pages-and-amazon-route-53_2.png&#34; alt=&#34;Setting up subdomain&#34; /&gt;
-    
-    
-    &lt;figcaption&gt;
-        &lt;p&gt;
-        Setting up subdomain
-        
-            
-        
-        &lt;/p&gt; 
-    &lt;/figcaption&gt;
-    
-&lt;/figure&gt;
-
-
-&lt;p&gt;If you configure both an apex domain (e.g. &lt;em&gt;abhipandey.com&lt;/em&gt;) and a matching www subdomain (e.g. &lt;em&gt;www.abhipandey.com&lt;/em&gt;),
-GitHub&amp;rsquo;s servers will automatically create redirects between the two.&lt;/p&gt;
-
-&lt;p&gt;You can also also look up &lt;a href=&#34;https://help.github.com/articles/tips-for-configuring-an-a-record-with-your-dns-provider/&#34;&gt;GitHub Tips&lt;/a&gt; for
-configuring an &lt;strong&gt;A&lt;/strong&gt; record with your DNS provider.&lt;/p&gt;
-</description>
+      <description>Let&amp;rsquo;s take the example of my domain itself abhipandey.com that I want to serve from abhi1010.github.io. We will need to do it in two steps:
+ Setup CNAME on github  So that github knows about your domain  Setup A record on AWS Route 53  So that domain can be registered   Change CNAME If we want to tell github about the domain name, it is rather simple: create a CNAME file with the content being the name of the domain itself Do note here that the default redirect of your domain will be the value in your CNAME file.</description>
     </item>
     
   </channel>

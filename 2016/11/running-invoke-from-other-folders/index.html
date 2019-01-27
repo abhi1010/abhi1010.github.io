@@ -134,35 +134,33 @@ override the default command in it&rsquo;s own style</li>
 </ol>
 
 <p><em>Here&rsquo;s the simplilfied version of the code.</em></p>
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #204a87; font-weight: bold">import</span> <span style="color: #000000">subproces</span>
-<span style="color: #204a87; font-weight: bold">import</span> <span style="color: #000000">os</span>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000">subproces</span>
+<span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000">os</span>
 
-<span style="color: #5c35cc; font-weight: bold">@contextmanager</span>
-<span style="color: #204a87; font-weight: bold">def</span> <span style="color: #000000">cd</span><span style="color: #000000; font-weight: bold">(</span><span style="color: #000000">path</span><span style="color: #000000; font-weight: bold">):</span>
-    <span style="color: #000000">old</span> <span style="color: #ce5c00; font-weight: bold">=</span> <span style="color: #000000">os</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">getcwd</span><span style="color: #000000; font-weight: bold">()</span>
-    <span style="color: #000000">os</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">chdir</span><span style="color: #000000; font-weight: bold">(</span><span style="color: #000000">path</span><span style="color: #000000; font-weight: bold">)</span>
-    <span style="color: #204a87; font-weight: bold">try</span><span style="color: #000000; font-weight: bold">:</span>
-        <span style="color: #204a87; font-weight: bold">yield</span>
-    <span style="color: #204a87; font-weight: bold">finally</span><span style="color: #000000; font-weight: bold">:</span>
-        <span style="color: #000000">os</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">chdir</span><span style="color: #000000; font-weight: bold">(</span><span style="color: #000000">old</span><span style="color: #000000; font-weight: bold">)</span>
+<span style="color:#5c35cc;font-weight:bold">@contextmanager</span>
+<span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">cd</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">path</span><span style="color:#000;font-weight:bold">):</span>
+    <span style="color:#000">old</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">os</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">getcwd</span><span style="color:#000;font-weight:bold">()</span>
+    <span style="color:#000">os</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">chdir</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">path</span><span style="color:#000;font-weight:bold">)</span>
+    <span style="color:#204a87;font-weight:bold">try</span><span style="color:#000;font-weight:bold">:</span>
+        <span style="color:#204a87;font-weight:bold">yield</span>
+    <span style="color:#204a87;font-weight:bold">finally</span><span style="color:#000;font-weight:bold">:</span>
+        <span style="color:#000">os</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">chdir</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">old</span><span style="color:#000;font-weight:bold">)</span>
 
 
-<span style="color: #5c35cc; font-weight: bold">@task</span>
-<span style="color: #204a87; font-weight: bold">def</span> <span style="color: #000000">build</span><span style="color: #000000; font-weight: bold">():</span>
-    <span style="color: #000000">folder_to_run_the_command_on</span> <span style="color: #ce5c00; font-weight: bold">=</span> <span style="color: #4e9a06">&#39;/home/folder&#39;</span>
-    <span style="color: #204a87; font-weight: bold">with</span> <span style="color: #000000">cd</span><span style="color: #000000; font-weight: bold">(</span><span style="color: #000000">folder_to_run_the_command_on</span><span style="color: #000000; font-weight: bold">):</span>
-        <span style="color: #204a87; font-weight: bold">print</span><span style="color: #000000; font-weight: bold">(</span><span style="color: #4e9a06">&#39;Finding tasks...&#39;</span><span style="color: #000000; font-weight: bold">)</span>
-        <span style="color: #8f5902; font-style: italic"># List all the possible commands that you can run on that folder</span>
-        <span style="color: #000000">res</span> <span style="color: #ce5c00; font-weight: bold">=</span> <span style="color: #000000">subprocess</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">check_output</span><span style="color: #000000; font-weight: bold">([</span><span style="color: #4e9a06">&#39;invoke&#39;</span><span style="color: #000000; font-weight: bold">,</span> <span style="color: #4e9a06">&#39;-l&#39;</span><span style="color: #000000; font-weight: bold">])</span>
-        <span style="color: #8f5902; font-style: italic"># does it contain this command that we need to run?</span>
-        <span style="color: #204a87; font-weight: bold">if</span> <span style="color: #4e9a06">&#39;build&#39;</span>  <span style="color: #204a87; font-weight: bold">in</span> <span style="color: #000000">res</span><span style="color: #000000; font-weight: bold">:</span>
-            <span style="color: #204a87; font-weight: bold">print</span><span style="color: #000000; font-weight: bold">(</span><span style="color: #4e9a06">&#39;Found the build command in &quot;{}&quot; folder&#39;</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">format</span><span style="color: #000000; font-weight: bold">(</span><span style="color: #000000">folder_to_run_the_command_on</span><span style="color: #000000; font-weight: bold">)</span>
-            <span style="color: #000000">run</span><span style="color: #000000; font-weight: bold">(</span><span style="color: #4e9a06">&#39;invoke build&#39;</span><span style="color: #000000; font-weight: bold">)</span>
-        <span style="color: #204a87; font-weight: bold">else</span><span style="color: #000000; font-weight: bold">:</span>
-            <span style="color: #8f5902; font-style: italic"># we need to run the generic version of build command</span>
-            <span style="color: #000000">build_internal</span><span style="color: #000000; font-weight: bold">()</span>
-</pre></div>
-
+<span style="color:#5c35cc;font-weight:bold">@task</span>
+<span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">build</span><span style="color:#000;font-weight:bold">():</span>
+    <span style="color:#000">folder_to_run_the_command_on</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#4e9a06">&#39;/home/folder&#39;</span>
+    <span style="color:#204a87;font-weight:bold">with</span> <span style="color:#000">cd</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">folder_to_run_the_command_on</span><span style="color:#000;font-weight:bold">):</span>
+        <span style="color:#204a87;font-weight:bold">print</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#39;Finding tasks...&#39;</span><span style="color:#000;font-weight:bold">)</span>
+        <span style="color:#8f5902;font-style:italic"># List all the possible commands that you can run on that folder</span>
+        <span style="color:#000">res</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">subprocess</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">check_output</span><span style="color:#000;font-weight:bold">([</span><span style="color:#4e9a06">&#39;invoke&#39;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#4e9a06">&#39;-l&#39;</span><span style="color:#000;font-weight:bold">])</span>
+        <span style="color:#8f5902;font-style:italic"># does it contain this command that we need to run?</span>
+        <span style="color:#204a87;font-weight:bold">if</span> <span style="color:#4e9a06">&#39;build&#39;</span>  <span style="color:#204a87;font-weight:bold">in</span> <span style="color:#000">res</span><span style="color:#000;font-weight:bold">:</span>
+            <span style="color:#204a87;font-weight:bold">print</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#39;Found the build command in &#34;{}&#34; folder&#39;</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">format</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">folder_to_run_the_command_on</span><span style="color:#000;font-weight:bold">)</span>
+            <span style="color:#000">run</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#39;invoke build&#39;</span><span style="color:#000;font-weight:bold">)</span>
+        <span style="color:#204a87;font-weight:bold">else</span><span style="color:#000;font-weight:bold">:</span>
+            <span style="color:#8f5902;font-style:italic"># we need to run the generic version of build command</span>
+            <span style="color:#000">build_internal</span><span style="color:#000;font-weight:bold">()</span></code></pre></div>
   </div>
   <div id="disqus_thread"></div>
 </div>

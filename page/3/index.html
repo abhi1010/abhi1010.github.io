@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
 <head>
+	<meta name="generator" content="Hugo 0.54-DEV" />
   <link href="http://gmpg.org/xfn/11" rel="profile">
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
   
@@ -90,6 +91,320 @@
     
     <div class="post">
       <h1 class="post-title">
+        <a href="http://abhipandey.com/2015/09/elastic-beanstalk-deployment-automation/">Elastic Beanstalk Deployment Automation</a>
+      </h1>
+      <span class="post-date">Sep 4, 2015  &middot; <a href="http://abhipandey.com/2015/09/elastic-beanstalk-deployment-automation/#disqus_thread">Comments</a>
+      
+      <br/>
+      <a class="a_cat" href="http://abhipandey.com/categories/continuous-delivery">continuous delivery</a><a class="a_cat" href="http://abhipandey.com/categories/code">code</a>
+        
+      <a class="a_tag" href="http://abhipandey.com/tags/aws">aws</a><a class="a_tag" href="http://abhipandey.com/tags/beanstalk">beanstalk</a><a class="a_tag" href="http://abhipandey.com/tags/deployment">deployment</a><a class="a_tag" href="http://abhipandey.com/tags/docker">docker</a><a class="a_tag" href="http://abhipandey.com/tags/python">python</a><a class="a_tag" href="http://abhipandey.com/tags/supervisord">supervisord</a>
+    
+      </span>
+      
+      
+
+<p>We are going to talk about a setup where <strong>all you need to do it <em>commit</em> your code and all the rest of the steps from unit tests to deployment can be taken care of by some externally hosted cloud platform that provides continuous integration.</strong>
+  In my case, it is going to be <code>Shippable</code> that I am using as a sample but you can use almost anything like <code>TravisCI</code> or <code>codeship</code>, for example.</p>
+
+<h1 id="setup">Setup</h1>
+
+<p>Here is the setup we will be looking at:</p>
+
+<figure>
+    <img src="/images/elastic-beanstalk-deployment-automation-arch.png"
+         alt="Architecture"/> <figcaption>
+            <p>Architecture</p>
+        </figcaption>
+</figure>
+
+
+<h1 id="shippable-for-commits">Shippable for commits</h1>
+
+<p>We will use <code>shippable</code> for the following:</p>
+
+<ul>
+<li>Unit Tests</li>
+<li>Regression Tests</li>
+<li>Localized DB Tests</li>
+<li>Tagging of the source code if the commit passes all tests</li>
+<li>Deployment of the source code on <code>beanstalk</code> running <code>docker</code></li>
+</ul>
+
+<p>Login onto <code>shippable</code> and setup your project to be built. It uses webhooks with your repository like <code>GitHub</code> or <code>shippable</code> which are called on every commit.
+You can create a <code>shippable.yml</code> file in your project which will be called on every commit. If you have used <code>docker</code> before, it might look familiar because they invoke a <code>docker</code> script to run the script within <code>shippable.yml</code></p>
+
+<p>Here is one of my sample files from the project that powers this blog:</p>
+
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">language: python
+
+install:
+  - pip install Pygments 
+
+before_script:
+  - git config --global push.default matching
+  - mkdir -p themes
+  - git clone git@github.com:abhi1010/abhi1010.github.io.git
+  - <span style="color:#204a87">cd</span> themes
+  - git clone https://github.com/abhi1010/hyde-a.git
+  - <span style="color:#204a87">cd</span> ../
+
+script:
+  - hugo -d abhi1010.github.io/
+
+after_success:
+  - <span style="color:#204a87">echo</span> <span style="color:#4e9a06">`</span><span style="color:#204a87">pwd</span><span style="color:#4e9a06">`</span>
+  - <span style="color:#204a87">export</span> <span style="color:#000">NOW_HOUR</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#204a87;font-weight:bold">$(</span>date +%d-%b-%H_%M<span style="color:#204a87;font-weight:bold">)</span> 
+  - git config --global user.email <span style="color:#4e9a06">&#34;abhi.pandey@gmail.com&#34;</span>
+  - git config --global user.name <span style="color:#4e9a06">&#34;abhi1010&#34;</span>
+  - git config --get remote.origin.url
+  - git remote set-url origin git@github.com:abhi1010.github.io.git
+  - <span style="color:#204a87">cd</span> abhi1010.github.io
+  - git status -s
+  - <span style="color:#204a87">echo</span> -e <span style="color:#4e9a06">&#34;a\n*\nq\n&#34;</span><span style="color:#000;font-weight:bold">|</span>git add -i
+  - git commit -am <span style="color:#4e9a06">&#39;Automated build from Shippable - &#39;</span><span style="color:#000">$NOW_HOUR</span> <span style="color:#ce5c00;font-weight:bold">&amp;&amp;</span> git push
+
+
+notifications:
+     email:
+         recipients:
+             - abhi@boun.cr
+         on_success: change
+         on_failure: always
+
+cache: true</code></pre></div>
+
+<p>This script does the following tasks:</p>
+
+<ul>
+<li>Set <code>python</code> as the default language for the scripts to use</li>
+<li>Install <code>Pygments</code> using <code>pip</code></li>
+<li>My blog is done using three repos - so it does a <em>git clone</em> for each</li>
+<li>Calls on hugo to create the static site</li>
+<li>Commits the changes made in static content to <code>GitHub</code></li>
+</ul>
+
+<p>Once it works, you will see the following on <code>shippable</code> site:</p>
+
+<figure>
+    <img src="/images/elastic-beanstalk-deployment-automation-2.png"
+         alt="Shippable Build Status"/> <figcaption>
+            <p>Shippable Build Status</p>
+        </figcaption>
+</figure>
+
+
+<h2 id="unit-tests">Unit Tests</h2>
+
+<p>You may also want to set up unit tests and regression tests as part of your <em>scripts</em>
+Just do the following then</p>
+
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">script<span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#8f5902;font-style:italic">-  py.test-3.4 tests/test.py --maxfail=3 -s --full-trace --tb=long --junitxml=../shippable/testresults/pytests.xml</span></code></pre></div>
+
+<h2 id="git-tagging">Git Tagging</h2>
+
+<p>If the tests pass in <em>scripts</em> only then does <code>shippable</code> go to <strong>after_success</strong> section.
+Over there, you might want to tag your source code, so that <code>docker</code> will only pull the tagged and approved commits from <code>shippable</code>, not every commit - which is very important.</p>
+
+<p>Here&rsquo;s how to do that:</p>
+
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">after_success:
+  - git tag -f recon_prod master
+  - git push -f --tags</code></pre></div>
+
+<h1 id="deployment">Deployment</h1>
+
+<p>Once you have approved your code commit, it is time to deploy it to <code>docker</code> on <code>beanstalk</code>.
+I like to keep deployment scripts in another bash script, so that deployment can be done in various other ways as well, if needed.</p>
+
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">after_success:
+  - main/scripts/deploy.sh 
+  - <span style="color:#204a87">echo</span> <span style="color:#4e9a06">&#39;CODE DEPLOYED&#39;</span></code></pre></div>
+
+<p>Or, you may choose to have the &ldquo;deployment&rdquo; script from another project, if you wish. It allows you to separately maintain all the moving parts.</p>
+
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">rm -rf <span style="color:#204a87">cd</span> eb-reconwise
+<span style="color:#204a87">echo</span> <span style="color:#4e9a06">&#39;Deploying New Dockers&#39;</span>
+git clone https://github.com/abhi1010/deplyment_project.git
+<span style="color:#204a87">cd</span> deplyment_project/
+chmod +x deploy.sh
+eb use beanstalk_env_name
+./deploy.sh
+<span style="color:#204a87">echo</span> <span style="color:#4e9a06">&#39;Deployment Complete&#39;</span></code></pre></div>
+
+<h2 id="dockerfile">Dockerfile</h2>
+
+<p>Now first what we need is setting up <code>docker</code> on beanstalk.</p>
+
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">  FROM abhi1010/base_docker
+  MAINTAINER abhi1010 &lt;codersdigest@gmail.com&gt;
+  
+  ENV DEBIAN_FRONTEND noninteractive
+  
+  ENV WS <span style="color:#4e9a06">&#39;/ws&#39;</span>
+  ENV CURR_HOME <span style="color:#4e9a06">&#39;/root&#39;</span>
+  WORKDIR <span style="color:#000">$WS</span>
+  
+  RUN git clone https://github.com/abhi1010/dockerprj.git <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>   <span style="color:#ce5c00;font-weight:bold">&amp;&amp;</span> . <span style="color:#000">$WS</span>/ve_envs/rwv2/bin/activate <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>   <span style="color:#ce5c00;font-weight:bold">&amp;&amp;</span> <span style="color:#000">$WS</span>/prj/rw/manage.py collectstatic --noinput
+  
+  COPY supervisor-app.conf <span style="color:#000">$WS</span>/
+  
+  RUN <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>      cp <span style="color:#000">$WS</span>/supervisor-app.conf /etc/supervisor/supervisord.conf <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>   <span style="color:#ce5c00;font-weight:bold">&amp;&amp;</span> chown -R www-data:www-data /var/lib/nginx
+
+  VOLUME <span style="color:#ce5c00;font-weight:bold">[</span><span style="color:#4e9a06">&#34;/var/shared/&#34;</span>, <span style="color:#4e9a06">&#34;/etc/nginx/sites-enabled&#34;</span>, <span style="color:#4e9a06">&#34;/var/log/nginx&#34;</span>, <span style="color:#4e9a06">&#34;/ws/&#34;</span><span style="color:#ce5c00;font-weight:bold">]</span>
+    
+  EXPOSE <span style="color:#0000cf;font-weight:bold">80</span>
+  CMD <span style="color:#ce5c00;font-weight:bold">[</span><span style="color:#4e9a06">&#34;supervisord&#34;</span>, <span style="color:#4e9a06">&#34;-n&#34;</span><span style="color:#ce5c00;font-weight:bold">]</span></code></pre></div>
+
+<p>This does the following tasks:</p>
+
+<ul>
+<li>Run a base <code>docker</code> from a custom image - where all apps and project requirements have already been installed and configured. It helps me save a lot of time during deployments.</li>
+<li>Download the source code using <code>RUN</code> - which I update using another method.
+
+<ul>
+<li>You can view detail on this <a href="http://abhipandey.com/2015/09/updating-django-source-with-docker-deployments/">method here</a></li>
+</ul></li>
+<li>Copy the <code>supervisord</code> config as well</li>
+<li>Set the right user rights for <code>nginx</code></li>
+<li>Setup folders to be shared using <code>VOLUME</code></li>
+<li>Expose port 80 so that this <code>docker</code> container can be used as a web container</li>
+<li>Set <code>cmd</code> so that it allows <code>supervisord</code> to be used for running the container</li>
+</ul>
+
+<h2 id="beanstalk-configuration">Beanstalk Configuration</h2>
+
+<p>Once we have the <code>Dockerfile</code> ready, we need to set up the configuration for <code>beanstalk</code> so that during deployment, other steps can be taken care of as well. Some of the things to keep in mind in <code>beanstalk</code> setup are:</p>
+
+<h3 id="tips">Tips</h3>
+
+<ul>
+<li>All <code>beanstalk</code> configuration has be kept in a folder called <strong><code>.ebextension</code></strong><br /></li>
+<li><code>beanstalk ec2</code> instance maintains a folder internally to run the scripts while setting up <code>docker</code> for you so that the instance can be ready for you
+
+<ul>
+<li>It is totally possible to <em>plug</em> your own scripts into <code>beanstalk</code> initialization setup so that you can <em>program</em> a custom <code>EC2</code> instance for yourself</li>
+<li>Folder to place your scripts are <code>/opt/elasticbeanstalk/hooks/appdeploy/post</code> and <code>/opt/elasticbeanstalk/hooks/appdeploy/pre</code></li>
+<li>Scripts placed in the folders are read in alphabetical order</li>
+</ul></li>
+<li>You can increase the timeout of your <code>docker</code> initialization setup if it takes too long due to multiple steps
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#000">option_settings</span><span style="color:#000;font-weight:bold">:</span>
+    <span style="color:#ce5c00;font-weight:bold">-</span> <span style="color:#000">namespace</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000">aws</span><span style="color:#000;font-weight:bold">:</span><span style="color:#000">elasticbeanstalk</span><span style="color:#000;font-weight:bold">:</span><span style="color:#000">command</span>
+      <span style="color:#000">option_name</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000">Timeout</span>
+      <span style="color:#000">value</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#0000cf;font-weight:bold">1800</span></code></pre></div></li>
+</ul>
+
+<h3 id="user-accounts">User Accounts</h3>
+
+<ul>
+<li>You can also add any user account if you&rsquo;d like pragmatically and make sure they are <em>always</em> part of the <code>EC2</code> instance that you are creating
+
+<ul>
+<li>Create a file called <code>00001.ftp.config</code></li>
+<li>Use <code>pre</code> folder to setup accounts
+<br /></li>
+</ul></li>
+</ul>
+
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">files:
+  <span style="color:#4e9a06">&#34;/opt/elasticbeanstalk/hooks/appdeploy/pre/0001_create_users.sh&#34;</span>:
+    mode: <span style="color:#4e9a06">&#34;000755&#34;</span> 
+    owner: root
+    group: root
+    content: <span style="color:#000;font-weight:bold">|</span>
+      <span style="color:#8f5902;font-style:italic">#!/usr/bin/env bash
+</span><span style="color:#8f5902;font-style:italic"></span>      <span style="color:#204a87">echo</span> <span style="color:#4e9a06">&#39;About to Add user gh-user&#39;</span>
+      adduser gh-user
+      runuser -l gh-user -c <span style="color:#4e9a06">&#39;mkdir ~/.ssh&#39;</span>
+      runuser -l gh-user -c <span style="color:#4e9a06">&#39;chmod 700 ~/.ssh&#39;</span>
+      runuser -l gh-user -c <span style="color:#4e9a06">&#39;touch ~/.ssh/authorized_keys&#39;</span>
+      runuser -l gh-user -c <span style="color:#4e9a06">&#39;chmod 600 ~/.ssh/authorized_keys&#39;</span>
+      runuser -l gh-user -c <span style="color:#4e9a06">&#39;echo &#34;ssh-rsa r4CBI2cWQohEwBkGw9CcW0vWfnlAcKkrCnsJvwe/+kG5w9J8gJdnNQ8BFB+q+kQ6fWl+1kw7b+8jah5q0nNpOzLbed+Rzse1BoOIjsSXqN/L7AW8y61PVBULcVAVBKCrVy0U5zifv/e6a5+dsUD3WLiD3yXTgPDcZoqQqPYkurCx5ZzxLylKfXfL37k7sz00e+Tu/Y+J9xXdI9j3G5bU9rmIe4SH4mK4BCMRQ6zCHqAzAXZtnmN5U1XR3XrfMtuDLvVgcOlEpXIMl9q2kco0ZCdMkYoSzf3Yj&#34; &gt;&gt; ~/.ssh/authorized_keys&#39;</span></code></pre></div>
+
+<h3 id="pre-installing-packages">Pre-installing Packages</h3>
+
+<ul>
+<li>You should also install any package that you&rsquo;d like on all <code>EC2</code> instances</li>
+</ul>
+
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">files:
+  <span style="color:#4e9a06">&#34;/opt/elasticbeanstalk/hooks/appdeploy/pre/0003_packages.sh&#34;</span>:
+    mode: <span style="color:#4e9a06">&#34;000755&#34;</span> 
+    owner: root
+    group: root
+    content: <span style="color:#000;font-weight:bold">|</span>
+      <span style="color:#8f5902;font-style:italic">#!/usr/bin/env bash 
+</span><span style="color:#8f5902;font-style:italic"></span>      yum install -y git
+     </code></pre></div>
+
+<h3 id="sharing-volumes-between-docker-and-ec2">Sharing volumes between <code>docker</code> and <code>EC2</code></h3>
+
+<ul>
+<li>Ensure that folder sharing is enabled between <code>EC2</code> and <code>docker</code> instances
+
+<ul>
+<li>This goes into file <code>Dockerrun.aws.json</code></li>
+</ul></li>
+</ul>
+
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#ce5c00;font-weight:bold">{</span>
+   <span style="color:#4e9a06">&#34;AWSEBDockerrunVersion&#34;</span>: <span style="color:#4e9a06">&#34;1&#34;</span>,
+  <span style="color:#4e9a06">&#34;Volumes&#34;</span>: <span style="color:#ce5c00;font-weight:bold">[</span>
+    <span style="color:#ce5c00;font-weight:bold">{</span>
+      <span style="color:#4e9a06">&#34;HostDirectory&#34;</span>: <span style="color:#4e9a06">&#34;/var/shared&#34;</span>,
+      <span style="color:#4e9a06">&#34;ContainerDirectory&#34;</span>: <span style="color:#4e9a06">&#34;/var/shared&#34;</span>
+    <span style="color:#ce5c00;font-weight:bold">}</span>
+  <span style="color:#ce5c00;font-weight:bold">]</span>,
+  <span style="color:#4e9a06">&#34;Ports&#34;</span>: <span style="color:#ce5c00;font-weight:bold">[</span>
+    <span style="color:#ce5c00;font-weight:bold">{</span>
+      <span style="color:#4e9a06">&#34;ContainerPort&#34;</span>: <span style="color:#4e9a06">&#34;80&#34;</span>
+    <span style="color:#ce5c00;font-weight:bold">}</span>
+  <span style="color:#ce5c00;font-weight:bold">]</span>,
+   <span style="color:#4e9a06">&#34;Logging&#34;</span>: <span style="color:#4e9a06">&#34;/var/log/&#34;</span>
+ <span style="color:#ce5c00;font-weight:bold">}</span></code></pre></div>
+
+<h3 id="folder-and-files-structure">Folder and files structure</h3>
+
+<ul>
+<li>Finally, make sure that your folder files are setup as follows:</li>
+</ul>
+
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ <span style="color:#ce5c00;font-weight:bold">(</span>master<span style="color:#ce5c00;font-weight:bold">)</span> tree -a 
+.
+<span style="color:#000;font-weight:bold">|</span>-- .ebextensions
+<span style="color:#000;font-weight:bold">|</span>   <span style="color:#000;font-weight:bold">|</span>-- 0000_users.config  <span style="color:#8f5902;font-style:italic"># setup extra users</span>
+<span style="color:#000;font-weight:bold">|</span>   <span style="color:#000;font-weight:bold">|</span>-- 0002_packages.config  <span style="color:#8f5902;font-style:italic"># install external packages</span>
+<span style="color:#000;font-weight:bold">|</span>   <span style="color:#000;font-weight:bold">|</span>-- 0004_bash.config  <span style="color:#8f5902;font-style:italic"># I like to manage all</span> 
+<span style="color:#000;font-weight:bold">|</span>-- .elasticbeanstalk
+<span style="color:#000;font-weight:bold">|</span>   <span style="color:#000;font-weight:bold">|</span>-- config.yml  <span style="color:#8f5902;font-style:italic"># AWS connection details</span>
+<span style="color:#000;font-weight:bold">|</span>-- .gitignore 
+<span style="color:#000;font-weight:bold">|</span>-- Dockerfile  <span style="color:#8f5902;font-style:italic"># Docker instance</span>
+<span style="color:#000;font-weight:bold">|</span>-- Dockerrun.aws.json   <span style="color:#8f5902;font-style:italic"># folder sharing</span>
+<span style="color:#000;font-weight:bold">|</span>-- updater.sh  <span style="color:#8f5902;font-style:italic"># script to update any code</span></code></pre></div>
+
+<h3 id="elasticbeanstalk-folder-for-aws-configs"><code>.elasticbeanstalk</code> folder for <code>aws</code> configs</h3>
+
+<ul>
+<li>You might be wondering what&rsquo;s <code>.elasticbeanstalk</code> folder. It is the folder that&rsquo;s responsible for taking your <code>AWS</code> secret key and access id for doing the actual deployment. If you don&rsquo;t set it up, AWS will ask you every time.
+
+<ul>
+<li>For setting it up, you just need to call <code>eb config</code> one time, it creates the folder for you with all the details, including connection details. You can then make it part of your <code>git</code> commits</li>
+<li>Make sure it is secure</li>
+</ul></li>
+</ul>
+
+<p>And that&rsquo;s it! Once you commit your code, <code>shippable</code> will run the tests, tag your code and finally download this <em>deployment</em> project and deploy it to <code>beanstalk</code> through <code>docker</code> containers.</p>
+
+      
+    </div>
+    
+    <div class="post">
+      <h1 class="post-title">
         <a href="http://abhipandey.com/2015/09/nginx-upload-limits-on-beanstalk-docker/">Nginx Upload limits on Beanstalk Docker</a>
       </h1>
       <span class="post-date">Sep 4, 2015  &middot; <a href="http://abhipandey.com/2015/09/nginx-upload-limits-on-beanstalk-docker/#disqus_thread">Comments</a>
@@ -107,17 +422,13 @@
 Since <code>EC2</code> needs to manage the <code>docker</code> environment and serve the web interface as well, it does so by having another <code>nginx</code> instance to serve the <code>nginx</code> within <code>docker</code>.
 Hence, if you had to modify the <code>nginx</code> settings to allow bigger uploads, <strong>you&rsquo;d have to modify the settings for <code>nginx</code> on both - <code>docker</code> as well as <code>EC2</code></strong>.</p>
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>    <span style="color: #8f5902; font-style: italic"># max upload size</span>
-    <span style="color: #000000">client_max_body_size</span> <span style="color: #0000cf; font-weight: bold">10</span><span style="color: #000000">M</span><span style="color: #000000; font-weight: bold">;</span>   <span style="color: #8f5902; font-style: italic"># adjust to your liking</span>
-</pre></div>
-
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">    <span style="color:#8f5902;font-style:italic"># max upload size</span>
+    <span style="color:#000">client_max_body_size</span> <span style="color:#0000cf;font-weight:bold">10</span><span style="color:#000">M</span><span style="color:#000;font-weight:bold">;</span>   <span style="color:#8f5902;font-style:italic"># adjust to your liking</span></code></pre></div>
 
 <p>Also, if you don&rsquo;t want to have any limit at all for uploads, then just change the <code>client_max_body_size</code> to 0.</p>
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>    <span style="color: #8f5902; font-style: italic"># max upload size</span>
-    <span style="color: #000000">client_max_body_size</span> <span style="color: #0000cf; font-weight: bold">0</span><span style="color: #000000; font-weight: bold">;</span>
-</pre></div>
-
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">    <span style="color:#8f5902;font-style:italic"># max upload size</span>
+    <span style="color:#000">client_max_body_size</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">;</span></code></pre></div>
 
       
     </div>
@@ -139,7 +450,7 @@ Hence, if you had to modify the <code>nginx</code> settings to allow bigger uplo
 
 <p>While deploying docker multiple times, you may not want to copy over your <code>Django</code> source code every time you do a deployment.</p>
 
-<h1 id="setting-up-supervisord:8ef139736ad377184214844940ced19b">Setting up <code>supervisord</code></h1>
+<h1 id="setting-up-supervisord">Setting up <code>supervisord</code></h1>
 
 <p>Luckily there is an easy way to manage this. Since you are working with <code>Django</code>, there is a good chance that you are also managing the processes (like <code>uwsgi</code>) with <code>supervisord</code>.</p>
 
@@ -157,16 +468,14 @@ Hence, if you had to modify the <code>nginx</code> settings to allow bigger uplo
 
 <p>Here&rsquo;s a sample code:</p>
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>    <span style="color: #ce5c00; font-weight: bold">[</span>program:source-updater<span style="color: #ce5c00; font-weight: bold">]</span>
-    <span style="color: #000000">redirect_stderr</span> <span style="color: #ce5c00; font-weight: bold">=</span> <span style="color: #204a87">true</span>
-    <span style="color: #000000">stdout_logfile</span> <span style="color: #ce5c00; font-weight: bold">=</span> /shared/source_code_updater.log
-    <span style="color: #000000">directory</span> <span style="color: #ce5c00; font-weight: bold">=</span> /ws/
-    <span style="color: #204a87">command</span> <span style="color: #ce5c00; font-weight: bold">=</span> /ws/source_code_updater.sh
-    <span style="color: #000000">autorestart</span><span style="color: #ce5c00; font-weight: bold">=</span>False
-</pre></div>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">    <span style="color:#ce5c00;font-weight:bold">[</span>program:source-updater<span style="color:#ce5c00;font-weight:bold">]</span>
+    <span style="color:#000">redirect_stderr</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#204a87">true</span>
+    <span style="color:#000">stdout_logfile</span> <span style="color:#ce5c00;font-weight:bold">=</span> /shared/source_code_updater.log
+    <span style="color:#000">directory</span> <span style="color:#ce5c00;font-weight:bold">=</span> /ws/
+    <span style="color:#204a87">command</span> <span style="color:#ce5c00;font-weight:bold">=</span> /ws/source_code_updater.sh
+    <span style="color:#000">autorestart</span><span style="color:#ce5c00;font-weight:bold">=</span>False</code></pre></div>
 
-
-<h1 id="updating-the-source-code:8ef139736ad377184214844940ced19b">Updating the source code</h1>
+<h1 id="updating-the-source-code">Updating the source code</h1>
 
 <p>Few things are important to note in a <code>docker</code> deployment:</p>
 
@@ -182,24 +491,20 @@ Hence, if you had to modify the <code>nginx</code> settings to allow bigger uplo
 
 <p>With that idea, do a checkout and update the source code according to specific tag:</p>
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>    git checkout -f tags/your_tag_name
-    git pull origin tags/your_tag_name
-</pre></div>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">    git checkout -f tags/your_tag_name
+    git pull origin tags/your_tag_name</code></pre></div>
 
-
-<h1 id="telling-uwsgi-about-the-updated-source-code:8ef139736ad377184214844940ced19b">Telling <code>uwsgi</code> about the updated source code</h1>
+<h1 id="telling-uwsgi-about-the-updated-source-code">Telling <code>uwsgi</code> about the updated source code</h1>
 
 <p>Once you have updated your source code, you need to re-load the project onto <code>uwsgi</code> so that <code>nginx</code> or <code>apache</code> can pick it up.
 The simplest way to achieve it using the config parameter of <code>uwsgi</code>: <code>--touch-reload</code>. It will <em>reload uWSGI if the specified file is modified/touched</em></p>
 
 <p>Just remember to setup <code>supervisord</code> in your <code>Dockerfile</code> with this config parameter.</p>
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #ce5c00; font-weight: bold">[</span>program:app-uwsgi<span style="color: #ce5c00; font-weight: bold">]</span>
-<span style="color: #000000">redirect_stderr</span> <span style="color: #ce5c00; font-weight: bold">=</span> <span style="color: #204a87">true</span>
-<span style="color: #000000">stdout_logfile</span> <span style="color: #ce5c00; font-weight: bold">=</span> /var/shared/_uwsgi.log
-<span style="color: #204a87">command</span> <span style="color: #ce5c00; font-weight: bold">=</span> /ws/ve_envs/rwv2/bin/uwsgi --touch-reload<span style="color: #ce5c00; font-weight: bold">=</span>/ws/wsgi.ini --ini /ws/wsgi.ini
-</pre></div>
-
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#ce5c00;font-weight:bold">[</span>program:app-uwsgi<span style="color:#ce5c00;font-weight:bold">]</span>
+<span style="color:#000">redirect_stderr</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#204a87">true</span>
+<span style="color:#000">stdout_logfile</span> <span style="color:#ce5c00;font-weight:bold">=</span> /var/shared/_uwsgi.log
+<span style="color:#204a87">command</span> <span style="color:#ce5c00;font-weight:bold">=</span> /ws/ve_envs/rwv2/bin/uwsgi --touch-reload<span style="color:#ce5c00;font-weight:bold">=</span>/ws/wsgi.ini --ini /ws/wsgi.ini</code></pre></div>
 
 <p>You can choose any file. I choose <code>uwsgi.ini</code> because the contents never really need to change in it.</p>
 
@@ -236,11 +541,9 @@ However, all that is required here is to know that python automatically picks up
 
 <p>For example, for running <code>uwsgi</code> I provide the full path for python as follows:</p>
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #ce5c00; font-weight: bold">[</span>program:appName<span style="color: #ce5c00; font-weight: bold">]</span>
-<span style="color: #000000">stdout_logfile</span> <span style="color: #ce5c00; font-weight: bold">=</span> /var/shared/_uwsgi.log
-<span style="color: #204a87">command</span> <span style="color: #ce5c00; font-weight: bold">=</span> /ws/ve_envs/project/bin/uwsgi --touch-reload<span style="color: #ce5c00; font-weight: bold">=</span>/ws/wsgi.ini --ini /ws/wsgi.ini
-</pre></div>
-
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#ce5c00;font-weight:bold">[</span>program:appName<span style="color:#ce5c00;font-weight:bold">]</span>
+<span style="color:#000">stdout_logfile</span> <span style="color:#ce5c00;font-weight:bold">=</span> /var/shared/_uwsgi.log
+<span style="color:#204a87">command</span> <span style="color:#ce5c00;font-weight:bold">=</span> /ws/ve_envs/project/bin/uwsgi --touch-reload<span style="color:#ce5c00;font-weight:bold">=</span>/ws/wsgi.ini --ini /ws/wsgi.ini</code></pre></div>
 
 <p>You might want to read about <code>--touch-reload</code> in my <a href="http://abhipandey.com/2015/09/updating-django-source-with-docker-deployments/">other post.</a></p>
 
@@ -274,14 +577,12 @@ However, all that is required here is to know that python automatically picks up
 
 <p>Here&rsquo;s how you&rsquo;d do it. The keyword is <code>VOLUME</code>&hellip; in your <code>Dockerfile</code></p>
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #000000">VOLUME</span> <span style="color: #000000; font-weight: bold">[</span> \
-    <span style="color: #4e9a06">&quot;/var/shared/&quot;</span><span style="color: #000000; font-weight: bold">,</span> \ 
-    <span style="color: #4e9a06">&quot;/etc/nginx/sites-enabled&quot;</span><span style="color: #000000; font-weight: bold">,</span> \ 
-    <span style="color: #4e9a06">&quot;/var/log/nginx&quot;</span><span style="color: #000000; font-weight: bold">,</span> \
-    <span style="color: #4e9a06">&quot;/ws/&quot;</span> \
-<span style="color: #000000; font-weight: bold">]</span>
-</pre></div>
-
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#000">VOLUME</span> <span style="color:#000;font-weight:bold">[</span> \
+    <span style="color:#4e9a06">&#34;/var/shared/&#34;</span><span style="color:#000;font-weight:bold">,</span> \ 
+    <span style="color:#4e9a06">&#34;/etc/nginx/sites-enabled&#34;</span><span style="color:#000;font-weight:bold">,</span> \ 
+    <span style="color:#4e9a06">&#34;/var/log/nginx&#34;</span><span style="color:#000;font-weight:bold">,</span> \
+    <span style="color:#4e9a06">&#34;/ws/&#34;</span> \
+<span style="color:#000;font-weight:bold">]</span></code></pre></div>
 
       
     </div>
@@ -317,25 +618,15 @@ What could be a possible use case for such a requirement:</p>
 <p>Anyways, I went about the whole process and decided to jot down everything. Here I am taking <a href="https://github.com/mbostock/d3/wiki">D3 Wiki</a> as an example
 which I will be converting into a static site. Let&rsquo;s begin.</p>
 
-
-<figure >
-    
-        <img src="/images/wiki_to_static_1.png" alt="D3 Wiki using pelican" />
-    
-    
-    <figcaption>
-        <p>
-        D3 Wiki using pelican
-        
-            
-        
-        </p> 
-    </figcaption>
-    
+<figure>
+    <img src="/images/wiki_to_static_1.png"
+         alt="D3 Wiki using pelican"/> <figcaption>
+            <p>D3 Wiki using pelican</p>
+        </figcaption>
 </figure>
 
 
-<h1 id="setup-and-requirements:7286face6d57cb9f253b611714e09c9a">Setup and requirements</h1>
+<h1 id="setup-and-requirements">Setup and requirements</h1>
 
 <p>What do we need to get started?</p>
 
@@ -355,13 +646,11 @@ which I will be converting into a static site. Let&rsquo;s begin.</p>
 <li>Python environment so that <em>pelican</em> and <em>fabric</em> can be installed</li>
 </ul>
 
-<h2 id="virtual-environment-with-pelican:7286face6d57cb9f253b611714e09c9a">Virtual Environment with pelican</h2>
+<h2 id="virtual-environment-with-pelican">Virtual Environment with pelican</h2>
 
 <p><strong>Setup the virtual environment</strong></p>
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>$ virtualenv ve_blog
-$ <span style="color: #204a87">source</span> ve_blog/bin/activate
-</pre></div>
-
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ virtualenv ve_blog
+$ <span style="color:#204a87">source</span> ve_blog/bin/activate</code></pre></div>
 <p><strong>Install pelican</strong></p>
 
 <pre><code>$ pip install pelican
@@ -370,64 +659,56 @@ $ <span style="color: #204a87">source</span> ve_blog/bin/activate
 <p><strong>Pelican Quickstart</strong></p>
 
 <p>Setup pelican using <code>pelican-quickstart</code> so that all files are setup correctly for creating a static site.</p>
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>$ pelican-quickstart
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ pelican-quickstart
 
 Welcome to pelican-quickstart v3.6.3.
 
-This script will <span style="color: #204a87">help</span> you create a new Pelican-based website.
+This script will <span style="color:#204a87">help</span> you create a new Pelican-based website.
 
 Please answer the following questions so this script can generate the files
 needed by Pelican.
 
     
-&gt; Where <span style="color: #204a87; font-weight: bold">do</span> you want to create your new web site? <span style="color: #ce5c00; font-weight: bold">[</span>.<span style="color: #ce5c00; font-weight: bold">]</span> 
+&gt; Where <span style="color:#204a87;font-weight:bold">do</span> you want to create your new web site? <span style="color:#ce5c00;font-weight:bold">[</span>.<span style="color:#ce5c00;font-weight:bold">]</span> 
 &gt; What will be the title of this web site? D3 WIKI
 &gt; Who will be the author of this web site? abhi1010
-&gt; What will be the default language of this web site? <span style="color: #ce5c00; font-weight: bold">[</span>en<span style="color: #ce5c00; font-weight: bold">]</span> 
-&gt; Do you want to specify a URL prefix? e.g., http://example.com   <span style="color: #ce5c00; font-weight: bold">(</span>Y/n<span style="color: #ce5c00; font-weight: bold">)</span> n
-&gt; Do you want to <span style="color: #204a87">enable</span> article pagination? <span style="color: #ce5c00; font-weight: bold">(</span>Y/n<span style="color: #ce5c00; font-weight: bold">)</span> Y
-&gt; How many articles per page <span style="color: #204a87; font-weight: bold">do</span> you want? <span style="color: #ce5c00; font-weight: bold">[</span>10<span style="color: #ce5c00; font-weight: bold">]</span> 
-&gt; What is your <span style="color: #204a87">time</span> zone? <span style="color: #ce5c00; font-weight: bold">[</span>Europe/Paris<span style="color: #ce5c00; font-weight: bold">]</span> Asia/Singapore
-&gt; Do you want to generate a Fabfile/Makefile to automate generation and publishing? <span style="color: #ce5c00; font-weight: bold">(</span>Y/n<span style="color: #ce5c00; font-weight: bold">)</span> Y
-&gt; Do you want an auto-reload <span style="color: #000000; font-weight: bold">&amp;</span> simpleHTTP script to assist with theme and site development? <span style="color: #ce5c00; font-weight: bold">(</span>Y/n<span style="color: #ce5c00; font-weight: bold">)</span> Y
-&gt; Do you want to upload your website using FTP? <span style="color: #ce5c00; font-weight: bold">(</span>y/N<span style="color: #ce5c00; font-weight: bold">)</span> N
-&gt; Do you want to upload your website using SSH? <span style="color: #ce5c00; font-weight: bold">(</span>y/N<span style="color: #ce5c00; font-weight: bold">)</span> N
-&gt; Do you want to upload your website using Dropbox? <span style="color: #ce5c00; font-weight: bold">(</span>y/N<span style="color: #ce5c00; font-weight: bold">)</span> N
-&gt; Do you want to upload your website using S3? <span style="color: #ce5c00; font-weight: bold">(</span>y/N<span style="color: #ce5c00; font-weight: bold">)</span> N
-&gt; Do you want to upload your website using Rackspace Cloud Files? <span style="color: #ce5c00; font-weight: bold">(</span>y/N<span style="color: #ce5c00; font-weight: bold">)</span> N
-&gt; Do you want to upload your website using GitHub Pages? <span style="color: #ce5c00; font-weight: bold">(</span>y/N<span style="color: #ce5c00; font-weight: bold">)</span> N
-Done. Your new project is available at /Users/apandey/code/githubs/d3wiki
-</pre></div>
+&gt; What will be the default language of this web site? <span style="color:#ce5c00;font-weight:bold">[</span>en<span style="color:#ce5c00;font-weight:bold">]</span> 
+&gt; Do you want to specify a URL prefix? e.g., http://example.com   <span style="color:#ce5c00;font-weight:bold">(</span>Y/n<span style="color:#ce5c00;font-weight:bold">)</span> n
+&gt; Do you want to <span style="color:#204a87">enable</span> article pagination? <span style="color:#ce5c00;font-weight:bold">(</span>Y/n<span style="color:#ce5c00;font-weight:bold">)</span> Y
+&gt; How many articles per page <span style="color:#204a87;font-weight:bold">do</span> you want? <span style="color:#ce5c00;font-weight:bold">[</span><span style="color:#0000cf;font-weight:bold">10</span><span style="color:#ce5c00;font-weight:bold">]</span> 
+&gt; What is your <span style="color:#204a87">time</span> zone? <span style="color:#ce5c00;font-weight:bold">[</span>Europe/Paris<span style="color:#ce5c00;font-weight:bold">]</span> Asia/Singapore
+&gt; Do you want to generate a Fabfile/Makefile to automate generation and publishing? <span style="color:#ce5c00;font-weight:bold">(</span>Y/n<span style="color:#ce5c00;font-weight:bold">)</span> Y
+&gt; Do you want an auto-reload <span style="color:#000;font-weight:bold">&amp;</span> simpleHTTP script to assist with theme and site development? <span style="color:#ce5c00;font-weight:bold">(</span>Y/n<span style="color:#ce5c00;font-weight:bold">)</span> Y
+&gt; Do you want to upload your website using FTP? <span style="color:#ce5c00;font-weight:bold">(</span>y/N<span style="color:#ce5c00;font-weight:bold">)</span> N
+&gt; Do you want to upload your website using SSH? <span style="color:#ce5c00;font-weight:bold">(</span>y/N<span style="color:#ce5c00;font-weight:bold">)</span> N
+&gt; Do you want to upload your website using Dropbox? <span style="color:#ce5c00;font-weight:bold">(</span>y/N<span style="color:#ce5c00;font-weight:bold">)</span> N
+&gt; Do you want to upload your website using S3? <span style="color:#ce5c00;font-weight:bold">(</span>y/N<span style="color:#ce5c00;font-weight:bold">)</span> N
+&gt; Do you want to upload your website using Rackspace Cloud Files? <span style="color:#ce5c00;font-weight:bold">(</span>y/N<span style="color:#ce5c00;font-weight:bold">)</span> N
+&gt; Do you want to upload your website using GitHub Pages? <span style="color:#ce5c00;font-weight:bold">(</span>y/N<span style="color:#ce5c00;font-weight:bold">)</span> N
+Done. Your new project is available at /Users/apandey/code/githubs/d3wiki</code></pre></div>
+<h2 id="get-the-wiki">Get the wiki</h2>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git clone https://github.com/mbostock/d3.wiki.git
 
-<h2 id="get-the-wiki:7286face6d57cb9f253b611714e09c9a">Get the wiki</h2>
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>$ git clone https://github.com/mbostock/d3.wiki.git
-
-Cloning into <span style="color: #4e9a06">&#39;d3.wiki&#39;</span>...
-remote: Counting objects: 12026, <span style="color: #204a87; font-weight: bold">done</span>.
-remote: Compressing objects: 100% <span style="color: #ce5c00; font-weight: bold">(</span>67/67<span style="color: #ce5c00; font-weight: bold">)</span>, <span style="color: #204a87; font-weight: bold">done</span>.
-remote: Total <span style="color: #0000cf; font-weight: bold">12026</span> <span style="color: #ce5c00; font-weight: bold">(</span>delta 607<span style="color: #ce5c00; font-weight: bold">)</span>, reused <span style="color: #0000cf; font-weight: bold">552</span> <span style="color: #ce5c00; font-weight: bold">(</span>delta 552<span style="color: #ce5c00; font-weight: bold">)</span>, pack-reused 11407
-Receiving objects: 100% <span style="color: #ce5c00; font-weight: bold">(</span>12026/12026<span style="color: #ce5c00; font-weight: bold">)</span>, 9.92 MiB <span style="color: #000000; font-weight: bold">|</span> 1.49 MiB/s, <span style="color: #204a87; font-weight: bold">done</span>.
-Resolving deltas: 100% <span style="color: #ce5c00; font-weight: bold">(</span>7595/7595<span style="color: #ce5c00; font-weight: bold">)</span>, <span style="color: #204a87; font-weight: bold">done</span>.
-Checking connectivity... <span style="color: #204a87; font-weight: bold">done</span>.
-</pre></div>
-
+Cloning into <span style="color:#4e9a06">&#39;d3.wiki&#39;</span>...
+remote: Counting objects: <span style="color:#0000cf;font-weight:bold">12026</span>, <span style="color:#204a87;font-weight:bold">done</span>.
+remote: Compressing objects: <span style="color:#0000cf;font-weight:bold">100</span>% <span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">67</span>/67<span style="color:#ce5c00;font-weight:bold">)</span>, <span style="color:#204a87;font-weight:bold">done</span>.
+remote: Total <span style="color:#0000cf;font-weight:bold">12026</span> <span style="color:#ce5c00;font-weight:bold">(</span>delta <span style="color:#0000cf;font-weight:bold">607</span><span style="color:#ce5c00;font-weight:bold">)</span>, reused <span style="color:#0000cf;font-weight:bold">552</span> <span style="color:#ce5c00;font-weight:bold">(</span>delta <span style="color:#0000cf;font-weight:bold">552</span><span style="color:#ce5c00;font-weight:bold">)</span>, pack-reused <span style="color:#0000cf;font-weight:bold">11407</span>
+Receiving objects: <span style="color:#0000cf;font-weight:bold">100</span>% <span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">12026</span>/12026<span style="color:#ce5c00;font-weight:bold">)</span>, <span style="color:#0000cf;font-weight:bold">9</span>.92 MiB <span style="color:#000;font-weight:bold">|</span> <span style="color:#0000cf;font-weight:bold">1</span>.49 MiB/s, <span style="color:#204a87;font-weight:bold">done</span>.
+Resolving deltas: <span style="color:#0000cf;font-weight:bold">100</span>% <span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">7595</span>/7595<span style="color:#ce5c00;font-weight:bold">)</span>, <span style="color:#204a87;font-weight:bold">done</span>.
+Checking connectivity... <span style="color:#204a87;font-weight:bold">done</span>.</code></pre></div>
 <p><strong>Setting the wiki as content for pelican</strong></p>
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>$ rmdir content
-$ ln -s dr.wiki content
-</pre></div>
-
-<h1 id="why-simple-pelican-won-t-work-and-what-to-do:7286face6d57cb9f253b611714e09c9a">Why simple pelican won&rsquo;t work and what to do</h1>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ rmdir content
+$ ln -s dr.wiki content</code></pre></div>
+<h1 id="why-simple-pelican-won-t-work-and-what-to-do">Why simple pelican won&rsquo;t work and what to do</h1>
 
 <p>If you tried to simply call <code>pelican</code> command to build the static site, you will notice a lot of errors like:</p>
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>$ fab build
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ fab build
 
-RROR: Skipping ./请求.md: could not find information about <span style="color: #4e9a06">&#39;NameError: title&#39;</span>
-ERROR: Skipping ./过渡.md: could not find information about <span style="color: #4e9a06">&#39;NameError: title&#39;</span>
-ERROR: Skipping ./选择器.md: could not find information about <span style="color: #4e9a06">&#39;NameError: title&#39;</span>
-ERROR: Skipping ./选择集.md: could not find information about <span style="color: #4e9a06">&#39;NameError: title&#39;</span>
-Done: Processed <span style="color: #0000cf; font-weight: bold">0</span> articles, <span style="color: #0000cf; font-weight: bold">0</span> drafts, <span style="color: #0000cf; font-weight: bold">0</span> pages and <span style="color: #0000cf; font-weight: bold">0</span> hidden pages in 3.47 seconds.
-</pre></div>
-
+RROR: Skipping ./请求.md: could not find information about <span style="color:#4e9a06">&#39;NameError: title&#39;</span>
+ERROR: Skipping ./过渡.md: could not find information about <span style="color:#4e9a06">&#39;NameError: title&#39;</span>
+ERROR: Skipping ./选择器.md: could not find information about <span style="color:#4e9a06">&#39;NameError: title&#39;</span>
+ERROR: Skipping ./选择集.md: could not find information about <span style="color:#4e9a06">&#39;NameError: title&#39;</span>
+Done: Processed <span style="color:#0000cf;font-weight:bold">0</span> articles, <span style="color:#0000cf;font-weight:bold">0</span> drafts, <span style="color:#0000cf;font-weight:bold">0</span> pages and <span style="color:#0000cf;font-weight:bold">0</span> hidden pages in <span style="color:#0000cf;font-weight:bold">3</span>.47 seconds.</code></pre></div>
 <p>The problem is that pelican expects some variables to be defined in each <em>markdown</em> file before it can build the static file.
  Some of the variables are:</p>
 
@@ -483,7 +764,7 @@ Done: Processed <span style="color: #0000cf; font-weight: bold">0</span> article
 
 <p>The website can now be viewed at <a href="http://localhost:8000">http://localhost:8000</a></p>
 
-<h1 id="what-happened-to-the-menu:7286face6d57cb9f253b611714e09c9a">What happened to the menu?</h1>
+<h1 id="what-happened-to-the-menu">What happened to the menu?</h1>
 
 <p>There is a minor issue here though, you will notice that the menu is not available - it is all empty.
 It is an easy addition. We will need to add some lines to <code>publishconf.py</code> to say what the menu is gonna be.</p>
@@ -493,21 +774,21 @@ It is an easy addition. We will need to add some lines to <code>publishconf.py</
 <ul>
 <li>API Reference</li>
 <li>Tutorials</li>
-<li>Plugins</li>
+
+<li><p>Plugins</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#8f5902;font-style:italic"># We don&#39;t want all pages to show up in menu</span>
+<span style="color:#000">DISPLAY_PAGES_ON_MENU</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#3465a4">False</span>
+
+<span style="color:#8f5902;font-style:italic"># Choose the specific pages that should be part of menu</span>
+<span style="color:#000">MENUITEMS</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">(</span> 
+<span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#39;HOME&#39;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#4e9a06">&#39;/home.html&#39;</span><span style="color:#000;font-weight:bold">),</span>
+<span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#39;API Reference&#39;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#4e9a06">&#39;/API-Reference.html&#39;</span><span style="color:#000;font-weight:bold">),</span>
+<span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#39;Tutorials&#39;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#4e9a06">&#39;/Tutorials.html&#39;</span><span style="color:#000;font-weight:bold">),</span>
+<span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#39;Plugins&#39;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#4e9a06">&#39;/Plugins.html&#39;</span><span style="color:#000;font-weight:bold">),</span>
+<span style="color:#000;font-weight:bold">)</span></code></pre></div></li>
 </ul>
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #8f5902; font-style: italic"># We don&#39;t want all pages to show up in menu</span>
-<span style="color: #000000">DISPLAY_PAGES_ON_MENU</span> <span style="color: #ce5c00; font-weight: bold">=</span> <span style="color: #3465a4">False</span>
 
-<span style="color: #8f5902; font-style: italic"># Choose the specific pages that should be part of menu</span>
-<span style="color: #000000">MENUITEMS</span> <span style="color: #ce5c00; font-weight: bold">=</span> <span style="color: #000000; font-weight: bold">(</span> 
-    <span style="color: #000000; font-weight: bold">(</span><span style="color: #4e9a06">&#39;HOME&#39;</span><span style="color: #000000; font-weight: bold">,</span> <span style="color: #4e9a06">&#39;/home.html&#39;</span><span style="color: #000000; font-weight: bold">),</span>
-    <span style="color: #000000; font-weight: bold">(</span><span style="color: #4e9a06">&#39;API Reference&#39;</span><span style="color: #000000; font-weight: bold">,</span> <span style="color: #4e9a06">&#39;/API-Reference.html&#39;</span><span style="color: #000000; font-weight: bold">),</span>
-    <span style="color: #000000; font-weight: bold">(</span><span style="color: #4e9a06">&#39;Tutorials&#39;</span><span style="color: #000000; font-weight: bold">,</span> <span style="color: #4e9a06">&#39;/Tutorials.html&#39;</span><span style="color: #000000; font-weight: bold">),</span>
-    <span style="color: #000000; font-weight: bold">(</span><span style="color: #4e9a06">&#39;Plugins&#39;</span><span style="color: #000000; font-weight: bold">,</span> <span style="color: #4e9a06">&#39;/Plugins.html&#39;</span><span style="color: #000000; font-weight: bold">),</span>
-<span style="color: #000000; font-weight: bold">)</span>
-</pre></div>
-
-<h1 id="choosing-themes:7286face6d57cb9f253b611714e09c9a">Choosing themes</h1>
+<h1 id="choosing-themes">Choosing themes</h1>
 
 <p>By default, pelican uses its own theme for the static site, but theme can be modified.
 Let&rsquo;s choose <code>pelican bootstrap3</code> for our example here:</p>
@@ -526,25 +807,15 @@ Let&rsquo;s choose <code>pelican bootstrap3</code> for our example here:</p>
 fab serve
 </code></pre>
 
-
-<figure >
-    
-        <img src="/images/wiki_to_static_2.png" alt="Pelican Bootstrap3 theme" />
-    
-    
-    <figcaption>
-        <p>
-        Pelican Bootstrap3 theme
-        
-            
-        
-        </p> 
-    </figcaption>
-    
+<figure>
+    <img src="/images/wiki_to_static_2.png"
+         alt="Pelican Bootstrap3 theme"/> <figcaption>
+            <p>Pelican Bootstrap3 theme</p>
+        </figcaption>
 </figure>
 
 
-<h1 id="get-all-this-code-in-github-repo:7286face6d57cb9f253b611714e09c9a">Get all this code in github repo</h1>
+<h1 id="get-all-this-code-in-github-repo">Get all this code in github repo</h1>
 
 <p>I realize there maybe a few things going on here. You can get this whole setup as a project from
 my <a href="https://github.com/abhi1010/d3wiki">github repo</a></p>
@@ -577,25 +848,19 @@ my <a href="https://github.com/abhi1010/d3wiki">github repo</a></p>
 
 <p>You might see something like this:</p>
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #000000; font-style: italic">    CONTAINER ID        IMAGE                              COMMAND             CREATED             STATUS              PORTS               NAMES</span>
-<span style="color: #000000; font-style: italic">    1611e5ebe2c0        aws_beanstalk/staging-app:latest   &quot;supervisord -n&quot;    About an hour ago                                           boring_galileo</span>
-<span style="color: #000000; font-style: italic">    e59d0dd8bba1        aws_beanstalk/staging-app:latest   &quot;supervisord -n&quot;    About an hour ago                                           desperate_yalow</span>
-<span style="color: #000000; font-style: italic">    3844d0e18c47        aws_beanstalk/staging-app:latest   &quot;supervisord -n&quot;    2 hours ago         Up 8 minutes        80/tcp              pensive_jang</span>
-</pre></div>
-
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">    CONTAINER ID        IMAGE                              COMMAND             CREATED             STATUS              PORTS               NAMES
+    1611e5ebe2c0        aws_beanstalk/staging-app:latest   &#34;supervisord -n&#34;    About an hour ago                                           boring_galileo
+    e59d0dd8bba1        aws_beanstalk/staging-app:latest   &#34;supervisord -n&#34;    About an hour ago                                           desperate_yalow
+    3844d0e18c47        aws_beanstalk/staging-app:latest   &#34;supervisord -n&#34;    2 hours ago         Up 8 minutes        80/tcp              pensive_jang</code></pre></div>
 
 <p>Ideally, we want to &ldquo;forcibly remove&rdquo; all images (and hence the folders from <code>/var/lib/docker/vfs/dir</code> directory) that are not in use anymore.
 Just run the following to test whether it works:</p>
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #000000; font-style: italic">    docker rmi -f `docker images -aq`</span>
-</pre></div>
-
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">    docker rmi -f `docker images -aq`</code></pre></div>
 
 <p>You might run into trouble where docker says that all those images already have a container that is running them. This means those container are orphaned but not killed as we thought them to be. Let&rsquo;s remove the shared volumes if any, for each one of them.</p>
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #000000; font-style: italic">    docker rm -fv `docker ps -aq` </span>
-</pre></div>
-
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">    docker rm -fv `docker ps -aq` </code></pre></div>
 
 <p>This will</p>
 
@@ -605,15 +870,13 @@ Just run the following to test whether it works:</p>
 </ul>
 
 <p>You should see a lot more space now on your beanstalk instance.
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #000000; font-style: italic">    [root@ip dir]# df -h</span>
-<span style="color: #000000; font-style: italic">    Filesystem      Size  Used Avail Use% Mounted on</span>
-<span style="color: #000000; font-style: italic">    /dev/xvda1      7.8G  1.8G  5.9G  24% /</span>
-<span style="color: #000000; font-style: italic">    devtmpfs        490M   96K  490M   1% /dev</span>
-<span style="color: #000000; font-style: italic">    tmpfs           499M     0  499M   0% /dev/shm</span>
-</pre></div>
-</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">    [root@ip dir]# df -h
+    Filesystem      Size  Used Avail Use% Mounted on
+    /dev/xvda1      7.8G  1.8G  5.9G  24% /
+    devtmpfs        490M   96K  490M   1% /dev
+    tmpfs           499M     0  499M   0% /dev/shm</code></pre></div></p>
 
-<h1 id="last-resort:57533ab22b2cfb33b4a75f9cd178e950">Last Resort</h1>
+<h1 id="last-resort">Last Resort</h1>
 
 <p>If you feel that all this is not working, then you can try one of the scripts provided by <code>docker</code> itself at
 <a href="https://github.com/docker/docker/blob/master/contrib/nuke-graph-directory.sh">GitHub</a></p>
@@ -654,7 +917,7 @@ Just run the following to test whether it works:</p>
 
 <script type="text/javascript" src="http://gist.github.com/3ada1d15b5bda319a54c.js"></script>
 
-<h1 id="code:8a20b19b0e16e5ac875728276c435d4c">Code</h1>
+<h1 id="code">Code</h1>
 
 <p>As usual the code is available <a href="https://github.com/abhi1010/Algorithms/blob/master/Algo_codes/Node.cpp">here</a>:</p>
 
@@ -725,7 +988,7 @@ Just run the following to test whether it works:</p>
 
 <p>The internal structure itself for the algo can either be map or set based. When using map the Node itself can be saved thereby making your life easier if you are creating a new Linked List. However sets can be very useful if we are just iterating through the Linked List and simply deleting items that are being repetetive. This is also a great spacesaver. Hence we decided to go down this path.</p>
 
-<h1 id="code:33d170712a3b1643edfc33b9f231740c">Code</h1>
+<h1 id="code">Code</h1>
 
 <p>As usual the <a href="https://github.com/abhi1010/Algorithms/blob/master/Algo_codes/Node.cpp">code</a> is available here:</p>
 
@@ -738,94 +1001,104 @@ Just run the following to test whether it works:</p>
       
     </div>
     
-    <div class="post">
-      <h1 class="post-title">
-        <a href="http://abhipandey.com/2014/06/deleting-a-node-from-singly-linked-list/">Deleting a Node from Singly Linked List</a>
-      </h1>
-      <span class="post-date">Jun 7, 2014  &middot; <a href="http://abhipandey.com/2014/06/deleting-a-node-from-singly-linked-list/#disqus_thread">Comments</a>
-      
-      <br/>
-      <a class="a_cat" href="http://abhipandey.com/categories/code">code</a>
-        
-      <a class="a_tag" href="http://abhipandey.com/tags/linked-list">linked list</a><a class="a_tag" href="http://abhipandey.com/tags/c&#43;&#43;">c&#43;&#43;</a><a class="a_tag" href="http://abhipandey.com/tags/algo">algo</a>
     
-      </span>
-      
-      
 
-<p>Deleting a Node from Singly Linked List is rather straight forward.</p>
-
-<ul>
-<li><p>You have to know the head first of all</p></li>
-
-<li><p>Start by checking the head if that&rsquo;s the one you are looking for</p></li>
-
-<li><p>Keep moving forward and checking - always check for null pointers everywhere</p></li>
+<ul class="pagination">
+    
+    <li class="page-item">
+        <a href="/" class="page-link" aria-label="First"><span aria-hidden="true">&laquo;&laquo;</span></a>
+    </li>
+    
+    <li class="page-item">
+    <a href="/page/2/" class="page-link" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
+    </li>
+    
+    
+    
+    
+    
+    
+        
+        
+    
+    
+    <li class="page-item"><a class="page-link" href="/">1</a></li>
+    
+    
+    
+    
+    
+    
+        
+        
+    
+    
+    <li class="page-item"><a class="page-link" href="/page/2/">2</a></li>
+    
+    
+    
+    
+    
+    
+        
+        
+    
+    
+    <li class="page-item active"><a class="page-link" href="/page/3/">3</a></li>
+    
+    
+    
+    
+    
+    
+        
+        
+    
+    
+    <li class="page-item"><a class="page-link" href="/page/4/">4</a></li>
+    
+    
+    
+    
+    
+    
+        
+        
+    
+    
+    <li class="page-item disabled"><span aria-hidden="true">&nbsp;&hellip;&nbsp;</span></li>
+    
+    
+    
+    
+    
+    
+        
+        
+    
+    
+    
+    
+    
+    
+    
+        
+        
+    
+    
+    <li class="page-item"><a class="page-link" href="/page/7/">7</a></li>
+    
+    
+    <li class="page-item">
+    <a href="/page/4/" class="page-link" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
+    </li>
+    
+    <li class="page-item">
+        <a href="/page/7/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+    </li>
+    
 </ul>
 
-<p>Before we talk about the code, let&rsquo;s see how Linked List is setup.
-<!-- more --></p>
-
-<script type="text/javascript" src="http://gist.github.com/33be440bf1012773b7e1.js"></script>
-
-<p>Now, below is the code for it&hellip;.</p>
-
-<script type="text/javascript" src="http://gist.github.com/bf9dbb193b4ff84ba3af.js"></script>
-
-<h3 id="code:ca5ee7b35fae15e9d7ea6b34351195c6">Code</h3>
-
-<p>As usual the code is available <a href="https://github.com/abhi1010/Algorithms/blob/master/Algo_codes/Node.cpp">here</a>:</p>
-
-<p><a href="https://github.com/abhi1010/Algorithms">https://github.com/abhi1010/Algorithms</a></p>
-
-      
-    </div>
-    
-    
-    
-    <ul class="pagination">
-        
-        <li>
-            <a href="/" aria-label="First"><span aria-hidden="true">&laquo;&laquo;</span></a>
-        </li>
-        
-        <li
-        >
-        <a href="/page/2/" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
-        </li>
-        
-        <li
-        ><a href="/">1</a></li>
-        
-        <li
-        ><a href="/page/2/">2</a></li>
-        
-        <li
-        class="active"><a href="/page/3/">3</a></li>
-        
-        <li
-        ><a href="/page/4/">4</a></li>
-        
-        <li
-        ><a href="/page/5/">5</a></li>
-        
-        <li
-        ><a href="/page/6/">6</a></li>
-        
-        <li
-        ><a href="/page/7/">7</a></li>
-        
-        <li
-        >
-        <a href="/page/4/" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
-        </li>
-        
-        <li>
-            <a href="/page/7/" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
-        </li>
-        
-    </ul>
-    
   </div>
 </div>
 

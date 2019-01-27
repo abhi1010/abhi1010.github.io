@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
 <head>
+	<meta name="generator" content="Hugo 0.54-DEV" />
   <link href="http://gmpg.org/xfn/11" rel="profile">
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
   
@@ -87,6 +88,56 @@
 <div class="content container">
   <div class="posts">
     
+    
+    <div class="post">
+      <h1 class="post-title">
+        <a href="http://abhipandey.com/2013/09/oracle-sql-queries/">Oracle SQL Queries</a>
+      </h1>
+      <span class="post-date">Sep 22, 2013  &middot; <a href="http://abhipandey.com/2013/09/oracle-sql-queries/#disqus_thread">Comments</a>
+      
+      <br/>
+      <a class="a_cat" href="http://abhipandey.com/categories/code">code</a><a class="a_cat" href="http://abhipandey.com/categories/database">database</a>
+        
+      <a class="a_tag" href="http://abhipandey.com/tags/sql">sql</a>
+    
+      </span>
+      
+      <p>Recently I found myself in a situation where I had to view all the tables in the Oracle Server.</p>
+
+<p>I did some digging and came up with these helpful queries.</p>
+
+<table>
+<thead>
+<tr>
+<th>Query</th>
+<th>Remarks</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Select * from All_Tables</td>
+<td>View all the tables in the Oracle Server</td>
+</tr>
+
+<tr>
+<td>Select * from all_Views</td>
+<td>View all the views in the Oracle Server</td>
+</tr>
+
+<tr>
+<td>DESC table</td>
+<td>View all the columns of a given table. This function is used instead of the previous one mostly, but when this one doesn&rsquo;t work make sure you try the other one - I bet it will work.</td>
+</tr>
+</tbody>
+</table>
+
+<p>Here&rsquo;s a short code for viewing all the columns of a given table.</p>
+
+<script type="text/javascript" src="http://gist.github.com/11365686.js"></script>
+
+      
+    </div>
     
     <div class="post">
       <h1 class="post-title">
@@ -351,7 +402,7 @@ echo $CMD
 
 <!-- more -->
 
-<h2 id="testing-notes:e8a729abef3e1973716b8b8b10688a00">Testing Notes</h2>
+<h2 id="testing-notes">Testing Notes</h2>
 
 <ul>
 <li><p>I compared three versions of of Heap Sort</p></li>
@@ -377,13 +428,13 @@ echo $CMD
 <li><p>Postincrement can be replaced with preincrement in most places which should improve the numbers even more</p></li>
 </ul>
 
-<h2 id="code:e8a729abef3e1973716b8b8b10688a00">Code</h2>
+<h2 id="code">Code</h2>
 
 <p>As usual the code is <a href="https://github.com/abhi1010/Algorithms/blob/master/Algo_codes/HeapSort.cpp">available</a> here:</p>
 
 <p><a href="https://github.com/abhi1010/Algorithms">https://github.com/abhi1010/Algorithms</a></p>
 
-<h2 id="numbers:e8a729abef3e1973716b8b8b10688a00">Numbers</h2>
+<h2 id="numbers">Numbers</h2>
 
 <p><strong>HeapSort_1</strong>
 <table style="text-align:center;background-color:#efefef;width:100%;border-collapse:collapse;border:lightblue solid;" border="1" >
@@ -689,7 +740,7 @@ echo $CMD
 <!-- more --></li>
 </ul>
 
-<h2 id="testing-notes:19e6e9293aeb00484ea655d2aac941c9">Testing Notes</h2>
+<h2 id="testing-notes">Testing Notes</h2>
 
 <ul>
 <li>Started testing the algo with two versions.</li>
@@ -701,13 +752,13 @@ echo $CMD
 <li>The sole difference between them is the one that makes second implementation better</li>
 </ul>
 
-<h2 id="code:19e6e9293aeb00484ea655d2aac941c9">Code</h2>
+<h2 id="code">Code</h2>
 
 <p>As usual the <a href="https://github.com/abhi1010/Algorithms/blob/master/Algo_codes/MergeSort.cpp">code</a> is available here:</p>
 
 <p><a href="https://github.com/abhi1010/Algorithms">https://github.com/abhi1010/Algorithms</a></p>
 
-<h2 id="numbers:19e6e9293aeb00484ea655d2aac941c9">Numbers</h2>
+<h2 id="numbers">Numbers</h2>
 
 <table style="border-bottom:lightblue solid;text-align:center;border-left:lightblue solid;background-color:#efefef;width:100%;border-collapse:collapse;border-top:lightblue solid;border-right:lightblue solid;" border="1" > <tbody > <tr >
 <td style="width:25%;" >
@@ -849,20 +900,20 @@ echo $CMD
 <li>Not a stable sort</li>
 </ul>
 
-<h2 id="testing-notes:bc3cdebe8a50650a5fd63bed57e56314">Testing Notes</h2>
+<h2 id="testing-notes">Testing Notes</h2>
 
 <ul>
 <li>Currently we have only one version of the code. We may try to do another version that is not recursive because putting the functions on stack will take up some memory and time</li>
 <li>Another version could be trying to use the pivot from the middle and then compare how do the random numbers compare against the sorted numbers</li>
 </ul>
 
-<h2 id="code:bc3cdebe8a50650a5fd63bed57e56314">Code</h2>
+<h2 id="code">Code</h2>
 
 <p>As usual the <a href="https://github.com/abhi1010/Algorithms/blob/master/Algo_codes/QuickSort.cpp">code</a> is available here:</p>
 
 <p><a href="https://github.com/abhi1010/Algorithms">https://github.com/abhi1010/Algorithms</a></p>
 
-<h2 id="numbers:bc3cdebe8a50650a5fd63bed57e56314">Numbers</h2>
+<h2 id="numbers">Numbers</h2>
 
 <table style="border-bottom:lightblue solid;text-align:center;border-left:lightblue solid;background-color:#efefef;width:100%;border-collapse:collapse;border-top:lightblue solid;border-right:lightblue solid;" border="1" > <tbody > <tr >
 <td style="width:25%;" >
@@ -943,7 +994,7 @@ echo $CMD
 <li>Keeps the original order of elements with equal values</li>
 </ul>
 
-<h2 id="testing-notes:a9ce6fa80f206d39e558f67e9cc61fdd">Testing Notes</h2>
+<h2 id="testing-notes">Testing Notes</h2>
 
 <ul>
 <li>Had a very interesting time testing my code. I knew that swapping takes time. std::swap takes particularly longer. I disabled that from the beginning itself<br /></li>
@@ -954,13 +1005,13 @@ echo $CMD
 <li>Would be a nice algo to use if your data is mostly sorted</li>
 </ul>
 
-<h2 id="code:a9ce6fa80f206d39e558f67e9cc61fdd">Code</h2>
+<h2 id="code">Code</h2>
 
 <p>As usual the <a href="https://github.com/abhi1010/Algorithms/blob/master/Algo_codes/InsertionSort.cpp">code</a> is available here:</p>
 
 <p><a href="https://github.com/abhi1010/Algorithms">https://github.com/abhi1010/Algorithms</a></p>
 
-<h2 id="numbers:a9ce6fa80f206d39e558f67e9cc61fdd">Numbers</h2>
+<h2 id="numbers">Numbers</h2>
 
 <table style="text-align:center;background-color:#efefef;width:100%;border-collapse:collapse;border:lightblue solid;" border="1" >
 <tbody >
@@ -1150,221 +1201,106 @@ echo $CMD
       
     </div>
     
-    <div class="post">
-      <h1 class="post-title">
-        <a href="http://abhipandey.com/2012/09/counting-sort/">Counting Sort</a>
-      </h1>
-      <span class="post-date">Sep 11, 2012  &middot; <a href="http://abhipandey.com/2012/09/counting-sort/#disqus_thread">Comments</a>
-      
-      <br/>
-      <a class="a_cat" href="http://abhipandey.com/categories/code">code</a>
-        
-      <a class="a_tag" href="http://abhipandey.com/tags/sorting">sorting</a><a class="a_tag" href="http://abhipandey.com/tags/algo">algo</a><a class="a_tag" href="http://abhipandey.com/tags/c&#43;&#43;">c&#43;&#43;</a>
     
-      </span>
-      
-      <p>Counting Sort is an integer sorting algorithm. It is not very famous when somebody talks about sorting algorithms but it is great when sorting integers. In fact, many a times it may even beat other Sorting Algorithms. The highlight of Counting Sort is that it creates a bucket array (to keep track of frequency of numbers) whose size is the maximum element in the provided array.</p>
 
-<p>We are looking to compare most of the sorting algorithms to find out which one performs better under different circumstances. One of the ways is to compare the complexity for each algorithm. The other way is to compare how well they perform based on the input they are all provided. I will post my code on Github but will start with Counting Sort here.</p>
-
-<p><em>Here are some pointers about Counting Sort:</em></p>
-
-<ul>
-<li><p>Linear sorting algo with O(n+k) when the elements range from 1 to k</p>
-
-<ul>
-<li>On
-
-
-
-
-<br /></li>
-</ul></li>
-
-<li><p>It is really good when the numbers range from 1 to n which means the max between them is not going to be very high</p></li>
+<ul class="pagination">
+    
+    <li class="page-item">
+        <a href="/" class="page-link" aria-label="First"><span aria-hidden="true">&laquo;&laquo;</span></a>
+    </li>
+    
+    <li class="page-item">
+    <a href="/page/4/" class="page-link" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
+    </li>
+    
+    
+    
+    
+    
+    
+        
+        
+    
+    
+    <li class="page-item"><a class="page-link" href="/">1</a></li>
+    
+    
+    
+    
+    
+    
+        
+        
+    
+    
+    <li class="page-item"><a class="page-link" href="/page/2/">2</a></li>
+    
+    
+    
+    
+    
+    
+        
+        
+    
+    
+    <li class="page-item"><a class="page-link" href="/page/3/">3</a></li>
+    
+    
+    
+    
+    
+    
+        
+        
+    
+    
+    <li class="page-item"><a class="page-link" href="/page/4/">4</a></li>
+    
+    
+    
+    
+    
+    
+        
+        
+    
+    
+    <li class="page-item active"><a class="page-link" href="/page/5/">5</a></li>
+    
+    
+    
+    
+    
+    
+        
+        
+    
+    
+    <li class="page-item"><a class="page-link" href="/page/6/">6</a></li>
+    
+    
+    
+    
+    
+    
+        
+        
+    
+    
+    <li class="page-item"><a class="page-link" href="/page/7/">7</a></li>
+    
+    
+    <li class="page-item">
+    <a href="/page/6/" class="page-link" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
+    </li>
+    
+    <li class="page-item">
+        <a href="/page/7/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+    </li>
+    
 </ul>
 
-<p><strong><em>How do we compare all Sorting Algorithms?</em></strong></p>
-
-<p>We are going to look at the following scenarios across all Sorting Algorithms:</p>
-
-<ul>
-<li><p>10 numbers - Random + Sorted</p></li>
-
-<li><p>1000 numbers (1K) - Random + Sorted</p></li>
-
-<li><p>1,000,000 numbers (1M) - Random + Sorted</p></li>
-
-<li><p>20000 iterations for each one of these scenarios</p></li>
-
-<li><p>For good measure we will look at the average time required to sort 100 numbers in each one of these cases</p>
-
-<ul>
-<li><p>This will allow us to compare all algorithms against each other by looking at the average times</p></li>
-
-<li><p>It means we will be multiplying the results of 10 numbers by 10 (to get the &ldquo;average&rdquo; for 100 numbers) and also</p></li>
-</ul></li>
-</ul>
-
-<!-- more -->
-
-<p><strong>Machine Setup</strong></p>
-
-<p>The setup of my machine is as follows:</p>
-
-<p>| Hardware: x86_64
-| Processor: 16 x Intel&reg; Xeon&reg; E5540 2.53 GHz
-| Compiler: gcc version 4.8.2 (GCC)
-| Redhat Version: Red Hat 5.3</p>
-
-<p><strong>The Source Code</strong></p>
-
-<p>I am trying to do this all together in a single place so that it is easy for anybody to pick up the code, either for their own testing or going through the Sorting Algos. All of the source code for this can be found here:</p>
-
-<p><a href="https://github.com/abhi1010/Algorithms">https://github.com/abhi1010/Algorithms</a></p>
-
-<p><strong>Numbers</strong></p>
-
-<p>Without further ado, let&rsquo;s delve into the numbers for Counting Sorts. Here&rsquo;s the result from the code:
-<table style="text-align:center;background-color:#efefef;width:100%;border-collapse:collapse;border:lightblue solid;" border="1" >
-<tbody >
-<tr ></p>
-
-<p><td style="width:25%;" >
-</td></p>
-
-<p><td style="width:25%;" ><strong># of Items in Array</strong>
-</td></p>
-
-<p><td style="width:25%;" ><strong>Time Taken</strong>
-</td></p>
-
-<p><td style="width:25%;" ><strong>Average for 100 numbers</strong>
-</td>
-</tr>
-<tr ></p>
-
-<p><td rowspan="3" ><strong>Random</strong>
-</td></p>
-
-<p><td >10
-</td></p>
-
-<p><td >0.022982
-</td></p>
-
-<p><td >0.22982
-</td>
-</tr>
-<tr style="background-color:#efefef;color:#008000;" ></p>
-
-<p><td >1K
-</td></p>
-
-<p><td >1.21822
-</td></p>
-
-<p><td >0.121822
-</td>
-</tr>
-<tr ></p>
-
-<p><td >1M
-</td></p>
-
-<p><td >1823.85
-</td></p>
-
-<p><td >0.182385
-</td>
-</tr>
-<tr ></p>
-
-<p><td rowspan="3" ><strong>Sorted</strong>
-</td></p>
-
-<p><td >10
-</td></p>
-
-<p><td >0.026815
-</td></p>
-
-<p><td >0.26815
-</td>
-</tr>
-<tr style="background-color:#efefef;color:#008000;" ></p>
-
-<p><td >1K
-</td></p>
-
-<p><td >1.19146
-</td></p>
-
-<p><td >0.119146
-</td>
-</tr>
-<tr ></p>
-
-<p><td >1M
-</td></p>
-
-<p><td >1612.58
-</td></p>
-
-<p><td >0.161258
-</td>
-</tr>
-</tbody>
-</table></p>
-
-      
-    </div>
-    
-    
-    
-    <ul class="pagination">
-        
-        <li>
-            <a href="/" aria-label="First"><span aria-hidden="true">&laquo;&laquo;</span></a>
-        </li>
-        
-        <li
-        >
-        <a href="/page/4/" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
-        </li>
-        
-        <li
-        ><a href="/">1</a></li>
-        
-        <li
-        ><a href="/page/2/">2</a></li>
-        
-        <li
-        ><a href="/page/3/">3</a></li>
-        
-        <li
-        ><a href="/page/4/">4</a></li>
-        
-        <li
-        class="active"><a href="/page/5/">5</a></li>
-        
-        <li
-        ><a href="/page/6/">6</a></li>
-        
-        <li
-        ><a href="/page/7/">7</a></li>
-        
-        <li
-        >
-        <a href="/page/6/" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
-        </li>
-        
-        <li>
-            <a href="/page/7/" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
-        </li>
-        
-    </ul>
-    
   </div>
 </div>
 

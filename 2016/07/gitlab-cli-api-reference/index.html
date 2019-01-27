@@ -104,13 +104,13 @@
 <ul>
 <li>
 <ul>
-<li><a href="#gitlab-cli:67f66bdf501059124272bbdeb0fc5217">gitlab cli</a>
+<li><a href="#gitlab-cli">gitlab cli</a>
 <ul>
-<li><a href="#installing-the-gitlab-cli:67f66bdf501059124272bbdeb0fc5217">Installing the gitlab CLI</a></li>
-<li><a href="#configuration:67f66bdf501059124272bbdeb0fc5217">Configuration</a></li>
-<li><a href="#available-commands:67f66bdf501059124272bbdeb0fc5217">Available commands</a></li>
-<li><a href="#sample-cli-commands:67f66bdf501059124272bbdeb0fc5217">Sample CLI commands</a></li>
-<li><a href="#sample-curl-commands:67f66bdf501059124272bbdeb0fc5217">Sample CURL commands</a></li>
+<li><a href="#installing-the-gitlab-cli">Installing the gitlab CLI</a></li>
+<li><a href="#configuration">Configuration</a></li>
+<li><a href="#available-commands">Available commands</a></li>
+<li><a href="#sample-cli-commands">Sample CLI commands</a></li>
+<li><a href="#sample-curl-commands">Sample CURL commands</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -125,99 +125,93 @@ both of which have examples here.</p>
 
 <p>Let&rsquo;s get started.</p>
 
-<h2 id="gitlab-cli:67f66bdf501059124272bbdeb0fc5217">gitlab cli</h2>
+<h2 id="gitlab-cli">gitlab cli</h2>
 
-<h3 id="installing-the-gitlab-cli:67f66bdf501059124272bbdeb0fc5217">Installing the gitlab CLI</h3>
+<h3 id="installing-the-gitlab-cli">Installing the gitlab CLI</h3>
 
 <pre><code># http://narkoz.github.io/gitlab/configuration
 gem install gitlab
 </code></pre>
 
-<h3 id="configuration:67f66bdf501059124272bbdeb0fc5217">Configuration</h3>
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #204a87">export</span> <span style="color: #000000">GITLAB_API_ENDPOINT</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #4e9a06">&#39;http://gitlab.com/api/v3&#39;</span>
-<span style="color: #204a87">export</span> <span style="color: #000000">GITLAB_API_PRIVATE_TOKEN</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #4e9a06">&#39;YOUR_TOKEN_&#39;</span>
-</pre></div>
-
-<h3 id="available-commands:67f66bdf501059124272bbdeb0fc5217">Available commands</h3>
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>$ gitlab
+<h3 id="configuration">Configuration</h3>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#204a87">export</span> <span style="color:#000">GITLAB_API_ENDPOINT</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#39;http://gitlab.com/api/v3&#39;</span>
+<span style="color:#204a87">export</span> <span style="color:#000">GITLAB_API_PRIVATE_TOKEN</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#39;YOUR_TOKEN_&#39;</span></code></pre></div>
+<h3 id="available-commands">Available commands</h3>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ gitlab
 +-----------------+
-<span style="color: #000000; font-weight: bold">|</span>   Help Topics   <span style="color: #000000; font-weight: bold">|</span>
+<span style="color:#000;font-weight:bold">|</span>   Help Topics   <span style="color:#000;font-weight:bold">|</span>
 +-----------------+
-<span style="color: #000000; font-weight: bold">|</span> Branches        <span style="color: #000000; font-weight: bold">|</span>
+<span style="color:#000;font-weight:bold">|</span> Branches        <span style="color:#000;font-weight:bold">|</span>
 +-----------------+
-<span style="color: #000000; font-weight: bold">|</span> Commits         <span style="color: #000000; font-weight: bold">|</span>
+<span style="color:#000;font-weight:bold">|</span> Commits         <span style="color:#000;font-weight:bold">|</span>
 +-----------------+
-<span style="color: #000000; font-weight: bold">|</span> Groups          <span style="color: #000000; font-weight: bold">|</span>
+<span style="color:#000;font-weight:bold">|</span> Groups          <span style="color:#000;font-weight:bold">|</span>
 +-----------------+
-<span style="color: #000000; font-weight: bold">|</span> Issues          <span style="color: #000000; font-weight: bold">|</span>
+<span style="color:#000;font-weight:bold">|</span> Issues          <span style="color:#000;font-weight:bold">|</span>
 +-----------------+
-<span style="color: #000000; font-weight: bold">|</span> Labels          <span style="color: #000000; font-weight: bold">|</span>
+<span style="color:#000;font-weight:bold">|</span> Labels          <span style="color:#000;font-weight:bold">|</span>
 +-----------------+
-<span style="color: #000000; font-weight: bold">|</span> MergeRequests   <span style="color: #000000; font-weight: bold">|</span>
+<span style="color:#000;font-weight:bold">|</span> MergeRequests   <span style="color:#000;font-weight:bold">|</span>
 +-----------------+
-<span style="color: #000000; font-weight: bold">|</span> Milestones      <span style="color: #000000; font-weight: bold">|</span>
+<span style="color:#000;font-weight:bold">|</span> Milestones      <span style="color:#000;font-weight:bold">|</span>
 +-----------------+
-<span style="color: #000000; font-weight: bold">|</span> Namespaces      <span style="color: #000000; font-weight: bold">|</span>
+<span style="color:#000;font-weight:bold">|</span> Namespaces      <span style="color:#000;font-weight:bold">|</span>
 +-----------------+
-<span style="color: #000000; font-weight: bold">|</span> Notes           <span style="color: #000000; font-weight: bold">|</span>
+<span style="color:#000;font-weight:bold">|</span> Notes           <span style="color:#000;font-weight:bold">|</span>
 +-----------------+
-<span style="color: #000000; font-weight: bold">|</span> Projects        <span style="color: #000000; font-weight: bold">|</span>
+<span style="color:#000;font-weight:bold">|</span> Projects        <span style="color:#000;font-weight:bold">|</span>
 +-----------------+
-<span style="color: #000000; font-weight: bold">|</span> Repositories    <span style="color: #000000; font-weight: bold">|</span>
+<span style="color:#000;font-weight:bold">|</span> Repositories    <span style="color:#000;font-weight:bold">|</span>
 +-----------------+
-<span style="color: #000000; font-weight: bold">|</span> RepositoryFiles <span style="color: #000000; font-weight: bold">|</span>
+<span style="color:#000;font-weight:bold">|</span> RepositoryFiles <span style="color:#000;font-weight:bold">|</span>
 +-----------------+
-<span style="color: #000000; font-weight: bold">|</span> Snippets        <span style="color: #000000; font-weight: bold">|</span>
+<span style="color:#000;font-weight:bold">|</span> Snippets        <span style="color:#000;font-weight:bold">|</span>
 +-----------------+
-<span style="color: #000000; font-weight: bold">|</span> SystemHooks     <span style="color: #000000; font-weight: bold">|</span>
+<span style="color:#000;font-weight:bold">|</span> SystemHooks     <span style="color:#000;font-weight:bold">|</span>
 +-----------------+
-<span style="color: #000000; font-weight: bold">|</span> Users           <span style="color: #000000; font-weight: bold">|</span>
-+-----------------+
-</pre></div>
-
-<h3 id="sample-cli-commands:67f66bdf501059124272bbdeb0fc5217">Sample CLI commands</h3>
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #8f5902; font-style: italic"># Check the list of Projects</span>
+<span style="color:#000;font-weight:bold">|</span> Users           <span style="color:#000;font-weight:bold">|</span>
++-----------------+</code></pre></div>
+<h3 id="sample-cli-commands">Sample CLI commands</h3>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#8f5902;font-style:italic"># Check the list of Projects</span>
 $ gitlab projects
 
-<span style="color: #8f5902; font-style: italic"># Based on the response, we know reconwisev2 is ID 487928</span>
-<span style="color: #8f5902; font-style: italic"># Let&#39;s find out the list of labels in it</span>
-$ gitlab labels 487928
+<span style="color:#8f5902;font-style:italic"># Based on the response, we know reconwisev2 is ID 487928</span>
+<span style="color:#8f5902;font-style:italic"># Let&#39;s find out the list of labels in it</span>
+$ gitlab labels <span style="color:#0000cf;font-weight:bold">487928</span>
 +---------------------+---------+--------------------+--------------+-------------------+---------------------------+------------+
-<span style="color: #000000; font-weight: bold">|</span>                                                      Gitlab.labels <span style="color: #0000cf; font-weight: bold">487928</span>                                                      <span style="color: #000000; font-weight: bold">|</span>
+<span style="color:#000;font-weight:bold">|</span>                                                      Gitlab.labels <span style="color:#0000cf;font-weight:bold">487928</span>                                                      <span style="color:#000;font-weight:bold">|</span>
 +---------------------+---------+--------------------+--------------+-------------------+---------------------------+------------+
-<span style="color: #000000; font-weight: bold">|</span> closed_issues_count <span style="color: #000000; font-weight: bold">|</span> color   <span style="color: #000000; font-weight: bold">|</span> description        <span style="color: #000000; font-weight: bold">|</span> name         <span style="color: #000000; font-weight: bold">|</span> open_issues_count <span style="color: #000000; font-weight: bold">|</span> open_merge_requests_count <span style="color: #000000; font-weight: bold">|</span> subscribed <span style="color: #000000; font-weight: bold">|</span>
+<span style="color:#000;font-weight:bold">|</span> closed_issues_count <span style="color:#000;font-weight:bold">|</span> color   <span style="color:#000;font-weight:bold">|</span> description        <span style="color:#000;font-weight:bold">|</span> name         <span style="color:#000;font-weight:bold">|</span> open_issues_count <span style="color:#000;font-weight:bold">|</span> open_merge_requests_count <span style="color:#000;font-weight:bold">|</span> subscribed <span style="color:#000;font-weight:bold">|</span>
 +---------------------+---------+--------------------+--------------+-------------------+---------------------------+------------+
-<span style="color: #000000; font-weight: bold">|</span> <span style="color: #0000cf; font-weight: bold">2</span>                   <span style="color: #000000; font-weight: bold">|</span> <span style="color: #8f5902; font-style: italic">#ff0000 | null               | !Blocker     | 0                 | 0                         | false      |</span>
+<span style="color:#000;font-weight:bold">|</span> <span style="color:#0000cf;font-weight:bold">2</span>                   <span style="color:#000;font-weight:bold">|</span> <span style="color:#8f5902;font-style:italic">#ff0000 | null               | !Blocker     | 0                 | 0                         | false      |</span>
 +---------------------+---------+--------------------+--------------+-------------------+---------------------------+------------+
-<span style="color: #000000; font-weight: bold">|</span> <span style="color: #0000cf; font-weight: bold">2</span>                   <span style="color: #000000; font-weight: bold">|</span> <span style="color: #8f5902; font-style: italic">#0033cc | null               | #AWS         | 8                 | 0                         | false      |</span>
+<span style="color:#000;font-weight:bold">|</span> <span style="color:#0000cf;font-weight:bold">2</span>                   <span style="color:#000;font-weight:bold">|</span> <span style="color:#8f5902;font-style:italic">#0033cc | null               | #AWS         | 8                 | 0                         | false      |</span>
 +---------------------+---------+--------------------+--------------+-------------------+---------------------------+------------+
-<span style="color: #000000; font-weight: bold">|</span> <span style="color: #0000cf; font-weight: bold">27</span>                  <span style="color: #000000; font-weight: bold">|</span> <span style="color: #8f5902; font-style: italic">#428bca | null               | #Bug         | 2                 | 0                         | false      |</span>
+<span style="color:#000;font-weight:bold">|</span> <span style="color:#0000cf;font-weight:bold">27</span>                  <span style="color:#000;font-weight:bold">|</span> <span style="color:#8f5902;font-style:italic">#428bca | null               | #Bug         | 2                 | 0                         | false      |</span>
 +---------------------+---------+--------------------+--------------+-------------------+---------------------------+------------+
-<span style="color: #000000; font-weight: bold">|</span> <span style="color: #0000cf; font-weight: bold">3</span>                   <span style="color: #000000; font-weight: bold">|</span> <span style="color: #8f5902; font-style: italic">#0033cc | null               | #Feature     | 29                | 0                         | false      |</span>
+<span style="color:#000;font-weight:bold">|</span> <span style="color:#0000cf;font-weight:bold">3</span>                   <span style="color:#000;font-weight:bold">|</span> <span style="color:#8f5902;font-style:italic">#0033cc | null               | #Feature     | 29                | 0                         | false      |</span>
 +---------------------+---------+--------------------+--------------+-------------------+---------------------------+------------+
-<span style="color: #000000; font-weight: bold">|</span> <span style="color: #0000cf; font-weight: bold">7</span>                   <span style="color: #000000; font-weight: bold">|</span> <span style="color: #8f5902; font-style: italic">#5843ad | null               | #Improvement | 22                | 0                         | false      |</span>
+<span style="color:#000;font-weight:bold">|</span> <span style="color:#0000cf;font-weight:bold">7</span>                   <span style="color:#000;font-weight:bold">|</span> <span style="color:#8f5902;font-style:italic">#5843ad | null               | #Improvement | 22                | 0                         | false      |</span>
 +---------------------+---------+--------------------+--------------+-------------------+---------------------------+------------+
-<span style="color: #000000; font-weight: bold">|</span> <span style="color: #0000cf; font-weight: bold">1</span>                   <span style="color: #000000; font-weight: bold">|</span> <span style="color: #8f5902; font-style: italic">#428bca |                    | #Support     | 1                 | 0                         | false      |</span>
+<span style="color:#000;font-weight:bold">|</span> <span style="color:#0000cf;font-weight:bold">1</span>                   <span style="color:#000;font-weight:bold">|</span> <span style="color:#8f5902;font-style:italic">#428bca |                    | #Support     | 1                 | 0                         | false      |</span>
 +---------------------+---------+--------------------+--------------+-------------------+---------------------------+------------+
-<span style="color: #000000; font-weight: bold">|</span> <span style="color: #0000cf; font-weight: bold">28</span>                  <span style="color: #000000; font-weight: bold">|</span> <span style="color: #8f5902; font-style: italic">#f0ad4e | null               | $GH          | 12                | 0                         | false      |</span>
+<span style="color:#000;font-weight:bold">|</span> <span style="color:#0000cf;font-weight:bold">28</span>                  <span style="color:#000;font-weight:bold">|</span> <span style="color:#8f5902;font-style:italic">#f0ad4e | null               | $GH          | 12                | 0                         | false      |</span>
 +---------------------+---------+--------------------+--------------+-------------------+---------------------------+------------+
-<span style="color: #000000; font-weight: bold">|</span> <span style="color: #0000cf; font-weight: bold">0</span>                   <span style="color: #000000; font-weight: bold">|</span> <span style="color: #8f5902; font-style: italic">#f0ad4e |                    | $IFAST       | 4                 | 0                         | false      |</span>
+<span style="color:#000;font-weight:bold">|</span> <span style="color:#0000cf;font-weight:bold">0</span>                   <span style="color:#000;font-weight:bold">|</span> <span style="color:#8f5902;font-style:italic">#f0ad4e |                    | $IFAST       | 4                 | 0                         | false      |</span>
 +---------------------+---------+--------------------+--------------+-------------------+---------------------------+------------+
-<span style="color: #000000; font-weight: bold">|</span> <span style="color: #0000cf; font-weight: bold">25</span>                  <span style="color: #000000; font-weight: bold">|</span> <span style="color: #8f5902; font-style: italic">#ff0000 | null               | 1-Critical   | 7                 | 0                         | false      |</span>
+<span style="color:#000;font-weight:bold">|</span> <span style="color:#0000cf;font-weight:bold">25</span>                  <span style="color:#000;font-weight:bold">|</span> <span style="color:#8f5902;font-style:italic">#ff0000 | null               | 1-Critical   | 7                 | 0                         | false      |</span>
 +---------------------+---------+--------------------+--------------+-------------------+---------------------------+------------+
-<span style="color: #000000; font-weight: bold">|</span> <span style="color: #0000cf; font-weight: bold">2</span>                   <span style="color: #000000; font-weight: bold">|</span> <span style="color: #8f5902; font-style: italic">#ad4363 | null               | 2-Important  | 20                | 0                         | false      |</span>
+<span style="color:#000;font-weight:bold">|</span> <span style="color:#0000cf;font-weight:bold">2</span>                   <span style="color:#000;font-weight:bold">|</span> <span style="color:#8f5902;font-style:italic">#ad4363 | null               | 2-Important  | 20                | 0                         | false      |</span>
 +---------------------+---------+--------------------+--------------+-------------------+---------------------------+------------+
-<span style="color: #000000; font-weight: bold">|</span> <span style="color: #0000cf; font-weight: bold">5</span>                   <span style="color: #000000; font-weight: bold">|</span> <span style="color: #8f5902; font-style: italic">#ad4363 | null               | 3-Normal     | 18                | 0                         | false      |</span>
+<span style="color:#000;font-weight:bold">|</span> <span style="color:#0000cf;font-weight:bold">5</span>                   <span style="color:#000;font-weight:bold">|</span> <span style="color:#8f5902;font-style:italic">#ad4363 | null               | 3-Normal     | 18                | 0                         | false      |</span>
 +---------------------+---------+--------------------+--------------+-------------------+---------------------------+------------+
-<span style="color: #000000; font-weight: bold">|</span> <span style="color: #0000cf; font-weight: bold">2</span>                   <span style="color: #000000; font-weight: bold">|</span> <span style="color: #8f5902; font-style: italic">#d491a5 |                    | 4-Trivial    | 6                 | 0                         | false      |</span>
+<span style="color:#000;font-weight:bold">|</span> <span style="color:#0000cf;font-weight:bold">2</span>                   <span style="color:#000;font-weight:bold">|</span> <span style="color:#8f5902;font-style:italic">#d491a5 |                    | 4-Trivial    | 6                 | 0                         | false      |</span>
 +---------------------+---------+--------------------+--------------+-------------------+---------------------------+------------+
-<span style="color: #000000; font-weight: bold">|</span> <span style="color: #0000cf; font-weight: bold">0</span>                   <span style="color: #000000; font-weight: bold">|</span> <span style="color: #8f5902; font-style: italic">#a8d695 | null               | ^In-Progress | 3                 | 1                         | false      |</span>
+<span style="color:#000;font-weight:bold">|</span> <span style="color:#0000cf;font-weight:bold">0</span>                   <span style="color:#000;font-weight:bold">|</span> <span style="color:#8f5902;font-style:italic">#a8d695 | null               | ^In-Progress | 3                 | 1                         | false      |</span>
 +---------------------+---------+--------------------+--------------+-------------------+---------------------------+------------+
-<span style="color: #000000; font-weight: bold">|</span> <span style="color: #0000cf; font-weight: bold">0</span>                   <span style="color: #000000; font-weight: bold">|</span> <span style="color: #8f5902; font-style: italic">#69d100 | Completed/Finished | ^Resolved    | 0                 | 1                         | false      |</span>
-+---------------------+---------+--------------------+--------------+-------------------+---------------------------+------------+
-</pre></div>
-
-<h3 id="sample-curl-commands:67f66bdf501059124272bbdeb0fc5217">Sample CURL commands</h3>
+<span style="color:#000;font-weight:bold">|</span> <span style="color:#0000cf;font-weight:bold">0</span>                   <span style="color:#000;font-weight:bold">|</span> <span style="color:#8f5902;font-style:italic">#69d100 | Completed/Finished | ^Resolved    | 0                 | 1                         | false      |</span>
++---------------------+---------+--------------------+--------------+-------------------+---------------------------+------------+</code></pre></div>
+<h3 id="sample-curl-commands">Sample CURL commands</h3>
 
 <p><strong>Check the list of Projects</strong></p>
 
@@ -233,38 +227,36 @@ Let&rsquo;s find out the list of labels in it.</p>
 </code></pre>
 
 <p>The response is a bit like this:</p>
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #000000; font-weight: bold">[</span>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#000;font-weight:bold">[</span>
 
-    <span style="color: #000000; font-weight: bold">{</span>
-        <span style="color: #204a87; font-weight: bold">&quot;name&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #4e9a06">&quot;!Blocker&quot;</span><span style="color: #000000; font-weight: bold">,</span>
-        <span style="color: #204a87; font-weight: bold">&quot;color&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #4e9a06">&quot;#ff0000&quot;</span><span style="color: #000000; font-weight: bold">,</span>
-        <span style="color: #204a87; font-weight: bold">&quot;description&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #204a87; font-weight: bold">null</span><span style="color: #000000; font-weight: bold">,</span>
-        <span style="color: #204a87; font-weight: bold">&quot;open_issues_count&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #0000cf; font-weight: bold">0</span><span style="color: #000000; font-weight: bold">,</span>
-        <span style="color: #204a87; font-weight: bold">&quot;closed_issues_count&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #0000cf; font-weight: bold">2</span><span style="color: #000000; font-weight: bold">,</span>
-        <span style="color: #204a87; font-weight: bold">&quot;open_merge_requests_count&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #0000cf; font-weight: bold">0</span><span style="color: #000000; font-weight: bold">,</span>
-        <span style="color: #204a87; font-weight: bold">&quot;subscribed&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #204a87; font-weight: bold">false</span>
-    <span style="color: #000000; font-weight: bold">},</span>
-    <span style="color: #000000; font-weight: bold">{</span>
-        <span style="color: #204a87; font-weight: bold">&quot;name&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #4e9a06">&quot;#AWS&quot;</span><span style="color: #000000; font-weight: bold">,</span>
-        <span style="color: #204a87; font-weight: bold">&quot;color&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #4e9a06">&quot;#0033cc&quot;</span><span style="color: #000000; font-weight: bold">,</span>
-        <span style="color: #204a87; font-weight: bold">&quot;description&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #204a87; font-weight: bold">null</span><span style="color: #000000; font-weight: bold">,</span>
-        <span style="color: #204a87; font-weight: bold">&quot;open_issues_count&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #0000cf; font-weight: bold">8</span><span style="color: #000000; font-weight: bold">,</span>
-        <span style="color: #204a87; font-weight: bold">&quot;closed_issues_count&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #0000cf; font-weight: bold">2</span><span style="color: #000000; font-weight: bold">,</span>
-        <span style="color: #204a87; font-weight: bold">&quot;open_merge_requests_count&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #0000cf; font-weight: bold">0</span><span style="color: #000000; font-weight: bold">,</span>
-        <span style="color: #204a87; font-weight: bold">&quot;subscribed&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #204a87; font-weight: bold">false</span>
-    <span style="color: #000000; font-weight: bold">},</span>
-    <span style="color: #000000; font-weight: bold">{</span>
-        <span style="color: #204a87; font-weight: bold">&quot;name&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #4e9a06">&quot;#Bug&quot;</span><span style="color: #000000; font-weight: bold">,</span>
-        <span style="color: #204a87; font-weight: bold">&quot;color&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #4e9a06">&quot;#428bca&quot;</span><span style="color: #000000; font-weight: bold">,</span>
-        <span style="color: #204a87; font-weight: bold">&quot;description&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #204a87; font-weight: bold">null</span><span style="color: #000000; font-weight: bold">,</span>
-        <span style="color: #204a87; font-weight: bold">&quot;open_issues_count&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #0000cf; font-weight: bold">2</span><span style="color: #000000; font-weight: bold">,</span>
-        <span style="color: #204a87; font-weight: bold">&quot;closed_issues_count&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #0000cf; font-weight: bold">27</span><span style="color: #000000; font-weight: bold">,</span>
-        <span style="color: #204a87; font-weight: bold">&quot;open_merge_requests_count&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #0000cf; font-weight: bold">0</span><span style="color: #000000; font-weight: bold">,</span>
-        <span style="color: #204a87; font-weight: bold">&quot;subscribed&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #204a87; font-weight: bold">false</span>
-    <span style="color: #000000; font-weight: bold">},</span>
-    <span style="color: #a40000; border: 1px solid #ef2929">....</span>
-</pre></div>
-
+    <span style="color:#000;font-weight:bold">{</span>
+        <span style="color:#204a87;font-weight:bold">&#34;name&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;!Blocker&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#204a87;font-weight:bold">&#34;color&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;#ff0000&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#204a87;font-weight:bold">&#34;description&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">null</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#204a87;font-weight:bold">&#34;open_issues_count&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#204a87;font-weight:bold">&#34;closed_issues_count&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#0000cf;font-weight:bold">2</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#204a87;font-weight:bold">&#34;open_merge_requests_count&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#204a87;font-weight:bold">&#34;subscribed&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">false</span>
+    <span style="color:#000;font-weight:bold">},</span>
+    <span style="color:#000;font-weight:bold">{</span>
+        <span style="color:#204a87;font-weight:bold">&#34;name&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;#AWS&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#204a87;font-weight:bold">&#34;color&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;#0033cc&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#204a87;font-weight:bold">&#34;description&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">null</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#204a87;font-weight:bold">&#34;open_issues_count&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#0000cf;font-weight:bold">8</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#204a87;font-weight:bold">&#34;closed_issues_count&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#0000cf;font-weight:bold">2</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#204a87;font-weight:bold">&#34;open_merge_requests_count&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#204a87;font-weight:bold">&#34;subscribed&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">false</span>
+    <span style="color:#000;font-weight:bold">},</span>
+    <span style="color:#000;font-weight:bold">{</span>
+        <span style="color:#204a87;font-weight:bold">&#34;name&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;#Bug&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#204a87;font-weight:bold">&#34;color&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;#428bca&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#204a87;font-weight:bold">&#34;description&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">null</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#204a87;font-weight:bold">&#34;open_issues_count&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#0000cf;font-weight:bold">2</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#204a87;font-weight:bold">&#34;closed_issues_count&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#0000cf;font-weight:bold">27</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#204a87;font-weight:bold">&#34;open_merge_requests_count&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#204a87;font-weight:bold">&#34;subscribed&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">false</span>
+    <span style="color:#000;font-weight:bold">},</span>
+    <span style="color:#a40000">....</span></code></pre></div>
 <p>More documentation is available <a href="https://github.com/gitlabhq/gitlabhq/tree/master/doc/api">here</a></p>
 
   </div>

@@ -7,23 +7,17 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 06 Apr 2008 05:32:00 +0000</lastBuildDate>
-    <atom:link href="http://abhipandey.com/tags/flash/index.xml" rel="self" type="application/rss+xml" />
+    
+	<atom:link href="http://abhipandey.com/tags/flash/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>Google Analytics &amp; SWFAddress</title>
-      <link>http://abhipandey.com/2008/04/google-analytics--swfaddress/</link>
+      <link>http://abhipandey.com/2008/04/google-analytics-swfaddress/</link>
       <pubDate>Sun, 06 Apr 2008 05:32:00 +0000</pubDate>
       
-      <guid>http://abhipandey.com/2008/04/google-analytics--swfaddress/</guid>
-      <description>&lt;p&gt;Recently found a bug slash issue with Google Analytics new javscript software (post-urchin v5). I had written the internal documentation for the company standards and somehow when those standards were put into practice, SWFAddress feature of flash stopped working the moment google analytics feature was enabled. Worst of all, the web pages failed to load! To cap it off, the website was working perfectly fine on Firefox 2, 3 and IE 7!! It was having trouble only on IE6.&lt;/p&gt;
-
-&lt;p&gt;I tried a lot of ways but none seem to worked. Finally found a blog that remotely talked about SWFAddress!&lt;/p&gt;
-
-&lt;p&gt;Well, the problem turns out that SWFAddress uses &lt;code&gt;ExternalInterface.call()&lt;/code&gt; instead of &lt;code&gt;getUrl()&lt;/code&gt; function internally and they don&amp;rsquo;t go well together if used together.&lt;/p&gt;
-
-&lt;p&gt;The solution was simple, since flash is using SWFAddress feature, every &lt;code&gt;getUrl&lt;/code&gt; should be replaced with &lt;code&gt;ExternalInterface.call()&lt;/code&gt;.
- Needless to say, everything seemed perfect again.&lt;/p&gt;
-</description>
+      <guid>http://abhipandey.com/2008/04/google-analytics-swfaddress/</guid>
+      <description>Recently found a bug slash issue with Google Analytics new javscript software (post-urchin v5). I had written the internal documentation for the company standards and somehow when those standards were put into practice, SWFAddress feature of flash stopped working the moment google analytics feature was enabled. Worst of all, the web pages failed to load! To cap it off, the website was working perfectly fine on Firefox 2, 3 and IE 7!</description>
     </item>
     
     <item>
@@ -32,26 +26,10 @@
       <pubDate>Mon, 03 Mar 2008 04:58:00 +0000</pubDate>
       
       <guid>http://abhipandey.com/2008/03/talk-to-my...-flash/</guid>
-      <description>&lt;p&gt;According to normal acceptable behaviour it is not possible to let flash talk to the computer, be it on desktop or web browser.&lt;/p&gt;
-
-&lt;p&gt;There are always ways around a problem and there&amp;rsquo;s one in this case as well.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Windows Forms&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;If you wanted to access .net functions on windows form then probably a good way to do that would be through &lt;code&gt;ShockWaveFlashObjects&lt;/code&gt; library. It wraps all the functions that are available in ShockWave Objects and makes them available to you in .Net type safe way.&lt;/p&gt;
-
-&lt;p&gt;The easiest of ways to send data back and forth would be through
-&lt;code&gt;fscommand&lt;/code&gt; function. The concept is to embed a flash file in windows form and then make use of &lt;code&gt;fscommand&lt;/code&gt; function.&lt;/p&gt;
-
-&lt;p&gt;Tip: Remember to remove the blue window bondary at the top so the flash appears as if its a standalone object and not embedded inside another form!&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Websites&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;If you wanted to talk over a web page then an easy way out would be to use AMF.Net software. It is a freeware and very easy to use as well. In the words of its official &lt;a href=&#34;http://amfnet.openmymind.net/overview/default.aspx&#34;&gt;website&lt;/a&gt;:&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;&amp;ldquo;AMF enables developers to build powerful flash-based applications driven by databases and rich business layers.
-AMF.NET is a .NET gateway sitting between a Flash movie and .NET code. The goal of AMF.NET is to promote proper N-Tier development by allowing your existing business layer (written in .NET) to be consumed by Flash without requiring any modification.&amp;rdquo;&lt;/em&gt;&lt;/p&gt;
-</description>
+      <description>According to normal acceptable behaviour it is not possible to let flash talk to the computer, be it on desktop or web browser.
+There are always ways around a problem and there&amp;rsquo;s one in this case as well.
+Windows Forms
+If you wanted to access .net functions on windows form then probably a good way to do that would be through ShockWaveFlashObjects library. It wraps all the functions that are available in ShockWave Objects and makes them available to you in .</description>
     </item>
     
   </channel>

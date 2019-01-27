@@ -7,7 +7,9 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 28 Jun 2016 23:26:44 +0800</lastBuildDate>
-    <atom:link href="http://abhipandey.com/tags/docker/index.xml" rel="self" type="application/rss+xml" />
+    
+	<atom:link href="http://abhipandey.com/tags/docker/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>Protobuf on Docker</title>
@@ -15,76 +17,8 @@
       <pubDate>Tue, 28 Jun 2016 23:26:44 +0800</pubDate>
       
       <guid>http://abhipandey.com/2016/06/protobuf-on-docker/</guid>
-      <description>
-
-&lt;p&gt;Found it really strange that nobody had mentioned on their blog how to
-compile &lt;code&gt;Protobuf&lt;/code&gt; in python with &lt;strong&gt;C++&lt;/strong&gt; implementation.&lt;/p&gt;
-
-&lt;p&gt;I had been having a lot of trouble with the compilation of python protobuf.
-After struggling with it for a few months on and off I decided to give &lt;strong&gt;&lt;code&gt;Docker&lt;/code&gt;&lt;/strong&gt;
- a try as I realized that my own Fedora OS may be the one having troubles.
- Thought of starting with &lt;strong&gt;Ubuntu&lt;/strong&gt; Docker as I&amp;rsquo;ve had success with it earlier
- with such compilation scripts. Luckily it all worked out successfully again
- for protobuf.&lt;/p&gt;
-
-&lt;p&gt;Then I tried Docker for &lt;strong&gt;Centos 7 and Fedora 23&lt;/strong&gt;, both of which had not
- been working for me in any shape.&lt;/p&gt;
-
-&lt;p&gt;The source code of the &lt;strong&gt;Dockerfiles&lt;/strong&gt; are available on Github here:&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;https://github.com/abhi1010/protobuf-on-docker&#34;&gt;github/abhi1010/protobuf-on-docker&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;We are running all the steps through the docker image so that the steps can be replicated
- with any &lt;a href=&#34;https://github.com/google/protobuf/releases&#34;&gt;protobuf source code release&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;Here&amp;rsquo;s what we will be doing:&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;Create &lt;code&gt;protoc&lt;/code&gt; compiler by compiling C++ files&lt;/li&gt;
-&lt;li&gt;Compile &lt;a href=&#34;https://github.com/google/protobuf/tree/master/python#c-implementation&#34;&gt;C++ implementation for &lt;code&gt;python&lt;/code&gt;&lt;/a&gt;
-using the just created &lt;code&gt;protoc&lt;/code&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;Dockerfiles are available for the following Operating Systems:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/abhi1010/protobuf-on-docker/blob/master/centos-7.1/Dockerfile&#34;&gt;Centos 7&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/abhi1010/protobuf-on-docker/blob/master/fedora-23/Dockerfile&#34;&gt;Fedora 23&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/abhi1010/protobuf-on-docker/blob/master/ubuntu-15/Dockerfile&#34;&gt;Ubuntu 15&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;where-to-find-the-files-inside-the-docker-images:59fece5fea31b5834dfd3c1b99d2e930&#34;&gt;Where to find the files inside the Docker images&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;protoc&lt;/code&gt; compiler is available at &lt;code&gt;/ws/protoc-3.2&lt;/code&gt; folder inside the images&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;python&lt;/code&gt; version (compiled from c++) is available at &lt;code&gt;/ws/protobuf-3.0.0-beta-3.2/python/dist/&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;You can copy out the files using the following commands:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;id&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;$(&lt;/span&gt;sudo docker create &amp;lt;image_name&amp;gt;&lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;)&lt;/span&gt;
-sudo docker cp &lt;span style=&#34;color: #000000&#34;&gt;$id&lt;/span&gt;:/ws/protoc-3.2 ./
-sudo docker cp &lt;span style=&#34;color: #000000&#34;&gt;$id&lt;/span&gt;:/ws/protobuf-3.0.0-beta-3.2/python/dist/*.gz ./
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;In case you get an error like the following, &lt;em&gt;remove&lt;/em&gt; &lt;code&gt;*.gz&lt;/code&gt; from the cp command:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;zsh: no matches found: e7c8a9102e1cd07b4c471c331bc4deba2222278eb22be1e79ecaa14e914ed654:/ws/protobuf-3.0.0-beta-3.2/python/dist/*.gz
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Your second cp command then becomes:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;sudo docker cp $id:/ws/protobuf-3.0.0-beta-3.2/python/dist/ ./
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Once done, you can remove the created container with the following command:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;sudo docker rm -v &lt;span style=&#34;color: #000000&#34;&gt;$id&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;Just remember to change the rights as the files will belong to &lt;code&gt;root&lt;/code&gt; by default.
-You can do that with the following commands:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;sudo chown -R &amp;lt;USERNAME&amp;gt;:&amp;lt;USERNAME&amp;gt; *
-&lt;/pre&gt;&lt;/div&gt;
-</description>
+      <description>Found it really strange that nobody had mentioned on their blog how to compile Protobuf in python with C++ implementation.
+I had been having a lot of trouble with the compilation of python protobuf. After struggling with it for a few months on and off I decided to give Docker a try as I realized that my own Fedora OS may be the one having troubles. Thought of starting with Ubuntu Docker as I&amp;rsquo;ve had success with it earlier with such compilation scripts.</description>
     </item>
     
     <item>
@@ -93,55 +27,9 @@ You can do that with the following commands:&lt;/p&gt;
       <pubDate>Wed, 07 Oct 2015 14:59:18 -0400</pubDate>
       
       <guid>http://abhipandey.com/2015/10/forceful-docker-container-cleanup-on-elastic-beanstalk/</guid>
-      <description>
-
-&lt;p&gt;&lt;strong&gt;&lt;em&gt;&lt;code&gt;Note&lt;/code&gt;&lt;/em&gt;&lt;/strong&gt;: &lt;em&gt;&lt;em&gt;If you are not sure of what you are doing here, don&amp;rsquo;t touch it.
-This is all sensitive stuff and a minor mistake can bring down your production.&lt;/em&gt;&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;Sometimes, because of so many deployments happening and sharing volumes between dockers instances, the space runs out on production server.&lt;/p&gt;
-
-&lt;p&gt;I found some ways to fix this but the most brutal way to leave the orphaned directories behind forever is to remove them.
-Such sadistic directories can be found at &lt;code&gt;/var/lib/docker/vfs/&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;We can automate the removal.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;First&lt;/strong&gt;, let&amp;rsquo;s find the directories that we should &lt;strong&gt;&lt;em&gt;&lt;code&gt;not&lt;/code&gt;&lt;/em&gt;&lt;/strong&gt; delete.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;# These directories are in use&lt;/span&gt;
-$ docker ps -q &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; xargs docker inspect &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; egrep &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;var.lib.docker.vfs&amp;quot;&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;You will see something like this:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;$ docker ps -q &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; xargs docker inspect &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; egrep &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;var.lib.docker.vfs&amp;quot;&lt;/span&gt;
-  &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;/etc/nginx/sites-enabled&amp;quot;&lt;/span&gt;: &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;/var/lib/docker/vfs/dir/ed53e780472dbf5057780182bd12ae1cb7930fce73f5f7071bad1b456076dc95&amp;quot;&lt;/span&gt;,
-  &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;/var/log/nginx&amp;quot;&lt;/span&gt;: &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;/var/lib/docker/vfs/dir/26c3ac02631b0eab5d6d3a4c5e6664b43974f217ca24b9369f3f12f186601147&amp;quot;&lt;/span&gt;,
-  &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;/ws&amp;quot;&lt;/span&gt;: &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;/var/lib/docker/vfs/dir/ecd74d6b7e73c25d5e5f6b450a7b162bfb8e44c649c2af951843954538500dba&amp;quot;&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;h1 id=&#34;fire-drill:d49d62c8188452b3ac07603c34a3f7b0&#34;&gt;Fire Drill&lt;/h1&gt;
-
-&lt;p&gt;&lt;strong&gt;Find out all directories that should stay&lt;/strong&gt;&lt;/p&gt;
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;$ docker ps -q &lt;span style=&#34;color: #4e9a06&#34;&gt;\&lt;/span&gt;
- &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; xargs docker inspect &lt;span style=&#34;color: #4e9a06&#34;&gt;\&lt;/span&gt;
- &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; egrep &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;var.lib.docker.vfs&amp;quot;&lt;/span&gt; &lt;span style=&#34;color: #4e9a06&#34;&gt;\&lt;/span&gt;
- &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; sed -e &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;s/.*dir.//g&amp;#39;&lt;/span&gt; -e &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;s/&amp;quot;.*//g&amp;#39;&lt;/span&gt; &lt;span style=&#34;color: #4e9a06&#34;&gt;\&lt;/span&gt;
- &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; sort &lt;span style=&#34;color: #4e9a06&#34;&gt;\&lt;/span&gt;
- &amp;gt; /tmp/curr.dirs 
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;strong&gt;Find out all directories within &lt;code&gt;/var/lib/docker/vfs/dir&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;$ sudo ls /var/lib/docker/vfs/dir/ &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; sort &amp;gt; /tmp/all.dirs
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;strong&gt;Find out the directories from &lt;code&gt;all.dirs&lt;/code&gt; that should be deleted (not in use by current docker instances)&lt;/strong&gt;&lt;/p&gt;
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;$ sdiff -s /tmp/all.dirs /tmp/curr.dirs
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;h1 id=&#34;removing-the-directories-for-good:d49d62c8188452b3ac07603c34a3f7b0&#34;&gt;Removing the directories for good&lt;/h1&gt;
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;$ sdiff -s -w &lt;span style=&#34;color: #0000cf; font-weight: bold&#34;&gt;300&lt;/span&gt; /tmp/all.dirs /tmp/curr.dirs &lt;span style=&#34;color: #4e9a06&#34;&gt;\&lt;/span&gt;
-   &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; sed -e &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;s/. &amp;lt;//g&amp;#39;&lt;/span&gt; -e &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;s/^/\/var\/lib\/docker\/vfs\/dir\//g&amp;#39;&lt;/span&gt; &lt;span style=&#34;color: #4e9a06&#34;&gt;\&lt;/span&gt;
-   &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; xargs sudo  rm -rf 
-&lt;/pre&gt;&lt;/div&gt;
-</description>
+      <description>Note: If you are not sure of what you are doing here, don&amp;rsquo;t touch it. This is all sensitive stuff and a minor mistake can bring down your production.
+Sometimes, because of so many deployments happening and sharing volumes between dockers instances, the space runs out on production server.
+I found some ways to fix this but the most brutal way to leave the orphaned directories behind forever is to remove them.</description>
     </item>
     
     <item>
@@ -150,346 +38,7 @@ $ docker ps -q &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&l
       <pubDate>Fri, 04 Sep 2015 00:17:10 +0800</pubDate>
       
       <guid>http://abhipandey.com/2015/09/elastic-beanstalk-deployment-automation/</guid>
-      <description>
-
-&lt;p&gt;We are going to talk about a setup where &lt;strong&gt;all you need to do it &lt;em&gt;commit&lt;/em&gt; your code and all the rest of the steps from unit tests to deployment can be taken care of by some externally hosted cloud platform that provides continuous integration.&lt;/strong&gt;
-  In my case, it is going to be &lt;code&gt;Shippable&lt;/code&gt; that I am using as a sample but you can use almost anything like &lt;code&gt;TravisCI&lt;/code&gt; or &lt;code&gt;codeship&lt;/code&gt;, for example.&lt;/p&gt;
-
-&lt;h1 id=&#34;setup:8d5fa5afd262889ee9af2f0243a94c6d&#34;&gt;Setup&lt;/h1&gt;
-
-&lt;p&gt;Here is the setup we will be looking at:&lt;/p&gt;
-
-
-&lt;figure &gt;
-    
-        &lt;img src=&#34;http://abhipandey.com/images/elastic-beanstalk-deployment-automation-arch.png&#34; alt=&#34;Architecture&#34; /&gt;
-    
-    
-    &lt;figcaption&gt;
-        &lt;p&gt;
-        Architecture
-        
-            
-        
-        &lt;/p&gt; 
-    &lt;/figcaption&gt;
-    
-&lt;/figure&gt;
-
-
-&lt;h1 id=&#34;shippable-for-commits:8d5fa5afd262889ee9af2f0243a94c6d&#34;&gt;Shippable for commits&lt;/h1&gt;
-
-&lt;p&gt;We will use &lt;code&gt;shippable&lt;/code&gt; for the following:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Unit Tests&lt;/li&gt;
-&lt;li&gt;Regression Tests&lt;/li&gt;
-&lt;li&gt;Localized DB Tests&lt;/li&gt;
-&lt;li&gt;Tagging of the source code if the commit passes all tests&lt;/li&gt;
-&lt;li&gt;Deployment of the source code on &lt;code&gt;beanstalk&lt;/code&gt; running &lt;code&gt;docker&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Login onto &lt;code&gt;shippable&lt;/code&gt; and setup your project to be built. It uses webhooks with your repository like &lt;code&gt;GitHub&lt;/code&gt; or &lt;code&gt;shippable&lt;/code&gt; which are called on every commit.
-You can create a &lt;code&gt;shippable.yml&lt;/code&gt; file in your project which will be called on every commit. If you have used &lt;code&gt;docker&lt;/code&gt; before, it might look familiar because they invoke a &lt;code&gt;docker&lt;/code&gt; script to run the script within &lt;code&gt;shippable.yml&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;Here is one of my sample files from the project that powers this blog:&lt;/p&gt;
-
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;language: python
-
-install:
-  - pip install Pygments 
-
-before_script:
-  - git config --global push.default matching
-  - mkdir -p themes
-  - git clone git@github.com:abhi1010/abhi1010.github.io.git
-  - &lt;span style=&#34;color: #204a87&#34;&gt;cd&lt;/span&gt; themes
-  - git clone https://github.com/abhi1010/hyde-a.git
-  - &lt;span style=&#34;color: #204a87&#34;&gt;cd&lt;/span&gt; ../
-
-script:
-  - hugo -d abhi1010.github.io/
-
-after_success:
-  - &lt;span style=&#34;color: #204a87&#34;&gt;echo&lt;/span&gt; &lt;span style=&#34;color: #4e9a06&#34;&gt;`&lt;/span&gt;&lt;span style=&#34;color: #204a87&#34;&gt;pwd&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;`&lt;/span&gt;
-  - &lt;span style=&#34;color: #204a87&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;NOW_HOUR&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;$(&lt;/span&gt;date +%d-%b-%H_%M&lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;)&lt;/span&gt; 
-  - git config --global user.email &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;abhi.pandey@gmail.com&amp;quot;&lt;/span&gt;
-  - git config --global user.name &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;abhi1010&amp;quot;&lt;/span&gt;
-  - git config --get remote.origin.url
-  - git remote set-url origin git@github.com:abhi1010.github.io.git
-  - &lt;span style=&#34;color: #204a87&#34;&gt;cd&lt;/span&gt; abhi1010.github.io
-  - git status -s
-  - &lt;span style=&#34;color: #204a87&#34;&gt;echo&lt;/span&gt; -e &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;a\n*\nq\n&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;git add -i
-  - git commit -am &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;Automated build from Shippable - &amp;#39;&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;$NOW_HOUR&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; git push
-
-
-notifications:
-     email:
-         recipients:
-             - abhi@boun.cr
-         on_success: change
-         on_failure: always
-
-cache: &lt;span style=&#34;color: #204a87&#34;&gt;true&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;This script does the following tasks:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Set &lt;code&gt;python&lt;/code&gt; as the default language for the scripts to use&lt;/li&gt;
-&lt;li&gt;Install &lt;code&gt;Pygments&lt;/code&gt; using &lt;code&gt;pip&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;My blog is done using three repos - so it does a &lt;em&gt;git clone&lt;/em&gt; for each&lt;/li&gt;
-&lt;li&gt;Calls on hugo to create the static site&lt;/li&gt;
-&lt;li&gt;Commits the changes made in static content to &lt;code&gt;GitHub&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Once it works, you will see the following on &lt;code&gt;shippable&lt;/code&gt; site:&lt;/p&gt;
-
-
-&lt;figure &gt;
-    
-        &lt;img src=&#34;http://abhipandey.com/images/elastic-beanstalk-deployment-automation-2.png&#34; alt=&#34;Shippable Build Status&#34; /&gt;
-    
-    
-    &lt;figcaption&gt;
-        &lt;p&gt;
-        Shippable Build Status
-        
-            
-        
-        &lt;/p&gt; 
-    &lt;/figcaption&gt;
-    
-&lt;/figure&gt;
-
-
-&lt;h2 id=&#34;unit-tests:8d5fa5afd262889ee9af2f0243a94c6d&#34;&gt;Unit Tests&lt;/h2&gt;
-
-&lt;p&gt;You may also want to set up unit tests and regression tests as part of your &lt;em&gt;scripts&lt;/em&gt;
-Just do the following then&lt;/p&gt;
-
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;script&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt;
-  &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;-&lt;/span&gt;  &lt;span style=&#34;color: #000000&#34;&gt;py.test-3.4 tests/test.py --maxfail=3 -s --full-trace --tb=long --junitxml=../shippable/testresults/pytests.xml&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;h2 id=&#34;git-tagging:8d5fa5afd262889ee9af2f0243a94c6d&#34;&gt;Git Tagging&lt;/h2&gt;
-
-&lt;p&gt;If the tests pass in &lt;em&gt;scripts&lt;/em&gt; only then does &lt;code&gt;shippable&lt;/code&gt; go to &lt;strong&gt;after_success&lt;/strong&gt; section.
-Over there, you might want to tag your source code, so that &lt;code&gt;docker&lt;/code&gt; will only pull the tagged and approved commits from &lt;code&gt;shippable&lt;/code&gt;, not every commit - which is very important.&lt;/p&gt;
-
-&lt;p&gt;Here&amp;rsquo;s how to do that:&lt;/p&gt;
-
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;after_success:
-  - git tag -f recon_prod master
-  - git push -f --tags
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;h1 id=&#34;deployment:8d5fa5afd262889ee9af2f0243a94c6d&#34;&gt;Deployment&lt;/h1&gt;
-
-&lt;p&gt;Once you have approved your code commit, it is time to deploy it to &lt;code&gt;docker&lt;/code&gt; on &lt;code&gt;beanstalk&lt;/code&gt;.
-I like to keep deployment scripts in another bash script, so that deployment can be done in various other ways as well, if needed.&lt;/p&gt;
-
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;after_success:
-  - main/scripts/deploy.sh 
-  - &lt;span style=&#34;color: #204a87&#34;&gt;echo&lt;/span&gt; &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;CODE DEPLOYED&amp;#39;&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;Or, you may choose to have the &amp;ldquo;deployment&amp;rdquo; script from another project, if you wish. It allows you to separately maintain all the moving parts.&lt;/p&gt;
-
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;rm -rf &lt;span style=&#34;color: #204a87&#34;&gt;cd&lt;/span&gt; eb-reconwise
-&lt;span style=&#34;color: #204a87&#34;&gt;echo&lt;/span&gt; &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;Deploying New Dockers&amp;#39;&lt;/span&gt;
-git clone https://github.com/abhi1010/deplyment_project.git
-&lt;span style=&#34;color: #204a87&#34;&gt;cd&lt;/span&gt; deplyment_project/
-chmod +x deploy.sh
-eb use beanstalk_env_name
-./deploy.sh
-&lt;span style=&#34;color: #204a87&#34;&gt;echo&lt;/span&gt; &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;Deployment Complete&amp;#39;&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;h2 id=&#34;dockerfile:8d5fa5afd262889ee9af2f0243a94c6d&#34;&gt;Dockerfile&lt;/h2&gt;
-
-&lt;p&gt;Now first what we need is setting up &lt;code&gt;docker&lt;/code&gt; on beanstalk.&lt;/p&gt;
-
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;  FROM abhi1010/base_docker
-  MAINTAINER abhi1010 &amp;lt;codersdigest@gmail.com&amp;gt;
-  
-  ENV DEBIAN_FRONTEND noninteractive
-  
-  ENV WS &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;/ws&amp;#39;&lt;/span&gt;
-  ENV CURR_HOME &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;/root&amp;#39;&lt;/span&gt;
-  WORKDIR &lt;span style=&#34;color: #000000&#34;&gt;$WS&lt;/span&gt;
-  
-  RUN git clone https://github.com/abhi1010/dockerprj.git &lt;span style=&#34;color: #4e9a06&#34;&gt;\&lt;/span&gt;
-   &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; . &lt;span style=&#34;color: #000000&#34;&gt;$WS&lt;/span&gt;/ve_envs/rwv2/bin/activate &lt;span style=&#34;color: #4e9a06&#34;&gt;\&lt;/span&gt;
-   &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;$WS&lt;/span&gt;/prj/rw/manage.py collectstatic --noinput
-  
-  COPY supervisor-app.conf &lt;span style=&#34;color: #000000&#34;&gt;$WS&lt;/span&gt;/
-  
-  RUN &lt;span style=&#34;color: #4e9a06&#34;&gt;\&lt;/span&gt;
-      cp &lt;span style=&#34;color: #000000&#34;&gt;$WS&lt;/span&gt;/supervisor-app.conf /etc/supervisor/supervisord.conf &lt;span style=&#34;color: #4e9a06&#34;&gt;\&lt;/span&gt;
-   &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; chown -R www-data:www-data /var/lib/nginx
-
-  VOLUME &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;[&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;/var/shared/&amp;quot;&lt;/span&gt;, &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;/etc/nginx/sites-enabled&amp;quot;&lt;/span&gt;, &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;/var/log/nginx&amp;quot;&lt;/span&gt;, &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;/ws/&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;]&lt;/span&gt;
-    
-  EXPOSE 80
-  CMD &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;[&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;supervisord&amp;quot;&lt;/span&gt;, &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;-n&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;]&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;This does the following tasks:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Run a base &lt;code&gt;docker&lt;/code&gt; from a custom image - where all apps and project requirements have already been installed and configured. It helps me save a lot of time during deployments.&lt;/li&gt;
-&lt;li&gt;Download the source code using &lt;code&gt;RUN&lt;/code&gt; - which I update using another method.
-
-&lt;ul&gt;
-&lt;li&gt;You can view detail on this &lt;a href=&#34;http://abhipandey.com/2015/09/updating-django-source-with-docker-deployments/&#34;&gt;method here&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;Copy the &lt;code&gt;supervisord&lt;/code&gt; config as well&lt;/li&gt;
-&lt;li&gt;Set the right user rights for &lt;code&gt;nginx&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Setup folders to be shared using &lt;code&gt;VOLUME&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Expose port 80 so that this &lt;code&gt;docker&lt;/code&gt; container can be used as a web container&lt;/li&gt;
-&lt;li&gt;Set &lt;code&gt;cmd&lt;/code&gt; so that it allows &lt;code&gt;supervisord&lt;/code&gt; to be used for running the container&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;beanstalk-configuration:8d5fa5afd262889ee9af2f0243a94c6d&#34;&gt;Beanstalk Configuration&lt;/h2&gt;
-
-&lt;p&gt;Once we have the &lt;code&gt;Dockerfile&lt;/code&gt; ready, we need to set up the configuration for &lt;code&gt;beanstalk&lt;/code&gt; so that during deployment, other steps can be taken care of as well. Some of the things to keep in mind in &lt;code&gt;beanstalk&lt;/code&gt; setup are:&lt;/p&gt;
-
-&lt;h3 id=&#34;tips:8d5fa5afd262889ee9af2f0243a94c6d&#34;&gt;Tips&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;All &lt;code&gt;beanstalk&lt;/code&gt; configuration has be kept in a folder called &lt;strong&gt;&lt;code&gt;.ebextension&lt;/code&gt;&lt;/strong&gt;&lt;br /&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;beanstalk ec2&lt;/code&gt; instance maintains a folder internally to run the scripts while setting up &lt;code&gt;docker&lt;/code&gt; for you so that the instance can be ready for you
-
-&lt;ul&gt;
-&lt;li&gt;It is totally possible to &lt;em&gt;plug&lt;/em&gt; your own scripts into &lt;code&gt;beanstalk&lt;/code&gt; initialization setup so that you can &lt;em&gt;program&lt;/em&gt; a custom &lt;code&gt;EC2&lt;/code&gt; instance for yourself&lt;/li&gt;
-&lt;li&gt;Folder to place your scripts are &lt;code&gt;/opt/elasticbeanstalk/hooks/appdeploy/post&lt;/code&gt; and &lt;code&gt;/opt/elasticbeanstalk/hooks/appdeploy/pre&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Scripts placed in the folders are read in alphabetical order&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;You can increase the timeout of your &lt;code&gt;docker&lt;/code&gt; initialization setup if it takes too long due to multiple steps
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;option_settings&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt;
-    &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;-&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;namespace&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;aws&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;elasticbeanstalk&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;command&lt;/span&gt;
-      &lt;span style=&#34;color: #000000&#34;&gt;option_name&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;Timeout&lt;/span&gt;
-      &lt;span style=&#34;color: #000000&#34;&gt;value&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #0000cf; font-weight: bold&#34;&gt;1800&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&#34;user-accounts:8d5fa5afd262889ee9af2f0243a94c6d&#34;&gt;User Accounts&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;You can also add any user account if you&amp;rsquo;d like pragmatically and make sure they are &lt;em&gt;always&lt;/em&gt; part of the &lt;code&gt;EC2&lt;/code&gt; instance that you are creating
-
-&lt;ul&gt;
-&lt;li&gt;Create a file called &lt;code&gt;00001.ftp.config&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Use &lt;code&gt;pre&lt;/code&gt; folder to setup accounts
-&lt;br /&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;files:
-  &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;/opt/elasticbeanstalk/hooks/appdeploy/pre/0001_create_users.sh&amp;quot;&lt;/span&gt;:
-    mode: &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;000755&amp;quot;&lt;/span&gt; 
-    owner: root
-    group: root
-    content: &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;
-      &lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;#!/usr/bin/env bash&lt;/span&gt;
-      &lt;span style=&#34;color: #204a87&#34;&gt;echo&lt;/span&gt; &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;About to Add user gh-user&amp;#39;&lt;/span&gt;
-      adduser gh-user
-      runuser -l gh-user -c &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;mkdir ~/.ssh&amp;#39;&lt;/span&gt;
-      runuser -l gh-user -c &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;chmod 700 ~/.ssh&amp;#39;&lt;/span&gt;
-      runuser -l gh-user -c &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;touch ~/.ssh/authorized_keys&amp;#39;&lt;/span&gt;
-      runuser -l gh-user -c &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;chmod 600 ~/.ssh/authorized_keys&amp;#39;&lt;/span&gt;
-      runuser -l gh-user -c &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;echo &amp;quot;ssh-rsa r4CBI2cWQohEwBkGw9CcW0vWfnlAcKkrCnsJvwe/+kG5w9J8gJdnNQ8BFB+q+kQ6fWl+1kw7b+8jah5q0nNpOzLbed+Rzse1BoOIjsSXqN/L7AW8y61PVBULcVAVBKCrVy0U5zifv/e6a5+dsUD3WLiD3yXTgPDcZoqQqPYkurCx5ZzxLylKfXfL37k7sz00e+Tu/Y+J9xXdI9j3G5bU9rmIe4SH4mK4BCMRQ6zCHqAzAXZtnmN5U1XR3XrfMtuDLvVgcOlEpXIMl9q2kco0ZCdMkYoSzf3Yj&amp;quot; &amp;gt;&amp;gt; ~/.ssh/authorized_keys&amp;#39;&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;h3 id=&#34;pre-installing-packages:8d5fa5afd262889ee9af2f0243a94c6d&#34;&gt;Pre-installing Packages&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;You should also install any package that you&amp;rsquo;d like on all &lt;code&gt;EC2&lt;/code&gt; instances&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;files:
-  &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;/opt/elasticbeanstalk/hooks/appdeploy/pre/0003_packages.sh&amp;quot;&lt;/span&gt;:
-    mode: &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;000755&amp;quot;&lt;/span&gt; 
-    owner: root
-    group: root
-    content: &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;
-      &lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;#!/usr/bin/env bash &lt;/span&gt;
-      yum install -y git
-     
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;h3 id=&#34;sharing-volumes-between-docker-and-ec2:8d5fa5afd262889ee9af2f0243a94c6d&#34;&gt;Sharing volumes between &lt;code&gt;docker&lt;/code&gt; and &lt;code&gt;EC2&lt;/code&gt;&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Ensure that folder sharing is enabled between &lt;code&gt;EC2&lt;/code&gt; and &lt;code&gt;docker&lt;/code&gt; instances
-
-&lt;ul&gt;
-&lt;li&gt;This goes into file &lt;code&gt;Dockerrun.aws.json&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;{&lt;/span&gt;
-   &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;AWSEBDockerrunVersion&amp;quot;&lt;/span&gt;: &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;1&amp;quot;&lt;/span&gt;,
-  &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;Volumes&amp;quot;&lt;/span&gt;: &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;[&lt;/span&gt;
-    &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;{&lt;/span&gt;
-      &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;HostDirectory&amp;quot;&lt;/span&gt;: &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;/var/shared&amp;quot;&lt;/span&gt;,
-      &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;ContainerDirectory&amp;quot;&lt;/span&gt;: &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;/var/shared&amp;quot;&lt;/span&gt;
-    &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;}&lt;/span&gt;
-  &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;]&lt;/span&gt;,
-  &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;Ports&amp;quot;&lt;/span&gt;: &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;[&lt;/span&gt;
-    &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;{&lt;/span&gt;
-      &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;ContainerPort&amp;quot;&lt;/span&gt;: &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;80&amp;quot;&lt;/span&gt;
-    &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;}&lt;/span&gt;
-  &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;]&lt;/span&gt;,
-   &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;Logging&amp;quot;&lt;/span&gt;: &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;/var/log/&amp;quot;&lt;/span&gt;
- &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;}&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;h3 id=&#34;folder-and-files-structure:8d5fa5afd262889ee9af2f0243a94c6d&#34;&gt;Folder and files structure&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Finally, make sure that your folder files are setup as follows:&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;$ &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;(&lt;/span&gt;master&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;)&lt;/span&gt; tree -a 
-.
-&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;-- .ebextensions
-&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;   &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;-- 0000_users.config  &lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;# setup extra users&lt;/span&gt;
-&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;   &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;-- 0002_packages.config  &lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;# install external packages&lt;/span&gt;
-&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;   &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;-- 0004_bash.config  &lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;# I like to manage all &lt;/span&gt;
-&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;-- .elasticbeanstalk
-&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;   &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;-- config.yml  &lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;# AWS connection details&lt;/span&gt;
-&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;-- .gitignore 
-&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;-- Dockerfile  &lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;# Docker instance&lt;/span&gt;
-&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;-- Dockerrun.aws.json   &lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;# folder sharing&lt;/span&gt;
-&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;-- updater.sh  &lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;# script to update any code&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;h3 id=&#34;elasticbeanstalk-folder-for-aws-configs:8d5fa5afd262889ee9af2f0243a94c6d&#34;&gt;&lt;code&gt;.elasticbeanstalk&lt;/code&gt; folder for &lt;code&gt;aws&lt;/code&gt; configs&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;You might be wondering what&amp;rsquo;s &lt;code&gt;.elasticbeanstalk&lt;/code&gt; folder. It is the folder that&amp;rsquo;s responsible for taking your &lt;code&gt;AWS&lt;/code&gt; secret key and access id for doing the actual deployment. If you don&amp;rsquo;t set it up, AWS will ask you every time.
-
-&lt;ul&gt;
-&lt;li&gt;For setting it up, you just need to call &lt;code&gt;eb config&lt;/code&gt; one time, it creates the folder for you with all the details, including connection details. You can then make it part of your &lt;code&gt;git&lt;/code&gt; commits&lt;/li&gt;
-&lt;li&gt;Make sure it is secure&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;And that&amp;rsquo;s it! Once you commit your code, &lt;code&gt;shippable&lt;/code&gt; will run the tests, tag your code and finally download this &lt;em&gt;deployment&lt;/em&gt; project and deploy it to &lt;code&gt;beanstalk&lt;/code&gt; through &lt;code&gt;docker&lt;/code&gt; containers.&lt;/p&gt;
-</description>
+      <description>We are going to talk about a setup where all you need to do it commit your code and all the rest of the steps from unit tests to deployment can be taken care of by some externally hosted cloud platform that provides continuous integration. In my case, it is going to be Shippable that I am using as a sample but you can use almost anything like TravisCI or codeship, for example.</description>
     </item>
     
     <item>
@@ -498,24 +47,9 @@ eb use beanstalk_env_name
       <pubDate>Fri, 04 Sep 2015 00:14:35 +0800</pubDate>
       
       <guid>http://abhipandey.com/2015/09/nginx-upload-limits-on-beanstalk-docker/</guid>
-      <description>&lt;p&gt;If I am not wrong, &lt;code&gt;nginx&lt;/code&gt; only allows you to upload up till max 2Mb of data by default. If you are doing a &lt;code&gt;docker&lt;/code&gt; deployment on &lt;code&gt;beanstalk&lt;/code&gt; you may to remember to change that not once but twice!&lt;/p&gt;
-
-&lt;p&gt;As you may know already, &lt;code&gt;beanstalk&lt;/code&gt; creates an &lt;code&gt;EC2&lt;/code&gt; instance to manage the &lt;code&gt;docker&lt;/code&gt; environment.&lt;br /&gt;
-Since &lt;code&gt;EC2&lt;/code&gt; needs to manage the &lt;code&gt;docker&lt;/code&gt; environment and serve the web interface as well, it does so by having another &lt;code&gt;nginx&lt;/code&gt; instance to serve the &lt;code&gt;nginx&lt;/code&gt; within &lt;code&gt;docker&lt;/code&gt;.
-Hence, if you had to modify the &lt;code&gt;nginx&lt;/code&gt; settings to allow bigger uploads, &lt;strong&gt;you&amp;rsquo;d have to modify the settings for &lt;code&gt;nginx&lt;/code&gt; on both - &lt;code&gt;docker&lt;/code&gt; as well as &lt;code&gt;EC2&lt;/code&gt;&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;    &lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;# max upload size&lt;/span&gt;
-    &lt;span style=&#34;color: #000000&#34;&gt;client_max_body_size&lt;/span&gt; &lt;span style=&#34;color: #0000cf; font-weight: bold&#34;&gt;10&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;M&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;;&lt;/span&gt;   &lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;# adjust to your liking&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;Also, if you don&amp;rsquo;t want to have any limit at all for uploads, then just change the &lt;code&gt;client_max_body_size&lt;/code&gt; to 0.&lt;/p&gt;
-
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;    &lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;# max upload size&lt;/span&gt;
-    &lt;span style=&#34;color: #000000&#34;&gt;client_max_body_size&lt;/span&gt; &lt;span style=&#34;color: #0000cf; font-weight: bold&#34;&gt;0&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;;&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-</description>
+      <description>If I am not wrong, nginx only allows you to upload up till max 2Mb of data by default. If you are doing a docker deployment on beanstalk you may to remember to change that not once but twice!
+As you may know already, beanstalk creates an EC2 instance to manage the docker environment.
+Since EC2 needs to manage the docker environment and serve the web interface as well, it does so by having another nginx instance to serve the nginx within docker.</description>
     </item>
     
     <item>
@@ -524,74 +58,10 @@ Hence, if you had to modify the &lt;code&gt;nginx&lt;/code&gt; settings to allow
       <pubDate>Fri, 04 Sep 2015 00:11:51 +0800</pubDate>
       
       <guid>http://abhipandey.com/2015/09/updating-django-source-with-docker-deployments/</guid>
-      <description>
-
-&lt;p&gt;While deploying docker multiple times, you may not want to copy over your &lt;code&gt;Django&lt;/code&gt; source code every time you do a deployment.&lt;/p&gt;
-
-&lt;h1 id=&#34;setting-up-supervisord:8ef139736ad377184214844940ced19b&#34;&gt;Setting up &lt;code&gt;supervisord&lt;/code&gt;&lt;/h1&gt;
-
-&lt;p&gt;Luckily there is an easy way to manage this. Since you are working with &lt;code&gt;Django&lt;/code&gt;, there is a good chance that you are also managing the processes (like &lt;code&gt;uwsgi&lt;/code&gt;) with &lt;code&gt;supervisord&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;Here are some of the steps that you can take with &lt;code&gt;supervisord&lt;/code&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Set up a new process in &lt;code&gt;supervisord&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Do not allow it to &lt;em&gt;&lt;code&gt;autorestart&lt;/code&gt;&lt;/em&gt; since it will be a one-shot process&lt;/li&gt;
-&lt;li&gt;Call another script in any format to update the source code
-
-&lt;ul&gt;
-&lt;li&gt;As an example, I use &lt;code&gt;bash&lt;/code&gt; to update my source code through &lt;code&gt;git&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Here&amp;rsquo;s a sample code:&lt;/p&gt;
-
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;    &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;[&lt;/span&gt;program:source-updater&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;]&lt;/span&gt;
-    &lt;span style=&#34;color: #000000&#34;&gt;redirect_stderr&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #204a87&#34;&gt;true&lt;/span&gt;
-    &lt;span style=&#34;color: #000000&#34;&gt;stdout_logfile&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt; /shared/source_code_updater.log
-    &lt;span style=&#34;color: #000000&#34;&gt;directory&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt; /ws/
-    &lt;span style=&#34;color: #204a87&#34;&gt;command&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt; /ws/source_code_updater.sh
-    &lt;span style=&#34;color: #000000&#34;&gt;autorestart&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;False
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;h1 id=&#34;updating-the-source-code:8ef139736ad377184214844940ced19b&#34;&gt;Updating the source code&lt;/h1&gt;
-
-&lt;p&gt;Few things are important to note in a &lt;code&gt;docker&lt;/code&gt; deployment:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Not every commit needs to be deployed&lt;/li&gt;
-&lt;li&gt;Filter your commits to only allow &lt;strong&gt;&lt;em&gt;deployable&lt;/em&gt;&lt;/strong&gt; code to be updated on &lt;code&gt;docker&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Include regression, unit and system tests to be part of your build process&lt;/li&gt;
-&lt;li&gt;Once everything has been confirmed to be working, tag your code so that you know it is worthy of going to docker&lt;/li&gt;
-&lt;li&gt;Another way would be to manage this process through branches and merge only if everything passes&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;docker&lt;/code&gt; deployments would build off this merged branch or tagged version&lt;/li&gt;
-&lt;li&gt;This way even if you have made 10 commits while fixing a bug and are still in the process of fixing it, you know it won&amp;rsquo;t go to &lt;code&gt;docker&lt;/code&gt; deployment&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;With that idea, do a checkout and update the source code according to specific tag:&lt;/p&gt;
-
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;    git checkout -f tags/your_tag_name
-    git pull origin tags/your_tag_name
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;h1 id=&#34;telling-uwsgi-about-the-updated-source-code:8ef139736ad377184214844940ced19b&#34;&gt;Telling &lt;code&gt;uwsgi&lt;/code&gt; about the updated source code&lt;/h1&gt;
-
-&lt;p&gt;Once you have updated your source code, you need to re-load the project onto &lt;code&gt;uwsgi&lt;/code&gt; so that &lt;code&gt;nginx&lt;/code&gt; or &lt;code&gt;apache&lt;/code&gt; can pick it up.
-The simplest way to achieve it using the config parameter of &lt;code&gt;uwsgi&lt;/code&gt;: &lt;code&gt;--touch-reload&lt;/code&gt;. It will &lt;em&gt;reload uWSGI if the specified file is modified/touched&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;Just remember to setup &lt;code&gt;supervisord&lt;/code&gt; in your &lt;code&gt;Dockerfile&lt;/code&gt; with this config parameter.&lt;/p&gt;
-
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;[&lt;/span&gt;program:app-uwsgi&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;]&lt;/span&gt;
-&lt;span style=&#34;color: #000000&#34;&gt;redirect_stderr&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #204a87&#34;&gt;true&lt;/span&gt;
-&lt;span style=&#34;color: #000000&#34;&gt;stdout_logfile&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt; /var/shared/_uwsgi.log
-&lt;span style=&#34;color: #204a87&#34;&gt;command&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt; /ws/ve_envs/rwv2/bin/uwsgi --touch-reload&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;/ws/wsgi.ini --ini /ws/wsgi.ini
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;You can choose any file. I choose &lt;code&gt;uwsgi.ini&lt;/code&gt; because the contents never really need to change in it.&lt;/p&gt;
-</description>
+      <description>While deploying docker multiple times, you may not want to copy over your Django source code every time you do a deployment.
+Setting up supervisord Luckily there is an easy way to manage this. Since you are working with Django, there is a good chance that you are also managing the processes (like uwsgi) with supervisord.
+Here are some of the steps that you can take with supervisord
+ Set up a new process in supervisord Do not allow it to autorestart since it will be a one-shot process Call another script in any format to update the source code  As an example, I use bash to update my source code through git   Here&amp;rsquo;s a sample code:</description>
     </item>
     
     <item>
@@ -600,31 +70,8 @@ The simplest way to achieve it using the config parameter of &lt;code&gt;uwsgi&l
       <pubDate>Thu, 03 Sep 2015 22:33:33 +0800</pubDate>
       
       <guid>http://abhipandey.com/2015/09/multiple-virtual-environments-in-docker/</guid>
-      <description>&lt;p&gt;It may seem like a daunting task to have multiple python projects running in their own virtual environments in docker as you want to manage the running of the tasks from a single source - let&amp;rsquo;s say &lt;code&gt;supervisord&lt;/code&gt;.
-However, all that is required here is to know that python automatically picks up the location of the virtual environments if you provide full path to the virtual environment&amp;rsquo;s python.&lt;/p&gt;
-
-&lt;p&gt;For example, in my docker environment, I have virtual environment install at the following location:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;/ws/ve_envs/rwv1/
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;To enable a project with this virtual environment, I can run the following:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;/ws/ve_envs/rwv1/bin/python3.4 PYTHON_PROJECT_FILE_TO_RUN.py
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Similarly, other projects can be set up in the same way.&lt;/p&gt;
-
-&lt;p&gt;For example, for running &lt;code&gt;uwsgi&lt;/code&gt; I provide the full path for python as follows:&lt;/p&gt;
-
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;[&lt;/span&gt;program:appName&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;]&lt;/span&gt;
-&lt;span style=&#34;color: #000000&#34;&gt;stdout_logfile&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt; /var/shared/_uwsgi.log
-&lt;span style=&#34;color: #204a87&#34;&gt;command&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt; /ws/ve_envs/project/bin/uwsgi --touch-reload&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;/ws/wsgi.ini --ini /ws/wsgi.ini
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;You might want to read about &lt;code&gt;--touch-reload&lt;/code&gt; in my &lt;a href=&#34;http://abhipandey.com/2015/09/updating-django-source-with-docker-deployments/&#34;&gt;other post.&lt;/a&gt;&lt;/p&gt;
-</description>
+      <description>It may seem like a daunting task to have multiple python projects running in their own virtual environments in docker as you want to manage the running of the tasks from a single source - let&amp;rsquo;s say supervisord. However, all that is required here is to know that python automatically picks up the location of the virtual environments if you provide full path to the virtual environment&amp;rsquo;s python.
+For example, in my docker environment, I have virtual environment install at the following location:</description>
     </item>
     
     <item>
@@ -633,29 +80,8 @@ However, all that is required here is to know that python automatically picks up
       <pubDate>Fri, 14 Aug 2015 00:19:51 +0800</pubDate>
       
       <guid>http://abhipandey.com/2015/08/sharing-folders-on-beanstalk-docker/</guid>
-      <description>&lt;p&gt;It is very easy to setup volume sharing in &lt;code&gt;docker&lt;/code&gt;. You ideally want the following folders to be shared when a new &lt;code&gt;docker&lt;/code&gt; is initialized for you:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;/var/log&lt;/code&gt; so that you can keep track of logs&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;nginx&lt;/code&gt; specific folders because you will have two instances of &lt;code&gt;nginx&lt;/code&gt; running - one on &lt;code&gt;docker&lt;/code&gt; and another on &lt;code&gt;EC2&lt;/code&gt;. This allows you to share logs
-
-&lt;ul&gt;
-&lt;li&gt;Also read &lt;a href=&#34;http://abhipandey.com/2015/09/nginx-upload-limits-on-beanstalk-docker/&#34;&gt;this post&lt;/a&gt; for related info&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;your personal workspace or anything that you&amp;rsquo;d like to share&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Here&amp;rsquo;s how you&amp;rsquo;d do it. The keyword is &lt;code&gt;VOLUME&lt;/code&gt;&amp;hellip; in your &lt;code&gt;Dockerfile&lt;/code&gt;&lt;/p&gt;
-
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;VOLUME&lt;/span&gt; &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;[&lt;/span&gt; \
-    &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;/var/shared/&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt; \ 
-    &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;/etc/nginx/sites-enabled&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt; \ 
-    &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;/var/log/nginx&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt; \
-    &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;/ws/&amp;quot;&lt;/span&gt; \
-&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;]&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-</description>
+      <description>It is very easy to setup volume sharing in docker. You ideally want the following folders to be shared when a new docker is initialized for you:
+ /var/log so that you can keep track of logs nginx specific folders because you will have two instances of nginx running - one on docker and another on EC2. This allows you to share logs  Also read this post for related info  your personal workspace or anything that you&amp;rsquo;d like to share  Here&amp;rsquo;s how you&amp;rsquo;d do it.</description>
     </item>
     
     <item>
@@ -664,59 +90,9 @@ However, all that is required here is to know that python automatically picks up
       <pubDate>Fri, 07 Aug 2015 14:59:18 -0400</pubDate>
       
       <guid>http://abhipandey.com/2015/08/docker-container-cleanup-on-elastic-beanstalk/</guid>
-      <description>
-
-&lt;p&gt;Sometimes you may notice that old containers are not cleaned up from Beanstalk environment. This may be due to your container still running as a ghost on the background. One way to find out about this is to quickly look into your
-&lt;code&gt;/var/lib/docker/vfs/dir&lt;/code&gt; directory whether it has too many folders.&lt;/p&gt;
-
-&lt;p&gt;Next, find out what container processes you have going on.
-&lt;code&gt;[root@ip dir]# docker ps -a&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;You might see something like this:&lt;/p&gt;
-
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-style: italic&#34;&gt;    CONTAINER ID        IMAGE                              COMMAND             CREATED             STATUS              PORTS               NAMES&lt;/span&gt;
-&lt;span style=&#34;color: #000000; font-style: italic&#34;&gt;    1611e5ebe2c0        aws_beanstalk/staging-app:latest   &amp;quot;supervisord -n&amp;quot;    About an hour ago                                           boring_galileo&lt;/span&gt;
-&lt;span style=&#34;color: #000000; font-style: italic&#34;&gt;    e59d0dd8bba1        aws_beanstalk/staging-app:latest   &amp;quot;supervisord -n&amp;quot;    About an hour ago                                           desperate_yalow&lt;/span&gt;
-&lt;span style=&#34;color: #000000; font-style: italic&#34;&gt;    3844d0e18c47        aws_beanstalk/staging-app:latest   &amp;quot;supervisord -n&amp;quot;    2 hours ago         Up 8 minutes        80/tcp              pensive_jang&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;Ideally, we want to &amp;ldquo;forcibly remove&amp;rdquo; all images (and hence the folders from &lt;code&gt;/var/lib/docker/vfs/dir&lt;/code&gt; directory) that are not in use anymore.
-Just run the following to test whether it works:&lt;/p&gt;
-
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-style: italic&#34;&gt;    docker rmi -f `docker images -aq`&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;You might run into trouble where docker says that all those images already have a container that is running them. This means those container are orphaned but not killed as we thought them to be. Let&amp;rsquo;s remove the shared volumes if any, for each one of them.&lt;/p&gt;
-
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-style: italic&#34;&gt;    docker rm -fv `docker ps -aq` &lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;This will&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;kill the container&lt;/li&gt;
-&lt;li&gt;unlink the volumes&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;You should see a lot more space now on your beanstalk instance.
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-style: italic&#34;&gt;    [root@ip dir]# df -h&lt;/span&gt;
-&lt;span style=&#34;color: #000000; font-style: italic&#34;&gt;    Filesystem      Size  Used Avail Use% Mounted on&lt;/span&gt;
-&lt;span style=&#34;color: #000000; font-style: italic&#34;&gt;    /dev/xvda1      7.8G  1.8G  5.9G  24% /&lt;/span&gt;
-&lt;span style=&#34;color: #000000; font-style: italic&#34;&gt;    devtmpfs        490M   96K  490M   1% /dev&lt;/span&gt;
-&lt;span style=&#34;color: #000000; font-style: italic&#34;&gt;    tmpfs           499M     0  499M   0% /dev/shm&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/p&gt;
-
-&lt;h1 id=&#34;last-resort:57533ab22b2cfb33b4a75f9cd178e950&#34;&gt;Last Resort&lt;/h1&gt;
-
-&lt;p&gt;If you feel that all this is not working, then you can try one of the scripts provided by &lt;code&gt;docker&lt;/code&gt; itself at
-&lt;a href=&#34;https://github.com/docker/docker/blob/master/contrib/nuke-graph-directory.sh&#34;&gt;GitHub&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;It will delete the folders under &lt;code&gt;/var/lib/docker&lt;/code&gt; and try to do it responsibly.&lt;/p&gt;
-</description>
+      <description>Sometimes you may notice that old containers are not cleaned up from Beanstalk environment. This may be due to your container still running as a ghost on the background. One way to find out about this is to quickly look into your /var/lib/docker/vfs/dir directory whether it has too many folders.
+Next, find out what container processes you have going on. [root@ip dir]# docker ps -a
+You might see something like this:</description>
     </item>
     
   </channel>

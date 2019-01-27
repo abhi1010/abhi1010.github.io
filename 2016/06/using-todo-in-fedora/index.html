@@ -104,14 +104,14 @@
 <ul>
 <li>
 <ul>
-<li><a href="#finding-tasks-completed-in-the-last-week:45bde4e2871e2b6baf64650e1fb2e828">Finding tasks completed in the last week</a></li>
-<li><a href="#sharing-the-tasks:45bde4e2871e2b6baf64650e1fb2e828">Sharing the tasks</a>
+<li><a href="#finding-tasks-completed-in-the-last-week">Finding tasks completed in the last week</a></li>
+<li><a href="#sharing-the-tasks">Sharing the tasks</a>
 <ul>
-<li><a href="#crontab:45bde4e2871e2b6baf64650e1fb2e828">crontab</a></li>
-<li><a href="#crons-sh:45bde4e2871e2b6baf64650e1fb2e828">crons.sh</a></li>
-<li><a href="#tasks-py:45bde4e2871e2b6baf64650e1fb2e828">tasks.py</a></li>
-<li><a href="#htmltodos-sh:45bde4e2871e2b6baf64650e1fb2e828">_htmltodos.sh</a></li>
-<li><a href="#the-result:45bde4e2871e2b6baf64650e1fb2e828">The result</a></li>
+<li><a href="#crontab">crontab</a></li>
+<li><a href="#crons-sh">crons.sh</a></li>
+<li><a href="#tasks-py">tasks.py</a></li>
+<li><a href="#htmltodos-sh">_htmltodos.sh</a></li>
+<li><a href="#the-result">The result</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -135,7 +135,7 @@ Behind the scenes it is an extremely simple app which has only two files, both s
 <p>The tasks are initially put as simple text in <strong>todo.txt</strong> and are moved to <strong>done.txt</strong> once marked complete.
 It is extremely useful that todo.txt app has UI as well as the files which are user friendly.</p>
 
-<h2 id="finding-tasks-completed-in-the-last-week:45bde4e2871e2b6baf64650e1fb2e828">Finding tasks completed in the last week</h2>
+<h2 id="finding-tasks-completed-in-the-last-week">Finding tasks completed in the last week</h2>
 
 <p>During weekly meetings I found it difficult to mention all the tasks that
 I had been working on for the whole of the previous week. Thinking about todo
@@ -163,55 +163,43 @@ see what has been completed already
 </ul>
 
 <p>Here&rsquo;s the script for that:</p>
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>todos<span style="color: #ce5c00; font-weight: bold">()</span>
-<span style="color: #ce5c00; font-weight: bold">{</span>
-    <span style="color: #000000">TODOFILE</span><span style="color: #ce5c00; font-weight: bold">=</span>~/.local/share/todo.txt/todo.txt
-    <span style="color: #000000">DONEFILE</span><span style="color: #ce5c00; font-weight: bold">=</span>~/.local/share/todo.txt/done.txt
-    <span style="color: #8f5902; font-style: italic"># echo $TODOFILE</span>
-    <span style="color: #8f5902; font-style: italic"># echo $DONEFILE &quot;\n&quot;</span>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">todos<span style="color:#ce5c00;font-weight:bold">()</span>
+<span style="color:#ce5c00;font-weight:bold">{</span>
+    <span style="color:#000">TODOFILE</span><span style="color:#ce5c00;font-weight:bold">=</span>~/.local/share/todo.txt/todo.txt
+    <span style="color:#000">DONEFILE</span><span style="color:#ce5c00;font-weight:bold">=</span>~/.local/share/todo.txt/done.txt
+    <span style="color:#8f5902;font-style:italic"># echo $TODOFILE</span>
+    <span style="color:#8f5902;font-style:italic"># echo $DONEFILE &#34;\n&#34;</span>
 
-    lastXdays<span style="color: #ce5c00; font-weight: bold">()</span>
-    <span style="color: #ce5c00; font-weight: bold">{</span>
-        search<span style="color: #ce5c00; font-weight: bold">()</span>•
-        <span style="color: #ce5c00; font-weight: bold">{</span>
-            <span style="color: #000000">DAY</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #000000">$1</span>
-            cat <span style="color: #000000">$TODOFILE</span> <span style="color: #000000; font-weight: bold">|</span> <span style="color: #000000">GREP_COLOR</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #4e9a06">&quot;1;31&quot;</span> grep --color<span style="color: #ce5c00; font-weight: bold">=</span>always <span style="color: #4e9a06">&#39; [a-Z[].*&#39;</span> <span style="color: #000000; font-weight: bold">|</span> <span style="color: #000000">GREP_COLOR</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #4e9a06">&quot;3;33&quot;</span> grep --color<span style="color: #ce5c00; font-weight: bold">=</span>always  <span style="color: #4e9a06">&quot;\+.*&quot;</span>
-            egrep <span style="color: #204a87; font-weight: bold">$(</span>date <span style="color: #4e9a06">&#39;+%Y-%m-%d&#39;</span> --date<span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #000000">$DAY</span><span style="color: #4e9a06">&#39; days ago&#39;</span><span style="color: #204a87; font-weight: bold">)</span> <span style="color: #000000">$DONEFILE</span> <span style="color: #000000; font-weight: bold">|</span> <span style="color: #000000">GREP_COLOR</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #4e9a06">&quot;1;32&quot;</span> grep --color<span style="color: #ce5c00; font-weight: bold">=</span>always <span style="color: #4e9a06">&#39; [a-Z].*&#39;</span> <span style="color: #000000; font-weight: bold">|</span> <span style="color: #000000">GREP_COLOR</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #4e9a06">&quot;03;33&quot;</span> grep --color<span style="color: #ce5c00; font-weight: bold">=</span>always  <span style="color: #4e9a06">&quot;\+.*&quot;</span>
-        <span style="color: #ce5c00; font-weight: bold">}</span>
-        <span style="color: #000000">END</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #000000">$1</span>
-        <span style="color: #204a87; font-weight: bold">for</span> i in <span style="color: #204a87; font-weight: bold">$(</span>seq <span style="color: #0000cf; font-weight: bold">0</span> <span style="color: #000000">$END</span><span style="color: #204a87; font-weight: bold">)</span>
-            <span style="color: #204a87; font-weight: bold">do</span>
-                search <span style="color: #000000">$i</span>
-            <span style="color: #204a87; font-weight: bold">done</span>
+    lastXdays<span style="color:#ce5c00;font-weight:bold">()</span>
+    <span style="color:#ce5c00;font-weight:bold">{</span>
+        search<span style="color:#ce5c00;font-weight:bold">()</span>•
+        <span style="color:#ce5c00;font-weight:bold">{</span>
+            <span style="color:#000">DAY</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#000">$1</span>
+            cat <span style="color:#000">$TODOFILE</span> <span style="color:#000;font-weight:bold">|</span> <span style="color:#000">GREP_COLOR</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;1;31&#34;</span> grep --color<span style="color:#ce5c00;font-weight:bold">=</span>always <span style="color:#4e9a06">&#39; [a-Z[].*&#39;</span> <span style="color:#000;font-weight:bold">|</span> <span style="color:#000">GREP_COLOR</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;3;33&#34;</span> grep --color<span style="color:#ce5c00;font-weight:bold">=</span>always  <span style="color:#4e9a06">&#34;\+.*&#34;</span>
+            egrep <span style="color:#204a87;font-weight:bold">$(</span>date <span style="color:#4e9a06">&#39;+%Y-%m-%d&#39;</span> --date<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#000">$DAY</span><span style="color:#4e9a06">&#39; days ago&#39;</span><span style="color:#204a87;font-weight:bold">)</span> <span style="color:#000">$DONEFILE</span> <span style="color:#000;font-weight:bold">|</span> <span style="color:#000">GREP_COLOR</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;1;32&#34;</span> grep --color<span style="color:#ce5c00;font-weight:bold">=</span>always <span style="color:#4e9a06">&#39; [a-Z].*&#39;</span> <span style="color:#000;font-weight:bold">|</span> <span style="color:#000">GREP_COLOR</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;03;33&#34;</span> grep --color<span style="color:#ce5c00;font-weight:bold">=</span>always  <span style="color:#4e9a06">&#34;\+.*&#34;</span>
+        <span style="color:#ce5c00;font-weight:bold">}</span>
+        <span style="color:#000">END</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#000">$1</span>
+        <span style="color:#204a87;font-weight:bold">for</span> i in <span style="color:#204a87;font-weight:bold">$(</span>seq <span style="color:#0000cf;font-weight:bold">0</span> <span style="color:#000">$END</span><span style="color:#204a87;font-weight:bold">)</span>
+            <span style="color:#204a87;font-weight:bold">do</span>
+                search <span style="color:#000">$i</span>
+            <span style="color:#204a87;font-weight:bold">done</span>
 
-    <span style="color: #ce5c00; font-weight: bold">}</span>
-    <span style="color: #8f5902; font-style: italic"># First arg, if given, or default value of 8</span>
-    <span style="color: #000000">DAYS</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #4e9a06">${</span><span style="color: #000000">1</span><span style="color: #204a87; font-weight: bold">:-</span><span style="color: #000000">8</span><span style="color: #4e9a06">}</span>
-    lastXdays <span style="color: #000000">$DAYS</span> <span style="color: #000000; font-weight: bold">|</span> sort -u
-<span style="color: #ce5c00; font-weight: bold">}</span>
-</pre></div>
-
+    <span style="color:#ce5c00;font-weight:bold">}</span>
+    <span style="color:#8f5902;font-style:italic"># First arg, if given, or default value of 8</span>
+    <span style="color:#000">DAYS</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">${</span><span style="color:#000">1</span><span style="color:#204a87;font-weight:bold">:-</span><span style="color:#000">8</span><span style="color:#4e9a06">}</span>
+    lastXdays <span style="color:#000">$DAYS</span> <span style="color:#000;font-weight:bold">|</span> sort -u
+<span style="color:#ce5c00;font-weight:bold">}</span></code></pre></div>
 <p>Now, when I run this command, it gives me the following:</p>
 
-
-<figure >
-    
-        <img src="/images/todo-in-fedora.png" alt="My TODOs" />
-    
-    
-    <figcaption>
-        <p>
-        My TODOs
-        
-            
-        
-        </p> 
-    </figcaption>
-    
+<figure>
+    <img src="/images/todo-in-fedora.png"
+         alt="My TODOs"/> <figcaption>
+            <p>My TODOs</p>
+        </figcaption>
 </figure>
 
 
-<h2 id="sharing-the-tasks:45bde4e2871e2b6baf64650e1fb2e828">Sharing the tasks</h2>
+<h2 id="sharing-the-tasks">Sharing the tasks</h2>
 
 <p>I work with different teams which means sharing with them the latest updates
 on different days of the week. I used to run my <code>todos</code> command on bash
@@ -240,68 +228,50 @@ codes. This way when we mail the contents to team members, it will display
 properly.</li>
 </ol>
 
-<h3 id="crontab:45bde4e2871e2b6baf64650e1fb2e828">crontab</h3>
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #0000cf; font-weight: bold">45</span> <span style="color: #0000cf; font-weight: bold">09</span> * * <span style="color: #0000cf; font-weight: bold">1</span> /usr/bin/bash /PATH_TO_BASH_SCRIPT/crons.sh --mailgroup<span style="color: #ce5c00; font-weight: bold">=</span>&lt;TEAM_MAIL&gt;
-</pre></div>
-
-<h3 id="crons-sh:45bde4e2871e2b6baf64650e1fb2e828">crons.sh</h3>
+<h3 id="crontab">crontab</h3>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#0000cf;font-weight:bold">45</span> <span style="color:#0000cf;font-weight:bold">09</span> * * <span style="color:#0000cf;font-weight:bold">1</span> /usr/bin/bash /PATH_TO_BASH_SCRIPT/crons.sh --mailgroup<span style="color:#ce5c00;font-weight:bold">=</span>&lt;TEAM_MAIL&gt;</code></pre></div>
+<h3 id="crons-sh">crons.sh</h3>
 
 <p>The <code>crons.sh</code> itself is really simple, which calls upon the <code>invoke</code> task:</p>
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #8f5902; font-style: italic"># ----- crons.sh --------</span>
-<span style="color: #8f5902; font-style: italic"># Activate the virtual env</span>
-<span style="color: #204a87">source</span> ~/code/venvs/ve_opt/bin/activate
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#8f5902;font-style:italic"># ----- crons.sh --------</span>
+<span style="color:#8f5902;font-style:italic"># Activate the virtual env</span>
+<span style="color:#204a87">source</span> ~/code/venvs/ve_opt/bin/activate
 
-<span style="color: #8f5902; font-style: italic"># Go to the directory containing the invoke script</span>
-<span style="color: #204a87">cd</span> ~/code/scripts/
+<span style="color:#8f5902;font-style:italic"># Go to the directory containing the invoke script</span>
+<span style="color:#204a87">cd</span> ~/code/scripts/
 
-<span style="color: #8f5902; font-style: italic"># Run the invoke, pass the cmd line params, as is (which means mailgroup)</span>
-inv share_todos <span style="color: #000000">$*</span>
-</pre></div>
-
-<h3 id="tasks-py:45bde4e2871e2b6baf64650e1fb2e828">tasks.py</h3>
+<span style="color:#8f5902;font-style:italic"># Run the invoke, pass the cmd line params, as is (which means mailgroup)</span>
+inv share_todos <span style="color:#000">$*</span></code></pre></div>
+<h3 id="tasks-py">tasks.py</h3>
 
 <p>Now it is time for contents of <code>invoke</code>&rsquo;s <strong>tasks.py</strong>.
 We want to ensure that the font is big enough.</p>
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #5c35cc; font-weight: bold">@task</span>
-<span style="color: #204a87; font-weight: bold">def</span> <span style="color: #000000">share_todos</span><span style="color: #000000; font-weight: bold">(</span><span style="color: #000000">mailgroup</span><span style="color: #000000; font-weight: bold">):</span>
-    <span style="color: #000000">process_out</span> <span style="color: #ce5c00; font-weight: bold">=</span> <span style="color: #000000">subprocess</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">check_output</span><span style="color: #000000; font-weight: bold">([</span><span style="color: #4e9a06">&#39;/FULL_PATH_TO/_htmltodos.sh&#39;</span><span style="color: #000000; font-weight: bold">])</span>\
-        <span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">replace</span><span style="color: #000000; font-weight: bold">(</span><span style="color: #4e9a06">&#39;&lt;body&gt;&#39;</span><span style="color: #000000; font-weight: bold">,</span>
-                 <span style="color: #4e9a06">&#39;&lt;body style=&quot;font-weight:900; font-size:1.3em;&quot;&gt;&#39;</span><span style="color: #000000; font-weight: bold">)</span>
-    <span style="color: #000000">mail</span><span style="color: #000000; font-weight: bold">(</span>
-        <span style="color: #000000">process_out</span><span style="color: #000000; font-weight: bold">,</span>
-        <span style="color: #4e9a06">&quot;My todos @ {}&quot;</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">format</span><span style="color: #000000; font-weight: bold">(</span><span style="color: #000000">datetime</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">datetime</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">now</span><span style="color: #000000; font-weight: bold">()</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">strftime</span><span style="color: #000000; font-weight: bold">(</span><span style="color: #4e9a06">&#39;%c&#39;</span><span style="color: #000000; font-weight: bold">)),</span>
-        <span style="color: #000000">mailgroup</span>
-</pre></div>
-
-<h3 id="htmltodos-sh:45bde4e2871e2b6baf64650e1fb2e828">_htmltodos.sh</h3>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#5c35cc;font-weight:bold">@task</span>
+<span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">share_todos</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">mailgroup</span><span style="color:#000;font-weight:bold">):</span>
+    <span style="color:#000">process_out</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">subprocess</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">check_output</span><span style="color:#000;font-weight:bold">([</span><span style="color:#4e9a06">&#39;/FULL_PATH_TO/_htmltodos.sh&#39;</span><span style="color:#000;font-weight:bold">])</span>\
+        <span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">replace</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#39;&lt;body&gt;&#39;</span><span style="color:#000;font-weight:bold">,</span>
+                 <span style="color:#4e9a06">&#39;&lt;body style=&#34;font-weight:900; font-size:1.3em;&#34;&gt;&#39;</span><span style="color:#000;font-weight:bold">)</span>
+    <span style="color:#000">mail</span><span style="color:#000;font-weight:bold">(</span>
+        <span style="color:#000">process_out</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;My todos @ {}&#34;</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">format</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">datetime</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">datetime</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">now</span><span style="color:#000;font-weight:bold">()</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">strftime</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#39;</span><span style="color:#4e9a06">%c</span><span style="color:#4e9a06">&#39;</span><span style="color:#000;font-weight:bold">)),</span>
+        <span style="color:#000">mailgroup</span></code></pre></div>
+<h3 id="htmltodos-sh">_htmltodos.sh</h3>
 
 <p>We will use <code>aha</code> to convert the ANSI terminal colors to html color codes.
 Also, we will replace some color codes that <code>aha</code> creates because
 it is not really nice looking.</p>
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #8f5902; font-style: italic">#!/usr/bin/bash</span>
-<span style="color: #204a87">source</span> ~/.bashrc
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#8f5902;font-style:italic">#!/usr/bin/bash
+</span><span style="color:#8f5902;font-style:italic"></span><span style="color:#204a87">source</span> ~/.bashrc
 
-todos <span style="color: #000000; font-weight: bold">|</span> /usr/local/bin/aha <span style="color: #000000; font-weight: bold">|</span> sed -e <span style="color: #4e9a06">&#39;s/color:olive/color:DeepSkyBlue; font-style:italic;/g&#39;</span> -e <span style="color: #4e9a06">&#39;s/color:green;/color:LimeGreen;/g&#39;</span> -e <span style="color: #4e9a06">&#39;s/&lt;pre&gt;/&lt;pre style=&quot;color:gray;&quot;&gt;/g&#39;</span>
-<span style="color: #204a87">exit</span> 0
-</pre></div>
+todos <span style="color:#000;font-weight:bold">|</span> /usr/local/bin/aha <span style="color:#000;font-weight:bold">|</span> sed -e <span style="color:#4e9a06">&#39;s/color:olive/color:DeepSkyBlue; font-style:italic;/g&#39;</span> -e <span style="color:#4e9a06">&#39;s/color:green;/color:LimeGreen;/g&#39;</span> -e <span style="color:#4e9a06">&#39;s/&lt;pre&gt;/&lt;pre style=&#34;color:gray;&#34;&gt;/g&#39;</span>
+<span style="color:#204a87">exit</span> <span style="color:#0000cf;font-weight:bold">0</span></code></pre></div>
+<h3 id="the-result">The result</h3>
 
-<h3 id="the-result:45bde4e2871e2b6baf64650e1fb2e828">The result</h3>
-
-
-<figure >
-    
-        <img src="/images/todo-in-email.png" alt="The email look" />
-    
-    
-    <figcaption>
-        <p>
-        The email look
-        
-            
-        
-        </p> 
-    </figcaption>
-    
+<figure>
+    <img src="/images/todo-in-email.png"
+         alt="The email look"/> <figcaption>
+            <p>The email look</p>
+        </figcaption>
 </figure>
 
 

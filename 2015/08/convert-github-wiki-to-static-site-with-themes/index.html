@@ -102,15 +102,15 @@
       <div id="_toc" class="toc">
         <nav id="TableOfContents">
 <ul>
-<li><a href="#setup-and-requirements:7286face6d57cb9f253b611714e09c9a">Setup and requirements</a>
+<li><a href="#setup-and-requirements">Setup and requirements</a>
 <ul>
-<li><a href="#virtual-environment-with-pelican:7286face6d57cb9f253b611714e09c9a">Virtual Environment with pelican</a></li>
-<li><a href="#get-the-wiki:7286face6d57cb9f253b611714e09c9a">Get the wiki</a></li>
+<li><a href="#virtual-environment-with-pelican">Virtual Environment with pelican</a></li>
+<li><a href="#get-the-wiki">Get the wiki</a></li>
 </ul></li>
-<li><a href="#why-simple-pelican-won-t-work-and-what-to-do:7286face6d57cb9f253b611714e09c9a">Why simple pelican won&rsquo;t work and what to do</a></li>
-<li><a href="#what-happened-to-the-menu:7286face6d57cb9f253b611714e09c9a">What happened to the menu?</a></li>
-<li><a href="#choosing-themes:7286face6d57cb9f253b611714e09c9a">Choosing themes</a></li>
-<li><a href="#get-all-this-code-in-github-repo:7286face6d57cb9f253b611714e09c9a">Get all this code in github repo</a></li>
+<li><a href="#why-simple-pelican-won-t-work-and-what-to-do">Why simple pelican won&rsquo;t work and what to do</a></li>
+<li><a href="#what-happened-to-the-menu">What happened to the menu?</a></li>
+<li><a href="#choosing-themes">Choosing themes</a></li>
+<li><a href="#get-all-this-code-in-github-repo">Get all this code in github repo</a></li>
 </ul>
 </nav>
       </div>
@@ -132,25 +132,15 @@ What could be a possible use case for such a requirement:</p>
 <p>Anyways, I went about the whole process and decided to jot down everything. Here I am taking <a href="https://github.com/mbostock/d3/wiki">D3 Wiki</a> as an example
 which I will be converting into a static site. Let&rsquo;s begin.</p>
 
-
-<figure >
-    
-        <img src="/images/wiki_to_static_1.png" alt="D3 Wiki using pelican" />
-    
-    
-    <figcaption>
-        <p>
-        D3 Wiki using pelican
-        
-            
-        
-        </p> 
-    </figcaption>
-    
+<figure>
+    <img src="/images/wiki_to_static_1.png"
+         alt="D3 Wiki using pelican"/> <figcaption>
+            <p>D3 Wiki using pelican</p>
+        </figcaption>
 </figure>
 
 
-<h1 id="setup-and-requirements:7286face6d57cb9f253b611714e09c9a">Setup and requirements</h1>
+<h1 id="setup-and-requirements">Setup and requirements</h1>
 
 <p>What do we need to get started?</p>
 
@@ -170,13 +160,11 @@ which I will be converting into a static site. Let&rsquo;s begin.</p>
 <li>Python environment so that <em>pelican</em> and <em>fabric</em> can be installed</li>
 </ul>
 
-<h2 id="virtual-environment-with-pelican:7286face6d57cb9f253b611714e09c9a">Virtual Environment with pelican</h2>
+<h2 id="virtual-environment-with-pelican">Virtual Environment with pelican</h2>
 
 <p><strong>Setup the virtual environment</strong></p>
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>$ virtualenv ve_blog
-$ <span style="color: #204a87">source</span> ve_blog/bin/activate
-</pre></div>
-
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ virtualenv ve_blog
+$ <span style="color:#204a87">source</span> ve_blog/bin/activate</code></pre></div>
 <p><strong>Install pelican</strong></p>
 
 <pre><code>$ pip install pelican
@@ -185,64 +173,56 @@ $ <span style="color: #204a87">source</span> ve_blog/bin/activate
 <p><strong>Pelican Quickstart</strong></p>
 
 <p>Setup pelican using <code>pelican-quickstart</code> so that all files are setup correctly for creating a static site.</p>
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>$ pelican-quickstart
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ pelican-quickstart
 
 Welcome to pelican-quickstart v3.6.3.
 
-This script will <span style="color: #204a87">help</span> you create a new Pelican-based website.
+This script will <span style="color:#204a87">help</span> you create a new Pelican-based website.
 
 Please answer the following questions so this script can generate the files
 needed by Pelican.
 
     
-&gt; Where <span style="color: #204a87; font-weight: bold">do</span> you want to create your new web site? <span style="color: #ce5c00; font-weight: bold">[</span>.<span style="color: #ce5c00; font-weight: bold">]</span> 
+&gt; Where <span style="color:#204a87;font-weight:bold">do</span> you want to create your new web site? <span style="color:#ce5c00;font-weight:bold">[</span>.<span style="color:#ce5c00;font-weight:bold">]</span> 
 &gt; What will be the title of this web site? D3 WIKI
 &gt; Who will be the author of this web site? abhi1010
-&gt; What will be the default language of this web site? <span style="color: #ce5c00; font-weight: bold">[</span>en<span style="color: #ce5c00; font-weight: bold">]</span> 
-&gt; Do you want to specify a URL prefix? e.g., http://example.com   <span style="color: #ce5c00; font-weight: bold">(</span>Y/n<span style="color: #ce5c00; font-weight: bold">)</span> n
-&gt; Do you want to <span style="color: #204a87">enable</span> article pagination? <span style="color: #ce5c00; font-weight: bold">(</span>Y/n<span style="color: #ce5c00; font-weight: bold">)</span> Y
-&gt; How many articles per page <span style="color: #204a87; font-weight: bold">do</span> you want? <span style="color: #ce5c00; font-weight: bold">[</span>10<span style="color: #ce5c00; font-weight: bold">]</span> 
-&gt; What is your <span style="color: #204a87">time</span> zone? <span style="color: #ce5c00; font-weight: bold">[</span>Europe/Paris<span style="color: #ce5c00; font-weight: bold">]</span> Asia/Singapore
-&gt; Do you want to generate a Fabfile/Makefile to automate generation and publishing? <span style="color: #ce5c00; font-weight: bold">(</span>Y/n<span style="color: #ce5c00; font-weight: bold">)</span> Y
-&gt; Do you want an auto-reload <span style="color: #000000; font-weight: bold">&amp;</span> simpleHTTP script to assist with theme and site development? <span style="color: #ce5c00; font-weight: bold">(</span>Y/n<span style="color: #ce5c00; font-weight: bold">)</span> Y
-&gt; Do you want to upload your website using FTP? <span style="color: #ce5c00; font-weight: bold">(</span>y/N<span style="color: #ce5c00; font-weight: bold">)</span> N
-&gt; Do you want to upload your website using SSH? <span style="color: #ce5c00; font-weight: bold">(</span>y/N<span style="color: #ce5c00; font-weight: bold">)</span> N
-&gt; Do you want to upload your website using Dropbox? <span style="color: #ce5c00; font-weight: bold">(</span>y/N<span style="color: #ce5c00; font-weight: bold">)</span> N
-&gt; Do you want to upload your website using S3? <span style="color: #ce5c00; font-weight: bold">(</span>y/N<span style="color: #ce5c00; font-weight: bold">)</span> N
-&gt; Do you want to upload your website using Rackspace Cloud Files? <span style="color: #ce5c00; font-weight: bold">(</span>y/N<span style="color: #ce5c00; font-weight: bold">)</span> N
-&gt; Do you want to upload your website using GitHub Pages? <span style="color: #ce5c00; font-weight: bold">(</span>y/N<span style="color: #ce5c00; font-weight: bold">)</span> N
-Done. Your new project is available at /Users/apandey/code/githubs/d3wiki
-</pre></div>
+&gt; What will be the default language of this web site? <span style="color:#ce5c00;font-weight:bold">[</span>en<span style="color:#ce5c00;font-weight:bold">]</span> 
+&gt; Do you want to specify a URL prefix? e.g., http://example.com   <span style="color:#ce5c00;font-weight:bold">(</span>Y/n<span style="color:#ce5c00;font-weight:bold">)</span> n
+&gt; Do you want to <span style="color:#204a87">enable</span> article pagination? <span style="color:#ce5c00;font-weight:bold">(</span>Y/n<span style="color:#ce5c00;font-weight:bold">)</span> Y
+&gt; How many articles per page <span style="color:#204a87;font-weight:bold">do</span> you want? <span style="color:#ce5c00;font-weight:bold">[</span><span style="color:#0000cf;font-weight:bold">10</span><span style="color:#ce5c00;font-weight:bold">]</span> 
+&gt; What is your <span style="color:#204a87">time</span> zone? <span style="color:#ce5c00;font-weight:bold">[</span>Europe/Paris<span style="color:#ce5c00;font-weight:bold">]</span> Asia/Singapore
+&gt; Do you want to generate a Fabfile/Makefile to automate generation and publishing? <span style="color:#ce5c00;font-weight:bold">(</span>Y/n<span style="color:#ce5c00;font-weight:bold">)</span> Y
+&gt; Do you want an auto-reload <span style="color:#000;font-weight:bold">&amp;</span> simpleHTTP script to assist with theme and site development? <span style="color:#ce5c00;font-weight:bold">(</span>Y/n<span style="color:#ce5c00;font-weight:bold">)</span> Y
+&gt; Do you want to upload your website using FTP? <span style="color:#ce5c00;font-weight:bold">(</span>y/N<span style="color:#ce5c00;font-weight:bold">)</span> N
+&gt; Do you want to upload your website using SSH? <span style="color:#ce5c00;font-weight:bold">(</span>y/N<span style="color:#ce5c00;font-weight:bold">)</span> N
+&gt; Do you want to upload your website using Dropbox? <span style="color:#ce5c00;font-weight:bold">(</span>y/N<span style="color:#ce5c00;font-weight:bold">)</span> N
+&gt; Do you want to upload your website using S3? <span style="color:#ce5c00;font-weight:bold">(</span>y/N<span style="color:#ce5c00;font-weight:bold">)</span> N
+&gt; Do you want to upload your website using Rackspace Cloud Files? <span style="color:#ce5c00;font-weight:bold">(</span>y/N<span style="color:#ce5c00;font-weight:bold">)</span> N
+&gt; Do you want to upload your website using GitHub Pages? <span style="color:#ce5c00;font-weight:bold">(</span>y/N<span style="color:#ce5c00;font-weight:bold">)</span> N
+Done. Your new project is available at /Users/apandey/code/githubs/d3wiki</code></pre></div>
+<h2 id="get-the-wiki">Get the wiki</h2>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git clone https://github.com/mbostock/d3.wiki.git
 
-<h2 id="get-the-wiki:7286face6d57cb9f253b611714e09c9a">Get the wiki</h2>
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>$ git clone https://github.com/mbostock/d3.wiki.git
-
-Cloning into <span style="color: #4e9a06">&#39;d3.wiki&#39;</span>...
-remote: Counting objects: 12026, <span style="color: #204a87; font-weight: bold">done</span>.
-remote: Compressing objects: 100% <span style="color: #ce5c00; font-weight: bold">(</span>67/67<span style="color: #ce5c00; font-weight: bold">)</span>, <span style="color: #204a87; font-weight: bold">done</span>.
-remote: Total <span style="color: #0000cf; font-weight: bold">12026</span> <span style="color: #ce5c00; font-weight: bold">(</span>delta 607<span style="color: #ce5c00; font-weight: bold">)</span>, reused <span style="color: #0000cf; font-weight: bold">552</span> <span style="color: #ce5c00; font-weight: bold">(</span>delta 552<span style="color: #ce5c00; font-weight: bold">)</span>, pack-reused 11407
-Receiving objects: 100% <span style="color: #ce5c00; font-weight: bold">(</span>12026/12026<span style="color: #ce5c00; font-weight: bold">)</span>, 9.92 MiB <span style="color: #000000; font-weight: bold">|</span> 1.49 MiB/s, <span style="color: #204a87; font-weight: bold">done</span>.
-Resolving deltas: 100% <span style="color: #ce5c00; font-weight: bold">(</span>7595/7595<span style="color: #ce5c00; font-weight: bold">)</span>, <span style="color: #204a87; font-weight: bold">done</span>.
-Checking connectivity... <span style="color: #204a87; font-weight: bold">done</span>.
-</pre></div>
-
+Cloning into <span style="color:#4e9a06">&#39;d3.wiki&#39;</span>...
+remote: Counting objects: <span style="color:#0000cf;font-weight:bold">12026</span>, <span style="color:#204a87;font-weight:bold">done</span>.
+remote: Compressing objects: <span style="color:#0000cf;font-weight:bold">100</span>% <span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">67</span>/67<span style="color:#ce5c00;font-weight:bold">)</span>, <span style="color:#204a87;font-weight:bold">done</span>.
+remote: Total <span style="color:#0000cf;font-weight:bold">12026</span> <span style="color:#ce5c00;font-weight:bold">(</span>delta <span style="color:#0000cf;font-weight:bold">607</span><span style="color:#ce5c00;font-weight:bold">)</span>, reused <span style="color:#0000cf;font-weight:bold">552</span> <span style="color:#ce5c00;font-weight:bold">(</span>delta <span style="color:#0000cf;font-weight:bold">552</span><span style="color:#ce5c00;font-weight:bold">)</span>, pack-reused <span style="color:#0000cf;font-weight:bold">11407</span>
+Receiving objects: <span style="color:#0000cf;font-weight:bold">100</span>% <span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">12026</span>/12026<span style="color:#ce5c00;font-weight:bold">)</span>, <span style="color:#0000cf;font-weight:bold">9</span>.92 MiB <span style="color:#000;font-weight:bold">|</span> <span style="color:#0000cf;font-weight:bold">1</span>.49 MiB/s, <span style="color:#204a87;font-weight:bold">done</span>.
+Resolving deltas: <span style="color:#0000cf;font-weight:bold">100</span>% <span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">7595</span>/7595<span style="color:#ce5c00;font-weight:bold">)</span>, <span style="color:#204a87;font-weight:bold">done</span>.
+Checking connectivity... <span style="color:#204a87;font-weight:bold">done</span>.</code></pre></div>
 <p><strong>Setting the wiki as content for pelican</strong></p>
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>$ rmdir content
-$ ln -s dr.wiki content
-</pre></div>
-
-<h1 id="why-simple-pelican-won-t-work-and-what-to-do:7286face6d57cb9f253b611714e09c9a">Why simple pelican won&rsquo;t work and what to do</h1>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ rmdir content
+$ ln -s dr.wiki content</code></pre></div>
+<h1 id="why-simple-pelican-won-t-work-and-what-to-do">Why simple pelican won&rsquo;t work and what to do</h1>
 
 <p>If you tried to simply call <code>pelican</code> command to build the static site, you will notice a lot of errors like:</p>
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>$ fab build
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ fab build
 
-RROR: Skipping ./请求.md: could not find information about <span style="color: #4e9a06">&#39;NameError: title&#39;</span>
-ERROR: Skipping ./过渡.md: could not find information about <span style="color: #4e9a06">&#39;NameError: title&#39;</span>
-ERROR: Skipping ./选择器.md: could not find information about <span style="color: #4e9a06">&#39;NameError: title&#39;</span>
-ERROR: Skipping ./选择集.md: could not find information about <span style="color: #4e9a06">&#39;NameError: title&#39;</span>
-Done: Processed <span style="color: #0000cf; font-weight: bold">0</span> articles, <span style="color: #0000cf; font-weight: bold">0</span> drafts, <span style="color: #0000cf; font-weight: bold">0</span> pages and <span style="color: #0000cf; font-weight: bold">0</span> hidden pages in 3.47 seconds.
-</pre></div>
-
+RROR: Skipping ./请求.md: could not find information about <span style="color:#4e9a06">&#39;NameError: title&#39;</span>
+ERROR: Skipping ./过渡.md: could not find information about <span style="color:#4e9a06">&#39;NameError: title&#39;</span>
+ERROR: Skipping ./选择器.md: could not find information about <span style="color:#4e9a06">&#39;NameError: title&#39;</span>
+ERROR: Skipping ./选择集.md: could not find information about <span style="color:#4e9a06">&#39;NameError: title&#39;</span>
+Done: Processed <span style="color:#0000cf;font-weight:bold">0</span> articles, <span style="color:#0000cf;font-weight:bold">0</span> drafts, <span style="color:#0000cf;font-weight:bold">0</span> pages and <span style="color:#0000cf;font-weight:bold">0</span> hidden pages in <span style="color:#0000cf;font-weight:bold">3</span>.47 seconds.</code></pre></div>
 <p>The problem is that pelican expects some variables to be defined in each <em>markdown</em> file before it can build the static file.
  Some of the variables are:</p>
 
@@ -298,7 +278,7 @@ Done: Processed <span style="color: #0000cf; font-weight: bold">0</span> article
 
 <p>The website can now be viewed at <a href="http://localhost:8000">http://localhost:8000</a></p>
 
-<h1 id="what-happened-to-the-menu:7286face6d57cb9f253b611714e09c9a">What happened to the menu?</h1>
+<h1 id="what-happened-to-the-menu">What happened to the menu?</h1>
 
 <p>There is a minor issue here though, you will notice that the menu is not available - it is all empty.
 It is an easy addition. We will need to add some lines to <code>publishconf.py</code> to say what the menu is gonna be.</p>
@@ -308,21 +288,21 @@ It is an easy addition. We will need to add some lines to <code>publishconf.py</
 <ul>
 <li>API Reference</li>
 <li>Tutorials</li>
-<li>Plugins</li>
+
+<li><p>Plugins</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#8f5902;font-style:italic"># We don&#39;t want all pages to show up in menu</span>
+<span style="color:#000">DISPLAY_PAGES_ON_MENU</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#3465a4">False</span>
+
+<span style="color:#8f5902;font-style:italic"># Choose the specific pages that should be part of menu</span>
+<span style="color:#000">MENUITEMS</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">(</span> 
+<span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#39;HOME&#39;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#4e9a06">&#39;/home.html&#39;</span><span style="color:#000;font-weight:bold">),</span>
+<span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#39;API Reference&#39;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#4e9a06">&#39;/API-Reference.html&#39;</span><span style="color:#000;font-weight:bold">),</span>
+<span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#39;Tutorials&#39;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#4e9a06">&#39;/Tutorials.html&#39;</span><span style="color:#000;font-weight:bold">),</span>
+<span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#39;Plugins&#39;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#4e9a06">&#39;/Plugins.html&#39;</span><span style="color:#000;font-weight:bold">),</span>
+<span style="color:#000;font-weight:bold">)</span></code></pre></div></li>
 </ul>
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #8f5902; font-style: italic"># We don&#39;t want all pages to show up in menu</span>
-<span style="color: #000000">DISPLAY_PAGES_ON_MENU</span> <span style="color: #ce5c00; font-weight: bold">=</span> <span style="color: #3465a4">False</span>
 
-<span style="color: #8f5902; font-style: italic"># Choose the specific pages that should be part of menu</span>
-<span style="color: #000000">MENUITEMS</span> <span style="color: #ce5c00; font-weight: bold">=</span> <span style="color: #000000; font-weight: bold">(</span> 
-    <span style="color: #000000; font-weight: bold">(</span><span style="color: #4e9a06">&#39;HOME&#39;</span><span style="color: #000000; font-weight: bold">,</span> <span style="color: #4e9a06">&#39;/home.html&#39;</span><span style="color: #000000; font-weight: bold">),</span>
-    <span style="color: #000000; font-weight: bold">(</span><span style="color: #4e9a06">&#39;API Reference&#39;</span><span style="color: #000000; font-weight: bold">,</span> <span style="color: #4e9a06">&#39;/API-Reference.html&#39;</span><span style="color: #000000; font-weight: bold">),</span>
-    <span style="color: #000000; font-weight: bold">(</span><span style="color: #4e9a06">&#39;Tutorials&#39;</span><span style="color: #000000; font-weight: bold">,</span> <span style="color: #4e9a06">&#39;/Tutorials.html&#39;</span><span style="color: #000000; font-weight: bold">),</span>
-    <span style="color: #000000; font-weight: bold">(</span><span style="color: #4e9a06">&#39;Plugins&#39;</span><span style="color: #000000; font-weight: bold">,</span> <span style="color: #4e9a06">&#39;/Plugins.html&#39;</span><span style="color: #000000; font-weight: bold">),</span>
-<span style="color: #000000; font-weight: bold">)</span>
-</pre></div>
-
-<h1 id="choosing-themes:7286face6d57cb9f253b611714e09c9a">Choosing themes</h1>
+<h1 id="choosing-themes">Choosing themes</h1>
 
 <p>By default, pelican uses its own theme for the static site, but theme can be modified.
 Let&rsquo;s choose <code>pelican bootstrap3</code> for our example here:</p>
@@ -341,25 +321,15 @@ Let&rsquo;s choose <code>pelican bootstrap3</code> for our example here:</p>
 fab serve
 </code></pre>
 
-
-<figure >
-    
-        <img src="/images/wiki_to_static_2.png" alt="Pelican Bootstrap3 theme" />
-    
-    
-    <figcaption>
-        <p>
-        Pelican Bootstrap3 theme
-        
-            
-        
-        </p> 
-    </figcaption>
-    
+<figure>
+    <img src="/images/wiki_to_static_2.png"
+         alt="Pelican Bootstrap3 theme"/> <figcaption>
+            <p>Pelican Bootstrap3 theme</p>
+        </figcaption>
 </figure>
 
 
-<h1 id="get-all-this-code-in-github-repo:7286face6d57cb9f253b611714e09c9a">Get all this code in github repo</h1>
+<h1 id="get-all-this-code-in-github-repo">Get all this code in github repo</h1>
 
 <p>I realize there maybe a few things going on here. You can get this whole setup as a project from
 my <a href="https://github.com/abhi1010/d3wiki">github repo</a></p>

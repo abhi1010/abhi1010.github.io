@@ -102,14 +102,14 @@
       <div id="_toc" class="toc">
         <nav id="TableOfContents">
 <ul>
-<li><a href="#module:ac9495c8eabea9a6ff20ce0b92d45cca">Module</a></li>
-<li><a href="#component:ac9495c8eabea9a6ff20ce0b92d45cca">Component</a></li>
-<li><a href="#template:ac9495c8eabea9a6ff20ce0b92d45cca">Template</a></li>
-<li><a href="#metadata:ac9495c8eabea9a6ff20ce0b92d45cca">Metadata</a></li>
-<li><a href="#data-binding:ac9495c8eabea9a6ff20ce0b92d45cca">Data Binding</a></li>
-<li><a href="#directive:ac9495c8eabea9a6ff20ce0b92d45cca">Directive</a></li>
-<li><a href="#service:ac9495c8eabea9a6ff20ce0b92d45cca">Service</a></li>
-<li><a href="#dependency-injection:ac9495c8eabea9a6ff20ce0b92d45cca">Dependency Injection</a></li>
+<li><a href="#module">Module</a></li>
+<li><a href="#component">Component</a></li>
+<li><a href="#template">Template</a></li>
+<li><a href="#metadata">Metadata</a></li>
+<li><a href="#data-binding">Data Binding</a></li>
+<li><a href="#directive">Directive</a></li>
+<li><a href="#service">Service</a></li>
+<li><a href="#dependency-injection">Dependency Injection</a></li>
 </ul>
 </nav>
       </div>
@@ -128,7 +128,7 @@
 <li>Dependency Injection</li>
 </ol>
 
-<h1 id="module:ac9495c8eabea9a6ff20ce0b92d45cca">Module</h1>
+<h1 id="module">Module</h1>
 
 <ul>
 <li>Optional feature</li>
@@ -139,7 +139,7 @@
 
 <p>Component class is something you&rsquo;d export from a module.</p>
 
-<h1 id="component:ac9495c8eabea9a6ff20ce0b92d45cca">Component</h1>
+<h1 id="component">Component</h1>
 
 <p>Components controls Views</p>
 
@@ -148,11 +148,11 @@
 <li>Angular creates/destroys components as user moves through UI</li>
 </ul>
 
-<h1 id="template:ac9495c8eabea9a6ff20ce0b92d45cca">Template</h1>
+<h1 id="template">Template</h1>
 
 <p>A form of HTML that describes how to render the Component. It looks mostly like HTML syntax except if you add Angular keywords in them.</p>
 
-<h1 id="metadata:ac9495c8eabea9a6ff20ce0b92d45cca">Metadata</h1>
+<h1 id="metadata">Metadata</h1>
 
 <p>Some <strong><em><code>@Component</code></em></strong> configuration options:</p>
 
@@ -163,15 +163,13 @@
 <li><code>providers</code>: an array of <em>dependency injection providers</em> for <em>services</em></li>
 </ul>
 
-<h1 id="data-binding:ac9495c8eabea9a6ff20ce0b92d45cca">Data Binding</h1>
+<h1 id="data-binding">Data Binding</h1>
 
 <p>Following are the four possible ways of data binding:</p>
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #000000; font-weight: bold">&lt;</span><span style="color: #204a87; font-weight: bold">div</span><span style="color: #000000; font-weight: bold">&gt;</span>{{hero.name}}<span style="color: #000000; font-weight: bold">&lt;/</span><span style="color: #204a87; font-weight: bold">div</span><span style="color: #000000; font-weight: bold">&gt;</span>
-<span style="color: #000000; font-weight: bold">&lt;</span><span style="color: #204a87; font-weight: bold">hero-detail</span> <span style="color: #a40000; border: 1px solid #ef2929">[</span><span style="color: #c4a000">hero</span><span style="color: #a40000; border: 1px solid #ef2929">]=&quot;</span><span style="color: #c4a000">selectedHero</span><span style="color: #a40000; border: 1px solid #ef2929">&quot;</span><span style="color: #000000; font-weight: bold">&gt;&lt;/</span><span style="color: #204a87; font-weight: bold">hero-detail</span><span style="color: #000000; font-weight: bold">&gt;</span>
-<span style="color: #000000; font-weight: bold">&lt;</span><span style="color: #204a87; font-weight: bold">div</span> <span style="color: #a40000; border: 1px solid #ef2929">(</span><span style="color: #c4a000">click</span><span style="color: #a40000; border: 1px solid #ef2929">)=&quot;</span><span style="color: #c4a000">selectHero</span><span style="color: #a40000; border: 1px solid #ef2929">(</span><span style="color: #c4a000">hero</span><span style="color: #a40000; border: 1px solid #ef2929">)&quot;</span><span style="color: #000000; font-weight: bold">&gt;&lt;/</span><span style="color: #204a87; font-weight: bold">div</span><span style="color: #000000; font-weight: bold">&gt;</span>
-<span style="color: #000000; font-weight: bold">&lt;</span><span style="color: #204a87; font-weight: bold">input</span> <span style="color: #a40000; border: 1px solid #ef2929">[(</span><span style="color: #c4a000">ngModel</span><span style="color: #a40000; border: 1px solid #ef2929">)]=&quot;</span><span style="color: #c4a000">hero</span><span style="color: #a40000; border: 1px solid #ef2929">.</span><span style="color: #c4a000">name</span><span style="color: #a40000; border: 1px solid #ef2929">&quot;</span><span style="color: #000000; font-weight: bold">&gt;</span>
-</pre></div>
-
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html"><span style="color:#000;font-weight:bold">&lt;</span><span style="color:#204a87;font-weight:bold">div</span><span style="color:#000;font-weight:bold">&gt;</span>{{hero.name}}<span style="color:#000;font-weight:bold">&lt;/</span><span style="color:#204a87;font-weight:bold">div</span><span style="color:#000;font-weight:bold">&gt;</span>
+<span style="color:#000;font-weight:bold">&lt;</span><span style="color:#204a87;font-weight:bold">hero-detail</span> <span style="color:#a40000">[</span><span style="color:#c4a000">hero</span><span style="color:#a40000">]=&#34;</span><span style="color:#c4a000">selectedHero</span><span style="color:#a40000">&#34;</span><span style="color:#000;font-weight:bold">&gt;&lt;/</span><span style="color:#204a87;font-weight:bold">hero-detail</span><span style="color:#000;font-weight:bold">&gt;</span>
+<span style="color:#000;font-weight:bold">&lt;</span><span style="color:#204a87;font-weight:bold">div</span> <span style="color:#a40000">(</span><span style="color:#c4a000">click</span><span style="color:#a40000">)=&#34;</span><span style="color:#c4a000">selectHero</span><span style="color:#a40000">(</span><span style="color:#c4a000">hero</span><span style="color:#a40000">)&#34;</span><span style="color:#000;font-weight:bold">&gt;&lt;/</span><span style="color:#204a87;font-weight:bold">div</span><span style="color:#000;font-weight:bold">&gt;</span>
+<span style="color:#000;font-weight:bold">&lt;</span><span style="color:#204a87;font-weight:bold">input</span> <span style="color:#a40000">[(</span><span style="color:#c4a000">ngModel</span><span style="color:#a40000">)]=&#34;</span><span style="color:#c4a000">hero</span><span style="color:#a40000">.</span><span style="color:#c4a000">name</span><span style="color:#a40000">&#34;</span><span style="color:#000;font-weight:bold">&gt;</span></code></pre></div>
 <ol>
 <li>The &ldquo;interpolation&rdquo; displays the component&rsquo;s hero.name property value within the <div> tags</li>
 <li>The <code>[hero]</code> property binding passes the <code>selectedHero</code> from the parent <code>HeroListComponent</code> to the hero property of the child <code>HeroDetailComponent</code></li>
@@ -179,7 +177,7 @@
 <li>Two way data binding combines property and event binding in a single notation using <code>ngModel</code> directive</li>
 </ol>
 
-<h1 id="directive:ac9495c8eabea9a6ff20ce0b92d45cca">Directive</h1>
+<h1 id="directive">Directive</h1>
 
 <p>Class with directive metadata. Even Components are directives - directive with templates.
 Two other examples are:</p>
@@ -192,16 +190,14 @@ Two other examples are:</p>
 <p><strong>Example:</strong></p>
 
 <p>The <code>ngModel</code> directive, which implements two-way data binding, is an example of an attribute directive.</p>
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #000000; font-weight: bold">&lt;</span><span style="color: #204a87; font-weight: bold">input</span> <span style="color: #a40000; border: 1px solid #ef2929">[(</span><span style="color: #c4a000">ngModel</span><span style="color: #a40000; border: 1px solid #ef2929">)]=&quot;</span><span style="color: #c4a000">hero</span><span style="color: #a40000; border: 1px solid #ef2929">.</span><span style="color: #c4a000">name</span><span style="color: #a40000; border: 1px solid #ef2929">&quot;</span><span style="color: #000000; font-weight: bold">&gt;</span>
-</pre></div>
-
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html"><span style="color:#000;font-weight:bold">&lt;</span><span style="color:#204a87;font-weight:bold">input</span> <span style="color:#a40000">[(</span><span style="color:#c4a000">ngModel</span><span style="color:#a40000">)]=&#34;</span><span style="color:#c4a000">hero</span><span style="color:#a40000">.</span><span style="color:#c4a000">name</span><span style="color:#a40000">&#34;</span><span style="color:#000;font-weight:bold">&gt;</span></code></pre></div>
 <p><strong>Other examples:</strong> ngSwitch, ngStyle, ngClass</p>
 
-<h1 id="service:ac9495c8eabea9a6ff20ce0b92d45cca">Service</h1>
+<h1 id="service">Service</h1>
 
 <p>It can be any value, function or feature that works well.</p>
 
-<h1 id="dependency-injection:ac9495c8eabea9a6ff20ce0b92d45cca">Dependency Injection</h1>
+<h1 id="dependency-injection">Dependency Injection</h1>
 
 <p>A way to supply a new class instance with all the requirements. In TypeScript this can be achieved by providing everything inside the constructor.</p>
 

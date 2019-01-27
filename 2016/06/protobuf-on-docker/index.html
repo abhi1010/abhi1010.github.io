@@ -104,7 +104,7 @@
 <ul>
 <li>
 <ul>
-<li><a href="#where-to-find-the-files-inside-the-docker-images:59fece5fea31b5834dfd3c1b99d2e930">Where to find the files inside the Docker images</a></li>
+<li><a href="#where-to-find-the-files-inside-the-docker-images">Where to find the files inside the Docker images</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -147,7 +147,7 @@ using the just created <code>protoc</code></li>
 <li><a href="https://github.com/abhi1010/protobuf-on-docker/blob/master/ubuntu-15/Dockerfile">Ubuntu 15</a></li>
 </ul>
 
-<h2 id="where-to-find-the-files-inside-the-docker-images:59fece5fea31b5834dfd3c1b99d2e930">Where to find the files inside the Docker images</h2>
+<h2 id="where-to-find-the-files-inside-the-docker-images">Where to find the files inside the Docker images</h2>
 
 <ul>
 <li><code>protoc</code> compiler is available at <code>/ws/protoc-3.2</code> folder inside the images</li>
@@ -155,11 +155,9 @@ using the just created <code>protoc</code></li>
 </ul>
 
 <p>You can copy out the files using the following commands:</p>
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #000000">id</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #204a87; font-weight: bold">$(</span>sudo docker create &lt;image_name&gt;<span style="color: #204a87; font-weight: bold">)</span>
-sudo docker cp <span style="color: #000000">$id</span>:/ws/protoc-3.2 ./
-sudo docker cp <span style="color: #000000">$id</span>:/ws/protobuf-3.0.0-beta-3.2/python/dist/*.gz ./
-</pre></div>
-
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#000">id</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#204a87;font-weight:bold">$(</span>sudo docker create &lt;image_name&gt;<span style="color:#204a87;font-weight:bold">)</span>
+sudo docker cp <span style="color:#000">$id</span>:/ws/protoc-3.2 ./
+sudo docker cp <span style="color:#000">$id</span>:/ws/protobuf-3.0.0-beta-3.2/python/dist/*.gz ./</code></pre></div>
 <p>In case you get an error like the following, <em>remove</em> <code>*.gz</code> from the cp command:</p>
 
 <pre><code>zsh: no matches found: e7c8a9102e1cd07b4c471c331bc4deba2222278eb22be1e79ecaa14e914ed654:/ws/protobuf-3.0.0-beta-3.2/python/dist/*.gz
@@ -171,14 +169,10 @@ sudo docker cp <span style="color: #000000">$id</span>:/ws/protobuf-3.0.0-beta-3
 </code></pre>
 
 <p>Once done, you can remove the created container with the following command:</p>
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>sudo docker rm -v <span style="color: #000000">$id</span>
-</pre></div>
-
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo docker rm -v <span style="color:#000">$id</span></code></pre></div>
 <p>Just remember to change the rights as the files will belong to <code>root</code> by default.
 You can do that with the following commands:</p>
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>sudo chown -R &lt;USERNAME&gt;:&lt;USERNAME&gt; *
-</pre></div>
-
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo chown -R &lt;USERNAME&gt;:&lt;USERNAME&gt; *</code></pre></div>
   </div>
   <div id="disqus_thread"></div>
 </div>

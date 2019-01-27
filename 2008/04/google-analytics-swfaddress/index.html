@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>Google Analytics &amp; SWFAddress &middot; Abhishek Pandey</title>
+
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+  <link rel="stylesheet" href="http://abhipandey.com/css/poole.css?ref=abc124">
+  <link rel="stylesheet" href="http://abhipandey.com/css/hyde.css?ref=abc124">
+  <link rel="stylesheet" href="http://abhipandey.com/css/poole-overrides.css?ref=abc124">
+  <link rel="stylesheet" href="http://abhipandey.com/css/hyde-overrides.css?ref=abc124">
+  <link rel="stylesheet" href="http://abhipandey.com/css/hyde-a.css?ref=abc124">
+  <link rel="stylesheet" href="http://abhipandey.com/css/custom-additions.css?ref=abc124">
+  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://abhipandey.com/touch-icon-144-precomposed.png?ref=abc124">
+  <link href="http://abhipandey.com/favicon.png?ref=abc124" rel="icon">
+
+  
+  
+  
+  
+
+  <meta name="description" content="Using swfaddress in flash for google analytics">
+  <meta name="keywords" content="ExternalInterface.call(),getUrl,flash">
+  
+  
+  <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-68135443-1', 'auto');
+      ga('send', 'pageview');
+  </script>
+
+</head>
+<body class="theme-base-aa">
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      
+      <h1><a href="http://abhipandey.com/">Coder&rsquo;s Digest</a></h1>
+      <a href="http://abhipandey.com/"><p>Abhishek Pandey</p></a>
+    </div>
+
+    <ul class="sidebar-nav">
+      
+      <li class="sidebar-nav-item"><a href="http://abhipandey.com/post/">Posts</a></li>
+      
+      <li class="sidebar-nav-item"><a href="http://abhipandey.com/tags/">Tags</a></li>
+      
+      <li class="sidebar-nav-item"><a href="http://abhipandey.com/categories/">Categories</a></li>
+      
+      <li class="sidebar-nav-item"><a href="http://abhipandey.com/about/">About</a></li>
+      
+    </ul>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item">
+      
+      
+      
+      
+      
+      
+      
+      
+      </li>
+    </ul>
+
+    
+
+  </div>
+</div>
+
+
+<div class="content container">
+  <div class="post">
+    <h1>Google Analytics &amp; SWFAddress</h1>
+    <span class="post-date">Apr 6, 2008  &middot; <a href="http://abhipandey.com/2008/04/google-analytics-swfaddress/#disqus_thread">Comments</a>
+    
+    <br/>
+    
+          <a class="a_cat" href="http://abhipandey.com/categories/code">code</a><a class="a_cat" href="http://abhipandey.com/categories/tips">tips</a>
+      
+      
+        <a class="a_tag" href="http://abhipandey.com/tags/flash">flash</a>
+      
+
+    
+    </span>
+      <div id="_toc" class="toc">
+        
+      </div>
+    <p>Recently found a bug slash issue with Google Analytics new javscript software (post-urchin v5). I had written the internal documentation for the company standards and somehow when those standards were put into practice, SWFAddress feature of flash stopped working the moment google analytics feature was enabled. Worst of all, the web pages failed to load! To cap it off, the website was working perfectly fine on Firefox 2, 3 and IE 7!! It was having trouble only on IE6.</p>
+
+<p>I tried a lot of ways but none seem to worked. Finally found a blog that remotely talked about SWFAddress!</p>
+
+<p>Well, the problem turns out that SWFAddress uses <code>ExternalInterface.call()</code> instead of <code>getUrl()</code> function internally and they don&rsquo;t go well together if used together.</p>
+
+<p>The solution was simple, since flash is using SWFAddress feature, every <code>getUrl</code> should be replaced with <code>ExternalInterface.call()</code>.
+ Needless to say, everything seemed perfect again.</p>
+
+  </div>
+  <div id="disqus_thread"></div>
+</div>
+
+
+<script type="text/javascript">
+var disqus_shortname = "abhi1010";
+(function () {
+    var s = document.createElement('script'); s.async = true;
+    s.type = 'text/javascript';
+    s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+}());
+</script>
+
+
+
+<script type="text/javascript">
+    var disqus_shortname = "abhi1010";
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+</body>
+</html>
+

@@ -7,7 +7,9 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 04 Sep 2015 00:11:51 +0800</lastBuildDate>
-    <atom:link href="http://abhipandey.com/tags/django/index.xml" rel="self" type="application/rss+xml" />
+    
+	<atom:link href="http://abhipandey.com/tags/django/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>Updating Django Source with Docker Deployments</title>
@@ -15,74 +17,10 @@
       <pubDate>Fri, 04 Sep 2015 00:11:51 +0800</pubDate>
       
       <guid>http://abhipandey.com/2015/09/updating-django-source-with-docker-deployments/</guid>
-      <description>
-
-&lt;p&gt;While deploying docker multiple times, you may not want to copy over your &lt;code&gt;Django&lt;/code&gt; source code every time you do a deployment.&lt;/p&gt;
-
-&lt;h1 id=&#34;setting-up-supervisord:8ef139736ad377184214844940ced19b&#34;&gt;Setting up &lt;code&gt;supervisord&lt;/code&gt;&lt;/h1&gt;
-
-&lt;p&gt;Luckily there is an easy way to manage this. Since you are working with &lt;code&gt;Django&lt;/code&gt;, there is a good chance that you are also managing the processes (like &lt;code&gt;uwsgi&lt;/code&gt;) with &lt;code&gt;supervisord&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;Here are some of the steps that you can take with &lt;code&gt;supervisord&lt;/code&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Set up a new process in &lt;code&gt;supervisord&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Do not allow it to &lt;em&gt;&lt;code&gt;autorestart&lt;/code&gt;&lt;/em&gt; since it will be a one-shot process&lt;/li&gt;
-&lt;li&gt;Call another script in any format to update the source code
-
-&lt;ul&gt;
-&lt;li&gt;As an example, I use &lt;code&gt;bash&lt;/code&gt; to update my source code through &lt;code&gt;git&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Here&amp;rsquo;s a sample code:&lt;/p&gt;
-
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;    &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;[&lt;/span&gt;program:source-updater&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;]&lt;/span&gt;
-    &lt;span style=&#34;color: #000000&#34;&gt;redirect_stderr&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #204a87&#34;&gt;true&lt;/span&gt;
-    &lt;span style=&#34;color: #000000&#34;&gt;stdout_logfile&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt; /shared/source_code_updater.log
-    &lt;span style=&#34;color: #000000&#34;&gt;directory&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt; /ws/
-    &lt;span style=&#34;color: #204a87&#34;&gt;command&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt; /ws/source_code_updater.sh
-    &lt;span style=&#34;color: #000000&#34;&gt;autorestart&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;False
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;h1 id=&#34;updating-the-source-code:8ef139736ad377184214844940ced19b&#34;&gt;Updating the source code&lt;/h1&gt;
-
-&lt;p&gt;Few things are important to note in a &lt;code&gt;docker&lt;/code&gt; deployment:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Not every commit needs to be deployed&lt;/li&gt;
-&lt;li&gt;Filter your commits to only allow &lt;strong&gt;&lt;em&gt;deployable&lt;/em&gt;&lt;/strong&gt; code to be updated on &lt;code&gt;docker&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Include regression, unit and system tests to be part of your build process&lt;/li&gt;
-&lt;li&gt;Once everything has been confirmed to be working, tag your code so that you know it is worthy of going to docker&lt;/li&gt;
-&lt;li&gt;Another way would be to manage this process through branches and merge only if everything passes&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;docker&lt;/code&gt; deployments would build off this merged branch or tagged version&lt;/li&gt;
-&lt;li&gt;This way even if you have made 10 commits while fixing a bug and are still in the process of fixing it, you know it won&amp;rsquo;t go to &lt;code&gt;docker&lt;/code&gt; deployment&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;With that idea, do a checkout and update the source code according to specific tag:&lt;/p&gt;
-
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;    git checkout -f tags/your_tag_name
-    git pull origin tags/your_tag_name
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;h1 id=&#34;telling-uwsgi-about-the-updated-source-code:8ef139736ad377184214844940ced19b&#34;&gt;Telling &lt;code&gt;uwsgi&lt;/code&gt; about the updated source code&lt;/h1&gt;
-
-&lt;p&gt;Once you have updated your source code, you need to re-load the project onto &lt;code&gt;uwsgi&lt;/code&gt; so that &lt;code&gt;nginx&lt;/code&gt; or &lt;code&gt;apache&lt;/code&gt; can pick it up.
-The simplest way to achieve it using the config parameter of &lt;code&gt;uwsgi&lt;/code&gt;: &lt;code&gt;--touch-reload&lt;/code&gt;. It will &lt;em&gt;reload uWSGI if the specified file is modified/touched&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;Just remember to setup &lt;code&gt;supervisord&lt;/code&gt; in your &lt;code&gt;Dockerfile&lt;/code&gt; with this config parameter.&lt;/p&gt;
-
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;[&lt;/span&gt;program:app-uwsgi&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;]&lt;/span&gt;
-&lt;span style=&#34;color: #000000&#34;&gt;redirect_stderr&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #204a87&#34;&gt;true&lt;/span&gt;
-&lt;span style=&#34;color: #000000&#34;&gt;stdout_logfile&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt; /var/shared/_uwsgi.log
-&lt;span style=&#34;color: #204a87&#34;&gt;command&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt; /ws/ve_envs/rwv2/bin/uwsgi --touch-reload&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;/ws/wsgi.ini --ini /ws/wsgi.ini
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;You can choose any file. I choose &lt;code&gt;uwsgi.ini&lt;/code&gt; because the contents never really need to change in it.&lt;/p&gt;
-</description>
+      <description>While deploying docker multiple times, you may not want to copy over your Django source code every time you do a deployment.
+Setting up supervisord Luckily there is an easy way to manage this. Since you are working with Django, there is a good chance that you are also managing the processes (like uwsgi) with supervisord.
+Here are some of the steps that you can take with supervisord
+ Set up a new process in supervisord Do not allow it to autorestart since it will be a one-shot process Call another script in any format to update the source code  As an example, I use bash to update my source code through git   Here&amp;rsquo;s a sample code:</description>
     </item>
     
   </channel>

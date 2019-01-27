@@ -102,23 +102,23 @@
       <div id="_toc" class="toc">
         <nav id="TableOfContents">
 <ul>
-<li><a href="#setup:8d5fa5afd262889ee9af2f0243a94c6d">Setup</a></li>
-<li><a href="#shippable-for-commits:8d5fa5afd262889ee9af2f0243a94c6d">Shippable for commits</a>
+<li><a href="#setup">Setup</a></li>
+<li><a href="#shippable-for-commits">Shippable for commits</a>
 <ul>
-<li><a href="#unit-tests:8d5fa5afd262889ee9af2f0243a94c6d">Unit Tests</a></li>
-<li><a href="#git-tagging:8d5fa5afd262889ee9af2f0243a94c6d">Git Tagging</a></li>
+<li><a href="#unit-tests">Unit Tests</a></li>
+<li><a href="#git-tagging">Git Tagging</a></li>
 </ul></li>
-<li><a href="#deployment:8d5fa5afd262889ee9af2f0243a94c6d">Deployment</a>
+<li><a href="#deployment">Deployment</a>
 <ul>
-<li><a href="#dockerfile:8d5fa5afd262889ee9af2f0243a94c6d">Dockerfile</a></li>
-<li><a href="#beanstalk-configuration:8d5fa5afd262889ee9af2f0243a94c6d">Beanstalk Configuration</a>
+<li><a href="#dockerfile">Dockerfile</a></li>
+<li><a href="#beanstalk-configuration">Beanstalk Configuration</a>
 <ul>
-<li><a href="#tips:8d5fa5afd262889ee9af2f0243a94c6d">Tips</a></li>
-<li><a href="#user-accounts:8d5fa5afd262889ee9af2f0243a94c6d">User Accounts</a></li>
-<li><a href="#pre-installing-packages:8d5fa5afd262889ee9af2f0243a94c6d">Pre-installing Packages</a></li>
-<li><a href="#sharing-volumes-between-docker-and-ec2:8d5fa5afd262889ee9af2f0243a94c6d">Sharing volumes between <code>docker</code> and <code>EC2</code></a></li>
-<li><a href="#folder-and-files-structure:8d5fa5afd262889ee9af2f0243a94c6d">Folder and files structure</a></li>
-<li><a href="#elasticbeanstalk-folder-for-aws-configs:8d5fa5afd262889ee9af2f0243a94c6d"><code>.elasticbeanstalk</code> folder for <code>aws</code> configs</a></li>
+<li><a href="#tips">Tips</a></li>
+<li><a href="#user-accounts">User Accounts</a></li>
+<li><a href="#pre-installing-packages">Pre-installing Packages</a></li>
+<li><a href="#sharing-volumes-between-docker-and-ec2">Sharing volumes between <code>docker</code> and <code>EC2</code></a></li>
+<li><a href="#folder-and-files-structure">Folder and files structure</a></li>
+<li><a href="#elasticbeanstalk-folder-for-aws-configs"><code>.elasticbeanstalk</code> folder for <code>aws</code> configs</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -129,29 +129,19 @@
 <p>We are going to talk about a setup where <strong>all you need to do it <em>commit</em> your code and all the rest of the steps from unit tests to deployment can be taken care of by some externally hosted cloud platform that provides continuous integration.</strong>
   In my case, it is going to be <code>Shippable</code> that I am using as a sample but you can use almost anything like <code>TravisCI</code> or <code>codeship</code>, for example.</p>
 
-<h1 id="setup:8d5fa5afd262889ee9af2f0243a94c6d">Setup</h1>
+<h1 id="setup">Setup</h1>
 
 <p>Here is the setup we will be looking at:</p>
 
-
-<figure >
-    
-        <img src="/images/elastic-beanstalk-deployment-automation-arch.png" alt="Architecture" />
-    
-    
-    <figcaption>
-        <p>
-        Architecture
-        
-            
-        
-        </p> 
-    </figcaption>
-    
+<figure>
+    <img src="/images/elastic-beanstalk-deployment-automation-arch.png"
+         alt="Architecture"/> <figcaption>
+            <p>Architecture</p>
+        </figcaption>
 </figure>
 
 
-<h1 id="shippable-for-commits:8d5fa5afd262889ee9af2f0243a94c6d">Shippable for commits</h1>
+<h1 id="shippable-for-commits">Shippable for commits</h1>
 
 <p>We will use <code>shippable</code> for the following:</p>
 
@@ -168,7 +158,7 @@ You can create a <code>shippable.yml</code> file in your project which will be c
 
 <p>Here is one of my sample files from the project that powers this blog:</p>
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>language: python
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">language: python
 
 install:
   - pip install Pygments 
@@ -177,24 +167,24 @@ before_script:
   - git config --global push.default matching
   - mkdir -p themes
   - git clone git@github.com:abhi1010/abhi1010.github.io.git
-  - <span style="color: #204a87">cd</span> themes
+  - <span style="color:#204a87">cd</span> themes
   - git clone https://github.com/abhi1010/hyde-a.git
-  - <span style="color: #204a87">cd</span> ../
+  - <span style="color:#204a87">cd</span> ../
 
 script:
   - hugo -d abhi1010.github.io/
 
 after_success:
-  - <span style="color: #204a87">echo</span> <span style="color: #4e9a06">`</span><span style="color: #204a87">pwd</span><span style="color: #4e9a06">`</span>
-  - <span style="color: #204a87">export</span> <span style="color: #000000">NOW_HOUR</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #204a87; font-weight: bold">$(</span>date +%d-%b-%H_%M<span style="color: #204a87; font-weight: bold">)</span> 
-  - git config --global user.email <span style="color: #4e9a06">&quot;abhi.pandey@gmail.com&quot;</span>
-  - git config --global user.name <span style="color: #4e9a06">&quot;abhi1010&quot;</span>
+  - <span style="color:#204a87">echo</span> <span style="color:#4e9a06">`</span><span style="color:#204a87">pwd</span><span style="color:#4e9a06">`</span>
+  - <span style="color:#204a87">export</span> <span style="color:#000">NOW_HOUR</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#204a87;font-weight:bold">$(</span>date +%d-%b-%H_%M<span style="color:#204a87;font-weight:bold">)</span> 
+  - git config --global user.email <span style="color:#4e9a06">&#34;abhi.pandey@gmail.com&#34;</span>
+  - git config --global user.name <span style="color:#4e9a06">&#34;abhi1010&#34;</span>
   - git config --get remote.origin.url
   - git remote set-url origin git@github.com:abhi1010.github.io.git
-  - <span style="color: #204a87">cd</span> abhi1010.github.io
+  - <span style="color:#204a87">cd</span> abhi1010.github.io
   - git status -s
-  - <span style="color: #204a87">echo</span> -e <span style="color: #4e9a06">&quot;a\n*\nq\n&quot;</span><span style="color: #000000; font-weight: bold">|</span>git add -i
-  - git commit -am <span style="color: #4e9a06">&#39;Automated build from Shippable - &#39;</span><span style="color: #000000">$NOW_HOUR</span> <span style="color: #ce5c00; font-weight: bold">&amp;&amp;</span> git push
+  - <span style="color:#204a87">echo</span> -e <span style="color:#4e9a06">&#34;a\n*\nq\n&#34;</span><span style="color:#000;font-weight:bold">|</span>git add -i
+  - git commit -am <span style="color:#4e9a06">&#39;Automated build from Shippable - &#39;</span><span style="color:#000">$NOW_HOUR</span> <span style="color:#ce5c00;font-weight:bold">&amp;&amp;</span> git push
 
 
 notifications:
@@ -204,9 +194,7 @@ notifications:
          on_success: change
          on_failure: always
 
-cache: <span style="color: #204a87">true</span>
-</pre></div>
-
+cache: true</code></pre></div>
 
 <p>This script does the following tasks:</p>
 
@@ -220,100 +208,80 @@ cache: <span style="color: #204a87">true</span>
 
 <p>Once it works, you will see the following on <code>shippable</code> site:</p>
 
-
-<figure >
-    
-        <img src="/images/elastic-beanstalk-deployment-automation-2.png" alt="Shippable Build Status" />
-    
-    
-    <figcaption>
-        <p>
-        Shippable Build Status
-        
-            
-        
-        </p> 
-    </figcaption>
-    
+<figure>
+    <img src="/images/elastic-beanstalk-deployment-automation-2.png"
+         alt="Shippable Build Status"/> <figcaption>
+            <p>Shippable Build Status</p>
+        </figcaption>
 </figure>
 
 
-<h2 id="unit-tests:8d5fa5afd262889ee9af2f0243a94c6d">Unit Tests</h2>
+<h2 id="unit-tests">Unit Tests</h2>
 
 <p>You may also want to set up unit tests and regression tests as part of your <em>scripts</em>
 Just do the following then</p>
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #000000">script</span><span style="color: #000000; font-weight: bold">:</span>
-  <span style="color: #000000; font-weight: bold">-</span>  <span style="color: #000000">py.test-3.4 tests/test.py --maxfail=3 -s --full-trace --tb=long --junitxml=../shippable/testresults/pytests.xml</span>
-</pre></div>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">script<span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#8f5902;font-style:italic">-  py.test-3.4 tests/test.py --maxfail=3 -s --full-trace --tb=long --junitxml=../shippable/testresults/pytests.xml</span></code></pre></div>
 
-
-<h2 id="git-tagging:8d5fa5afd262889ee9af2f0243a94c6d">Git Tagging</h2>
+<h2 id="git-tagging">Git Tagging</h2>
 
 <p>If the tests pass in <em>scripts</em> only then does <code>shippable</code> go to <strong>after_success</strong> section.
 Over there, you might want to tag your source code, so that <code>docker</code> will only pull the tagged and approved commits from <code>shippable</code>, not every commit - which is very important.</p>
 
 <p>Here&rsquo;s how to do that:</p>
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>after_success:
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">after_success:
   - git tag -f recon_prod master
-  - git push -f --tags
-</pre></div>
+  - git push -f --tags</code></pre></div>
 
-
-<h1 id="deployment:8d5fa5afd262889ee9af2f0243a94c6d">Deployment</h1>
+<h1 id="deployment">Deployment</h1>
 
 <p>Once you have approved your code commit, it is time to deploy it to <code>docker</code> on <code>beanstalk</code>.
 I like to keep deployment scripts in another bash script, so that deployment can be done in various other ways as well, if needed.</p>
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>after_success:
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">after_success:
   - main/scripts/deploy.sh 
-  - <span style="color: #204a87">echo</span> <span style="color: #4e9a06">&#39;CODE DEPLOYED&#39;</span>
-</pre></div>
-
+  - <span style="color:#204a87">echo</span> <span style="color:#4e9a06">&#39;CODE DEPLOYED&#39;</span></code></pre></div>
 
 <p>Or, you may choose to have the &ldquo;deployment&rdquo; script from another project, if you wish. It allows you to separately maintain all the moving parts.</p>
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>rm -rf <span style="color: #204a87">cd</span> eb-reconwise
-<span style="color: #204a87">echo</span> <span style="color: #4e9a06">&#39;Deploying New Dockers&#39;</span>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">rm -rf <span style="color:#204a87">cd</span> eb-reconwise
+<span style="color:#204a87">echo</span> <span style="color:#4e9a06">&#39;Deploying New Dockers&#39;</span>
 git clone https://github.com/abhi1010/deplyment_project.git
-<span style="color: #204a87">cd</span> deplyment_project/
+<span style="color:#204a87">cd</span> deplyment_project/
 chmod +x deploy.sh
 eb use beanstalk_env_name
 ./deploy.sh
-<span style="color: #204a87">echo</span> <span style="color: #4e9a06">&#39;Deployment Complete&#39;</span>
-</pre></div>
+<span style="color:#204a87">echo</span> <span style="color:#4e9a06">&#39;Deployment Complete&#39;</span></code></pre></div>
 
-
-<h2 id="dockerfile:8d5fa5afd262889ee9af2f0243a94c6d">Dockerfile</h2>
+<h2 id="dockerfile">Dockerfile</h2>
 
 <p>Now first what we need is setting up <code>docker</code> on beanstalk.</p>
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>  FROM abhi1010/base_docker
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">  FROM abhi1010/base_docker
   MAINTAINER abhi1010 &lt;codersdigest@gmail.com&gt;
   
   ENV DEBIAN_FRONTEND noninteractive
   
-  ENV WS <span style="color: #4e9a06">&#39;/ws&#39;</span>
-  ENV CURR_HOME <span style="color: #4e9a06">&#39;/root&#39;</span>
-  WORKDIR <span style="color: #000000">$WS</span>
+  ENV WS <span style="color:#4e9a06">&#39;/ws&#39;</span>
+  ENV CURR_HOME <span style="color:#4e9a06">&#39;/root&#39;</span>
+  WORKDIR <span style="color:#000">$WS</span>
   
-  RUN git clone https://github.com/abhi1010/dockerprj.git <span style="color: #4e9a06">\</span>
-   <span style="color: #ce5c00; font-weight: bold">&amp;&amp;</span> . <span style="color: #000000">$WS</span>/ve_envs/rwv2/bin/activate <span style="color: #4e9a06">\</span>
-   <span style="color: #ce5c00; font-weight: bold">&amp;&amp;</span> <span style="color: #000000">$WS</span>/prj/rw/manage.py collectstatic --noinput
+  RUN git clone https://github.com/abhi1010/dockerprj.git <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>   <span style="color:#ce5c00;font-weight:bold">&amp;&amp;</span> . <span style="color:#000">$WS</span>/ve_envs/rwv2/bin/activate <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>   <span style="color:#ce5c00;font-weight:bold">&amp;&amp;</span> <span style="color:#000">$WS</span>/prj/rw/manage.py collectstatic --noinput
   
-  COPY supervisor-app.conf <span style="color: #000000">$WS</span>/
+  COPY supervisor-app.conf <span style="color:#000">$WS</span>/
   
-  RUN <span style="color: #4e9a06">\</span>
-      cp <span style="color: #000000">$WS</span>/supervisor-app.conf /etc/supervisor/supervisord.conf <span style="color: #4e9a06">\</span>
-   <span style="color: #ce5c00; font-weight: bold">&amp;&amp;</span> chown -R www-data:www-data /var/lib/nginx
+  RUN <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>      cp <span style="color:#000">$WS</span>/supervisor-app.conf /etc/supervisor/supervisord.conf <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>   <span style="color:#ce5c00;font-weight:bold">&amp;&amp;</span> chown -R www-data:www-data /var/lib/nginx
 
-  VOLUME <span style="color: #ce5c00; font-weight: bold">[</span><span style="color: #4e9a06">&quot;/var/shared/&quot;</span>, <span style="color: #4e9a06">&quot;/etc/nginx/sites-enabled&quot;</span>, <span style="color: #4e9a06">&quot;/var/log/nginx&quot;</span>, <span style="color: #4e9a06">&quot;/ws/&quot;</span><span style="color: #ce5c00; font-weight: bold">]</span>
+  VOLUME <span style="color:#ce5c00;font-weight:bold">[</span><span style="color:#4e9a06">&#34;/var/shared/&#34;</span>, <span style="color:#4e9a06">&#34;/etc/nginx/sites-enabled&#34;</span>, <span style="color:#4e9a06">&#34;/var/log/nginx&#34;</span>, <span style="color:#4e9a06">&#34;/ws/&#34;</span><span style="color:#ce5c00;font-weight:bold">]</span>
     
-  EXPOSE 80
-  CMD <span style="color: #ce5c00; font-weight: bold">[</span><span style="color: #4e9a06">&quot;supervisord&quot;</span>, <span style="color: #4e9a06">&quot;-n&quot;</span><span style="color: #ce5c00; font-weight: bold">]</span>
-</pre></div>
-
+  EXPOSE <span style="color:#0000cf;font-weight:bold">80</span>
+  CMD <span style="color:#ce5c00;font-weight:bold">[</span><span style="color:#4e9a06">&#34;supervisord&#34;</span>, <span style="color:#4e9a06">&#34;-n&#34;</span><span style="color:#ce5c00;font-weight:bold">]</span></code></pre></div>
 
 <p>This does the following tasks:</p>
 
@@ -331,11 +299,11 @@ eb use beanstalk_env_name
 <li>Set <code>cmd</code> so that it allows <code>supervisord</code> to be used for running the container</li>
 </ul>
 
-<h2 id="beanstalk-configuration:8d5fa5afd262889ee9af2f0243a94c6d">Beanstalk Configuration</h2>
+<h2 id="beanstalk-configuration">Beanstalk Configuration</h2>
 
 <p>Once we have the <code>Dockerfile</code> ready, we need to set up the configuration for <code>beanstalk</code> so that during deployment, other steps can be taken care of as well. Some of the things to keep in mind in <code>beanstalk</code> setup are:</p>
 
-<h3 id="tips:8d5fa5afd262889ee9af2f0243a94c6d">Tips</h3>
+<h3 id="tips">Tips</h3>
 
 <ul>
 <li>All <code>beanstalk</code> configuration has be kept in a folder called <strong><code>.ebextension</code></strong><br /></li>
@@ -347,15 +315,13 @@ eb use beanstalk_env_name
 <li>Scripts placed in the folders are read in alphabetical order</li>
 </ul></li>
 <li>You can increase the timeout of your <code>docker</code> initialization setup if it takes too long due to multiple steps
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #000000">option_settings</span><span style="color: #000000; font-weight: bold">:</span>
-    <span style="color: #ce5c00; font-weight: bold">-</span> <span style="color: #000000">namespace</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #000000">aws</span><span style="color: #000000; font-weight: bold">:</span><span style="color: #000000">elasticbeanstalk</span><span style="color: #000000; font-weight: bold">:</span><span style="color: #000000">command</span>
-      <span style="color: #000000">option_name</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #000000">Timeout</span>
-      <span style="color: #000000">value</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #0000cf; font-weight: bold">1800</span>
-</pre></div>
-</li>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#000">option_settings</span><span style="color:#000;font-weight:bold">:</span>
+    <span style="color:#ce5c00;font-weight:bold">-</span> <span style="color:#000">namespace</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000">aws</span><span style="color:#000;font-weight:bold">:</span><span style="color:#000">elasticbeanstalk</span><span style="color:#000;font-weight:bold">:</span><span style="color:#000">command</span>
+      <span style="color:#000">option_name</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000">Timeout</span>
+      <span style="color:#000">value</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#0000cf;font-weight:bold">1800</span></code></pre></div></li>
 </ul>
 
-<h3 id="user-accounts:8d5fa5afd262889ee9af2f0243a94c6d">User Accounts</h3>
+<h3 id="user-accounts">User Accounts</h3>
 
 <ul>
 <li>You can also add any user account if you&rsquo;d like pragmatically and make sure they are <em>always</em> part of the <code>EC2</code> instance that you are creating
@@ -367,42 +333,38 @@ eb use beanstalk_env_name
 </ul></li>
 </ul>
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>files:
-  <span style="color: #4e9a06">&quot;/opt/elasticbeanstalk/hooks/appdeploy/pre/0001_create_users.sh&quot;</span>:
-    mode: <span style="color: #4e9a06">&quot;000755&quot;</span> 
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">files:
+  <span style="color:#4e9a06">&#34;/opt/elasticbeanstalk/hooks/appdeploy/pre/0001_create_users.sh&#34;</span>:
+    mode: <span style="color:#4e9a06">&#34;000755&#34;</span> 
     owner: root
     group: root
-    content: <span style="color: #000000; font-weight: bold">|</span>
-      <span style="color: #8f5902; font-style: italic">#!/usr/bin/env bash</span>
-      <span style="color: #204a87">echo</span> <span style="color: #4e9a06">&#39;About to Add user gh-user&#39;</span>
+    content: <span style="color:#000;font-weight:bold">|</span>
+      <span style="color:#8f5902;font-style:italic">#!/usr/bin/env bash
+</span><span style="color:#8f5902;font-style:italic"></span>      <span style="color:#204a87">echo</span> <span style="color:#4e9a06">&#39;About to Add user gh-user&#39;</span>
       adduser gh-user
-      runuser -l gh-user -c <span style="color: #4e9a06">&#39;mkdir ~/.ssh&#39;</span>
-      runuser -l gh-user -c <span style="color: #4e9a06">&#39;chmod 700 ~/.ssh&#39;</span>
-      runuser -l gh-user -c <span style="color: #4e9a06">&#39;touch ~/.ssh/authorized_keys&#39;</span>
-      runuser -l gh-user -c <span style="color: #4e9a06">&#39;chmod 600 ~/.ssh/authorized_keys&#39;</span>
-      runuser -l gh-user -c <span style="color: #4e9a06">&#39;echo &quot;ssh-rsa r4CBI2cWQohEwBkGw9CcW0vWfnlAcKkrCnsJvwe/+kG5w9J8gJdnNQ8BFB+q+kQ6fWl+1kw7b+8jah5q0nNpOzLbed+Rzse1BoOIjsSXqN/L7AW8y61PVBULcVAVBKCrVy0U5zifv/e6a5+dsUD3WLiD3yXTgPDcZoqQqPYkurCx5ZzxLylKfXfL37k7sz00e+Tu/Y+J9xXdI9j3G5bU9rmIe4SH4mK4BCMRQ6zCHqAzAXZtnmN5U1XR3XrfMtuDLvVgcOlEpXIMl9q2kco0ZCdMkYoSzf3Yj&quot; &gt;&gt; ~/.ssh/authorized_keys&#39;</span>
-</pre></div>
+      runuser -l gh-user -c <span style="color:#4e9a06">&#39;mkdir ~/.ssh&#39;</span>
+      runuser -l gh-user -c <span style="color:#4e9a06">&#39;chmod 700 ~/.ssh&#39;</span>
+      runuser -l gh-user -c <span style="color:#4e9a06">&#39;touch ~/.ssh/authorized_keys&#39;</span>
+      runuser -l gh-user -c <span style="color:#4e9a06">&#39;chmod 600 ~/.ssh/authorized_keys&#39;</span>
+      runuser -l gh-user -c <span style="color:#4e9a06">&#39;echo &#34;ssh-rsa r4CBI2cWQohEwBkGw9CcW0vWfnlAcKkrCnsJvwe/+kG5w9J8gJdnNQ8BFB+q+kQ6fWl+1kw7b+8jah5q0nNpOzLbed+Rzse1BoOIjsSXqN/L7AW8y61PVBULcVAVBKCrVy0U5zifv/e6a5+dsUD3WLiD3yXTgPDcZoqQqPYkurCx5ZzxLylKfXfL37k7sz00e+Tu/Y+J9xXdI9j3G5bU9rmIe4SH4mK4BCMRQ6zCHqAzAXZtnmN5U1XR3XrfMtuDLvVgcOlEpXIMl9q2kco0ZCdMkYoSzf3Yj&#34; &gt;&gt; ~/.ssh/authorized_keys&#39;</span></code></pre></div>
 
-
-<h3 id="pre-installing-packages:8d5fa5afd262889ee9af2f0243a94c6d">Pre-installing Packages</h3>
+<h3 id="pre-installing-packages">Pre-installing Packages</h3>
 
 <ul>
 <li>You should also install any package that you&rsquo;d like on all <code>EC2</code> instances</li>
 </ul>
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>files:
-  <span style="color: #4e9a06">&quot;/opt/elasticbeanstalk/hooks/appdeploy/pre/0003_packages.sh&quot;</span>:
-    mode: <span style="color: #4e9a06">&quot;000755&quot;</span> 
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">files:
+  <span style="color:#4e9a06">&#34;/opt/elasticbeanstalk/hooks/appdeploy/pre/0003_packages.sh&#34;</span>:
+    mode: <span style="color:#4e9a06">&#34;000755&#34;</span> 
     owner: root
     group: root
-    content: <span style="color: #000000; font-weight: bold">|</span>
-      <span style="color: #8f5902; font-style: italic">#!/usr/bin/env bash </span>
-      yum install -y git
-     
-</pre></div>
+    content: <span style="color:#000;font-weight:bold">|</span>
+      <span style="color:#8f5902;font-style:italic">#!/usr/bin/env bash 
+</span><span style="color:#8f5902;font-style:italic"></span>      yum install -y git
+     </code></pre></div>
 
-
-<h3 id="sharing-volumes-between-docker-and-ec2:8d5fa5afd262889ee9af2f0243a94c6d">Sharing volumes between <code>docker</code> and <code>EC2</code></h3>
+<h3 id="sharing-volumes-between-docker-and-ec2">Sharing volumes between <code>docker</code> and <code>EC2</code></h3>
 
 <ul>
 <li>Ensure that folder sharing is enabled between <code>EC2</code> and <code>docker</code> instances
@@ -412,46 +374,42 @@ eb use beanstalk_env_name
 </ul></li>
 </ul>
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #ce5c00; font-weight: bold">{</span>
-   <span style="color: #4e9a06">&quot;AWSEBDockerrunVersion&quot;</span>: <span style="color: #4e9a06">&quot;1&quot;</span>,
-  <span style="color: #4e9a06">&quot;Volumes&quot;</span>: <span style="color: #ce5c00; font-weight: bold">[</span>
-    <span style="color: #ce5c00; font-weight: bold">{</span>
-      <span style="color: #4e9a06">&quot;HostDirectory&quot;</span>: <span style="color: #4e9a06">&quot;/var/shared&quot;</span>,
-      <span style="color: #4e9a06">&quot;ContainerDirectory&quot;</span>: <span style="color: #4e9a06">&quot;/var/shared&quot;</span>
-    <span style="color: #ce5c00; font-weight: bold">}</span>
-  <span style="color: #ce5c00; font-weight: bold">]</span>,
-  <span style="color: #4e9a06">&quot;Ports&quot;</span>: <span style="color: #ce5c00; font-weight: bold">[</span>
-    <span style="color: #ce5c00; font-weight: bold">{</span>
-      <span style="color: #4e9a06">&quot;ContainerPort&quot;</span>: <span style="color: #4e9a06">&quot;80&quot;</span>
-    <span style="color: #ce5c00; font-weight: bold">}</span>
-  <span style="color: #ce5c00; font-weight: bold">]</span>,
-   <span style="color: #4e9a06">&quot;Logging&quot;</span>: <span style="color: #4e9a06">&quot;/var/log/&quot;</span>
- <span style="color: #ce5c00; font-weight: bold">}</span>
-</pre></div>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#ce5c00;font-weight:bold">{</span>
+   <span style="color:#4e9a06">&#34;AWSEBDockerrunVersion&#34;</span>: <span style="color:#4e9a06">&#34;1&#34;</span>,
+  <span style="color:#4e9a06">&#34;Volumes&#34;</span>: <span style="color:#ce5c00;font-weight:bold">[</span>
+    <span style="color:#ce5c00;font-weight:bold">{</span>
+      <span style="color:#4e9a06">&#34;HostDirectory&#34;</span>: <span style="color:#4e9a06">&#34;/var/shared&#34;</span>,
+      <span style="color:#4e9a06">&#34;ContainerDirectory&#34;</span>: <span style="color:#4e9a06">&#34;/var/shared&#34;</span>
+    <span style="color:#ce5c00;font-weight:bold">}</span>
+  <span style="color:#ce5c00;font-weight:bold">]</span>,
+  <span style="color:#4e9a06">&#34;Ports&#34;</span>: <span style="color:#ce5c00;font-weight:bold">[</span>
+    <span style="color:#ce5c00;font-weight:bold">{</span>
+      <span style="color:#4e9a06">&#34;ContainerPort&#34;</span>: <span style="color:#4e9a06">&#34;80&#34;</span>
+    <span style="color:#ce5c00;font-weight:bold">}</span>
+  <span style="color:#ce5c00;font-weight:bold">]</span>,
+   <span style="color:#4e9a06">&#34;Logging&#34;</span>: <span style="color:#4e9a06">&#34;/var/log/&#34;</span>
+ <span style="color:#ce5c00;font-weight:bold">}</span></code></pre></div>
 
-
-<h3 id="folder-and-files-structure:8d5fa5afd262889ee9af2f0243a94c6d">Folder and files structure</h3>
+<h3 id="folder-and-files-structure">Folder and files structure</h3>
 
 <ul>
 <li>Finally, make sure that your folder files are setup as follows:</li>
 </ul>
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>$ <span style="color: #ce5c00; font-weight: bold">(</span>master<span style="color: #ce5c00; font-weight: bold">)</span> tree -a 
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ <span style="color:#ce5c00;font-weight:bold">(</span>master<span style="color:#ce5c00;font-weight:bold">)</span> tree -a 
 .
-<span style="color: #000000; font-weight: bold">|</span>-- .ebextensions
-<span style="color: #000000; font-weight: bold">|</span>   <span style="color: #000000; font-weight: bold">|</span>-- 0000_users.config  <span style="color: #8f5902; font-style: italic"># setup extra users</span>
-<span style="color: #000000; font-weight: bold">|</span>   <span style="color: #000000; font-weight: bold">|</span>-- 0002_packages.config  <span style="color: #8f5902; font-style: italic"># install external packages</span>
-<span style="color: #000000; font-weight: bold">|</span>   <span style="color: #000000; font-weight: bold">|</span>-- 0004_bash.config  <span style="color: #8f5902; font-style: italic"># I like to manage all </span>
-<span style="color: #000000; font-weight: bold">|</span>-- .elasticbeanstalk
-<span style="color: #000000; font-weight: bold">|</span>   <span style="color: #000000; font-weight: bold">|</span>-- config.yml  <span style="color: #8f5902; font-style: italic"># AWS connection details</span>
-<span style="color: #000000; font-weight: bold">|</span>-- .gitignore 
-<span style="color: #000000; font-weight: bold">|</span>-- Dockerfile  <span style="color: #8f5902; font-style: italic"># Docker instance</span>
-<span style="color: #000000; font-weight: bold">|</span>-- Dockerrun.aws.json   <span style="color: #8f5902; font-style: italic"># folder sharing</span>
-<span style="color: #000000; font-weight: bold">|</span>-- updater.sh  <span style="color: #8f5902; font-style: italic"># script to update any code</span>
-</pre></div>
+<span style="color:#000;font-weight:bold">|</span>-- .ebextensions
+<span style="color:#000;font-weight:bold">|</span>   <span style="color:#000;font-weight:bold">|</span>-- 0000_users.config  <span style="color:#8f5902;font-style:italic"># setup extra users</span>
+<span style="color:#000;font-weight:bold">|</span>   <span style="color:#000;font-weight:bold">|</span>-- 0002_packages.config  <span style="color:#8f5902;font-style:italic"># install external packages</span>
+<span style="color:#000;font-weight:bold">|</span>   <span style="color:#000;font-weight:bold">|</span>-- 0004_bash.config  <span style="color:#8f5902;font-style:italic"># I like to manage all</span> 
+<span style="color:#000;font-weight:bold">|</span>-- .elasticbeanstalk
+<span style="color:#000;font-weight:bold">|</span>   <span style="color:#000;font-weight:bold">|</span>-- config.yml  <span style="color:#8f5902;font-style:italic"># AWS connection details</span>
+<span style="color:#000;font-weight:bold">|</span>-- .gitignore 
+<span style="color:#000;font-weight:bold">|</span>-- Dockerfile  <span style="color:#8f5902;font-style:italic"># Docker instance</span>
+<span style="color:#000;font-weight:bold">|</span>-- Dockerrun.aws.json   <span style="color:#8f5902;font-style:italic"># folder sharing</span>
+<span style="color:#000;font-weight:bold">|</span>-- updater.sh  <span style="color:#8f5902;font-style:italic"># script to update any code</span></code></pre></div>
 
-
-<h3 id="elasticbeanstalk-folder-for-aws-configs:8d5fa5afd262889ee9af2f0243a94c6d"><code>.elasticbeanstalk</code> folder for <code>aws</code> configs</h3>
+<h3 id="elasticbeanstalk-folder-for-aws-configs"><code>.elasticbeanstalk</code> folder for <code>aws</code> configs</h3>
 
 <ul>
 <li>You might be wondering what&rsquo;s <code>.elasticbeanstalk</code> folder. It is the folder that&rsquo;s responsible for taking your <code>AWS</code> secret key and access id for doing the actual deployment. If you don&rsquo;t set it up, AWS will ask you every time.

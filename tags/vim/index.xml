@@ -7,7 +7,9 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 31 Oct 2015 20:48:16 +0800</lastBuildDate>
-    <atom:link href="http://abhipandey.com/tags/vim/index.xml" rel="self" type="application/rss+xml" />
+    
+	<atom:link href="http://abhipandey.com/tags/vim/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>vim cannot find word list</title>
@@ -15,48 +17,9 @@
       <pubDate>Sat, 31 Oct 2015 20:48:16 +0800</pubDate>
       
       <guid>http://abhipandey.com/2015/10/vim-cannot-find-word-list/</guid>
-      <description>&lt;p&gt;After installing &lt;a href=&#34;http://vim.spf13.com/&#34;&gt;spf13 vim&lt;/a&gt; every time I would open a file I had trouble with two things on my mac:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;File opening would halt in the middle with the following error :  &lt;strong&gt;Cannot find word list &amp;ldquo;en.utf-8.spl&amp;rdquo; or &amp;ldquo;en.ascii.spl&amp;rdquo;&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;Syntax highlighting also failed thereafter&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Here&amp;rsquo;s what I would see:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;$ vim release.sh 
-Warning: Cannot find word list &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;en.utf-8.spl&amp;quot;&lt;/span&gt; or &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;en.ascii.spl&amp;quot;&lt;/span&gt;
-Press ENTER or &lt;span style=&#34;color: #204a87&#34;&gt;type&lt;/span&gt; &lt;span style=&#34;color: #204a87&#34;&gt;command&lt;/span&gt; to &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;continue&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;I googled a lot regarding this but didn&amp;rsquo;t find anything straight forward.
-When all options failed I recalled that it is looking for the spell files in a specific folder.
-Hence I decided to do a lookup for them:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;locate en.utf-8
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;I got a lot of options:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;$ locate en.utf-8
-
-/usr/local/Cellar/macvim/7.4-73/MacVim.app/Contents/Resources/vim/runtime/spell/en.utf-8.spl
-/usr/local/Cellar/macvim/7.4-73/MacVim.app/Contents/Resources/vim/runtime/spell/en.utf-8.sug
-/usr/local/Cellar/vim/7.4.712/share/vim/vim74/spell/en.utf-8.spl
-/usr/local/Cellar/vim/7.4.712/share/vim/vim74/spell/en.utf-8.sug
-/usr/share/vim/vim73/spell/en.utf-8.spl
-/usr/share/vim/vim73/spell/en.utf-8.sug
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;One of the options was to change the &lt;code&gt;runtimepath&lt;/code&gt; to let it know about the spell folders.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #204a87&#34;&gt;let&lt;/span&gt; &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;runtimepath&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=(&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;~/.vim/,/usr/local/Cellar/vim/7.4.712/share/vim/vim74/spell/,&amp;quot;&lt;/span&gt; . &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;&amp;amp;&lt;/span&gt;runtimepath&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;When that failed too and nothing else worked, I decided to copy out the file and give it a try:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;cp /usr/local/Cellar/vim/7.4.712/share/vim/vim74/spell/en.utf-8.spl ~/.vim/spell
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;To my surprise, that worked!&lt;/p&gt;
-</description>
+      <description>After installing spf13 vim every time I would open a file I had trouble with two things on my mac:
+ File opening would halt in the middle with the following error : Cannot find word list &amp;ldquo;en.utf-8.spl&amp;rdquo; or &amp;ldquo;en.ascii.spl&amp;rdquo; Syntax highlighting also failed thereafter  Here&amp;rsquo;s what I would see:
+$ vim release.sh Warning: Cannot find word list &amp;#34;en.utf-8.spl&amp;#34; or &amp;#34;en.ascii.spl&amp;#34; Press ENTER or type command to continue I googled a lot regarding this but didn&amp;rsquo;t find anything straight forward.</description>
     </item>
     
     <item>
@@ -65,25 +28,8 @@ Hence I decided to do a lookup for them:&lt;/p&gt;
       <pubDate>Mon, 19 May 2014 15:51:51 +0000</pubDate>
       
       <guid>http://abhipandey.com/2014/05/setting-up-your-vim...-your-style/</guid>
-      <description>&lt;p&gt;Writing code using VIM can be a bit overwhelming but it helps creating a few shortcuts there to make your life easier. Here I will discuss a few.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;First of all, it is always a good idea to set up your tabs and spaces&lt;/li&gt;
-&lt;li&gt;Set up shortcuts for:
-
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;Toggling of Auto-Indent&lt;/code&gt; while pasting source text; very useful in code (&lt;em&gt;F2&lt;/em&gt; in my provided script)&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;Toggling of Auto-Scroll&lt;/code&gt; of Split windows (&lt;em&gt;F3&lt;/em&gt; in my provided script)&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;Macro for Folding functions&lt;/code&gt; within the source code (&lt;em&gt;&lt;em&gt;@q&lt;/em&gt;&lt;/em&gt; in my provided script)&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;Smart case search&lt;/code&gt; - based on whether the input is in caps or not&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;Toggling of Mouse Usage&lt;/code&gt; in VIM window - to allow quick selection of text (&lt;em&gt;F12&lt;/em&gt; in my provided script)&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Please see the provided script below to have a look.&lt;/p&gt;
-
-&lt;script type=&#34;text/javascript&#34; src=&#34;http://gist.github.com/6f190c9f3afd42881ef5.js&#34;&gt;&lt;/script&gt;
-</description>
+      <description>Writing code using VIM can be a bit overwhelming but it helps creating a few shortcuts there to make your life easier. Here I will discuss a few.
+ First of all, it is always a good idea to set up your tabs and spaces Set up shortcuts for:  Toggling of Auto-Indent while pasting source text; very useful in code (F2 in my provided script) Toggling of Auto-Scroll of Split windows (F3 in my provided script) Macro for Folding functions within the source code (@q in my provided script) Smart case search - based on whether the input is in caps or not Toggling of Mouse Usage in VIM window - to allow quick selection of text (F12 in my provided script)   Please see the provided script below to have a look.</description>
     </item>
     
     <item>
@@ -92,30 +38,9 @@ Hence I decided to do a lookup for them:&lt;/p&gt;
       <pubDate>Tue, 11 Feb 2014 14:56:00 +0000</pubDate>
       
       <guid>http://abhipandey.com/2014/02/global-search-in-vim/</guid>
-      <description>&lt;p&gt;You must be knowing about regular VIM search&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;%s/SEARCH/REPLACE/CMD
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;However, sometimes you do not want to replace something but just see all instances of the a word or phrase. In such cases, global search is really useful when on vim. The syntax is simpler than normal search-replace:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;:[range]g[lobal]/{pattern}/[cmd]
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;This will show all instances of the &amp;ldquo;SEARCH&amp;rdquo; term within the VIM window. There&amp;rsquo;s another version of the same command which is as follows:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;:[range]g[lobal]!/{pattern}/[cmd]
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;This is similar to the previous command but the only difference is that this command contains &amp;ldquo;!&amp;rdquo; which signifies that the command will be executed on all lines &lt;code&gt;NOT&lt;/code&gt; matching the &lt;code&gt;pattern&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;One example here would be to delete all lines in a file containing a particular word:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;:g/deleteMe/d
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;There could be lot more actions (regular vim stuff) that you could do like yanking or indenting.&lt;/p&gt;
-</description>
+      <description>You must be knowing about regular VIM search
+%s/SEARCH/REPLACE/CMD  However, sometimes you do not want to replace something but just see all instances of the a word or phrase. In such cases, global search is really useful when on vim. The syntax is simpler than normal search-replace:
+:[range]g[lobal]/{pattern}/[cmd]  This will show all instances of the &amp;ldquo;SEARCH&amp;rdquo; term within the VIM window. There&amp;rsquo;s another version of the same command which is as follows:</description>
     </item>
     
     <item>
@@ -124,73 +49,8 @@ Hence I decided to do a lookup for them:&lt;/p&gt;
       <pubDate>Tue, 11 Jun 2013 07:05:00 +0000</pubDate>
       
       <guid>http://abhipandey.com/2013/06/cursor-control-in-vim-search/</guid>
-      <description>&lt;p&gt;Found a great way to search for keywords &amp;amp;&amp;amp; control the location of cursor in vim. It is excellent if you want to do a particular task multiple times. Usually if you search the cursor will straight away take you to the start of search. What if you want to go to the end of the word you are searching for?&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;/pattern/e
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;This takes you to the END of the keyword you are looking for.&lt;/p&gt;
-
-&lt;p&gt;That’s not all. What if you want to go the second letter in that keyword? Change the pattern to as follows:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;/pattern/s+1
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;That’s great. But what if I want to go to the end of the keyword?&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;/pattern/e
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Awesome. Let’s review it through examples. Let’s say our phrase is “the brown fox jumped over the lazy dog” and we originally want to search for “brown”.&lt;/p&gt;
-
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;Pattern&lt;/th&gt;
-&lt;th&gt;CURSOR LOCATED AT BEGINNING OF&lt;/th&gt;
-&lt;th&gt;Description&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;/brown&lt;/td&gt;
-&lt;td&gt;brown fox….&lt;/td&gt;
-&lt;td&gt;search and start at “brown”&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;/brown/s+2&lt;/td&gt;
-&lt;td&gt;own fox…&lt;/td&gt;
-&lt;td&gt;start at “brown” but move 2 letters from ‘start’&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;/brown/s-4&lt;/td&gt;
-&lt;td&gt;the brown fox…&lt;/td&gt;
-&lt;td&gt;start at “brown” but move 4 letters to the left from ‘start’&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;/brown/e&lt;/td&gt;
-&lt;td&gt;n fox….&lt;/td&gt;
-&lt;td&gt;search for “brown” but move to the end&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;/brown/e+2&lt;/td&gt;
-&lt;td&gt;fox…&lt;/td&gt;
-&lt;td&gt;search for “brown” but move 2 letters from the ‘end’&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;/brown/e-1&lt;/td&gt;
-&lt;td&gt;wn fox…&lt;/td&gt;
-&lt;td&gt;search for “brown” but move 1 letter to the left from the ‘end’&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-</description>
+      <description>Found a great way to search for keywords &amp;amp;&amp;amp; control the location of cursor in vim. It is excellent if you want to do a particular task multiple times. Usually if you search the cursor will straight away take you to the start of search. What if you want to go to the end of the word you are searching for?
+/pattern/e  This takes you to the END of the keyword you are looking for.</description>
     </item>
     
   </channel>

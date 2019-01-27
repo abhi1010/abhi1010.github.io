@@ -7,7 +7,9 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 09 Jun 2014 15:02:07 +0000</lastBuildDate>
-    <atom:link href="http://abhipandey.com/tags/linked-list/index.xml" rel="self" type="application/rss+xml" />
+    
+	<atom:link href="http://abhipandey.com/tags/linked-list/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>Partition Linked List around a Value X</title>
@@ -15,30 +17,9 @@
       <pubDate>Mon, 09 Jun 2014 15:02:07 +0000</pubDate>
       
       <guid>http://abhipandey.com/2014/06/partition-linked-list-around-a-value-x/</guid>
-      <description>
-
-&lt;p&gt;How do you partition a list around a value x, such that all nodes less than x come before all nodes greater than or equal to x?&lt;/p&gt;
-
-&lt;p&gt;Well, there are some solutions possible. The solution, I came up with, is a bit convoluted but let me tell the idea behind it. You want to track the following:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;Two pointers to remember the beginning of the &lt;em&gt;lower&lt;/em&gt; and &lt;em&gt;higher&lt;/em&gt; series each&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;One pointer (&lt;em&gt;current&lt;/em&gt;) to iterate through the Linked List&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;The list may itself start with higher or lower value compared to the &lt;em&gt;middleValue&lt;/em&gt;. Thus we need to remember the beginning of the lower series (&lt;em&gt;lowerSeries&lt;/em&gt;) as this is what we will send back&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Now that we have this out of the way, let&amp;rsquo;s look at the code:&lt;/p&gt;
-
-&lt;script type=&#34;text/javascript&#34; src=&#34;http://gist.github.com/3ada1d15b5bda319a54c.js&#34;&gt;&lt;/script&gt;
-
-&lt;h1 id=&#34;code:8a20b19b0e16e5ac875728276c435d4c&#34;&gt;Code&lt;/h1&gt;
-
-&lt;p&gt;As usual the code is available &lt;a href=&#34;https://github.com/abhi1010/Algorithms/blob/master/Algo_codes/Node.cpp&#34;&gt;here&lt;/a&gt;:&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;https://github.com/abhi1010/Algorithms&#34;&gt;https://github.com/abhi1010/Algorithms&lt;/a&gt;&lt;/p&gt;
-</description>
+      <description>How do you partition a list around a value x, such that all nodes less than x come before all nodes greater than or equal to x?
+Well, there are some solutions possible. The solution, I came up with, is a bit convoluted but let me tell the idea behind it. You want to track the following:
+ Two pointers to remember the beginning of the lower and higher series each</description>
     </item>
     
     <item>
@@ -47,27 +28,10 @@
       <pubDate>Sun, 08 Jun 2014 07:49:47 +0000</pubDate>
       
       <guid>http://abhipandey.com/2014/06/find-the-kth-to-last-element-of-a-singly-linked-list/</guid>
-      <description>&lt;p&gt;It is possible to a recursive solutions but I will use a simple runner logic. Recursive solutions are usually less optimal.&lt;/p&gt;
-
-&lt;p&gt;Note here that, in our logic K=1 would return the last element in the linked list. Similarly, K=2 would return the second last element.&lt;/p&gt;
-
-&lt;p&gt;The suggested solution here is to use two pointers:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;One pointer will first travel K items into the list&lt;/li&gt;
-&lt;li&gt;Once that is done, both the pointers start travelling together, one item at a time&lt;/li&gt;
-&lt;li&gt;They keep travelling until the end of linked list is found&lt;/li&gt;
-&lt;li&gt;In that situation, the first pointer is at the end of the list, but the second pointer would have only reached till Kth element - this is what you want&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Let&amp;rsquo;s have a look at the code:&lt;/p&gt;
-
-&lt;script type=&#34;text/javascript&#34; src=&#34;http://gist.github.com/43e289a9877fb9293680.js&#34;&gt;&lt;/script&gt;
-
-&lt;p&gt;As usual the code is available &lt;a href=&#34;https://github.com/abhi1010/Algorithms/blob/master/Algo_codes/Node.cpp&#34;&gt;here&lt;/a&gt;:&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;https://github.com/abhi1010/Algorithms&#34;&gt;https://github.com/abhi1010/Algorithms&lt;/a&gt;&lt;/p&gt;
-</description>
+      <description>It is possible to a recursive solutions but I will use a simple runner logic. Recursive solutions are usually less optimal.
+Note here that, in our logic K=1 would return the last element in the linked list. Similarly, K=2 would return the second last element.
+The suggested solution here is to use two pointers:
+ One pointer will first travel K items into the list Once that is done, both the pointers start travelling together, one item at a time They keep travelling until the end of linked list is found In that situation, the first pointer is at the end of the list, but the second pointer would have only reached till Kth element - this is what you want  Let&amp;rsquo;s have a look at the code:</description>
     </item>
     
     <item>
@@ -76,28 +40,10 @@
       <pubDate>Sat, 07 Jun 2014 16:50:12 +0000</pubDate>
       
       <guid>http://abhipandey.com/2014/06/removing-duplicates-from-linked-list/</guid>
-      <description>
-
-&lt;p&gt;Duplicates can be removed in many ways:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;Create a new Linked List containing only unique items&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Iterate through the Linked List and keep removing items that are being repeated&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;The internal structure itself for the algo can either be map or set based. When using map the Node itself can be saved thereby making your life easier if you are creating a new Linked List. However sets can be very useful if we are just iterating through the Linked List and simply deleting items that are being repetetive. This is also a great spacesaver. Hence we decided to go down this path.&lt;/p&gt;
-
-&lt;h1 id=&#34;code:33d170712a3b1643edfc33b9f231740c&#34;&gt;Code&lt;/h1&gt;
-
-&lt;p&gt;As usual the &lt;a href=&#34;https://github.com/abhi1010/Algorithms/blob/master/Algo_codes/Node.cpp&#34;&gt;code&lt;/a&gt; is available here:&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;https://github.com/abhi1010/Algorithms&#34;&gt;https://github.com/abhi1010/Algorithms&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Here&amp;rsquo;s a small sample as to how to do it:&lt;/p&gt;
-
-&lt;script type=&#34;text/javascript&#34; src=&#34;http://gist.github.com/e2b7117c20d0f591896f.js&#34;&gt;&lt;/script&gt;
-</description>
+      <description>Duplicates can be removed in many ways:
+ Create a new Linked List containing only unique items
+ Iterate through the Linked List and keep removing items that are being repeated
+  The internal structure itself for the algo can either be map or set based. When using map the Node itself can be saved thereby making your life easier if you are creating a new Linked List. However sets can be very useful if we are just iterating through the Linked List and simply deleting items that are being repetetive.</description>
     </item>
     
     <item>
@@ -106,33 +52,11 @@
       <pubDate>Sat, 07 Jun 2014 10:49:17 +0000</pubDate>
       
       <guid>http://abhipandey.com/2014/06/deleting-a-node-from-singly-linked-list/</guid>
-      <description>
-
-&lt;p&gt;Deleting a Node from Singly Linked List is rather straight forward.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;You have to know the head first of all&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Start by checking the head if that&amp;rsquo;s the one you are looking for&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Keep moving forward and checking - always check for null pointers everywhere&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Before we talk about the code, let&amp;rsquo;s see how Linked List is setup.
-&lt;!-- more --&gt;&lt;/p&gt;
-
-&lt;script type=&#34;text/javascript&#34; src=&#34;http://gist.github.com/33be440bf1012773b7e1.js&#34;&gt;&lt;/script&gt;
-
-&lt;p&gt;Now, below is the code for it&amp;hellip;.&lt;/p&gt;
-
-&lt;script type=&#34;text/javascript&#34; src=&#34;http://gist.github.com/bf9dbb193b4ff84ba3af.js&#34;&gt;&lt;/script&gt;
-
-&lt;h3 id=&#34;code:ca5ee7b35fae15e9d7ea6b34351195c6&#34;&gt;Code&lt;/h3&gt;
-
-&lt;p&gt;As usual the code is available &lt;a href=&#34;https://github.com/abhi1010/Algorithms/blob/master/Algo_codes/Node.cpp&#34;&gt;here&lt;/a&gt;:&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;https://github.com/abhi1010/Algorithms&#34;&gt;https://github.com/abhi1010/Algorithms&lt;/a&gt;&lt;/p&gt;
-</description>
+      <description>Deleting a Node from Singly Linked List is rather straight forward.
+ You have to know the head first of all
+ Start by checking the head if that&amp;rsquo;s the one you are looking for
+ Keep moving forward and checking - always check for null pointers everywhere
+  Before we talk about the code, let&amp;rsquo;s see how Linked List is setup.  Now, below is the code for it&amp;hellip;.</description>
     </item>
     
   </channel>

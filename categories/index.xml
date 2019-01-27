@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Categories on Coders Digest</title>
+    <link>http://abhipandey.com/categories/</link>
+    <description>Recent content in Categories on Coders Digest</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="http://abhipandey.com/categories/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Code</title>
+      <link>http://abhipandey.com/categories/code/</link>
+      <pubDate>Sun, 13 Nov 2016 00:33:29 +0800</pubDate>
+      
+      <guid>http://abhipandey.com/categories/code/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Continuous Delivery</title>
+      <link>http://abhipandey.com/categories/continuous-delivery/</link>
+      <pubDate>Thu, 07 Jul 2016 23:26:44 +0800</pubDate>
+      
+      <guid>http://abhipandey.com/categories/continuous-delivery/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Database</title>
+      <link>http://abhipandey.com/categories/database/</link>
+      <pubDate>Sun, 22 Sep 2013 08:48:00 +0000</pubDate>
+      
+      <guid>http://abhipandey.com/categories/database/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Design Patterns</title>
+      <link>http://abhipandey.com/categories/design-patterns/</link>
+      <pubDate>Wed, 12 Dec 2007 02:31:00 +0000</pubDate>
+      
+      <guid>http://abhipandey.com/categories/design-patterns/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Tips</title>
+      <link>http://abhipandey.com/categories/tips/</link>
+      <pubDate>Thu, 07 Jul 2016 23:26:44 +0800</pubDate>
+      
+      <guid>http://abhipandey.com/categories/tips/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

@@ -104,37 +104,30 @@
       </div>
     <p>If you want to view what has changed since one commit to another, it is quite easy to view the diff.</p>
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>git diff 5fad06c..0a504fa
-</pre></div>
-
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git diff 5fad06c..0a504fa</code></pre></div>
 
 <p>You will get something like this:</p>
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #000080; font-weight: bold">diff --git a/modules/file_1.erb b/modules/file_1.erb</span>
-<span style="color: #000080; font-weight: bold">index 0538da0..6621d93 100644</span>
-<span style="color: #a40000">--- a/modules/file_1.erb</span>
-<span style="color: #00A000">+++ b/modules/file_1.erb</span>
-<span style="color: #800080; font-weight: bold">@@ -5,8 +5,8 @@</span>
- 
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-diff" data-lang="diff"><span style="color:#000080;font-weight:bold">diff --git a/modules/file_1.erb b/modules/file_1.erb
+</span><span style="color:#000080;font-weight:bold">index 0538da0..6621d93 100644
+</span><span style="color:#000080;font-weight:bold"></span><span style="color:#a40000">--- a/modules/file_1.erb
+</span><span style="color:#a40000"></span><span style="color:#00a000">+++ b/modules/file_1.erb
+</span><span style="color:#00a000"></span><span style="color:#800080;font-weight:bold">@@ -5,8 +5,8 @@
+</span><span style="color:#800080;font-weight:bold"></span> 
    // Algo settings
-   &quot;Carbo&quot;: {
-<span style="color: #a40000">-    &quot;active-instrument&quot;: &quot;SGX/NK15&quot;,</span>
-<span style="color: #a40000">-    &quot;hedge-instrument&quot;: &quot;SGX/NK16&quot;,</span>
-<span style="color: #00A000">+    &quot;active-instrument&quot;: &quot;SGX/NK17&quot;,</span>
-<span style="color: #00A000">+    &quot;hedge-instrument&quot;: &quot;SGX/NK18&quot;,</span>
-     &quot;owner-app-id&quot;: &quot;abhi1010&quot;,
-</pre></div>
-
+   &#34;Carbo&#34;: {
+<span style="color:#a40000">-    &#34;active-instrument&#34;: &#34;SGX/NK15&#34;,
+</span><span style="color:#a40000">-    &#34;hedge-instrument&#34;: &#34;SGX/NK16&#34;,
+</span><span style="color:#a40000"></span><span style="color:#00a000">+    &#34;active-instrument&#34;: &#34;SGX/NK17&#34;,
+</span><span style="color:#00a000">+    &#34;hedge-instrument&#34;: &#34;SGX/NK18&#34;,
+</span><span style="color:#00a000"></span>     &#34;owner-app-id&#34;: &#34;abhi1010&#34;,
+</code></pre></div>
 
 <p>What if you wanted a use an external tool like <code>meld</code> to view the diff, in a nice beautiful side by side view? You&rsquo;d have to modify your settings to tell that to <code>git</code>.
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>git config --global diff.tool meld
-</pre></div>
-</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git config --global diff.tool meld</code></pre></div></p>
 
 <p>Finally, then to view the diff:
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>git difftool 5fad06c..0a504fa
-</pre></div>
-</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git difftool 5fad06c..0a504fa</code></pre></div></p>
 
   </div>
   <div id="disqus_thread"></div>

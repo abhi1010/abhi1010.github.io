@@ -106,11 +106,9 @@
 time. After some tinkering around, mainly to find out the correct format for time ranges, decided to use the following bash script for finding coding stats.
 Following sample is to find out lines added or removed during the year 2014.</p>
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>$ git log --after<span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #4e9a06">&quot;2014-1-1&quot;</span> --before<span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #4e9a06">&quot;2014-12-31&quot;</span> --pretty<span style="color: #ce5c00; font-weight: bold">=</span>tformat: --numstat 
-    <span style="color: #000000; font-weight: bold">|</span> awk <span style="color: #4e9a06">&#39;{ if ( $2 != 0 &amp;&amp; $1 != 0 ) print $0 }&#39;</span> 
-    <span style="color: #000000; font-weight: bold">|</span> gawk <span style="color: #4e9a06">&#39;{ add += $1; subs += $2; loc += $1 - $2 } END { printf &quot;Added lines: %s Removed lines: %s Total # of lines: %s\n&quot;, add, subs, loc }&#39;</span>
-</pre></div>
-
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git log --after<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;2014-1-1&#34;</span> --before<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;2014-12-31&#34;</span> --pretty<span style="color:#ce5c00;font-weight:bold">=</span>tformat: --numstat 
+    <span style="color:#000;font-weight:bold">|</span> awk <span style="color:#4e9a06">&#39;{ if ( $2 != 0 &amp;&amp; $1 != 0 ) print $0 }&#39;</span> 
+    <span style="color:#000;font-weight:bold">|</span> gawk <span style="color:#4e9a06">&#39;{ add += $1; subs += $2; loc += $1 - $2 } END { printf &#34;Added lines: %s Removed lines: %s Total # of lines: %s\n&#34;, add, subs, loc }&#39;</span></code></pre></div>
 
 <p>The result will be as follows:</p>
 
@@ -118,9 +116,7 @@ Following sample is to find out lines added or removed during the year 2014.</p>
 </code></pre>
 
 <p>You will notice in the second line that I am doing the following:
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #000000; font-style: italic"> if ( $2 != 0 &amp;&amp; $1 != 0 ) </span>
-</pre></div>
-</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console"> if ( $2 != 0 &amp;&amp; $1 != 0 ) </code></pre></div></p>
 
 <p>This is simply to discard off any commit numbers that were pure addition or deletion (with no corresponding delete or add in the same commit).
 It may also remove some numbers that were actually valid commits but mostly it is to protect ourselves against any library or API that we may have added or replaced during that time period.</p>

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
 <head>
+	<meta name="generator" content="Hugo 0.54-DEV" />
   <link href="http://gmpg.org/xfn/11" rel="profile">
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
   
@@ -90,6 +91,43 @@
     
     <div class="post">
       <h1 class="post-title">
+        <a href="http://abhipandey.com/2016/11/adding-launcher-shortcut-in-fedora/">Adding launcher shortcut in Fedora</a>
+      </h1>
+      <span class="post-date">Nov 13, 2016  &middot; <a href="http://abhipandey.com/2016/11/adding-launcher-shortcut-in-fedora/#disqus_thread">Comments</a>
+      
+      <br/>
+      <a class="a_cat" href="http://abhipandey.com/categories/code">code</a>
+        
+      <a class="a_tag" href="http://abhipandey.com/tags/tips">tips</a><a class="a_tag" href="http://abhipandey.com/tags/bash">bash</a>
+    
+      </span>
+      
+      <p>Many apps do not come pre-built in rpm format for Fedora so you&rsquo;d have to download the <strong>tar</strong> file for it.
+To run the app, you would have to go to the saved folder and then either double cilck or run the command through
+command line. By default, that app won&rsquo;t be accessible through the <code>Super</code> key&rsquo;s universal search or
+as a regular application in *<strong>Show Applications</strong>.</p>
+
+<p>Fortunately, there&rsquo;s a way around and it is an easy one.</p>
+
+<p>Fedora looks for <code>.desktop</code> files in <code>~/.local/share/applications/</code> folder.
+Let&rsquo;s say we are trying to create a shortcut for Eclipse. We will then create
+a file by the name <code>eclipse.desktop</code> in the given folder.
+The contents will be as follows:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-config" data-lang="config">[Desktop Entry]
+Type=Application
+Encoding=UTF-8
+Name=Eclipse
+Comment=Eclipse starter
+Exec=&lt;FULL-PATH-TO-ECLIPSE=BINARY&gt;
+Icon=&lt;FULL-PATH-TO-ECLIPSE-ICON&gt;
+Terminal=false</code></pre></div>
+<p>That&rsquo;s it. You are set!</p>
+
+      
+    </div>
+    
+    <div class="post">
+      <h1 class="post-title">
         <a href="http://abhipandey.com/2016/11/running-invoke-from-other-folders/">Running invoke from other folders</a>
       </h1>
       <span class="post-date">Nov 13, 2016  &middot; <a href="http://abhipandey.com/2016/11/running-invoke-from-other-folders/#disqus_thread">Comments</a>
@@ -133,35 +171,33 @@ override the default command in it&rsquo;s own style</li>
 </ol>
 
 <p><em>Here&rsquo;s the simplilfied version of the code.</em></p>
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #204a87; font-weight: bold">import</span> <span style="color: #000000">subproces</span>
-<span style="color: #204a87; font-weight: bold">import</span> <span style="color: #000000">os</span>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000">subproces</span>
+<span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000">os</span>
 
-<span style="color: #5c35cc; font-weight: bold">@contextmanager</span>
-<span style="color: #204a87; font-weight: bold">def</span> <span style="color: #000000">cd</span><span style="color: #000000; font-weight: bold">(</span><span style="color: #000000">path</span><span style="color: #000000; font-weight: bold">):</span>
-    <span style="color: #000000">old</span> <span style="color: #ce5c00; font-weight: bold">=</span> <span style="color: #000000">os</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">getcwd</span><span style="color: #000000; font-weight: bold">()</span>
-    <span style="color: #000000">os</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">chdir</span><span style="color: #000000; font-weight: bold">(</span><span style="color: #000000">path</span><span style="color: #000000; font-weight: bold">)</span>
-    <span style="color: #204a87; font-weight: bold">try</span><span style="color: #000000; font-weight: bold">:</span>
-        <span style="color: #204a87; font-weight: bold">yield</span>
-    <span style="color: #204a87; font-weight: bold">finally</span><span style="color: #000000; font-weight: bold">:</span>
-        <span style="color: #000000">os</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">chdir</span><span style="color: #000000; font-weight: bold">(</span><span style="color: #000000">old</span><span style="color: #000000; font-weight: bold">)</span>
+<span style="color:#5c35cc;font-weight:bold">@contextmanager</span>
+<span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">cd</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">path</span><span style="color:#000;font-weight:bold">):</span>
+    <span style="color:#000">old</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">os</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">getcwd</span><span style="color:#000;font-weight:bold">()</span>
+    <span style="color:#000">os</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">chdir</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">path</span><span style="color:#000;font-weight:bold">)</span>
+    <span style="color:#204a87;font-weight:bold">try</span><span style="color:#000;font-weight:bold">:</span>
+        <span style="color:#204a87;font-weight:bold">yield</span>
+    <span style="color:#204a87;font-weight:bold">finally</span><span style="color:#000;font-weight:bold">:</span>
+        <span style="color:#000">os</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">chdir</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">old</span><span style="color:#000;font-weight:bold">)</span>
 
 
-<span style="color: #5c35cc; font-weight: bold">@task</span>
-<span style="color: #204a87; font-weight: bold">def</span> <span style="color: #000000">build</span><span style="color: #000000; font-weight: bold">():</span>
-    <span style="color: #000000">folder_to_run_the_command_on</span> <span style="color: #ce5c00; font-weight: bold">=</span> <span style="color: #4e9a06">&#39;/home/folder&#39;</span>
-    <span style="color: #204a87; font-weight: bold">with</span> <span style="color: #000000">cd</span><span style="color: #000000; font-weight: bold">(</span><span style="color: #000000">folder_to_run_the_command_on</span><span style="color: #000000; font-weight: bold">):</span>
-        <span style="color: #204a87; font-weight: bold">print</span><span style="color: #000000; font-weight: bold">(</span><span style="color: #4e9a06">&#39;Finding tasks...&#39;</span><span style="color: #000000; font-weight: bold">)</span>
-        <span style="color: #8f5902; font-style: italic"># List all the possible commands that you can run on that folder</span>
-        <span style="color: #000000">res</span> <span style="color: #ce5c00; font-weight: bold">=</span> <span style="color: #000000">subprocess</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">check_output</span><span style="color: #000000; font-weight: bold">([</span><span style="color: #4e9a06">&#39;invoke&#39;</span><span style="color: #000000; font-weight: bold">,</span> <span style="color: #4e9a06">&#39;-l&#39;</span><span style="color: #000000; font-weight: bold">])</span>
-        <span style="color: #8f5902; font-style: italic"># does it contain this command that we need to run?</span>
-        <span style="color: #204a87; font-weight: bold">if</span> <span style="color: #4e9a06">&#39;build&#39;</span>  <span style="color: #204a87; font-weight: bold">in</span> <span style="color: #000000">res</span><span style="color: #000000; font-weight: bold">:</span>
-            <span style="color: #204a87; font-weight: bold">print</span><span style="color: #000000; font-weight: bold">(</span><span style="color: #4e9a06">&#39;Found the build command in &quot;{}&quot; folder&#39;</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">format</span><span style="color: #000000; font-weight: bold">(</span><span style="color: #000000">folder_to_run_the_command_on</span><span style="color: #000000; font-weight: bold">)</span>
-            <span style="color: #000000">run</span><span style="color: #000000; font-weight: bold">(</span><span style="color: #4e9a06">&#39;invoke build&#39;</span><span style="color: #000000; font-weight: bold">)</span>
-        <span style="color: #204a87; font-weight: bold">else</span><span style="color: #000000; font-weight: bold">:</span>
-            <span style="color: #8f5902; font-style: italic"># we need to run the generic version of build command</span>
-            <span style="color: #000000">build_internal</span><span style="color: #000000; font-weight: bold">()</span>
-</pre></div>
-
+<span style="color:#5c35cc;font-weight:bold">@task</span>
+<span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">build</span><span style="color:#000;font-weight:bold">():</span>
+    <span style="color:#000">folder_to_run_the_command_on</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#4e9a06">&#39;/home/folder&#39;</span>
+    <span style="color:#204a87;font-weight:bold">with</span> <span style="color:#000">cd</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">folder_to_run_the_command_on</span><span style="color:#000;font-weight:bold">):</span>
+        <span style="color:#204a87;font-weight:bold">print</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#39;Finding tasks...&#39;</span><span style="color:#000;font-weight:bold">)</span>
+        <span style="color:#8f5902;font-style:italic"># List all the possible commands that you can run on that folder</span>
+        <span style="color:#000">res</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">subprocess</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">check_output</span><span style="color:#000;font-weight:bold">([</span><span style="color:#4e9a06">&#39;invoke&#39;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#4e9a06">&#39;-l&#39;</span><span style="color:#000;font-weight:bold">])</span>
+        <span style="color:#8f5902;font-style:italic"># does it contain this command that we need to run?</span>
+        <span style="color:#204a87;font-weight:bold">if</span> <span style="color:#4e9a06">&#39;build&#39;</span>  <span style="color:#204a87;font-weight:bold">in</span> <span style="color:#000">res</span><span style="color:#000;font-weight:bold">:</span>
+            <span style="color:#204a87;font-weight:bold">print</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#39;Found the build command in &#34;{}&#34; folder&#39;</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">format</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">folder_to_run_the_command_on</span><span style="color:#000;font-weight:bold">)</span>
+            <span style="color:#000">run</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#39;invoke build&#39;</span><span style="color:#000;font-weight:bold">)</span>
+        <span style="color:#204a87;font-weight:bold">else</span><span style="color:#000;font-weight:bold">:</span>
+            <span style="color:#8f5902;font-style:italic"># we need to run the generic version of build command</span>
+            <span style="color:#000">build_internal</span><span style="color:#000;font-weight:bold">()</span></code></pre></div>
       
     </div>
     
@@ -187,7 +223,7 @@ override the default command in it&rsquo;s own style</li>
 <li>timer file</li>
 </ol>
 
-<h2 id="service-files:53e68713291c95ac35204af0e42c2530">Service files</h2>
+<h2 id="service-files">Service files</h2>
 
 <p>Here you provide the details you&rsquo;d use to</p>
 
@@ -240,7 +276,7 @@ ExecStart=&lt;COMMAND_TO_START&gt;
 ExecStop=&lt;COMMAND_TO_STOP&gt;
 </code></pre>
 
-<h2 id="timers:53e68713291c95ac35204af0e42c2530">Timers</h2>
+<h2 id="timers">Timers</h2>
 
 <p>Timer files contain information about a timer controlled and
 supervised by systemd, for timer-based activation.
@@ -297,7 +333,7 @@ Unit=myjob.service
 WantedBy=timers.target
 </code></pre>
 
-<h2 id="some-references:53e68713291c95ac35204af0e42c2530">Some references:</h2>
+<h2 id="some-references">Some references:</h2>
 
 <p><a href="https://wiki.archlinux.org/index.php/Systemd/Timers">https://wiki.archlinux.org/index.php/Systemd/Timers</a>
 <a href="https://www.certdepot.net/rhel7-use-systemd-timers/">https://www.certdepot.net/rhel7-use-systemd-timers/</a></p>
@@ -327,99 +363,93 @@ both of which have examples here.</p>
 
 <p>Let&rsquo;s get started.</p>
 
-<h2 id="gitlab-cli:67f66bdf501059124272bbdeb0fc5217">gitlab cli</h2>
+<h2 id="gitlab-cli">gitlab cli</h2>
 
-<h3 id="installing-the-gitlab-cli:67f66bdf501059124272bbdeb0fc5217">Installing the gitlab CLI</h3>
+<h3 id="installing-the-gitlab-cli">Installing the gitlab CLI</h3>
 
 <pre><code># http://narkoz.github.io/gitlab/configuration
 gem install gitlab
 </code></pre>
 
-<h3 id="configuration:67f66bdf501059124272bbdeb0fc5217">Configuration</h3>
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #204a87">export</span> <span style="color: #000000">GITLAB_API_ENDPOINT</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #4e9a06">&#39;http://gitlab.com/api/v3&#39;</span>
-<span style="color: #204a87">export</span> <span style="color: #000000">GITLAB_API_PRIVATE_TOKEN</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #4e9a06">&#39;YOUR_TOKEN_&#39;</span>
-</pre></div>
-
-<h3 id="available-commands:67f66bdf501059124272bbdeb0fc5217">Available commands</h3>
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>$ gitlab
+<h3 id="configuration">Configuration</h3>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#204a87">export</span> <span style="color:#000">GITLAB_API_ENDPOINT</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#39;http://gitlab.com/api/v3&#39;</span>
+<span style="color:#204a87">export</span> <span style="color:#000">GITLAB_API_PRIVATE_TOKEN</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#39;YOUR_TOKEN_&#39;</span></code></pre></div>
+<h3 id="available-commands">Available commands</h3>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ gitlab
 +-----------------+
-<span style="color: #000000; font-weight: bold">|</span>   Help Topics   <span style="color: #000000; font-weight: bold">|</span>
+<span style="color:#000;font-weight:bold">|</span>   Help Topics   <span style="color:#000;font-weight:bold">|</span>
 +-----------------+
-<span style="color: #000000; font-weight: bold">|</span> Branches        <span style="color: #000000; font-weight: bold">|</span>
+<span style="color:#000;font-weight:bold">|</span> Branches        <span style="color:#000;font-weight:bold">|</span>
 +-----------------+
-<span style="color: #000000; font-weight: bold">|</span> Commits         <span style="color: #000000; font-weight: bold">|</span>
+<span style="color:#000;font-weight:bold">|</span> Commits         <span style="color:#000;font-weight:bold">|</span>
 +-----------------+
-<span style="color: #000000; font-weight: bold">|</span> Groups          <span style="color: #000000; font-weight: bold">|</span>
+<span style="color:#000;font-weight:bold">|</span> Groups          <span style="color:#000;font-weight:bold">|</span>
 +-----------------+
-<span style="color: #000000; font-weight: bold">|</span> Issues          <span style="color: #000000; font-weight: bold">|</span>
+<span style="color:#000;font-weight:bold">|</span> Issues          <span style="color:#000;font-weight:bold">|</span>
 +-----------------+
-<span style="color: #000000; font-weight: bold">|</span> Labels          <span style="color: #000000; font-weight: bold">|</span>
+<span style="color:#000;font-weight:bold">|</span> Labels          <span style="color:#000;font-weight:bold">|</span>
 +-----------------+
-<span style="color: #000000; font-weight: bold">|</span> MergeRequests   <span style="color: #000000; font-weight: bold">|</span>
+<span style="color:#000;font-weight:bold">|</span> MergeRequests   <span style="color:#000;font-weight:bold">|</span>
 +-----------------+
-<span style="color: #000000; font-weight: bold">|</span> Milestones      <span style="color: #000000; font-weight: bold">|</span>
+<span style="color:#000;font-weight:bold">|</span> Milestones      <span style="color:#000;font-weight:bold">|</span>
 +-----------------+
-<span style="color: #000000; font-weight: bold">|</span> Namespaces      <span style="color: #000000; font-weight: bold">|</span>
+<span style="color:#000;font-weight:bold">|</span> Namespaces      <span style="color:#000;font-weight:bold">|</span>
 +-----------------+
-<span style="color: #000000; font-weight: bold">|</span> Notes           <span style="color: #000000; font-weight: bold">|</span>
+<span style="color:#000;font-weight:bold">|</span> Notes           <span style="color:#000;font-weight:bold">|</span>
 +-----------------+
-<span style="color: #000000; font-weight: bold">|</span> Projects        <span style="color: #000000; font-weight: bold">|</span>
+<span style="color:#000;font-weight:bold">|</span> Projects        <span style="color:#000;font-weight:bold">|</span>
 +-----------------+
-<span style="color: #000000; font-weight: bold">|</span> Repositories    <span style="color: #000000; font-weight: bold">|</span>
+<span style="color:#000;font-weight:bold">|</span> Repositories    <span style="color:#000;font-weight:bold">|</span>
 +-----------------+
-<span style="color: #000000; font-weight: bold">|</span> RepositoryFiles <span style="color: #000000; font-weight: bold">|</span>
+<span style="color:#000;font-weight:bold">|</span> RepositoryFiles <span style="color:#000;font-weight:bold">|</span>
 +-----------------+
-<span style="color: #000000; font-weight: bold">|</span> Snippets        <span style="color: #000000; font-weight: bold">|</span>
+<span style="color:#000;font-weight:bold">|</span> Snippets        <span style="color:#000;font-weight:bold">|</span>
 +-----------------+
-<span style="color: #000000; font-weight: bold">|</span> SystemHooks     <span style="color: #000000; font-weight: bold">|</span>
+<span style="color:#000;font-weight:bold">|</span> SystemHooks     <span style="color:#000;font-weight:bold">|</span>
 +-----------------+
-<span style="color: #000000; font-weight: bold">|</span> Users           <span style="color: #000000; font-weight: bold">|</span>
-+-----------------+
-</pre></div>
-
-<h3 id="sample-cli-commands:67f66bdf501059124272bbdeb0fc5217">Sample CLI commands</h3>
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #8f5902; font-style: italic"># Check the list of Projects</span>
+<span style="color:#000;font-weight:bold">|</span> Users           <span style="color:#000;font-weight:bold">|</span>
++-----------------+</code></pre></div>
+<h3 id="sample-cli-commands">Sample CLI commands</h3>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#8f5902;font-style:italic"># Check the list of Projects</span>
 $ gitlab projects
 
-<span style="color: #8f5902; font-style: italic"># Based on the response, we know reconwisev2 is ID 487928</span>
-<span style="color: #8f5902; font-style: italic"># Let&#39;s find out the list of labels in it</span>
-$ gitlab labels 487928
+<span style="color:#8f5902;font-style:italic"># Based on the response, we know reconwisev2 is ID 487928</span>
+<span style="color:#8f5902;font-style:italic"># Let&#39;s find out the list of labels in it</span>
+$ gitlab labels <span style="color:#0000cf;font-weight:bold">487928</span>
 +---------------------+---------+--------------------+--------------+-------------------+---------------------------+------------+
-<span style="color: #000000; font-weight: bold">|</span>                                                      Gitlab.labels <span style="color: #0000cf; font-weight: bold">487928</span>                                                      <span style="color: #000000; font-weight: bold">|</span>
+<span style="color:#000;font-weight:bold">|</span>                                                      Gitlab.labels <span style="color:#0000cf;font-weight:bold">487928</span>                                                      <span style="color:#000;font-weight:bold">|</span>
 +---------------------+---------+--------------------+--------------+-------------------+---------------------------+------------+
-<span style="color: #000000; font-weight: bold">|</span> closed_issues_count <span style="color: #000000; font-weight: bold">|</span> color   <span style="color: #000000; font-weight: bold">|</span> description        <span style="color: #000000; font-weight: bold">|</span> name         <span style="color: #000000; font-weight: bold">|</span> open_issues_count <span style="color: #000000; font-weight: bold">|</span> open_merge_requests_count <span style="color: #000000; font-weight: bold">|</span> subscribed <span style="color: #000000; font-weight: bold">|</span>
+<span style="color:#000;font-weight:bold">|</span> closed_issues_count <span style="color:#000;font-weight:bold">|</span> color   <span style="color:#000;font-weight:bold">|</span> description        <span style="color:#000;font-weight:bold">|</span> name         <span style="color:#000;font-weight:bold">|</span> open_issues_count <span style="color:#000;font-weight:bold">|</span> open_merge_requests_count <span style="color:#000;font-weight:bold">|</span> subscribed <span style="color:#000;font-weight:bold">|</span>
 +---------------------+---------+--------------------+--------------+-------------------+---------------------------+------------+
-<span style="color: #000000; font-weight: bold">|</span> <span style="color: #0000cf; font-weight: bold">2</span>                   <span style="color: #000000; font-weight: bold">|</span> <span style="color: #8f5902; font-style: italic">#ff0000 | null               | !Blocker     | 0                 | 0                         | false      |</span>
+<span style="color:#000;font-weight:bold">|</span> <span style="color:#0000cf;font-weight:bold">2</span>                   <span style="color:#000;font-weight:bold">|</span> <span style="color:#8f5902;font-style:italic">#ff0000 | null               | !Blocker     | 0                 | 0                         | false      |</span>
 +---------------------+---------+--------------------+--------------+-------------------+---------------------------+------------+
-<span style="color: #000000; font-weight: bold">|</span> <span style="color: #0000cf; font-weight: bold">2</span>                   <span style="color: #000000; font-weight: bold">|</span> <span style="color: #8f5902; font-style: italic">#0033cc | null               | #AWS         | 8                 | 0                         | false      |</span>
+<span style="color:#000;font-weight:bold">|</span> <span style="color:#0000cf;font-weight:bold">2</span>                   <span style="color:#000;font-weight:bold">|</span> <span style="color:#8f5902;font-style:italic">#0033cc | null               | #AWS         | 8                 | 0                         | false      |</span>
 +---------------------+---------+--------------------+--------------+-------------------+---------------------------+------------+
-<span style="color: #000000; font-weight: bold">|</span> <span style="color: #0000cf; font-weight: bold">27</span>                  <span style="color: #000000; font-weight: bold">|</span> <span style="color: #8f5902; font-style: italic">#428bca | null               | #Bug         | 2                 | 0                         | false      |</span>
+<span style="color:#000;font-weight:bold">|</span> <span style="color:#0000cf;font-weight:bold">27</span>                  <span style="color:#000;font-weight:bold">|</span> <span style="color:#8f5902;font-style:italic">#428bca | null               | #Bug         | 2                 | 0                         | false      |</span>
 +---------------------+---------+--------------------+--------------+-------------------+---------------------------+------------+
-<span style="color: #000000; font-weight: bold">|</span> <span style="color: #0000cf; font-weight: bold">3</span>                   <span style="color: #000000; font-weight: bold">|</span> <span style="color: #8f5902; font-style: italic">#0033cc | null               | #Feature     | 29                | 0                         | false      |</span>
+<span style="color:#000;font-weight:bold">|</span> <span style="color:#0000cf;font-weight:bold">3</span>                   <span style="color:#000;font-weight:bold">|</span> <span style="color:#8f5902;font-style:italic">#0033cc | null               | #Feature     | 29                | 0                         | false      |</span>
 +---------------------+---------+--------------------+--------------+-------------------+---------------------------+------------+
-<span style="color: #000000; font-weight: bold">|</span> <span style="color: #0000cf; font-weight: bold">7</span>                   <span style="color: #000000; font-weight: bold">|</span> <span style="color: #8f5902; font-style: italic">#5843ad | null               | #Improvement | 22                | 0                         | false      |</span>
+<span style="color:#000;font-weight:bold">|</span> <span style="color:#0000cf;font-weight:bold">7</span>                   <span style="color:#000;font-weight:bold">|</span> <span style="color:#8f5902;font-style:italic">#5843ad | null               | #Improvement | 22                | 0                         | false      |</span>
 +---------------------+---------+--------------------+--------------+-------------------+---------------------------+------------+
-<span style="color: #000000; font-weight: bold">|</span> <span style="color: #0000cf; font-weight: bold">1</span>                   <span style="color: #000000; font-weight: bold">|</span> <span style="color: #8f5902; font-style: italic">#428bca |                    | #Support     | 1                 | 0                         | false      |</span>
+<span style="color:#000;font-weight:bold">|</span> <span style="color:#0000cf;font-weight:bold">1</span>                   <span style="color:#000;font-weight:bold">|</span> <span style="color:#8f5902;font-style:italic">#428bca |                    | #Support     | 1                 | 0                         | false      |</span>
 +---------------------+---------+--------------------+--------------+-------------------+---------------------------+------------+
-<span style="color: #000000; font-weight: bold">|</span> <span style="color: #0000cf; font-weight: bold">28</span>                  <span style="color: #000000; font-weight: bold">|</span> <span style="color: #8f5902; font-style: italic">#f0ad4e | null               | $GH          | 12                | 0                         | false      |</span>
+<span style="color:#000;font-weight:bold">|</span> <span style="color:#0000cf;font-weight:bold">28</span>                  <span style="color:#000;font-weight:bold">|</span> <span style="color:#8f5902;font-style:italic">#f0ad4e | null               | $GH          | 12                | 0                         | false      |</span>
 +---------------------+---------+--------------------+--------------+-------------------+---------------------------+------------+
-<span style="color: #000000; font-weight: bold">|</span> <span style="color: #0000cf; font-weight: bold">0</span>                   <span style="color: #000000; font-weight: bold">|</span> <span style="color: #8f5902; font-style: italic">#f0ad4e |                    | $IFAST       | 4                 | 0                         | false      |</span>
+<span style="color:#000;font-weight:bold">|</span> <span style="color:#0000cf;font-weight:bold">0</span>                   <span style="color:#000;font-weight:bold">|</span> <span style="color:#8f5902;font-style:italic">#f0ad4e |                    | $IFAST       | 4                 | 0                         | false      |</span>
 +---------------------+---------+--------------------+--------------+-------------------+---------------------------+------------+
-<span style="color: #000000; font-weight: bold">|</span> <span style="color: #0000cf; font-weight: bold">25</span>                  <span style="color: #000000; font-weight: bold">|</span> <span style="color: #8f5902; font-style: italic">#ff0000 | null               | 1-Critical   | 7                 | 0                         | false      |</span>
+<span style="color:#000;font-weight:bold">|</span> <span style="color:#0000cf;font-weight:bold">25</span>                  <span style="color:#000;font-weight:bold">|</span> <span style="color:#8f5902;font-style:italic">#ff0000 | null               | 1-Critical   | 7                 | 0                         | false      |</span>
 +---------------------+---------+--------------------+--------------+-------------------+---------------------------+------------+
-<span style="color: #000000; font-weight: bold">|</span> <span style="color: #0000cf; font-weight: bold">2</span>                   <span style="color: #000000; font-weight: bold">|</span> <span style="color: #8f5902; font-style: italic">#ad4363 | null               | 2-Important  | 20                | 0                         | false      |</span>
+<span style="color:#000;font-weight:bold">|</span> <span style="color:#0000cf;font-weight:bold">2</span>                   <span style="color:#000;font-weight:bold">|</span> <span style="color:#8f5902;font-style:italic">#ad4363 | null               | 2-Important  | 20                | 0                         | false      |</span>
 +---------------------+---------+--------------------+--------------+-------------------+---------------------------+------------+
-<span style="color: #000000; font-weight: bold">|</span> <span style="color: #0000cf; font-weight: bold">5</span>                   <span style="color: #000000; font-weight: bold">|</span> <span style="color: #8f5902; font-style: italic">#ad4363 | null               | 3-Normal     | 18                | 0                         | false      |</span>
+<span style="color:#000;font-weight:bold">|</span> <span style="color:#0000cf;font-weight:bold">5</span>                   <span style="color:#000;font-weight:bold">|</span> <span style="color:#8f5902;font-style:italic">#ad4363 | null               | 3-Normal     | 18                | 0                         | false      |</span>
 +---------------------+---------+--------------------+--------------+-------------------+---------------------------+------------+
-<span style="color: #000000; font-weight: bold">|</span> <span style="color: #0000cf; font-weight: bold">2</span>                   <span style="color: #000000; font-weight: bold">|</span> <span style="color: #8f5902; font-style: italic">#d491a5 |                    | 4-Trivial    | 6                 | 0                         | false      |</span>
+<span style="color:#000;font-weight:bold">|</span> <span style="color:#0000cf;font-weight:bold">2</span>                   <span style="color:#000;font-weight:bold">|</span> <span style="color:#8f5902;font-style:italic">#d491a5 |                    | 4-Trivial    | 6                 | 0                         | false      |</span>
 +---------------------+---------+--------------------+--------------+-------------------+---------------------------+------------+
-<span style="color: #000000; font-weight: bold">|</span> <span style="color: #0000cf; font-weight: bold">0</span>                   <span style="color: #000000; font-weight: bold">|</span> <span style="color: #8f5902; font-style: italic">#a8d695 | null               | ^In-Progress | 3                 | 1                         | false      |</span>
+<span style="color:#000;font-weight:bold">|</span> <span style="color:#0000cf;font-weight:bold">0</span>                   <span style="color:#000;font-weight:bold">|</span> <span style="color:#8f5902;font-style:italic">#a8d695 | null               | ^In-Progress | 3                 | 1                         | false      |</span>
 +---------------------+---------+--------------------+--------------+-------------------+---------------------------+------------+
-<span style="color: #000000; font-weight: bold">|</span> <span style="color: #0000cf; font-weight: bold">0</span>                   <span style="color: #000000; font-weight: bold">|</span> <span style="color: #8f5902; font-style: italic">#69d100 | Completed/Finished | ^Resolved    | 0                 | 1                         | false      |</span>
-+---------------------+---------+--------------------+--------------+-------------------+---------------------------+------------+
-</pre></div>
-
-<h3 id="sample-curl-commands:67f66bdf501059124272bbdeb0fc5217">Sample CURL commands</h3>
+<span style="color:#000;font-weight:bold">|</span> <span style="color:#0000cf;font-weight:bold">0</span>                   <span style="color:#000;font-weight:bold">|</span> <span style="color:#8f5902;font-style:italic">#69d100 | Completed/Finished | ^Resolved    | 0                 | 1                         | false      |</span>
++---------------------+---------+--------------------+--------------+-------------------+---------------------------+------------+</code></pre></div>
+<h3 id="sample-curl-commands">Sample CURL commands</h3>
 
 <p><strong>Check the list of Projects</strong></p>
 
@@ -435,38 +465,36 @@ Let&rsquo;s find out the list of labels in it.</p>
 </code></pre>
 
 <p>The response is a bit like this:</p>
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #000000; font-weight: bold">[</span>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#000;font-weight:bold">[</span>
 
-    <span style="color: #000000; font-weight: bold">{</span>
-        <span style="color: #204a87; font-weight: bold">&quot;name&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #4e9a06">&quot;!Blocker&quot;</span><span style="color: #000000; font-weight: bold">,</span>
-        <span style="color: #204a87; font-weight: bold">&quot;color&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #4e9a06">&quot;#ff0000&quot;</span><span style="color: #000000; font-weight: bold">,</span>
-        <span style="color: #204a87; font-weight: bold">&quot;description&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #204a87; font-weight: bold">null</span><span style="color: #000000; font-weight: bold">,</span>
-        <span style="color: #204a87; font-weight: bold">&quot;open_issues_count&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #0000cf; font-weight: bold">0</span><span style="color: #000000; font-weight: bold">,</span>
-        <span style="color: #204a87; font-weight: bold">&quot;closed_issues_count&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #0000cf; font-weight: bold">2</span><span style="color: #000000; font-weight: bold">,</span>
-        <span style="color: #204a87; font-weight: bold">&quot;open_merge_requests_count&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #0000cf; font-weight: bold">0</span><span style="color: #000000; font-weight: bold">,</span>
-        <span style="color: #204a87; font-weight: bold">&quot;subscribed&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #204a87; font-weight: bold">false</span>
-    <span style="color: #000000; font-weight: bold">},</span>
-    <span style="color: #000000; font-weight: bold">{</span>
-        <span style="color: #204a87; font-weight: bold">&quot;name&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #4e9a06">&quot;#AWS&quot;</span><span style="color: #000000; font-weight: bold">,</span>
-        <span style="color: #204a87; font-weight: bold">&quot;color&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #4e9a06">&quot;#0033cc&quot;</span><span style="color: #000000; font-weight: bold">,</span>
-        <span style="color: #204a87; font-weight: bold">&quot;description&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #204a87; font-weight: bold">null</span><span style="color: #000000; font-weight: bold">,</span>
-        <span style="color: #204a87; font-weight: bold">&quot;open_issues_count&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #0000cf; font-weight: bold">8</span><span style="color: #000000; font-weight: bold">,</span>
-        <span style="color: #204a87; font-weight: bold">&quot;closed_issues_count&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #0000cf; font-weight: bold">2</span><span style="color: #000000; font-weight: bold">,</span>
-        <span style="color: #204a87; font-weight: bold">&quot;open_merge_requests_count&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #0000cf; font-weight: bold">0</span><span style="color: #000000; font-weight: bold">,</span>
-        <span style="color: #204a87; font-weight: bold">&quot;subscribed&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #204a87; font-weight: bold">false</span>
-    <span style="color: #000000; font-weight: bold">},</span>
-    <span style="color: #000000; font-weight: bold">{</span>
-        <span style="color: #204a87; font-weight: bold">&quot;name&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #4e9a06">&quot;#Bug&quot;</span><span style="color: #000000; font-weight: bold">,</span>
-        <span style="color: #204a87; font-weight: bold">&quot;color&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #4e9a06">&quot;#428bca&quot;</span><span style="color: #000000; font-weight: bold">,</span>
-        <span style="color: #204a87; font-weight: bold">&quot;description&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #204a87; font-weight: bold">null</span><span style="color: #000000; font-weight: bold">,</span>
-        <span style="color: #204a87; font-weight: bold">&quot;open_issues_count&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #0000cf; font-weight: bold">2</span><span style="color: #000000; font-weight: bold">,</span>
-        <span style="color: #204a87; font-weight: bold">&quot;closed_issues_count&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #0000cf; font-weight: bold">27</span><span style="color: #000000; font-weight: bold">,</span>
-        <span style="color: #204a87; font-weight: bold">&quot;open_merge_requests_count&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #0000cf; font-weight: bold">0</span><span style="color: #000000; font-weight: bold">,</span>
-        <span style="color: #204a87; font-weight: bold">&quot;subscribed&quot;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #204a87; font-weight: bold">false</span>
-    <span style="color: #000000; font-weight: bold">},</span>
-    <span style="color: #a40000; border: 1px solid #ef2929">....</span>
-</pre></div>
-
+    <span style="color:#000;font-weight:bold">{</span>
+        <span style="color:#204a87;font-weight:bold">&#34;name&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;!Blocker&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#204a87;font-weight:bold">&#34;color&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;#ff0000&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#204a87;font-weight:bold">&#34;description&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">null</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#204a87;font-weight:bold">&#34;open_issues_count&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#204a87;font-weight:bold">&#34;closed_issues_count&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#0000cf;font-weight:bold">2</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#204a87;font-weight:bold">&#34;open_merge_requests_count&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#204a87;font-weight:bold">&#34;subscribed&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">false</span>
+    <span style="color:#000;font-weight:bold">},</span>
+    <span style="color:#000;font-weight:bold">{</span>
+        <span style="color:#204a87;font-weight:bold">&#34;name&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;#AWS&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#204a87;font-weight:bold">&#34;color&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;#0033cc&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#204a87;font-weight:bold">&#34;description&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">null</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#204a87;font-weight:bold">&#34;open_issues_count&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#0000cf;font-weight:bold">8</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#204a87;font-weight:bold">&#34;closed_issues_count&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#0000cf;font-weight:bold">2</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#204a87;font-weight:bold">&#34;open_merge_requests_count&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#204a87;font-weight:bold">&#34;subscribed&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">false</span>
+    <span style="color:#000;font-weight:bold">},</span>
+    <span style="color:#000;font-weight:bold">{</span>
+        <span style="color:#204a87;font-weight:bold">&#34;name&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;#Bug&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#204a87;font-weight:bold">&#34;color&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;#428bca&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#204a87;font-weight:bold">&#34;description&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">null</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#204a87;font-weight:bold">&#34;open_issues_count&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#0000cf;font-weight:bold">2</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#204a87;font-weight:bold">&#34;closed_issues_count&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#0000cf;font-weight:bold">27</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#204a87;font-weight:bold">&#34;open_merge_requests_count&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#204a87;font-weight:bold">&#34;subscribed&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">false</span>
+    <span style="color:#000;font-weight:bold">},</span>
+    <span style="color:#a40000">....</span></code></pre></div>
 <p>More documentation is available <a href="https://github.com/gitlabhq/gitlabhq/tree/master/doc/api">here</a></p>
 
       
@@ -523,7 +551,7 @@ using the just created <code>protoc</code></li>
 <li><a href="https://github.com/abhi1010/protobuf-on-docker/blob/master/ubuntu-15/Dockerfile">Ubuntu 15</a></li>
 </ul>
 
-<h2 id="where-to-find-the-files-inside-the-docker-images:59fece5fea31b5834dfd3c1b99d2e930">Where to find the files inside the Docker images</h2>
+<h2 id="where-to-find-the-files-inside-the-docker-images">Where to find the files inside the Docker images</h2>
 
 <ul>
 <li><code>protoc</code> compiler is available at <code>/ws/protoc-3.2</code> folder inside the images</li>
@@ -531,11 +559,9 @@ using the just created <code>protoc</code></li>
 </ul>
 
 <p>You can copy out the files using the following commands:</p>
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #000000">id</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #204a87; font-weight: bold">$(</span>sudo docker create &lt;image_name&gt;<span style="color: #204a87; font-weight: bold">)</span>
-sudo docker cp <span style="color: #000000">$id</span>:/ws/protoc-3.2 ./
-sudo docker cp <span style="color: #000000">$id</span>:/ws/protobuf-3.0.0-beta-3.2/python/dist/*.gz ./
-</pre></div>
-
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#000">id</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#204a87;font-weight:bold">$(</span>sudo docker create &lt;image_name&gt;<span style="color:#204a87;font-weight:bold">)</span>
+sudo docker cp <span style="color:#000">$id</span>:/ws/protoc-3.2 ./
+sudo docker cp <span style="color:#000">$id</span>:/ws/protobuf-3.0.0-beta-3.2/python/dist/*.gz ./</code></pre></div>
 <p>In case you get an error like the following, <em>remove</em> <code>*.gz</code> from the cp command:</p>
 
 <pre><code>zsh: no matches found: e7c8a9102e1cd07b4c471c331bc4deba2222278eb22be1e79ecaa14e914ed654:/ws/protobuf-3.0.0-beta-3.2/python/dist/*.gz
@@ -547,14 +573,10 @@ sudo docker cp <span style="color: #000000">$id</span>:/ws/protobuf-3.0.0-beta-3
 </code></pre>
 
 <p>Once done, you can remove the created container with the following command:</p>
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>sudo docker rm -v <span style="color: #000000">$id</span>
-</pre></div>
-
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo docker rm -v <span style="color:#000">$id</span></code></pre></div>
 <p>Just remember to change the rights as the files will belong to <code>root</code> by default.
 You can do that with the following commands:</p>
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>sudo chown -R &lt;USERNAME&gt;:&lt;USERNAME&gt; *
-</pre></div>
-
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo chown -R &lt;USERNAME&gt;:&lt;USERNAME&gt; *</code></pre></div>
       
     </div>
     
@@ -589,7 +611,7 @@ Behind the scenes it is an extremely simple app which has only two files, both s
 <p>The tasks are initially put as simple text in <strong>todo.txt</strong> and are moved to <strong>done.txt</strong> once marked complete.
 It is extremely useful that todo.txt app has UI as well as the files which are user friendly.</p>
 
-<h2 id="finding-tasks-completed-in-the-last-week:45bde4e2871e2b6baf64650e1fb2e828">Finding tasks completed in the last week</h2>
+<h2 id="finding-tasks-completed-in-the-last-week">Finding tasks completed in the last week</h2>
 
 <p>During weekly meetings I found it difficult to mention all the tasks that
 I had been working on for the whole of the previous week. Thinking about todo
@@ -617,55 +639,43 @@ see what has been completed already
 </ul>
 
 <p>Here&rsquo;s the script for that:</p>
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>todos<span style="color: #ce5c00; font-weight: bold">()</span>
-<span style="color: #ce5c00; font-weight: bold">{</span>
-    <span style="color: #000000">TODOFILE</span><span style="color: #ce5c00; font-weight: bold">=</span>~/.local/share/todo.txt/todo.txt
-    <span style="color: #000000">DONEFILE</span><span style="color: #ce5c00; font-weight: bold">=</span>~/.local/share/todo.txt/done.txt
-    <span style="color: #8f5902; font-style: italic"># echo $TODOFILE</span>
-    <span style="color: #8f5902; font-style: italic"># echo $DONEFILE &quot;\n&quot;</span>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">todos<span style="color:#ce5c00;font-weight:bold">()</span>
+<span style="color:#ce5c00;font-weight:bold">{</span>
+    <span style="color:#000">TODOFILE</span><span style="color:#ce5c00;font-weight:bold">=</span>~/.local/share/todo.txt/todo.txt
+    <span style="color:#000">DONEFILE</span><span style="color:#ce5c00;font-weight:bold">=</span>~/.local/share/todo.txt/done.txt
+    <span style="color:#8f5902;font-style:italic"># echo $TODOFILE</span>
+    <span style="color:#8f5902;font-style:italic"># echo $DONEFILE &#34;\n&#34;</span>
 
-    lastXdays<span style="color: #ce5c00; font-weight: bold">()</span>
-    <span style="color: #ce5c00; font-weight: bold">{</span>
-        search<span style="color: #ce5c00; font-weight: bold">()</span>•
-        <span style="color: #ce5c00; font-weight: bold">{</span>
-            <span style="color: #000000">DAY</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #000000">$1</span>
-            cat <span style="color: #000000">$TODOFILE</span> <span style="color: #000000; font-weight: bold">|</span> <span style="color: #000000">GREP_COLOR</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #4e9a06">&quot;1;31&quot;</span> grep --color<span style="color: #ce5c00; font-weight: bold">=</span>always <span style="color: #4e9a06">&#39; [a-Z[].*&#39;</span> <span style="color: #000000; font-weight: bold">|</span> <span style="color: #000000">GREP_COLOR</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #4e9a06">&quot;3;33&quot;</span> grep --color<span style="color: #ce5c00; font-weight: bold">=</span>always  <span style="color: #4e9a06">&quot;\+.*&quot;</span>
-            egrep <span style="color: #204a87; font-weight: bold">$(</span>date <span style="color: #4e9a06">&#39;+%Y-%m-%d&#39;</span> --date<span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #000000">$DAY</span><span style="color: #4e9a06">&#39; days ago&#39;</span><span style="color: #204a87; font-weight: bold">)</span> <span style="color: #000000">$DONEFILE</span> <span style="color: #000000; font-weight: bold">|</span> <span style="color: #000000">GREP_COLOR</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #4e9a06">&quot;1;32&quot;</span> grep --color<span style="color: #ce5c00; font-weight: bold">=</span>always <span style="color: #4e9a06">&#39; [a-Z].*&#39;</span> <span style="color: #000000; font-weight: bold">|</span> <span style="color: #000000">GREP_COLOR</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #4e9a06">&quot;03;33&quot;</span> grep --color<span style="color: #ce5c00; font-weight: bold">=</span>always  <span style="color: #4e9a06">&quot;\+.*&quot;</span>
-        <span style="color: #ce5c00; font-weight: bold">}</span>
-        <span style="color: #000000">END</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #000000">$1</span>
-        <span style="color: #204a87; font-weight: bold">for</span> i in <span style="color: #204a87; font-weight: bold">$(</span>seq <span style="color: #0000cf; font-weight: bold">0</span> <span style="color: #000000">$END</span><span style="color: #204a87; font-weight: bold">)</span>
-            <span style="color: #204a87; font-weight: bold">do</span>
-                search <span style="color: #000000">$i</span>
-            <span style="color: #204a87; font-weight: bold">done</span>
+    lastXdays<span style="color:#ce5c00;font-weight:bold">()</span>
+    <span style="color:#ce5c00;font-weight:bold">{</span>
+        search<span style="color:#ce5c00;font-weight:bold">()</span>•
+        <span style="color:#ce5c00;font-weight:bold">{</span>
+            <span style="color:#000">DAY</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#000">$1</span>
+            cat <span style="color:#000">$TODOFILE</span> <span style="color:#000;font-weight:bold">|</span> <span style="color:#000">GREP_COLOR</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;1;31&#34;</span> grep --color<span style="color:#ce5c00;font-weight:bold">=</span>always <span style="color:#4e9a06">&#39; [a-Z[].*&#39;</span> <span style="color:#000;font-weight:bold">|</span> <span style="color:#000">GREP_COLOR</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;3;33&#34;</span> grep --color<span style="color:#ce5c00;font-weight:bold">=</span>always  <span style="color:#4e9a06">&#34;\+.*&#34;</span>
+            egrep <span style="color:#204a87;font-weight:bold">$(</span>date <span style="color:#4e9a06">&#39;+%Y-%m-%d&#39;</span> --date<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#000">$DAY</span><span style="color:#4e9a06">&#39; days ago&#39;</span><span style="color:#204a87;font-weight:bold">)</span> <span style="color:#000">$DONEFILE</span> <span style="color:#000;font-weight:bold">|</span> <span style="color:#000">GREP_COLOR</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;1;32&#34;</span> grep --color<span style="color:#ce5c00;font-weight:bold">=</span>always <span style="color:#4e9a06">&#39; [a-Z].*&#39;</span> <span style="color:#000;font-weight:bold">|</span> <span style="color:#000">GREP_COLOR</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;03;33&#34;</span> grep --color<span style="color:#ce5c00;font-weight:bold">=</span>always  <span style="color:#4e9a06">&#34;\+.*&#34;</span>
+        <span style="color:#ce5c00;font-weight:bold">}</span>
+        <span style="color:#000">END</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#000">$1</span>
+        <span style="color:#204a87;font-weight:bold">for</span> i in <span style="color:#204a87;font-weight:bold">$(</span>seq <span style="color:#0000cf;font-weight:bold">0</span> <span style="color:#000">$END</span><span style="color:#204a87;font-weight:bold">)</span>
+            <span style="color:#204a87;font-weight:bold">do</span>
+                search <span style="color:#000">$i</span>
+            <span style="color:#204a87;font-weight:bold">done</span>
 
-    <span style="color: #ce5c00; font-weight: bold">}</span>
-    <span style="color: #8f5902; font-style: italic"># First arg, if given, or default value of 8</span>
-    <span style="color: #000000">DAYS</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #4e9a06">${</span><span style="color: #000000">1</span><span style="color: #204a87; font-weight: bold">:-</span><span style="color: #000000">8</span><span style="color: #4e9a06">}</span>
-    lastXdays <span style="color: #000000">$DAYS</span> <span style="color: #000000; font-weight: bold">|</span> sort -u
-<span style="color: #ce5c00; font-weight: bold">}</span>
-</pre></div>
-
+    <span style="color:#ce5c00;font-weight:bold">}</span>
+    <span style="color:#8f5902;font-style:italic"># First arg, if given, or default value of 8</span>
+    <span style="color:#000">DAYS</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">${</span><span style="color:#000">1</span><span style="color:#204a87;font-weight:bold">:-</span><span style="color:#000">8</span><span style="color:#4e9a06">}</span>
+    lastXdays <span style="color:#000">$DAYS</span> <span style="color:#000;font-weight:bold">|</span> sort -u
+<span style="color:#ce5c00;font-weight:bold">}</span></code></pre></div>
 <p>Now, when I run this command, it gives me the following:</p>
 
-
-<figure >
-    
-        <img src="/images/todo-in-fedora.png" alt="My TODOs" />
-    
-    
-    <figcaption>
-        <p>
-        My TODOs
-        
-            
-        
-        </p> 
-    </figcaption>
-    
+<figure>
+    <img src="/images/todo-in-fedora.png"
+         alt="My TODOs"/> <figcaption>
+            <p>My TODOs</p>
+        </figcaption>
 </figure>
 
 
-<h2 id="sharing-the-tasks:45bde4e2871e2b6baf64650e1fb2e828">Sharing the tasks</h2>
+<h2 id="sharing-the-tasks">Sharing the tasks</h2>
 
 <p>I work with different teams which means sharing with them the latest updates
 on different days of the week. I used to run my <code>todos</code> command on bash
@@ -694,68 +704,50 @@ codes. This way when we mail the contents to team members, it will display
 properly.</li>
 </ol>
 
-<h3 id="crontab:45bde4e2871e2b6baf64650e1fb2e828">crontab</h3>
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #0000cf; font-weight: bold">45</span> <span style="color: #0000cf; font-weight: bold">09</span> * * <span style="color: #0000cf; font-weight: bold">1</span> /usr/bin/bash /PATH_TO_BASH_SCRIPT/crons.sh --mailgroup<span style="color: #ce5c00; font-weight: bold">=</span>&lt;TEAM_MAIL&gt;
-</pre></div>
-
-<h3 id="crons-sh:45bde4e2871e2b6baf64650e1fb2e828">crons.sh</h3>
+<h3 id="crontab">crontab</h3>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#0000cf;font-weight:bold">45</span> <span style="color:#0000cf;font-weight:bold">09</span> * * <span style="color:#0000cf;font-weight:bold">1</span> /usr/bin/bash /PATH_TO_BASH_SCRIPT/crons.sh --mailgroup<span style="color:#ce5c00;font-weight:bold">=</span>&lt;TEAM_MAIL&gt;</code></pre></div>
+<h3 id="crons-sh">crons.sh</h3>
 
 <p>The <code>crons.sh</code> itself is really simple, which calls upon the <code>invoke</code> task:</p>
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #8f5902; font-style: italic"># ----- crons.sh --------</span>
-<span style="color: #8f5902; font-style: italic"># Activate the virtual env</span>
-<span style="color: #204a87">source</span> ~/code/venvs/ve_opt/bin/activate
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#8f5902;font-style:italic"># ----- crons.sh --------</span>
+<span style="color:#8f5902;font-style:italic"># Activate the virtual env</span>
+<span style="color:#204a87">source</span> ~/code/venvs/ve_opt/bin/activate
 
-<span style="color: #8f5902; font-style: italic"># Go to the directory containing the invoke script</span>
-<span style="color: #204a87">cd</span> ~/code/scripts/
+<span style="color:#8f5902;font-style:italic"># Go to the directory containing the invoke script</span>
+<span style="color:#204a87">cd</span> ~/code/scripts/
 
-<span style="color: #8f5902; font-style: italic"># Run the invoke, pass the cmd line params, as is (which means mailgroup)</span>
-inv share_todos <span style="color: #000000">$*</span>
-</pre></div>
-
-<h3 id="tasks-py:45bde4e2871e2b6baf64650e1fb2e828">tasks.py</h3>
+<span style="color:#8f5902;font-style:italic"># Run the invoke, pass the cmd line params, as is (which means mailgroup)</span>
+inv share_todos <span style="color:#000">$*</span></code></pre></div>
+<h3 id="tasks-py">tasks.py</h3>
 
 <p>Now it is time for contents of <code>invoke</code>&rsquo;s <strong>tasks.py</strong>.
 We want to ensure that the font is big enough.</p>
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #5c35cc; font-weight: bold">@task</span>
-<span style="color: #204a87; font-weight: bold">def</span> <span style="color: #000000">share_todos</span><span style="color: #000000; font-weight: bold">(</span><span style="color: #000000">mailgroup</span><span style="color: #000000; font-weight: bold">):</span>
-    <span style="color: #000000">process_out</span> <span style="color: #ce5c00; font-weight: bold">=</span> <span style="color: #000000">subprocess</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">check_output</span><span style="color: #000000; font-weight: bold">([</span><span style="color: #4e9a06">&#39;/FULL_PATH_TO/_htmltodos.sh&#39;</span><span style="color: #000000; font-weight: bold">])</span>\
-        <span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">replace</span><span style="color: #000000; font-weight: bold">(</span><span style="color: #4e9a06">&#39;&lt;body&gt;&#39;</span><span style="color: #000000; font-weight: bold">,</span>
-                 <span style="color: #4e9a06">&#39;&lt;body style=&quot;font-weight:900; font-size:1.3em;&quot;&gt;&#39;</span><span style="color: #000000; font-weight: bold">)</span>
-    <span style="color: #000000">mail</span><span style="color: #000000; font-weight: bold">(</span>
-        <span style="color: #000000">process_out</span><span style="color: #000000; font-weight: bold">,</span>
-        <span style="color: #4e9a06">&quot;My todos @ {}&quot;</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">format</span><span style="color: #000000; font-weight: bold">(</span><span style="color: #000000">datetime</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">datetime</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">now</span><span style="color: #000000; font-weight: bold">()</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">strftime</span><span style="color: #000000; font-weight: bold">(</span><span style="color: #4e9a06">&#39;%c&#39;</span><span style="color: #000000; font-weight: bold">)),</span>
-        <span style="color: #000000">mailgroup</span>
-</pre></div>
-
-<h3 id="htmltodos-sh:45bde4e2871e2b6baf64650e1fb2e828">_htmltodos.sh</h3>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#5c35cc;font-weight:bold">@task</span>
+<span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">share_todos</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">mailgroup</span><span style="color:#000;font-weight:bold">):</span>
+    <span style="color:#000">process_out</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">subprocess</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">check_output</span><span style="color:#000;font-weight:bold">([</span><span style="color:#4e9a06">&#39;/FULL_PATH_TO/_htmltodos.sh&#39;</span><span style="color:#000;font-weight:bold">])</span>\
+        <span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">replace</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#39;&lt;body&gt;&#39;</span><span style="color:#000;font-weight:bold">,</span>
+                 <span style="color:#4e9a06">&#39;&lt;body style=&#34;font-weight:900; font-size:1.3em;&#34;&gt;&#39;</span><span style="color:#000;font-weight:bold">)</span>
+    <span style="color:#000">mail</span><span style="color:#000;font-weight:bold">(</span>
+        <span style="color:#000">process_out</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#34;My todos @ {}&#34;</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">format</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">datetime</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">datetime</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">now</span><span style="color:#000;font-weight:bold">()</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">strftime</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#39;</span><span style="color:#4e9a06">%c</span><span style="color:#4e9a06">&#39;</span><span style="color:#000;font-weight:bold">)),</span>
+        <span style="color:#000">mailgroup</span></code></pre></div>
+<h3 id="htmltodos-sh">_htmltodos.sh</h3>
 
 <p>We will use <code>aha</code> to convert the ANSI terminal colors to html color codes.
 Also, we will replace some color codes that <code>aha</code> creates because
 it is not really nice looking.</p>
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #8f5902; font-style: italic">#!/usr/bin/bash</span>
-<span style="color: #204a87">source</span> ~/.bashrc
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#8f5902;font-style:italic">#!/usr/bin/bash
+</span><span style="color:#8f5902;font-style:italic"></span><span style="color:#204a87">source</span> ~/.bashrc
 
-todos <span style="color: #000000; font-weight: bold">|</span> /usr/local/bin/aha <span style="color: #000000; font-weight: bold">|</span> sed -e <span style="color: #4e9a06">&#39;s/color:olive/color:DeepSkyBlue; font-style:italic;/g&#39;</span> -e <span style="color: #4e9a06">&#39;s/color:green;/color:LimeGreen;/g&#39;</span> -e <span style="color: #4e9a06">&#39;s/&lt;pre&gt;/&lt;pre style=&quot;color:gray;&quot;&gt;/g&#39;</span>
-<span style="color: #204a87">exit</span> 0
-</pre></div>
+todos <span style="color:#000;font-weight:bold">|</span> /usr/local/bin/aha <span style="color:#000;font-weight:bold">|</span> sed -e <span style="color:#4e9a06">&#39;s/color:olive/color:DeepSkyBlue; font-style:italic;/g&#39;</span> -e <span style="color:#4e9a06">&#39;s/color:green;/color:LimeGreen;/g&#39;</span> -e <span style="color:#4e9a06">&#39;s/&lt;pre&gt;/&lt;pre style=&#34;color:gray;&#34;&gt;/g&#39;</span>
+<span style="color:#204a87">exit</span> <span style="color:#0000cf;font-weight:bold">0</span></code></pre></div>
+<h3 id="the-result">The result</h3>
 
-<h3 id="the-result:45bde4e2871e2b6baf64650e1fb2e828">The result</h3>
-
-
-<figure >
-    
-        <img src="/images/todo-in-email.png" alt="The email look" />
-    
-    
-    <figcaption>
-        <p>
-        The email look
-        
-            
-        
-        </p> 
-    </figcaption>
-    
+<figure>
+    <img src="/images/todo-in-email.png"
+         alt="The email look"/> <figcaption>
+            <p>The email look</p>
+        </figcaption>
 </figure>
 
 
@@ -799,73 +791,71 @@ for which work through a different subquery under the hood.</p>
 a sprint name - complete or incomplete - that belong to a given sprint name.
 You can modify the code easily to suit your needs.</p>
 
-<h2 id="requirements:db34945a6ca4a4e74ac4f8bf32367167">Requirements</h2>
+<h2 id="requirements">Requirements</h2>
 
 <p>First things first, you need to install jira through <code>pypi</code> for the code.</p>
 
 <pre><code>pip install jira
 </code></pre>
 
-<h2 id="the-code:db34945a6ca4a4e74ac4f8bf32367167">The code</h2>
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #204a87; font-weight: bold">from</span> <span style="color: #000000">jira.resources</span> <span style="color: #204a87; font-weight: bold">import</span> <span style="color: #000000">Issue</span>
-<span style="color: #204a87; font-weight: bold">from</span> <span style="color: #000000">jira.client</span> <span style="color: #204a87; font-weight: bold">import</span> <span style="color: #000000">JIRA</span>
+<h2 id="the-code">The code</h2>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#204a87;font-weight:bold">from</span> <span style="color:#000">jira.resources</span> <span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000">Issue</span>
+<span style="color:#204a87;font-weight:bold">from</span> <span style="color:#000">jira.client</span> <span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000">JIRA</span>
 
-<span style="color: #204a87; font-weight: bold">def</span> <span style="color: #000000">sprints</span><span style="color: #000000; font-weight: bold">(</span><span style="color: #000000">username</span><span style="color: #000000; font-weight: bold">,</span> 
-            <span style="color: #000000">ldp_password</span><span style="color: #000000; font-weight: bold">,</span>
-            <span style="color: #000000">sprint_name</span><span style="color: #000000; font-weight: bold">,</span>
-            <span style="color: #000000">type_of_issues_to_pull</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #000000; font-weight: bold">[</span>
-                  <span style="color: #4e9a06">&#39;completedIssues&#39;</span><span style="color: #000000; font-weight: bold">,</span> 
-                  <span style="color: #4e9a06">&#39;incompletedIssues&#39;</span><span style="color: #000000; font-weight: bold">,</span>
-                  <span style="color: #4e9a06">&#39;issuesNotCompletedInCurrentSprint&#39;</span><span style="color: #000000; font-weight: bold">,</span>
-                  <span style="color: #4e9a06">&#39;issuesCompletedInAnotherSprint&#39;</span><span style="color: #000000; font-weight: bold">]):</span>
-    <span style="color: #204a87; font-weight: bold">def</span> <span style="color: #000000">sprint_issues</span><span style="color: #000000; font-weight: bold">(</span><span style="color: #000000">cls</span><span style="color: #000000; font-weight: bold">,</span> <span style="color: #000000">board_id</span><span style="color: #000000; font-weight: bold">,</span> <span style="color: #000000">sprint_id</span><span style="color: #000000; font-weight: bold">):</span>
-        <span style="color: #000000">r_json</span> <span style="color: #ce5c00; font-weight: bold">=</span> <span style="color: #000000">cls</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">_get_json</span><span style="color: #000000; font-weight: bold">(</span>
-            <span style="color: #4e9a06">&#39;rapid/charts/sprintreport?rapidViewId=%s&amp;sprintId=%s&#39;</span> <span style="color: #ce5c00; font-weight: bold">%</span> <span style="color: #000000; font-weight: bold">(</span>
-                <span style="color: #000000">board_id</span><span style="color: #000000; font-weight: bold">,</span> <span style="color: #000000">sprint_id</span><span style="color: #000000; font-weight: bold">),</span>
-            <span style="color: #000000">base</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #000000">cls</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">AGILE_BASE_URL</span><span style="color: #000000; font-weight: bold">)</span>
+<span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">sprints</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">username</span><span style="color:#000;font-weight:bold">,</span> 
+            <span style="color:#000">ldp_password</span><span style="color:#000;font-weight:bold">,</span>
+            <span style="color:#000">sprint_name</span><span style="color:#000;font-weight:bold">,</span>
+            <span style="color:#000">type_of_issues_to_pull</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#000;font-weight:bold">[</span>
+                  <span style="color:#4e9a06">&#39;completedIssues&#39;</span><span style="color:#000;font-weight:bold">,</span> 
+                  <span style="color:#4e9a06">&#39;incompletedIssues&#39;</span><span style="color:#000;font-weight:bold">,</span>
+                  <span style="color:#4e9a06">&#39;issuesNotCompletedInCurrentSprint&#39;</span><span style="color:#000;font-weight:bold">,</span>
+                  <span style="color:#4e9a06">&#39;issuesCompletedInAnotherSprint&#39;</span><span style="color:#000;font-weight:bold">]):</span>
+    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">sprint_issues</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">cls</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">board_id</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">sprint_id</span><span style="color:#000;font-weight:bold">):</span>
+        <span style="color:#000">r_json</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#3465a4">cls</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">_get_json</span><span style="color:#000;font-weight:bold">(</span>
+            <span style="color:#4e9a06">&#39;rapid/charts/sprintreport?rapidViewId=</span><span style="color:#4e9a06">%s</span><span style="color:#4e9a06">&amp;sprintId=</span><span style="color:#4e9a06">%s</span><span style="color:#4e9a06">&#39;</span> <span style="color:#ce5c00;font-weight:bold">%</span> <span style="color:#000;font-weight:bold">(</span>
+                <span style="color:#000">board_id</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">sprint_id</span><span style="color:#000;font-weight:bold">),</span>
+            <span style="color:#000">base</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#3465a4">cls</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">AGILE_BASE_URL</span><span style="color:#000;font-weight:bold">)</span>
 
-        <span style="color: #000000">issues</span> <span style="color: #ce5c00; font-weight: bold">=</span> <span style="color: #000000; font-weight: bold">[]</span>
-        <span style="color: #204a87; font-weight: bold">for</span> <span style="color: #000000">t</span> <span style="color: #204a87; font-weight: bold">in</span> <span style="color: #000000">type_of_issues_to_pull</span><span style="color: #000000; font-weight: bold">:</span>
-            <span style="color: #204a87; font-weight: bold">if</span> <span style="color: #000000">t</span> <span style="color: #204a87; font-weight: bold">in</span> <span style="color: #000000">r_json</span><span style="color: #000000; font-weight: bold">[</span><span style="color: #4e9a06">&#39;contents&#39;</span><span style="color: #000000; font-weight: bold">]:</span>
-                <span style="color: #000000">issues</span> <span style="color: #ce5c00; font-weight: bold">+=</span> <span style="color: #000000; font-weight: bold">[</span><span style="color: #000000">Issue</span><span style="color: #000000; font-weight: bold">(</span><span style="color: #000000">cls</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">_options</span><span style="color: #000000; font-weight: bold">,</span> <span style="color: #000000">cls</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">_session</span><span style="color: #000000; font-weight: bold">,</span> <span style="color: #000000">raw_issues_json</span><span style="color: #000000; font-weight: bold">)</span>
-                           <span style="color: #204a87; font-weight: bold">for</span> <span style="color: #000000">raw_issues_json</span> <span style="color: #204a87; font-weight: bold">in</span>
-                           <span style="color: #000000">r_json</span><span style="color: #000000; font-weight: bold">[</span><span style="color: #4e9a06">&#39;contents&#39;</span><span style="color: #000000; font-weight: bold">][</span><span style="color: #000000">t</span><span style="color: #000000; font-weight: bold">]]</span>
-        <span style="color: #204a87; font-weight: bold">return</span> <span style="color: #000000; font-weight: bold">{</span><span style="color: #000000">x</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">key</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #000000">x</span> <span style="color: #204a87; font-weight: bold">for</span> <span style="color: #000000">x</span> <span style="color: #204a87; font-weight: bold">in</span> <span style="color: #000000">issues</span><span style="color: #000000; font-weight: bold">}</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">values</span><span style="color: #000000; font-weight: bold">()</span>
+        <span style="color:#000">issues</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">[]</span>
+        <span style="color:#204a87;font-weight:bold">for</span> <span style="color:#000">t</span> <span style="color:#204a87;font-weight:bold">in</span> <span style="color:#000">type_of_issues_to_pull</span><span style="color:#000;font-weight:bold">:</span>
+            <span style="color:#204a87;font-weight:bold">if</span> <span style="color:#000">t</span> <span style="color:#204a87;font-weight:bold">in</span> <span style="color:#000">r_json</span><span style="color:#000;font-weight:bold">[</span><span style="color:#4e9a06">&#39;contents&#39;</span><span style="color:#000;font-weight:bold">]:</span>
+                <span style="color:#000">issues</span> <span style="color:#ce5c00;font-weight:bold">+=</span> <span style="color:#000;font-weight:bold">[</span><span style="color:#000">Issue</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">cls</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">_options</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#3465a4">cls</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">_session</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">raw_issues_json</span><span style="color:#000;font-weight:bold">)</span>
+                           <span style="color:#204a87;font-weight:bold">for</span> <span style="color:#000">raw_issues_json</span> <span style="color:#204a87;font-weight:bold">in</span>
+                           <span style="color:#000">r_json</span><span style="color:#000;font-weight:bold">[</span><span style="color:#4e9a06">&#39;contents&#39;</span><span style="color:#000;font-weight:bold">][</span><span style="color:#000">t</span><span style="color:#000;font-weight:bold">]]</span>
+        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000;font-weight:bold">{</span><span style="color:#000">x</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">key</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000">x</span> <span style="color:#204a87;font-weight:bold">for</span> <span style="color:#000">x</span> <span style="color:#204a87;font-weight:bold">in</span> <span style="color:#000">issues</span><span style="color:#000;font-weight:bold">}</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">values</span><span style="color:#000;font-weight:bold">()</span>
 
-    <span style="color: #000000">fmt_full</span> <span style="color: #ce5c00; font-weight: bold">=</span> <span style="color: #4e9a06">&#39;Sprint: {} \n\nIssues:{}&#39;</span>
-    <span style="color: #000000">fmt_issues</span> <span style="color: #ce5c00; font-weight: bold">=</span> <span style="color: #4e9a06">&#39;\n- {}: {}&#39;</span>
-    <span style="color: #000000">issues_str</span> <span style="color: #ce5c00; font-weight: bold">=</span> <span style="color: #4e9a06">&#39;&#39;</span>
-    <span style="color: #000000">milestone_str</span> <span style="color: #ce5c00; font-weight: bold">=</span> <span style="color: #4e9a06">&#39;&#39;</span>
+    <span style="color:#000">fmt_full</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#4e9a06">&#39;Sprint: {} </span><span style="color:#4e9a06">\n\n</span><span style="color:#4e9a06">Issues:{}&#39;</span>
+    <span style="color:#000">fmt_issues</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#4e9a06">&#39;</span><span style="color:#4e9a06">\n</span><span style="color:#4e9a06">- {}: {}&#39;</span>
+    <span style="color:#000">issues_str</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#4e9a06">&#39;&#39;</span>
+    <span style="color:#000">milestone_str</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#4e9a06">&#39;&#39;</span>
 
-    <span style="color: #000000">options</span> <span style="color: #ce5c00; font-weight: bold">=</span> <span style="color: #000000; font-weight: bold">{</span>
-        <span style="color: #4e9a06">&#39;server&#39;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #4e9a06">&#39;http://jira/&#39;</span><span style="color: #000000; font-weight: bold">,</span>
-        <span style="color: #4e9a06">&#39;verify&#39;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #3465a4">True</span><span style="color: #000000; font-weight: bold">,</span>
-        <span style="color: #4e9a06">&#39;basic_auth&#39;</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #000000; font-weight: bold">(</span><span style="color: #000000">username</span><span style="color: #000000; font-weight: bold">,</span> <span style="color: #000000">ldp_password</span><span style="color: #000000; font-weight: bold">),</span>
-    <span style="color: #000000; font-weight: bold">}</span>
-    <span style="color: #000000">gh</span> <span style="color: #ce5c00; font-weight: bold">=</span> <span style="color: #000000">JIRA</span><span style="color: #000000; font-weight: bold">(</span><span style="color: #000000">options</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #000000">options</span><span style="color: #000000; font-weight: bold">,</span> <span style="color: #000000">basic_auth</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #000000; font-weight: bold">(</span><span style="color: #000000">username</span><span style="color: #000000; font-weight: bold">,</span> <span style="color: #000000">ldp_password</span><span style="color: #000000; font-weight: bold">))</span>
+    <span style="color:#000">options</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">{</span>
+        <span style="color:#4e9a06">&#39;server&#39;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#4e9a06">&#39;http://jira/&#39;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#39;verify&#39;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#3465a4">True</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#39;basic_auth&#39;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000">username</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">ldp_password</span><span style="color:#000;font-weight:bold">),</span>
+    <span style="color:#000;font-weight:bold">}</span>
+    <span style="color:#000">gh</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">JIRA</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">options</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#000">options</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">basic_auth</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">username</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">ldp_password</span><span style="color:#000;font-weight:bold">))</span>
 
-    <span style="color: #8f5902; font-style: italic"># Get all boards viewable by anonymous users.</span>
-    <span style="color: #000000">boards</span> <span style="color: #ce5c00; font-weight: bold">=</span> <span style="color: #000000">gh</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">boards</span><span style="color: #000000; font-weight: bold">()</span>
-    <span style="color: #000000">board</span> <span style="color: #ce5c00; font-weight: bold">=</span> <span style="color: #000000; font-weight: bold">[</span><span style="color: #000000">b</span> <span style="color: #204a87; font-weight: bold">for</span> <span style="color: #000000">b</span> <span style="color: #204a87; font-weight: bold">in</span> <span style="color: #000000">boards</span> <span style="color: #204a87; font-weight: bold">if</span> <span style="color: #000000">b</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">name</span> <span style="color: #ce5c00; font-weight: bold">==</span> <span style="color: #000000">sprint_name</span><span style="color: #000000; font-weight: bold">][</span><span style="color: #0000cf; font-weight: bold">0</span><span style="color: #000000; font-weight: bold">]</span>
+    <span style="color:#8f5902;font-style:italic"># Get all boards viewable by anonymous users.</span>
+    <span style="color:#000">boards</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">gh</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">boards</span><span style="color:#000;font-weight:bold">()</span>
+    <span style="color:#000">board</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">[</span><span style="color:#000">b</span> <span style="color:#204a87;font-weight:bold">for</span> <span style="color:#000">b</span> <span style="color:#204a87;font-weight:bold">in</span> <span style="color:#000">boards</span> <span style="color:#204a87;font-weight:bold">if</span> <span style="color:#000">b</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">name</span> <span style="color:#ce5c00;font-weight:bold">==</span> <span style="color:#000">sprint_name</span><span style="color:#000;font-weight:bold">][</span><span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">]</span>
 
-    <span style="color: #000000">sprints</span> <span style="color: #ce5c00; font-weight: bold">=</span> <span style="color: #000000">gh</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">sprints</span><span style="color: #000000; font-weight: bold">(</span><span style="color: #000000">board</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">id</span><span style="color: #000000; font-weight: bold">)</span>
+    <span style="color:#000">sprints</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">gh</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">sprints</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">board</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#204a87">id</span><span style="color:#000;font-weight:bold">)</span>
 
-    <span style="color: #204a87; font-weight: bold">for</span> <span style="color: #000000">sprint</span> <span style="color: #204a87; font-weight: bold">in</span> <span style="color: #204a87">sorted</span><span style="color: #000000; font-weight: bold">([</span><span style="color: #000000">s</span> <span style="color: #204a87; font-weight: bold">for</span> <span style="color: #000000">s</span> <span style="color: #204a87; font-weight: bold">in</span> <span style="color: #000000">sprints</span>
-                   <span style="color: #204a87; font-weight: bold">if</span> <span style="color: #000000">s</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">raw</span><span style="color: #000000; font-weight: bold">[</span><span style="color: #4e9a06">u&#39;state&#39;</span><span style="color: #000000; font-weight: bold">]</span> <span style="color: #ce5c00; font-weight: bold">==</span> <span style="color: #4e9a06">u&#39;ACTIVE&#39;</span><span style="color: #000000; font-weight: bold">],</span>
-                <span style="color: #000000">key</span> <span style="color: #ce5c00; font-weight: bold">=</span> <span style="color: #204a87; font-weight: bold">lambda</span> <span style="color: #000000">x</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #000000">x</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">raw</span><span style="color: #000000; font-weight: bold">[</span><span style="color: #4e9a06">u&#39;sequence&#39;</span><span style="color: #000000; font-weight: bold">]):</span>
-        <span style="color: #000000">milestone_str</span> <span style="color: #ce5c00; font-weight: bold">=</span> <span style="color: #204a87">str</span><span style="color: #000000; font-weight: bold">(</span><span style="color: #000000">sprint</span><span style="color: #000000; font-weight: bold">)</span>
-        <span style="color: #000000">issues</span> <span style="color: #ce5c00; font-weight: bold">=</span> <span style="color: #000000">sprint_issues</span><span style="color: #000000; font-weight: bold">(</span><span style="color: #000000">gh</span><span style="color: #000000; font-weight: bold">,</span> <span style="color: #000000">board</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">id</span><span style="color: #000000; font-weight: bold">,</span> <span style="color: #000000">sprint</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">id</span><span style="color: #000000; font-weight: bold">)</span>
-        <span style="color: #204a87; font-weight: bold">for</span> <span style="color: #000000">issue</span> <span style="color: #204a87; font-weight: bold">in</span> <span style="color: #000000">issues</span><span style="color: #000000; font-weight: bold">:</span>
-            <span style="color: #000000">issues_str</span> <span style="color: #ce5c00; font-weight: bold">+=</span> <span style="color: #000000">fmt_issues</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">format</span><span style="color: #000000; font-weight: bold">(</span><span style="color: #000000">issue</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">key</span><span style="color: #000000; font-weight: bold">,</span> <span style="color: #000000">issue</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">summary</span><span style="color: #000000; font-weight: bold">)</span>
+    <span style="color:#204a87;font-weight:bold">for</span> <span style="color:#000">sprint</span> <span style="color:#204a87;font-weight:bold">in</span> <span style="color:#204a87">sorted</span><span style="color:#000;font-weight:bold">([</span><span style="color:#000">s</span> <span style="color:#204a87;font-weight:bold">for</span> <span style="color:#000">s</span> <span style="color:#204a87;font-weight:bold">in</span> <span style="color:#000">sprints</span>
+                   <span style="color:#204a87;font-weight:bold">if</span> <span style="color:#000">s</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">raw</span><span style="color:#000;font-weight:bold">[</span><span style="color:#4e9a06">u</span><span style="color:#4e9a06">&#39;state&#39;</span><span style="color:#000;font-weight:bold">]</span> <span style="color:#ce5c00;font-weight:bold">==</span> <span style="color:#4e9a06">u</span><span style="color:#4e9a06">&#39;ACTIVE&#39;</span><span style="color:#000;font-weight:bold">],</span>
+                <span style="color:#000">key</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#204a87;font-weight:bold">lambda</span> <span style="color:#000">x</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000">x</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">raw</span><span style="color:#000;font-weight:bold">[</span><span style="color:#4e9a06">u</span><span style="color:#4e9a06">&#39;sequence&#39;</span><span style="color:#000;font-weight:bold">]):</span>
+        <span style="color:#000">milestone_str</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#204a87">str</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">sprint</span><span style="color:#000;font-weight:bold">)</span>
+        <span style="color:#000">issues</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">sprint_issues</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">gh</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">board</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#204a87">id</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">sprint</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#204a87">id</span><span style="color:#000;font-weight:bold">)</span>
+        <span style="color:#204a87;font-weight:bold">for</span> <span style="color:#000">issue</span> <span style="color:#204a87;font-weight:bold">in</span> <span style="color:#000">issues</span><span style="color:#000;font-weight:bold">:</span>
+            <span style="color:#000">issues_str</span> <span style="color:#ce5c00;font-weight:bold">+=</span> <span style="color:#000">fmt_issues</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">format</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">issue</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">key</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">issue</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">summary</span><span style="color:#000;font-weight:bold">)</span>
 
-    <span style="color: #000000">result</span> <span style="color: #ce5c00; font-weight: bold">=</span> <span style="color: #000000">fmt_full</span><span style="color: #ce5c00; font-weight: bold">.</span><span style="color: #000000">format</span><span style="color: #000000; font-weight: bold">(</span>
-        <span style="color: #000000">milestone_str</span><span style="color: #000000; font-weight: bold">,</span>
-        <span style="color: #000000">issues_str</span>
-    <span style="color: #000000; font-weight: bold">)</span>
-    <span style="color: #204a87; font-weight: bold">print</span><span style="color: #000000; font-weight: bold">(</span><span style="color: #000000">result</span><span style="color: #000000; font-weight: bold">)</span>
-    <span style="color: #204a87; font-weight: bold">return</span> <span style="color: #000000">result</span>
-</pre></div>
-
+    <span style="color:#000">result</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">fmt_full</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">format</span><span style="color:#000;font-weight:bold">(</span>
+        <span style="color:#000">milestone_str</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#000">issues_str</span>
+    <span style="color:#000;font-weight:bold">)</span>
+    <span style="color:#204a87;font-weight:bold">print</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">result</span><span style="color:#000;font-weight:bold">)</span>
+    <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000">result</span></code></pre></div>
 <p>You can call the function with the following command:</p>
 
 <pre><code>sprints(&lt;username&gt;, &lt;password&gt;, &lt;sprint_name&gt;)
@@ -904,7 +894,7 @@ Issues:
 
 <p>The answer can be a bit tricky but mostly straight forward.</p>
 
-<h2 id="getopt:dd7aaebbdbc744c7f56cf7dcd59142a2">getopt</h2>
+<h2 id="getopt">getopt</h2>
 
 <p>Generally, try to stay away from <strong>getopt</strong> for the following reasons:</p>
 
@@ -919,43 +909,41 @@ very hard to control</li>
 <p>The only time I could think of using <em>getopt</em> is when I really want to use a long variable name and there&rsquo;s just a single one.</p>
 
 <p>Here&rsquo;a a sample for <em>getopt</em></p>
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #8f5902; font-style: italic">#!/bin/bash</span>
-
-<span style="color: #8f5902; font-style: italic">#Check the number of arguments. If none are passed, print help and exit.</span>
-<span style="color: #000000">NUMARGS</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #000000">$#</span>
-<span style="color: #8f5902; font-style: italic"># echo -e \\n&quot;Number of arguments: $NUMARGS&quot;</span>
-<span style="color: #204a87; font-weight: bold">if</span> <span style="color: #ce5c00; font-weight: bold">[</span> <span style="color: #000000">$NUMARGS</span> -eq <span style="color: #0000cf; font-weight: bold">0</span> <span style="color: #ce5c00; font-weight: bold">]</span><span style="color: #000000; font-weight: bold">;</span> <span style="color: #204a87; font-weight: bold">then</span>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#8f5902;font-style:italic">#!/bin/bash
+</span><span style="color:#8f5902;font-style:italic"></span>
+<span style="color:#8f5902;font-style:italic">#Check the number of arguments. If none are passed, print help and exit.</span>
+<span style="color:#000">NUMARGS</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#000">$#</span>
+<span style="color:#8f5902;font-style:italic"># echo -e \\n&#34;Number of arguments: $NUMARGS&#34;</span>
+<span style="color:#204a87;font-weight:bold">if</span> <span style="color:#ce5c00;font-weight:bold">[</span> <span style="color:#000">$NUMARGS</span> -eq <span style="color:#0000cf;font-weight:bold">0</span> <span style="color:#ce5c00;font-weight:bold">]</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#204a87;font-weight:bold">then</span>
   HELP
-<span style="color: #204a87; font-weight: bold">fi</span>
+<span style="color:#204a87;font-weight:bold">fi</span>
 
-<span style="color: #000000">OPTS</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #4e9a06">`</span>getopt -o vhns: --long verbose,dry-run,help,stack-size: -n <span style="color: #4e9a06">&#39;parse-options&#39;</span> -- <span style="color: #4e9a06">&quot;</span><span style="color: #000000">$@</span><span style="color: #4e9a06">&quot;`</span>
+<span style="color:#000">OPTS</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">`</span>getopt -o vhns: --long verbose,dry-run,help,stack-size: -n <span style="color:#4e9a06">&#39;parse-options&#39;</span> -- <span style="color:#4e9a06">&#34;</span><span style="color:#000">$@</span><span style="color:#4e9a06">&#34;</span><span style="color:#4e9a06">`</span>
 
-<span style="color: #204a87">eval</span> <span style="color: #204a87">set</span> -- <span style="color: #4e9a06">&quot;</span><span style="color: #000000">$OPTS</span><span style="color: #4e9a06">&quot;</span>
+<span style="color:#204a87">eval</span> <span style="color:#204a87">set</span> -- <span style="color:#4e9a06">&#34;</span><span style="color:#000">$OPTS</span><span style="color:#4e9a06">&#34;</span>
 
-<span style="color: #204a87; font-weight: bold">while</span> getopt dir:,env: FLAG<span style="color: #000000; font-weight: bold">;</span> <span style="color: #204a87; font-weight: bold">do</span>
-  <span style="color: #204a87; font-weight: bold">case</span> <span style="color: #000000">$FLAG</span> in
-    -dir<span style="color: #ce5c00; font-weight: bold">)</span>
-      <span style="color: #000000">DIR</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #000000">$OPTARG</span>
-      <span style="color: #204a87">echo</span> <span style="color: #4e9a06">&quot;-dir used: </span><span style="color: #000000">$OPTARG</span><span style="color: #4e9a06">&quot;</span>
-      <span style="color: #000000; font-weight: bold">;;</span>
-    -env<span style="color: #ce5c00; font-weight: bold">)</span>
-      <span style="color: #000000">PYENV</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #000000">$OPTARG</span>
-      <span style="color: #204a87">echo</span> <span style="color: #4e9a06">&quot;-env used: </span><span style="color: #000000">$OPTARG</span><span style="color: #4e9a06">&quot;</span>
-      <span style="color: #000000; font-weight: bold">;;</span>
-    h<span style="color: #ce5c00; font-weight: bold">)</span>  <span style="color: #8f5902; font-style: italic">#show help</span>
+<span style="color:#204a87;font-weight:bold">while</span> getopt dir:,env: FLAG<span style="color:#000;font-weight:bold">;</span> <span style="color:#204a87;font-weight:bold">do</span>
+  <span style="color:#204a87;font-weight:bold">case</span> <span style="color:#000">$FLAG</span> in
+    -dir<span style="color:#ce5c00;font-weight:bold">)</span>
+      <span style="color:#000">DIR</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#000">$OPTARG</span>
+      <span style="color:#204a87">echo</span> <span style="color:#4e9a06">&#34;-dir used: </span><span style="color:#000">$OPTARG</span><span style="color:#4e9a06">&#34;</span>
+      <span style="color:#000;font-weight:bold">;;</span>
+    -env<span style="color:#ce5c00;font-weight:bold">)</span>
+      <span style="color:#000">PYENV</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#000">$OPTARG</span>
+      <span style="color:#204a87">echo</span> <span style="color:#4e9a06">&#34;-env used: </span><span style="color:#000">$OPTARG</span><span style="color:#4e9a06">&#34;</span>
+      <span style="color:#000;font-weight:bold">;;</span>
+    h<span style="color:#ce5c00;font-weight:bold">)</span>  <span style="color:#8f5902;font-style:italic">#show help</span>
       HELP
-      <span style="color: #000000; font-weight: bold">;;</span>
-    <span style="color: #4e9a06">\?</span><span style="color: #ce5c00; font-weight: bold">)</span> <span style="color: #8f5902; font-style: italic">#unrecognized option - show help</span>
-      <span style="color: #204a87">echo</span> -e <span style="color: #4e9a06">\\</span>n<span style="color: #4e9a06">&quot;Option -${</span><span style="color: #000000">BOLD</span><span style="color: #4e9a06">}</span><span style="color: #000000">$OPTARG</span><span style="color: #4e9a06">${</span><span style="color: #000000">NORM</span><span style="color: #4e9a06">} not allowed.&quot;</span>
+      <span style="color:#000;font-weight:bold">;;</span>
+    <span style="color:#4e9a06">\?</span><span style="color:#ce5c00;font-weight:bold">)</span> <span style="color:#8f5902;font-style:italic">#unrecognized option - show help</span>
+      <span style="color:#204a87">echo</span> -e <span style="color:#4e9a06">\\</span>n<span style="color:#4e9a06">&#34;Option -</span><span style="color:#4e9a06">${</span><span style="color:#000">BOLD</span><span style="color:#4e9a06">}</span><span style="color:#000">$OPTARG</span><span style="color:#4e9a06">${</span><span style="color:#000">NORM</span><span style="color:#4e9a06">}</span><span style="color:#4e9a06"> not allowed.&#34;</span>
       HELP
-      <span style="color: #000000; font-weight: bold">;;</span>
-  <span style="color: #204a87; font-weight: bold">esac</span>
-<span style="color: #204a87; font-weight: bold">done</span>
+      <span style="color:#000;font-weight:bold">;;</span>
+  <span style="color:#204a87;font-weight:bold">esac</span>
+<span style="color:#204a87;font-weight:bold">done</span>
 
-<span style="color: #204a87">shift</span> <span style="color: #204a87; font-weight: bold">$((</span>OPTIND-1<span style="color: #204a87; font-weight: bold">))</span>  <span style="color: #8f5902; font-style: italic">#This tells getopts to move on to the next argument.</span>
-</pre></div>
-
-<h2 id="getopts:dd7aaebbdbc744c7f56cf7dcd59142a2">getopts</h2>
+<span style="color:#204a87">shift</span> <span style="color:#204a87;font-weight:bold">$((</span>OPTIND-1<span style="color:#204a87;font-weight:bold">))</span>  <span style="color:#8f5902;font-style:italic">#This tells getopts to move on to the next argument.</span></code></pre></div>
+<h2 id="getopts">getopts</h2>
 
 <p>Whereas, <strong>getopts</strong> is:</p>
 
@@ -966,94 +954,90 @@ very hard to control</li>
 </ul>
 
 <p>Here&rsquo;s a sample for <em>getopts</em></p>
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #000000">SCRIPT</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #4e9a06">`</span>basename <span style="color: #4e9a06">${</span><span style="color: #000000">BASH_SOURCE</span><span style="color: #000000; font-weight: bold">[0]</span><span style="color: #4e9a06">}`</span>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#000">SCRIPT</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">`</span>basename <span style="color:#4e9a06">${</span><span style="color:#000">BASH_SOURCE</span><span style="color:#000;font-weight:bold">[0]</span><span style="color:#4e9a06">}</span><span style="color:#4e9a06">`</span>
 
-<span style="color: #8f5902; font-style: italic">## Let&#39;s do some admin work to find out the variables to be used here</span>
-<span style="color: #000000">BOLD</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #4e9a06">&#39;\e[1;31m&#39;</span>         <span style="color: #8f5902; font-style: italic"># Bold Red</span>
-<span style="color: #000000">REV</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #4e9a06">&#39;\e[1;32m&#39;</span>       <span style="color: #8f5902; font-style: italic"># Bold Green</span>
+<span style="color:#8f5902;font-style:italic">## Let&#39;s do some admin work to find out the variables to be used here</span>
+<span style="color:#000">BOLD</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#39;\e[1;31m&#39;</span>         <span style="color:#8f5902;font-style:italic"># Bold Red</span>
+<span style="color:#000">REV</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#39;\e[1;32m&#39;</span>       <span style="color:#8f5902;font-style:italic"># Bold Green</span>
 
-<span style="color: #8f5902; font-style: italic">#Help function</span>
-<span style="color: #204a87; font-weight: bold">function</span> HELP <span style="color: #ce5c00; font-weight: bold">{</span>
-  <span style="color: #204a87">echo</span> -e <span style="color: #4e9a06">&quot;${</span><span style="color: #000000">REV</span><span style="color: #4e9a06">}Basic usage:${</span><span style="color: #000000">OFF</span><span style="color: #4e9a06">} ${</span><span style="color: #000000">BOLD</span><span style="color: #4e9a06">}</span><span style="color: #000000">$SCRIPT</span><span style="color: #4e9a06"> -d helloworld ${</span><span style="color: #000000">OFF</span><span style="color: #4e9a06">}&quot;\\</span>n
-  <span style="color: #204a87">echo</span> -e <span style="color: #4e9a06">&quot;${</span><span style="color: #000000">REV</span><span style="color: #4e9a06">}The following switches are recognized. </span><span style="color: #000000">$OFF</span><span style="color: #4e9a06"> &quot;</span>
-  <span style="color: #204a87">echo</span> -e <span style="color: #4e9a06">&quot;${</span><span style="color: #000000">REV</span><span style="color: #4e9a06">}-p ${</span><span style="color: #000000">OFF</span><span style="color: #4e9a06">}  --Sets the environment to use for installing python ${</span><span style="color: #000000">OFF</span><span style="color: #4e9a06">}. Default is ${</span><span style="color: #000000">BOLD</span><span style="color: #4e9a06">} /usr/bin ${</span><span style="color: #000000">OFF</span><span style="color: #4e9a06">}&quot;</span>
-  <span style="color: #204a87">echo</span> -e <span style="color: #4e9a06">&quot;${</span><span style="color: #000000">REV</span><span style="color: #4e9a06">}-d ${</span><span style="color: #000000">OFF</span><span style="color: #4e9a06">}  --Sets the directory whose virtualenv is to be setup. Default is ${</span><span style="color: #000000">BOLD</span><span style="color: #4e9a06">} local folder (.) ${</span><span style="color: #000000">OFF</span><span style="color: #4e9a06">}&quot;</span>
-  <span style="color: #204a87">echo</span> -e <span style="color: #4e9a06">&quot;${</span><span style="color: #000000">REV</span><span style="color: #4e9a06">}-v ${</span><span style="color: #000000">OFF</span><span style="color: #4e9a06">}  --Sets the python version that you want to install. Default is ${</span><span style="color: #000000">BOLD</span><span style="color: #4e9a06">} 2.7 ${</span><span style="color: #000000">OFF</span><span style="color: #4e9a06">}&quot;</span>
-  <span style="color: #204a87">echo</span> -e <span style="color: #4e9a06">&quot;${</span><span style="color: #000000">REV</span><span style="color: #4e9a06">}-h${</span><span style="color: #000000">OFF</span><span style="color: #4e9a06">}  --Displays this help message. No further functions are performed.&quot;\\</span>n
-  <span style="color: #204a87">echo</span> -e <span style="color: #4e9a06">&quot;Example: ${</span><span style="color: #000000">BOLD</span><span style="color: #4e9a06">}</span><span style="color: #000000">$SCRIPT</span><span style="color: #4e9a06"> -d helloworld -p /opt/py27env/bin -v 2.7 ${</span><span style="color: #000000">OFF</span><span style="color: #4e9a06">}&quot;\\</span>n
-  <span style="color: #204a87">exit</span> 1
-<span style="color: #ce5c00; font-weight: bold">}</span>
+<span style="color:#8f5902;font-style:italic">#Help function</span>
+<span style="color:#204a87;font-weight:bold">function</span> HELP <span style="color:#ce5c00;font-weight:bold">{</span>
+  <span style="color:#204a87">echo</span> -e <span style="color:#4e9a06">&#34;</span><span style="color:#4e9a06">${</span><span style="color:#000">REV</span><span style="color:#4e9a06">}</span><span style="color:#4e9a06">Basic usage:</span><span style="color:#4e9a06">${</span><span style="color:#000">OFF</span><span style="color:#4e9a06">}</span><span style="color:#4e9a06"> </span><span style="color:#4e9a06">${</span><span style="color:#000">BOLD</span><span style="color:#4e9a06">}</span><span style="color:#000">$SCRIPT</span><span style="color:#4e9a06"> -d helloworld </span><span style="color:#4e9a06">${</span><span style="color:#000">OFF</span><span style="color:#4e9a06">}</span><span style="color:#4e9a06">&#34;</span><span style="color:#4e9a06">\\</span>n
+  <span style="color:#204a87">echo</span> -e <span style="color:#4e9a06">&#34;</span><span style="color:#4e9a06">${</span><span style="color:#000">REV</span><span style="color:#4e9a06">}</span><span style="color:#4e9a06">The following switches are recognized. </span><span style="color:#000">$OFF</span><span style="color:#4e9a06"> &#34;</span>
+  <span style="color:#204a87">echo</span> -e <span style="color:#4e9a06">&#34;</span><span style="color:#4e9a06">${</span><span style="color:#000">REV</span><span style="color:#4e9a06">}</span><span style="color:#4e9a06">-p </span><span style="color:#4e9a06">${</span><span style="color:#000">OFF</span><span style="color:#4e9a06">}</span><span style="color:#4e9a06">  --Sets the environment to use for installing python </span><span style="color:#4e9a06">${</span><span style="color:#000">OFF</span><span style="color:#4e9a06">}</span><span style="color:#4e9a06">. Default is </span><span style="color:#4e9a06">${</span><span style="color:#000">BOLD</span><span style="color:#4e9a06">}</span><span style="color:#4e9a06"> /usr/bin </span><span style="color:#4e9a06">${</span><span style="color:#000">OFF</span><span style="color:#4e9a06">}</span><span style="color:#4e9a06">&#34;</span>
+  <span style="color:#204a87">echo</span> -e <span style="color:#4e9a06">&#34;</span><span style="color:#4e9a06">${</span><span style="color:#000">REV</span><span style="color:#4e9a06">}</span><span style="color:#4e9a06">-d </span><span style="color:#4e9a06">${</span><span style="color:#000">OFF</span><span style="color:#4e9a06">}</span><span style="color:#4e9a06">  --Sets the directory whose virtualenv is to be setup. Default is </span><span style="color:#4e9a06">${</span><span style="color:#000">BOLD</span><span style="color:#4e9a06">}</span><span style="color:#4e9a06"> local folder (.) </span><span style="color:#4e9a06">${</span><span style="color:#000">OFF</span><span style="color:#4e9a06">}</span><span style="color:#4e9a06">&#34;</span>
+  <span style="color:#204a87">echo</span> -e <span style="color:#4e9a06">&#34;</span><span style="color:#4e9a06">${</span><span style="color:#000">REV</span><span style="color:#4e9a06">}</span><span style="color:#4e9a06">-v </span><span style="color:#4e9a06">${</span><span style="color:#000">OFF</span><span style="color:#4e9a06">}</span><span style="color:#4e9a06">  --Sets the python version that you want to install. Default is </span><span style="color:#4e9a06">${</span><span style="color:#000">BOLD</span><span style="color:#4e9a06">}</span><span style="color:#4e9a06"> 2.7 </span><span style="color:#4e9a06">${</span><span style="color:#000">OFF</span><span style="color:#4e9a06">}</span><span style="color:#4e9a06">&#34;</span>
+  <span style="color:#204a87">echo</span> -e <span style="color:#4e9a06">&#34;</span><span style="color:#4e9a06">${</span><span style="color:#000">REV</span><span style="color:#4e9a06">}</span><span style="color:#4e9a06">-h</span><span style="color:#4e9a06">${</span><span style="color:#000">OFF</span><span style="color:#4e9a06">}</span><span style="color:#4e9a06">  --Displays this help message. No further functions are performed.&#34;</span><span style="color:#4e9a06">\\</span>n
+  <span style="color:#204a87">echo</span> -e <span style="color:#4e9a06">&#34;Example: </span><span style="color:#4e9a06">${</span><span style="color:#000">BOLD</span><span style="color:#4e9a06">}</span><span style="color:#000">$SCRIPT</span><span style="color:#4e9a06"> -d helloworld -p /opt/py27env/bin -v 2.7 </span><span style="color:#4e9a06">${</span><span style="color:#000">OFF</span><span style="color:#4e9a06">}</span><span style="color:#4e9a06">&#34;</span><span style="color:#4e9a06">\\</span>n
+  <span style="color:#204a87">exit</span> <span style="color:#0000cf;font-weight:bold">1</span>
+<span style="color:#ce5c00;font-weight:bold">}</span>
 
-<span style="color: #000000">PYENV</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #4e9a06">&#39;/usr/bin&#39;</span>
-<span style="color: #000000">DIR</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #4e9a06">&#39;.&#39;</span>
-<span style="color: #000000">VERSION</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #4e9a06">&#39;2.7&#39;</span>
+<span style="color:#000">PYENV</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#39;/usr/bin&#39;</span>
+<span style="color:#000">DIR</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#39;.&#39;</span>
+<span style="color:#000">VERSION</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#39;2.7&#39;</span>
 
-<span style="color: #8f5902; font-style: italic"># In case you wanted to check what variables were passed</span>
-<span style="color: #8f5902; font-style: italic"># echo &quot;flags = $*&quot;</span>
+<span style="color:#8f5902;font-style:italic"># In case you wanted to check what variables were passed</span>
+<span style="color:#8f5902;font-style:italic"># echo &#34;flags = $*&#34;</span>
 
-<span style="color: #204a87; font-weight: bold">while</span> <span style="color: #204a87">getopts</span> p:d:v:h FLAG<span style="color: #000000; font-weight: bold">;</span> <span style="color: #204a87; font-weight: bold">do</span>
-  <span style="color: #204a87; font-weight: bold">case</span> <span style="color: #000000">$FLAG</span> in
-    d<span style="color: #ce5c00; font-weight: bold">)</span>
-      <span style="color: #000000">DIR</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #000000">$OPTARG</span>
-      <span style="color: #000000; font-weight: bold">;;</span>
-    p<span style="color: #ce5c00; font-weight: bold">)</span>
-      <span style="color: #000000">PYENV</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #000000">$OPTARG</span>
-      <span style="color: #000000; font-weight: bold">;;</span>
-    v<span style="color: #ce5c00; font-weight: bold">)</span>
-      <span style="color: #000000">VERSION</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #000000">$OPTARG</span>
-      <span style="color: #000000; font-weight: bold">;;</span>
-    h<span style="color: #ce5c00; font-weight: bold">)</span>
+<span style="color:#204a87;font-weight:bold">while</span> <span style="color:#204a87">getopts</span> p:d:v:h FLAG<span style="color:#000;font-weight:bold">;</span> <span style="color:#204a87;font-weight:bold">do</span>
+  <span style="color:#204a87;font-weight:bold">case</span> <span style="color:#000">$FLAG</span> in
+    d<span style="color:#ce5c00;font-weight:bold">)</span>
+      <span style="color:#000">DIR</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#000">$OPTARG</span>
+      <span style="color:#000;font-weight:bold">;;</span>
+    p<span style="color:#ce5c00;font-weight:bold">)</span>
+      <span style="color:#000">PYENV</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#000">$OPTARG</span>
+      <span style="color:#000;font-weight:bold">;;</span>
+    v<span style="color:#ce5c00;font-weight:bold">)</span>
+      <span style="color:#000">VERSION</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#000">$OPTARG</span>
+      <span style="color:#000;font-weight:bold">;;</span>
+    h<span style="color:#ce5c00;font-weight:bold">)</span>
       HELP
-      <span style="color: #000000; font-weight: bold">;;</span>
-    <span style="color: #4e9a06">\?</span><span style="color: #ce5c00; font-weight: bold">)</span> <span style="color: #8f5902; font-style: italic">#unrecognized option - show help</span>
-      <span style="color: #204a87">echo</span> -e <span style="color: #4e9a06">\\</span>n<span style="color: #4e9a06">&quot;Option -${</span><span style="color: #000000">BOLD</span><span style="color: #4e9a06">}</span><span style="color: #000000">$OPTARG</span><span style="color: #4e9a06">${</span><span style="color: #000000">OFF</span><span style="color: #4e9a06">} not allowed.&quot;</span>
+      <span style="color:#000;font-weight:bold">;;</span>
+    <span style="color:#4e9a06">\?</span><span style="color:#ce5c00;font-weight:bold">)</span> <span style="color:#8f5902;font-style:italic">#unrecognized option - show help</span>
+      <span style="color:#204a87">echo</span> -e <span style="color:#4e9a06">\\</span>n<span style="color:#4e9a06">&#34;Option -</span><span style="color:#4e9a06">${</span><span style="color:#000">BOLD</span><span style="color:#4e9a06">}</span><span style="color:#000">$OPTARG</span><span style="color:#4e9a06">${</span><span style="color:#000">OFF</span><span style="color:#4e9a06">}</span><span style="color:#4e9a06"> not allowed.&#34;</span>
       HELP
-      <span style="color: #000000; font-weight: bold">;;</span>
-  <span style="color: #204a87; font-weight: bold">esac</span>
-<span style="color: #204a87; font-weight: bold">done</span>
-</pre></div>
-
-<h2 id="what-if-i-really-wanted-long-options-with-getopts:dd7aaebbdbc744c7f56cf7dcd59142a2">What if I really wanted long options with <em>getopts</em>?</h2>
+      <span style="color:#000;font-weight:bold">;;</span>
+  <span style="color:#204a87;font-weight:bold">esac</span>
+<span style="color:#204a87;font-weight:bold">done</span></code></pre></div>
+<h2 id="what-if-i-really-wanted-long-options-with-getopts">What if I really wanted long options with <em>getopts</em>?</h2>
 
 <p><em>getopts</em> function can be used to parse long options by putting a dash character followed by a colon into the OPTSPEC.
 Sharing <a href="http://stackoverflow.com/a/7680682/142650">the solution from this link</a>.</p>
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #8f5902; font-style: italic">#!/usr/bin/env bash </span>
-<span style="color: #000000">OPTSPEC</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #4e9a06">&quot;:hv-:&quot;</span>
-<span style="color: #204a87; font-weight: bold">while</span> <span style="color: #204a87">getopts</span> <span style="color: #4e9a06">&quot;</span><span style="color: #000000">$OPTSPEC</span><span style="color: #4e9a06">&quot;</span> optchar<span style="color: #000000; font-weight: bold">;</span> <span style="color: #204a87; font-weight: bold">do</span>
-    <span style="color: #204a87; font-weight: bold">case</span> <span style="color: #4e9a06">&quot;${</span><span style="color: #000000">optchar</span><span style="color: #4e9a06">}&quot;</span> in
-        -<span style="color: #ce5c00; font-weight: bold">)</span>
-            <span style="color: #204a87; font-weight: bold">case</span> <span style="color: #4e9a06">&quot;${</span><span style="color: #000000">OPTARG</span><span style="color: #4e9a06">}&quot;</span> in
-                loglevel<span style="color: #ce5c00; font-weight: bold">)</span>
-                    <span style="color: #000000">val</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #4e9a06">&quot;${</span><span style="color: #000000; font-weight: bold">!OPTIND</span><span style="color: #4e9a06">}&quot;</span><span style="color: #000000; font-weight: bold">;</span> <span style="color: #000000">OPTIND</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #204a87; font-weight: bold">$((</span> <span style="color: #000000">$OPTIND</span> <span style="color: #ce5c00; font-weight: bold">+</span> <span style="color: #0000cf; font-weight: bold">1</span> <span style="color: #204a87; font-weight: bold">))</span>
-                    <span style="color: #204a87">echo</span> <span style="color: #4e9a06">&quot;Parsing option: &#39;--${</span><span style="color: #000000">OPTARG</span><span style="color: #4e9a06">}&#39;, value: &#39;${</span><span style="color: #000000">val</span><span style="color: #4e9a06">}&#39;&quot;</span> &gt;<span style="color: #000000; font-weight: bold">&amp;</span>2<span style="color: #000000; font-weight: bold">;</span>
-                    <span style="color: #000000; font-weight: bold">;;</span>
-                <span style="color: #000000">loglevel</span><span style="color: #ce5c00; font-weight: bold">=</span>*<span style="color: #ce5c00; font-weight: bold">)</span>
-                    <span style="color: #000000">val</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #4e9a06">${</span><span style="color: #000000">OPTARG</span><span style="color: #000000; font-weight: bold">#*=</span><span style="color: #4e9a06">}</span>
-                    <span style="color: #000000">opt</span><span style="color: #ce5c00; font-weight: bold">=</span><span style="color: #4e9a06">${</span><span style="color: #000000">OPTARG</span><span style="color: #000000; font-weight: bold">%=</span><span style="color: #000000">$val</span><span style="color: #4e9a06">}</span>
-                    <span style="color: #204a87">echo</span> <span style="color: #4e9a06">&quot;Parsing option: &#39;--${</span><span style="color: #000000">opt</span><span style="color: #4e9a06">}&#39;, value: &#39;${</span><span style="color: #000000">val</span><span style="color: #4e9a06">}&#39;&quot;</span> &gt;<span style="color: #000000; font-weight: bold">&amp;</span>2
-                    <span style="color: #000000; font-weight: bold">;;</span>
-                *<span style="color: #ce5c00; font-weight: bold">)</span>
-                    <span style="color: #204a87; font-weight: bold">if</span> <span style="color: #ce5c00; font-weight: bold">[</span> <span style="color: #4e9a06">&quot;</span><span style="color: #000000">$OPTERR</span><span style="color: #4e9a06">&quot;</span> <span style="color: #ce5c00; font-weight: bold">=</span> <span style="color: #0000cf; font-weight: bold">1</span> <span style="color: #ce5c00; font-weight: bold">]</span> <span style="color: #ce5c00; font-weight: bold">&amp;&amp;</span> <span style="color: #ce5c00; font-weight: bold">[</span> <span style="color: #4e9a06">&quot;${</span><span style="color: #000000">OPTSPEC</span><span style="color: #000000; font-weight: bold">:</span><span style="color: #000000">0</span><span style="color: #000000; font-weight: bold">:</span><span style="color: #000000">1</span><span style="color: #4e9a06">}&quot;</span> !<span style="color: #ce5c00; font-weight: bold">=</span> <span style="color: #4e9a06">&quot;:&quot;</span> <span style="color: #ce5c00; font-weight: bold">]</span><span style="color: #000000; font-weight: bold">;</span> <span style="color: #204a87; font-weight: bold">then</span>
-                        <span style="color: #204a87">echo</span> <span style="color: #4e9a06">&quot;Unknown option --${</span><span style="color: #000000">OPTARG</span><span style="color: #4e9a06">}&quot;</span> &gt;<span style="color: #000000; font-weight: bold">&amp;</span>2
-                    <span style="color: #204a87; font-weight: bold">fi</span>
-                    <span style="color: #000000; font-weight: bold">;;</span>
-            <span style="color: #204a87; font-weight: bold">esac</span><span style="color: #000000; font-weight: bold">;;</span>
-        h<span style="color: #ce5c00; font-weight: bold">)</span>
-            <span style="color: #204a87">echo</span> <span style="color: #4e9a06">&quot;usage: </span><span style="color: #000000">$0</span><span style="color: #4e9a06"> [-v] [--loglevel[=]&lt;value&gt;]&quot;</span> &gt;<span style="color: #000000; font-weight: bold">&amp;</span>2
-            <span style="color: #204a87">exit</span> 2
-            <span style="color: #000000; font-weight: bold">;;</span>
-        v<span style="color: #ce5c00; font-weight: bold">)</span>
-            <span style="color: #204a87">echo</span> <span style="color: #4e9a06">&quot;Parsing option: &#39;-${</span><span style="color: #000000">optchar</span><span style="color: #4e9a06">}&#39;&quot;</span> &gt;<span style="color: #000000; font-weight: bold">&amp;</span>2
-            <span style="color: #000000; font-weight: bold">;;</span>
-        *<span style="color: #ce5c00; font-weight: bold">)</span>
-            <span style="color: #204a87; font-weight: bold">if</span> <span style="color: #ce5c00; font-weight: bold">[</span> <span style="color: #4e9a06">&quot;</span><span style="color: #000000">$OPTERR</span><span style="color: #4e9a06">&quot;</span> !<span style="color: #ce5c00; font-weight: bold">=</span> <span style="color: #0000cf; font-weight: bold">1</span> <span style="color: #ce5c00; font-weight: bold">]</span> <span style="color: #ce5c00; font-weight: bold">||</span> <span style="color: #ce5c00; font-weight: bold">[</span> <span style="color: #4e9a06">&quot;${</span><span style="color: #000000">OPTSPEC</span><span style="color: #000000; font-weight: bold">:</span><span style="color: #000000">0</span><span style="color: #000000; font-weight: bold">:</span><span style="color: #000000">1</span><span style="color: #4e9a06">}&quot;</span> <span style="color: #ce5c00; font-weight: bold">=</span> <span style="color: #4e9a06">&quot;:&quot;</span> <span style="color: #ce5c00; font-weight: bold">]</span><span style="color: #000000; font-weight: bold">;</span> <span style="color: #204a87; font-weight: bold">then</span>
-                <span style="color: #204a87">echo</span> <span style="color: #4e9a06">&quot;Non-option argument: &#39;-${</span><span style="color: #000000">OPTARG</span><span style="color: #4e9a06">}&#39;&quot;</span> &gt;<span style="color: #000000; font-weight: bold">&amp;</span>2
-            <span style="color: #204a87; font-weight: bold">fi</span>
-            <span style="color: #000000; font-weight: bold">;;</span>
-    <span style="color: #204a87; font-weight: bold">esac</span>
-<span style="color: #204a87; font-weight: bold">done</span>
-</pre></div>
-
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#8f5902;font-style:italic">#!/usr/bin/env bash 
+</span><span style="color:#8f5902;font-style:italic"></span><span style="color:#000">OPTSPEC</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;:hv-:&#34;</span>
+<span style="color:#204a87;font-weight:bold">while</span> <span style="color:#204a87">getopts</span> <span style="color:#4e9a06">&#34;</span><span style="color:#000">$OPTSPEC</span><span style="color:#4e9a06">&#34;</span> optchar<span style="color:#000;font-weight:bold">;</span> <span style="color:#204a87;font-weight:bold">do</span>
+    <span style="color:#204a87;font-weight:bold">case</span> <span style="color:#4e9a06">&#34;</span><span style="color:#4e9a06">${</span><span style="color:#000">optchar</span><span style="color:#4e9a06">}</span><span style="color:#4e9a06">&#34;</span> in
+        -<span style="color:#ce5c00;font-weight:bold">)</span>
+            <span style="color:#204a87;font-weight:bold">case</span> <span style="color:#4e9a06">&#34;</span><span style="color:#4e9a06">${</span><span style="color:#000">OPTARG</span><span style="color:#4e9a06">}</span><span style="color:#4e9a06">&#34;</span> in
+                loglevel<span style="color:#ce5c00;font-weight:bold">)</span>
+                    <span style="color:#000">val</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;</span><span style="color:#4e9a06">${</span><span style="color:#000;font-weight:bold">!OPTIND</span><span style="color:#4e9a06">}</span><span style="color:#4e9a06">&#34;</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#000">OPTIND</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#204a87;font-weight:bold">$((</span> <span style="color:#000">$OPTIND</span> <span style="color:#ce5c00;font-weight:bold">+</span> <span style="color:#0000cf;font-weight:bold">1</span> <span style="color:#204a87;font-weight:bold">))</span>
+                    <span style="color:#204a87">echo</span> <span style="color:#4e9a06">&#34;Parsing option: &#39;--</span><span style="color:#4e9a06">${</span><span style="color:#000">OPTARG</span><span style="color:#4e9a06">}</span><span style="color:#4e9a06">&#39;, value: &#39;</span><span style="color:#4e9a06">${</span><span style="color:#000">val</span><span style="color:#4e9a06">}</span><span style="color:#4e9a06">&#39;&#34;</span> &gt;<span style="color:#000;font-weight:bold">&amp;</span><span style="color:#0000cf;font-weight:bold">2</span><span style="color:#000;font-weight:bold">;</span>
+                    <span style="color:#000;font-weight:bold">;;</span>
+                <span style="color:#000">loglevel</span><span style="color:#ce5c00;font-weight:bold">=</span>*<span style="color:#ce5c00;font-weight:bold">)</span>
+                    <span style="color:#000">val</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">${</span><span style="color:#000">OPTARG</span><span style="color:#000;font-weight:bold">#*=</span><span style="color:#4e9a06">}</span>
+                    <span style="color:#000">opt</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">${</span><span style="color:#000">OPTARG</span><span style="color:#000;font-weight:bold">%=</span><span style="color:#000">$val</span><span style="color:#4e9a06">}</span>
+                    <span style="color:#204a87">echo</span> <span style="color:#4e9a06">&#34;Parsing option: &#39;--</span><span style="color:#4e9a06">${</span><span style="color:#000">opt</span><span style="color:#4e9a06">}</span><span style="color:#4e9a06">&#39;, value: &#39;</span><span style="color:#4e9a06">${</span><span style="color:#000">val</span><span style="color:#4e9a06">}</span><span style="color:#4e9a06">&#39;&#34;</span> &gt;<span style="color:#000;font-weight:bold">&amp;</span><span style="color:#0000cf;font-weight:bold">2</span>
+                    <span style="color:#000;font-weight:bold">;;</span>
+                *<span style="color:#ce5c00;font-weight:bold">)</span>
+                    <span style="color:#204a87;font-weight:bold">if</span> <span style="color:#ce5c00;font-weight:bold">[</span> <span style="color:#4e9a06">&#34;</span><span style="color:#000">$OPTERR</span><span style="color:#4e9a06">&#34;</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#0000cf;font-weight:bold">1</span> <span style="color:#ce5c00;font-weight:bold">]</span> <span style="color:#ce5c00;font-weight:bold">&amp;&amp;</span> <span style="color:#ce5c00;font-weight:bold">[</span> <span style="color:#4e9a06">&#34;</span><span style="color:#4e9a06">${</span><span style="color:#000">OPTSPEC</span><span style="color:#000;font-weight:bold">:</span><span style="color:#000">0</span><span style="color:#000;font-weight:bold">:</span><span style="color:#000">1</span><span style="color:#4e9a06">}</span><span style="color:#4e9a06">&#34;</span> !<span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#4e9a06">&#34;:&#34;</span> <span style="color:#ce5c00;font-weight:bold">]</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#204a87;font-weight:bold">then</span>
+                        <span style="color:#204a87">echo</span> <span style="color:#4e9a06">&#34;Unknown option --</span><span style="color:#4e9a06">${</span><span style="color:#000">OPTARG</span><span style="color:#4e9a06">}</span><span style="color:#4e9a06">&#34;</span> &gt;<span style="color:#000;font-weight:bold">&amp;</span><span style="color:#0000cf;font-weight:bold">2</span>
+                    <span style="color:#204a87;font-weight:bold">fi</span>
+                    <span style="color:#000;font-weight:bold">;;</span>
+            <span style="color:#204a87;font-weight:bold">esac</span><span style="color:#000;font-weight:bold">;;</span>
+        h<span style="color:#ce5c00;font-weight:bold">)</span>
+            <span style="color:#204a87">echo</span> <span style="color:#4e9a06">&#34;usage: </span><span style="color:#000">$0</span><span style="color:#4e9a06"> [-v] [--loglevel[=]&lt;value&gt;]&#34;</span> &gt;<span style="color:#000;font-weight:bold">&amp;</span><span style="color:#0000cf;font-weight:bold">2</span>
+            <span style="color:#204a87">exit</span> <span style="color:#0000cf;font-weight:bold">2</span>
+            <span style="color:#000;font-weight:bold">;;</span>
+        v<span style="color:#ce5c00;font-weight:bold">)</span>
+            <span style="color:#204a87">echo</span> <span style="color:#4e9a06">&#34;Parsing option: &#39;-</span><span style="color:#4e9a06">${</span><span style="color:#000">optchar</span><span style="color:#4e9a06">}</span><span style="color:#4e9a06">&#39;&#34;</span> &gt;<span style="color:#000;font-weight:bold">&amp;</span><span style="color:#0000cf;font-weight:bold">2</span>
+            <span style="color:#000;font-weight:bold">;;</span>
+        *<span style="color:#ce5c00;font-weight:bold">)</span>
+            <span style="color:#204a87;font-weight:bold">if</span> <span style="color:#ce5c00;font-weight:bold">[</span> <span style="color:#4e9a06">&#34;</span><span style="color:#000">$OPTERR</span><span style="color:#4e9a06">&#34;</span> !<span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#0000cf;font-weight:bold">1</span> <span style="color:#ce5c00;font-weight:bold">]</span> <span style="color:#ce5c00;font-weight:bold">||</span> <span style="color:#ce5c00;font-weight:bold">[</span> <span style="color:#4e9a06">&#34;</span><span style="color:#4e9a06">${</span><span style="color:#000">OPTSPEC</span><span style="color:#000;font-weight:bold">:</span><span style="color:#000">0</span><span style="color:#000;font-weight:bold">:</span><span style="color:#000">1</span><span style="color:#4e9a06">}</span><span style="color:#4e9a06">&#34;</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#4e9a06">&#34;:&#34;</span> <span style="color:#ce5c00;font-weight:bold">]</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#204a87;font-weight:bold">then</span>
+                <span style="color:#204a87">echo</span> <span style="color:#4e9a06">&#34;Non-option argument: &#39;-</span><span style="color:#4e9a06">${</span><span style="color:#000">OPTARG</span><span style="color:#4e9a06">}</span><span style="color:#4e9a06">&#39;&#34;</span> &gt;<span style="color:#000;font-weight:bold">&amp;</span><span style="color:#0000cf;font-weight:bold">2</span>
+            <span style="color:#204a87;font-weight:bold">fi</span>
+            <span style="color:#000;font-weight:bold">;;</span>
+    <span style="color:#204a87;font-weight:bold">esac</span>
+<span style="color:#204a87;font-weight:bold">done</span></code></pre></div>
       
     </div>
     
@@ -1075,18 +1059,16 @@ parameters. However, since there are so many of them, it is very difficult to vi
 and find out what value was assigned to it. I wanted to make it easier on the eyes and decided to color code the
 parameters and separate them out from the values.
 Here&rsquo;s the bash function I pulled out.</p>
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>colorme<span style="color: #ce5c00; font-weight: bold">()</span>
-<span style="color: #ce5c00; font-weight: bold">{</span>
-  gawk <span style="color: #4e9a06">&#39;BEGIN {RS=&quot; --| -&quot;; }{print $0}&#39;</span> <span style="color: #4e9a06">\</span>
-  <span style="color: #000000; font-weight: bold">|</span> sed -e <span style="color: #4e9a06">&#39;s/\([[:alpha:]]\+\)=/\1 /g&#39;</span> <span style="color: #4e9a06">\</span>
-  <span style="color: #000000; font-weight: bold">|</span> gawk <span style="color: #4e9a06">&#39;BEGIN    {printf &quot;-----------------\n&quot; ; }</span>
-<span style="color: #4e9a06">            {</span>
-<span style="color: #4e9a06">                if (NF &gt; 2) printf &quot;\n\033[41;5;1m%s\033[0m\n&quot;, $NF ;</span>
-<span style="color: #4e9a06">                printf &quot;\033[40;38;5;82m  %30s  \033[38;5;198m %s \033[0m \n&quot;, $1, $2</span>
-<span style="color: #4e9a06">            }&#39;</span>
-<span style="color: #ce5c00; font-weight: bold">}</span>
-</pre></div>
-
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">colorme<span style="color:#ce5c00;font-weight:bold">()</span>
+<span style="color:#ce5c00;font-weight:bold">{</span>
+  gawk <span style="color:#4e9a06">&#39;BEGIN {RS=&#34; --| -&#34;; }{print $0}&#39;</span> <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>  <span style="color:#000;font-weight:bold">|</span> sed -e <span style="color:#4e9a06">&#39;s/\([[:alpha:]]\+\)=/\1 /g&#39;</span> <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>  <span style="color:#000;font-weight:bold">|</span> gawk <span style="color:#4e9a06">&#39;BEGIN    {printf &#34;-----------------\n&#34; ; }
+</span><span style="color:#4e9a06">            {
+</span><span style="color:#4e9a06">                if (NF &gt; 2) printf &#34;\n\033[41;5;1m%s\033[0m\n&#34;, $NF ;
+</span><span style="color:#4e9a06">                printf &#34;\033[40;38;5;82m  %30s  \033[38;5;198m %s \033[0m \n&#34;, $1, $2
+</span><span style="color:#4e9a06">            }&#39;</span>
+<span style="color:#ce5c00;font-weight:bold">}</span></code></pre></div>
 <p>The idea is as follows:</p>
 
 <ul>
@@ -1099,30 +1081,18 @@ Here&rsquo;s the bash function I pulled out.</p>
 </ul>
 
 <p>Here is a sample command I wanted to test out.</p>
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>/opt/py27env/bin/python manage.py main-service-name --daemonize <span style="color: #4e9a06">\</span>
-    --alias-svc<span style="color: #ce5c00; font-weight: bold">=</span>mainsvc01 --application-id<span style="color: #ce5c00; font-weight: bold">=</span>app03/mainsvc01 --monitoring-service-name<span style="color: #ce5c00; font-weight: bold">=</span>mainsvc01 <span style="color: #4e9a06">\</span>
-    --log-level<span style="color: #ce5c00; font-weight: bold">=</span>DEBUG --solace-session-prop-host<span style="color: #ce5c00; font-weight: bold">=</span>server.prod --solace-session-prop-username<span style="color: #ce5c00; font-weight: bold">=</span>testing <span style="color: #4e9a06">\</span>
-    --solace-session-prop-password<span style="color: #ce5c00; font-weight: bold">=</span>testing --solace-session-prop-vpn<span style="color: #ce5c00; font-weight: bold">=</span>testing <span style="color: #4e9a06">\</span>
-    --solace-session-prop-cache-name<span style="color: #ce5c00; font-weight: bold">=</span>test_dc <span style="color: #4e9a06">\</span>
-    --rate<span style="color: #ce5c00; font-weight: bold">=</span>10
-</pre></div>
-
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">/opt/py27env/bin/python manage.py main-service-name --daemonize <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>    --alias-svc<span style="color:#ce5c00;font-weight:bold">=</span>mainsvc01 --application-id<span style="color:#ce5c00;font-weight:bold">=</span>app03/mainsvc01 --monitoring-service-name<span style="color:#ce5c00;font-weight:bold">=</span>mainsvc01 <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>    --log-level<span style="color:#ce5c00;font-weight:bold">=</span>DEBUG --solace-session-prop-host<span style="color:#ce5c00;font-weight:bold">=</span>server.prod --solace-session-prop-username<span style="color:#ce5c00;font-weight:bold">=</span>testing <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>    --solace-session-prop-password<span style="color:#ce5c00;font-weight:bold">=</span>testing --solace-session-prop-vpn<span style="color:#ce5c00;font-weight:bold">=</span>testing <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>    --solace-session-prop-cache-name<span style="color:#ce5c00;font-weight:bold">=</span>test_dc <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>    --rate<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#0000cf;font-weight:bold">10</span></code></pre></div>
 <p>Here is the result from my tests:
-
-<figure >
-    
-        <img src="/images/bash_process_color_coding_1.png" alt="Color coded process listing" />
-    
-    
-    <figcaption>
-        <p>
-        Color coded process listing
-        
-            
-        
-        </p> 
-    </figcaption>
-    
+<figure>
+    <img src="/images/bash_process_color_coding_1.png"
+         alt="Color coded process listing"/> <figcaption>
+            <p>Color coded process listing</p>
+        </figcaption>
 </figure>
 </p>
 
@@ -1151,18 +1121,12 @@ seems overly complicated for a job that is easily achieved by pip.</p>
 <p>Let&rsquo;s look at how to use <code>pip</code> for local installation.
 Firstly, it is possible to install all requirements beforehand in a separate directory.
  We can use the following commands:</p>
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>pip install --download DIR -r requirements.txt
-</pre></div>
-
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">pip install --download DIR -r requirements.txt</code></pre></div>
 <p>If you prefer wheel, then use the following:</p>
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>pip wheel --wheel-dir DIR -r requirements.txt
-</pre></div>
-
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">pip wheel --wheel-dir DIR -r requirements.txt</code></pre></div>
 <p>Now, when we want to install from this given directory <code>DIR</code>, then
 the following command can help:</p>
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>pip install --no-index --find-links<span style="color: #ce5c00; font-weight: bold">=</span>DIR -r requirements.txt
-</pre></div>
-
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">pip install --no-index --find-links<span style="color:#ce5c00;font-weight:bold">=</span>DIR -r requirements.txt</code></pre></div>
 <p>If you are using these in a current setup and you feel it still slows you down then the reason would be
 one of the first few commands where the request is still going to the internet.
 If you want to speed up the whole process then perhaps you need to send out a request to the internet
@@ -1175,9 +1139,7 @@ just leading onto <code>pip install --no-index</code></p>
 in the project, whether a new requirement has been added to that list. In that case, install it + update your local copy.</p>
 
 <p>Here&rsquo;s a sample code to put all changes in a single line that you can feed into <code>pip install</code></p>
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>sdiff -s /tmp/1 /tmp/2 <span style="color: #000000; font-weight: bold">|</span> sed -e <span style="color: #4e9a06">&#39;s/&lt;//g&#39;</span> <span style="color: #000000; font-weight: bold">|</span> awk <span style="color: #4e9a06">&#39;BEGIN {ORS=&quot; &quot;} {print $1}&#39;</span>
-</pre></div>
-
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sdiff -s /tmp/1 /tmp/2 <span style="color:#000;font-weight:bold">|</span> sed -e <span style="color:#4e9a06">&#39;s/&lt;//g&#39;</span> <span style="color:#000;font-weight:bold">|</span> awk <span style="color:#4e9a06">&#39;BEGIN {ORS=&#34; &#34;} {print $1}&#39;</span></code></pre></div>
 <p>Breaking it down:</p>
 
 <ul>
@@ -1193,161 +1155,102 @@ in the project, whether a new requirement has been added to that list. In that c
       
     </div>
     
-    <div class="post">
-      <h1 class="post-title">
-        <a href="http://abhipandey.com/2016/01/angularjs-2.0-building-blocks-explained/">AngularJS 2.0 building blocks explained</a>
-      </h1>
-      <span class="post-date">Jan 3, 2016  &middot; <a href="http://abhipandey.com/2016/01/angularjs-2.0-building-blocks-explained/#disqus_thread">Comments</a>
-      
-      <br/>
-      <a class="a_cat" href="http://abhipandey.com/categories/code">code</a>
-        
-      <a class="a_tag" href="http://abhipandey.com/tags/angularjs">angularjs</a><a class="a_tag" href="http://abhipandey.com/tags/javascript">javascript</a>
     
-      </span>
-      
-      
 
-<p>Let&rsquo;s explain the eight building blocks of any Angular 2 app:</p>
-
-<ol>
-<li>Module</li>
-<li>Component</li>
-<li>Template</li>
-<li>Metadata</li>
-<li>Data Binding</li>
-<li>Directive</li>
-<li>Service</li>
-<li>Dependency Injection</li>
-</ol>
-
-<h1 id="module:ac9495c8eabea9a6ff20ce0b92d45cca">Module</h1>
-
-<ul>
-<li>Optional feature</li>
-<li>Useful if you are using TypeScript which allows you to use <code>interface</code> or <code>classes</code></li>
-<li><code>export class AppComponent</code> is like saying that this class is going to be public</li>
-<li>Use relative file paths for importing modules</li>
+<ul class="pagination">
+    
+    <li class="page-item">
+        <a href="/" class="page-link" aria-label="First"><span aria-hidden="true">&laquo;&laquo;</span></a>
+    </li>
+    
+    <li class="page-item disabled">
+    <a href="" class="page-link" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
+    </li>
+    
+    
+    
+    
+    
+    
+        
+        
+    
+    
+    <li class="page-item active"><a class="page-link" href="/">1</a></li>
+    
+    
+    
+    
+    
+    
+        
+        
+    
+    
+    <li class="page-item"><a class="page-link" href="/page/2/">2</a></li>
+    
+    
+    
+    
+    
+    
+        
+        
+    
+    
+    <li class="page-item"><a class="page-link" href="/page/3/">3</a></li>
+    
+    
+    
+    
+    
+    
+        
+        
+    
+    
+    <li class="page-item disabled"><span aria-hidden="true">&nbsp;&hellip;&nbsp;</span></li>
+    
+    
+    
+    
+    
+    
+        
+        
+    
+    
+    
+    
+    
+    
+    
+        
+        
+    
+    
+    
+    
+    
+    
+    
+        
+        
+    
+    
+    <li class="page-item"><a class="page-link" href="/page/7/">7</a></li>
+    
+    
+    <li class="page-item">
+    <a href="/page/2/" class="page-link" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
+    </li>
+    
+    <li class="page-item">
+        <a href="/page/7/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+    </li>
+    
 </ul>
 
-<p>Component class is something you&rsquo;d export from a module.</p>
-
-<h1 id="component:ac9495c8eabea9a6ff20ce0b92d45cca">Component</h1>
-
-<p>Components controls Views</p>
-
-<ul>
-<li>Logic to support the view can be inside a class</li>
-<li>Angular creates/destroys components as user moves through UI</li>
-</ul>
-
-<h1 id="template:ac9495c8eabea9a6ff20ce0b92d45cca">Template</h1>
-
-<p>A form of HTML that describes how to render the Component. It looks mostly like HTML syntax except if you add Angular keywords in them.</p>
-
-<h1 id="metadata:ac9495c8eabea9a6ff20ce0b92d45cca">Metadata</h1>
-
-<p>Some <strong><em><code>@Component</code></em></strong> configuration options:</p>
-
-<ul>
-<li><code>selector</code>: css selector to be applied to that html element</li>
-<li><code>templateUrl</code>: address of the component itself</li>
-<li><code>directives</code>: array of components/directives that this component itself requires to function properly</li>
-<li><code>providers</code>: an array of <em>dependency injection providers</em> for <em>services</em></li>
-</ul>
-
-<h1 id="data-binding:ac9495c8eabea9a6ff20ce0b92d45cca">Data Binding</h1>
-
-<p>Following are the four possible ways of data binding:</p>
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #000000; font-weight: bold">&lt;</span><span style="color: #204a87; font-weight: bold">div</span><span style="color: #000000; font-weight: bold">&gt;</span>{{hero.name}}<span style="color: #000000; font-weight: bold">&lt;/</span><span style="color: #204a87; font-weight: bold">div</span><span style="color: #000000; font-weight: bold">&gt;</span>
-<span style="color: #000000; font-weight: bold">&lt;</span><span style="color: #204a87; font-weight: bold">hero-detail</span> <span style="color: #a40000; border: 1px solid #ef2929">[</span><span style="color: #c4a000">hero</span><span style="color: #a40000; border: 1px solid #ef2929">]=&quot;</span><span style="color: #c4a000">selectedHero</span><span style="color: #a40000; border: 1px solid #ef2929">&quot;</span><span style="color: #000000; font-weight: bold">&gt;&lt;/</span><span style="color: #204a87; font-weight: bold">hero-detail</span><span style="color: #000000; font-weight: bold">&gt;</span>
-<span style="color: #000000; font-weight: bold">&lt;</span><span style="color: #204a87; font-weight: bold">div</span> <span style="color: #a40000; border: 1px solid #ef2929">(</span><span style="color: #c4a000">click</span><span style="color: #a40000; border: 1px solid #ef2929">)=&quot;</span><span style="color: #c4a000">selectHero</span><span style="color: #a40000; border: 1px solid #ef2929">(</span><span style="color: #c4a000">hero</span><span style="color: #a40000; border: 1px solid #ef2929">)&quot;</span><span style="color: #000000; font-weight: bold">&gt;&lt;/</span><span style="color: #204a87; font-weight: bold">div</span><span style="color: #000000; font-weight: bold">&gt;</span>
-<span style="color: #000000; font-weight: bold">&lt;</span><span style="color: #204a87; font-weight: bold">input</span> <span style="color: #a40000; border: 1px solid #ef2929">[(</span><span style="color: #c4a000">ngModel</span><span style="color: #a40000; border: 1px solid #ef2929">)]=&quot;</span><span style="color: #c4a000">hero</span><span style="color: #a40000; border: 1px solid #ef2929">.</span><span style="color: #c4a000">name</span><span style="color: #a40000; border: 1px solid #ef2929">&quot;</span><span style="color: #000000; font-weight: bold">&gt;</span>
-</pre></div>
-
-<ol>
-<li>The &ldquo;interpolation&rdquo; displays the component&rsquo;s hero.name property value within the <div> tags</li>
-<li>The <code>[hero]</code> property binding passes the <code>selectedHero</code> from the parent <code>HeroListComponent</code> to the hero property of the child <code>HeroDetailComponent</code></li>
-<li>The <code>(click)</code> event binding calls the Component&rsquo;s <code>selectHero</code> method when the user clicks on a hero&rsquo;s name</li>
-<li>Two way data binding combines property and event binding in a single notation using <code>ngModel</code> directive</li>
-</ol>
-
-<h1 id="directive:ac9495c8eabea9a6ff20ce0b92d45cca">Directive</h1>
-
-<p>Class with directive metadata. Even Components are directives - directive with templates.
-Two other examples are:</p>
-
-<ol>
-<li><code>Structural</code>: They alter layout by adding, removing, and replacing elements in DOM</li>
-<li><code>Attributes</code>: Attribute directives alter the appearance or behavior of an existing element. In templates they look like regular HTML attributes, hence the name</li>
-</ol>
-
-<p><strong>Example:</strong></p>
-
-<p>The <code>ngModel</code> directive, which implements two-way data binding, is an example of an attribute directive.</p>
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #000000; font-weight: bold">&lt;</span><span style="color: #204a87; font-weight: bold">input</span> <span style="color: #a40000; border: 1px solid #ef2929">[(</span><span style="color: #c4a000">ngModel</span><span style="color: #a40000; border: 1px solid #ef2929">)]=&quot;</span><span style="color: #c4a000">hero</span><span style="color: #a40000; border: 1px solid #ef2929">.</span><span style="color: #c4a000">name</span><span style="color: #a40000; border: 1px solid #ef2929">&quot;</span><span style="color: #000000; font-weight: bold">&gt;</span>
-</pre></div>
-
-<p><strong>Other examples:</strong> ngSwitch, ngStyle, ngClass</p>
-
-<h1 id="service:ac9495c8eabea9a6ff20ce0b92d45cca">Service</h1>
-
-<p>It can be any value, function or feature that works well.</p>
-
-<h1 id="dependency-injection:ac9495c8eabea9a6ff20ce0b92d45cca">Dependency Injection</h1>
-
-<p>A way to supply a new class instance with all the requirements. In TypeScript this can be achieved by providing everything inside the constructor.</p>
-
-<p>An <code>Injector</code> maintains a list of service instances it has created previously so that it can reuse those if needed. The way it achieves this is by utilizing <code>provider</code> which is used within each <code>Component</code>.</p>
-
-      
-    </div>
-    
-    
-    
-    <ul class="pagination">
-        
-        <li>
-            <a href="/" aria-label="First"><span aria-hidden="true">&laquo;&laquo;</span></a>
-        </li>
-        
-        <li
-        class="disabled">
-        <a href="" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
-        </li>
-        
-        <li
-        class="active"><a href="/">1</a></li>
-        
-        <li
-        ><a href="/page/2/">2</a></li>
-        
-        <li
-        ><a href="/page/3/">3</a></li>
-        
-        <li
-        ><a href="/page/4/">4</a></li>
-        
-        <li
-        ><a href="/page/5/">5</a></li>
-        
-        <li
-        ><a href="/page/6/">6</a></li>
-        
-        <li
-        ><a href="/page/7/">7</a></li>
-        
-        <li
-        >
-        <a href="/page/2/" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
-        </li>
-        
-        <li>
-            <a href="/page/7/" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
-        </li>
-        
-    </ul>
-    
   </div>
 </div>
 

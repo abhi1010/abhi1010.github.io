@@ -106,10 +106,10 @@
 <ul>
 <li>
 <ul>
-<li><a href="#when-to-use-64-bit:781115a00a27c6c773035866d9644c43">When to use 64-bit?</a></li>
-<li><a href="#when-to-use-32-bit:781115a00a27c6c773035866d9644c43">When to use 32-bit?</a></li>
-<li><a href="#when-to-not-use-64-bit:781115a00a27c6c773035866d9644c43">When to not use 64-bit?</a></li>
-<li><a href="#summary:781115a00a27c6c773035866d9644c43">Summary</a></li>
+<li><a href="#when-to-use-64-bit">When to use 64-bit?</a></li>
+<li><a href="#when-to-use-32-bit">When to use 32-bit?</a></li>
+<li><a href="#when-to-not-use-64-bit">When to not use 64-bit?</a></li>
+<li><a href="#summary">Summary</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -117,7 +117,7 @@
       </div>
     
 
-<h3 id="when-to-use-64-bit:781115a00a27c6c773035866d9644c43">When to use 64-bit?</h3>
+<h3 id="when-to-use-64-bit">When to use 64-bit?</h3>
 
 <p>If your application needs more than 2-4gb of data</p>
 
@@ -127,15 +127,15 @@
 <li>x64 supports 16 registers compared to just 8 in x86. If your code is computation intensive this may help a great deal</li>
 </ul>
 
-<h3 id="when-to-use-32-bit:781115a00a27c6c773035866d9644c43">When to use 32-bit?</h3>
+<h3 id="when-to-use-32-bit">When to use 32-bit?</h3>
 
 <p>After reading so many great things about 32 bit, why would anybody still want to code against 32-bit? Simple reason - code compiled in 32-bit takes lesser memory. For example, a pointer in 64-bit machine is 8 bytes compared to 4 bytes with 32-bit. Now imagine how many pointers do you have going around in your code?</p>
 
-<h3 id="when-to-not-use-64-bit:781115a00a27c6c773035866d9644c43">When to not use 64-bit?</h3>
+<h3 id="when-to-not-use-64-bit">When to not use 64-bit?</h3>
 
 <p>Sometimes if your code is running on a machine that does not have too much of space then it is a never a great idea to use 64-bit compilation because the same task can probably be done much better using 32-bit version. L2 and L3 caches will be utilized a lot more in 64-bit code (and a lot earlier as well) compared to 32-bit; on such systems.</p>
 
-<h3 id="summary:781115a00a27c6c773035866d9644c43">Summary</h3>
+<h3 id="summary">Summary</h3>
 
 <p>Always benchmark your code and ensure that the application actually needs more than 2-4Gb of space.</p>
 

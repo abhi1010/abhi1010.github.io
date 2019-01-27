@@ -108,17 +108,13 @@
 Since <code>EC2</code> needs to manage the <code>docker</code> environment and serve the web interface as well, it does so by having another <code>nginx</code> instance to serve the <code>nginx</code> within <code>docker</code>.
 Hence, if you had to modify the <code>nginx</code> settings to allow bigger uploads, <strong>you&rsquo;d have to modify the settings for <code>nginx</code> on both - <code>docker</code> as well as <code>EC2</code></strong>.</p>
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>    <span style="color: #8f5902; font-style: italic"># max upload size</span>
-    <span style="color: #000000">client_max_body_size</span> <span style="color: #0000cf; font-weight: bold">10</span><span style="color: #000000">M</span><span style="color: #000000; font-weight: bold">;</span>   <span style="color: #8f5902; font-style: italic"># adjust to your liking</span>
-</pre></div>
-
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">    <span style="color:#8f5902;font-style:italic"># max upload size</span>
+    <span style="color:#000">client_max_body_size</span> <span style="color:#0000cf;font-weight:bold">10</span><span style="color:#000">M</span><span style="color:#000;font-weight:bold">;</span>   <span style="color:#8f5902;font-style:italic"># adjust to your liking</span></code></pre></div>
 
 <p>Also, if you don&rsquo;t want to have any limit at all for uploads, then just change the <code>client_max_body_size</code> to 0.</p>
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>    <span style="color: #8f5902; font-style: italic"># max upload size</span>
-    <span style="color: #000000">client_max_body_size</span> <span style="color: #0000cf; font-weight: bold">0</span><span style="color: #000000; font-weight: bold">;</span>
-</pre></div>
-
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">    <span style="color:#8f5902;font-style:italic"># max upload size</span>
+    <span style="color:#000">client_max_body_size</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">;</span></code></pre></div>
 
   </div>
   <div id="disqus_thread"></div>

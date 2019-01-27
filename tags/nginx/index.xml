@@ -7,7 +7,9 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 04 Sep 2015 00:14:35 +0800</lastBuildDate>
-    <atom:link href="http://abhipandey.com/tags/nginx/index.xml" rel="self" type="application/rss+xml" />
+    
+	<atom:link href="http://abhipandey.com/tags/nginx/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>Nginx Upload limits on Beanstalk Docker</title>
@@ -15,24 +17,9 @@
       <pubDate>Fri, 04 Sep 2015 00:14:35 +0800</pubDate>
       
       <guid>http://abhipandey.com/2015/09/nginx-upload-limits-on-beanstalk-docker/</guid>
-      <description>&lt;p&gt;If I am not wrong, &lt;code&gt;nginx&lt;/code&gt; only allows you to upload up till max 2Mb of data by default. If you are doing a &lt;code&gt;docker&lt;/code&gt; deployment on &lt;code&gt;beanstalk&lt;/code&gt; you may to remember to change that not once but twice!&lt;/p&gt;
-
-&lt;p&gt;As you may know already, &lt;code&gt;beanstalk&lt;/code&gt; creates an &lt;code&gt;EC2&lt;/code&gt; instance to manage the &lt;code&gt;docker&lt;/code&gt; environment.&lt;br /&gt;
-Since &lt;code&gt;EC2&lt;/code&gt; needs to manage the &lt;code&gt;docker&lt;/code&gt; environment and serve the web interface as well, it does so by having another &lt;code&gt;nginx&lt;/code&gt; instance to serve the &lt;code&gt;nginx&lt;/code&gt; within &lt;code&gt;docker&lt;/code&gt;.
-Hence, if you had to modify the &lt;code&gt;nginx&lt;/code&gt; settings to allow bigger uploads, &lt;strong&gt;you&amp;rsquo;d have to modify the settings for &lt;code&gt;nginx&lt;/code&gt; on both - &lt;code&gt;docker&lt;/code&gt; as well as &lt;code&gt;EC2&lt;/code&gt;&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;    &lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;# max upload size&lt;/span&gt;
-    &lt;span style=&#34;color: #000000&#34;&gt;client_max_body_size&lt;/span&gt; &lt;span style=&#34;color: #0000cf; font-weight: bold&#34;&gt;10&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;M&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;;&lt;/span&gt;   &lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;# adjust to your liking&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;Also, if you don&amp;rsquo;t want to have any limit at all for uploads, then just change the &lt;code&gt;client_max_body_size&lt;/code&gt; to 0.&lt;/p&gt;
-
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;    &lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;# max upload size&lt;/span&gt;
-    &lt;span style=&#34;color: #000000&#34;&gt;client_max_body_size&lt;/span&gt; &lt;span style=&#34;color: #0000cf; font-weight: bold&#34;&gt;0&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;;&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-</description>
+      <description>If I am not wrong, nginx only allows you to upload up till max 2Mb of data by default. If you are doing a docker deployment on beanstalk you may to remember to change that not once but twice!
+As you may know already, beanstalk creates an EC2 instance to manage the docker environment.
+Since EC2 needs to manage the docker environment and serve the web interface as well, it does so by having another nginx instance to serve the nginx within docker.</description>
     </item>
     
     <item>
@@ -41,29 +28,8 @@ Hence, if you had to modify the &lt;code&gt;nginx&lt;/code&gt; settings to allow
       <pubDate>Fri, 14 Aug 2015 00:19:51 +0800</pubDate>
       
       <guid>http://abhipandey.com/2015/08/sharing-folders-on-beanstalk-docker/</guid>
-      <description>&lt;p&gt;It is very easy to setup volume sharing in &lt;code&gt;docker&lt;/code&gt;. You ideally want the following folders to be shared when a new &lt;code&gt;docker&lt;/code&gt; is initialized for you:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;/var/log&lt;/code&gt; so that you can keep track of logs&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;nginx&lt;/code&gt; specific folders because you will have two instances of &lt;code&gt;nginx&lt;/code&gt; running - one on &lt;code&gt;docker&lt;/code&gt; and another on &lt;code&gt;EC2&lt;/code&gt;. This allows you to share logs
-
-&lt;ul&gt;
-&lt;li&gt;Also read &lt;a href=&#34;http://abhipandey.com/2015/09/nginx-upload-limits-on-beanstalk-docker/&#34;&gt;this post&lt;/a&gt; for related info&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;your personal workspace or anything that you&amp;rsquo;d like to share&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Here&amp;rsquo;s how you&amp;rsquo;d do it. The keyword is &lt;code&gt;VOLUME&lt;/code&gt;&amp;hellip; in your &lt;code&gt;Dockerfile&lt;/code&gt;&lt;/p&gt;
-
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;VOLUME&lt;/span&gt; &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;[&lt;/span&gt; \
-    &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;/var/shared/&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt; \ 
-    &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;/etc/nginx/sites-enabled&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt; \ 
-    &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;/var/log/nginx&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt; \
-    &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;/ws/&amp;quot;&lt;/span&gt; \
-&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;]&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-</description>
+      <description>It is very easy to setup volume sharing in docker. You ideally want the following folders to be shared when a new docker is initialized for you:
+ /var/log so that you can keep track of logs nginx specific folders because you will have two instances of nginx running - one on docker and another on EC2. This allows you to share logs  Also read this post for related info  your personal workspace or anything that you&amp;rsquo;d like to share  Here&amp;rsquo;s how you&amp;rsquo;d do it.</description>
     </item>
     
   </channel>

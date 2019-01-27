@@ -7,7 +7,9 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 22 Sep 2013 08:48:00 +0000</lastBuildDate>
-    <atom:link href="http://abhipandey.com/tags/sql/index.xml" rel="self" type="application/rss+xml" />
+    
+	<atom:link href="http://abhipandey.com/tags/sql/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>Oracle SQL Queries</title>
@@ -15,40 +17,9 @@
       <pubDate>Sun, 22 Sep 2013 08:48:00 +0000</pubDate>
       
       <guid>http://abhipandey.com/2013/09/oracle-sql-queries/</guid>
-      <description>&lt;p&gt;Recently I found myself in a situation where I had to view all the tables in the Oracle Server.&lt;/p&gt;
-
-&lt;p&gt;I did some digging and came up with these helpful queries.&lt;/p&gt;
-
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;Query&lt;/th&gt;
-&lt;th&gt;Remarks&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;Select * from All_Tables&lt;/td&gt;
-&lt;td&gt;View all the tables in the Oracle Server&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;Select * from all_Views&lt;/td&gt;
-&lt;td&gt;View all the views in the Oracle Server&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;DESC table&lt;/td&gt;
-&lt;td&gt;View all the columns of a given table. This function is used instead of the previous one mostly, but when this one doesn&amp;rsquo;t work make sure you try the other one - I bet it will work.&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;Here&amp;rsquo;s a short code for viewing all the columns of a given table.&lt;/p&gt;
-
-&lt;script type=&#34;text/javascript&#34; src=&#34;http://gist.github.com/11365686.js&#34;&gt;&lt;/script&gt;
-</description>
+      <description>Recently I found myself in a situation where I had to view all the tables in the Oracle Server.
+I did some digging and came up with these helpful queries.
+   Query Remarks     Select * from All_Tables View all the tables in the Oracle Server   Select * from all_Views View all the views in the Oracle Server   DESC table View all the columns of a given table.</description>
     </item>
     
     <item>
@@ -57,12 +28,9 @@
       <pubDate>Tue, 11 Mar 2008 07:55:00 +0000</pubDate>
       
       <guid>http://abhipandey.com/2008/03/how-to-protect-from-sql-injections-in-asp.net/</guid>
-      <description>&lt;p&gt;Some good links to figure out how to save your code&amp;rsquo;s ass from being thrashed by SQL Injections&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;http://msdn2.microsoft.com/en-us/library/ms998271.aspx#paght000002_step2&#34;&gt;http://msdn2.microsoft.com/en-us/library/ms998271.aspx#paght000002_step2&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;http://msdn2.microsoft.com/en-us/library/bb355989.aspx#paght000003_step4&#34;&gt;http://msdn2.microsoft.com/en-us/library/bb355989.aspx#paght000003_step4&lt;/a&gt;&lt;/p&gt;
-</description>
+      <description>Some good links to figure out how to save your code&amp;rsquo;s ass from being thrashed by SQL Injections
+http://msdn2.microsoft.com/en-us/library/ms998271.aspx#paght000002_step2
+http://msdn2.microsoft.com/en-us/library/bb355989.aspx#paght000003_step4</description>
     </item>
     
     <item>
@@ -71,22 +39,10 @@
       <pubDate>Sat, 08 Mar 2008 10:26:00 +0000</pubDate>
       
       <guid>http://abhipandey.com/2008/03/blogs-i-like/</guid>
-      <description>&lt;p&gt;Two blogs i really like and follow many a times are:&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;SqlAuthority.com&#34;&gt;SqlAuthority.com&lt;/a&gt; - Excellent blog for Sql Server 2005. The guy has a very in-depth knowledge of Sql Server and I appreciate the way&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;http://weblogs.asp.net/scottgu&#34;&gt;Scott&amp;rsquo;s Blog&lt;/a&gt; - Another great blog where Scott Guthrie talks quite a bit about ASP.NET and tells the latest details coming in from Microsoft.&lt;/p&gt;
-
-&lt;p&gt;Just today I found another interesting blog. This guy talks about the interesting aspects in programming.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;http://blogs.msdn.com/ericlippert/default.aspx&#34;&gt;http://blogs.msdn.com/ericlippert/default.aspx&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;http://blogs.msdn.com/brada/&#34;&gt;http://blogs.msdn.com/brada/&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Following is an interesting link that talks about a lot of topics.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;http://weblogs.asp.net/scottgu/archive/2008/01/24/jan-24th-links-asp-net-asp-net-ajax-visual-studio-net-iis.aspx&#34;&gt;http://weblogs.asp.net/scottgu/archive/2008/01/24/jan-24th-links-asp-net-asp-net-ajax-visual-studio-net-iis.aspx&lt;/a&gt;&lt;/p&gt;
-</description>
+      <description>Two blogs i really like and follow many a times are:
+SqlAuthority.com - Excellent blog for Sql Server 2005. The guy has a very in-depth knowledge of Sql Server and I appreciate the way
+Scott&amp;rsquo;s Blog - Another great blog where Scott Guthrie talks quite a bit about ASP.NET and tells the latest details coming in from Microsoft.
+Just today I found another interesting blog. This guy talks about the interesting aspects in programming.</description>
     </item>
     
     <item>
@@ -95,39 +51,14 @@
       <pubDate>Wed, 06 Feb 2008 19:34:00 +0000</pubDate>
       
       <guid>http://abhipandey.com/2008/02/membership-and-profiler-in-asp.net/</guid>
-      <description>&lt;p&gt;Whenever you are using Sql Membership and Profiler classes -
-Trying to generate reports make sure your query&amp;rsquo;s WHERE clause is using &amp;ldquo;indexed&amp;rdquo; column names at least.&lt;/p&gt;
-
-&lt;p&gt;Let&amp;rsquo;s look at some of the more used tables. The index of some of the tables is given below:&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Table: aspnet_membership&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;Clustered Index = &lt;code&gt;ApplicationID&lt;/code&gt;, &lt;code&gt;LoweredEmail&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;NonClustered = UserID&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;strong&gt;Table: aspnet_users&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;Clustered Index = &lt;code&gt;ApplicationID&lt;/code&gt;, &lt;code&gt;LoweredUserName&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;NonClustered Index = &lt;code&gt;ApplicationID&lt;/code&gt;, &lt;code&gt;LastActivityDate&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Primary Key = &lt;code&gt;UserID&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;strong&gt;Table: aspnet_Profile&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Clustered Index = &lt;code&gt;UserID&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;blockquote&gt;
-Bottomline - try to use ApplicationID in your queries otherwise your queries, for sure, will not run over the index at all and make it slow. This comes in effect if you are expecting high volume.
-&lt;/blockquote&gt;
-</description>
+      <description>Whenever you are using Sql Membership and Profiler classes - Trying to generate reports make sure your query&amp;rsquo;s WHERE clause is using &amp;ldquo;indexed&amp;rdquo; column names at least.
+Let&amp;rsquo;s look at some of the more used tables. The index of some of the tables is given below:
+Table: aspnet_membership
+ Clustered Index = ApplicationID, LoweredEmail
+ NonClustered = UserID
+  Table: aspnet_users
+ Clustered Index = ApplicationID, LoweredUserName
+ NonClustered Index = ApplicationID, LastActivityDate</description>
     </item>
     
   </channel>

@@ -102,9 +102,9 @@
       <div id="_toc" class="toc">
         <nav id="TableOfContents">
 <ul>
-<li><a href="#setting-up-supervisord:8ef139736ad377184214844940ced19b">Setting up <code>supervisord</code></a></li>
-<li><a href="#updating-the-source-code:8ef139736ad377184214844940ced19b">Updating the source code</a></li>
-<li><a href="#telling-uwsgi-about-the-updated-source-code:8ef139736ad377184214844940ced19b">Telling <code>uwsgi</code> about the updated source code</a></li>
+<li><a href="#setting-up-supervisord">Setting up <code>supervisord</code></a></li>
+<li><a href="#updating-the-source-code">Updating the source code</a></li>
+<li><a href="#telling-uwsgi-about-the-updated-source-code">Telling <code>uwsgi</code> about the updated source code</a></li>
 </ul>
 </nav>
       </div>
@@ -112,7 +112,7 @@
 
 <p>While deploying docker multiple times, you may not want to copy over your <code>Django</code> source code every time you do a deployment.</p>
 
-<h1 id="setting-up-supervisord:8ef139736ad377184214844940ced19b">Setting up <code>supervisord</code></h1>
+<h1 id="setting-up-supervisord">Setting up <code>supervisord</code></h1>
 
 <p>Luckily there is an easy way to manage this. Since you are working with <code>Django</code>, there is a good chance that you are also managing the processes (like <code>uwsgi</code>) with <code>supervisord</code>.</p>
 
@@ -130,16 +130,14 @@
 
 <p>Here&rsquo;s a sample code:</p>
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>    <span style="color: #ce5c00; font-weight: bold">[</span>program:source-updater<span style="color: #ce5c00; font-weight: bold">]</span>
-    <span style="color: #000000">redirect_stderr</span> <span style="color: #ce5c00; font-weight: bold">=</span> <span style="color: #204a87">true</span>
-    <span style="color: #000000">stdout_logfile</span> <span style="color: #ce5c00; font-weight: bold">=</span> /shared/source_code_updater.log
-    <span style="color: #000000">directory</span> <span style="color: #ce5c00; font-weight: bold">=</span> /ws/
-    <span style="color: #204a87">command</span> <span style="color: #ce5c00; font-weight: bold">=</span> /ws/source_code_updater.sh
-    <span style="color: #000000">autorestart</span><span style="color: #ce5c00; font-weight: bold">=</span>False
-</pre></div>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">    <span style="color:#ce5c00;font-weight:bold">[</span>program:source-updater<span style="color:#ce5c00;font-weight:bold">]</span>
+    <span style="color:#000">redirect_stderr</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#204a87">true</span>
+    <span style="color:#000">stdout_logfile</span> <span style="color:#ce5c00;font-weight:bold">=</span> /shared/source_code_updater.log
+    <span style="color:#000">directory</span> <span style="color:#ce5c00;font-weight:bold">=</span> /ws/
+    <span style="color:#204a87">command</span> <span style="color:#ce5c00;font-weight:bold">=</span> /ws/source_code_updater.sh
+    <span style="color:#000">autorestart</span><span style="color:#ce5c00;font-weight:bold">=</span>False</code></pre></div>
 
-
-<h1 id="updating-the-source-code:8ef139736ad377184214844940ced19b">Updating the source code</h1>
+<h1 id="updating-the-source-code">Updating the source code</h1>
 
 <p>Few things are important to note in a <code>docker</code> deployment:</p>
 
@@ -155,24 +153,20 @@
 
 <p>With that idea, do a checkout and update the source code according to specific tag:</p>
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>    git checkout -f tags/your_tag_name
-    git pull origin tags/your_tag_name
-</pre></div>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">    git checkout -f tags/your_tag_name
+    git pull origin tags/your_tag_name</code></pre></div>
 
-
-<h1 id="telling-uwsgi-about-the-updated-source-code:8ef139736ad377184214844940ced19b">Telling <code>uwsgi</code> about the updated source code</h1>
+<h1 id="telling-uwsgi-about-the-updated-source-code">Telling <code>uwsgi</code> about the updated source code</h1>
 
 <p>Once you have updated your source code, you need to re-load the project onto <code>uwsgi</code> so that <code>nginx</code> or <code>apache</code> can pick it up.
 The simplest way to achieve it using the config parameter of <code>uwsgi</code>: <code>--touch-reload</code>. It will <em>reload uWSGI if the specified file is modified/touched</em></p>
 
 <p>Just remember to setup <code>supervisord</code> in your <code>Dockerfile</code> with this config parameter.</p>
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #ce5c00; font-weight: bold">[</span>program:app-uwsgi<span style="color: #ce5c00; font-weight: bold">]</span>
-<span style="color: #000000">redirect_stderr</span> <span style="color: #ce5c00; font-weight: bold">=</span> <span style="color: #204a87">true</span>
-<span style="color: #000000">stdout_logfile</span> <span style="color: #ce5c00; font-weight: bold">=</span> /var/shared/_uwsgi.log
-<span style="color: #204a87">command</span> <span style="color: #ce5c00; font-weight: bold">=</span> /ws/ve_envs/rwv2/bin/uwsgi --touch-reload<span style="color: #ce5c00; font-weight: bold">=</span>/ws/wsgi.ini --ini /ws/wsgi.ini
-</pre></div>
-
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#ce5c00;font-weight:bold">[</span>program:app-uwsgi<span style="color:#ce5c00;font-weight:bold">]</span>
+<span style="color:#000">redirect_stderr</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#204a87">true</span>
+<span style="color:#000">stdout_logfile</span> <span style="color:#ce5c00;font-weight:bold">=</span> /var/shared/_uwsgi.log
+<span style="color:#204a87">command</span> <span style="color:#ce5c00;font-weight:bold">=</span> /ws/ve_envs/rwv2/bin/uwsgi --touch-reload<span style="color:#ce5c00;font-weight:bold">=</span>/ws/wsgi.ini --ini /ws/wsgi.ini</code></pre></div>
 
 <p>You can choose any file. I choose <code>uwsgi.ini</code> because the contents never really need to change in it.</p>
 

@@ -6,8 +6,20 @@
     <description>Recent content in Bash on Coders Digest</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 07 Jul 2016 23:26:44 +0800</lastBuildDate>
-    <atom:link href="http://abhipandey.com/tags/bash/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 13 Nov 2016 00:33:29 +0800</lastBuildDate>
+    
+	<atom:link href="http://abhipandey.com/tags/bash/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Adding launcher shortcut in Fedora</title>
+      <link>http://abhipandey.com/2016/11/adding-launcher-shortcut-in-fedora/</link>
+      <pubDate>Sun, 13 Nov 2016 00:33:29 +0800</pubDate>
+      
+      <guid>http://abhipandey.com/2016/11/adding-launcher-shortcut-in-fedora/</guid>
+      <description>Many apps do not come pre-built in rpm format for Fedora so you&amp;rsquo;d have to download the tar file for it. To run the app, you would have to go to the saved folder and then either double cilck or run the command through command line. By default, that app won&amp;rsquo;t be accessible through the Super key&amp;rsquo;s universal search or as a regular application in *Show Applications.
+Fortunately, there&amp;rsquo;s a way around and it is an easy one.</description>
+    </item>
     
     <item>
       <title>Systemd tutorial</title>
@@ -15,130 +27,9 @@
       <pubDate>Thu, 07 Jul 2016 23:26:44 +0800</pubDate>
       
       <guid>http://abhipandey.com/2016/07/systemd-tutorial/</guid>
-      <description>
-
-&lt;p&gt;&lt;code&gt;Systemd&lt;/code&gt; usually requires two files:&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;service file&lt;/li&gt;
-&lt;li&gt;timer file&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h2 id=&#34;service-files:53e68713291c95ac35204af0e42c2530&#34;&gt;Service files&lt;/h2&gt;
-
-&lt;p&gt;Here you provide the details you&amp;rsquo;d use to&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Start/stop a service&lt;/li&gt;
-&lt;li&gt;Define the type of service
-
-&lt;ul&gt;
-&lt;li&gt;Can be &lt;em&gt;simple&lt;/em&gt;, &lt;em&gt;forking&lt;/em&gt;, &lt;em&gt;oneshot&lt;/em&gt;, &lt;em&gt;dbus&lt;/em&gt;, &lt;em&gt;notify&lt;/em&gt; or &lt;em&gt;idle&lt;/em&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;How to kill the service&lt;/li&gt;
-&lt;li&gt;Ability to restart&lt;/li&gt;
-&lt;li&gt;Path for starting up&lt;/li&gt;
-&lt;li&gt;Timeout for the service startup or shutdown&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Service is usually made up of 3 sections:&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;Unit&lt;/li&gt;
-&lt;li&gt;Service&lt;/li&gt;
-&lt;li&gt;Install
-
-&lt;ul&gt;
-&lt;li&gt;Usually prefer &lt;code&gt;multi-user.target&lt;/code&gt; for your installation&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;One example is as follows:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;[Unit]
-Description=Foo
-
-[Service]
-ExecStart=/usr/sbin/foo-daemon
-
-[Install]
-WantedBy=multi-user.target
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Here&amp;rsquo;s what your regular &lt;code&gt;Service&lt;/code&gt; section would look like:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;User=&amp;lt;YOUR_LINUX_ACCOUNT&amp;gt;
-Group=&amp;lt;YOUR_LINUX_GROUP&amp;gt;
-WorkingDirectory=&amp;lt;PROJECT_FOLDER&amp;gt;
-Type=forking
-KillMode=process
-Restart=always
-ExecStart=&amp;lt;COMMAND_TO_START&amp;gt;
-ExecStop=&amp;lt;COMMAND_TO_STOP&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;timers:53e68713291c95ac35204af0e42c2530&#34;&gt;Timers&lt;/h2&gt;
-
-&lt;p&gt;Timer files contain information about a timer controlled and
-supervised by systemd, for timer-based activation.
-This is possibly a better replacement for cron jobs.
-However, the changes are a bit different.&lt;/p&gt;
-
-&lt;p&gt;To set up a timer, you need the following options:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;em&gt;OnActiveSec&lt;/em&gt;&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;OnBootSec&lt;/em&gt;&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;OnStartupSec&lt;/em&gt;&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;OnUnitActiveSec&lt;/em&gt;&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;OnUnitInactiveSec&lt;/em&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;They all help you set up your timers relative to different starting points.&lt;/p&gt;
-
-&lt;p&gt;Some other options you could use are:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;em&gt;OnCalendar&lt;/em&gt;
-
-&lt;ul&gt;
-&lt;li&gt;This is your friend if you are looking for cron job replacement
-Please check the references below to look for some samples on how to set up
-your cron jobs in the correct format. It is not exactly same as cron job styles&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;AccuracySec&lt;/em&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Based on the timer, how close to the actual time should this timer wake up&lt;/li&gt;
-&lt;li&gt;Use the value of 1us to be the smallest and most accurate&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;Persistent&lt;/em&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Maybe you want to save the information about the timestamps whenever
-the service is shutting down. In that case, the information will be saved
-on the hard disk. It will be used along with boot and active &lt;em&gt;sec&lt;/em&gt; information.&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Here&amp;rsquo;s one simple sample for setting a timer&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;[Timer]
-AccuracySec=1us
-Persistent=false
-OnBootSec=80
-OnCalendar=*:0/20
-Unit=myjob.service
-
-[Install]
-WantedBy=timers.target
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;some-references:53e68713291c95ac35204af0e42c2530&#34;&gt;Some references:&lt;/h2&gt;
-
-&lt;p&gt;&lt;a href=&#34;https://wiki.archlinux.org/index.php/Systemd/Timers&#34;&gt;https://wiki.archlinux.org/index.php/Systemd/Timers&lt;/a&gt;
-&lt;a href=&#34;https://www.certdepot.net/rhel7-use-systemd-timers/&#34;&gt;https://www.certdepot.net/rhel7-use-systemd-timers/&lt;/a&gt;&lt;/p&gt;
-</description>
+      <description>Systemd usually requires two files:
+ service file timer file  Service files Here you provide the details you&amp;rsquo;d use to
+ Start/stop a service Define the type of service  Can be simple, forking, oneshot, dbus, notify or idle  How to kill the service Ability to restart Path for starting up Timeout for the service startup or shutdown  Service is usually made up of 3 sections:</description>
     </item>
     
     <item>
@@ -147,194 +38,8 @@ WantedBy=timers.target
       <pubDate>Wed, 22 Jun 2016 21:17:56 +0800</pubDate>
       
       <guid>http://abhipandey.com/2016/06/using-todo-in-fedora/</guid>
-      <description>
-
-&lt;p&gt;I recently started using Fedora for work and had to manage a lot of tasks on various projects.
-The list was big enough and there&amp;rsquo;s no proper support for Evernote in linux, my trusty todo list manager
-or ToDo list manager by AbstractSpoon. Decided to try post-it notes but my list was changing on an
-ad-hoc basis. Finally came across an &lt;a href=&#34;https://extensions.gnome.org/extension/570/todotxt/&#34;&gt;extension Todo.txt&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;Turned out this was just what I was looking for. I started putting all of my tasks in it, with proper categorization.
-Behind the scenes it is an extremely simple app which has only two files, both saved in &lt;code&gt;~/.local/share/todo.txt/&lt;/code&gt; folder.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;done.txt&lt;/li&gt;
-&lt;li&gt;todo.txt&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;The tasks are initially put as simple text in &lt;strong&gt;todo.txt&lt;/strong&gt; and are moved to &lt;strong&gt;done.txt&lt;/strong&gt; once marked complete.
-It is extremely useful that todo.txt app has UI as well as the files which are user friendly.&lt;/p&gt;
-
-&lt;h2 id=&#34;finding-tasks-completed-in-the-last-week:45bde4e2871e2b6baf64650e1fb2e828&#34;&gt;Finding tasks completed in the last week&lt;/h2&gt;
-
-&lt;p&gt;During weekly meetings I found it difficult to mention all the tasks that
-I had been working on for the whole of the previous week. Thinking about todo
-tasks, I thought of using a bash script to print out the tasks from the last
- 8 days. After all, the files did contain a whole long list of tasks.&lt;/p&gt;
-
-&lt;p&gt;Here was the idea that I had in mind:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Read &lt;strong&gt;done.txt&lt;/strong&gt; and &lt;strong&gt;todo.txt&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;Highlight the tasks differently from both files so it&amp;rsquo;s easy to
-see what has been completed already
-
-&lt;ul&gt;
-&lt;li&gt;Chose green color for done and red for todo&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;Highlight the categories differently - chose yellow&lt;/li&gt;
-&lt;li&gt;Show all the tasks completed in the last 8 days
-
-&lt;ul&gt;
-&lt;li&gt;Also provide the option to chose any number of days&lt;/li&gt;
-&lt;li&gt;Helps on those days when I wanna see more than 8 days&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;Show all the tasks in todo&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Here&amp;rsquo;s the script for that:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;todos&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;()&lt;/span&gt;
-&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;{&lt;/span&gt;
-    &lt;span style=&#34;color: #000000&#34;&gt;TODOFILE&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;~/.local/share/todo.txt/todo.txt
-    &lt;span style=&#34;color: #000000&#34;&gt;DONEFILE&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;~/.local/share/todo.txt/done.txt
-    &lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;# echo $TODOFILE&lt;/span&gt;
-    &lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;# echo $DONEFILE &amp;quot;\n&amp;quot;&lt;/span&gt;
-
-    lastXdays&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;()&lt;/span&gt;
-    &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;{&lt;/span&gt;
-        search&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;()&lt;/span&gt;•
-        &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;{&lt;/span&gt;
-            &lt;span style=&#34;color: #000000&#34;&gt;DAY&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;$1&lt;/span&gt;
-            cat &lt;span style=&#34;color: #000000&#34;&gt;$TODOFILE&lt;/span&gt; &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;GREP_COLOR&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;1;31&amp;quot;&lt;/span&gt; grep --color&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;always &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39; [a-Z[].*&amp;#39;&lt;/span&gt; &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;GREP_COLOR&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;3;33&amp;quot;&lt;/span&gt; grep --color&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;always  &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;\+.*&amp;quot;&lt;/span&gt;
-            egrep &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;$(&lt;/span&gt;date &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;+%Y-%m-%d&amp;#39;&lt;/span&gt; --date&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;$DAY&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39; days ago&amp;#39;&lt;/span&gt;&lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;)&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;$DONEFILE&lt;/span&gt; &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;GREP_COLOR&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;1;32&amp;quot;&lt;/span&gt; grep --color&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;always &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39; [a-Z].*&amp;#39;&lt;/span&gt; &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;GREP_COLOR&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;03;33&amp;quot;&lt;/span&gt; grep --color&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;always  &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;\+.*&amp;quot;&lt;/span&gt;
-        &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;}&lt;/span&gt;
-        &lt;span style=&#34;color: #000000&#34;&gt;END&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;$1&lt;/span&gt;
-        &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;for&lt;/span&gt; i in &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;$(&lt;/span&gt;seq &lt;span style=&#34;color: #0000cf; font-weight: bold&#34;&gt;0&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;$END&lt;/span&gt;&lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;)&lt;/span&gt;
-            &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;do&lt;/span&gt;
-                search &lt;span style=&#34;color: #000000&#34;&gt;$i&lt;/span&gt;
-            &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;done&lt;/span&gt;
-
-    &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;}&lt;/span&gt;
-    &lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;# First arg, if given, or default value of 8&lt;/span&gt;
-    &lt;span style=&#34;color: #000000&#34;&gt;DAYS&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;${&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;1&lt;/span&gt;&lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;:-&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;8&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;}&lt;/span&gt;
-    lastXdays &lt;span style=&#34;color: #000000&#34;&gt;$DAYS&lt;/span&gt; &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; sort -u
-&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;}&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;Now, when I run this command, it gives me the following:&lt;/p&gt;
-
-
-&lt;figure &gt;
-    
-        &lt;img src=&#34;http://abhipandey.com/images/todo-in-fedora.png&#34; alt=&#34;My TODOs&#34; /&gt;
-    
-    
-    &lt;figcaption&gt;
-        &lt;p&gt;
-        My TODOs
-        
-            
-        
-        &lt;/p&gt; 
-    &lt;/figcaption&gt;
-    
-&lt;/figure&gt;
-
-
-&lt;h2 id=&#34;sharing-the-tasks:45bde4e2871e2b6baf64650e1fb2e828&#34;&gt;Sharing the tasks&lt;/h2&gt;
-
-&lt;p&gt;I work with different teams which means sharing with them the latest updates
-on different days of the week. I used to run my &lt;code&gt;todos&lt;/code&gt; command on bash
-before going for the meeting but I realized this was getting very mundane and
-I was spending a lot of time remembering the tasks I had done.&lt;/p&gt;
-
-&lt;p&gt;I decided to make it easy by sharing the tasks with the rest of the team
-automatically. Enter &lt;code&gt;crontab&lt;/code&gt; and &lt;em&gt;python&amp;rsquo;s&lt;/em&gt; &lt;code&gt;invoke&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;Here are the steps we will need:&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;Setup cronjob&lt;/li&gt;
-&lt;li&gt;Cron job will call upon a bash script&lt;/li&gt;
-&lt;li&gt;Bash script will call &lt;em&gt;python&lt;/em&gt;&amp;rsquo;s invoke
-
-&lt;ul&gt;
-&lt;li&gt;Here we call upon a bash script to provide us the results of &lt;code&gt;todos&lt;/code&gt;
-in bash and then use that to send an email based on the &lt;code&gt;--mailgroup&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;Simply taking the output of &lt;code&gt;todos&lt;/code&gt; in &lt;em&gt;bash&lt;/em&gt; will give us a lot of
-unreadable characters. Especially the ones where we try and color code
-the response so it&amp;rsquo;s easy on the eyes - &lt;strong&gt;3;33&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;You can install &lt;code&gt;aha&lt;/code&gt; to convert the ANSI terminal colors to html color
-codes. This way when we mail the contents to team members, it will display
-properly.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h3 id=&#34;crontab:45bde4e2871e2b6baf64650e1fb2e828&#34;&gt;crontab&lt;/h3&gt;
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #0000cf; font-weight: bold&#34;&gt;45&lt;/span&gt; &lt;span style=&#34;color: #0000cf; font-weight: bold&#34;&gt;09&lt;/span&gt; * * &lt;span style=&#34;color: #0000cf; font-weight: bold&#34;&gt;1&lt;/span&gt; /usr/bin/bash /PATH_TO_BASH_SCRIPT/crons.sh --mailgroup&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;&amp;lt;TEAM_MAIL&amp;gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;h3 id=&#34;crons-sh:45bde4e2871e2b6baf64650e1fb2e828&#34;&gt;crons.sh&lt;/h3&gt;
-
-&lt;p&gt;The &lt;code&gt;crons.sh&lt;/code&gt; itself is really simple, which calls upon the &lt;code&gt;invoke&lt;/code&gt; task:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;# ----- crons.sh --------&lt;/span&gt;
-&lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;# Activate the virtual env&lt;/span&gt;
-&lt;span style=&#34;color: #204a87&#34;&gt;source&lt;/span&gt; ~/code/venvs/ve_opt/bin/activate
-
-&lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;# Go to the directory containing the invoke script&lt;/span&gt;
-&lt;span style=&#34;color: #204a87&#34;&gt;cd&lt;/span&gt; ~/code/scripts/
-
-&lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;# Run the invoke, pass the cmd line params, as is (which means mailgroup)&lt;/span&gt;
-inv share_todos &lt;span style=&#34;color: #000000&#34;&gt;$*&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;h3 id=&#34;tasks-py:45bde4e2871e2b6baf64650e1fb2e828&#34;&gt;tasks.py&lt;/h3&gt;
-
-&lt;p&gt;Now it is time for contents of &lt;code&gt;invoke&lt;/code&gt;&amp;rsquo;s &lt;strong&gt;tasks.py&lt;/strong&gt;.
-We want to ensure that the font is big enough.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #5c35cc; font-weight: bold&#34;&gt;@task&lt;/span&gt;
-&lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;share_todos&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;mailgroup&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;):&lt;/span&gt;
-    &lt;span style=&#34;color: #000000&#34;&gt;process_out&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;subprocess&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;check_output&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;([&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;/FULL_PATH_TO/_htmltodos.sh&amp;#39;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;])&lt;/span&gt;\
-        &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;replace&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;&amp;lt;body&amp;gt;&amp;#39;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt;
-                 &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;&amp;lt;body style=&amp;quot;font-weight:900; font-size:1.3em;&amp;quot;&amp;gt;&amp;#39;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;)&lt;/span&gt;
-    &lt;span style=&#34;color: #000000&#34;&gt;mail&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;(&lt;/span&gt;
-        &lt;span style=&#34;color: #000000&#34;&gt;process_out&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt;
-        &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;My todos @ {}&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;format&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;datetime&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;datetime&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;now&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;()&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;strftime&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;%c&amp;#39;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;)),&lt;/span&gt;
-        &lt;span style=&#34;color: #000000&#34;&gt;mailgroup&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;h3 id=&#34;htmltodos-sh:45bde4e2871e2b6baf64650e1fb2e828&#34;&gt;_htmltodos.sh&lt;/h3&gt;
-
-&lt;p&gt;We will use &lt;code&gt;aha&lt;/code&gt; to convert the ANSI terminal colors to html color codes.
-Also, we will replace some color codes that &lt;code&gt;aha&lt;/code&gt; creates because
-it is not really nice looking.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;#!/usr/bin/bash&lt;/span&gt;
-&lt;span style=&#34;color: #204a87&#34;&gt;source&lt;/span&gt; ~/.bashrc
-
-todos &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; /usr/local/bin/aha &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; sed -e &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;s/color:olive/color:DeepSkyBlue; font-style:italic;/g&amp;#39;&lt;/span&gt; -e &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;s/color:green;/color:LimeGreen;/g&amp;#39;&lt;/span&gt; -e &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;s/&amp;lt;pre&amp;gt;/&amp;lt;pre style=&amp;quot;color:gray;&amp;quot;&amp;gt;/g&amp;#39;&lt;/span&gt;
-&lt;span style=&#34;color: #204a87&#34;&gt;exit&lt;/span&gt; 0
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;h3 id=&#34;the-result:45bde4e2871e2b6baf64650e1fb2e828&#34;&gt;The result&lt;/h3&gt;
-
-
-&lt;figure &gt;
-    
-        &lt;img src=&#34;http://abhipandey.com/images/todo-in-email.png&#34; alt=&#34;The email look&#34; /&gt;
-    
-    
-    &lt;figcaption&gt;
-        &lt;p&gt;
-        The email look
-        
-            
-        
-        &lt;/p&gt; 
-    &lt;/figcaption&gt;
-    
-&lt;/figure&gt;
-
-</description>
+      <description>I recently started using Fedora for work and had to manage a lot of tasks on various projects. The list was big enough and there&amp;rsquo;s no proper support for Evernote in linux, my trusty todo list manager or ToDo list manager by AbstractSpoon. Decided to try post-it notes but my list was changing on an ad-hoc basis. Finally came across an extension Todo.txt.
+Turned out this was just what I was looking for.</description>
     </item>
     
     <item>
@@ -343,162 +48,10 @@ todos &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&g
       <pubDate>Fri, 18 Mar 2016 20:20:21 +0800</pubDate>
       
       <guid>http://abhipandey.com/2016/03/getopt-vs-getopts/</guid>
-      <description>
-
-&lt;p&gt;Should you use &lt;code&gt;getopt&lt;/code&gt; or &lt;code&gt;getopts&lt;/code&gt; in your bash scripts?&lt;/p&gt;
-
-&lt;p&gt;The answer can be a bit tricky but mostly straight forward.&lt;/p&gt;
-
-&lt;h2 id=&#34;getopt:dd7aaebbdbc744c7f56cf7dcd59142a2&#34;&gt;getopt&lt;/h2&gt;
-
-&lt;p&gt;Generally, try to stay away from &lt;strong&gt;getopt&lt;/strong&gt; for the following reasons:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;External utility&lt;/li&gt;
-&lt;li&gt;Traditional versions can&amp;rsquo;t handle empty argument strings, or arguments with embedded whitespace&lt;/li&gt;
-&lt;li&gt;For the loops to work perfectly, you must provide the values in the same sequence as the for loop itself; which is
-very hard to control&lt;/li&gt;
-&lt;li&gt;Mostly a way to standardize the parameters&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;The only time I could think of using &lt;em&gt;getopt&lt;/em&gt; is when I really want to use a long variable name and there&amp;rsquo;s just a single one.&lt;/p&gt;
-
-&lt;p&gt;Here&amp;rsquo;a a sample for &lt;em&gt;getopt&lt;/em&gt;&lt;/p&gt;
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;#!/bin/bash&lt;/span&gt;
-
-&lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;#Check the number of arguments. If none are passed, print help and exit.&lt;/span&gt;
-&lt;span style=&#34;color: #000000&#34;&gt;NUMARGS&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;$#&lt;/span&gt;
-&lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;# echo -e \\n&amp;quot;Number of arguments: $NUMARGS&amp;quot;&lt;/span&gt;
-&lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;[&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;$NUMARGS&lt;/span&gt; -eq &lt;span style=&#34;color: #0000cf; font-weight: bold&#34;&gt;0&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;]&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;;&lt;/span&gt; &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;then&lt;/span&gt;
-  HELP
-&lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;fi&lt;/span&gt;
-
-&lt;span style=&#34;color: #000000&#34;&gt;OPTS&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;`&lt;/span&gt;getopt -o vhns: --long verbose,dry-run,help,stack-size: -n &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;parse-options&amp;#39;&lt;/span&gt; -- &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;$@&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;`&lt;/span&gt;
-
-&lt;span style=&#34;color: #204a87&#34;&gt;eval&lt;/span&gt; &lt;span style=&#34;color: #204a87&#34;&gt;set&lt;/span&gt; -- &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;$OPTS&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;&lt;/span&gt;
-
-&lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;while&lt;/span&gt; getopt dir:,env: FLAG&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;;&lt;/span&gt; &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;do&lt;/span&gt;
-  &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;case&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;$FLAG&lt;/span&gt; in
-    -dir&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;)&lt;/span&gt;
-      &lt;span style=&#34;color: #000000&#34;&gt;DIR&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;$OPTARG&lt;/span&gt;
-      &lt;span style=&#34;color: #204a87&#34;&gt;echo&lt;/span&gt; &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;-dir used: &lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;$OPTARG&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;&lt;/span&gt;
-      &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;;;&lt;/span&gt;
-    -env&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;)&lt;/span&gt;
-      &lt;span style=&#34;color: #000000&#34;&gt;PYENV&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;$OPTARG&lt;/span&gt;
-      &lt;span style=&#34;color: #204a87&#34;&gt;echo&lt;/span&gt; &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;-env used: &lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;$OPTARG&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;&lt;/span&gt;
-      &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;;;&lt;/span&gt;
-    h&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;)&lt;/span&gt;  &lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;#show help&lt;/span&gt;
-      HELP
-      &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;;;&lt;/span&gt;
-    &lt;span style=&#34;color: #4e9a06&#34;&gt;\?&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;)&lt;/span&gt; &lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;#unrecognized option - show help&lt;/span&gt;
-      &lt;span style=&#34;color: #204a87&#34;&gt;echo&lt;/span&gt; -e &lt;span style=&#34;color: #4e9a06&#34;&gt;\\&lt;/span&gt;n&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;Option -${&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;BOLD&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;}&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;$OPTARG&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;${&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;NORM&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;} not allowed.&amp;quot;&lt;/span&gt;
-      HELP
-      &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;;;&lt;/span&gt;
-  &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;esac&lt;/span&gt;
-&lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;done&lt;/span&gt;
-
-&lt;span style=&#34;color: #204a87&#34;&gt;shift&lt;/span&gt; &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;$((&lt;/span&gt;OPTIND-1&lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;))&lt;/span&gt;  &lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;#This tells getopts to move on to the next argument.&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;h2 id=&#34;getopts:dd7aaebbdbc744c7f56cf7dcd59142a2&#34;&gt;getopts&lt;/h2&gt;
-
-&lt;p&gt;Whereas, &lt;strong&gt;getopts&lt;/strong&gt; is:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Portable and works in any POSIX shell&lt;/li&gt;
-&lt;li&gt;Lenient with usage of &amp;ldquo;-a -b&amp;rdquo; as well as &amp;ldquo;-ab&amp;rdquo;&lt;/li&gt;
-&lt;li&gt;Understands &amp;ldquo;&amp;ndash;&amp;rdquo; as the option terminator&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Here&amp;rsquo;s a sample for &lt;em&gt;getopts&lt;/em&gt;&lt;/p&gt;
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;SCRIPT&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;`&lt;/span&gt;basename &lt;span style=&#34;color: #4e9a06&#34;&gt;${&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;BASH_SOURCE&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;[0]&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;}`&lt;/span&gt;
-
-&lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;## Let&amp;#39;s do some admin work to find out the variables to be used here&lt;/span&gt;
-&lt;span style=&#34;color: #000000&#34;&gt;BOLD&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;\e[1;31m&amp;#39;&lt;/span&gt;         &lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;# Bold Red&lt;/span&gt;
-&lt;span style=&#34;color: #000000&#34;&gt;REV&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;\e[1;32m&amp;#39;&lt;/span&gt;       &lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;# Bold Green&lt;/span&gt;
-
-&lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;#Help function&lt;/span&gt;
-&lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;function&lt;/span&gt; HELP &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;{&lt;/span&gt;
-  &lt;span style=&#34;color: #204a87&#34;&gt;echo&lt;/span&gt; -e &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;${&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;REV&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;}Basic usage:${&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;OFF&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;} ${&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;BOLD&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;}&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;$SCRIPT&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt; -d helloworld ${&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;OFF&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;}&amp;quot;\\&lt;/span&gt;n
-  &lt;span style=&#34;color: #204a87&#34;&gt;echo&lt;/span&gt; -e &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;${&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;REV&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;}The following switches are recognized. &lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;$OFF&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt; &amp;quot;&lt;/span&gt;
-  &lt;span style=&#34;color: #204a87&#34;&gt;echo&lt;/span&gt; -e &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;${&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;REV&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;}-p ${&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;OFF&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;}  --Sets the environment to use for installing python ${&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;OFF&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;}. Default is ${&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;BOLD&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;} /usr/bin ${&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;OFF&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;}&amp;quot;&lt;/span&gt;
-  &lt;span style=&#34;color: #204a87&#34;&gt;echo&lt;/span&gt; -e &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;${&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;REV&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;}-d ${&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;OFF&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;}  --Sets the directory whose virtualenv is to be setup. Default is ${&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;BOLD&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;} local folder (.) ${&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;OFF&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;}&amp;quot;&lt;/span&gt;
-  &lt;span style=&#34;color: #204a87&#34;&gt;echo&lt;/span&gt; -e &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;${&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;REV&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;}-v ${&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;OFF&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;}  --Sets the python version that you want to install. Default is ${&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;BOLD&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;} 2.7 ${&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;OFF&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;}&amp;quot;&lt;/span&gt;
-  &lt;span style=&#34;color: #204a87&#34;&gt;echo&lt;/span&gt; -e &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;${&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;REV&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;}-h${&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;OFF&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;}  --Displays this help message. No further functions are performed.&amp;quot;\\&lt;/span&gt;n
-  &lt;span style=&#34;color: #204a87&#34;&gt;echo&lt;/span&gt; -e &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;Example: ${&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;BOLD&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;}&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;$SCRIPT&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt; -d helloworld -p /opt/py27env/bin -v 2.7 ${&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;OFF&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;}&amp;quot;\\&lt;/span&gt;n
-  &lt;span style=&#34;color: #204a87&#34;&gt;exit&lt;/span&gt; 1
-&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;}&lt;/span&gt;
-
-&lt;span style=&#34;color: #000000&#34;&gt;PYENV&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;/usr/bin&amp;#39;&lt;/span&gt;
-&lt;span style=&#34;color: #000000&#34;&gt;DIR&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;.&amp;#39;&lt;/span&gt;
-&lt;span style=&#34;color: #000000&#34;&gt;VERSION&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;2.7&amp;#39;&lt;/span&gt;
-
-&lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;# In case you wanted to check what variables were passed&lt;/span&gt;
-&lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;# echo &amp;quot;flags = $*&amp;quot;&lt;/span&gt;
-
-&lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;while&lt;/span&gt; &lt;span style=&#34;color: #204a87&#34;&gt;getopts&lt;/span&gt; p:d:v:h FLAG&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;;&lt;/span&gt; &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;do&lt;/span&gt;
-  &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;case&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;$FLAG&lt;/span&gt; in
-    d&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;)&lt;/span&gt;
-      &lt;span style=&#34;color: #000000&#34;&gt;DIR&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;$OPTARG&lt;/span&gt;
-      &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;;;&lt;/span&gt;
-    p&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;)&lt;/span&gt;
-      &lt;span style=&#34;color: #000000&#34;&gt;PYENV&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;$OPTARG&lt;/span&gt;
-      &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;;;&lt;/span&gt;
-    v&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;)&lt;/span&gt;
-      &lt;span style=&#34;color: #000000&#34;&gt;VERSION&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;$OPTARG&lt;/span&gt;
-      &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;;;&lt;/span&gt;
-    h&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;)&lt;/span&gt;
-      HELP
-      &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;;;&lt;/span&gt;
-    &lt;span style=&#34;color: #4e9a06&#34;&gt;\?&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;)&lt;/span&gt; &lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;#unrecognized option - show help&lt;/span&gt;
-      &lt;span style=&#34;color: #204a87&#34;&gt;echo&lt;/span&gt; -e &lt;span style=&#34;color: #4e9a06&#34;&gt;\\&lt;/span&gt;n&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;Option -${&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;BOLD&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;}&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;$OPTARG&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;${&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;OFF&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;} not allowed.&amp;quot;&lt;/span&gt;
-      HELP
-      &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;;;&lt;/span&gt;
-  &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;esac&lt;/span&gt;
-&lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;done&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;h2 id=&#34;what-if-i-really-wanted-long-options-with-getopts:dd7aaebbdbc744c7f56cf7dcd59142a2&#34;&gt;What if I really wanted long options with &lt;em&gt;getopts&lt;/em&gt;?&lt;/h2&gt;
-
-&lt;p&gt;&lt;em&gt;getopts&lt;/em&gt; function can be used to parse long options by putting a dash character followed by a colon into the OPTSPEC.
-Sharing &lt;a href=&#34;http://stackoverflow.com/a/7680682/142650&#34;&gt;the solution from this link&lt;/a&gt;.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;#!/usr/bin/env bash &lt;/span&gt;
-&lt;span style=&#34;color: #000000&#34;&gt;OPTSPEC&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;:hv-:&amp;quot;&lt;/span&gt;
-&lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;while&lt;/span&gt; &lt;span style=&#34;color: #204a87&#34;&gt;getopts&lt;/span&gt; &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;$OPTSPEC&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;&lt;/span&gt; optchar&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;;&lt;/span&gt; &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;do&lt;/span&gt;
-    &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;case&lt;/span&gt; &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;${&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;optchar&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;}&amp;quot;&lt;/span&gt; in
-        -&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;)&lt;/span&gt;
-            &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;case&lt;/span&gt; &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;${&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;OPTARG&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;}&amp;quot;&lt;/span&gt; in
-                loglevel&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;)&lt;/span&gt;
-                    &lt;span style=&#34;color: #000000&#34;&gt;val&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;${&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;!OPTIND&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;}&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;;&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;OPTIND&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;$((&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;$OPTIND&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color: #0000cf; font-weight: bold&#34;&gt;1&lt;/span&gt; &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;))&lt;/span&gt;
-                    &lt;span style=&#34;color: #204a87&#34;&gt;echo&lt;/span&gt; &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;Parsing option: &amp;#39;--${&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;OPTARG&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;}&amp;#39;, value: &amp;#39;${&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;val&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;}&amp;#39;&amp;quot;&lt;/span&gt; &amp;gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;&amp;amp;&lt;/span&gt;2&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;;&lt;/span&gt;
-                    &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;;;&lt;/span&gt;
-                &lt;span style=&#34;color: #000000&#34;&gt;loglevel&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;*&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;)&lt;/span&gt;
-                    &lt;span style=&#34;color: #000000&#34;&gt;val&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;${&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;OPTARG&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;#*=&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;}&lt;/span&gt;
-                    &lt;span style=&#34;color: #000000&#34;&gt;opt&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;${&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;OPTARG&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;%=&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;$val&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;}&lt;/span&gt;
-                    &lt;span style=&#34;color: #204a87&#34;&gt;echo&lt;/span&gt; &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;Parsing option: &amp;#39;--${&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;opt&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;}&amp;#39;, value: &amp;#39;${&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;val&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;}&amp;#39;&amp;quot;&lt;/span&gt; &amp;gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;&amp;amp;&lt;/span&gt;2
-                    &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;;;&lt;/span&gt;
-                *&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;)&lt;/span&gt;
-                    &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;[&lt;/span&gt; &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;$OPTERR&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #0000cf; font-weight: bold&#34;&gt;1&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;]&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;[&lt;/span&gt; &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;${&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;OPTSPEC&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;0&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;1&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;}&amp;quot;&lt;/span&gt; !&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;:&amp;quot;&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;]&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;;&lt;/span&gt; &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;then&lt;/span&gt;
-                        &lt;span style=&#34;color: #204a87&#34;&gt;echo&lt;/span&gt; &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;Unknown option --${&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;OPTARG&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;}&amp;quot;&lt;/span&gt; &amp;gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;&amp;amp;&lt;/span&gt;2
-                    &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;fi&lt;/span&gt;
-                    &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;;;&lt;/span&gt;
-            &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;esac&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;;;&lt;/span&gt;
-        h&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;)&lt;/span&gt;
-            &lt;span style=&#34;color: #204a87&#34;&gt;echo&lt;/span&gt; &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;usage: &lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;$0&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt; [-v] [--loglevel[=]&amp;lt;value&amp;gt;]&amp;quot;&lt;/span&gt; &amp;gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;&amp;amp;&lt;/span&gt;2
-            &lt;span style=&#34;color: #204a87&#34;&gt;exit&lt;/span&gt; 2
-            &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;;;&lt;/span&gt;
-        v&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;)&lt;/span&gt;
-            &lt;span style=&#34;color: #204a87&#34;&gt;echo&lt;/span&gt; &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;Parsing option: &amp;#39;-${&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;optchar&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;}&amp;#39;&amp;quot;&lt;/span&gt; &amp;gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;&amp;amp;&lt;/span&gt;2
-            &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;;;&lt;/span&gt;
-        *&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;)&lt;/span&gt;
-            &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;[&lt;/span&gt; &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;$OPTERR&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;&lt;/span&gt; !&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #0000cf; font-weight: bold&#34;&gt;1&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;]&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;||&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;[&lt;/span&gt; &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;${&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;OPTSPEC&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;0&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;1&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;}&amp;quot;&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;:&amp;quot;&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;]&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;;&lt;/span&gt; &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;then&lt;/span&gt;
-                &lt;span style=&#34;color: #204a87&#34;&gt;echo&lt;/span&gt; &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;Non-option argument: &amp;#39;-${&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;OPTARG&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;}&amp;#39;&amp;quot;&lt;/span&gt; &amp;gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;&amp;amp;&lt;/span&gt;2
-            &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;fi&lt;/span&gt;
-            &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;;;&lt;/span&gt;
-    &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;esac&lt;/span&gt;
-&lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;done&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-</description>
+      <description>Should you use getopt or getopts in your bash scripts?
+The answer can be a bit tricky but mostly straight forward.
+getopt Generally, try to stay away from getopt for the following reasons:
+ External utility Traditional versions can&amp;rsquo;t handle empty argument strings, or arguments with embedded whitespace For the loops to work perfectly, you must provide the values in the same sequence as the for loop itself; which is very hard to control Mostly a way to standardize the parameters  The only time I could think of using getopt is when I really want to use a long variable name and there&amp;rsquo;s just a single one.</description>
     </item>
     
     <item>
@@ -507,62 +60,7 @@ Sharing &lt;a href=&#34;http://stackoverflow.com/a/7680682/142650&#34;&gt;the so
       <pubDate>Tue, 09 Feb 2016 17:00:59 +0800</pubDate>
       
       <guid>http://abhipandey.com/2016/02/color-your-process-listings/</guid>
-      <description>&lt;p&gt;Many a times I am grepping for a process that is running on a prod server with lots of different configuration
-parameters. However, since there are so many of them, it is very difficult to view a particular parameter itself
-and find out what value was assigned to it. I wanted to make it easier on the eyes and decided to color code the
-parameters and separate them out from the values.
-Here&amp;rsquo;s the bash function I pulled out.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;colorme&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;()&lt;/span&gt;
-&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;{&lt;/span&gt;
-  gawk &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;BEGIN {RS=&amp;quot; --| -&amp;quot;; }{print $0}&amp;#39;&lt;/span&gt; &lt;span style=&#34;color: #4e9a06&#34;&gt;\&lt;/span&gt;
-  &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; sed -e &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;s/\([[:alpha:]]\+\)=/\1 /g&amp;#39;&lt;/span&gt; &lt;span style=&#34;color: #4e9a06&#34;&gt;\&lt;/span&gt;
-  &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; gawk &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;BEGIN    {printf &amp;quot;-----------------\n&amp;quot; ; }&lt;/span&gt;
-&lt;span style=&#34;color: #4e9a06&#34;&gt;            {&lt;/span&gt;
-&lt;span style=&#34;color: #4e9a06&#34;&gt;                if (NF &amp;gt; 2) printf &amp;quot;\n\033[41;5;1m%s\033[0m\n&amp;quot;, $NF ;&lt;/span&gt;
-&lt;span style=&#34;color: #4e9a06&#34;&gt;                printf &amp;quot;\033[40;38;5;82m  %30s  \033[38;5;198m %s \033[0m \n&amp;quot;, $1, $2&lt;/span&gt;
-&lt;span style=&#34;color: #4e9a06&#34;&gt;            }&amp;#39;&lt;/span&gt;
-&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;}&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;The idea is as follows:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Have a bash function that can be piped onto any command; perhaps &lt;code&gt;ps -ef&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Paragraph style viewing for each process&lt;/li&gt;
-&lt;li&gt;Break down every parameter into separate lines using &lt;code&gt;gawk&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Use &lt;code&gt;sed&lt;/code&gt; to convert config params in the &lt;code&gt;--rate=10&lt;/code&gt; into something like &lt;code&gt;rate 10&lt;/code&gt;, just like others&lt;/li&gt;
-&lt;li&gt;Use &lt;code&gt;gawk&lt;/code&gt; again to add colors on every pair of &lt;code&gt;key value&lt;/code&gt; line&lt;/li&gt;
-&lt;li&gt;Keys are right aligned, green in color and values are right aligned, red in color so it&amp;rsquo;s very easy to view&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Here is a sample command I wanted to test out.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;/opt/py27env/bin/python manage.py main-service-name --daemonize &lt;span style=&#34;color: #4e9a06&#34;&gt;\&lt;/span&gt;
-    --alias-svc&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;mainsvc01 --application-id&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;app03/mainsvc01 --monitoring-service-name&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;mainsvc01 &lt;span style=&#34;color: #4e9a06&#34;&gt;\&lt;/span&gt;
-    --log-level&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;DEBUG --solace-session-prop-host&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;server.prod --solace-session-prop-username&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;testing &lt;span style=&#34;color: #4e9a06&#34;&gt;\&lt;/span&gt;
-    --solace-session-prop-password&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;testing --solace-session-prop-vpn&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;testing &lt;span style=&#34;color: #4e9a06&#34;&gt;\&lt;/span&gt;
-    --solace-session-prop-cache-name&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;test_dc &lt;span style=&#34;color: #4e9a06&#34;&gt;\&lt;/span&gt;
-    --rate&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;10
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;Here is the result from my tests:
-
-&lt;figure &gt;
-    
-        &lt;img src=&#34;http://abhipandey.com/images/bash_process_color_coding_1.png&#34; alt=&#34;Color coded process listing&#34; /&gt;
-    
-    
-    &lt;figcaption&gt;
-        &lt;p&gt;
-        Color coded process listing
-        
-            
-        
-        &lt;/p&gt; 
-    &lt;/figcaption&gt;
-    
-&lt;/figure&gt;
-&lt;/p&gt;
-</description>
+      <description>Many a times I am grepping for a process that is running on a prod server with lots of different configuration parameters. However, since there are so many of them, it is very difficult to view a particular parameter itself and find out what value was assigned to it. I wanted to make it easier on the eyes and decided to color code the parameters and separate them out from the values.</description>
     </item>
     
     <item>
@@ -571,61 +69,10 @@ Here&amp;rsquo;s the bash function I pulled out.&lt;/p&gt;
       <pubDate>Mon, 28 Sep 2015 08:46:09 +0800</pubDate>
       
       <guid>http://abhipandey.com/2015/09/powerline-for-zsh/</guid>
-      <description>
-&lt;figure &gt;
-    
-        &lt;img src=&#34;http://abhipandey.com/images/powerline-for-zsh.png&#34; alt=&#34;Powerline&#34; /&gt;
-    
-    
-    &lt;figcaption&gt;
-        &lt;p&gt;
-        Powerline
-        
-            
-        
-        &lt;/p&gt; 
-    &lt;/figcaption&gt;
-    
-&lt;/figure&gt;
-
-
-&lt;p&gt;I was having a lot of trouble getting &lt;a href=&#34;https://github.com/carlcarl/powerline-zsh&#34;&gt;&lt;em&gt;powerline&lt;/em&gt;&lt;/a&gt; to work on my mac machine.
-No matter what I tried, I was getting errors like the following:&lt;/p&gt;
-
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-style: italic&#34;&gt;    .oh-my-zsh/themes/powerline.zsh-theme:100: character not in range&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;Finally got it to work after multiple attempts on &lt;code&gt;bash&lt;/code&gt; and &lt;code&gt;zsh&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;All I had to do was set &lt;code&gt;LC_ALL&lt;/code&gt; to &lt;strong&gt;en_US.UTF-8&lt;/strong&gt;. It would set all the locales to &lt;code&gt;en_US.UTF-8&lt;/code&gt; which
-would allow &lt;code&gt;powerline&lt;/code&gt; fonts work properly.&lt;/p&gt;
-
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;$ &lt;span style=&#34;color: #204a87&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;LC_ALL&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;en_US.UTF-8&amp;quot;&lt;/span&gt;                                                                                                     22:58:06 
-$ locale 
-&lt;span style=&#34;color: #000000&#34;&gt;LANG&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;
-&lt;span style=&#34;color: #000000&#34;&gt;LC_COLLATE&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;en_US.UTF-8&amp;quot;&lt;/span&gt;
-&lt;span style=&#34;color: #000000&#34;&gt;LC_CTYPE&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;en_US.UTF-8&amp;quot;&lt;/span&gt;
-&lt;span style=&#34;color: #000000&#34;&gt;LC_MESSAGES&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;en_US.UTF-8&amp;quot;&lt;/span&gt;
-&lt;span style=&#34;color: #000000&#34;&gt;LC_MONETARY&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;en_US.UTF-8&amp;quot;&lt;/span&gt;
-&lt;span style=&#34;color: #000000&#34;&gt;LC_NUMERIC&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;en_US.UTF-8&amp;quot;&lt;/span&gt;
-&lt;span style=&#34;color: #000000&#34;&gt;LC_TIME&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;en_US.UTF-8&amp;quot;&lt;/span&gt;
-&lt;span style=&#34;color: #000000&#34;&gt;LC_ALL&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;en_US.UTF-8&amp;quot;&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;After this, run the following command to test your fonts again.&lt;/p&gt;
-
-&lt;p&gt;&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;LC_CTYPE&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;en_US.UTF-8 &lt;span style=&#34;color: #204a87&#34;&gt;echo&lt;/span&gt; &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;\u2603&amp;#39;&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/p&gt;
-
-&lt;p&gt;Your command should work with or without &lt;code&gt;LC_CTYPE=en_US.UTF-8&lt;/code&gt;. Here&amp;rsquo;s what you expect to see now.&lt;/p&gt;
-
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;    ☃
-&lt;/pre&gt;&lt;/div&gt;
-
-</description>
+      <description>Powerline
+  I was having a lot of trouble getting powerline to work on my mac machine. No matter what I tried, I was getting errors like the following:
+.oh-my-zsh/themes/powerline.zsh-theme:100: character not in range Finally got it to work after multiple attempts on bash and zsh.
+All I had to do was set LC_ALL to en_US.UTF-8. It would set all the locales to en_US.UTF-8 which would allow powerline fonts work properly.</description>
     </item>
     
     <item>
@@ -634,31 +81,8 @@ $ locale
       <pubDate>Thu, 17 Sep 2015 11:06:06 +0800</pubDate>
       
       <guid>http://abhipandey.com/2015/09/git-loc-stats-by-time-range/</guid>
-      <description>&lt;p&gt;Recently had an interest in seeing how many LOC were committed to the code base over a particular period of
-time. After some tinkering around, mainly to find out the correct format for time ranges, decided to use the following bash script for finding coding stats.
-Following sample is to find out lines added or removed during the year 2014.&lt;/p&gt;
-
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;$ git log --after&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;2014-1-1&amp;quot;&lt;/span&gt; --before&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;2014-12-31&amp;quot;&lt;/span&gt; --pretty&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;tformat: --numstat 
-    &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; awk &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;{ if ( $2 != 0 &amp;amp;&amp;amp; $1 != 0 ) print $0 }&amp;#39;&lt;/span&gt; 
-    &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; gawk &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;{ add += $1; subs += $2; loc += $1 - $2 } END { printf &amp;quot;Added lines: %s Removed lines: %s Total # of lines: %s\n&amp;quot;, add, subs, loc }&amp;#39;&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;The result will be as follows:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;Added lines: 327505 Removed lines: 243860 Total # of lines: 83645
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;You will notice in the second line that I am doing the following:
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-style: italic&#34;&gt; if ( $2 != 0 &amp;amp;&amp;amp; $1 != 0 ) &lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/p&gt;
-
-&lt;p&gt;This is simply to discard off any commit numbers that were pure addition or deletion (with no corresponding delete or add in the same commit).
-It may also remove some numbers that were actually valid commits but mostly it is to protect ourselves against any library or API that we may have added or replaced during that time period.&lt;/p&gt;
-
-&lt;p&gt;For time range, you may even use something like &lt;code&gt;--since=&amp;quot;1 year ago&amp;quot;&lt;/code&gt; and that will also yield similar results.&lt;/p&gt;
-</description>
+      <description>Recently had an interest in seeing how many LOC were committed to the code base over a particular period of time. After some tinkering around, mainly to find out the correct format for time ranges, decided to use the following bash script for finding coding stats. Following sample is to find out lines added or removed during the year 2014.
+$ git log --after=&amp;#34;2014-1-1&amp;#34; --before=&amp;#34;2014-12-31&amp;#34; --pretty=tformat: --numstat | awk &amp;#39;{ if ( $2 !</description>
     </item>
     
     <item>
@@ -667,25 +91,8 @@ It may also remove some numbers that were actually valid commits but mostly it i
       <pubDate>Mon, 19 May 2014 15:51:51 +0000</pubDate>
       
       <guid>http://abhipandey.com/2014/05/setting-up-your-vim...-your-style/</guid>
-      <description>&lt;p&gt;Writing code using VIM can be a bit overwhelming but it helps creating a few shortcuts there to make your life easier. Here I will discuss a few.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;First of all, it is always a good idea to set up your tabs and spaces&lt;/li&gt;
-&lt;li&gt;Set up shortcuts for:
-
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;Toggling of Auto-Indent&lt;/code&gt; while pasting source text; very useful in code (&lt;em&gt;F2&lt;/em&gt; in my provided script)&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;Toggling of Auto-Scroll&lt;/code&gt; of Split windows (&lt;em&gt;F3&lt;/em&gt; in my provided script)&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;Macro for Folding functions&lt;/code&gt; within the source code (&lt;em&gt;&lt;em&gt;@q&lt;/em&gt;&lt;/em&gt; in my provided script)&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;Smart case search&lt;/code&gt; - based on whether the input is in caps or not&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;Toggling of Mouse Usage&lt;/code&gt; in VIM window - to allow quick selection of text (&lt;em&gt;F12&lt;/em&gt; in my provided script)&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Please see the provided script below to have a look.&lt;/p&gt;
-
-&lt;script type=&#34;text/javascript&#34; src=&#34;http://gist.github.com/6f190c9f3afd42881ef5.js&#34;&gt;&lt;/script&gt;
-</description>
+      <description>Writing code using VIM can be a bit overwhelming but it helps creating a few shortcuts there to make your life easier. Here I will discuss a few.
+ First of all, it is always a good idea to set up your tabs and spaces Set up shortcuts for:  Toggling of Auto-Indent while pasting source text; very useful in code (F2 in my provided script) Toggling of Auto-Scroll of Split windows (F3 in my provided script) Macro for Folding functions within the source code (@q in my provided script) Smart case search - based on whether the input is in caps or not Toggling of Mouse Usage in VIM window - to allow quick selection of text (F12 in my provided script)   Please see the provided script below to have a look.</description>
     </item>
     
     <item>
@@ -694,24 +101,8 @@ It may also remove some numbers that were actually valid commits but mostly it i
       <pubDate>Mon, 19 May 2014 09:45:57 +0000</pubDate>
       
       <guid>http://abhipandey.com/2014/05/getting-a-group-of-lines-from-a-file/</guid>
-      <description>&lt;p&gt;I&amp;rsquo;ve had this need quite a few times to pull out a section of logs that would begin with a particular line and end with another. grep is not exactly useful there because it only prints out sections based on line counters (using -A/B/C) lines based on a single search pattern.&lt;/p&gt;
-
-&lt;p&gt;I came up with a script that can run at almost same speeds using &lt;code&gt;grep/cat/awk&lt;/code&gt;. &lt;code&gt;awk&lt;/code&gt; is used to decide whether the end of the section has been reached or not. Some features of the script are:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;Since &lt;code&gt;awk&lt;/code&gt; script only toggles one variable it works seamlessly without delaying the actual work&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Works on gzip files as well&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;If you do not want to depend on grep or are unsure how many lines may be between begin and end keyword then replace gunzip with zcat and grep with cat.&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Usage: &lt;code&gt;group filename printBeginKeyword printUntilKeyword NumOfLines&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Let&amp;rsquo;s have a look at the script&amp;hellip;.&lt;/p&gt;
-
-&lt;script type=&#34;text/javascript&#34; src=&#34;http://gist.github.com/924a5f12f3067ba0b3af.js&#34;&gt;&lt;/script&gt;
-</description>
+      <description>I&amp;rsquo;ve had this need quite a few times to pull out a section of logs that would begin with a particular line and end with another. grep is not exactly useful there because it only prints out sections based on line counters (using -A/B/C) lines based on a single search pattern.
+I came up with a script that can run at almost same speeds using grep/cat/awk. awk is used to decide whether the end of the section has been reached or not.</description>
     </item>
     
     <item>
@@ -720,30 +111,9 @@ It may also remove some numbers that were actually valid commits but mostly it i
       <pubDate>Tue, 11 Feb 2014 14:56:00 +0000</pubDate>
       
       <guid>http://abhipandey.com/2014/02/global-search-in-vim/</guid>
-      <description>&lt;p&gt;You must be knowing about regular VIM search&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;%s/SEARCH/REPLACE/CMD
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;However, sometimes you do not want to replace something but just see all instances of the a word or phrase. In such cases, global search is really useful when on vim. The syntax is simpler than normal search-replace:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;:[range]g[lobal]/{pattern}/[cmd]
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;This will show all instances of the &amp;ldquo;SEARCH&amp;rdquo; term within the VIM window. There&amp;rsquo;s another version of the same command which is as follows:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;:[range]g[lobal]!/{pattern}/[cmd]
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;This is similar to the previous command but the only difference is that this command contains &amp;ldquo;!&amp;rdquo; which signifies that the command will be executed on all lines &lt;code&gt;NOT&lt;/code&gt; matching the &lt;code&gt;pattern&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;One example here would be to delete all lines in a file containing a particular word:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;:g/deleteMe/d
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;There could be lot more actions (regular vim stuff) that you could do like yanking or indenting.&lt;/p&gt;
-</description>
+      <description>You must be knowing about regular VIM search
+%s/SEARCH/REPLACE/CMD  However, sometimes you do not want to replace something but just see all instances of the a word or phrase. In such cases, global search is really useful when on vim. The syntax is simpler than normal search-replace:
+:[range]g[lobal]/{pattern}/[cmd]  This will show all instances of the &amp;ldquo;SEARCH&amp;rdquo; term within the VIM window. There&amp;rsquo;s another version of the same command which is as follows:</description>
     </item>
     
     <item>
@@ -752,45 +122,9 @@ It may also remove some numbers that were actually valid commits but mostly it i
       <pubDate>Wed, 03 Jul 2013 07:28:00 +0000</pubDate>
       
       <guid>http://abhipandey.com/2013/07/cvs-cheat-sheet/</guid>
-      <description>&lt;p&gt;I&amp;rsquo;ve worked on CVS for a long time now and figured out that I&amp;rsquo;d save a lot of time if I started writing alias or functions for the numerous tasks that I did on them. I will put down some of them here so you may benefit from them.&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;Silently update and inform about the status of the files (recursive)&lt;/em&gt;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;cvs -q -n update
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;em&gt;Same as earlier but will only do so for the current folder&lt;/em&gt;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;cvs -Q -n update -l
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;em&gt;Finds out the cv[s] [m]odified list of files while also indentating them nicely with only the important data pulled out&lt;/em&gt;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;cvs -Q status | egrep &amp;quot;File: &amp;quot; -A 4 | egrep -v &amp;quot;Up-to-date&amp;quot; | egrep &amp;quot;File: &amp;quot; -A 3 | sed -e &amp;quot;s/ Status:/\t\tStatus:/&amp;quot; -e &amp;quot;s/,v$/\n-------------------------------------------------------------------------\n/&amp;quot; -e &amp;quot;s/.*${PWD##*/}\//Location:\t\t /&amp;quot; -e &amp;quot;s/Attic\///&amp;quot; | egrep &amp;quot;Location:|Repository|Status:|File:|--------
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;em&gt;Recursively add all files to CVS for committing from the current directory&lt;/em&gt;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;find . -type d -print | grep -v CVS | xargs cvs add
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;em&gt;Doing a side by side diff (change the value of -W according to the width of the screen)&lt;/em&gt;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;cvs -Q diff -t -y --suppress-common-lines -W 190 $*
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;em&gt;Merging code from one branch to another&lt;/em&gt;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;# Creates a command that you can use to &amp;quot;merge&amp;quot; your code from dev head to this current branch.   
-# Ideally you want to run this command from a folder where you want the code to merge to....   
-merge()   
-{   
-BRANCH=$(cat CVS/Tag | cut -c2-)   
-CMD=$(echo cvs update -j $BRANCH -j Version_2_17_dev .)   
-echo $CMD   
-}   
-&lt;/code&gt;&lt;/pre&gt;
-</description>
+      <description>I&amp;rsquo;ve worked on CVS for a long time now and figured out that I&amp;rsquo;d save a lot of time if I started writing alias or functions for the numerous tasks that I did on them. I will put down some of them here so you may benefit from them.
+Silently update and inform about the status of the files (recursive)
+cvs -q -n update  Same as earlier but will only do so for the current folder</description>
     </item>
     
     <item>
@@ -799,18 +133,9 @@ echo $CMD
       <pubDate>Thu, 25 Apr 2013 07:02:00 +0000</pubDate>
       
       <guid>http://abhipandey.com/2013/04/change-putty-window-title/</guid>
-      <description>&lt;p&gt;How to modify the Putty window title to a specific string?&lt;/p&gt;
-
-&lt;p&gt;By default, you&amp;rsquo;d like to have the window title to give you the full path to the folder you are working from (working directory). &lt;code&gt;PROMPT_COMMAND&lt;/code&gt;will help you with that.&lt;/p&gt;
-
-&lt;p&gt;However, if you have too many windows where you are on the same folder then it may become confusing. To set your own title you&amp;rsquo;d like to use the &lt;code&gt;title()&lt;/code&gt; function provided here. It sets the name to whatever you say.&lt;/p&gt;
-
-&lt;p&gt;Please note that &lt;code&gt;PS1&lt;/code&gt; is only valid until you move your folders again. That is why the title() function also has to reset &lt;code&gt;PROMPT_COMMAND&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;Let&amp;rsquo;s have a look at the script needed. Maybe you wanna put them in your .bashrc file.&lt;/p&gt;
-
-&lt;script type=&#34;text/javascript&#34; src=&#34;http://gist.github.com/8eed9133ed91cbb42854.js&#34;&gt;&lt;/script&gt;
-</description>
+      <description>How to modify the Putty window title to a specific string?
+By default, you&amp;rsquo;d like to have the window title to give you the full path to the folder you are working from (working directory). PROMPT_COMMANDwill help you with that.
+However, if you have too many windows where you are on the same folder then it may become confusing. To set your own title you&amp;rsquo;d like to use the title() function provided here.</description>
     </item>
     
   </channel>

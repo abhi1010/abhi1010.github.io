@@ -7,7 +7,9 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 04 Feb 2016 15:02:07 +0000</lastBuildDate>
-    <atom:link href="http://abhipandey.com/tags/pip/index.xml" rel="self" type="application/rss+xml" />
+    
+	<atom:link href="http://abhipandey.com/tags/pip/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>How to setup a local pypi mirror</title>
@@ -15,54 +17,10 @@
       <pubDate>Thu, 04 Feb 2016 15:02:07 +0000</pubDate>
       
       <guid>http://abhipandey.com/2016/02/how-to-setup-a-local-pypi-mirror/</guid>
-      <description>&lt;p&gt;It is quite easy to set up a local pypi server.&lt;/p&gt;
-
-&lt;p&gt;Some details can be found &lt;a href=&#34;https://pip.pypa.io/en/latest/user_guide/#installing-from-local-packages&#34;&gt;here&lt;/a&gt;.
-You can also use &lt;a href=&#34;http://doc.devpi.net/latest/quickstart-pypimirror.html&#34;&gt;devpi&lt;/a&gt; if you prefer but it
-seems overly complicated for a job that is easily achieved by pip.&lt;/p&gt;
-
-&lt;p&gt;Let&amp;rsquo;s look at how to use &lt;code&gt;pip&lt;/code&gt; for local installation.
-Firstly, it is possible to install all requirements beforehand in a separate directory.
- We can use the following commands:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;pip install --download DIR -r requirements.txt
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;If you prefer wheel, then use the following:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;pip wheel --wheel-dir DIR -r requirements.txt
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;Now, when we want to install from this given directory &lt;code&gt;DIR&lt;/code&gt;, then
-the following command can help:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;pip install --no-index --find-links&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;DIR -r requirements.txt
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;If you are using these in a current setup and you feel it still slows you down then the reason would be
-one of the first few commands where the request is still going to the internet.
-If you want to speed up the whole process then perhaps you need to send out a request to the internet
-only if a new package is available in the requirements.txt file otherwise you can skip that part altogether,
-just leading onto &lt;code&gt;pip install --no-index&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;This will make your installation a flash.&lt;/p&gt;
-
-&lt;p&gt;One quick and dirty way to maintain a local copy of requirements.txt file and figure out on every commit of code change
-in the project, whether a new requirement has been added to that list. In that case, install it + update your local copy.&lt;/p&gt;
-
-&lt;p&gt;Here&amp;rsquo;s a sample code to put all changes in a single line that you can feed into &lt;code&gt;pip install&lt;/code&gt;&lt;/p&gt;
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;sdiff -s /tmp/1 /tmp/2 &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; sed -e &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;s/&amp;lt;//g&amp;#39;&lt;/span&gt; &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; awk &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;BEGIN {ORS=&amp;quot; &amp;quot;} {print $1}&amp;#39;&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;Breaking it down:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;sdiff&lt;/code&gt; checks if there are any new changes&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;sed&lt;/code&gt; ensures that you only get the relevant characters, not &lt;code&gt;&amp;lt;&lt;/code&gt; or &lt;code&gt;&amp;gt;&lt;/code&gt;
-
-&lt;ul&gt;
-&lt;li&gt;If you want you can put an &lt;code&gt;egrep&lt;/code&gt; before &lt;code&gt;sed&lt;/code&gt; to get only one side of the changes&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;awk&lt;/code&gt; puts all the lines together into a space separated values that can be fed into &lt;code&gt;pip install&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
+      <description>It is quite easy to set up a local pypi server.
+Some details can be found here. You can also use devpi if you prefer but it seems overly complicated for a job that is easily achieved by pip.
+Let&amp;rsquo;s look at how to use pip for local installation. Firstly, it is possible to install all requirements beforehand in a separate directory. We can use the following commands:
+pip install --download DIR -r requirements.</description>
     </item>
     
   </channel>

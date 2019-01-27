@@ -7,7 +7,9 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 07 Jul 2016 23:26:44 +0800</lastBuildDate>
-    <atom:link href="http://abhipandey.com/categories/tips/index.xml" rel="self" type="application/rss+xml" />
+    
+	<atom:link href="http://abhipandey.com/categories/tips/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>Systemd tutorial</title>
@@ -15,130 +17,9 @@
       <pubDate>Thu, 07 Jul 2016 23:26:44 +0800</pubDate>
       
       <guid>http://abhipandey.com/2016/07/systemd-tutorial/</guid>
-      <description>
-
-&lt;p&gt;&lt;code&gt;Systemd&lt;/code&gt; usually requires two files:&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;service file&lt;/li&gt;
-&lt;li&gt;timer file&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h2 id=&#34;service-files:53e68713291c95ac35204af0e42c2530&#34;&gt;Service files&lt;/h2&gt;
-
-&lt;p&gt;Here you provide the details you&amp;rsquo;d use to&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Start/stop a service&lt;/li&gt;
-&lt;li&gt;Define the type of service
-
-&lt;ul&gt;
-&lt;li&gt;Can be &lt;em&gt;simple&lt;/em&gt;, &lt;em&gt;forking&lt;/em&gt;, &lt;em&gt;oneshot&lt;/em&gt;, &lt;em&gt;dbus&lt;/em&gt;, &lt;em&gt;notify&lt;/em&gt; or &lt;em&gt;idle&lt;/em&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;How to kill the service&lt;/li&gt;
-&lt;li&gt;Ability to restart&lt;/li&gt;
-&lt;li&gt;Path for starting up&lt;/li&gt;
-&lt;li&gt;Timeout for the service startup or shutdown&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Service is usually made up of 3 sections:&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;Unit&lt;/li&gt;
-&lt;li&gt;Service&lt;/li&gt;
-&lt;li&gt;Install
-
-&lt;ul&gt;
-&lt;li&gt;Usually prefer &lt;code&gt;multi-user.target&lt;/code&gt; for your installation&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;One example is as follows:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;[Unit]
-Description=Foo
-
-[Service]
-ExecStart=/usr/sbin/foo-daemon
-
-[Install]
-WantedBy=multi-user.target
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Here&amp;rsquo;s what your regular &lt;code&gt;Service&lt;/code&gt; section would look like:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;User=&amp;lt;YOUR_LINUX_ACCOUNT&amp;gt;
-Group=&amp;lt;YOUR_LINUX_GROUP&amp;gt;
-WorkingDirectory=&amp;lt;PROJECT_FOLDER&amp;gt;
-Type=forking
-KillMode=process
-Restart=always
-ExecStart=&amp;lt;COMMAND_TO_START&amp;gt;
-ExecStop=&amp;lt;COMMAND_TO_STOP&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;timers:53e68713291c95ac35204af0e42c2530&#34;&gt;Timers&lt;/h2&gt;
-
-&lt;p&gt;Timer files contain information about a timer controlled and
-supervised by systemd, for timer-based activation.
-This is possibly a better replacement for cron jobs.
-However, the changes are a bit different.&lt;/p&gt;
-
-&lt;p&gt;To set up a timer, you need the following options:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;em&gt;OnActiveSec&lt;/em&gt;&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;OnBootSec&lt;/em&gt;&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;OnStartupSec&lt;/em&gt;&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;OnUnitActiveSec&lt;/em&gt;&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;OnUnitInactiveSec&lt;/em&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;They all help you set up your timers relative to different starting points.&lt;/p&gt;
-
-&lt;p&gt;Some other options you could use are:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;em&gt;OnCalendar&lt;/em&gt;
-
-&lt;ul&gt;
-&lt;li&gt;This is your friend if you are looking for cron job replacement
-Please check the references below to look for some samples on how to set up
-your cron jobs in the correct format. It is not exactly same as cron job styles&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;AccuracySec&lt;/em&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Based on the timer, how close to the actual time should this timer wake up&lt;/li&gt;
-&lt;li&gt;Use the value of 1us to be the smallest and most accurate&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;Persistent&lt;/em&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Maybe you want to save the information about the timestamps whenever
-the service is shutting down. In that case, the information will be saved
-on the hard disk. It will be used along with boot and active &lt;em&gt;sec&lt;/em&gt; information.&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Here&amp;rsquo;s one simple sample for setting a timer&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;[Timer]
-AccuracySec=1us
-Persistent=false
-OnBootSec=80
-OnCalendar=*:0/20
-Unit=myjob.service
-
-[Install]
-WantedBy=timers.target
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;some-references:53e68713291c95ac35204af0e42c2530&#34;&gt;Some references:&lt;/h2&gt;
-
-&lt;p&gt;&lt;a href=&#34;https://wiki.archlinux.org/index.php/Systemd/Timers&#34;&gt;https://wiki.archlinux.org/index.php/Systemd/Timers&lt;/a&gt;
-&lt;a href=&#34;https://www.certdepot.net/rhel7-use-systemd-timers/&#34;&gt;https://www.certdepot.net/rhel7-use-systemd-timers/&lt;/a&gt;&lt;/p&gt;
-</description>
+      <description>Systemd usually requires two files:
+ service file timer file  Service files Here you provide the details you&amp;rsquo;d use to
+ Start/stop a service Define the type of service  Can be simple, forking, oneshot, dbus, notify or idle  How to kill the service Ability to restart Path for starting up Timeout for the service startup or shutdown  Service is usually made up of 3 sections:</description>
     </item>
     
     <item>
@@ -147,157 +28,9 @@ WantedBy=timers.target
       <pubDate>Tue, 05 Jul 2016 23:26:44 +0800</pubDate>
       
       <guid>http://abhipandey.com/2016/07/gitlab-cli-api-reference/</guid>
-      <description>
-
-&lt;p&gt;Here&amp;rsquo;s a short tutorial on setting up gitlab cli for yourselves.
-It is extremely user friendly and you can take almost any action that you need.
-Anything that the UI provides is also available over cli or web services -
-both of which have examples here.&lt;/p&gt;
-
-&lt;p&gt;Let&amp;rsquo;s get started.&lt;/p&gt;
-
-&lt;h2 id=&#34;gitlab-cli:67f66bdf501059124272bbdeb0fc5217&#34;&gt;gitlab cli&lt;/h2&gt;
-
-&lt;h3 id=&#34;installing-the-gitlab-cli:67f66bdf501059124272bbdeb0fc5217&#34;&gt;Installing the gitlab CLI&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;# http://narkoz.github.io/gitlab/configuration
-gem install gitlab
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&#34;configuration:67f66bdf501059124272bbdeb0fc5217&#34;&gt;Configuration&lt;/h3&gt;
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #204a87&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;GITLAB_API_ENDPOINT&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;http://gitlab.com/api/v3&amp;#39;&lt;/span&gt;
-&lt;span style=&#34;color: #204a87&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;GITLAB_API_PRIVATE_TOKEN&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;YOUR_TOKEN_&amp;#39;&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;h3 id=&#34;available-commands:67f66bdf501059124272bbdeb0fc5217&#34;&gt;Available commands&lt;/h3&gt;
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;$ gitlab
-+-----------------+
-&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;   Help Topics   &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;
-+-----------------+
-&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; Branches        &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;
-+-----------------+
-&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; Commits         &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;
-+-----------------+
-&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; Groups          &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;
-+-----------------+
-&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; Issues          &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;
-+-----------------+
-&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; Labels          &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;
-+-----------------+
-&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; MergeRequests   &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;
-+-----------------+
-&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; Milestones      &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;
-+-----------------+
-&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; Namespaces      &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;
-+-----------------+
-&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; Notes           &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;
-+-----------------+
-&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; Projects        &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;
-+-----------------+
-&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; Repositories    &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;
-+-----------------+
-&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; RepositoryFiles &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;
-+-----------------+
-&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; Snippets        &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;
-+-----------------+
-&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; SystemHooks     &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;
-+-----------------+
-&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; Users           &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;
-+-----------------+
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;h3 id=&#34;sample-cli-commands:67f66bdf501059124272bbdeb0fc5217&#34;&gt;Sample CLI commands&lt;/h3&gt;
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;# Check the list of Projects&lt;/span&gt;
-$ gitlab projects
-
-&lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;# Based on the response, we know reconwisev2 is ID 487928&lt;/span&gt;
-&lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;# Let&amp;#39;s find out the list of labels in it&lt;/span&gt;
-$ gitlab labels 487928
-+---------------------+---------+--------------------+--------------+-------------------+---------------------------+------------+
-&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;                                                      Gitlab.labels &lt;span style=&#34;color: #0000cf; font-weight: bold&#34;&gt;487928&lt;/span&gt;                                                      &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;
-+---------------------+---------+--------------------+--------------+-------------------+---------------------------+------------+
-&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; closed_issues_count &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; color   &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; description        &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; name         &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; open_issues_count &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; open_merge_requests_count &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; subscribed &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt;
-+---------------------+---------+--------------------+--------------+-------------------+---------------------------+------------+
-&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; &lt;span style=&#34;color: #0000cf; font-weight: bold&#34;&gt;2&lt;/span&gt;                   &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; &lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;#ff0000 | null               | !Blocker     | 0                 | 0                         | false      |&lt;/span&gt;
-+---------------------+---------+--------------------+--------------+-------------------+---------------------------+------------+
-&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; &lt;span style=&#34;color: #0000cf; font-weight: bold&#34;&gt;2&lt;/span&gt;                   &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; &lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;#0033cc | null               | #AWS         | 8                 | 0                         | false      |&lt;/span&gt;
-+---------------------+---------+--------------------+--------------+-------------------+---------------------------+------------+
-&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; &lt;span style=&#34;color: #0000cf; font-weight: bold&#34;&gt;27&lt;/span&gt;                  &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; &lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;#428bca | null               | #Bug         | 2                 | 0                         | false      |&lt;/span&gt;
-+---------------------+---------+--------------------+--------------+-------------------+---------------------------+------------+
-&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; &lt;span style=&#34;color: #0000cf; font-weight: bold&#34;&gt;3&lt;/span&gt;                   &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; &lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;#0033cc | null               | #Feature     | 29                | 0                         | false      |&lt;/span&gt;
-+---------------------+---------+--------------------+--------------+-------------------+---------------------------+------------+
-&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; &lt;span style=&#34;color: #0000cf; font-weight: bold&#34;&gt;7&lt;/span&gt;                   &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; &lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;#5843ad | null               | #Improvement | 22                | 0                         | false      |&lt;/span&gt;
-+---------------------+---------+--------------------+--------------+-------------------+---------------------------+------------+
-&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; &lt;span style=&#34;color: #0000cf; font-weight: bold&#34;&gt;1&lt;/span&gt;                   &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; &lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;#428bca |                    | #Support     | 1                 | 0                         | false      |&lt;/span&gt;
-+---------------------+---------+--------------------+--------------+-------------------+---------------------------+------------+
-&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; &lt;span style=&#34;color: #0000cf; font-weight: bold&#34;&gt;28&lt;/span&gt;                  &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; &lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;#f0ad4e | null               | $GH          | 12                | 0                         | false      |&lt;/span&gt;
-+---------------------+---------+--------------------+--------------+-------------------+---------------------------+------------+
-&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; &lt;span style=&#34;color: #0000cf; font-weight: bold&#34;&gt;0&lt;/span&gt;                   &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; &lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;#f0ad4e |                    | $IFAST       | 4                 | 0                         | false      |&lt;/span&gt;
-+---------------------+---------+--------------------+--------------+-------------------+---------------------------+------------+
-&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; &lt;span style=&#34;color: #0000cf; font-weight: bold&#34;&gt;25&lt;/span&gt;                  &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; &lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;#ff0000 | null               | 1-Critical   | 7                 | 0                         | false      |&lt;/span&gt;
-+---------------------+---------+--------------------+--------------+-------------------+---------------------------+------------+
-&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; &lt;span style=&#34;color: #0000cf; font-weight: bold&#34;&gt;2&lt;/span&gt;                   &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; &lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;#ad4363 | null               | 2-Important  | 20                | 0                         | false      |&lt;/span&gt;
-+---------------------+---------+--------------------+--------------+-------------------+---------------------------+------------+
-&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; &lt;span style=&#34;color: #0000cf; font-weight: bold&#34;&gt;5&lt;/span&gt;                   &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; &lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;#ad4363 | null               | 3-Normal     | 18                | 0                         | false      |&lt;/span&gt;
-+---------------------+---------+--------------------+--------------+-------------------+---------------------------+------------+
-&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; &lt;span style=&#34;color: #0000cf; font-weight: bold&#34;&gt;2&lt;/span&gt;                   &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; &lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;#d491a5 |                    | 4-Trivial    | 6                 | 0                         | false      |&lt;/span&gt;
-+---------------------+---------+--------------------+--------------+-------------------+---------------------------+------------+
-&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; &lt;span style=&#34;color: #0000cf; font-weight: bold&#34;&gt;0&lt;/span&gt;                   &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; &lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;#a8d695 | null               | ^In-Progress | 3                 | 1                         | false      |&lt;/span&gt;
-+---------------------+---------+--------------------+--------------+-------------------+---------------------------+------------+
-&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; &lt;span style=&#34;color: #0000cf; font-weight: bold&#34;&gt;0&lt;/span&gt;                   &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; &lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;#69d100 | Completed/Finished | ^Resolved    | 0                 | 1                         | false      |&lt;/span&gt;
-+---------------------+---------+--------------------+--------------+-------------------+---------------------------+------------+
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;h3 id=&#34;sample-curl-commands:67f66bdf501059124272bbdeb0fc5217&#34;&gt;Sample CURL commands&lt;/h3&gt;
-
-&lt;p&gt;&lt;strong&gt;Check the list of Projects&lt;/strong&gt;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;https://gitlab.com/api/v3/projects/?private_token=YOUR_TOKEN
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;This will return you a big JSON with the list of your projects in gitlab.&lt;/p&gt;
-
-&lt;p&gt;Based on the response, we know that the project is ID 487928
-Let&amp;rsquo;s find out the list of labels in it.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;https://gitlab.com/api/v3/projects/487928/labels/?private_token=YOUR_TOKEN
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;The response is a bit like this:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;[&lt;/span&gt;
-
-    &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;{&lt;/span&gt;
-        &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;&amp;quot;name&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;!Blocker&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt;
-        &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;&amp;quot;color&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;#ff0000&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt;
-        &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;&amp;quot;description&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;null&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt;
-        &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;&amp;quot;open_issues_count&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #0000cf; font-weight: bold&#34;&gt;0&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt;
-        &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;&amp;quot;closed_issues_count&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #0000cf; font-weight: bold&#34;&gt;2&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt;
-        &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;&amp;quot;open_merge_requests_count&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #0000cf; font-weight: bold&#34;&gt;0&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt;
-        &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;&amp;quot;subscribed&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;false&lt;/span&gt;
-    &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;},&lt;/span&gt;
-    &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;{&lt;/span&gt;
-        &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;&amp;quot;name&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;#AWS&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt;
-        &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;&amp;quot;color&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;#0033cc&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt;
-        &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;&amp;quot;description&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;null&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt;
-        &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;&amp;quot;open_issues_count&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #0000cf; font-weight: bold&#34;&gt;8&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt;
-        &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;&amp;quot;closed_issues_count&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #0000cf; font-weight: bold&#34;&gt;2&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt;
-        &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;&amp;quot;open_merge_requests_count&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #0000cf; font-weight: bold&#34;&gt;0&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt;
-        &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;&amp;quot;subscribed&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;false&lt;/span&gt;
-    &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;},&lt;/span&gt;
-    &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;{&lt;/span&gt;
-        &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;&amp;quot;name&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;#Bug&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt;
-        &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;&amp;quot;color&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;#428bca&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt;
-        &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;&amp;quot;description&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;null&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt;
-        &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;&amp;quot;open_issues_count&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #0000cf; font-weight: bold&#34;&gt;2&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt;
-        &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;&amp;quot;closed_issues_count&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #0000cf; font-weight: bold&#34;&gt;27&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt;
-        &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;&amp;quot;open_merge_requests_count&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #0000cf; font-weight: bold&#34;&gt;0&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt;
-        &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;&amp;quot;subscribed&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;false&lt;/span&gt;
-    &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;},&lt;/span&gt;
-    &lt;span style=&#34;color: #a40000; border: 1px solid #ef2929&#34;&gt;....&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;More documentation is available &lt;a href=&#34;https://github.com/gitlabhq/gitlabhq/tree/master/doc/api&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
-</description>
+      <description>Here&amp;rsquo;s a short tutorial on setting up gitlab cli for yourselves. It is extremely user friendly and you can take almost any action that you need. Anything that the UI provides is also available over cli or web services - both of which have examples here.
+Let&amp;rsquo;s get started.
+gitlab cli Installing the gitlab CLI # http://narkoz.github.io/gitlab/configuration gem install gitlab  Configuration export GITLAB_API_ENDPOINT=&amp;#39;http://gitlab.com/api/v3&amp;#39; export GITLAB_API_PRIVATE_TOKEN=&amp;#39;YOUR_TOKEN_&amp;#39; Available commands $ gitlab +-----------------+ | Help Topics | +-----------------+ | Branches | +-----------------+ | Commits | +-----------------+ | Groups | +-----------------+ | Issues | +-----------------+ | Labels | +-----------------+ | MergeRequests | +-----------------+ | Milestones | +-----------------+ | Namespaces | +-----------------+ | Notes | +-----------------+ | Projects | +-----------------+ | Repositories | +-----------------+ | RepositoryFiles | +-----------------+ | Snippets | +-----------------+ | SystemHooks | +-----------------+ | Users | +-----------------+ Sample CLI commands # Check the list of Projects $ gitlab projects # Based on the response, we know reconwisev2 is ID 487928 # Let&amp;#39;s find out the list of labels in it $ gitlab labels 487928 +---------------------+---------+--------------------+--------------+-------------------+---------------------------+------------+ | Gitlab.</description>
     </item>
     
     <item>
@@ -306,76 +39,8 @@ Let&amp;rsquo;s find out the list of labels in it.&lt;/p&gt;
       <pubDate>Tue, 28 Jun 2016 23:26:44 +0800</pubDate>
       
       <guid>http://abhipandey.com/2016/06/protobuf-on-docker/</guid>
-      <description>
-
-&lt;p&gt;Found it really strange that nobody had mentioned on their blog how to
-compile &lt;code&gt;Protobuf&lt;/code&gt; in python with &lt;strong&gt;C++&lt;/strong&gt; implementation.&lt;/p&gt;
-
-&lt;p&gt;I had been having a lot of trouble with the compilation of python protobuf.
-After struggling with it for a few months on and off I decided to give &lt;strong&gt;&lt;code&gt;Docker&lt;/code&gt;&lt;/strong&gt;
- a try as I realized that my own Fedora OS may be the one having troubles.
- Thought of starting with &lt;strong&gt;Ubuntu&lt;/strong&gt; Docker as I&amp;rsquo;ve had success with it earlier
- with such compilation scripts. Luckily it all worked out successfully again
- for protobuf.&lt;/p&gt;
-
-&lt;p&gt;Then I tried Docker for &lt;strong&gt;Centos 7 and Fedora 23&lt;/strong&gt;, both of which had not
- been working for me in any shape.&lt;/p&gt;
-
-&lt;p&gt;The source code of the &lt;strong&gt;Dockerfiles&lt;/strong&gt; are available on Github here:&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;https://github.com/abhi1010/protobuf-on-docker&#34;&gt;github/abhi1010/protobuf-on-docker&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;We are running all the steps through the docker image so that the steps can be replicated
- with any &lt;a href=&#34;https://github.com/google/protobuf/releases&#34;&gt;protobuf source code release&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;Here&amp;rsquo;s what we will be doing:&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;Create &lt;code&gt;protoc&lt;/code&gt; compiler by compiling C++ files&lt;/li&gt;
-&lt;li&gt;Compile &lt;a href=&#34;https://github.com/google/protobuf/tree/master/python#c-implementation&#34;&gt;C++ implementation for &lt;code&gt;python&lt;/code&gt;&lt;/a&gt;
-using the just created &lt;code&gt;protoc&lt;/code&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;Dockerfiles are available for the following Operating Systems:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/abhi1010/protobuf-on-docker/blob/master/centos-7.1/Dockerfile&#34;&gt;Centos 7&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/abhi1010/protobuf-on-docker/blob/master/fedora-23/Dockerfile&#34;&gt;Fedora 23&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/abhi1010/protobuf-on-docker/blob/master/ubuntu-15/Dockerfile&#34;&gt;Ubuntu 15&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;where-to-find-the-files-inside-the-docker-images:59fece5fea31b5834dfd3c1b99d2e930&#34;&gt;Where to find the files inside the Docker images&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;protoc&lt;/code&gt; compiler is available at &lt;code&gt;/ws/protoc-3.2&lt;/code&gt; folder inside the images&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;python&lt;/code&gt; version (compiled from c++) is available at &lt;code&gt;/ws/protobuf-3.0.0-beta-3.2/python/dist/&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;You can copy out the files using the following commands:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;id&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;$(&lt;/span&gt;sudo docker create &amp;lt;image_name&amp;gt;&lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;)&lt;/span&gt;
-sudo docker cp &lt;span style=&#34;color: #000000&#34;&gt;$id&lt;/span&gt;:/ws/protoc-3.2 ./
-sudo docker cp &lt;span style=&#34;color: #000000&#34;&gt;$id&lt;/span&gt;:/ws/protobuf-3.0.0-beta-3.2/python/dist/*.gz ./
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;In case you get an error like the following, &lt;em&gt;remove&lt;/em&gt; &lt;code&gt;*.gz&lt;/code&gt; from the cp command:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;zsh: no matches found: e7c8a9102e1cd07b4c471c331bc4deba2222278eb22be1e79ecaa14e914ed654:/ws/protobuf-3.0.0-beta-3.2/python/dist/*.gz
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Your second cp command then becomes:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;sudo docker cp $id:/ws/protobuf-3.0.0-beta-3.2/python/dist/ ./
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Once done, you can remove the created container with the following command:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;sudo docker rm -v &lt;span style=&#34;color: #000000&#34;&gt;$id&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;Just remember to change the rights as the files will belong to &lt;code&gt;root&lt;/code&gt; by default.
-You can do that with the following commands:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;sudo chown -R &amp;lt;USERNAME&amp;gt;:&amp;lt;USERNAME&amp;gt; *
-&lt;/pre&gt;&lt;/div&gt;
-</description>
+      <description>Found it really strange that nobody had mentioned on their blog how to compile Protobuf in python with C++ implementation.
+I had been having a lot of trouble with the compilation of python protobuf. After struggling with it for a few months on and off I decided to give Docker a try as I realized that my own Fedora OS may be the one having troubles. Thought of starting with Ubuntu Docker as I&amp;rsquo;ve had success with it earlier with such compilation scripts.</description>
     </item>
     
     <item>
@@ -384,194 +49,8 @@ You can do that with the following commands:&lt;/p&gt;
       <pubDate>Wed, 22 Jun 2016 21:17:56 +0800</pubDate>
       
       <guid>http://abhipandey.com/2016/06/using-todo-in-fedora/</guid>
-      <description>
-
-&lt;p&gt;I recently started using Fedora for work and had to manage a lot of tasks on various projects.
-The list was big enough and there&amp;rsquo;s no proper support for Evernote in linux, my trusty todo list manager
-or ToDo list manager by AbstractSpoon. Decided to try post-it notes but my list was changing on an
-ad-hoc basis. Finally came across an &lt;a href=&#34;https://extensions.gnome.org/extension/570/todotxt/&#34;&gt;extension Todo.txt&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;Turned out this was just what I was looking for. I started putting all of my tasks in it, with proper categorization.
-Behind the scenes it is an extremely simple app which has only two files, both saved in &lt;code&gt;~/.local/share/todo.txt/&lt;/code&gt; folder.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;done.txt&lt;/li&gt;
-&lt;li&gt;todo.txt&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;The tasks are initially put as simple text in &lt;strong&gt;todo.txt&lt;/strong&gt; and are moved to &lt;strong&gt;done.txt&lt;/strong&gt; once marked complete.
-It is extremely useful that todo.txt app has UI as well as the files which are user friendly.&lt;/p&gt;
-
-&lt;h2 id=&#34;finding-tasks-completed-in-the-last-week:45bde4e2871e2b6baf64650e1fb2e828&#34;&gt;Finding tasks completed in the last week&lt;/h2&gt;
-
-&lt;p&gt;During weekly meetings I found it difficult to mention all the tasks that
-I had been working on for the whole of the previous week. Thinking about todo
-tasks, I thought of using a bash script to print out the tasks from the last
- 8 days. After all, the files did contain a whole long list of tasks.&lt;/p&gt;
-
-&lt;p&gt;Here was the idea that I had in mind:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Read &lt;strong&gt;done.txt&lt;/strong&gt; and &lt;strong&gt;todo.txt&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;Highlight the tasks differently from both files so it&amp;rsquo;s easy to
-see what has been completed already
-
-&lt;ul&gt;
-&lt;li&gt;Chose green color for done and red for todo&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;Highlight the categories differently - chose yellow&lt;/li&gt;
-&lt;li&gt;Show all the tasks completed in the last 8 days
-
-&lt;ul&gt;
-&lt;li&gt;Also provide the option to chose any number of days&lt;/li&gt;
-&lt;li&gt;Helps on those days when I wanna see more than 8 days&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;Show all the tasks in todo&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Here&amp;rsquo;s the script for that:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;todos&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;()&lt;/span&gt;
-&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;{&lt;/span&gt;
-    &lt;span style=&#34;color: #000000&#34;&gt;TODOFILE&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;~/.local/share/todo.txt/todo.txt
-    &lt;span style=&#34;color: #000000&#34;&gt;DONEFILE&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;~/.local/share/todo.txt/done.txt
-    &lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;# echo $TODOFILE&lt;/span&gt;
-    &lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;# echo $DONEFILE &amp;quot;\n&amp;quot;&lt;/span&gt;
-
-    lastXdays&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;()&lt;/span&gt;
-    &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;{&lt;/span&gt;
-        search&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;()&lt;/span&gt;•
-        &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;{&lt;/span&gt;
-            &lt;span style=&#34;color: #000000&#34;&gt;DAY&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;$1&lt;/span&gt;
-            cat &lt;span style=&#34;color: #000000&#34;&gt;$TODOFILE&lt;/span&gt; &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;GREP_COLOR&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;1;31&amp;quot;&lt;/span&gt; grep --color&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;always &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39; [a-Z[].*&amp;#39;&lt;/span&gt; &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;GREP_COLOR&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;3;33&amp;quot;&lt;/span&gt; grep --color&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;always  &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;\+.*&amp;quot;&lt;/span&gt;
-            egrep &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;$(&lt;/span&gt;date &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;+%Y-%m-%d&amp;#39;&lt;/span&gt; --date&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;$DAY&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39; days ago&amp;#39;&lt;/span&gt;&lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;)&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;$DONEFILE&lt;/span&gt; &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;GREP_COLOR&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;1;32&amp;quot;&lt;/span&gt; grep --color&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;always &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39; [a-Z].*&amp;#39;&lt;/span&gt; &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;GREP_COLOR&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;03;33&amp;quot;&lt;/span&gt; grep --color&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;always  &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;\+.*&amp;quot;&lt;/span&gt;
-        &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;}&lt;/span&gt;
-        &lt;span style=&#34;color: #000000&#34;&gt;END&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;$1&lt;/span&gt;
-        &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;for&lt;/span&gt; i in &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;$(&lt;/span&gt;seq &lt;span style=&#34;color: #0000cf; font-weight: bold&#34;&gt;0&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;$END&lt;/span&gt;&lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;)&lt;/span&gt;
-            &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;do&lt;/span&gt;
-                search &lt;span style=&#34;color: #000000&#34;&gt;$i&lt;/span&gt;
-            &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;done&lt;/span&gt;
-
-    &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;}&lt;/span&gt;
-    &lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;# First arg, if given, or default value of 8&lt;/span&gt;
-    &lt;span style=&#34;color: #000000&#34;&gt;DAYS&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;${&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;1&lt;/span&gt;&lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;:-&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;8&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;}&lt;/span&gt;
-    lastXdays &lt;span style=&#34;color: #000000&#34;&gt;$DAYS&lt;/span&gt; &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; sort -u
-&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;}&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;Now, when I run this command, it gives me the following:&lt;/p&gt;
-
-
-&lt;figure &gt;
-    
-        &lt;img src=&#34;http://abhipandey.com/images/todo-in-fedora.png&#34; alt=&#34;My TODOs&#34; /&gt;
-    
-    
-    &lt;figcaption&gt;
-        &lt;p&gt;
-        My TODOs
-        
-            
-        
-        &lt;/p&gt; 
-    &lt;/figcaption&gt;
-    
-&lt;/figure&gt;
-
-
-&lt;h2 id=&#34;sharing-the-tasks:45bde4e2871e2b6baf64650e1fb2e828&#34;&gt;Sharing the tasks&lt;/h2&gt;
-
-&lt;p&gt;I work with different teams which means sharing with them the latest updates
-on different days of the week. I used to run my &lt;code&gt;todos&lt;/code&gt; command on bash
-before going for the meeting but I realized this was getting very mundane and
-I was spending a lot of time remembering the tasks I had done.&lt;/p&gt;
-
-&lt;p&gt;I decided to make it easy by sharing the tasks with the rest of the team
-automatically. Enter &lt;code&gt;crontab&lt;/code&gt; and &lt;em&gt;python&amp;rsquo;s&lt;/em&gt; &lt;code&gt;invoke&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;Here are the steps we will need:&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;Setup cronjob&lt;/li&gt;
-&lt;li&gt;Cron job will call upon a bash script&lt;/li&gt;
-&lt;li&gt;Bash script will call &lt;em&gt;python&lt;/em&gt;&amp;rsquo;s invoke
-
-&lt;ul&gt;
-&lt;li&gt;Here we call upon a bash script to provide us the results of &lt;code&gt;todos&lt;/code&gt;
-in bash and then use that to send an email based on the &lt;code&gt;--mailgroup&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;Simply taking the output of &lt;code&gt;todos&lt;/code&gt; in &lt;em&gt;bash&lt;/em&gt; will give us a lot of
-unreadable characters. Especially the ones where we try and color code
-the response so it&amp;rsquo;s easy on the eyes - &lt;strong&gt;3;33&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;You can install &lt;code&gt;aha&lt;/code&gt; to convert the ANSI terminal colors to html color
-codes. This way when we mail the contents to team members, it will display
-properly.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h3 id=&#34;crontab:45bde4e2871e2b6baf64650e1fb2e828&#34;&gt;crontab&lt;/h3&gt;
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #0000cf; font-weight: bold&#34;&gt;45&lt;/span&gt; &lt;span style=&#34;color: #0000cf; font-weight: bold&#34;&gt;09&lt;/span&gt; * * &lt;span style=&#34;color: #0000cf; font-weight: bold&#34;&gt;1&lt;/span&gt; /usr/bin/bash /PATH_TO_BASH_SCRIPT/crons.sh --mailgroup&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;&amp;lt;TEAM_MAIL&amp;gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;h3 id=&#34;crons-sh:45bde4e2871e2b6baf64650e1fb2e828&#34;&gt;crons.sh&lt;/h3&gt;
-
-&lt;p&gt;The &lt;code&gt;crons.sh&lt;/code&gt; itself is really simple, which calls upon the &lt;code&gt;invoke&lt;/code&gt; task:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;# ----- crons.sh --------&lt;/span&gt;
-&lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;# Activate the virtual env&lt;/span&gt;
-&lt;span style=&#34;color: #204a87&#34;&gt;source&lt;/span&gt; ~/code/venvs/ve_opt/bin/activate
-
-&lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;# Go to the directory containing the invoke script&lt;/span&gt;
-&lt;span style=&#34;color: #204a87&#34;&gt;cd&lt;/span&gt; ~/code/scripts/
-
-&lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;# Run the invoke, pass the cmd line params, as is (which means mailgroup)&lt;/span&gt;
-inv share_todos &lt;span style=&#34;color: #000000&#34;&gt;$*&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;h3 id=&#34;tasks-py:45bde4e2871e2b6baf64650e1fb2e828&#34;&gt;tasks.py&lt;/h3&gt;
-
-&lt;p&gt;Now it is time for contents of &lt;code&gt;invoke&lt;/code&gt;&amp;rsquo;s &lt;strong&gt;tasks.py&lt;/strong&gt;.
-We want to ensure that the font is big enough.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #5c35cc; font-weight: bold&#34;&gt;@task&lt;/span&gt;
-&lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;share_todos&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;mailgroup&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;):&lt;/span&gt;
-    &lt;span style=&#34;color: #000000&#34;&gt;process_out&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;subprocess&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;check_output&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;([&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;/FULL_PATH_TO/_htmltodos.sh&amp;#39;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;])&lt;/span&gt;\
-        &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;replace&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;&amp;lt;body&amp;gt;&amp;#39;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt;
-                 &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;&amp;lt;body style=&amp;quot;font-weight:900; font-size:1.3em;&amp;quot;&amp;gt;&amp;#39;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;)&lt;/span&gt;
-    &lt;span style=&#34;color: #000000&#34;&gt;mail&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;(&lt;/span&gt;
-        &lt;span style=&#34;color: #000000&#34;&gt;process_out&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt;
-        &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;My todos @ {}&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;format&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;datetime&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;datetime&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;now&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;()&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;strftime&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;%c&amp;#39;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;)),&lt;/span&gt;
-        &lt;span style=&#34;color: #000000&#34;&gt;mailgroup&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;h3 id=&#34;htmltodos-sh:45bde4e2871e2b6baf64650e1fb2e828&#34;&gt;_htmltodos.sh&lt;/h3&gt;
-
-&lt;p&gt;We will use &lt;code&gt;aha&lt;/code&gt; to convert the ANSI terminal colors to html color codes.
-Also, we will replace some color codes that &lt;code&gt;aha&lt;/code&gt; creates because
-it is not really nice looking.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;#!/usr/bin/bash&lt;/span&gt;
-&lt;span style=&#34;color: #204a87&#34;&gt;source&lt;/span&gt; ~/.bashrc
-
-todos &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; /usr/local/bin/aha &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; sed -e &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;s/color:olive/color:DeepSkyBlue; font-style:italic;/g&amp;#39;&lt;/span&gt; -e &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;s/color:green;/color:LimeGreen;/g&amp;#39;&lt;/span&gt; -e &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;s/&amp;lt;pre&amp;gt;/&amp;lt;pre style=&amp;quot;color:gray;&amp;quot;&amp;gt;/g&amp;#39;&lt;/span&gt;
-&lt;span style=&#34;color: #204a87&#34;&gt;exit&lt;/span&gt; 0
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;h3 id=&#34;the-result:45bde4e2871e2b6baf64650e1fb2e828&#34;&gt;The result&lt;/h3&gt;
-
-
-&lt;figure &gt;
-    
-        &lt;img src=&#34;http://abhipandey.com/images/todo-in-email.png&#34; alt=&#34;The email look&#34; /&gt;
-    
-    
-    &lt;figcaption&gt;
-        &lt;p&gt;
-        The email look
-        
-            
-        
-        &lt;/p&gt; 
-    &lt;/figcaption&gt;
-    
-&lt;/figure&gt;
-
-</description>
+      <description>I recently started using Fedora for work and had to manage a lot of tasks on various projects. The list was big enough and there&amp;rsquo;s no proper support for Evernote in linux, my trusty todo list manager or ToDo list manager by AbstractSpoon. Decided to try post-it notes but my list was changing on an ad-hoc basis. Finally came across an extension Todo.txt.
+Turned out this was just what I was looking for.</description>
     </item>
     
     <item>
@@ -580,113 +59,9 @@ todos &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&g
       <pubDate>Fri, 13 May 2016 21:17:56 +0800</pubDate>
       
       <guid>http://abhipandey.com/2016/05/getting-list-of-issues-from-jira-under-current-sprint/</guid>
-      <description>
-
-&lt;p&gt;When you are working on &lt;em&gt;Agile Boards in JIRA&lt;/em&gt;, you may want to retrieve
-all the issues related to a particular board or the sprint.
-Usually you&amp;rsquo;d find issues in progress under the dashboard of the sprint itself.&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;Python JIRA&lt;/em&gt; allows you only a few options:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://jira.readthedocs.io/en/latest/api.html#jira.JIRA.incompleted_issues&#34;&gt;incompleted issues&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://jira.readthedocs.io/en/latest/api.html#jira.JIRA.completed_issues&#34;&gt;completed issues&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://jira.readthedocs.io/en/latest/api.html#jira.JIRA.removed_issues&#34;&gt;removed issues&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;As you will also notice from &lt;a href=&#34;https://jira.readthedocs.io/en/latest/api.html#jira.JIRA.sprints&#34;&gt;jira docs&lt;/a&gt;
-the &lt;code&gt;sprints&lt;/code&gt; function in there only provides you sprints.&lt;/p&gt;
-
-&lt;p&gt;What it fails to provide is the issues under the sprint
-for which work through a different subquery under the hood.&lt;/p&gt;
-
-&lt;p&gt;The code here intends to provide a full list of all the issues, based on
-a sprint name - complete or incomplete - that belong to a given sprint name.
-You can modify the code easily to suit your needs.&lt;/p&gt;
-
-&lt;h2 id=&#34;requirements:db34945a6ca4a4e74ac4f8bf32367167&#34;&gt;Requirements&lt;/h2&gt;
-
-&lt;p&gt;First things first, you need to install jira through &lt;code&gt;pypi&lt;/code&gt; for the code.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;pip install jira
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;the-code:db34945a6ca4a4e74ac4f8bf32367167&#34;&gt;The code&lt;/h2&gt;
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;from&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;jira.resources&lt;/span&gt; &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;import&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;Issue&lt;/span&gt;
-&lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;from&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;jira.client&lt;/span&gt; &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;import&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;JIRA&lt;/span&gt;
-
-&lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;sprints&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;username&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt; 
-            &lt;span style=&#34;color: #000000&#34;&gt;ldp_password&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt;
-            &lt;span style=&#34;color: #000000&#34;&gt;sprint_name&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt;
-            &lt;span style=&#34;color: #000000&#34;&gt;type_of_issues_to_pull&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;[&lt;/span&gt;
-                  &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;completedIssues&amp;#39;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt; 
-                  &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;incompletedIssues&amp;#39;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt;
-                  &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;issuesNotCompletedInCurrentSprint&amp;#39;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt;
-                  &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;issuesCompletedInAnotherSprint&amp;#39;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;]):&lt;/span&gt;
-    &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;sprint_issues&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;cls&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;board_id&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;sprint_id&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;):&lt;/span&gt;
-        &lt;span style=&#34;color: #000000&#34;&gt;r_json&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;cls&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;_get_json&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;(&lt;/span&gt;
-            &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;rapid/charts/sprintreport?rapidViewId=%s&amp;amp;sprintId=%s&amp;#39;&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;%&lt;/span&gt; &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;(&lt;/span&gt;
-                &lt;span style=&#34;color: #000000&#34;&gt;board_id&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;sprint_id&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;),&lt;/span&gt;
-            &lt;span style=&#34;color: #000000&#34;&gt;base&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;cls&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;AGILE_BASE_URL&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;)&lt;/span&gt;
-
-        &lt;span style=&#34;color: #000000&#34;&gt;issues&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;[]&lt;/span&gt;
-        &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;for&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;t&lt;/span&gt; &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;in&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;type_of_issues_to_pull&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt;
-            &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;t&lt;/span&gt; &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;in&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;r_json&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;[&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;contents&amp;#39;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;]:&lt;/span&gt;
-                &lt;span style=&#34;color: #000000&#34;&gt;issues&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;+=&lt;/span&gt; &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;[&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;Issue&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;cls&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;_options&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;cls&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;_session&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;raw_issues_json&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;)&lt;/span&gt;
-                           &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;for&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;raw_issues_json&lt;/span&gt; &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;in&lt;/span&gt;
-                           &lt;span style=&#34;color: #000000&#34;&gt;r_json&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;[&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;contents&amp;#39;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;][&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;t&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;]]&lt;/span&gt;
-        &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;{&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;x&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;key&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;x&lt;/span&gt; &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;for&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;x&lt;/span&gt; &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;in&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;issues&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;}&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;values&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;()&lt;/span&gt;
-
-    &lt;span style=&#34;color: #000000&#34;&gt;fmt_full&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;Sprint: {} \n\nIssues:{}&amp;#39;&lt;/span&gt;
-    &lt;span style=&#34;color: #000000&#34;&gt;fmt_issues&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;\n- {}: {}&amp;#39;&lt;/span&gt;
-    &lt;span style=&#34;color: #000000&#34;&gt;issues_str&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;&amp;#39;&lt;/span&gt;
-    &lt;span style=&#34;color: #000000&#34;&gt;milestone_str&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;&amp;#39;&lt;/span&gt;
-
-    &lt;span style=&#34;color: #000000&#34;&gt;options&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;{&lt;/span&gt;
-        &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;server&amp;#39;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;http://jira/&amp;#39;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt;
-        &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;verify&amp;#39;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #3465a4&#34;&gt;True&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt;
-        &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;basic_auth&amp;#39;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;username&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;ldp_password&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;),&lt;/span&gt;
-    &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;}&lt;/span&gt;
-    &lt;span style=&#34;color: #000000&#34;&gt;gh&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;JIRA&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;options&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;options&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;basic_auth&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;username&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;ldp_password&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;))&lt;/span&gt;
-
-    &lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;# Get all boards viewable by anonymous users.&lt;/span&gt;
-    &lt;span style=&#34;color: #000000&#34;&gt;boards&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;gh&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;boards&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;()&lt;/span&gt;
-    &lt;span style=&#34;color: #000000&#34;&gt;board&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;[&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;b&lt;/span&gt; &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;for&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;b&lt;/span&gt; &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;in&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;boards&lt;/span&gt; &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;b&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;name&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;==&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;sprint_name&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;][&lt;/span&gt;&lt;span style=&#34;color: #0000cf; font-weight: bold&#34;&gt;0&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;]&lt;/span&gt;
-
-    &lt;span style=&#34;color: #000000&#34;&gt;sprints&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;gh&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;sprints&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;board&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;id&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;)&lt;/span&gt;
-
-    &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;for&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;sprint&lt;/span&gt; &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;in&lt;/span&gt; &lt;span style=&#34;color: #204a87&#34;&gt;sorted&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;([&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;s&lt;/span&gt; &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;for&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;s&lt;/span&gt; &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;in&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;sprints&lt;/span&gt;
-                   &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;s&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;raw&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;[&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;u&amp;#39;state&amp;#39;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;]&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;==&lt;/span&gt; &lt;span style=&#34;color: #4e9a06&#34;&gt;u&amp;#39;ACTIVE&amp;#39;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;],&lt;/span&gt;
-                &lt;span style=&#34;color: #000000&#34;&gt;key&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;lambda&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;x&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;x&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;raw&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;[&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;u&amp;#39;sequence&amp;#39;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;]):&lt;/span&gt;
-        &lt;span style=&#34;color: #000000&#34;&gt;milestone_str&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #204a87&#34;&gt;str&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;sprint&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;)&lt;/span&gt;
-        &lt;span style=&#34;color: #000000&#34;&gt;issues&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;sprint_issues&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;gh&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;board&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;id&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;sprint&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;id&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;)&lt;/span&gt;
-        &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;for&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;issue&lt;/span&gt; &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;in&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;issues&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;:&lt;/span&gt;
-            &lt;span style=&#34;color: #000000&#34;&gt;issues_str&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;+=&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;fmt_issues&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;format&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;issue&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;key&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;issue&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;summary&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;)&lt;/span&gt;
-
-    &lt;span style=&#34;color: #000000&#34;&gt;result&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;fmt_full&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;format&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;(&lt;/span&gt;
-        &lt;span style=&#34;color: #000000&#34;&gt;milestone_str&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt;
-        &lt;span style=&#34;color: #000000&#34;&gt;issues_str&lt;/span&gt;
-    &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;)&lt;/span&gt;
-    &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;print&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;result&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;)&lt;/span&gt;
-    &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color: #000000&#34;&gt;result&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;You can call the function with the following command:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;sprints(&amp;lt;username&amp;gt;, &amp;lt;password&amp;gt;, &amp;lt;sprint_name&amp;gt;)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;You will get results that are similar to the following:&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;pre&gt;&lt;code&gt;Sprint: SPRINT_NAME
-
-Issues:
-- PROJECT-437: Description of the issue
-- PROJECT-447: Description of the issue
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/blockquote&gt;
-</description>
+      <description>When you are working on Agile Boards in JIRA, you may want to retrieve all the issues related to a particular board or the sprint. Usually you&amp;rsquo;d find issues in progress under the dashboard of the sprint itself.
+Python JIRA allows you only a few options:
+ incompleted issues completed issues removed issues  As you will also notice from jira docs the sprints function in there only provides you sprints.</description>
     </item>
     
     <item>
@@ -695,48 +70,9 @@ Issues:
       <pubDate>Sat, 31 Oct 2015 20:48:16 +0800</pubDate>
       
       <guid>http://abhipandey.com/2015/10/vim-cannot-find-word-list/</guid>
-      <description>&lt;p&gt;After installing &lt;a href=&#34;http://vim.spf13.com/&#34;&gt;spf13 vim&lt;/a&gt; every time I would open a file I had trouble with two things on my mac:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;File opening would halt in the middle with the following error :  &lt;strong&gt;Cannot find word list &amp;ldquo;en.utf-8.spl&amp;rdquo; or &amp;ldquo;en.ascii.spl&amp;rdquo;&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;Syntax highlighting also failed thereafter&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Here&amp;rsquo;s what I would see:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;$ vim release.sh 
-Warning: Cannot find word list &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;en.utf-8.spl&amp;quot;&lt;/span&gt; or &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;en.ascii.spl&amp;quot;&lt;/span&gt;
-Press ENTER or &lt;span style=&#34;color: #204a87&#34;&gt;type&lt;/span&gt; &lt;span style=&#34;color: #204a87&#34;&gt;command&lt;/span&gt; to &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;continue&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;I googled a lot regarding this but didn&amp;rsquo;t find anything straight forward.
-When all options failed I recalled that it is looking for the spell files in a specific folder.
-Hence I decided to do a lookup for them:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;locate en.utf-8
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;I got a lot of options:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;$ locate en.utf-8
-
-/usr/local/Cellar/macvim/7.4-73/MacVim.app/Contents/Resources/vim/runtime/spell/en.utf-8.spl
-/usr/local/Cellar/macvim/7.4-73/MacVim.app/Contents/Resources/vim/runtime/spell/en.utf-8.sug
-/usr/local/Cellar/vim/7.4.712/share/vim/vim74/spell/en.utf-8.spl
-/usr/local/Cellar/vim/7.4.712/share/vim/vim74/spell/en.utf-8.sug
-/usr/share/vim/vim73/spell/en.utf-8.spl
-/usr/share/vim/vim73/spell/en.utf-8.sug
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;One of the options was to change the &lt;code&gt;runtimepath&lt;/code&gt; to let it know about the spell folders.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #204a87&#34;&gt;let&lt;/span&gt; &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span style=&#34;color: #000000&#34;&gt;runtimepath&lt;/span&gt;&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=(&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;quot;~/.vim/,/usr/local/Cellar/vim/7.4.712/share/vim/vim74/spell/,&amp;quot;&lt;/span&gt; . &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;&amp;amp;&lt;/span&gt;runtimepath&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;When that failed too and nothing else worked, I decided to copy out the file and give it a try:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;cp /usr/local/Cellar/vim/7.4.712/share/vim/vim74/spell/en.utf-8.spl ~/.vim/spell
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;To my surprise, that worked!&lt;/p&gt;
-</description>
+      <description>After installing spf13 vim every time I would open a file I had trouble with two things on my mac:
+ File opening would halt in the middle with the following error : Cannot find word list &amp;ldquo;en.utf-8.spl&amp;rdquo; or &amp;ldquo;en.ascii.spl&amp;rdquo; Syntax highlighting also failed thereafter  Here&amp;rsquo;s what I would see:
+$ vim release.sh Warning: Cannot find word list &amp;#34;en.utf-8.spl&amp;#34; or &amp;#34;en.ascii.spl&amp;#34; Press ENTER or type command to continue I googled a lot regarding this but didn&amp;rsquo;t find anything straight forward.</description>
     </item>
     
     <item>
@@ -745,258 +81,8 @@ Hence I decided to do a lookup for them:&lt;/p&gt;
       <pubDate>Fri, 07 Aug 2015 14:59:18 -0400</pubDate>
       
       <guid>http://abhipandey.com/2015/08/convert-github-wiki-to-static-site-with-themes/</guid>
-      <description>
-
-&lt;p&gt;I recently wanted to setup a wiki so that I could convert it into a static html site with a proper themes.
-What could be a possible use case for such a requirement:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Manage the documentation of a product internally through &lt;code&gt;git&lt;/code&gt; but publish it for clients/world through static site&lt;/li&gt;
-&lt;li&gt;Convert the uncolored wiki to a themed version&lt;/li&gt;
-&lt;li&gt;Allow serving of the wiki through web application frameworks like &lt;code&gt;Django&lt;/code&gt;
-
-&lt;ul&gt;
-&lt;li&gt;It may allow you to have authentication system as a first step hurdle to stop everybody from giving access&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Anyways, I went about the whole process and decided to jot down everything. Here I am taking &lt;a href=&#34;https://github.com/mbostock/d3/wiki&#34;&gt;D3 Wiki&lt;/a&gt; as an example
-which I will be converting into a static site. Let&amp;rsquo;s begin.&lt;/p&gt;
-
-
-&lt;figure &gt;
-    
-        &lt;img src=&#34;http://abhipandey.com/images/wiki_to_static_1.png&#34; alt=&#34;D3 Wiki using pelican&#34; /&gt;
-    
-    
-    &lt;figcaption&gt;
-        &lt;p&gt;
-        D3 Wiki using pelican
-        
-            
-        
-        &lt;/p&gt; 
-    &lt;/figcaption&gt;
-    
-&lt;/figure&gt;
-
-
-&lt;h1 id=&#34;setup-and-requirements:7286face6d57cb9f253b611714e09c9a&#34;&gt;Setup and requirements&lt;/h1&gt;
-
-&lt;p&gt;What do we need to get started?&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;We will need a static site generator
-
-&lt;ul&gt;
-&lt;li&gt;Let&amp;rsquo;s use &lt;a href=&#34;http://blog.getpelican.com&#34;&gt;&lt;code&gt;pelican&lt;/code&gt;&lt;/a&gt; for this demo&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;An actual wiki
-
-&lt;ul&gt;
-&lt;li&gt;Since we are going to demo how to convert a wiki to static we will use an
-&lt;a href=&#34;https://github.com/showcases/projects-with-great-wikis&#34;&gt;existing wiki from github&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Let&amp;rsquo;s choose &lt;a href=&#34;https://github.com/mbostock/d3/wiki&#34;&gt;D3 Wiki&lt;/a&gt; for this instance&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;Python environment so that &lt;em&gt;pelican&lt;/em&gt; and &lt;em&gt;fabric&lt;/em&gt; can be installed&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;virtual-environment-with-pelican:7286face6d57cb9f253b611714e09c9a&#34;&gt;Virtual Environment with pelican&lt;/h2&gt;
-
-&lt;p&gt;&lt;strong&gt;Setup the virtual environment&lt;/strong&gt;&lt;/p&gt;
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;$ virtualenv ve_blog
-$ &lt;span style=&#34;color: #204a87&#34;&gt;source&lt;/span&gt; ve_blog/bin/activate
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;strong&gt;Install pelican&lt;/strong&gt;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$ pip install pelican
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;strong&gt;Pelican Quickstart&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;Setup pelican using &lt;code&gt;pelican-quickstart&lt;/code&gt; so that all files are setup correctly for creating a static site.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;$ pelican-quickstart
-
-Welcome to pelican-quickstart v3.6.3.
-
-This script will &lt;span style=&#34;color: #204a87&#34;&gt;help&lt;/span&gt; you create a new Pelican-based website.
-
-Please answer the following questions so this script can generate the files
-needed by Pelican.
-
-    
-&amp;gt; Where &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;do&lt;/span&gt; you want to create your new web site? &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;[&lt;/span&gt;.&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;]&lt;/span&gt; 
-&amp;gt; What will be the title of this web site? D3 WIKI
-&amp;gt; Who will be the author of this web site? abhi1010
-&amp;gt; What will be the default language of this web site? &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;[&lt;/span&gt;en&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;]&lt;/span&gt; 
-&amp;gt; Do you want to specify a URL prefix? e.g., http://example.com   &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;(&lt;/span&gt;Y/n&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;)&lt;/span&gt; n
-&amp;gt; Do you want to &lt;span style=&#34;color: #204a87&#34;&gt;enable&lt;/span&gt; article pagination? &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;(&lt;/span&gt;Y/n&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;)&lt;/span&gt; Y
-&amp;gt; How many articles per page &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;do&lt;/span&gt; you want? &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;[&lt;/span&gt;10&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;]&lt;/span&gt; 
-&amp;gt; What is your &lt;span style=&#34;color: #204a87&#34;&gt;time&lt;/span&gt; zone? &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;[&lt;/span&gt;Europe/Paris&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;]&lt;/span&gt; Asia/Singapore
-&amp;gt; Do you want to generate a Fabfile/Makefile to automate generation and publishing? &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;(&lt;/span&gt;Y/n&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;)&lt;/span&gt; Y
-&amp;gt; Do you want an auto-reload &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;&amp;amp;&lt;/span&gt; simpleHTTP script to assist with theme and site development? &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;(&lt;/span&gt;Y/n&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;)&lt;/span&gt; Y
-&amp;gt; Do you want to upload your website using FTP? &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;(&lt;/span&gt;y/N&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;)&lt;/span&gt; N
-&amp;gt; Do you want to upload your website using SSH? &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;(&lt;/span&gt;y/N&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;)&lt;/span&gt; N
-&amp;gt; Do you want to upload your website using Dropbox? &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;(&lt;/span&gt;y/N&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;)&lt;/span&gt; N
-&amp;gt; Do you want to upload your website using S3? &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;(&lt;/span&gt;y/N&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;)&lt;/span&gt; N
-&amp;gt; Do you want to upload your website using Rackspace Cloud Files? &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;(&lt;/span&gt;y/N&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;)&lt;/span&gt; N
-&amp;gt; Do you want to upload your website using GitHub Pages? &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;(&lt;/span&gt;y/N&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;)&lt;/span&gt; N
-Done. Your new project is available at /Users/apandey/code/githubs/d3wiki
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;h2 id=&#34;get-the-wiki:7286face6d57cb9f253b611714e09c9a&#34;&gt;Get the wiki&lt;/h2&gt;
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;$ git clone https://github.com/mbostock/d3.wiki.git
-
-Cloning into &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;d3.wiki&amp;#39;&lt;/span&gt;...
-remote: Counting objects: 12026, &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;done&lt;/span&gt;.
-remote: Compressing objects: 100% &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;(&lt;/span&gt;67/67&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;)&lt;/span&gt;, &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;done&lt;/span&gt;.
-remote: Total &lt;span style=&#34;color: #0000cf; font-weight: bold&#34;&gt;12026&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;(&lt;/span&gt;delta 607&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;)&lt;/span&gt;, reused &lt;span style=&#34;color: #0000cf; font-weight: bold&#34;&gt;552&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;(&lt;/span&gt;delta 552&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;)&lt;/span&gt;, pack-reused 11407
-Receiving objects: 100% &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;(&lt;/span&gt;12026/12026&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;)&lt;/span&gt;, 9.92 MiB &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;|&lt;/span&gt; 1.49 MiB/s, &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;done&lt;/span&gt;.
-Resolving deltas: 100% &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;(&lt;/span&gt;7595/7595&lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;)&lt;/span&gt;, &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;done&lt;/span&gt;.
-Checking connectivity... &lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;done&lt;/span&gt;.
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;strong&gt;Setting the wiki as content for pelican&lt;/strong&gt;&lt;/p&gt;
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;$ rmdir content
-$ ln -s dr.wiki content
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;h1 id=&#34;why-simple-pelican-won-t-work-and-what-to-do:7286face6d57cb9f253b611714e09c9a&#34;&gt;Why simple pelican won&amp;rsquo;t work and what to do&lt;/h1&gt;
-
-&lt;p&gt;If you tried to simply call &lt;code&gt;pelican&lt;/code&gt; command to build the static site, you will notice a lot of errors like:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;$ fab build
-
-RROR: Skipping ./请求.md: could not find information about &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;NameError: title&amp;#39;&lt;/span&gt;
-ERROR: Skipping ./过渡.md: could not find information about &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;NameError: title&amp;#39;&lt;/span&gt;
-ERROR: Skipping ./选择器.md: could not find information about &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;NameError: title&amp;#39;&lt;/span&gt;
-ERROR: Skipping ./选择集.md: could not find information about &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;NameError: title&amp;#39;&lt;/span&gt;
-Done: Processed &lt;span style=&#34;color: #0000cf; font-weight: bold&#34;&gt;0&lt;/span&gt; articles, &lt;span style=&#34;color: #0000cf; font-weight: bold&#34;&gt;0&lt;/span&gt; drafts, &lt;span style=&#34;color: #0000cf; font-weight: bold&#34;&gt;0&lt;/span&gt; pages and &lt;span style=&#34;color: #0000cf; font-weight: bold&#34;&gt;0&lt;/span&gt; hidden pages in 3.47 seconds.
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;The problem is that pelican expects some variables to be defined in each &lt;em&gt;markdown&lt;/em&gt; file before it can build the static file.
- Some of the variables are:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Title&lt;/li&gt;
-&lt;li&gt;Slug&lt;/li&gt;
-&lt;li&gt;Date&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;You may add your own &lt;a href=&#34;http://docs.getpelican.com/en/3.6.3/content.html#file-metadata&#34;&gt;ones as well&lt;/a&gt; that you want.
- However, for our initial purposes, we will keep it simple and just try to add these.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Next&lt;/strong&gt;, how do we achieve this automation?
-&lt;strong&gt;&lt;code&gt;fab&lt;/code&gt; is our answer.&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;Let&amp;rsquo;s write a function in python that will modify the markdown files and update them to add &lt;em&gt;Title, Slug, Date&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;We will edit &lt;code&gt;fabfile.py&lt;/code&gt; and add a new function &lt;code&gt;create_wiki&lt;/code&gt;:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;def create_wiki():
-    files = []
-    # Find all markdown files in content folder 
-    for f in os.walk(&#39;./content/&#39;):
-        fpath = lambda x: os.path.join(f[0], x)
-        for file in f[2]:
-            fullpath = fpath(file)
-            # print(&#39;f = {}&#39;.format(fullpath))
-            files.append(fullpath)
-    filtered = [f for f in files if f.endswith(&#39;.md&#39;)]
-    for file in filtered:
-        with open(file, &#39;r+&#39;) as f:
-            content = f.read()
-            f.seek(0, 0)
-            base = os.path.basename(file).replace(&#39;.md&#39;, &#39;&#39;) 
-            lines = [&#39;Title: {}&#39;.format(base.replace(&#39;-&#39;, &#39; &#39;)),
-                    &#39;Slug: {}&#39;.format(base),
-                    &#39;Date: 2015-08-07T14:59:18-04:00&#39;,
-                    &#39;&#39;, &#39;&#39;]
-            line = &#39;\n&#39;.join(lines)
-            # Add the lines to the file
-            f.write(line + &#39;\n&#39; + content)
-        print(file)
-    
-    # build and serve the website
-    build()
-    serve()
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Now you can call this function easily:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;fab create_wiki
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;The website can now be viewed at &lt;a href=&#34;http://localhost:8000&#34;&gt;http://localhost:8000&lt;/a&gt;&lt;/p&gt;
-
-&lt;h1 id=&#34;what-happened-to-the-menu:7286face6d57cb9f253b611714e09c9a&#34;&gt;What happened to the menu?&lt;/h1&gt;
-
-&lt;p&gt;There is a minor issue here though, you will notice that the menu is not available - it is all empty.
-It is an easy addition. We will need to add some lines to &lt;code&gt;publishconf.py&lt;/code&gt; to say what the menu is gonna be.&lt;/p&gt;
-
-&lt;p&gt;For my example, I have chosen to show up the following for &lt;em&gt;D3&lt;/em&gt;:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;API Reference&lt;/li&gt;
-&lt;li&gt;Tutorials&lt;/li&gt;
-&lt;li&gt;Plugins&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;# We don&amp;#39;t want all pages to show up in menu&lt;/span&gt;
-&lt;span style=&#34;color: #000000&#34;&gt;DISPLAY_PAGES_ON_MENU&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #3465a4&#34;&gt;False&lt;/span&gt;
-
-&lt;span style=&#34;color: #8f5902; font-style: italic&#34;&gt;# Choose the specific pages that should be part of menu&lt;/span&gt;
-&lt;span style=&#34;color: #000000&#34;&gt;MENUITEMS&lt;/span&gt; &lt;span style=&#34;color: #ce5c00; font-weight: bold&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;(&lt;/span&gt; 
-    &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;HOME&amp;#39;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt; &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;/home.html&amp;#39;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;),&lt;/span&gt;
-    &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;API Reference&amp;#39;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt; &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;/API-Reference.html&amp;#39;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;),&lt;/span&gt;
-    &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;Tutorials&amp;#39;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt; &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;/Tutorials.html&amp;#39;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;),&lt;/span&gt;
-    &lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;Plugins&amp;#39;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;,&lt;/span&gt; &lt;span style=&#34;color: #4e9a06&#34;&gt;&amp;#39;/Plugins.html&amp;#39;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;),&lt;/span&gt;
-&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;h1 id=&#34;choosing-themes:7286face6d57cb9f253b611714e09c9a&#34;&gt;Choosing themes&lt;/h1&gt;
-
-&lt;p&gt;By default, pelican uses its own theme for the static site, but theme can be modified.
-Let&amp;rsquo;s choose &lt;code&gt;pelican bootstrap3&lt;/code&gt; for our example here:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;git clone https://github.com/DandyDev/pelican-bootstrap3.git
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Now, add the full path to the theme at the end of the &lt;code&gt;publishconf.py&lt;/code&gt; file:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;THEME = &amp;quot;/Users/apandey/code/githubs/pelican_coders/all_themes/pelican-bootstrap3&amp;quot;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Finally, build your site again and serve:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;fab build
-fab serve
-&lt;/code&gt;&lt;/pre&gt;
-
-
-&lt;figure &gt;
-    
-        &lt;img src=&#34;http://abhipandey.com/images/wiki_to_static_2.png&#34; alt=&#34;Pelican Bootstrap3 theme&#34; /&gt;
-    
-    
-    &lt;figcaption&gt;
-        &lt;p&gt;
-        Pelican Bootstrap3 theme
-        
-            
-        
-        &lt;/p&gt; 
-    &lt;/figcaption&gt;
-    
-&lt;/figure&gt;
-
-
-&lt;h1 id=&#34;get-all-this-code-in-github-repo:7286face6d57cb9f253b611714e09c9a&#34;&gt;Get all this code in github repo&lt;/h1&gt;
-
-&lt;p&gt;I realize there maybe a few things going on here. You can get this whole setup as a project from
-my &lt;a href=&#34;https://github.com/abhi1010/d3wiki&#34;&gt;github repo&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;You will find all this code and setup so that your life is easier. Just start with d3 wiki along with virtual environment and you will be fine.&lt;/p&gt;
-</description>
+      <description>I recently wanted to setup a wiki so that I could convert it into a static html site with a proper themes. What could be a possible use case for such a requirement:
+ Manage the documentation of a product internally through git but publish it for clients/world through static site Convert the uncolored wiki to a themed version Allow serving of the wiki through web application frameworks like Django  It may allow you to have authentication system as a first step hurdle to stop everybody from giving access   Anyways, I went about the whole process and decided to jot down everything.</description>
     </item>
     
     <item>
@@ -1005,38 +91,17 @@ my &lt;a href=&#34;https://github.com/abhi1010/d3wiki&#34;&gt;github repo&lt;/a&
       <pubDate>Mon, 19 May 2014 09:45:57 +0000</pubDate>
       
       <guid>http://abhipandey.com/2014/05/getting-a-group-of-lines-from-a-file/</guid>
-      <description>&lt;p&gt;I&amp;rsquo;ve had this need quite a few times to pull out a section of logs that would begin with a particular line and end with another. grep is not exactly useful there because it only prints out sections based on line counters (using -A/B/C) lines based on a single search pattern.&lt;/p&gt;
-
-&lt;p&gt;I came up with a script that can run at almost same speeds using &lt;code&gt;grep/cat/awk&lt;/code&gt;. &lt;code&gt;awk&lt;/code&gt; is used to decide whether the end of the section has been reached or not. Some features of the script are:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;Since &lt;code&gt;awk&lt;/code&gt; script only toggles one variable it works seamlessly without delaying the actual work&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Works on gzip files as well&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;If you do not want to depend on grep or are unsure how many lines may be between begin and end keyword then replace gunzip with zcat and grep with cat.&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Usage: &lt;code&gt;group filename printBeginKeyword printUntilKeyword NumOfLines&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Let&amp;rsquo;s have a look at the script&amp;hellip;.&lt;/p&gt;
-
-&lt;script type=&#34;text/javascript&#34; src=&#34;http://gist.github.com/924a5f12f3067ba0b3af.js&#34;&gt;&lt;/script&gt;
-</description>
+      <description>I&amp;rsquo;ve had this need quite a few times to pull out a section of logs that would begin with a particular line and end with another. grep is not exactly useful there because it only prints out sections based on line counters (using -A/B/C) lines based on a single search pattern.
+I came up with a script that can run at almost same speeds using grep/cat/awk. awk is used to decide whether the end of the section has been reached or not.</description>
     </item>
     
     <item>
       <title>Tokenize a String using C&#43;&#43;</title>
-      <link>http://abhipandey.com/2014/04/tokenize-a-string-using-c&#43;&#43;/</link>
+      <link>http://abhipandey.com/2014/04/tokenize-a-string-using-c-/</link>
       <pubDate>Tue, 08 Apr 2014 07:00:00 +0000</pubDate>
       
-      <guid>http://abhipandey.com/2014/04/tokenize-a-string-using-c&#43;&#43;/</guid>
-      <description>&lt;p&gt;Here&amp;rsquo;s a short snippet to split a string into multiple tokens; into a vector. As you will see that, if you run the code, boost version performs better because you can choose a number of delimiters to split your string instead of the vanilla version using the normal C++ code. Of course, you may also write your own code to do something like this but I was looking to do some short snippets.&lt;/p&gt;
-
-&lt;script type=&#34;text/javascript&#34; src=&#34;http://gist.github.com/554885a7235f4047dae6.js&#34;&gt;&lt;/script&gt;
-
-&lt;p&gt;I have &lt;strong&gt;posted my code on &lt;a href=&#34;http://coliru.stacked-crooked.com/a/01e1c68ffd0199cd&#34;&gt;Stacked-Crooked&lt;/a&gt;&lt;/strong&gt; which you can view along with the output as well. It shows C++ doesn&amp;rsquo;t perform so well.&lt;/p&gt;
-</description>
+      <guid>http://abhipandey.com/2014/04/tokenize-a-string-using-c-/</guid>
+      <description>Here&amp;rsquo;s a short snippet to split a string into multiple tokens; into a vector. As you will see that, if you run the code, boost version performs better because you can choose a number of delimiters to split your string instead of the vanilla version using the normal C++ code. Of course, you may also write your own code to do something like this but I was looking to do some short snippets.</description>
     </item>
     
     <item>
@@ -1045,45 +110,9 @@ my &lt;a href=&#34;https://github.com/abhi1010/d3wiki&#34;&gt;github repo&lt;/a&
       <pubDate>Wed, 03 Jul 2013 07:28:00 +0000</pubDate>
       
       <guid>http://abhipandey.com/2013/07/cvs-cheat-sheet/</guid>
-      <description>&lt;p&gt;I&amp;rsquo;ve worked on CVS for a long time now and figured out that I&amp;rsquo;d save a lot of time if I started writing alias or functions for the numerous tasks that I did on them. I will put down some of them here so you may benefit from them.&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;Silently update and inform about the status of the files (recursive)&lt;/em&gt;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;cvs -q -n update
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;em&gt;Same as earlier but will only do so for the current folder&lt;/em&gt;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;cvs -Q -n update -l
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;em&gt;Finds out the cv[s] [m]odified list of files while also indentating them nicely with only the important data pulled out&lt;/em&gt;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;cvs -Q status | egrep &amp;quot;File: &amp;quot; -A 4 | egrep -v &amp;quot;Up-to-date&amp;quot; | egrep &amp;quot;File: &amp;quot; -A 3 | sed -e &amp;quot;s/ Status:/\t\tStatus:/&amp;quot; -e &amp;quot;s/,v$/\n-------------------------------------------------------------------------\n/&amp;quot; -e &amp;quot;s/.*${PWD##*/}\//Location:\t\t /&amp;quot; -e &amp;quot;s/Attic\///&amp;quot; | egrep &amp;quot;Location:|Repository|Status:|File:|--------
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;em&gt;Recursively add all files to CVS for committing from the current directory&lt;/em&gt;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;find . -type d -print | grep -v CVS | xargs cvs add
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;em&gt;Doing a side by side diff (change the value of -W according to the width of the screen)&lt;/em&gt;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;cvs -Q diff -t -y --suppress-common-lines -W 190 $*
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;em&gt;Merging code from one branch to another&lt;/em&gt;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;# Creates a command that you can use to &amp;quot;merge&amp;quot; your code from dev head to this current branch.   
-# Ideally you want to run this command from a folder where you want the code to merge to....   
-merge()   
-{   
-BRANCH=$(cat CVS/Tag | cut -c2-)   
-CMD=$(echo cvs update -j $BRANCH -j Version_2_17_dev .)   
-echo $CMD   
-}   
-&lt;/code&gt;&lt;/pre&gt;
-</description>
+      <description>I&amp;rsquo;ve worked on CVS for a long time now and figured out that I&amp;rsquo;d save a lot of time if I started writing alias or functions for the numerous tasks that I did on them. I will put down some of them here so you may benefit from them.
+Silently update and inform about the status of the files (recursive)
+cvs -q -n update  Same as earlier but will only do so for the current folder</description>
     </item>
     
     <item>
@@ -1092,73 +121,8 @@ echo $CMD
       <pubDate>Tue, 11 Jun 2013 07:05:00 +0000</pubDate>
       
       <guid>http://abhipandey.com/2013/06/cursor-control-in-vim-search/</guid>
-      <description>&lt;p&gt;Found a great way to search for keywords &amp;amp;&amp;amp; control the location of cursor in vim. It is excellent if you want to do a particular task multiple times. Usually if you search the cursor will straight away take you to the start of search. What if you want to go to the end of the word you are searching for?&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;/pattern/e
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;This takes you to the END of the keyword you are looking for.&lt;/p&gt;
-
-&lt;p&gt;That’s not all. What if you want to go the second letter in that keyword? Change the pattern to as follows:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;/pattern/s+1
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;That’s great. But what if I want to go to the end of the keyword?&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;/pattern/e
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Awesome. Let’s review it through examples. Let’s say our phrase is “the brown fox jumped over the lazy dog” and we originally want to search for “brown”.&lt;/p&gt;
-
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;Pattern&lt;/th&gt;
-&lt;th&gt;CURSOR LOCATED AT BEGINNING OF&lt;/th&gt;
-&lt;th&gt;Description&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;/brown&lt;/td&gt;
-&lt;td&gt;brown fox….&lt;/td&gt;
-&lt;td&gt;search and start at “brown”&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;/brown/s+2&lt;/td&gt;
-&lt;td&gt;own fox…&lt;/td&gt;
-&lt;td&gt;start at “brown” but move 2 letters from ‘start’&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;/brown/s-4&lt;/td&gt;
-&lt;td&gt;the brown fox…&lt;/td&gt;
-&lt;td&gt;start at “brown” but move 4 letters to the left from ‘start’&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;/brown/e&lt;/td&gt;
-&lt;td&gt;n fox….&lt;/td&gt;
-&lt;td&gt;search for “brown” but move to the end&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;/brown/e+2&lt;/td&gt;
-&lt;td&gt;fox…&lt;/td&gt;
-&lt;td&gt;search for “brown” but move 2 letters from the ‘end’&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;/brown/e-1&lt;/td&gt;
-&lt;td&gt;wn fox…&lt;/td&gt;
-&lt;td&gt;search for “brown” but move 1 letter to the left from the ‘end’&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-</description>
+      <description>Found a great way to search for keywords &amp;amp;&amp;amp; control the location of cursor in vim. It is excellent if you want to do a particular task multiple times. Usually if you search the cursor will straight away take you to the start of search. What if you want to go to the end of the word you are searching for?
+/pattern/e  This takes you to the END of the keyword you are looking for.</description>
     </item>
     
     <item>
@@ -1167,35 +131,18 @@ echo $CMD
       <pubDate>Thu, 25 Apr 2013 07:02:00 +0000</pubDate>
       
       <guid>http://abhipandey.com/2013/04/change-putty-window-title/</guid>
-      <description>&lt;p&gt;How to modify the Putty window title to a specific string?&lt;/p&gt;
-
-&lt;p&gt;By default, you&amp;rsquo;d like to have the window title to give you the full path to the folder you are working from (working directory). &lt;code&gt;PROMPT_COMMAND&lt;/code&gt;will help you with that.&lt;/p&gt;
-
-&lt;p&gt;However, if you have too many windows where you are on the same folder then it may become confusing. To set your own title you&amp;rsquo;d like to use the &lt;code&gt;title()&lt;/code&gt; function provided here. It sets the name to whatever you say.&lt;/p&gt;
-
-&lt;p&gt;Please note that &lt;code&gt;PS1&lt;/code&gt; is only valid until you move your folders again. That is why the title() function also has to reset &lt;code&gt;PROMPT_COMMAND&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;Let&amp;rsquo;s have a look at the script needed. Maybe you wanna put them in your .bashrc file.&lt;/p&gt;
-
-&lt;script type=&#34;text/javascript&#34; src=&#34;http://gist.github.com/8eed9133ed91cbb42854.js&#34;&gt;&lt;/script&gt;
-</description>
+      <description>How to modify the Putty window title to a specific string?
+By default, you&amp;rsquo;d like to have the window title to give you the full path to the folder you are working from (working directory). PROMPT_COMMANDwill help you with that.
+However, if you have too many windows where you are on the same folder then it may become confusing. To set your own title you&amp;rsquo;d like to use the title() function provided here.</description>
     </item>
     
     <item>
       <title>Google Analytics &amp; SWFAddress</title>
-      <link>http://abhipandey.com/2008/04/google-analytics--swfaddress/</link>
+      <link>http://abhipandey.com/2008/04/google-analytics-swfaddress/</link>
       <pubDate>Sun, 06 Apr 2008 05:32:00 +0000</pubDate>
       
-      <guid>http://abhipandey.com/2008/04/google-analytics--swfaddress/</guid>
-      <description>&lt;p&gt;Recently found a bug slash issue with Google Analytics new javscript software (post-urchin v5). I had written the internal documentation for the company standards and somehow when those standards were put into practice, SWFAddress feature of flash stopped working the moment google analytics feature was enabled. Worst of all, the web pages failed to load! To cap it off, the website was working perfectly fine on Firefox 2, 3 and IE 7!! It was having trouble only on IE6.&lt;/p&gt;
-
-&lt;p&gt;I tried a lot of ways but none seem to worked. Finally found a blog that remotely talked about SWFAddress!&lt;/p&gt;
-
-&lt;p&gt;Well, the problem turns out that SWFAddress uses &lt;code&gt;ExternalInterface.call()&lt;/code&gt; instead of &lt;code&gt;getUrl()&lt;/code&gt; function internally and they don&amp;rsquo;t go well together if used together.&lt;/p&gt;
-
-&lt;p&gt;The solution was simple, since flash is using SWFAddress feature, every &lt;code&gt;getUrl&lt;/code&gt; should be replaced with &lt;code&gt;ExternalInterface.call()&lt;/code&gt;.
- Needless to say, everything seemed perfect again.&lt;/p&gt;
-</description>
+      <guid>http://abhipandey.com/2008/04/google-analytics-swfaddress/</guid>
+      <description>Recently found a bug slash issue with Google Analytics new javscript software (post-urchin v5). I had written the internal documentation for the company standards and somehow when those standards were put into practice, SWFAddress feature of flash stopped working the moment google analytics feature was enabled. Worst of all, the web pages failed to load! To cap it off, the website was working perfectly fine on Firefox 2, 3 and IE 7!</description>
     </item>
     
     <item>
@@ -1204,21 +151,8 @@ echo $CMD
       <pubDate>Mon, 31 Mar 2008 18:26:00 +0000</pubDate>
       
       <guid>http://abhipandey.com/2008/03/full-trust-on-mapped-drive/</guid>
-      <description>&lt;p&gt;Sometimes, when opening a web project from another mapped drive (not your own computer&amp;rsquo;s hard disk) Visual Studio may complain something like this:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;The project location is not trusted.
-
-Running the application may result in security exceptions when it
-attempts to perform actions which require full trust.
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;The problem here is that .Net does not want to fully adhere to all security policies as your hard disk to this mapped drive as well as it does not know what kind of data it might have. If you want it to fully trust this mapped drive then you will have to use caspol for this purpose. Here&amp;rsquo;s how it is done:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;c:\&amp;gt;caspol -q -machine -addgroup 1 -url file://W:/* FullTrust -name &amp;quot;W Drive&amp;quot;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Once this new code group is in place, any new .NET processes you start will give any assemblies on the W drive full trust&lt;strong&gt;.&lt;/strong&gt;&lt;/p&gt;
-</description>
+      <description>Sometimes, when opening a web project from another mapped drive (not your own computer&amp;rsquo;s hard disk) Visual Studio may complain something like this:
+The project location is not trusted. Running the application may result in security exceptions when it attempts to perform actions which require full trust.  The problem here is that .Net does not want to fully adhere to all security policies as your hard disk to this mapped drive as well as it does not know what kind of data it might have.</description>
     </item>
     
     <item>
@@ -1227,26 +161,10 @@ attempts to perform actions which require full trust.
       <pubDate>Mon, 03 Mar 2008 04:58:00 +0000</pubDate>
       
       <guid>http://abhipandey.com/2008/03/talk-to-my...-flash/</guid>
-      <description>&lt;p&gt;According to normal acceptable behaviour it is not possible to let flash talk to the computer, be it on desktop or web browser.&lt;/p&gt;
-
-&lt;p&gt;There are always ways around a problem and there&amp;rsquo;s one in this case as well.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Windows Forms&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;If you wanted to access .net functions on windows form then probably a good way to do that would be through &lt;code&gt;ShockWaveFlashObjects&lt;/code&gt; library. It wraps all the functions that are available in ShockWave Objects and makes them available to you in .Net type safe way.&lt;/p&gt;
-
-&lt;p&gt;The easiest of ways to send data back and forth would be through
-&lt;code&gt;fscommand&lt;/code&gt; function. The concept is to embed a flash file in windows form and then make use of &lt;code&gt;fscommand&lt;/code&gt; function.&lt;/p&gt;
-
-&lt;p&gt;Tip: Remember to remove the blue window bondary at the top so the flash appears as if its a standalone object and not embedded inside another form!&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Websites&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;If you wanted to talk over a web page then an easy way out would be to use AMF.Net software. It is a freeware and very easy to use as well. In the words of its official &lt;a href=&#34;http://amfnet.openmymind.net/overview/default.aspx&#34;&gt;website&lt;/a&gt;:&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;&amp;ldquo;AMF enables developers to build powerful flash-based applications driven by databases and rich business layers.
-AMF.NET is a .NET gateway sitting between a Flash movie and .NET code. The goal of AMF.NET is to promote proper N-Tier development by allowing your existing business layer (written in .NET) to be consumed by Flash without requiring any modification.&amp;rdquo;&lt;/em&gt;&lt;/p&gt;
-</description>
+      <description>According to normal acceptable behaviour it is not possible to let flash talk to the computer, be it on desktop or web browser.
+There are always ways around a problem and there&amp;rsquo;s one in this case as well.
+Windows Forms
+If you wanted to access .net functions on windows form then probably a good way to do that would be through ShockWaveFlashObjects library. It wraps all the functions that are available in ShockWave Objects and makes them available to you in .</description>
     </item>
     
   </channel>

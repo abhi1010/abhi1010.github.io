@@ -108,14 +108,12 @@
 
 <p>The issue is very simple but hard to notice. If you try to compile this, you will get the following errors:</p>
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #000000; font-style: italic">    main.cpp:24:5: error: need &#39;typename&#39; before &#39;OuterStruct&lt;T2&gt;::InnerStruct&#39; because &#39;OuterStruct&lt;T2&gt;&#39; is a dependent scope</span>
-<span style="color: #000000; font-style: italic">    OuterStruct&lt;T2&gt;::InnerStruct mUsingInner;</span>
-<span style="color: #000000; font-style: italic">    ^</span>
-<span style="color: #000000; font-style: italic">    main.cpp: In function &#39;int main(int, char**)&#39;:</span>
-<span style="color: #000000; font-style: italic">    main.cpp:34:13: error: &#39;struct InnerStruct_Wrapper&lt;int&gt;&#39; has no member named &#39;mUsingInner&#39;</span>
-<span style="color: #000000; font-style: italic">    wrapper.mUsingInner = innerStrct;</span>
-</pre></div>
-
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">    main.cpp:24:5: error: need &#39;typename&#39; before &#39;OuterStruct&lt;T2&gt;::InnerStruct&#39; because &#39;OuterStruct&lt;T2&gt;&#39; is a dependent scope
+    OuterStruct&lt;T2&gt;::InnerStruct mUsingInner;
+    ^
+    main.cpp: In function &#39;int main(int, char**)&#39;:
+    main.cpp:34:13: error: &#39;struct InnerStruct_Wrapper&lt;int&gt;&#39; has no member named &#39;mUsingInner&#39;
+    wrapper.mUsingInner = innerStrct;</code></pre></div>
 
 <p><strong>The Issue</strong></p>
 

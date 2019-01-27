@@ -7,7 +7,9 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 03 Jan 2016 23:26:53 +0800</lastBuildDate>
-    <atom:link href="http://abhipandey.com/tags/angularjs/index.xml" rel="self" type="application/rss+xml" />
+    
+	<atom:link href="http://abhipandey.com/tags/angularjs/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>AngularJS 2.0 building blocks explained</title>
@@ -15,100 +17,8 @@
       <pubDate>Sun, 03 Jan 2016 23:26:53 +0800</pubDate>
       
       <guid>http://abhipandey.com/2016/01/angularjs-2.0-building-blocks-explained/</guid>
-      <description>
-
-&lt;p&gt;Let&amp;rsquo;s explain the eight building blocks of any Angular 2 app:&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;Module&lt;/li&gt;
-&lt;li&gt;Component&lt;/li&gt;
-&lt;li&gt;Template&lt;/li&gt;
-&lt;li&gt;Metadata&lt;/li&gt;
-&lt;li&gt;Data Binding&lt;/li&gt;
-&lt;li&gt;Directive&lt;/li&gt;
-&lt;li&gt;Service&lt;/li&gt;
-&lt;li&gt;Dependency Injection&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h1 id=&#34;module:ac9495c8eabea9a6ff20ce0b92d45cca&#34;&gt;Module&lt;/h1&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Optional feature&lt;/li&gt;
-&lt;li&gt;Useful if you are using TypeScript which allows you to use &lt;code&gt;interface&lt;/code&gt; or &lt;code&gt;classes&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;export class AppComponent&lt;/code&gt; is like saying that this class is going to be public&lt;/li&gt;
-&lt;li&gt;Use relative file paths for importing modules&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Component class is something you&amp;rsquo;d export from a module.&lt;/p&gt;
-
-&lt;h1 id=&#34;component:ac9495c8eabea9a6ff20ce0b92d45cca&#34;&gt;Component&lt;/h1&gt;
-
-&lt;p&gt;Components controls Views&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Logic to support the view can be inside a class&lt;/li&gt;
-&lt;li&gt;Angular creates/destroys components as user moves through UI&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&#34;template:ac9495c8eabea9a6ff20ce0b92d45cca&#34;&gt;Template&lt;/h1&gt;
-
-&lt;p&gt;A form of HTML that describes how to render the Component. It looks mostly like HTML syntax except if you add Angular keywords in them.&lt;/p&gt;
-
-&lt;h1 id=&#34;metadata:ac9495c8eabea9a6ff20ce0b92d45cca&#34;&gt;Metadata&lt;/h1&gt;
-
-&lt;p&gt;Some &lt;strong&gt;&lt;em&gt;&lt;code&gt;@Component&lt;/code&gt;&lt;/em&gt;&lt;/strong&gt; configuration options:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;selector&lt;/code&gt;: css selector to be applied to that html element&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;templateUrl&lt;/code&gt;: address of the component itself&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;directives&lt;/code&gt;: array of components/directives that this component itself requires to function properly&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;providers&lt;/code&gt;: an array of &lt;em&gt;dependency injection providers&lt;/em&gt; for &lt;em&gt;services&lt;/em&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&#34;data-binding:ac9495c8eabea9a6ff20ce0b92d45cca&#34;&gt;Data Binding&lt;/h1&gt;
-
-&lt;p&gt;Following are the four possible ways of data binding:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;div&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;&amp;gt;&lt;/span&gt;{{hero.name}}&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;&amp;lt;/&lt;/span&gt;&lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;div&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;&amp;gt;&lt;/span&gt;
-&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;hero-detail&lt;/span&gt; &lt;span style=&#34;color: #a40000; border: 1px solid #ef2929&#34;&gt;[&lt;/span&gt;&lt;span style=&#34;color: #c4a000&#34;&gt;hero&lt;/span&gt;&lt;span style=&#34;color: #a40000; border: 1px solid #ef2929&#34;&gt;]=&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #c4a000&#34;&gt;selectedHero&lt;/span&gt;&lt;span style=&#34;color: #a40000; border: 1px solid #ef2929&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;&amp;gt;&amp;lt;/&lt;/span&gt;&lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;hero-detail&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;&amp;gt;&lt;/span&gt;
-&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;div&lt;/span&gt; &lt;span style=&#34;color: #a40000; border: 1px solid #ef2929&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #c4a000&#34;&gt;click&lt;/span&gt;&lt;span style=&#34;color: #a40000; border: 1px solid #ef2929&#34;&gt;)=&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #c4a000&#34;&gt;selectHero&lt;/span&gt;&lt;span style=&#34;color: #a40000; border: 1px solid #ef2929&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #c4a000&#34;&gt;hero&lt;/span&gt;&lt;span style=&#34;color: #a40000; border: 1px solid #ef2929&#34;&gt;)&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;&amp;gt;&amp;lt;/&lt;/span&gt;&lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;div&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;&amp;gt;&lt;/span&gt;
-&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;input&lt;/span&gt; &lt;span style=&#34;color: #a40000; border: 1px solid #ef2929&#34;&gt;[(&lt;/span&gt;&lt;span style=&#34;color: #c4a000&#34;&gt;ngModel&lt;/span&gt;&lt;span style=&#34;color: #a40000; border: 1px solid #ef2929&#34;&gt;)]=&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #c4a000&#34;&gt;hero&lt;/span&gt;&lt;span style=&#34;color: #a40000; border: 1px solid #ef2929&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #c4a000&#34;&gt;name&lt;/span&gt;&lt;span style=&#34;color: #a40000; border: 1px solid #ef2929&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;&amp;gt;&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;ol&gt;
-&lt;li&gt;The &amp;ldquo;interpolation&amp;rdquo; displays the component&amp;rsquo;s hero.name property value within the &lt;div&gt; tags&lt;/li&gt;
-&lt;li&gt;The &lt;code&gt;[hero]&lt;/code&gt; property binding passes the &lt;code&gt;selectedHero&lt;/code&gt; from the parent &lt;code&gt;HeroListComponent&lt;/code&gt; to the hero property of the child &lt;code&gt;HeroDetailComponent&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;The &lt;code&gt;(click)&lt;/code&gt; event binding calls the Component&amp;rsquo;s &lt;code&gt;selectHero&lt;/code&gt; method when the user clicks on a hero&amp;rsquo;s name&lt;/li&gt;
-&lt;li&gt;Two way data binding combines property and event binding in a single notation using &lt;code&gt;ngModel&lt;/code&gt; directive&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h1 id=&#34;directive:ac9495c8eabea9a6ff20ce0b92d45cca&#34;&gt;Directive&lt;/h1&gt;
-
-&lt;p&gt;Class with directive metadata. Even Components are directives - directive with templates.
-Two other examples are:&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;&lt;code&gt;Structural&lt;/code&gt;: They alter layout by adding, removing, and replacing elements in DOM&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;Attributes&lt;/code&gt;: Attribute directives alter the appearance or behavior of an existing element. In templates they look like regular HTML attributes, hence the name&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;&lt;strong&gt;Example:&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;The &lt;code&gt;ngModel&lt;/code&gt; directive, which implements two-way data binding, is an example of an attribute directive.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span style=&#34;color: #204a87; font-weight: bold&#34;&gt;input&lt;/span&gt; &lt;span style=&#34;color: #a40000; border: 1px solid #ef2929&#34;&gt;[(&lt;/span&gt;&lt;span style=&#34;color: #c4a000&#34;&gt;ngModel&lt;/span&gt;&lt;span style=&#34;color: #a40000; border: 1px solid #ef2929&#34;&gt;)]=&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #c4a000&#34;&gt;hero&lt;/span&gt;&lt;span style=&#34;color: #a40000; border: 1px solid #ef2929&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #c4a000&#34;&gt;name&lt;/span&gt;&lt;span style=&#34;color: #a40000; border: 1px solid #ef2929&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #000000; font-weight: bold&#34;&gt;&amp;gt;&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;strong&gt;Other examples:&lt;/strong&gt; ngSwitch, ngStyle, ngClass&lt;/p&gt;
-
-&lt;h1 id=&#34;service:ac9495c8eabea9a6ff20ce0b92d45cca&#34;&gt;Service&lt;/h1&gt;
-
-&lt;p&gt;It can be any value, function or feature that works well.&lt;/p&gt;
-
-&lt;h1 id=&#34;dependency-injection:ac9495c8eabea9a6ff20ce0b92d45cca&#34;&gt;Dependency Injection&lt;/h1&gt;
-
-&lt;p&gt;A way to supply a new class instance with all the requirements. In TypeScript this can be achieved by providing everything inside the constructor.&lt;/p&gt;
-
-&lt;p&gt;An &lt;code&gt;Injector&lt;/code&gt; maintains a list of service instances it has created previously so that it can reuse those if needed. The way it achieves this is by utilizing &lt;code&gt;provider&lt;/code&gt; which is used within each &lt;code&gt;Component&lt;/code&gt;.&lt;/p&gt;
-</description>
+      <description>Let&amp;rsquo;s explain the eight building blocks of any Angular 2 app:
+ Module Component Template Metadata Data Binding Directive Service Dependency Injection  Module  Optional feature Useful if you are using TypeScript which allows you to use interface or classes export class AppComponent is like saying that this class is going to be public Use relative file paths for importing modules  Component class is something you&amp;rsquo;d export from a module.</description>
     </item>
     
   </channel>

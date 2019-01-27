@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
 <head>
+	<meta name="generator" content="Hugo 0.54-DEV" />
   <link href="http://gmpg.org/xfn/11" rel="profile">
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
   
@@ -90,6 +91,49 @@
     
     <div class="post">
       <h1 class="post-title">
+        <a href="http://abhipandey.com/2014/06/deleting-a-node-from-singly-linked-list/">Deleting a Node from Singly Linked List</a>
+      </h1>
+      <span class="post-date">Jun 7, 2014  &middot; <a href="http://abhipandey.com/2014/06/deleting-a-node-from-singly-linked-list/#disqus_thread">Comments</a>
+      
+      <br/>
+      <a class="a_cat" href="http://abhipandey.com/categories/code">code</a>
+        
+      <a class="a_tag" href="http://abhipandey.com/tags/linked-list">linked list</a><a class="a_tag" href="http://abhipandey.com/tags/c&#43;&#43;">c&#43;&#43;</a><a class="a_tag" href="http://abhipandey.com/tags/algo">algo</a>
+    
+      </span>
+      
+      
+
+<p>Deleting a Node from Singly Linked List is rather straight forward.</p>
+
+<ul>
+<li><p>You have to know the head first of all</p></li>
+
+<li><p>Start by checking the head if that&rsquo;s the one you are looking for</p></li>
+
+<li><p>Keep moving forward and checking - always check for null pointers everywhere</p></li>
+</ul>
+
+<p>Before we talk about the code, let&rsquo;s see how Linked List is setup.
+<!-- more --></p>
+
+<script type="text/javascript" src="http://gist.github.com/33be440bf1012773b7e1.js"></script>
+
+<p>Now, below is the code for it&hellip;.</p>
+
+<script type="text/javascript" src="http://gist.github.com/bf9dbb193b4ff84ba3af.js"></script>
+
+<h3 id="code">Code</h3>
+
+<p>As usual the code is available <a href="https://github.com/abhi1010/Algorithms/blob/master/Algo_codes/Node.cpp">here</a>:</p>
+
+<p><a href="https://github.com/abhi1010/Algorithms">https://github.com/abhi1010/Algorithms</a></p>
+
+      
+    </div>
+    
+    <div class="post">
+      <h1 class="post-title">
         <a href="http://abhipandey.com/2014/05/usage-of-typename/">Usage of typename</a>
       </h1>
       <span class="post-date">May 26, 2014  &middot; <a href="http://abhipandey.com/2014/05/usage-of-typename/#disqus_thread">Comments</a>
@@ -107,14 +151,12 @@
 
 <p>The issue is very simple but hard to notice. If you try to compile this, you will get the following errors:</p>
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #000000; font-style: italic">    main.cpp:24:5: error: need &#39;typename&#39; before &#39;OuterStruct&lt;T2&gt;::InnerStruct&#39; because &#39;OuterStruct&lt;T2&gt;&#39; is a dependent scope</span>
-<span style="color: #000000; font-style: italic">    OuterStruct&lt;T2&gt;::InnerStruct mUsingInner;</span>
-<span style="color: #000000; font-style: italic">    ^</span>
-<span style="color: #000000; font-style: italic">    main.cpp: In function &#39;int main(int, char**)&#39;:</span>
-<span style="color: #000000; font-style: italic">    main.cpp:34:13: error: &#39;struct InnerStruct_Wrapper&lt;int&gt;&#39; has no member named &#39;mUsingInner&#39;</span>
-<span style="color: #000000; font-style: italic">    wrapper.mUsingInner = innerStrct;</span>
-</pre></div>
-
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">    main.cpp:24:5: error: need &#39;typename&#39; before &#39;OuterStruct&lt;T2&gt;::InnerStruct&#39; because &#39;OuterStruct&lt;T2&gt;&#39; is a dependent scope
+    OuterStruct&lt;T2&gt;::InnerStruct mUsingInner;
+    ^
+    main.cpp: In function &#39;int main(int, char**)&#39;:
+    main.cpp:34:13: error: &#39;struct InnerStruct_Wrapper&lt;int&gt;&#39; has no member named &#39;mUsingInner&#39;
+    wrapper.mUsingInner = innerStrct;</code></pre></div>
 
 <p><strong>The Issue</strong></p>
 
@@ -225,7 +267,7 @@
       
       
 
-<h3 id="when-to-use-64-bit:781115a00a27c6c773035866d9644c43">When to use 64-bit?</h3>
+<h3 id="when-to-use-64-bit">When to use 64-bit?</h3>
 
 <p>If your application needs more than 2-4gb of data</p>
 
@@ -235,15 +277,15 @@
 <li>x64 supports 16 registers compared to just 8 in x86. If your code is computation intensive this may help a great deal</li>
 </ul>
 
-<h3 id="when-to-use-32-bit:781115a00a27c6c773035866d9644c43">When to use 32-bit?</h3>
+<h3 id="when-to-use-32-bit">When to use 32-bit?</h3>
 
 <p>After reading so many great things about 32 bit, why would anybody still want to code against 32-bit? Simple reason - code compiled in 32-bit takes lesser memory. For example, a pointer in 64-bit machine is 8 bytes compared to 4 bytes with 32-bit. Now imagine how many pointers do you have going around in your code?</p>
 
-<h3 id="when-to-not-use-64-bit:781115a00a27c6c773035866d9644c43">When to not use 64-bit?</h3>
+<h3 id="when-to-not-use-64-bit">When to not use 64-bit?</h3>
 
 <p>Sometimes if your code is running on a machine that does not have too much of space then it is a never a great idea to use 64-bit compilation because the same task can probably be done much better using 32-bit version. L2 and L3 caches will be utilized a lot more in 64-bit code (and a lot earlier as well) compared to 32-bit; on such systems.</p>
 
-<h3 id="summary:781115a00a27c6c773035866d9644c43">Summary</h3>
+<h3 id="summary">Summary</h3>
 
 <p>Always benchmark your code and ensure that the application actually needs more than 2-4Gb of space.</p>
 
@@ -252,9 +294,9 @@
     
     <div class="post">
       <h1 class="post-title">
-        <a href="http://abhipandey.com/2014/04/tokenize-a-string-using-c&#43;&#43;/">Tokenize a String using C&#43;&#43;</a>
+        <a href="http://abhipandey.com/2014/04/tokenize-a-string-using-c-/">Tokenize a String using C&#43;&#43;</a>
       </h1>
-      <span class="post-date">Apr 8, 2014  &middot; <a href="http://abhipandey.com/2014/04/tokenize-a-string-using-c&#43;&#43;/#disqus_thread">Comments</a>
+      <span class="post-date">Apr 8, 2014  &middot; <a href="http://abhipandey.com/2014/04/tokenize-a-string-using-c-/#disqus_thread">Comments</a>
       
       <br/>
       <a class="a_cat" href="http://abhipandey.com/categories/code">code</a><a class="a_cat" href="http://abhipandey.com/categories/tips">tips</a>
@@ -313,7 +355,7 @@
 <li><p><a href="http://codersdigest.wordpress.com/2012/09/22/quick-sort/">Quick Sort</a></p></li>
 </ul>
 
-<h2 id="how-did-we-ensure-equality:6e1f05c125f850e9eb36735baf7184b1">How did we ensure Equality?</h2>
+<h2 id="how-did-we-ensure-equality">How did we ensure Equality?</h2>
 
 <ul>
 <li><p>Created a simple base class for all algorithms: <code>AlgoStopwatch</code></p></li>
@@ -335,7 +377,7 @@
 </ul></li>
 </ul>
 
-<h2 id="code:6e1f05c125f850e9eb36735baf7184b1">Code</h2>
+<h2 id="code">Code</h2>
 
 <p>As usual the code for the project is available here:</p>
 
@@ -345,7 +387,7 @@
 
 <!-- more -->
 
-<h2 id="numbers:6e1f05c125f850e9eb36735baf7184b1">Numbers</h2>
+<h2 id="numbers">Numbers</h2>
 
 <p>Looking at the numbers below, it may be hard to compare the actual values. Hence I decided to <code>normalize</code> them by calculating how much time will be required to sort <code>100 numbers</code> using the same rate as the actual numbers. They are provided for all algorithms on the right-most column.
 <table style="text-align:center;background-color:#efefef;width:100%;border-collapse:collapse;border:lightblue solid;" border="1" >
@@ -354,7 +396,7 @@
 
 <p><td style="width:25%;" ></p>
 
-<h3 id="merge-sort-http-codersdigest-wordpress-com-2012-10-06-merge-sort:6e1f05c125f850e9eb36735baf7184b1"><a href="http://codersdigest.wordpress.com/2012/10/06/merge-sort/">Merge Sort</a></h3>
+<h3 id="merge-sort-http-codersdigest-wordpress-com-2012-10-06-merge-sort"><a href="http://codersdigest.wordpress.com/2012/10/06/merge-sort/">Merge Sort</a></h3>
 
 <p></td></p>
 
@@ -1418,101 +1460,106 @@
       
     </div>
     
-    <div class="post">
-      <h1 class="post-title">
-        <a href="http://abhipandey.com/2013/09/oracle-sql-queries/">Oracle SQL Queries</a>
-      </h1>
-      <span class="post-date">Sep 22, 2013  &middot; <a href="http://abhipandey.com/2013/09/oracle-sql-queries/#disqus_thread">Comments</a>
-      
-      <br/>
-      <a class="a_cat" href="http://abhipandey.com/categories/code">code</a><a class="a_cat" href="http://abhipandey.com/categories/database">database</a>
-        
-      <a class="a_tag" href="http://abhipandey.com/tags/sql">sql</a>
     
-      </span>
-      
-      <p>Recently I found myself in a situation where I had to view all the tables in the Oracle Server.</p>
 
-<p>I did some digging and came up with these helpful queries.</p>
-
-<table>
-<thead>
-<tr>
-<th>Query</th>
-<th>Remarks</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td>Select * from All_Tables</td>
-<td>View all the tables in the Oracle Server</td>
-</tr>
-
-<tr>
-<td>Select * from all_Views</td>
-<td>View all the views in the Oracle Server</td>
-</tr>
-
-<tr>
-<td>DESC table</td>
-<td>View all the columns of a given table. This function is used instead of the previous one mostly, but when this one doesn&rsquo;t work make sure you try the other one - I bet it will work.</td>
-</tr>
-</tbody>
-</table>
-
-<p>Here&rsquo;s a short code for viewing all the columns of a given table.</p>
-
-<script type="text/javascript" src="http://gist.github.com/11365686.js"></script>
-
-      
-    </div>
+<ul class="pagination">
+    
+    <li class="page-item">
+        <a href="/" class="page-link" aria-label="First"><span aria-hidden="true">&laquo;&laquo;</span></a>
+    </li>
+    
+    <li class="page-item">
+    <a href="/page/3/" class="page-link" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
+    </li>
     
     
     
-    <ul class="pagination">
-        
-        <li>
-            <a href="/" aria-label="First"><span aria-hidden="true">&laquo;&laquo;</span></a>
-        </li>
-        
-        <li
-        >
-        <a href="/page/3/" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
-        </li>
-        
-        <li
-        ><a href="/">1</a></li>
-        
-        <li
-        ><a href="/page/2/">2</a></li>
-        
-        <li
-        ><a href="/page/3/">3</a></li>
-        
-        <li
-        class="active"><a href="/page/4/">4</a></li>
-        
-        <li
-        ><a href="/page/5/">5</a></li>
-        
-        <li
-        ><a href="/page/6/">6</a></li>
-        
-        <li
-        ><a href="/page/7/">7</a></li>
-        
-        <li
-        >
-        <a href="/page/5/" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
-        </li>
-        
-        <li>
-            <a href="/page/7/" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
-        </li>
-        
-    </ul>
     
+    
+    
+        
+        
+    
+    
+    <li class="page-item"><a class="page-link" href="/">1</a></li>
+    
+    
+    
+    
+    
+    
+        
+        
+    
+    
+    <li class="page-item"><a class="page-link" href="/page/2/">2</a></li>
+    
+    
+    
+    
+    
+    
+        
+        
+    
+    
+    <li class="page-item"><a class="page-link" href="/page/3/">3</a></li>
+    
+    
+    
+    
+    
+    
+        
+        
+    
+    
+    <li class="page-item active"><a class="page-link" href="/page/4/">4</a></li>
+    
+    
+    
+    
+    
+    
+        
+        
+    
+    
+    <li class="page-item"><a class="page-link" href="/page/5/">5</a></li>
+    
+    
+    
+    
+    
+    
+        
+        
+    
+    
+    <li class="page-item disabled"><span aria-hidden="true">&nbsp;&hellip;&nbsp;</span></li>
+    
+    
+    
+    
+    
+    
+        
+        
+    
+    
+    <li class="page-item"><a class="page-link" href="/page/7/">7</a></li>
+    
+    
+    <li class="page-item">
+    <a href="/page/5/" class="page-link" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
+    </li>
+    
+    <li class="page-item">
+        <a href="/page/7/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+    </li>
+    
+</ul>
+
   </div>
 </div>
 

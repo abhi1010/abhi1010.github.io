@@ -102,30 +102,20 @@
       <div id="_toc" class="toc">
         <nav id="TableOfContents">
 <ul>
-<li><a href="#experience-with-gitlab-ci:e8d2b63c4e2d32c203d45ddfe7306ca8">Experience with Gitlab CI</a></li>
-<li><a href="#using-git-mirror:e8d2b63c4e2d32c203d45ddfe7306ca8">Using Git Mirror</a></li>
+<li><a href="#experience-with-gitlab-ci">Experience with Gitlab CI</a></li>
+<li><a href="#using-git-mirror">Using Git Mirror</a></li>
 </ul>
 </nav>
       </div>
     
 
-<h1 id="experience-with-gitlab-ci:e8d2b63c4e2d32c203d45ddfe7306ca8">Experience with Gitlab CI</h1>
+<h1 id="experience-with-gitlab-ci">Experience with Gitlab CI</h1>
 
-
-<figure >
-    
-        <img src="/images/git_mirror_with_gitlab__ci.png" alt="Git Mirror from Gitlab to Bitbucket using Gitlab CI" />
-    
-    
-    <figcaption>
-        <p>
-        Git Mirror from Gitlab to Bitbucket using Gitlab CI
-        
-            
-        
-        </p> 
-    </figcaption>
-    
+<figure>
+    <img src="/images/git_mirror_with_gitlab__ci.png"
+         alt="Git Mirror from Gitlab to Bitbucket using Gitlab CI"/> <figcaption>
+            <p>Git Mirror from Gitlab to Bitbucket using Gitlab CI</p>
+        </figcaption>
 </figure>
 
 
@@ -155,7 +145,7 @@ We use it in our current setup to do a full testing and deployment onto <code>AW
 <p>I tried using the same yaml was <code>Shippable</code> but it was just not working with too many errors being reported and not to mention, having to wait for an hour during the worst period to see results.
 <code>Shippable</code> on the other hand, would hand over the console and results within 5 minutes of my commits. Decided to ditch <code>Gitlab CI</code>.</p>
 
-<h1 id="using-git-mirror:e8d2b63c4e2d32c203d45ddfe7306ca8">Using Git Mirror</h1>
+<h1 id="using-git-mirror">Using Git Mirror</h1>
 
 <p>Since <code>Gitlab CI</code> was clearing not working I decided to continue using <code>Shippable</code>. The only issue was, code had to exist in <code>Bitbucket</code>.
  For that, I needed a git mirror from <code>Gitlab</code> to <code>Bitbucket</code>. Looking into docs I found this link - <a href="http://docs.shippable.com/using_gitlab/">http://docs.shippable.com/using_gitlab/</a>.
@@ -182,15 +172,13 @@ We use it in our current setup to do a full testing and deployment onto <code>AW
 
 <p>Here&rsquo;s my <strong><em><code>.gitlab-ci.yml</code></em></strong></p>
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #000000">stages</span><span style="color: #000000; font-weight: bold">:</span>
-  <span style="color: #000000; font-weight: bold">-</span> <span style="color: #000000">deploy</span>
-
-<span style="color: #000000">Git MIRROR</span><span style="color: #000000; font-weight: bold">:</span>
-  <span style="color: #000000">stage</span><span style="color: #000000; font-weight: bold">:</span> <span style="color: #000000">deploy</span>
-  <span style="color: #000000">script</span><span style="color: #000000; font-weight: bold">:</span>
-    <span style="color: #000000; font-weight: bold">-</span> <span style="color: #000000">git push --mirror https://BITBUCKET_USERNAME:BITBUCKET_PASSWORD@bitbucket.org/group/repo.git</span>
-</pre></div>
-
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">stages<span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span>-<span style="color:#f8f8f8;text-decoration:underline"> </span>deploy<span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span>Git<span style="color:#f8f8f8;text-decoration:underline"> </span>MIRROR<span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span>stage<span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span>deploy<span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span>script<span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span>-<span style="color:#f8f8f8;text-decoration:underline"> </span>git<span style="color:#f8f8f8;text-decoration:underline"> </span>push<span style="color:#f8f8f8;text-decoration:underline"> </span>--mirror<span style="color:#f8f8f8;text-decoration:underline"> </span>https<span style="color:#000;font-weight:bold">:</span>//BITBUCKET_USERNAME<span style="color:#000;font-weight:bold">:</span>BITBUCKET_PASSWORD@bitbucket.org/group/repo.git</code></pre></div>
 
 <p><em>Note:</em> Remember to use variables in <code>Gitlab CI</code> to set up your bitbucket username and password.
   <strong>This had to be done</strong> because you can&rsquo;t have any ssh key from <code>Gitlab</code> to add it to <code>Bitbucket</code></p>
