@@ -1,26 +1,19 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Putty on Coders Digest</title>
     <link>http://abhipandey.com/tags/putty/</link>
     <description>Recent content in Putty on Coders Digest</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 25 Apr 2013 07:02:00 +0000</lastBuildDate>
-    
-	<atom:link href="http://abhipandey.com/tags/putty/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <atom:link href="http://abhipandey.com/tags/putty/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Change Putty Window Title</title>
       <link>http://abhipandey.com/2013/04/change-putty-window-title/</link>
       <pubDate>Thu, 25 Apr 2013 07:02:00 +0000</pubDate>
-      
       <guid>http://abhipandey.com/2013/04/change-putty-window-title/</guid>
-      <description>How to modify the Putty window title to a specific string?
-By default, you&amp;rsquo;d like to have the window title to give you the full path to the folder you are working from (working directory). PROMPT_COMMANDwill help you with that.
-However, if you have too many windows where you are on the same folder then it may become confusing. To set your own title you&amp;rsquo;d like to use the title() function provided here.</description>
+      <description>&lt;p&gt;How to modify the Putty window title to a specific string?&lt;/p&gt;&#xA;&lt;p&gt;By default, you&amp;rsquo;d like to have the window title to give you the full path to the folder you are working from (working directory). &lt;code&gt;PROMPT_COMMAND&lt;/code&gt;will help you with that.&lt;/p&gt;&#xA;&lt;p&gt;However, if you have too many windows where you are on the same folder then it may become confusing. To set your own title you&amp;rsquo;d like to use the &lt;code&gt;title()&lt;/code&gt; function provided here. It sets the name to whatever you say.&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

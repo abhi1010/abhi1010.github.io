@@ -1,36 +1,26 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Flash on Coders Digest</title>
     <link>http://abhipandey.com/tags/flash/</link>
     <description>Recent content in Flash on Coders Digest</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 06 Apr 2008 05:32:00 +0000</lastBuildDate>
-    
-	<atom:link href="http://abhipandey.com/tags/flash/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <atom:link href="http://abhipandey.com/tags/flash/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Google Analytics &amp; SWFAddress</title>
       <link>http://abhipandey.com/2008/04/google-analytics-swfaddress/</link>
       <pubDate>Sun, 06 Apr 2008 05:32:00 +0000</pubDate>
-      
       <guid>http://abhipandey.com/2008/04/google-analytics-swfaddress/</guid>
-      <description>Recently found a bug slash issue with Google Analytics new javscript software (post-urchin v5). I had written the internal documentation for the company standards and somehow when those standards were put into practice, SWFAddress feature of flash stopped working the moment google analytics feature was enabled. Worst of all, the web pages failed to load! To cap it off, the website was working perfectly fine on Firefox 2, 3 and IE 7!</description>
+      <description>&lt;p&gt;Recently found a bug slash issue with Google Analytics new javscript software (post-urchin v5). I had written the internal documentation for the company standards and somehow when those standards were put into practice, SWFAddress feature of flash stopped working the moment google analytics feature was enabled. Worst of all, the web pages failed to load! To cap it off, the website was working perfectly fine on Firefox 2, 3 and IE 7!! It was having trouble only on IE6.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Talk to my... Flash?</title>
       <link>http://abhipandey.com/2008/03/talk-to-my...-flash/</link>
       <pubDate>Mon, 03 Mar 2008 04:58:00 +0000</pubDate>
-      
       <guid>http://abhipandey.com/2008/03/talk-to-my...-flash/</guid>
-      <description>According to normal acceptable behaviour it is not possible to let flash talk to the computer, be it on desktop or web browser.
-There are always ways around a problem and there&amp;rsquo;s one in this case as well.
-Windows Forms
-If you wanted to access .net functions on windows form then probably a good way to do that would be through ShockWaveFlashObjects library. It wraps all the functions that are available in ShockWave Objects and makes them available to you in .</description>
+      <description>&lt;p&gt;According to normal acceptable behaviour it is not possible to let flash talk to the computer, be it on desktop or web browser.&lt;/p&gt;&#xA;&lt;p&gt;There are always ways around a problem and there&amp;rsquo;s one in this case as well.&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;Windows Forms&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;p&gt;If you wanted to access .net functions on windows form then probably a good way to do that would be through &lt;code&gt;ShockWaveFlashObjects&lt;/code&gt; library. It wraps all the functions that are available in ShockWave Objects and makes them available to you in .Net type safe way.&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

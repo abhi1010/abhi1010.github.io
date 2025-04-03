@@ -1,25 +1,19 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>C on Coders Digest</title>
     <link>http://abhipandey.com/tags/c/</link>
     <description>Recent content in C on Coders Digest</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 28 Jun 2016 23:26:44 +0800</lastBuildDate>
-    
-	<atom:link href="http://abhipandey.com/tags/c/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <atom:link href="http://abhipandey.com/tags/c/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Protobuf on Docker</title>
       <link>http://abhipandey.com/2016/06/protobuf-on-docker/</link>
       <pubDate>Tue, 28 Jun 2016 23:26:44 +0800</pubDate>
-      
       <guid>http://abhipandey.com/2016/06/protobuf-on-docker/</guid>
-      <description>Found it really strange that nobody had mentioned on their blog how to compile Protobuf in python with C++ implementation.
-I had been having a lot of trouble with the compilation of python protobuf. After struggling with it for a few months on and off I decided to give Docker a try as I realized that my own Fedora OS may be the one having troubles. Thought of starting with Ubuntu Docker as I&amp;rsquo;ve had success with it earlier with such compilation scripts.</description>
+      <description>&lt;p&gt;Found it really strange that nobody had mentioned on their blog how to&#xA;compile &lt;code&gt;Protobuf&lt;/code&gt; in python with &lt;strong&gt;C++&lt;/strong&gt; implementation.&lt;/p&gt;&#xA;&lt;p&gt;I had been having a lot of trouble with the compilation of python protobuf.&#xA;After struggling with it for a few months on and off I decided to give &lt;strong&gt;&lt;code&gt;Docker&lt;/code&gt;&lt;/strong&gt;&#xA;a try as I realized that my own Fedora OS may be the one having troubles.&#xA;Thought of starting with &lt;strong&gt;Ubuntu&lt;/strong&gt; Docker as I&amp;rsquo;ve had success with it earlier&#xA;with such compilation scripts. Luckily it all worked out successfully again&#xA;for protobuf.&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

@@ -1,57 +1,40 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Vim on Coders Digest</title>
     <link>http://abhipandey.com/tags/vim/</link>
     <description>Recent content in Vim on Coders Digest</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 31 Oct 2015 20:48:16 +0800</lastBuildDate>
-    
-	<atom:link href="http://abhipandey.com/tags/vim/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <atom:link href="http://abhipandey.com/tags/vim/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>vim cannot find word list</title>
       <link>http://abhipandey.com/2015/10/vim-cannot-find-word-list/</link>
       <pubDate>Sat, 31 Oct 2015 20:48:16 +0800</pubDate>
-      
       <guid>http://abhipandey.com/2015/10/vim-cannot-find-word-list/</guid>
-      <description>After installing spf13 vim every time I would open a file I had trouble with two things on my mac:
- File opening would halt in the middle with the following error : Cannot find word list &amp;ldquo;en.utf-8.spl&amp;rdquo; or &amp;ldquo;en.ascii.spl&amp;rdquo; Syntax highlighting also failed thereafter  Here&amp;rsquo;s what I would see:
-$ vim release.sh Warning: Cannot find word list &amp;#34;en.utf-8.spl&amp;#34; or &amp;#34;en.ascii.spl&amp;#34; Press ENTER or type command to continue I googled a lot regarding this but didn&amp;rsquo;t find anything straight forward.</description>
+      <description>&lt;p&gt;After installing &lt;a href=&#34;http://vim.spf13.com/&#34;&gt;spf13 vim&lt;/a&gt; every time I would open a file I had trouble with two things on my mac:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;File opening would halt in the middle with the following error :  &lt;strong&gt;Cannot find word list &amp;ldquo;en.utf-8.spl&amp;rdquo; or &amp;ldquo;en.ascii.spl&amp;rdquo;&lt;/strong&gt;&lt;/li&gt;&#xA;&lt;li&gt;Syntax highlighting also failed thereafter&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Here&amp;rsquo;s what I would see:&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;$ vim release.sh &#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Warning: Cannot find word list &lt;span style=&#34;color:#c41a16&#34;&gt;&amp;#34;en.utf-8.spl&amp;#34;&lt;/span&gt; or &lt;span style=&#34;color:#c41a16&#34;&gt;&amp;#34;en.ascii.spl&amp;#34;&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Press ENTER or &lt;span style=&#34;color:#a90d91&#34;&gt;type&lt;/span&gt; &lt;span style=&#34;color:#a90d91&#34;&gt;command&lt;/span&gt; to &lt;span style=&#34;color:#a90d91&#34;&gt;continue&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;I googled a lot regarding this but didn&amp;rsquo;t find anything straight forward.&#xA;When all options failed I recalled that it is looking for the spell files in a specific folder.&#xA;Hence I decided to do a lookup for them:&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Setting up your VIM... Your style</title>
       <link>http://abhipandey.com/2014/05/setting-up-your-vim...-your-style/</link>
       <pubDate>Mon, 19 May 2014 15:51:51 +0000</pubDate>
-      
       <guid>http://abhipandey.com/2014/05/setting-up-your-vim...-your-style/</guid>
-      <description>Writing code using VIM can be a bit overwhelming but it helps creating a few shortcuts there to make your life easier. Here I will discuss a few.
- First of all, it is always a good idea to set up your tabs and spaces Set up shortcuts for:  Toggling of Auto-Indent while pasting source text; very useful in code (F2 in my provided script) Toggling of Auto-Scroll of Split windows (F3 in my provided script) Macro for Folding functions within the source code (@q in my provided script) Smart case search - based on whether the input is in caps or not Toggling of Mouse Usage in VIM window - to allow quick selection of text (F12 in my provided script)   Please see the provided script below to have a look.</description>
+      <description>&lt;p&gt;Writing code using VIM can be a bit overwhelming but it helps creating a few shortcuts there to make your life easier. Here I will discuss a few.&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;First of all, it is always a good idea to set up your tabs and spaces&lt;/li&gt;&#xA;&lt;li&gt;Set up shortcuts for:&lt;/li&gt;&#xA;&lt;li&gt;&lt;code&gt;Toggling of Auto-Indent&lt;/code&gt; while pasting source text; very useful in code (&lt;em&gt;F2&lt;/em&gt; in my provided script)&lt;/li&gt;&#xA;&lt;li&gt;&lt;code&gt;Toggling of Auto-Scroll&lt;/code&gt; of Split windows (&lt;em&gt;F3&lt;/em&gt; in my provided script)&lt;/li&gt;&#xA;&lt;li&gt;&lt;code&gt;Macro for Folding functions&lt;/code&gt; within the source code (&lt;em&gt;&lt;em&gt;@q&lt;/em&gt;&lt;/em&gt; in my provided script)&lt;/li&gt;&#xA;&lt;li&gt;&lt;code&gt;Smart case search&lt;/code&gt; - based on whether the input is in caps or not&lt;/li&gt;&#xA;&lt;li&gt;&lt;code&gt;Toggling of Mouse Usage&lt;/code&gt; in VIM window - to allow quick selection of text (&lt;em&gt;F12&lt;/em&gt; in my provided script)&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Please see the provided script below to have a look.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Global Search in VIM</title>
       <link>http://abhipandey.com/2014/02/global-search-in-vim/</link>
       <pubDate>Tue, 11 Feb 2014 14:56:00 +0000</pubDate>
-      
       <guid>http://abhipandey.com/2014/02/global-search-in-vim/</guid>
-      <description>You must be knowing about regular VIM search
-%s/SEARCH/REPLACE/CMD  However, sometimes you do not want to replace something but just see all instances of the a word or phrase. In such cases, global search is really useful when on vim. The syntax is simpler than normal search-replace:
-:[range]g[lobal]/{pattern}/[cmd]  This will show all instances of the &amp;ldquo;SEARCH&amp;rdquo; term within the VIM window. There&amp;rsquo;s another version of the same command which is as follows:</description>
+      <description>&lt;p&gt;You must be knowing about regular VIM search&lt;/p&gt;&#xA;&lt;pre&gt;&lt;code&gt;%s/SEARCH/REPLACE/CMD&#xA;&lt;/code&gt;&lt;/pre&gt;&#xA;&lt;p&gt;However, sometimes you do not want to replace something but just see all instances of the a word or phrase. In such cases, global search is really useful when on vim. The syntax is simpler than normal search-replace:&lt;/p&gt;&#xA;&lt;pre&gt;&lt;code&gt;:[range]g[lobal]/{pattern}/[cmd]&#xA;&lt;/code&gt;&lt;/pre&gt;&#xA;&lt;p&gt;This will show all instances of the &amp;ldquo;SEARCH&amp;rdquo; term within the VIM window. There&amp;rsquo;s another version of the same command which is as follows:&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Cursor Control in VIM Search</title>
       <link>http://abhipandey.com/2013/06/cursor-control-in-vim-search/</link>
       <pubDate>Tue, 11 Jun 2013 07:05:00 +0000</pubDate>
-      
       <guid>http://abhipandey.com/2013/06/cursor-control-in-vim-search/</guid>
-      <description>Found a great way to search for keywords &amp;amp;&amp;amp; control the location of cursor in vim. It is excellent if you want to do a particular task multiple times. Usually if you search the cursor will straight away take you to the start of search. What if you want to go to the end of the word you are searching for?
-/pattern/e  This takes you to the END of the keyword you are looking for.</description>
+      <description>&lt;p&gt;Found a great way to search for keywords &amp;amp;&amp;amp; control the location of cursor in vim. It is excellent if you want to do a particular task multiple times. Usually if you search the cursor will straight away take you to the start of search. What if you want to go to the end of the word you are searching for?&lt;/p&gt;&#xA;&lt;pre&gt;&lt;code&gt;/pattern/e&#xA;&lt;/code&gt;&lt;/pre&gt;&#xA;&lt;p&gt;This takes you to the END of the keyword you are looking for.&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

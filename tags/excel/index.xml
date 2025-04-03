@@ -1,27 +1,19 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Excel on Coders Digest</title>
     <link>http://abhipandey.com/tags/excel/</link>
     <description>Recent content in Excel on Coders Digest</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 09 Nov 2013 23:51:00 +0000</lastBuildDate>
-    
-	<atom:link href="http://abhipandey.com/tags/excel/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <atom:link href="http://abhipandey.com/tags/excel/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Reading Excel in C#</title>
       <link>http://abhipandey.com/2013/11/reading-excel-in-c/</link>
       <pubDate>Sat, 09 Nov 2013 23:51:00 +0000</pubDate>
-      
       <guid>http://abhipandey.com/2013/11/reading-excel-in-c/</guid>
-      <description>Recently had to work on an Excel and update its content when some events were triggered on a Bloomberg terminal. I couldn&amp;rsquo;t find any code for reading the excel file using C# so thought of putting that up.
-There were a few things to learn:
- Excel support is not available by default so make sure to add Microsoft.Office.Interop.Excel as a reference
- Sometime indexing to reference the Workbooks or Worksheets may not work so try out other values</description>
+      <description>&lt;p&gt;Recently had to work on an Excel and update its content when some events were triggered on a Bloomberg terminal. I couldn&amp;rsquo;t find any code for reading the excel file using C# so thought of putting that up.&lt;/p&gt;&#xA;&lt;p&gt;There were a few things to learn:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;Excel support is not available by default so make sure to add Microsoft.Office.Interop.Excel as a reference&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;Sometime indexing to reference the Workbooks or Worksheets may not work so try out other values&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

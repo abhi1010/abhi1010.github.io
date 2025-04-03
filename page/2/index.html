@@ -1,1366 +1,326 @@
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
-<head>
-	<meta name="generator" content="Hugo 0.54-DEV" />
-  <link href="http://gmpg.org/xfn/11" rel="profile">
-  <meta http-equiv="content-type" content="text/html; charset=utf-8">
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<!doctype html>
+<html lang="en-us">
+  <head>
+    <title>Coders Digest</title>
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.145.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Abhishek Pandey" />
+    <meta name="description" content="Abhishek Pandey" />
+    <link rel="stylesheet" href="/css/main.min.5b1fcc8902588589c4767187402a3c29f8b8d7a6fdef6d9f8f77045bb0d14fee.css" />
+    <link rel="alternate" type="application/rss+xml" href="http://abhipandey.com/index.xml" title="Coders Digest">
+    
 
-  <title>Coders Digest &middot; Abhishek Pandey</title>
+    
+    
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Coders Digest">
+  <meta name="twitter:description" content="Abhishek Pandey">
 
-  
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
-  <link rel="stylesheet" href="http://abhipandey.com/css/poole.css?ref=abc124">
-  <link rel="stylesheet" href="http://abhipandey.com/css/hyde.css?ref=abc124">
-  <link rel="stylesheet" href="http://abhipandey.com/css/poole-overrides.css?ref=abc124">
-  <link rel="stylesheet" href="http://abhipandey.com/css/hyde-overrides.css?ref=abc124">
-  <link rel="stylesheet" href="http://abhipandey.com/css/hyde-a.css?ref=abc124">
-  <link rel="stylesheet" href="http://abhipandey.com/css/custom-additions.css?ref=abc124">
-  
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
-  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <meta property="og:url" content="http://abhipandey.com/">
+  <meta property="og:site_name" content="Coders Digest">
+  <meta property="og:title" content="Coders Digest">
+  <meta property="og:description" content="Abhishek Pandey">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="website">
 
-  
-  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://abhipandey.com/touch-icon-144-precomposed.png?ref=abc124">
-  <link href="http://abhipandey.com/favicon.png?ref=abc124" rel="icon">
 
-  
-  
-  
-  <link href="http://abhipandey.com/index.xml" rel="alternate" type="application/rss+xml" title="Coders Digest &middot; Abhishek Pandey" />
-
-  <meta name="description" content="C&#43;&#43;/python/bash code; How to automate and deploy your applications">
-  <meta name="keywords" content="aws,deploy,elastic beanstalk,beanstalk,python,c&#43;&#43;,continuous delivery,tips,code,docker,bash,linux">
-  
-  
-  <script>
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-      ga('create', 'UA-68135443-1', 'auto');
-      ga('send', 'pageview');
-  </script>
-
-</head>
-<body class="theme-base-aa">
-<div class="sidebar">
-  <div class="container sidebar-sticky">
-    <div class="sidebar-about">
+  </head>
+  <body>
+    <header class="app-header">
+      <a href="/"><img class="app-header-avatar" src="/space-2.jpg" alt="Abhishek Pandey" /></a>
+      <span class="app-header-title">Coders Digest</span>
+      <nav class="app-header-menu">
+          <a class="app-header-menu-item" href="/post/">Posts</a>
+             - 
+          
+          <a class="app-header-menu-item" href="/tags/">Tags</a>
+             - 
+          
+          <a class="app-header-menu-item" href="/categories/">Categories</a>
+             - 
+          
+          <a class="app-header-menu-item" href="/about/">About</a>
+      </nav>
+      <p>Abhishek Pandey</p>
+      <div class="app-header-social">
+        
+          <a href="https://github.com/abhi1010" target="_blank" rel="noreferrer noopener me">
+            <svg class="icon icon-brand-github" viewBox="0 0 24 24" fill="currentColor"><title>GitHub</title><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+          </a>
+        
+          <a href="https://www.linkedin.com/in/apandey10/" target="_blank" rel="noreferrer noopener me">
+            <svg class="icon icon-brand-linkedin" viewBox="0 0 24 24" fill="currentColor"><title>LinkedIn</title><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </a>
+        
+      </div>
+    </header>
+    <main class="app-container">
       
-      <h1><a href="http://abhipandey.com/">Coder&rsquo;s Digest</a></h1>
-      <a href="http://abhipandey.com/"><p>Abhishek Pandey</p></a>
-    </div>
-
-    <ul class="sidebar-nav">
+  <article>
+    <h1>Coders Digest</h1>
+    
+    <ul class="posts-list">
       
-      <li class="sidebar-nav-item"><a href="http://abhipandey.com/post/">Posts</a></li>
+        <li class="posts-list-item">
+          <a class="posts-list-item-title" href="/2015/09/elastic-beanstalk-deployment-automation/">Elastic Beanstalk Deployment Automation</a>
+          <span class="posts-list-item-description">
+            <svg class="icon icon-calendar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>calendar</title><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+            Sep 4, 2015
+            <span class="posts-list-item-separator">-</span>
+            <svg class="icon icon-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>clock</title><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            6 min read
+          </span>
+        </li>
       
-      <li class="sidebar-nav-item"><a href="http://abhipandey.com/tags/">Tags</a></li>
+        <li class="posts-list-item">
+          <a class="posts-list-item-title" href="/2015/09/nginx-upload-limits-on-beanstalk-docker/">Nginx Upload limits on Beanstalk Docker</a>
+          <span class="posts-list-item-description">
+            <svg class="icon icon-calendar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>calendar</title><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+            Sep 4, 2015
+            <span class="posts-list-item-separator">-</span>
+            <svg class="icon icon-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>clock</title><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            1 min read
+          </span>
+        </li>
       
-      <li class="sidebar-nav-item"><a href="http://abhipandey.com/categories/">Categories</a></li>
+        <li class="posts-list-item">
+          <a class="posts-list-item-title" href="/2015/09/updating-django-source-with-docker-deployments/">Updating Django Source with Docker Deployments</a>
+          <span class="posts-list-item-description">
+            <svg class="icon icon-calendar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>calendar</title><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+            Sep 4, 2015
+            <span class="posts-list-item-separator">-</span>
+            <svg class="icon icon-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>clock</title><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            2 min read
+          </span>
+        </li>
       
-      <li class="sidebar-nav-item"><a href="http://abhipandey.com/about/">About</a></li>
+        <li class="posts-list-item">
+          <a class="posts-list-item-title" href="/2015/09/multiple-virtual-environments-in-docker/">Multiple Virtual Environments in Docker</a>
+          <span class="posts-list-item-description">
+            <svg class="icon icon-calendar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>calendar</title><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+            Sep 3, 2015
+            <span class="posts-list-item-separator">-</span>
+            <svg class="icon icon-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>clock</title><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            1 min read
+          </span>
+        </li>
+      
+        <li class="posts-list-item">
+          <a class="posts-list-item-title" href="/2015/08/sharing-folders-on-beanstalk-docker/">Sharing folders on Beanstalk Docker</a>
+          <span class="posts-list-item-description">
+            <svg class="icon icon-calendar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>calendar</title><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+            Aug 14, 2015
+            <span class="posts-list-item-separator">-</span>
+            <svg class="icon icon-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>clock</title><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            1 min read
+          </span>
+        </li>
+      
+        <li class="posts-list-item">
+          <a class="posts-list-item-title" href="/2015/08/convert-github-wiki-to-static-site-with-themes/">Convert GitHub Wiki to Static Site with themes</a>
+          <span class="posts-list-item-description">
+            <svg class="icon icon-calendar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>calendar</title><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+            Aug 7, 2015
+            <span class="posts-list-item-separator">-</span>
+            <svg class="icon icon-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>clock</title><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            5 min read
+          </span>
+        </li>
+      
+        <li class="posts-list-item">
+          <a class="posts-list-item-title" href="/2015/08/docker-container-cleanup-on-elastic-beanstalk/">Docker Container cleanup on Elastic Beanstalk</a>
+          <span class="posts-list-item-description">
+            <svg class="icon icon-calendar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>calendar</title><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+            Aug 7, 2015
+            <span class="posts-list-item-separator">-</span>
+            <svg class="icon icon-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>clock</title><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            2 min read
+          </span>
+        </li>
+      
+        <li class="posts-list-item">
+          <a class="posts-list-item-title" href="/2014/06/partition-linked-list-around-a-value-x/">Partition Linked List around a Value X</a>
+          <span class="posts-list-item-description">
+            <svg class="icon icon-calendar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>calendar</title><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+            Jun 9, 2014
+            <span class="posts-list-item-separator">-</span>
+            <svg class="icon icon-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>clock</title><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            1 min read
+          </span>
+        </li>
+      
+        <li class="posts-list-item">
+          <a class="posts-list-item-title" href="/2014/06/find-the-kth-to-last-element-of-a-singly-linked-list/">Find the Kth to Last Element of a Singly Linked List</a>
+          <span class="posts-list-item-description">
+            <svg class="icon icon-calendar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>calendar</title><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+            Jun 8, 2014
+            <span class="posts-list-item-separator">-</span>
+            <svg class="icon icon-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>clock</title><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            1 min read
+          </span>
+        </li>
+      
+        <li class="posts-list-item">
+          <a class="posts-list-item-title" href="/2014/06/removing-duplicates-from-linked-list/">Removing Duplicates from Linked List</a>
+          <span class="posts-list-item-description">
+            <svg class="icon icon-calendar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>calendar</title><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+            Jun 7, 2014
+            <span class="posts-list-item-separator">-</span>
+            <svg class="icon icon-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>clock</title><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            1 min read
+          </span>
+        </li>
+      
+        <li class="posts-list-item">
+          <a class="posts-list-item-title" href="/2014/06/deleting-a-node-from-singly-linked-list/">Deleting a Node from Singly Linked List</a>
+          <span class="posts-list-item-description">
+            <svg class="icon icon-calendar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>calendar</title><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+            Jun 7, 2014
+            <span class="posts-list-item-separator">-</span>
+            <svg class="icon icon-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>clock</title><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            1 min read
+          </span>
+        </li>
+      
+        <li class="posts-list-item">
+          <a class="posts-list-item-title" href="/2014/05/usage-of-typename/">Usage of typename</a>
+          <span class="posts-list-item-description">
+            <svg class="icon icon-calendar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>calendar</title><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+            May 26, 2014
+            <span class="posts-list-item-separator">-</span>
+            <svg class="icon icon-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>clock</title><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            2 min read
+          </span>
+        </li>
+      
+        <li class="posts-list-item">
+          <a class="posts-list-item-title" href="/2014/05/setting-up-your-vim...-your-style/">Setting up your VIM... Your style</a>
+          <span class="posts-list-item-description">
+            <svg class="icon icon-calendar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>calendar</title><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+            May 19, 2014
+            <span class="posts-list-item-separator">-</span>
+            <svg class="icon icon-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>clock</title><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            1 min read
+          </span>
+        </li>
+      
+        <li class="posts-list-item">
+          <a class="posts-list-item-title" href="/2014/05/getting-a-group-of-lines-from-a-file/">Getting a group of lines from a file</a>
+          <span class="posts-list-item-description">
+            <svg class="icon icon-calendar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>calendar</title><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+            May 19, 2014
+            <span class="posts-list-item-separator">-</span>
+            <svg class="icon icon-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>clock</title><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            1 min read
+          </span>
+        </li>
+      
+        <li class="posts-list-item">
+          <a class="posts-list-item-title" href="/2014/04/32-bit-vs-64-bit/">32 bit vs 64 bit</a>
+          <span class="posts-list-item-description">
+            <svg class="icon icon-calendar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>calendar</title><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+            Apr 15, 2014
+            <span class="posts-list-item-separator">-</span>
+            <svg class="icon icon-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>clock</title><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            1 min read
+          </span>
+        </li>
+      
+        <li class="posts-list-item">
+          <a class="posts-list-item-title" href="/2014/04/tokenize-a-string-using-c-/">Tokenize a String using C&#43;&#43;</a>
+          <span class="posts-list-item-description">
+            <svg class="icon icon-calendar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>calendar</title><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+            Apr 8, 2014
+            <span class="posts-list-item-separator">-</span>
+            <svg class="icon icon-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>clock</title><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            1 min read
+          </span>
+        </li>
+      
+        <li class="posts-list-item">
+          <a class="posts-list-item-title" href="/2014/03/heap-sort-vs-merge-sort-vs-insertion-sort-vs-radix-sort-vs-counting-sort-vs-quick-sort/">Heap Sort vs Merge Sort vs Insertion Sort vs Radix Sort vs Counting Sort vs Quick Sort</a>
+          <span class="posts-list-item-description">
+            <svg class="icon icon-calendar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>calendar</title><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+            Mar 19, 2014
+            <span class="posts-list-item-separator">-</span>
+            <svg class="icon icon-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>clock</title><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            2 min read
+          </span>
+        </li>
+      
+        <li class="posts-list-item">
+          <a class="posts-list-item-title" href="/2014/02/global-search-in-vim/">Global Search in VIM</a>
+          <span class="posts-list-item-description">
+            <svg class="icon icon-calendar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>calendar</title><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+            Feb 11, 2014
+            <span class="posts-list-item-separator">-</span>
+            <svg class="icon icon-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>clock</title><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            1 min read
+          </span>
+        </li>
+      
+        <li class="posts-list-item">
+          <a class="posts-list-item-title" href="/2013/11/reading-excel-in-c/">Reading Excel in C#</a>
+          <span class="posts-list-item-description">
+            <svg class="icon icon-calendar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>calendar</title><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+            Nov 9, 2013
+            <span class="posts-list-item-separator">-</span>
+            <svg class="icon icon-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>clock</title><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            1 min read
+          </span>
+        </li>
       
     </ul>
-
-    <ul class="sidebar-nav">
-      <li class="sidebar-nav-item">
-      
-      
-      
-      
-      
-      
-      
-      
-      </li>
-    </ul>
-
-    
-
-  </div>
-</div>
-
-
-<div class="content container">
-  <div class="posts">
-    
-    
-    <div class="post">
-      <h1 class="post-title">
-        <a href="http://abhipandey.com/2016/01/angularjs-2.0-building-blocks-explained/">AngularJS 2.0 building blocks explained</a>
-      </h1>
-      <span class="post-date">Jan 3, 2016  &middot; <a href="http://abhipandey.com/2016/01/angularjs-2.0-building-blocks-explained/#disqus_thread">Comments</a>
-      
-      <br/>
-      <a class="a_cat" href="http://abhipandey.com/categories/code">code</a>
-        
-      <a class="a_tag" href="http://abhipandey.com/tags/angularjs">angularjs</a><a class="a_tag" href="http://abhipandey.com/tags/javascript">javascript</a>
-    
-      </span>
-      
-      
-
-<p>Let&rsquo;s explain the eight building blocks of any Angular 2 app:</p>
-
-<ol>
-<li>Module</li>
-<li>Component</li>
-<li>Template</li>
-<li>Metadata</li>
-<li>Data Binding</li>
-<li>Directive</li>
-<li>Service</li>
-<li>Dependency Injection</li>
-</ol>
-
-<h1 id="module">Module</h1>
-
-<ul>
-<li>Optional feature</li>
-<li>Useful if you are using TypeScript which allows you to use <code>interface</code> or <code>classes</code></li>
-<li><code>export class AppComponent</code> is like saying that this class is going to be public</li>
-<li>Use relative file paths for importing modules</li>
-</ul>
-
-<p>Component class is something you&rsquo;d export from a module.</p>
-
-<h1 id="component">Component</h1>
-
-<p>Components controls Views</p>
-
-<ul>
-<li>Logic to support the view can be inside a class</li>
-<li>Angular creates/destroys components as user moves through UI</li>
-</ul>
-
-<h1 id="template">Template</h1>
-
-<p>A form of HTML that describes how to render the Component. It looks mostly like HTML syntax except if you add Angular keywords in them.</p>
-
-<h1 id="metadata">Metadata</h1>
-
-<p>Some <strong><em><code>@Component</code></em></strong> configuration options:</p>
-
-<ul>
-<li><code>selector</code>: css selector to be applied to that html element</li>
-<li><code>templateUrl</code>: address of the component itself</li>
-<li><code>directives</code>: array of components/directives that this component itself requires to function properly</li>
-<li><code>providers</code>: an array of <em>dependency injection providers</em> for <em>services</em></li>
-</ul>
-
-<h1 id="data-binding">Data Binding</h1>
-
-<p>Following are the four possible ways of data binding:</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html"><span style="color:#000;font-weight:bold">&lt;</span><span style="color:#204a87;font-weight:bold">div</span><span style="color:#000;font-weight:bold">&gt;</span>{{hero.name}}<span style="color:#000;font-weight:bold">&lt;/</span><span style="color:#204a87;font-weight:bold">div</span><span style="color:#000;font-weight:bold">&gt;</span>
-<span style="color:#000;font-weight:bold">&lt;</span><span style="color:#204a87;font-weight:bold">hero-detail</span> <span style="color:#a40000">[</span><span style="color:#c4a000">hero</span><span style="color:#a40000">]=&#34;</span><span style="color:#c4a000">selectedHero</span><span style="color:#a40000">&#34;</span><span style="color:#000;font-weight:bold">&gt;&lt;/</span><span style="color:#204a87;font-weight:bold">hero-detail</span><span style="color:#000;font-weight:bold">&gt;</span>
-<span style="color:#000;font-weight:bold">&lt;</span><span style="color:#204a87;font-weight:bold">div</span> <span style="color:#a40000">(</span><span style="color:#c4a000">click</span><span style="color:#a40000">)=&#34;</span><span style="color:#c4a000">selectHero</span><span style="color:#a40000">(</span><span style="color:#c4a000">hero</span><span style="color:#a40000">)&#34;</span><span style="color:#000;font-weight:bold">&gt;&lt;/</span><span style="color:#204a87;font-weight:bold">div</span><span style="color:#000;font-weight:bold">&gt;</span>
-<span style="color:#000;font-weight:bold">&lt;</span><span style="color:#204a87;font-weight:bold">input</span> <span style="color:#a40000">[(</span><span style="color:#c4a000">ngModel</span><span style="color:#a40000">)]=&#34;</span><span style="color:#c4a000">hero</span><span style="color:#a40000">.</span><span style="color:#c4a000">name</span><span style="color:#a40000">&#34;</span><span style="color:#000;font-weight:bold">&gt;</span></code></pre></div>
-<ol>
-<li>The &ldquo;interpolation&rdquo; displays the component&rsquo;s hero.name property value within the <div> tags</li>
-<li>The <code>[hero]</code> property binding passes the <code>selectedHero</code> from the parent <code>HeroListComponent</code> to the hero property of the child <code>HeroDetailComponent</code></li>
-<li>The <code>(click)</code> event binding calls the Component&rsquo;s <code>selectHero</code> method when the user clicks on a hero&rsquo;s name</li>
-<li>Two way data binding combines property and event binding in a single notation using <code>ngModel</code> directive</li>
-</ol>
-
-<h1 id="directive">Directive</h1>
-
-<p>Class with directive metadata. Even Components are directives - directive with templates.
-Two other examples are:</p>
-
-<ol>
-<li><code>Structural</code>: They alter layout by adding, removing, and replacing elements in DOM</li>
-<li><code>Attributes</code>: Attribute directives alter the appearance or behavior of an existing element. In templates they look like regular HTML attributes, hence the name</li>
-</ol>
-
-<p><strong>Example:</strong></p>
-
-<p>The <code>ngModel</code> directive, which implements two-way data binding, is an example of an attribute directive.</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html"><span style="color:#000;font-weight:bold">&lt;</span><span style="color:#204a87;font-weight:bold">input</span> <span style="color:#a40000">[(</span><span style="color:#c4a000">ngModel</span><span style="color:#a40000">)]=&#34;</span><span style="color:#c4a000">hero</span><span style="color:#a40000">.</span><span style="color:#c4a000">name</span><span style="color:#a40000">&#34;</span><span style="color:#000;font-weight:bold">&gt;</span></code></pre></div>
-<p><strong>Other examples:</strong> ngSwitch, ngStyle, ngClass</p>
-
-<h1 id="service">Service</h1>
-
-<p>It can be any value, function or feature that works well.</p>
-
-<h1 id="dependency-injection">Dependency Injection</h1>
-
-<p>A way to supply a new class instance with all the requirements. In TypeScript this can be achieved by providing everything inside the constructor.</p>
-
-<p>An <code>Injector</code> maintains a list of service instances it has created previously so that it can reuse those if needed. The way it achieves this is by utilizing <code>provider</code> which is used within each <code>Component</code>.</p>
-
-      
-    </div>
-    
-    <div class="post">
-      <h1 class="post-title">
-        <a href="http://abhipandey.com/2015/11/lambda-basics-with-python-using-github-webhooks-or-api-gateway/">Lambda Basics with Python using Github Webhooks or API Gateway</a>
-      </h1>
-      <span class="post-date">Nov 4, 2015  &middot; <a href="http://abhipandey.com/2015/11/lambda-basics-with-python-using-github-webhooks-or-api-gateway/#disqus_thread">Comments</a>
-      
-      <br/>
-      <a class="a_cat" href="http://abhipandey.com/categories/code">code</a><a class="a_cat" href="http://abhipandey.com/categories/continuous-delivery">continuous delivery</a>
-        
-      <a class="a_tag" href="http://abhipandey.com/tags/python">python</a><a class="a_tag" href="http://abhipandey.com/tags/aws">aws</a><a class="a_tag" href="http://abhipandey.com/tags/lambda">lambda</a><a class="a_tag" href="http://abhipandey.com/tags/github">github</a><a class="a_tag" href="http://abhipandey.com/tags/git">git</a>
-    
-      </span>
-      
-      
-
-<p>I recently needed to call a command whenever there was a push on my Github repo.
-Since this was related to AWS tasks, I figured <code>aws lambda</code> is a good candidate.
-Here I will talk about the steps I took to enable all of this using aws lambda, python.
-As a side note, I will also elaborate on using API gateway to call upon the lambda itself.</p>
-
-<p>In a nutshell, what I will talk about:</p>
-
-<ul>
-<li>Create <strong>SNS</strong> Topic</li>
-<li>Create <strong>IAM user</strong> who can Publish</li>
-<li>Setup <strong>GitHub webhook</strong></li>
-<li>Create <strong>Lambda function</strong></li>
-<li>Setup <strong>API Gateway</strong> url that can call lambda function</li>
-</ul>
-
-<h1 id="create-sns-topic">Create SNS Topic</h1>
-
-<p>Go to <a href="https://ap-northeast-1.console.aws.amazon.com/sns/v2/home?region=ap-northeast-1#/home">AWS Console</a> and click on Create Topic.</p>
-
-<figure>
-    <img src="/images/lambda_basics_sns_1.png"
-         alt="Creating an API"/> <figcaption>
-            <p>Creating an API</p>
-        </figcaption>
-</figure>
-
-
-<p>Note down the <code>ARN</code> because you will need that.
-In my case it is something like <code>arn:aws:sns:ap-northeast-1:XXXXXXXXXXXX:commits_1</code></p>
-
-<h1 id="create-iam-user">Create IAM user</h1>
-
-<p>We need to setup an IAM user who can publish onto this SNS we just created.
-As a shortcut you can just create a simple user and initialize it with full access rights for testing purposes.</p>
-
-<p><strong>Once on IAM page click on &ldquo;Create New Users&rdquo; button at the top.</strong>
-<figure>
-    <img src="/images/lambda_basics_iam_1.png"
-         alt="Creating new IAM user"/> <figcaption>
-            <p>Creating new IAM user</p>
-        </figcaption>
-</figure>
-</p>
-
-<p><strong>It will then allow you to download credentials if you want</strong>
-<figure>
-    <img src="/images/lambda_basics_iam_2.png"
-         alt="Creating new IAM user"/> <figcaption>
-            <p>Creating new IAM user</p>
-        </figcaption>
-</figure>
-</p>
-
-<h2 id="add-permissions">Add permissions</h2>
-
-<p>Once an IAM user is created, by default there are no permissions attached to the account.
-<strong>You can add permissions by going to permissions tab and clicking on &ldquo;Attach Policy&rdquo; button</strong>.
-<figure>
-    <img src="/images/lambda_basics_iam_3.png"
-         alt="Attach Policy"/> <figcaption>
-            <p>Attach Policy</p>
-        </figcaption>
-</figure>
-</p>
-
-<h1 id="setup-github-webhook">Setup GitHub webhook</h1>
-
-<p>We need to assign a webhook for each Git commit. So let&rsquo;s do the following:</p>
-
-<ul>
-<li>Navigate to your GitHub repo</li>
-<li>Click on “Settings” in the sidebar of that repo
-
-<ul>
-<li>It has to be an actual repo settings, not profile settings</li>
-</ul></li>
-<li>Click on “Webhooks &amp; Services”</li>
-<li>Click the “Add service” dropdown, then click “AmazonSNS”
-
-<ul>
-<li>You will need the account details for the IAM user you just created</li>
-<li>The trigger will be delegated through this given IAM user</li>
-</ul></li>
-</ul>
-
-<p><strong>Add SNS Webhook</strong>
-<figure>
-    <img src="/images/lambda_basics_webhooks_1.png"/> 
-</figure>
-</p>
-
-<p><strong>Add Account details from IAM user</strong>
-<figure>
-    <img src="/images/lambda_basics_webhooks_2.png"/> 
-</figure>
-</p>
-
-<h1 id="create-lambda-function">Create Lambda function</h1>
-
-<p>Now that we have creater a user, assigned a trigger on Github, we need to create a function
-that will be run on an actual trigger.
-Let&rsquo;s create a lambda function by going to <a href="https://ap-northeast-1.console.aws.amazon.com/lambda/home?region=ap-northeast-1#/functions">AWS Lambda</a> and
-clicking on &ldquo;Create a Lambda Function&rdquo;.</p>
-
-<p>Filter by SNS in the given samples because we want to see SNS functions.
-<figure>
-    <img src="/images/lambda_basics_lambda_1.png"/> 
-</figure>
-
-<em>Ensure that you select your SNS as the event source.</em></p>
-
-<p>Create a Lambda function with the following code:</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000">json</span>
-<span style="color:#204a87;font-weight:bold">print</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#39;Loading function&#39;</span><span style="color:#000;font-weight:bold">)</span>
-
-<span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">lambda_handler</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">event</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">context</span><span style="color:#000;font-weight:bold">):</span>
-    <span style="color:#204a87;font-weight:bold">print</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#34;Received event: &#34;</span> <span style="color:#ce5c00;font-weight:bold">+</span> <span style="color:#000">json</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">dumps</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">event</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">indent</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#0000cf;font-weight:bold">2</span><span style="color:#000;font-weight:bold">))</span>
-    <span style="color:#000">message</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">event</span><span style="color:#000;font-weight:bold">[</span><span style="color:#4e9a06">&#39;Records&#39;</span><span style="color:#000;font-weight:bold">][</span><span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">][</span><span style="color:#4e9a06">&#39;Sns&#39;</span><span style="color:#000;font-weight:bold">][</span><span style="color:#4e9a06">&#39;Message&#39;</span><span style="color:#000;font-weight:bold">]</span>
-    <span style="color:#204a87;font-weight:bold">print</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#34;From SNS: &#34;</span> <span style="color:#ce5c00;font-weight:bold">+</span> <span style="color:#000">message</span><span style="color:#000;font-weight:bold">)</span>
-    <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000">message</span></code></pre></div>
-<figure>
-    <img src="/images/lambda_basics_lambda_2.png"
-         alt="Python code"/> <figcaption>
-            <p>Python code</p>
-        </figcaption>
-</figure>
-
-
-<h1 id="testing-the-setup-so-far">Testing the setup so far</h1>
-
-<h2 id="testing-github-webhook">Testing GitHub webhook</h2>
-
-<p>Now that we have setup <strong>Lambda, SNS, and Github</strong> so far, it is time to test the setup.</p>
-
-<p>Go to the &ldquo;Webhooks and Services&rdquo; under you repo settings and click on &ldquo;Amazon SNS&rdquo; that is
-viewable at the bottom of that page. You will then be able to test the service.
-<figure>
-    <img src="/images/lambda_basics_results_1.png"/> 
-</figure>
-
-There&rsquo;s a button at the top right &ldquo;Test service&rdquo;. Once you click it, GitHub will confirm that the message is indeed sent.</p>
-
-<h2 id="checking-aws">Checking AWS</h2>
-
-<p>Now that we have been able to send the message, we also need to confirm that the lambda was actually called.</p>
-
-<p>This can be done by looking at CloudWatch logs. Any lambda run will be logged under CloudWatch.
-Even normal logging is also available there.
-<figure>
-    <img src="/images/lambda_basics_results_2.png"
-         alt="Going to CloudWatch"/> <figcaption>
-            <p>Going to CloudWatch</p>
-        </figcaption>
-</figure>
-
-<figure>
-    <img src="/images/lambda_basics_results_3.png"
-         alt="Checking the lambda logs"/> <figcaption>
-            <p>Checking the lambda logs</p>
-        </figcaption>
-</figure>
-</p>
-
-<h1 id="setup-api-gateway">Setup API Gateway</h1>
-
-<p>After all this is done, we can even <strong>create an API along with a public facing URL</strong>
-where all these services can be called (apart from just GitHub), if you&rsquo;d like.
-So let&rsquo;s do that.</p>
-
-<h2 id="create-api">Create API</h2>
-
-<figure>
-    <img src="/images/lambda_basics_api_1.png"
-         alt="Creating an API"/> <figcaption>
-            <p>Creating an API</p>
-        </figcaption>
-</figure>
-
-
-<h2 id="create-resource">Create Resource</h2>
-
-<figure>
-    <img src="/images/lambda_basics_api_2.png"
-         alt="Creating Resource"/> <figcaption>
-            <p>Creating Resource</p>
-        </figcaption>
-</figure>
-
-
-<h2 id="create-method">Create Method</h2>
-
-<figure>
-    <img src="/images/lambda_basics_api_3.png"
-         alt="Creating Method for GET"/> <figcaption>
-            <p>Creating Method for GET</p>
-        </figcaption>
-</figure>
-
-
-<figure>
-    <img src="/images/lambda_basics_api_4.png"
-         alt="Assign Lambda function to GET"/> <figcaption>
-            <p>Assign Lambda function to GET</p>
-        </figcaption>
-</figure>
-
-
-<h2 id="test-your-get-method">Test your GET Method</h2>
-
-<p>Now this API can be tested easily by just calling upon this URL:</p>
-
-<p><a href="https://XXXXXXXXXXXX.execute-api.ap-northeast-1.amazonaws.com/test/resource_1/">https://XXXXXXXXXXXX.execute-api.ap-northeast-1.amazonaws.com/test/resource_1/</a></p>
-
-<figure>
-    <img src="/images/lambda_basics_api_5.png"
-         alt="Check your Response from Lambda using GET"/> <figcaption>
-            <p>Check your Response from Lambda using GET</p>
-        </figcaption>
-</figure>
-
-
-<p>If you wanted to test from a URL, it would be actually going to this URL itself from the browser.</p>
-
-<h1 id="misc">Misc</h1>
-
-<h2 id="using-cli">Using CLI</h2>
-
-<p>Try the following command to get the list of your lambda functions:</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ aws lambda --profile lambda.s3.1 --region ap-northeast-1 list-functions</code></pre></div><div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#000;font-weight:bold">{</span>
-    <span style="color:#204a87;font-weight:bold">&#34;Functions&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000;font-weight:bold">[</span>
-        <span style="color:#000;font-weight:bold">{</span>
-            <span style="color:#204a87;font-weight:bold">&#34;CodeSize&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#0000cf;font-weight:bold">317</span><span style="color:#000;font-weight:bold">,</span>
-            <span style="color:#204a87;font-weight:bold">&#34;FunctionArn&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;arn:aws:lambda:ap-northeast-1:XXXXXXXXXXXX:function:lambda_1&#34;</span><span style="color:#000;font-weight:bold">,</span>
-            <span style="color:#204a87;font-weight:bold">&#34;MemorySize&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#0000cf;font-weight:bold">128</span><span style="color:#000;font-weight:bold">,</span>
-            <span style="color:#204a87;font-weight:bold">&#34;Role&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;arn:aws:iam::XXXXXXXXXXXX:role/lambda_basic_execution_1&#34;</span><span style="color:#000;font-weight:bold">,</span>
-            <span style="color:#204a87;font-weight:bold">&#34;Handler&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;lambda_function.lambda_handler&#34;</span><span style="color:#000;font-weight:bold">,</span>
-            <span style="color:#204a87;font-weight:bold">&#34;Runtime&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;python2.7&#34;</span><span style="color:#000;font-weight:bold">,</span>
-            <span style="color:#204a87;font-weight:bold">&#34;CodeSha256&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;.....&#34;</span><span style="color:#000;font-weight:bold">,</span>
-            <span style="color:#204a87;font-weight:bold">&#34;FunctionName&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;lambda_1&#34;</span><span style="color:#000;font-weight:bold">,</span>
-            <span style="color:#204a87;font-weight:bold">&#34;Timeout&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#0000cf;font-weight:bold">183</span><span style="color:#000;font-weight:bold">,</span>
-            <span style="color:#204a87;font-weight:bold">&#34;LastModified&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;2015-11-15T07:49:28.367+0000&#34;</span><span style="color:#000;font-weight:bold">,</span>
-            <span style="color:#204a87;font-weight:bold">&#34;Version&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;$LATEST&#34;</span><span style="color:#000;font-weight:bold">,</span>
-            <span style="color:#204a87;font-weight:bold">&#34;Description&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;An Amazon SNS trigger that logs the message pushed to the SNS topic.&#34;</span>
-        <span style="color:#000;font-weight:bold">},</span>
-        <span style="color:#000;font-weight:bold">{</span>
-            <span style="color:#204a87;font-weight:bold">&#34;CodeSize&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#0000cf;font-weight:bold">316</span><span style="color:#000;font-weight:bold">,</span>
-            <span style="color:#204a87;font-weight:bold">&#34;FunctionArn&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;arn:aws:lambda:ap-northeast-1:XXXXXXXXXXXX:function:lambda_2&#34;</span><span style="color:#000;font-weight:bold">,</span>
-            <span style="color:#204a87;font-weight:bold">&#34;MemorySize&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#0000cf;font-weight:bold">128</span><span style="color:#000;font-weight:bold">,</span>
-            <span style="color:#204a87;font-weight:bold">&#34;Role&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;arn:aws:iam::XXXXXXXXXXXX:role/lambda_basic_execution_1&#34;</span><span style="color:#000;font-weight:bold">,</span>
-            <span style="color:#204a87;font-weight:bold">&#34;Handler&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;lambda_function.lambda_handler&#34;</span><span style="color:#000;font-weight:bold">,</span>
-            <span style="color:#204a87;font-weight:bold">&#34;Runtime&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;python2.7&#34;</span><span style="color:#000;font-weight:bold">,</span>
-            <span style="color:#204a87;font-weight:bold">&#34;CodeSha256&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;.......&#34;</span><span style="color:#000;font-weight:bold">,</span>
-            <span style="color:#204a87;font-weight:bold">&#34;FunctionName&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;lambda_2&#34;</span><span style="color:#000;font-weight:bold">,</span>
-            <span style="color:#204a87;font-weight:bold">&#34;Timeout&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#0000cf;font-weight:bold">3</span><span style="color:#000;font-weight:bold">,</span>
-            <span style="color:#204a87;font-weight:bold">&#34;LastModified&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;2015-11-14T14:03:00.083+0000&#34;</span><span style="color:#000;font-weight:bold">,</span>
-            <span style="color:#204a87;font-weight:bold">&#34;Version&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;$LATEST&#34;</span><span style="color:#000;font-weight:bold">,</span>
-            <span style="color:#204a87;font-weight:bold">&#34;Description&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;An Amazon SNS trigger that logs the message pushed to the SNS topic.&#34;</span>
-        <span style="color:#000;font-weight:bold">}</span>
-    <span style="color:#000;font-weight:bold">]</span>
-<span style="color:#000;font-weight:bold">}</span></code></pre></div>
-<h2 id="custom-policy-for-lambda-access">Custom Policy for Lambda Access</h2>
-
-<p>Validate Policy
-You can either just give &ldquo;AmazonSNSFullAccess&rdquo; to the user <em>lambda.s3.1</em> or add the following Policy
-onto <strong>User-&gt;Permission-&gt;Add Inline policy-&gt;custom policy-&gt;Select-&gt;Policy Document</strong></p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">{<span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#4e9a06">&#34;Version&#34;</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;2012-10-17&#34;</span><span style="color:#000;font-weight:bold">,</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#4e9a06">&#34;Statement&#34;</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000;font-weight:bold">[</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">    </span>{<span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#4e9a06">&#34;Action&#34;</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000;font-weight:bold">[</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">        </span><span style="color:#4e9a06">&#34;sns:Publish&#34;</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#000;font-weight:bold">],</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#4e9a06">&#34;Resource&#34;</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000;font-weight:bold">[</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">        </span><span style="color:#4e9a06">&#34;arn:aws:sns:ap-northeast-1:YOUR_NUMBER:Commits_1&#34;</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#000;font-weight:bold">],</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#4e9a06">&#34;Effect&#34;</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;Allow&#34;</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">    </span>}<span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#000;font-weight:bold">]</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span>}</code></pre></div>
-      
-    </div>
-    
-    <div class="post">
-      <h1 class="post-title">
-        <a href="http://abhipandey.com/2015/10/vim-cannot-find-word-list/">vim cannot find word list</a>
-      </h1>
-      <span class="post-date">Oct 31, 2015  &middot; <a href="http://abhipandey.com/2015/10/vim-cannot-find-word-list/#disqus_thread">Comments</a>
-      
-      <br/>
-      <a class="a_cat" href="http://abhipandey.com/categories/tips">tips</a>
-        
-      <a class="a_tag" href="http://abhipandey.com/tags/vim">vim</a>
-    
-      </span>
-      
-      <p>After installing <a href="http://vim.spf13.com/">spf13 vim</a> every time I would open a file I had trouble with two things on my mac:</p>
-
-<ul>
-<li>File opening would halt in the middle with the following error :  <strong>Cannot find word list &ldquo;en.utf-8.spl&rdquo; or &ldquo;en.ascii.spl&rdquo;</strong></li>
-<li>Syntax highlighting also failed thereafter</li>
-</ul>
-
-<p>Here&rsquo;s what I would see:</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ vim release.sh 
-Warning: Cannot find word list <span style="color:#4e9a06">&#34;en.utf-8.spl&#34;</span> or <span style="color:#4e9a06">&#34;en.ascii.spl&#34;</span>
-Press ENTER or <span style="color:#204a87">type</span> <span style="color:#204a87">command</span> to <span style="color:#204a87;font-weight:bold">continue</span></code></pre></div>
-<p>I googled a lot regarding this but didn&rsquo;t find anything straight forward.
-When all options failed I recalled that it is looking for the spell files in a specific folder.
-Hence I decided to do a lookup for them:</p>
-
-<pre><code>locate en.utf-8
-</code></pre>
-
-<p>I got a lot of options:</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ locate en.utf-8
-
-/usr/local/Cellar/macvim/7.4-73/MacVim.app/Contents/Resources/vim/runtime/spell/en.utf-8.spl
-/usr/local/Cellar/macvim/7.4-73/MacVim.app/Contents/Resources/vim/runtime/spell/en.utf-8.sug
-/usr/local/Cellar/vim/7.4.712/share/vim/vim74/spell/en.utf-8.spl
-/usr/local/Cellar/vim/7.4.712/share/vim/vim74/spell/en.utf-8.sug
-/usr/share/vim/vim73/spell/en.utf-8.spl
-/usr/share/vim/vim73/spell/en.utf-8.sug</code></pre></div>
-<p>One of the options was to change the <code>runtimepath</code> to let it know about the spell folders.</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#204a87">let</span> <span style="color:#000;font-weight:bold">&amp;</span><span style="color:#000">runtimepath</span><span style="color:#ce5c00;font-weight:bold">=(</span><span style="color:#4e9a06">&#34;~/.vim/,/usr/local/Cellar/vim/7.4.712/share/vim/vim74/spell/,&#34;</span> . <span style="color:#000;font-weight:bold">&amp;</span>runtimepath<span style="color:#ce5c00;font-weight:bold">)</span></code></pre></div>
-<p>When that failed too and nothing else worked, I decided to copy out the file and give it a try:</p>
-
-<pre><code>cp /usr/local/Cellar/vim/7.4.712/share/vim/vim74/spell/en.utf-8.spl ~/.vim/spell
-</code></pre>
-
-<p>To my surprise, that worked!</p>
-
-      
-    </div>
-    
-    <div class="post">
-      <h1 class="post-title">
-        <a href="http://abhipandey.com/2015/10/setting-up-custom-domain-with-github-pages/">Setting up custom domain with Github Pages</a>
-      </h1>
-      <span class="post-date">Oct 24, 2015  &middot; <a href="http://abhipandey.com/2015/10/setting-up-custom-domain-with-github-pages/#disqus_thread">Comments</a>
-      
-      <br/>
-      <a class="a_cat" href="http://abhipandey.com/categories/continuous-delivery">continuous delivery</a><a class="a_cat" href="http://abhipandey.com/categories/code">code</a>
-        
-      <a class="a_tag" href="http://abhipandey.com/tags/aws">aws</a><a class="a_tag" href="http://abhipandey.com/tags/route-53">route 53</a><a class="a_tag" href="http://abhipandey.com/tags/github">github</a>
-    
-      </span>
-      
-      
-
-<p>Let&rsquo;s take the example of my domain itself <code>abhipandey.com</code> that I want to serve from <code>abhi1010.github.io</code>.
- We will need to do it in two steps:</p>
-
-<ul>
-<li>Setup CNAME on github
-
-<ul>
-<li>So that github knows about your domain</li>
-</ul></li>
-<li>Setup <strong>A</strong> record on AWS Route 53
-
-<ul>
-<li>So that domain can be registered</li>
-</ul></li>
-</ul>
-
-<h1 id="change-cname">Change CNAME</h1>
-
-<p>If we want to tell github about the domain name, it is rather simple: <em>create a CNAME file with the content being
-the name of the domain itself</em>
-Do <em>note</em> here that the default redirect of your domain will be the value in your CNAME file.</p>
-
-<p>Here&rsquo;s my <a href="https://github.com/abhi1010/abhi1010.github.io/blob/master/CNAME">CNAME file</a> content:</p>
-
-<pre><code>abhipandey.com
-</code></pre>
-
-<p>You don&rsquo;t really need <strong>www</strong>. If you do put <em>www.abhipandey.com</em> github will figure out and redirect properly.
-The difference is abhipandey.com is a top-level domain (TLD), while <em>www.abhipandey.com</em> is a subdomain.</p>
-
-<p>Essentially:</p>
-
-<blockquote>
-<p>If your CNAME file contains <em>abhipandey.com</em>, then <em>www.abhipandey.com</em> will redirect to <em>abhipandey.com</em>.</p>
-
-<p>If your CNAME file contains <em>www.abhipandey.com</em>, then <em>abhipandey.com</em> will redirect to <em>www.abhipandey.com</em>.</p>
-</blockquote>
-
-<h1 id="creating-a-record">Creating A Record</h1>
-
-<figure>
-    <img src="/images/custom-domain-name-with-github-pages-and-amazon-route-53_1.png"
-         alt="Setting up A record"/> <figcaption>
-            <p>Setting up A record</p>
-        </figcaption>
-</figure>
-
-
-<p>Next is to go to Amazon Route 53 console, and create an A record with the following IPs:</p>
-
-<pre><code>192.30.252.153
-192.30.252.154
-</code></pre>
-
-<h1 id="setup-subdomain">Setup subdomain</h1>
-
-<figure>
-    <img src="/images/custom-domain-name-with-github-pages-and-amazon-route-53_2.png"
-         alt="Setting up subdomain"/> <figcaption>
-            <p>Setting up subdomain</p>
-        </figcaption>
-</figure>
-
-
-<p>If you configure both an apex domain (e.g. <em>abhipandey.com</em>) and a matching www subdomain (e.g. <em>www.abhipandey.com</em>),
-GitHub&rsquo;s servers will automatically create redirects between the two.</p>
-
-<p>You can also also look up <a href="https://help.github.com/articles/tips-for-configuring-an-a-record-with-your-dns-provider/">GitHub Tips</a> for
-configuring an <strong>A</strong> record with your DNS provider.</p>
-
-      
-    </div>
-    
-    <div class="post">
-      <h1 class="post-title">
-        <a href="http://abhipandey.com/2015/10/forceful-docker-container-cleanup-on-elastic-beanstalk/">Forceful Docker Container cleanup on Elastic Beanstalk</a>
-      </h1>
-      <span class="post-date">Oct 7, 2015  &middot; <a href="http://abhipandey.com/2015/10/forceful-docker-container-cleanup-on-elastic-beanstalk/#disqus_thread">Comments</a>
-      
-      <br/>
-      <a class="a_cat" href="http://abhipandey.com/categories/continuous-delivery">continuous delivery</a><a class="a_cat" href="http://abhipandey.com/categories/code">code</a>
-        
-      <a class="a_tag" href="http://abhipandey.com/tags/aws">aws</a><a class="a_tag" href="http://abhipandey.com/tags/beanstalk">beanstalk</a><a class="a_tag" href="http://abhipandey.com/tags/docker">docker</a>
-    
-      </span>
-      
-      
-
-<p><strong><em><code>Note</code></em></strong>: <em><em>If you are not sure of what you are doing here, don&rsquo;t touch it.
-This is all sensitive stuff and a minor mistake can bring down your production.</em></em></p>
-
-<p>Sometimes, because of so many deployments happening and sharing volumes between dockers instances, the space runs out on production server.</p>
-
-<p>I found some ways to fix this but the most brutal way to leave the orphaned directories behind forever is to remove them.
-Such sadistic directories can be found at <code>/var/lib/docker/vfs/</code>.</p>
-
-<p>We can automate the removal.</p>
-
-<p><strong>First</strong>, let&rsquo;s find the directories that we should <strong><em><code>not</code></em></strong> delete.</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#8f5902;font-style:italic"># These directories are in use</span>
-$ docker ps -q <span style="color:#000;font-weight:bold">|</span> xargs docker inspect <span style="color:#000;font-weight:bold">|</span> egrep <span style="color:#4e9a06">&#34;var.lib.docker.vfs&#34;</span></code></pre></div>
-<p>You will see something like this:</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ docker ps -q <span style="color:#000;font-weight:bold">|</span> xargs docker inspect <span style="color:#000;font-weight:bold">|</span> egrep <span style="color:#4e9a06">&#34;var.lib.docker.vfs&#34;</span>
-  <span style="color:#4e9a06">&#34;/etc/nginx/sites-enabled&#34;</span>: <span style="color:#4e9a06">&#34;/var/lib/docker/vfs/dir/ed53e780472dbf5057780182bd12ae1cb7930fce73f5f7071bad1b456076dc95&#34;</span>,
-  <span style="color:#4e9a06">&#34;/var/log/nginx&#34;</span>: <span style="color:#4e9a06">&#34;/var/lib/docker/vfs/dir/26c3ac02631b0eab5d6d3a4c5e6664b43974f217ca24b9369f3f12f186601147&#34;</span>,
-  <span style="color:#4e9a06">&#34;/ws&#34;</span>: <span style="color:#4e9a06">&#34;/var/lib/docker/vfs/dir/ecd74d6b7e73c25d5e5f6b450a7b162bfb8e44c649c2af951843954538500dba&#34;</span></code></pre></div>
-<h1 id="fire-drill">Fire Drill</h1>
-
-<p><strong>Find out all directories that should stay</strong></p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ docker ps -q <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span> <span style="color:#000;font-weight:bold">|</span> xargs docker inspect <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span> <span style="color:#000;font-weight:bold">|</span> egrep <span style="color:#4e9a06">&#34;var.lib.docker.vfs&#34;</span> <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span> <span style="color:#000;font-weight:bold">|</span> sed -e <span style="color:#4e9a06">&#39;s/.*dir.//g&#39;</span> -e <span style="color:#4e9a06">&#39;s/&#34;.*//g&#39;</span> <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span> <span style="color:#000;font-weight:bold">|</span> sort <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span> &gt; /tmp/curr.dirs </code></pre></div>
-<p><strong>Find out all directories within <code>/var/lib/docker/vfs/dir</code></strong></p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ sudo ls /var/lib/docker/vfs/dir/ <span style="color:#000;font-weight:bold">|</span> sort &gt; /tmp/all.dirs</code></pre></div>
-<p><strong>Find out the directories from <code>all.dirs</code> that should be deleted (not in use by current docker instances)</strong></p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ sdiff -s /tmp/all.dirs /tmp/curr.dirs</code></pre></div>
-<h1 id="removing-the-directories-for-good">Removing the directories for good</h1>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ sdiff -s -w <span style="color:#0000cf;font-weight:bold">300</span> /tmp/all.dirs /tmp/curr.dirs <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>   <span style="color:#000;font-weight:bold">|</span> sed -e <span style="color:#4e9a06">&#39;s/. &lt;//g&#39;</span> -e <span style="color:#4e9a06">&#39;s/^/\/var\/lib\/docker\/vfs\/dir\//g&#39;</span> <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>   <span style="color:#000;font-weight:bold">|</span> xargs sudo  rm -rf </code></pre></div>
-      
-    </div>
-    
-    <div class="post">
-      <h1 class="post-title">
-        <a href="http://abhipandey.com/2015/09/powerline-for-zsh/">Powerline for zsh</a>
-      </h1>
-      <span class="post-date">Sep 28, 2015  &middot; <a href="http://abhipandey.com/2015/09/powerline-for-zsh/#disqus_thread">Comments</a>
-      
-      <br/>
-      <a class="a_cat" href="http://abhipandey.com/categories/code">code</a>
-        
-      <a class="a_tag" href="http://abhipandey.com/tags/zsh">zsh</a><a class="a_tag" href="http://abhipandey.com/tags/bash">bash</a>
-    
-      </span>
-      
-      <figure>
-    <img src="/images/powerline-for-zsh.png"
-         alt="Powerline"/> <figcaption>
-            <p>Powerline</p>
-        </figcaption>
-</figure>
-
-
-<p>I was having a lot of trouble getting <a href="https://github.com/carlcarl/powerline-zsh"><em>powerline</em></a> to work on my mac machine.
-No matter what I tried, I was getting errors like the following:</p>
-
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">    .oh-my-zsh/themes/powerline.zsh-theme:100: character not in range</code></pre></div>
-
-<p>Finally got it to work after multiple attempts on <code>bash</code> and <code>zsh</code>.</p>
-
-<p>All I had to do was set <code>LC_ALL</code> to <strong>en_US.UTF-8</strong>. It would set all the locales to <code>en_US.UTF-8</code> which
-would allow <code>powerline</code> fonts work properly.</p>
-
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ <span style="color:#204a87">export</span> <span style="color:#000">LC_ALL</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;en_US.UTF-8&#34;</span>                                                                                                     <span style="color:#0000cf;font-weight:bold">22</span>:58:06 
-$ locale 
-<span style="color:#000">LANG</span><span style="color:#ce5c00;font-weight:bold">=</span>
-<span style="color:#000">LC_COLLATE</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;en_US.UTF-8&#34;</span>
-<span style="color:#000">LC_CTYPE</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;en_US.UTF-8&#34;</span>
-<span style="color:#000">LC_MESSAGES</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;en_US.UTF-8&#34;</span>
-<span style="color:#000">LC_MONETARY</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;en_US.UTF-8&#34;</span>
-<span style="color:#000">LC_NUMERIC</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;en_US.UTF-8&#34;</span>
-<span style="color:#000">LC_TIME</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;en_US.UTF-8&#34;</span>
-<span style="color:#000">LC_ALL</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;en_US.UTF-8&#34;</span></code></pre></div>
-
-<p>After this, run the following command to test your fonts again.</p>
-
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#000">LC_CTYPE</span><span style="color:#ce5c00;font-weight:bold">=</span>en_US.UTF-8 <span style="color:#204a87">echo</span> <span style="color:#4e9a06">&#39;\u2603&#39;</span></code></pre></div>
-
-<p>Your command should work with or without <code>LC_CTYPE=en_US.UTF-8</code>. Here&rsquo;s what you expect to see now.</p>
-
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">    ☃</code></pre></div>
-
-      
-    </div>
-    
-    <div class="post">
-      <h1 class="post-title">
-        <a href="http://abhipandey.com/2015/09/automated-git-mirror-with-github-or-gitlab-or-bitbucket/">Automated Git Mirror With GitHub or Gitlab or Bitbucket</a>
-      </h1>
-      <span class="post-date">Sep 27, 2015  &middot; <a href="http://abhipandey.com/2015/09/automated-git-mirror-with-github-or-gitlab-or-bitbucket/#disqus_thread">Comments</a>
-      
-      <br/>
-      <a class="a_cat" href="http://abhipandey.com/categories/continuous-delivery">continuous delivery</a><a class="a_cat" href="http://abhipandey.com/categories/code">code</a>
-        
-      <a class="a_tag" href="http://abhipandey.com/tags/aws">aws</a><a class="a_tag" href="http://abhipandey.com/tags/beanstalk">beanstalk</a><a class="a_tag" href="http://abhipandey.com/tags/deployment">deployment</a><a class="a_tag" href="http://abhipandey.com/tags/git">git</a>
-    
-      </span>
-      
-      
-
-<h1 id="experience-with-gitlab-ci">Experience with Gitlab CI</h1>
-
-<figure>
-    <img src="/images/git_mirror_with_gitlab__ci.png"
-         alt="Git Mirror from Gitlab to Bitbucket using Gitlab CI"/> <figcaption>
-            <p>Git Mirror from Gitlab to Bitbucket using Gitlab CI</p>
-        </figcaption>
-</figure>
-
-
-<p>Had to move from <code>BitBucket</code> to <code>Gitlab</code>; which is really great, btw. However, there was one tiny issue here - <code>Gitlab</code> was not supported by <code>Shippable</code>.
-As you may know already <code>Shippable</code> is a hosted cloud platform that provides hosted continuous integration.
-We use it in our current setup to do a full testing and deployment onto <code>AWS Elastic Beanstalk</code>.</p>
-
-<p>Since we were moving to <code>Gitlab</code> I wanted to continue using <code>Shippable</code> for our prod deployments. <code>Shippable</code> only supports <code>Github</code> or <code>Bitbucket</code> and therein lies the problem.
-<code>Gitlab</code> did not work with <code>Circl CI</code> or <code>Travis CI</code> or <code>Shippable</code> or <code>Wercker</code> so I tried using <code>Gitlab CI</code>.</p>
-
-<p>However, there were some issues with it:</p>
-
-<ul>
-<li>Runs the tasks as standalone but are not part of a <code>Docker</code> process
-
-<ul>
-<li>This means <code>Gitlab CI</code> does not work similar to <code>Circl CI</code> or <code>Travis CI</code> or <code>Shippable</code> or <code>Wercker</code></li>
-</ul></li>
-<li>Sometimes CI takes long to be triggered even though it registers you to be running right after your commit</li>
-<li>The terms are a bit different compared to the other cloud based continuous integration sites
-
-<ul>
-<li><code>Gitlab CI</code> supposedly tries to improve upon other tools but in the process ensures that you need to learn CI again if you want to use them</li>
-</ul></li>
-</ul>
-
-<p>I tried using the same yaml was <code>Shippable</code> but it was just not working with too many errors being reported and not to mention, having to wait for an hour during the worst period to see results.
-<code>Shippable</code> on the other hand, would hand over the console and results within 5 minutes of my commits. Decided to ditch <code>Gitlab CI</code>.</p>
-
-<h1 id="using-git-mirror">Using Git Mirror</h1>
-
-<p>Since <code>Gitlab CI</code> was clearing not working I decided to continue using <code>Shippable</code>. The only issue was, code had to exist in <code>Bitbucket</code>.
- For that, I needed a git mirror from <code>Gitlab</code> to <code>Bitbucket</code>. Looking into docs I found this link - <a href="http://docs.shippable.com/using_gitlab/">http://docs.shippable.com/using_gitlab/</a>.
- Other options mentioned setting up configs to add a mirror. For example, look here:</p>
-
-<ul>
-<li><a href="http://stackoverflow.com/questions/21551929/how-to-make-a-github-mirror-to-bitbucket">http://stackoverflow.com/questions/21551929/how-to-make-a-github-mirror-to-bitbucket</a></li>
-<li><a href="https://github.com/git-mirror-sync/git-mirror-sync">git mirror sync as a service</a></li>
-<li><a href="http://stackoverflow.com/questions/22906917/how-to-move-git-repository-with-all-branches-from-bitbucket-to-github">http://stackoverflow.com/questions/22906917/how-to-move-git-repository-with-all-branches-from-bitbucket-to-github</a></li>
-</ul>
-
-<p>I had a major problem with all the options - every developer had to set it up for this to work on every commit.</p>
-
-<p>I looked into webhooks and triggers on <code>Gitlab</code> but webhooks would have old code (unless I updated the code manually before loading).</p>
-
-<p><strong>Finally, the only way I saw fit to fix this issue was the <code>Gitlab CI</code> itself.</strong> I set up a git push as a one-step CI on <code>Gitlab</code> itself.
- This would do the following:</p>
-
-<ul>
-<li>A commit on <code>Gitlab</code> leads to CI enabling this <code>git push --mirror</code> through the file <code>.gitlab-ci.yml</code></li>
-<li>When the commit is mirrored on <code>Bitbucket</code>, the webhook there is registered with <code>Shippable</code> which triggers the actual deployment through <code>shippable.yml</code></li>
-<li>In a way <code>Shippable</code> doesn&rsquo;t need to know anything about <code>Gitlab</code> which is great</li>
-</ul>
-
-<p>Here&rsquo;s my <strong><em><code>.gitlab-ci.yml</code></em></strong></p>
-
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">stages<span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span>-<span style="color:#f8f8f8;text-decoration:underline"> </span>deploy<span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span>Git<span style="color:#f8f8f8;text-decoration:underline"> </span>MIRROR<span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span>stage<span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span>deploy<span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span>script<span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">    </span>-<span style="color:#f8f8f8;text-decoration:underline"> </span>git<span style="color:#f8f8f8;text-decoration:underline"> </span>push<span style="color:#f8f8f8;text-decoration:underline"> </span>--mirror<span style="color:#f8f8f8;text-decoration:underline"> </span>https<span style="color:#000;font-weight:bold">:</span>//BITBUCKET_USERNAME<span style="color:#000;font-weight:bold">:</span>BITBUCKET_PASSWORD@bitbucket.org/group/repo.git</code></pre></div>
-
-<p><em>Note:</em> Remember to use variables in <code>Gitlab CI</code> to set up your bitbucket username and password.
-  <strong>This had to be done</strong> because you can&rsquo;t have any ssh key from <code>Gitlab</code> to add it to <code>Bitbucket</code></p>
-
-      
-    </div>
-    
-    <div class="post">
-      <h1 class="post-title">
-        <a href="http://abhipandey.com/2015/09/git-loc-stats-by-time-range/">Git LOC Stats by Time Range</a>
-      </h1>
-      <span class="post-date">Sep 17, 2015  &middot; <a href="http://abhipandey.com/2015/09/git-loc-stats-by-time-range/#disqus_thread">Comments</a>
-      
-      <br/>
-      <a class="a_cat" href="http://abhipandey.com/categories/code">code</a>
-        
-      <a class="a_tag" href="http://abhipandey.com/tags/bash">bash</a><a class="a_tag" href="http://abhipandey.com/tags/git">git</a>
-    
-      </span>
-      
-      <p>Recently had an interest in seeing how many LOC were committed to the code base over a particular period of
-time. After some tinkering around, mainly to find out the correct format for time ranges, decided to use the following bash script for finding coding stats.
-Following sample is to find out lines added or removed during the year 2014.</p>
-
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git log --after<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;2014-1-1&#34;</span> --before<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;2014-12-31&#34;</span> --pretty<span style="color:#ce5c00;font-weight:bold">=</span>tformat: --numstat 
-    <span style="color:#000;font-weight:bold">|</span> awk <span style="color:#4e9a06">&#39;{ if ( $2 != 0 &amp;&amp; $1 != 0 ) print $0 }&#39;</span> 
-    <span style="color:#000;font-weight:bold">|</span> gawk <span style="color:#4e9a06">&#39;{ add += $1; subs += $2; loc += $1 - $2 } END { printf &#34;Added lines: %s Removed lines: %s Total # of lines: %s\n&#34;, add, subs, loc }&#39;</span></code></pre></div>
-
-<p>The result will be as follows:</p>
-
-<pre><code>Added lines: 327505 Removed lines: 243860 Total # of lines: 83645
-</code></pre>
-
-<p>You will notice in the second line that I am doing the following:
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console"> if ( $2 != 0 &amp;&amp; $1 != 0 ) </code></pre></div></p>
-
-<p>This is simply to discard off any commit numbers that were pure addition or deletion (with no corresponding delete or add in the same commit).
-It may also remove some numbers that were actually valid commits but mostly it is to protect ourselves against any library or API that we may have added or replaced during that time period.</p>
-
-<p>For time range, you may even use something like <code>--since=&quot;1 year ago&quot;</code> and that will also yield similar results.</p>
-
-      
-    </div>
-    
-    <div class="post">
-      <h1 class="post-title">
-        <a href="http://abhipandey.com/2015/09/moving-to-hugo/">Moving To Hugo</a>
-      </h1>
-      <span class="post-date">Sep 15, 2015  &middot; <a href="http://abhipandey.com/2015/09/moving-to-hugo/#disqus_thread">Comments</a>
-      
-      <br/>
-      <a class="a_cat" href="http://abhipandey.com/categories/code">code</a>
-        
-      <a class="a_tag" href="http://abhipandey.com/tags/hugo">hugo</a>
-    
-      </span>
-      
-      
-
-<figure>
-    <img src="/images/moving_to_hugo__demo.png"
-         alt="Create your own blog"/> <figcaption>
-            <p>Create your own blog</p>
-        </figcaption>
-</figure>
-
-
-<p>My blogging experience started with <code>blogspot</code>. It was great until I realized that I needed something that was responsive.
-The layout looked nice on 1024x768 but with the new generation of screens it started to look narrow.
-I hated the look of the website when it seemed that I was wasting a lot of white space on the web pages.
- I moved to <code>wordpress.com</code> to give that a try when they started their responsive themes.
- The website looked great after a lot of customization but after writing some posts there,
- I realized that I had to <strong>micro-manage</strong> a lot of styling every time I was writing some new section, like special blocks or tables.
- The post writing was fun only for a short while. The enthusiasm died down pretty soon.</p>
-
-<h1 id="options">Options</h1>
-
-<p>I stopped blogging for a while for such reasons. Eventually I heard about <code>Jekyll</code> and was again motivated to try it.
- However, since I had also moved from <code>C++</code> to <code>Python</code> I figured there&rsquo;s bound to be something that&rsquo;s gonna be related to <code>Python</code>
- so that I can quickly jump in and navigate my way into the code base should there be a need (and who doesn&rsquo;t find reason to do that?).
- <code>Jekyll</code> was <code>ruby</code> based and that was holding me back a bit.
- During my research I found out three options:</p>
-
-<ul>
-<li><code>Jekyll</code>
-
-<ul>
-<li>A lot of mileage but based on <code>ruby</code></li>
-</ul></li>
-<li><code>Pelican</code>
-
-<ul>
-<li>During my testing everything was great about it. Even setting up themes was extremely easy. Anything I tried, worked at my first try.</li>
-<li>The biggest drawback against <code>pelican</code> and <code>jekyll</code> was that the bigger the number of posts get the longer it takes for compilation to take place</li>
-</ul></li>
-<li><code>Hugo</code>
-
-<ul>
-<li>Was deemed to have the best build times of 1ms per page</li>
-<li>Extremely easy setup with <code>livereload</code></li>
-<li>Lots of other smaller features but just these two items were enough to get me sold on <code>hugo</code>.
-<code>livereload</code> is a killer feature as it means you don&rsquo;t have to keep on rebuilding your site every time you want to view how the contents affect your site.
-It was also extremely easy to make theme changes and see them in action, straight away. We will see details of this, later.</li>
-<li>Was already using <code>pelican</code> but decided to give <code>hugo</code> a weekend and see it from there. I am glad I did.</li>
-</ul></li>
-</ul>
-
-<h1 id="installing-hugo">Installing hugo</h1>
-
-<p>Running it on mac, installation was pretty straightforward using <code>brew</code></p>
-
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">brew install hugo</code></pre></div>
-
-<p>I wanted to setup <code>Pygments</code> as well for code scripts as well.
-I knew that I would be presenting a lot of code on my site and one of my main problems with site like wordpress was that
-I had to manage a lot of styling for code sections which was not fun.
-So I decided to install <code>Pygments</code> on default <code>python</code> by doing:</p>
-
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">pip install Pygments</code></pre></div>
-
-<h1 id="exporting-wordpress">Exporting wordpress</h1>
-
-<p>Since I wanted to move all of my wordpress content into hugo I really needed to export everything from wordpress.
-I found this link on wordpress to export all of the contents out into xml file.</p>
-
-<p><a href="https://wordpress.com/wp-admin/export.php?type=export">https://wordpress.com/wp-admin/export.php?type=export</a></p>
-
-<p>The next task was to convert the xml file into markdown files so that <code>hugo</code> could use them. However, I had already converted
-some of my files earlier while working on <code>pelican</code>. Once I started using them I realized that my contents were not looking as expecting when I was iterating through
- various themes. Sometimes things looked okay and other times not. I figured it <em>must be something to do with how markdown was laid down from the xml file</em> because
-  the tags and categories were missing. I double checked the wordpress xml file but it contained the tags and categories that I was looking for.
-  It was time to start digging again.</p>
-
-<p>I came across <a href="https://github.com/thomasf/exitwp">exitwp</a> which needed a bit of setup, but I was willing to give it a try.
-Here&rsquo;s what I did:
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git clone https://github.com/thomasf/exitwp
-<span style="color:#204a87">cd</span> exitwp
-
-cp wordpress.2015-08-23.xml wordpress-xml/
-
-
-<span style="color:#8f5902;font-style:italic"># install dependencies</span>
-pip install --upgrade -r pip_requirements.txt
-
-<span style="color:#8f5902;font-style:italic"># Run cmd with path to xml (optional if you have only one file)</span>
-exitwp.py wordpress-xml/wordpress.2015-08-23.xml</code></pre></div></p>
-
-<p>This creates a folder <code>build/jekyll/OLD_WORDPRESS_URL/</code> with the contents inside it. Here&rsquo;s my sample</p>
-
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ tree
-.
-<span style="color:#000;font-weight:bold">|</span>-- _posts
-<span style="color:#000;font-weight:bold">|</span>   <span style="color:#000;font-weight:bold">|</span>-- <span style="color:#0000cf;font-weight:bold">2007</span>-10-26-use-of-yield-statement.markdown
-<span style="color:#000;font-weight:bold">|</span>   <span style="color:#000;font-weight:bold">|</span>-- <span style="color:#0000cf;font-weight:bold">2007</span>-11-23-dynamically-increase-label-size-autosize.markdown
-<span style="color:#000;font-weight:bold">|</span>   <span style="color:#000;font-weight:bold">|</span>-- <span style="color:#0000cf;font-weight:bold">2007</span>-12-12-book-review-head-first-design-patterns.markdown
-<span style="color:#8f5902;font-style:italic"># ...............</span>
-<span style="color:#000;font-weight:bold">|</span>   <span style="color:#4e9a06">`</span>-- <span style="color:#0000cf;font-weight:bold">2015</span>-08-07-docker-container-cleanup-on-elastic-beanstalk.markdown
-<span style="color:#4e9a06">`</span>-- about
-    <span style="color:#4e9a06">`</span>-- index.markdown
-
-<span style="color:#0000cf;font-weight:bold">2</span> directories, <span style="color:#0000cf;font-weight:bold">42</span> files</code></pre></div>
-
-<p>You are ready to test with <code>hugo</code> now.</p>
-
-<h1 id="using-hugo">Using hugo</h1>
-
-<p>Now that we have made some markdown files, we just want to see how it looks like on default <code>hugo</code> setup.</p>
-
-<p><code>hugo</code> documentation mentions says that all you need to do is call it with your input files.
-The idea would be to start a new folder, copy your markdowns there. Here&rsquo;s what we need:</p>
-
-<h2 id="setup">Setup</h2>
-
-<ul>
-<li><code>config.toml</code> file for all the configuration that will be used by <code>hugo</code> to build the site</li>
-<li>Markdown to be put in <code>content</code> folder</li>
-<li><code>themes/{THEME_NAME}</code> folder container the actual theme in <code>{THEME_NAME}</code> folder</li>
-</ul>
-
-<p>Other minor things to note here:</p>
-
-<ul>
-<li>Output html files are put in <code>public</code> folder.
-
-<ul>
-<li>It is usually a good idea to keep separate folders for testing and production otherwise you may inadvertently commit your dev test pages (thanks to <code>livereload</code></li>
-</ul></li>
-<li>I have seen hugo to complain quite a lot if you have your static files within <code>themes/{THEME}/static</code> folder
-
-<ul>
-<li>You can get around it in two ways.</li>
-<li>Create a symbolic link from within your blogging folder by calling <code>ln -s themes/hyde-x/static static</code></li>
-<li>Copy the <code>static</code> folder as is in to the main folder location, as is by calling <code>cp -r themes/hyde-x/static/ ./</code>. However, do this <em>only</em> if you don&rsquo;t intend to mkae any changes</li>
-</ul></li>
-</ul>
-
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"> mkdir my_blog
- <span style="color:#204a87">cd</span> my_blog
- mkdir content
- cp -r /PATH_TO/exitwp/build/jekyll/codersdigest.wordpress.com/* ./content/
- </code></pre></div>
-
-<h2 id="theme">Theme</h2>
-
-<p>Let&rsquo;s start with a simple theme <a href="https://github.com/zyro/hyde-x">hyde-x</a></p>
-
-<p>Here&rsquo;s how to install it.
- <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"> mkdir themes/
- <span style="color:#204a87">cd</span> themes/
- git clone https://github.com/zyro/hyde-x
- </code></pre></div></p>
-
-<h2 id="folder-structure">Folder structure</h2>
-
-<p>Here&rsquo;s how the folders look now. Use this for comparison.</p>
-
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">tree -L <span style="color:#0000cf;font-weight:bold">2</span>
-.
-<span style="color:#000;font-weight:bold">|</span>-- config.toml
-<span style="color:#000;font-weight:bold">|</span>-- content
-<span style="color:#000;font-weight:bold">|</span>   <span style="color:#000;font-weight:bold">|</span>-- _posts
-<span style="color:#000;font-weight:bold">|</span>   <span style="color:#4e9a06">`</span>-- about
-<span style="color:#000;font-weight:bold">|</span>-- public
-<span style="color:#000;font-weight:bold">|</span>   <span style="color:#000;font-weight:bold">|</span>-- <span style="color:#0000cf;font-weight:bold">404</span>.html
-<span style="color:#000;font-weight:bold">|</span>   <span style="color:#000;font-weight:bold">|</span>-- _posts
-<span style="color:#000;font-weight:bold">|</span>   <span style="color:#000;font-weight:bold">|</span>-- about
-<span style="color:#000;font-weight:bold">|</span>   <span style="color:#000;font-weight:bold">|</span>-- categories
-<span style="color:#000;font-weight:bold">|</span>   <span style="color:#000;font-weight:bold">|</span>-- css
-<span style="color:#000;font-weight:bold">|</span>   <span style="color:#000;font-weight:bold">|</span>-- favicon.png
-<span style="color:#000;font-weight:bold">|</span>   <span style="color:#000;font-weight:bold">|</span>-- index.html
-<span style="color:#000;font-weight:bold">|</span>   <span style="color:#000;font-weight:bold">|</span>-- index.xml
-<span style="color:#000;font-weight:bold">|</span>   <span style="color:#000;font-weight:bold">|</span>-- js
-<span style="color:#000;font-weight:bold">|</span>   <span style="color:#000;font-weight:bold">|</span>-- page
-<span style="color:#000;font-weight:bold">|</span>   <span style="color:#000;font-weight:bold">|</span>-- sitemap.xml
-<span style="color:#000;font-weight:bold">|</span>   <span style="color:#000;font-weight:bold">|</span>-- tags
-<span style="color:#000;font-weight:bold">|</span>   <span style="color:#4e9a06">`</span>-- touch-icon-144-precomposed.png
-<span style="color:#000;font-weight:bold">|</span>-- static
-<span style="color:#000;font-weight:bold">|</span>   <span style="color:#000;font-weight:bold">|</span>-- css
-<span style="color:#000;font-weight:bold">|</span>   <span style="color:#000;font-weight:bold">|</span>-- favicon.png
-<span style="color:#000;font-weight:bold">|</span>   <span style="color:#000;font-weight:bold">|</span>-- js
-<span style="color:#000;font-weight:bold">|</span>   <span style="color:#4e9a06">`</span>-- touch-icon-144-precomposed.png
-<span style="color:#4e9a06">`</span>-- themes
-    <span style="color:#4e9a06">`</span>-- hyde-x</code></pre></div>
-
-<h2 id="config">Config</h2>
-
-<p>Your config file could be as follows. Do note that I am also trying to build a menu for myself on the sidebar for better tracking.
-It can be found under <code>[[menu.</code></p>
-
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">baseurl<span style="color:#f8f8f8;text-decoration:underline"> </span>=<span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;your_github_url&#34;</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span>languageCode<span style="color:#f8f8f8;text-decoration:underline"> </span>=<span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;en-us&#34;</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span>title<span style="color:#f8f8f8;text-decoration:underline"> </span>=<span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;title&#34;</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span>contentdir<span style="color:#f8f8f8;text-decoration:underline"> </span>=<span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;content&#34;</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span>layoutdir<span style="color:#f8f8f8;text-decoration:underline"> </span>=<span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;layouts&#34;</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span>publishdir<span style="color:#f8f8f8;text-decoration:underline"> </span>=<span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;public&#34;</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span>theme<span style="color:#f8f8f8;text-decoration:underline"> </span>=<span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;hyde-x&#34;</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span>pygmentsstyle<span style="color:#f8f8f8;text-decoration:underline"> </span>=<span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;native&#34;</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span>pygmentsuseclasses<span style="color:#f8f8f8;text-decoration:underline"> </span>=<span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#204a87;font-weight:bold">false</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#000;font-weight:bold">[</span>author<span style="color:#000;font-weight:bold">]</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">    </span>name<span style="color:#f8f8f8;text-decoration:underline"> </span>=<span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;your name&#34;</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#000;font-weight:bold">[</span>permalinks<span style="color:#000;font-weight:bold">]</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#8f5902;font-style:italic"># Change the permalink format for the &#39;post&#39; content type.</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#8f5902;font-style:italic"># This defines how your folder is structured</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">    </span>post<span style="color:#f8f8f8;text-decoration:underline"> </span>=<span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;/:year/:month/:title/&#34;</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#000;font-weight:bold">[</span>taxonomies<span style="color:#000;font-weight:bold">]</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#8f5902;font-style:italic"># I wanted to use tags and categories</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">    </span>category<span style="color:#f8f8f8;text-decoration:underline"> </span>=<span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;categories&#34;</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">    </span>tag<span style="color:#f8f8f8;text-decoration:underline"> </span>=<span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;tags&#34;</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#000;font-weight:bold">[[</span>menu.main<span style="color:#000;font-weight:bold">]]</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">    </span>name<span style="color:#f8f8f8;text-decoration:underline"> </span>=<span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;Posts&#34;</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">    </span>pre<span style="color:#f8f8f8;text-decoration:underline"> </span>=<span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;&lt;i class=&#39;fa fa-heart&#39;&gt;&lt;/i&gt;&#34;</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">    </span>weight<span style="color:#f8f8f8;text-decoration:underline"> </span>=<span style="color:#f8f8f8;text-decoration:underline"> </span>-<span style="color:#0000cf;font-weight:bold">110</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">    </span>identifier<span style="color:#f8f8f8;text-decoration:underline"> </span>=<span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;posts&#34;</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">    </span>url<span style="color:#f8f8f8;text-decoration:underline"> </span>=<span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;/post/&#34;</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#000;font-weight:bold">[[</span>menu.main<span style="color:#000;font-weight:bold">]]</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">    </span>name<span style="color:#f8f8f8;text-decoration:underline"> </span>=<span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;Tags&#34;</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">    </span>pre<span style="color:#f8f8f8;text-decoration:underline"> </span>=<span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;&lt;i class=&#39;fa fa-road&#39;&gt;&lt;/i&gt;&#34;</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">    </span>weight<span style="color:#f8f8f8;text-decoration:underline"> </span>=<span style="color:#f8f8f8;text-decoration:underline"> </span>-<span style="color:#0000cf;font-weight:bold">109</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">    </span>url<span style="color:#f8f8f8;text-decoration:underline"> </span>=<span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;/tags/&#34;</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#000;font-weight:bold">[[</span>menu.main<span style="color:#000;font-weight:bold">]]</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">    </span>name<span style="color:#f8f8f8;text-decoration:underline"> </span>=<span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;Categories&#34;</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">    </span>pre<span style="color:#f8f8f8;text-decoration:underline"> </span>=<span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;&lt;i class=&#39;fa fa-road&#39;&gt;&lt;/i&gt;&#34;</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">    </span>weight<span style="color:#f8f8f8;text-decoration:underline"> </span>=<span style="color:#f8f8f8;text-decoration:underline"> </span>-<span style="color:#0000cf;font-weight:bold">108</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">    </span>url<span style="color:#f8f8f8;text-decoration:underline"> </span>=<span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;/categories/&#34;</span></code></pre></div>
-
-<h2 id="run-hugo">Run hugo</h2>
-
-<p>Now that we have setup the contents, themes
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ hugo server
-    0 draft content
-    0 future content 
-    42 pages created
-    0 paginator pages created
-    18 tags created
-    6 categories created
-    in 53 ms
-    Serving pages from /Users/your_username/code/githubs/_tmp/_del/public
-    Web Server is available at http://127.0.0.1:1313/
-    Press Ctrl+C to stop</code></pre></div></p>
-
-<h2 id="final-look">Final look</h2>
-
-<p>You&rsquo;re done. How does it look?!</p>
-
-<figure>
-    <img src="/images/moving_to_hugo__blog_sample.png"
-         alt="Your sidebar"/> <figcaption>
-            <p>Your sidebar</p>
-        </figcaption>
-</figure>
-
-
-<h2 id="going-further">Going further</h2>
-
-<p>This is only the beginning. There are still a few loose ends to tie up.</p>
-
-<ul>
-<li>Are you happy enough with the theme?
-
-<ul>
-<li>If not, you can always try <a href="http://gohugo.io/themes/installing/">more themes</a></li>
-</ul></li>
-<li>What about code highlighting? Would you like more changes?
-
-<ul>
-<li><code>hyde-x</code> also provides it&rsquo;s own version of highlighting through css files. You can use <a href="https://github.com/zyro/hyde-x#tips"><code>params</code> to control that</a></li>
-</ul></li>
-</ul>
-
-<p>I wasn&rsquo;t happy with the code highlights as well the default layout the themes were providing. I created my own adaptation of <code>hyde-x</code> called <a href="https://github.com/abhi1010/hyde-a"><code>hyde-a</code></a>
-Some changes I made were:</p>
-
-<ul>
-<li>Tags and Categories didn&rsquo;t have their own proper <code>listing</code> or <code>single</code> templates</li>
-<li>Every time you clicked on a tag/category, the list of all articles related to that term was also not shown properly</li>
-<li>Post listing only included title and date. I was looking for related tag and category for each post</li>
-</ul>
-
-<p>I fixed all of those with <a href="https://github.com/abhi1010/hyde-a"><code>hyde-a</code></a></p>
-
-<h2 id="hosting-your-blog">Hosting your blog</h2>
-
-<p>Now that we have created the blog, how about hosting it?
-We have use a free service like <a href="https://pages.github.com/">GitHub Pages</a>
-Once we commit your html pages (the <code>output</code>) onto github on a different repo it will show up directly on <code>github.io</code> as well.
-There are some concepts that you want to know. Learn some at [octopress])(<a href="http://octopress.org/docs/deploying/github/">http://octopress.org/docs/deploying/github/</a>).</p>
-
-<p>Create your own repo using the following logic:</p>
-
-<ul>
-<li>You must use the <code>username.github.io</code> naming scheme.</li>
-<li>Content from the master branch will be used to build and publish your GitHub Pages site.</li>
-</ul>
-
-<h1 id="automating-your-blog-generation">Automating your blog generation</h1>
-
-<p>Now that our blog is generated, we need to automate the process of creating the html from the markdown.
-If we have to commit to two repo - for markdown as well html pages, I feel like is too much of work.</p>
-
-<p>I did some work with <code>shippable</code> and started automatically creating the html pages through it.</p>
-
-<p>I have created another article about it while taking Elastic Beanstalk as the subject. The same applies for <code>hugo</code> though. You can find it here:</p>
-
-<p><strong><a href="http://abhipandey.com/2015/09/elastic-beanstalk-deployment-automation/">Elastic Beanstalk Deployment Automation</a></strong></p>
-
-<p>Once you have done it, all you need to do is:</p>
-
-<ul>
-<li>Locally write your markdown files</li>
-<li>Test using <code>hugo server -w</code> to use <code>livereload</code></li>
-<li>Commit your markdown</li>
-</ul>
-
-<p><code>Shippable</code> will pick it up from there. It will download the theme and create the html files.
-It will also commit to the <code>GitHub Pages</code> for you and the site will be live automatically!</p>
-
-      
-    </div>
-    
-    <div class="post">
-      <h1 class="post-title">
-        <a href="http://abhipandey.com/2015/09/using-external-tools-with-git-diff/">Using External Tools with Git Diff</a>
-      </h1>
-      <span class="post-date">Sep 10, 2015  &middot; <a href="http://abhipandey.com/2015/09/using-external-tools-with-git-diff/#disqus_thread">Comments</a>
-      
-      <br/>
-      <a class="a_cat" href="http://abhipandey.com/categories/code">code</a>
-        
-      <a class="a_tag" href="http://abhipandey.com/tags/git">git</a>
-    
-      </span>
-      
-      <p>If you want to view what has changed since one commit to another, it is quite easy to view the diff.</p>
-
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git diff 5fad06c..0a504fa</code></pre></div>
-
-<p>You will get something like this:</p>
-
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-diff" data-lang="diff"><span style="color:#000080;font-weight:bold">diff --git a/modules/file_1.erb b/modules/file_1.erb
-</span><span style="color:#000080;font-weight:bold">index 0538da0..6621d93 100644
-</span><span style="color:#000080;font-weight:bold"></span><span style="color:#a40000">--- a/modules/file_1.erb
-</span><span style="color:#a40000"></span><span style="color:#00a000">+++ b/modules/file_1.erb
-</span><span style="color:#00a000"></span><span style="color:#800080;font-weight:bold">@@ -5,8 +5,8 @@
-</span><span style="color:#800080;font-weight:bold"></span> 
-   // Algo settings
-   &#34;Carbo&#34;: {
-<span style="color:#a40000">-    &#34;active-instrument&#34;: &#34;SGX/NK15&#34;,
-</span><span style="color:#a40000">-    &#34;hedge-instrument&#34;: &#34;SGX/NK16&#34;,
-</span><span style="color:#a40000"></span><span style="color:#00a000">+    &#34;active-instrument&#34;: &#34;SGX/NK17&#34;,
-</span><span style="color:#00a000">+    &#34;hedge-instrument&#34;: &#34;SGX/NK18&#34;,
-</span><span style="color:#00a000"></span>     &#34;owner-app-id&#34;: &#34;abhi1010&#34;,
-</code></pre></div>
-
-<p>What if you wanted a use an external tool like <code>meld</code> to view the diff, in a nice beautiful side by side view? You&rsquo;d have to modify your settings to tell that to <code>git</code>.
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git config --global diff.tool meld</code></pre></div></p>
-
-<p>Finally, then to view the diff:
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git difftool 5fad06c..0a504fa</code></pre></div></p>
-
-      
-    </div>
-    
     
 
 <ul class="pagination">
-    
-    <li class="page-item">
-        <a href="/" class="page-link" aria-label="First"><span aria-hidden="true">&laquo;&laquo;</span></a>
-    </li>
-    
-    <li class="page-item">
-    <a href="/" class="page-link" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
-    </li>
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    <li class="page-item"><a class="page-link" href="/">1</a></li>
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    <li class="page-item active"><a class="page-link" href="/page/2/">2</a></li>
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    <li class="page-item"><a class="page-link" href="/page/3/">3</a></li>
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    <li class="page-item disabled"><span aria-hidden="true">&nbsp;&hellip;&nbsp;</span></li>
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    <li class="page-item"><a class="page-link" href="/page/7/">7</a></li>
-    
-    
-    <li class="page-item">
-    <a href="/page/3/" class="page-link" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
-    </li>
-    
-    <li class="page-item">
-        <a href="/page/7/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
-    </li>
-    
+  
+  <li class="page-item">
+    <a class="page-link" href="/">
+      <svg class="icon icon-arrow-left" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>arrow-left</title><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+    </a>
+  </li>
+  
+  
+  <li class="page-item">
+    <a class="page-link" href="/">
+      1
+    </a>
+  </li>
+  
+  <li class="page-item active">
+    <a class="page-link" href="/page/2/">
+      2
+    </a>
+  </li>
+  
+  <li class="page-item">
+    <a class="page-link" href="/page/3/">
+      3
+    </a>
+  </li>
+  
+  <li class="page-item">
+    <a class="page-link" href="/page/4/">
+      4
+    </a>
+  </li>
+  
+  
+  <li class="page-item">
+    <a class="page-link" href="/page/3/">
+      <svg class="icon icon-arrow-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>arrow-right</title><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+    </a>
+  </li>
+  
 </ul>
 
-  </div>
-</div>
 
 
-<script type="text/javascript">
-var disqus_shortname = "abhi1010";
-(function () {
-    var s = document.createElement('script'); s.async = true;
-    s.type = 'text/javascript';
-    s.src = '//' + disqus_shortname + '.disqus.com/count.js';
-    (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
-}());
-</script>
+  </article>
 
-
-</body>
+    </main>
+  </body>
 </html>
-

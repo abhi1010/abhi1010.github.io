@@ -1,1271 +1,331 @@
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
-<head>
-	<meta name="generator" content="Hugo 0.54-DEV" />
-  <link href="http://gmpg.org/xfn/11" rel="profile">
-  <meta http-equiv="content-type" content="text/html; charset=utf-8">
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<!doctype html>
+<html lang="en-us">
+  <head>
+    <title>Coders Digest</title>
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.145.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Abhishek Pandey" />
+    <meta name="description" content="Abhishek Pandey" />
+    <link rel="stylesheet" href="/css/main.min.5b1fcc8902588589c4767187402a3c29f8b8d7a6fdef6d9f8f77045bb0d14fee.css" />
+    <link rel="alternate" type="application/rss+xml" href="http://abhipandey.com/index.xml" title="Coders Digest">
+    
 
-  <title>Coders Digest &middot; Abhishek Pandey</title>
+    
+    
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Coders Digest">
+  <meta name="twitter:description" content="Abhishek Pandey">
 
-  
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
-  <link rel="stylesheet" href="http://abhipandey.com/css/poole.css?ref=abc124">
-  <link rel="stylesheet" href="http://abhipandey.com/css/hyde.css?ref=abc124">
-  <link rel="stylesheet" href="http://abhipandey.com/css/poole-overrides.css?ref=abc124">
-  <link rel="stylesheet" href="http://abhipandey.com/css/hyde-overrides.css?ref=abc124">
-  <link rel="stylesheet" href="http://abhipandey.com/css/hyde-a.css?ref=abc124">
-  <link rel="stylesheet" href="http://abhipandey.com/css/custom-additions.css?ref=abc124">
-  
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
-  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <meta property="og:url" content="http://abhipandey.com/">
+  <meta property="og:site_name" content="Coders Digest">
+  <meta property="og:title" content="Coders Digest">
+  <meta property="og:description" content="Abhishek Pandey">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="website">
 
-  
-  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://abhipandey.com/touch-icon-144-precomposed.png?ref=abc124">
-  <link href="http://abhipandey.com/favicon.png?ref=abc124" rel="icon">
 
-  
-  
-  
-  <link href="http://abhipandey.com/index.xml" rel="alternate" type="application/rss+xml" title="Coders Digest &middot; Abhishek Pandey" />
-
-  <meta name="description" content="C&#43;&#43;/python/bash code; How to automate and deploy your applications">
-  <meta name="keywords" content="aws,deploy,elastic beanstalk,beanstalk,python,c&#43;&#43;,continuous delivery,tips,code,docker,bash,linux">
-  
-  
-  <script>
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-      ga('create', 'UA-68135443-1', 'auto');
-      ga('send', 'pageview');
-  </script>
-
-</head>
-<body class="theme-base-aa">
-<div class="sidebar">
-  <div class="container sidebar-sticky">
-    <div class="sidebar-about">
+  </head>
+  <body>
+    <header class="app-header">
+      <a href="/"><img class="app-header-avatar" src="/space-2.jpg" alt="Abhishek Pandey" /></a>
+      <span class="app-header-title">Coders Digest</span>
+      <nav class="app-header-menu">
+          <a class="app-header-menu-item" href="/post/">Posts</a>
+             - 
+          
+          <a class="app-header-menu-item" href="/tags/">Tags</a>
+             - 
+          
+          <a class="app-header-menu-item" href="/categories/">Categories</a>
+             - 
+          
+          <a class="app-header-menu-item" href="/about/">About</a>
+      </nav>
+      <p>Abhishek Pandey</p>
+      <div class="app-header-social">
+        
+          <a href="https://github.com/abhi1010" target="_blank" rel="noreferrer noopener me">
+            <svg class="icon icon-brand-github" viewBox="0 0 24 24" fill="currentColor"><title>GitHub</title><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+          </a>
+        
+          <a href="https://www.linkedin.com/in/apandey10/" target="_blank" rel="noreferrer noopener me">
+            <svg class="icon icon-brand-linkedin" viewBox="0 0 24 24" fill="currentColor"><title>LinkedIn</title><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </a>
+        
+      </div>
+    </header>
+    <main class="app-container">
       
-      <h1><a href="http://abhipandey.com/">Coder&rsquo;s Digest</a></h1>
-      <a href="http://abhipandey.com/"><p>Abhishek Pandey</p></a>
-    </div>
-
-    <ul class="sidebar-nav">
+  <article>
+    <h1>Coders Digest</h1>
+    
+    <ul class="posts-list">
       
-      <li class="sidebar-nav-item"><a href="http://abhipandey.com/post/">Posts</a></li>
+        <li class="posts-list-item">
+          <a class="posts-list-item-title" href="/2016/11/adding-launcher-shortcut-in-fedora/">Adding launcher shortcut in Fedora</a>
+          <span class="posts-list-item-description">
+            <svg class="icon icon-calendar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>calendar</title><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+            Nov 13, 2016
+            <span class="posts-list-item-separator">-</span>
+            <svg class="icon icon-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>clock</title><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            1 min read
+          </span>
+        </li>
       
-      <li class="sidebar-nav-item"><a href="http://abhipandey.com/tags/">Tags</a></li>
+        <li class="posts-list-item">
+          <a class="posts-list-item-title" href="/2016/11/running-invoke-from-other-folders/">Running invoke from other folders</a>
+          <span class="posts-list-item-description">
+            <svg class="icon icon-calendar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>calendar</title><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+            Nov 13, 2016
+            <span class="posts-list-item-separator">-</span>
+            <svg class="icon icon-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>clock</title><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            2 min read
+          </span>
+        </li>
       
-      <li class="sidebar-nav-item"><a href="http://abhipandey.com/categories/">Categories</a></li>
+        <li class="posts-list-item">
+          <a class="posts-list-item-title" href="/2016/07/systemd-tutorial/">Systemd tutorial</a>
+          <span class="posts-list-item-description">
+            <svg class="icon icon-calendar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>calendar</title><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+            Jul 7, 2016
+            <span class="posts-list-item-separator">-</span>
+            <svg class="icon icon-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>clock</title><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            2 min read
+          </span>
+        </li>
       
-      <li class="sidebar-nav-item"><a href="http://abhipandey.com/about/">About</a></li>
+        <li class="posts-list-item">
+          <a class="posts-list-item-title" href="/2016/07/gitlab-cli-api-reference/">Gitlab CLI API reference</a>
+          <span class="posts-list-item-description">
+            <svg class="icon icon-calendar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>calendar</title><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+            Jul 5, 2016
+            <span class="posts-list-item-separator">-</span>
+            <svg class="icon icon-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>clock</title><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            3 min read
+          </span>
+        </li>
+      
+        <li class="posts-list-item">
+          <a class="posts-list-item-title" href="/2016/06/protobuf-on-docker/">Protobuf on Docker</a>
+          <span class="posts-list-item-description">
+            <svg class="icon icon-calendar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>calendar</title><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+            Jun 28, 2016
+            <span class="posts-list-item-separator">-</span>
+            <svg class="icon icon-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>clock</title><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            2 min read
+          </span>
+        </li>
+      
+        <li class="posts-list-item">
+          <a class="posts-list-item-title" href="/2016/06/using-todo-in-fedora/">Using TODO in Fedora</a>
+          <span class="posts-list-item-description">
+            <svg class="icon icon-calendar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>calendar</title><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+            Jun 22, 2016
+            <span class="posts-list-item-separator">-</span>
+            <svg class="icon icon-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>clock</title><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            4 min read
+          </span>
+        </li>
+      
+        <li class="posts-list-item">
+          <a class="posts-list-item-title" href="/2016/05/getting-list-of-issues-from-jira-under-current-sprint/">Getting list of Issues from JIRA under current sprint</a>
+          <span class="posts-list-item-description">
+            <svg class="icon icon-calendar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>calendar</title><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+            May 13, 2016
+            <span class="posts-list-item-separator">-</span>
+            <svg class="icon icon-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>clock</title><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            2 min read
+          </span>
+        </li>
+      
+        <li class="posts-list-item">
+          <a class="posts-list-item-title" href="/2016/03/getopt-vs-getopts/">getopt vs getopts</a>
+          <span class="posts-list-item-description">
+            <svg class="icon icon-calendar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>calendar</title><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+            Mar 18, 2016
+            <span class="posts-list-item-separator">-</span>
+            <svg class="icon icon-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>clock</title><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            3 min read
+          </span>
+        </li>
+      
+        <li class="posts-list-item">
+          <a class="posts-list-item-title" href="/2016/02/color-your-process-listings/">Color your process listings</a>
+          <span class="posts-list-item-description">
+            <svg class="icon icon-calendar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>calendar</title><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+            Feb 9, 2016
+            <span class="posts-list-item-separator">-</span>
+            <svg class="icon icon-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>clock</title><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            2 min read
+          </span>
+        </li>
+      
+        <li class="posts-list-item">
+          <a class="posts-list-item-title" href="/2016/02/how-to-setup-a-local-pypi-mirror/">How to setup a local pypi mirror</a>
+          <span class="posts-list-item-description">
+            <svg class="icon icon-calendar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>calendar</title><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+            Feb 4, 2016
+            <span class="posts-list-item-separator">-</span>
+            <svg class="icon icon-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>clock</title><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            2 min read
+          </span>
+        </li>
+      
+        <li class="posts-list-item">
+          <a class="posts-list-item-title" href="/2016/01/angularjs-2.0-building-blocks-explained/">AngularJS 2.0 building blocks explained</a>
+          <span class="posts-list-item-description">
+            <svg class="icon icon-calendar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>calendar</title><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+            Jan 3, 2016
+            <span class="posts-list-item-separator">-</span>
+            <svg class="icon icon-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>clock</title><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            2 min read
+          </span>
+        </li>
+      
+        <li class="posts-list-item">
+          <a class="posts-list-item-title" href="/2015/11/lambda-basics-with-python-using-github-webhooks-or-api-gateway/">Lambda Basics with Python using Github Webhooks or API Gateway</a>
+          <span class="posts-list-item-description">
+            <svg class="icon icon-calendar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>calendar</title><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+            Nov 4, 2015
+            <span class="posts-list-item-separator">-</span>
+            <svg class="icon icon-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>clock</title><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            4 min read
+          </span>
+        </li>
+      
+        <li class="posts-list-item">
+          <a class="posts-list-item-title" href="/2015/10/vim-cannot-find-word-list/">vim cannot find word list</a>
+          <span class="posts-list-item-description">
+            <svg class="icon icon-calendar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>calendar</title><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+            Oct 31, 2015
+            <span class="posts-list-item-separator">-</span>
+            <svg class="icon icon-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>clock</title><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            1 min read
+          </span>
+        </li>
+      
+        <li class="posts-list-item">
+          <a class="posts-list-item-title" href="/2015/10/setting-up-custom-domain-with-github-pages/">Setting up custom domain with Github Pages</a>
+          <span class="posts-list-item-description">
+            <svg class="icon icon-calendar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>calendar</title><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+            Oct 24, 2015
+            <span class="posts-list-item-separator">-</span>
+            <svg class="icon icon-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>clock</title><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            2 min read
+          </span>
+        </li>
+      
+        <li class="posts-list-item">
+          <a class="posts-list-item-title" href="/2015/10/forceful-docker-container-cleanup-on-elastic-beanstalk/">Forceful Docker Container cleanup on Elastic Beanstalk</a>
+          <span class="posts-list-item-description">
+            <svg class="icon icon-calendar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>calendar</title><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+            Oct 7, 2015
+            <span class="posts-list-item-separator">-</span>
+            <svg class="icon icon-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>clock</title><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            2 min read
+          </span>
+        </li>
+      
+        <li class="posts-list-item">
+          <a class="posts-list-item-title" href="/2015/09/powerline-for-zsh/">Powerline for zsh</a>
+          <span class="posts-list-item-description">
+            <svg class="icon icon-calendar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>calendar</title><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+            Sep 28, 2015
+            <span class="posts-list-item-separator">-</span>
+            <svg class="icon icon-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>clock</title><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            1 min read
+          </span>
+        </li>
+      
+        <li class="posts-list-item">
+          <a class="posts-list-item-title" href="/2015/09/automated-git-mirror-with-github-or-gitlab-or-bitbucket/">Automated Git Mirror With GitHub or Gitlab or Bitbucket</a>
+          <span class="posts-list-item-description">
+            <svg class="icon icon-calendar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>calendar</title><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+            Sep 27, 2015
+            <span class="posts-list-item-separator">-</span>
+            <svg class="icon icon-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>clock</title><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            3 min read
+          </span>
+        </li>
+      
+        <li class="posts-list-item">
+          <a class="posts-list-item-title" href="/2015/09/git-loc-stats-by-time-range/">Git LOC Stats by Time Range</a>
+          <span class="posts-list-item-description">
+            <svg class="icon icon-calendar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>calendar</title><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+            Sep 17, 2015
+            <span class="posts-list-item-separator">-</span>
+            <svg class="icon icon-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>clock</title><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            2 min read
+          </span>
+        </li>
+      
+        <li class="posts-list-item">
+          <a class="posts-list-item-title" href="/2015/09/moving-to-hugo/">Moving To Hugo</a>
+          <span class="posts-list-item-description">
+            <svg class="icon icon-calendar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>calendar</title><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+            Sep 15, 2015
+            <span class="posts-list-item-separator">-</span>
+            <svg class="icon icon-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>clock</title><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            8 min read
+          </span>
+        </li>
+      
+        <li class="posts-list-item">
+          <a class="posts-list-item-title" href="/2015/09/using-external-tools-with-git-diff/">Using External Tools with Git Diff</a>
+          <span class="posts-list-item-description">
+            <svg class="icon icon-calendar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>calendar</title><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+            Sep 10, 2015
+            <span class="posts-list-item-separator">-</span>
+            <svg class="icon icon-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>clock</title><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            1 min read
+          </span>
+        </li>
       
     </ul>
-
-    <ul class="sidebar-nav">
-      <li class="sidebar-nav-item">
-      
-      
-      
-      
-      
-      
-      
-      
-      </li>
-    </ul>
-
-    
-
-  </div>
-</div>
-
-
-<div class="content container">
-  <div class="posts">
-    
-    
-    <div class="post">
-      <h1 class="post-title">
-        <a href="http://abhipandey.com/2016/11/adding-launcher-shortcut-in-fedora/">Adding launcher shortcut in Fedora</a>
-      </h1>
-      <span class="post-date">Nov 13, 2016  &middot; <a href="http://abhipandey.com/2016/11/adding-launcher-shortcut-in-fedora/#disqus_thread">Comments</a>
-      
-      <br/>
-      <a class="a_cat" href="http://abhipandey.com/categories/code">code</a>
-        
-      <a class="a_tag" href="http://abhipandey.com/tags/tips">tips</a><a class="a_tag" href="http://abhipandey.com/tags/bash">bash</a>
-    
-      </span>
-      
-      <p>Many apps do not come pre-built in rpm format for Fedora so you&rsquo;d have to download the <strong>tar</strong> file for it.
-To run the app, you would have to go to the saved folder and then either double cilck or run the command through
-command line. By default, that app won&rsquo;t be accessible through the <code>Super</code> key&rsquo;s universal search or
-as a regular application in *<strong>Show Applications</strong>.</p>
-
-<p>Fortunately, there&rsquo;s a way around and it is an easy one.</p>
-
-<p>Fedora looks for <code>.desktop</code> files in <code>~/.local/share/applications/</code> folder.
-Let&rsquo;s say we are trying to create a shortcut for Eclipse. We will then create
-a file by the name <code>eclipse.desktop</code> in the given folder.
-The contents will be as follows:</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-config" data-lang="config">[Desktop Entry]
-Type=Application
-Encoding=UTF-8
-Name=Eclipse
-Comment=Eclipse starter
-Exec=&lt;FULL-PATH-TO-ECLIPSE=BINARY&gt;
-Icon=&lt;FULL-PATH-TO-ECLIPSE-ICON&gt;
-Terminal=false</code></pre></div>
-<p>That&rsquo;s it. You are set!</p>
-
-      
-    </div>
-    
-    <div class="post">
-      <h1 class="post-title">
-        <a href="http://abhipandey.com/2016/11/running-invoke-from-other-folders/">Running invoke from other folders</a>
-      </h1>
-      <span class="post-date">Nov 13, 2016  &middot; <a href="http://abhipandey.com/2016/11/running-invoke-from-other-folders/#disqus_thread">Comments</a>
-      
-      <br/>
-      <a class="a_cat" href="http://abhipandey.com/categories/code">code</a>
-        
-      <a class="a_tag" href="http://abhipandey.com/tags/tips">tips</a><a class="a_tag" href="http://abhipandey.com/tags/python">python</a>
-    
-      </span>
-      
-      <p>While working on big projects, sometimes, you have <code>invoke</code> tasks lying around
-in different places. It wouldn&rsquo;t make sense to merge them together
-but rather help each other out as and when needed.</p>
-
-<p>One such way for this would be to search for invoke tasks from other folders
-and run them directly when they can be used.</p>
-
-<p>I had to go for this approach for a monolithic repo where multiple projects
-were being built in mostly similar style with minor modifications.
-All of them would have the same set of commands along with same style of running those commands.
-I didn&rsquo;t want to set up the same <code>invoke</code> task for all individual projects but rather
-a common set of tasks that could be re-used by each one of them.</p>
-
-<p>Hence, here&rsquo;s what I did:</p>
-
-<ol>
-<li>I knew for a fact that most sub-projects needed the same command to build themselves.
-I didn&rsquo;t want to use the same command over and over again in each of the projects.
-I would rather use the command in the general space and override it only when a sub-project
-requires a special version of the build command.</li>
-<li>When the general <code>invoke</code> was called to do any task, it would first check
-whether, the sub-project for which the command was to run, the command was already
-available for the given sub-project itself.
-
-<ul>
-<li>If yes, this would mean that sub-project intends to
-override the default command in it&rsquo;s own style</li>
-<li>If no, then the default version is to run</li>
-</ul></li>
-</ol>
-
-<p><em>Here&rsquo;s the simplilfied version of the code.</em></p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000">subproces</span>
-<span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000">os</span>
-
-<span style="color:#5c35cc;font-weight:bold">@contextmanager</span>
-<span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">cd</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">path</span><span style="color:#000;font-weight:bold">):</span>
-    <span style="color:#000">old</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">os</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">getcwd</span><span style="color:#000;font-weight:bold">()</span>
-    <span style="color:#000">os</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">chdir</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">path</span><span style="color:#000;font-weight:bold">)</span>
-    <span style="color:#204a87;font-weight:bold">try</span><span style="color:#000;font-weight:bold">:</span>
-        <span style="color:#204a87;font-weight:bold">yield</span>
-    <span style="color:#204a87;font-weight:bold">finally</span><span style="color:#000;font-weight:bold">:</span>
-        <span style="color:#000">os</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">chdir</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">old</span><span style="color:#000;font-weight:bold">)</span>
-
-
-<span style="color:#5c35cc;font-weight:bold">@task</span>
-<span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">build</span><span style="color:#000;font-weight:bold">():</span>
-    <span style="color:#000">folder_to_run_the_command_on</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#4e9a06">&#39;/home/folder&#39;</span>
-    <span style="color:#204a87;font-weight:bold">with</span> <span style="color:#000">cd</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">folder_to_run_the_command_on</span><span style="color:#000;font-weight:bold">):</span>
-        <span style="color:#204a87;font-weight:bold">print</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#39;Finding tasks...&#39;</span><span style="color:#000;font-weight:bold">)</span>
-        <span style="color:#8f5902;font-style:italic"># List all the possible commands that you can run on that folder</span>
-        <span style="color:#000">res</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">subprocess</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">check_output</span><span style="color:#000;font-weight:bold">([</span><span style="color:#4e9a06">&#39;invoke&#39;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#4e9a06">&#39;-l&#39;</span><span style="color:#000;font-weight:bold">])</span>
-        <span style="color:#8f5902;font-style:italic"># does it contain this command that we need to run?</span>
-        <span style="color:#204a87;font-weight:bold">if</span> <span style="color:#4e9a06">&#39;build&#39;</span>  <span style="color:#204a87;font-weight:bold">in</span> <span style="color:#000">res</span><span style="color:#000;font-weight:bold">:</span>
-            <span style="color:#204a87;font-weight:bold">print</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#39;Found the build command in &#34;{}&#34; folder&#39;</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">format</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">folder_to_run_the_command_on</span><span style="color:#000;font-weight:bold">)</span>
-            <span style="color:#000">run</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#39;invoke build&#39;</span><span style="color:#000;font-weight:bold">)</span>
-        <span style="color:#204a87;font-weight:bold">else</span><span style="color:#000;font-weight:bold">:</span>
-            <span style="color:#8f5902;font-style:italic"># we need to run the generic version of build command</span>
-            <span style="color:#000">build_internal</span><span style="color:#000;font-weight:bold">()</span></code></pre></div>
-      
-    </div>
-    
-    <div class="post">
-      <h1 class="post-title">
-        <a href="http://abhipandey.com/2016/07/systemd-tutorial/">Systemd tutorial</a>
-      </h1>
-      <span class="post-date">Jul 7, 2016  &middot; <a href="http://abhipandey.com/2016/07/systemd-tutorial/#disqus_thread">Comments</a>
-      
-      <br/>
-      <a class="a_cat" href="http://abhipandey.com/categories/code">code</a><a class="a_cat" href="http://abhipandey.com/categories/continuous-delivery">continuous delivery</a><a class="a_cat" href="http://abhipandey.com/categories/tips">tips</a>
-        
-      <a class="a_tag" href="http://abhipandey.com/tags/linux">linux</a><a class="a_tag" href="http://abhipandey.com/tags/bash">bash</a>
-    
-      </span>
-      
-      
-
-<p><code>Systemd</code> usually requires two files:</p>
-
-<ol>
-<li>service file</li>
-<li>timer file</li>
-</ol>
-
-<h2 id="service-files">Service files</h2>
-
-<p>Here you provide the details you&rsquo;d use to</p>
-
-<ul>
-<li>Start/stop a service</li>
-<li>Define the type of service
-
-<ul>
-<li>Can be <em>simple</em>, <em>forking</em>, <em>oneshot</em>, <em>dbus</em>, <em>notify</em> or <em>idle</em></li>
-</ul></li>
-<li>How to kill the service</li>
-<li>Ability to restart</li>
-<li>Path for starting up</li>
-<li>Timeout for the service startup or shutdown</li>
-</ul>
-
-<p>Service is usually made up of 3 sections:</p>
-
-<ol>
-<li>Unit</li>
-<li>Service</li>
-<li>Install
-
-<ul>
-<li>Usually prefer <code>multi-user.target</code> for your installation</li>
-</ul></li>
-</ol>
-
-<p>One example is as follows:</p>
-
-<pre><code>[Unit]
-Description=Foo
-
-[Service]
-ExecStart=/usr/sbin/foo-daemon
-
-[Install]
-WantedBy=multi-user.target
-</code></pre>
-
-<p>Here&rsquo;s what your regular <code>Service</code> section would look like:</p>
-
-<pre><code>User=&lt;YOUR_LINUX_ACCOUNT&gt;
-Group=&lt;YOUR_LINUX_GROUP&gt;
-WorkingDirectory=&lt;PROJECT_FOLDER&gt;
-Type=forking
-KillMode=process
-Restart=always
-ExecStart=&lt;COMMAND_TO_START&gt;
-ExecStop=&lt;COMMAND_TO_STOP&gt;
-</code></pre>
-
-<h2 id="timers">Timers</h2>
-
-<p>Timer files contain information about a timer controlled and
-supervised by systemd, for timer-based activation.
-This is possibly a better replacement for cron jobs.
-However, the changes are a bit different.</p>
-
-<p>To set up a timer, you need the following options:</p>
-
-<ul>
-<li><em>OnActiveSec</em></li>
-<li><em>OnBootSec</em></li>
-<li><em>OnStartupSec</em></li>
-<li><em>OnUnitActiveSec</em></li>
-<li><em>OnUnitInactiveSec</em></li>
-</ul>
-
-<p>They all help you set up your timers relative to different starting points.</p>
-
-<p>Some other options you could use are:</p>
-
-<ul>
-<li><em>OnCalendar</em>
-
-<ul>
-<li>This is your friend if you are looking for cron job replacement
-Please check the references below to look for some samples on how to set up
-your cron jobs in the correct format. It is not exactly same as cron job styles</li>
-</ul></li>
-<li><em>AccuracySec</em>
-
-<ul>
-<li>Based on the timer, how close to the actual time should this timer wake up</li>
-<li>Use the value of 1us to be the smallest and most accurate</li>
-</ul></li>
-<li><em>Persistent</em>
-
-<ul>
-<li>Maybe you want to save the information about the timestamps whenever
-the service is shutting down. In that case, the information will be saved
-on the hard disk. It will be used along with boot and active <em>sec</em> information.</li>
-</ul></li>
-</ul>
-
-<p>Here&rsquo;s one simple sample for setting a timer</p>
-
-<pre><code>[Timer]
-AccuracySec=1us
-Persistent=false
-OnBootSec=80
-OnCalendar=*:0/20
-Unit=myjob.service
-
-[Install]
-WantedBy=timers.target
-</code></pre>
-
-<h2 id="some-references">Some references:</h2>
-
-<p><a href="https://wiki.archlinux.org/index.php/Systemd/Timers">https://wiki.archlinux.org/index.php/Systemd/Timers</a>
-<a href="https://www.certdepot.net/rhel7-use-systemd-timers/">https://www.certdepot.net/rhel7-use-systemd-timers/</a></p>
-
-      
-    </div>
-    
-    <div class="post">
-      <h1 class="post-title">
-        <a href="http://abhipandey.com/2016/07/gitlab-cli-api-reference/">Gitlab CLI API reference</a>
-      </h1>
-      <span class="post-date">Jul 5, 2016  &middot; <a href="http://abhipandey.com/2016/07/gitlab-cli-api-reference/#disqus_thread">Comments</a>
-      
-      <br/>
-      <a class="a_cat" href="http://abhipandey.com/categories/code">code</a><a class="a_cat" href="http://abhipandey.com/categories/continuous-delivery">continuous delivery</a><a class="a_cat" href="http://abhipandey.com/categories/tips">tips</a>
-        
-      <a class="a_tag" href="http://abhipandey.com/tags/python">python</a>
-    
-      </span>
-      
-      
-
-<p>Here&rsquo;s a short tutorial on setting up gitlab cli for yourselves.
-It is extremely user friendly and you can take almost any action that you need.
-Anything that the UI provides is also available over cli or web services -
-both of which have examples here.</p>
-
-<p>Let&rsquo;s get started.</p>
-
-<h2 id="gitlab-cli">gitlab cli</h2>
-
-<h3 id="installing-the-gitlab-cli">Installing the gitlab CLI</h3>
-
-<pre><code># http://narkoz.github.io/gitlab/configuration
-gem install gitlab
-</code></pre>
-
-<h3 id="configuration">Configuration</h3>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#204a87">export</span> <span style="color:#000">GITLAB_API_ENDPOINT</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#39;http://gitlab.com/api/v3&#39;</span>
-<span style="color:#204a87">export</span> <span style="color:#000">GITLAB_API_PRIVATE_TOKEN</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#39;YOUR_TOKEN_&#39;</span></code></pre></div>
-<h3 id="available-commands">Available commands</h3>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ gitlab
-+-----------------+
-<span style="color:#000;font-weight:bold">|</span>   Help Topics   <span style="color:#000;font-weight:bold">|</span>
-+-----------------+
-<span style="color:#000;font-weight:bold">|</span> Branches        <span style="color:#000;font-weight:bold">|</span>
-+-----------------+
-<span style="color:#000;font-weight:bold">|</span> Commits         <span style="color:#000;font-weight:bold">|</span>
-+-----------------+
-<span style="color:#000;font-weight:bold">|</span> Groups          <span style="color:#000;font-weight:bold">|</span>
-+-----------------+
-<span style="color:#000;font-weight:bold">|</span> Issues          <span style="color:#000;font-weight:bold">|</span>
-+-----------------+
-<span style="color:#000;font-weight:bold">|</span> Labels          <span style="color:#000;font-weight:bold">|</span>
-+-----------------+
-<span style="color:#000;font-weight:bold">|</span> MergeRequests   <span style="color:#000;font-weight:bold">|</span>
-+-----------------+
-<span style="color:#000;font-weight:bold">|</span> Milestones      <span style="color:#000;font-weight:bold">|</span>
-+-----------------+
-<span style="color:#000;font-weight:bold">|</span> Namespaces      <span style="color:#000;font-weight:bold">|</span>
-+-----------------+
-<span style="color:#000;font-weight:bold">|</span> Notes           <span style="color:#000;font-weight:bold">|</span>
-+-----------------+
-<span style="color:#000;font-weight:bold">|</span> Projects        <span style="color:#000;font-weight:bold">|</span>
-+-----------------+
-<span style="color:#000;font-weight:bold">|</span> Repositories    <span style="color:#000;font-weight:bold">|</span>
-+-----------------+
-<span style="color:#000;font-weight:bold">|</span> RepositoryFiles <span style="color:#000;font-weight:bold">|</span>
-+-----------------+
-<span style="color:#000;font-weight:bold">|</span> Snippets        <span style="color:#000;font-weight:bold">|</span>
-+-----------------+
-<span style="color:#000;font-weight:bold">|</span> SystemHooks     <span style="color:#000;font-weight:bold">|</span>
-+-----------------+
-<span style="color:#000;font-weight:bold">|</span> Users           <span style="color:#000;font-weight:bold">|</span>
-+-----------------+</code></pre></div>
-<h3 id="sample-cli-commands">Sample CLI commands</h3>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#8f5902;font-style:italic"># Check the list of Projects</span>
-$ gitlab projects
-
-<span style="color:#8f5902;font-style:italic"># Based on the response, we know reconwisev2 is ID 487928</span>
-<span style="color:#8f5902;font-style:italic"># Let&#39;s find out the list of labels in it</span>
-$ gitlab labels <span style="color:#0000cf;font-weight:bold">487928</span>
-+---------------------+---------+--------------------+--------------+-------------------+---------------------------+------------+
-<span style="color:#000;font-weight:bold">|</span>                                                      Gitlab.labels <span style="color:#0000cf;font-weight:bold">487928</span>                                                      <span style="color:#000;font-weight:bold">|</span>
-+---------------------+---------+--------------------+--------------+-------------------+---------------------------+------------+
-<span style="color:#000;font-weight:bold">|</span> closed_issues_count <span style="color:#000;font-weight:bold">|</span> color   <span style="color:#000;font-weight:bold">|</span> description        <span style="color:#000;font-weight:bold">|</span> name         <span style="color:#000;font-weight:bold">|</span> open_issues_count <span style="color:#000;font-weight:bold">|</span> open_merge_requests_count <span style="color:#000;font-weight:bold">|</span> subscribed <span style="color:#000;font-weight:bold">|</span>
-+---------------------+---------+--------------------+--------------+-------------------+---------------------------+------------+
-<span style="color:#000;font-weight:bold">|</span> <span style="color:#0000cf;font-weight:bold">2</span>                   <span style="color:#000;font-weight:bold">|</span> <span style="color:#8f5902;font-style:italic">#ff0000 | null               | !Blocker     | 0                 | 0                         | false      |</span>
-+---------------------+---------+--------------------+--------------+-------------------+---------------------------+------------+
-<span style="color:#000;font-weight:bold">|</span> <span style="color:#0000cf;font-weight:bold">2</span>                   <span style="color:#000;font-weight:bold">|</span> <span style="color:#8f5902;font-style:italic">#0033cc | null               | #AWS         | 8                 | 0                         | false      |</span>
-+---------------------+---------+--------------------+--------------+-------------------+---------------------------+------------+
-<span style="color:#000;font-weight:bold">|</span> <span style="color:#0000cf;font-weight:bold">27</span>                  <span style="color:#000;font-weight:bold">|</span> <span style="color:#8f5902;font-style:italic">#428bca | null               | #Bug         | 2                 | 0                         | false      |</span>
-+---------------------+---------+--------------------+--------------+-------------------+---------------------------+------------+
-<span style="color:#000;font-weight:bold">|</span> <span style="color:#0000cf;font-weight:bold">3</span>                   <span style="color:#000;font-weight:bold">|</span> <span style="color:#8f5902;font-style:italic">#0033cc | null               | #Feature     | 29                | 0                         | false      |</span>
-+---------------------+---------+--------------------+--------------+-------------------+---------------------------+------------+
-<span style="color:#000;font-weight:bold">|</span> <span style="color:#0000cf;font-weight:bold">7</span>                   <span style="color:#000;font-weight:bold">|</span> <span style="color:#8f5902;font-style:italic">#5843ad | null               | #Improvement | 22                | 0                         | false      |</span>
-+---------------------+---------+--------------------+--------------+-------------------+---------------------------+------------+
-<span style="color:#000;font-weight:bold">|</span> <span style="color:#0000cf;font-weight:bold">1</span>                   <span style="color:#000;font-weight:bold">|</span> <span style="color:#8f5902;font-style:italic">#428bca |                    | #Support     | 1                 | 0                         | false      |</span>
-+---------------------+---------+--------------------+--------------+-------------------+---------------------------+------------+
-<span style="color:#000;font-weight:bold">|</span> <span style="color:#0000cf;font-weight:bold">28</span>                  <span style="color:#000;font-weight:bold">|</span> <span style="color:#8f5902;font-style:italic">#f0ad4e | null               | $GH          | 12                | 0                         | false      |</span>
-+---------------------+---------+--------------------+--------------+-------------------+---------------------------+------------+
-<span style="color:#000;font-weight:bold">|</span> <span style="color:#0000cf;font-weight:bold">0</span>                   <span style="color:#000;font-weight:bold">|</span> <span style="color:#8f5902;font-style:italic">#f0ad4e |                    | $IFAST       | 4                 | 0                         | false      |</span>
-+---------------------+---------+--------------------+--------------+-------------------+---------------------------+------------+
-<span style="color:#000;font-weight:bold">|</span> <span style="color:#0000cf;font-weight:bold">25</span>                  <span style="color:#000;font-weight:bold">|</span> <span style="color:#8f5902;font-style:italic">#ff0000 | null               | 1-Critical   | 7                 | 0                         | false      |</span>
-+---------------------+---------+--------------------+--------------+-------------------+---------------------------+------------+
-<span style="color:#000;font-weight:bold">|</span> <span style="color:#0000cf;font-weight:bold">2</span>                   <span style="color:#000;font-weight:bold">|</span> <span style="color:#8f5902;font-style:italic">#ad4363 | null               | 2-Important  | 20                | 0                         | false      |</span>
-+---------------------+---------+--------------------+--------------+-------------------+---------------------------+------------+
-<span style="color:#000;font-weight:bold">|</span> <span style="color:#0000cf;font-weight:bold">5</span>                   <span style="color:#000;font-weight:bold">|</span> <span style="color:#8f5902;font-style:italic">#ad4363 | null               | 3-Normal     | 18                | 0                         | false      |</span>
-+---------------------+---------+--------------------+--------------+-------------------+---------------------------+------------+
-<span style="color:#000;font-weight:bold">|</span> <span style="color:#0000cf;font-weight:bold">2</span>                   <span style="color:#000;font-weight:bold">|</span> <span style="color:#8f5902;font-style:italic">#d491a5 |                    | 4-Trivial    | 6                 | 0                         | false      |</span>
-+---------------------+---------+--------------------+--------------+-------------------+---------------------------+------------+
-<span style="color:#000;font-weight:bold">|</span> <span style="color:#0000cf;font-weight:bold">0</span>                   <span style="color:#000;font-weight:bold">|</span> <span style="color:#8f5902;font-style:italic">#a8d695 | null               | ^In-Progress | 3                 | 1                         | false      |</span>
-+---------------------+---------+--------------------+--------------+-------------------+---------------------------+------------+
-<span style="color:#000;font-weight:bold">|</span> <span style="color:#0000cf;font-weight:bold">0</span>                   <span style="color:#000;font-weight:bold">|</span> <span style="color:#8f5902;font-style:italic">#69d100 | Completed/Finished | ^Resolved    | 0                 | 1                         | false      |</span>
-+---------------------+---------+--------------------+--------------+-------------------+---------------------------+------------+</code></pre></div>
-<h3 id="sample-curl-commands">Sample CURL commands</h3>
-
-<p><strong>Check the list of Projects</strong></p>
-
-<pre><code>https://gitlab.com/api/v3/projects/?private_token=YOUR_TOKEN
-</code></pre>
-
-<p>This will return you a big JSON with the list of your projects in gitlab.</p>
-
-<p>Based on the response, we know that the project is ID 487928
-Let&rsquo;s find out the list of labels in it.</p>
-
-<pre><code>https://gitlab.com/api/v3/projects/487928/labels/?private_token=YOUR_TOKEN
-</code></pre>
-
-<p>The response is a bit like this:</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#000;font-weight:bold">[</span>
-
-    <span style="color:#000;font-weight:bold">{</span>
-        <span style="color:#204a87;font-weight:bold">&#34;name&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;!Blocker&#34;</span><span style="color:#000;font-weight:bold">,</span>
-        <span style="color:#204a87;font-weight:bold">&#34;color&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;#ff0000&#34;</span><span style="color:#000;font-weight:bold">,</span>
-        <span style="color:#204a87;font-weight:bold">&#34;description&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">null</span><span style="color:#000;font-weight:bold">,</span>
-        <span style="color:#204a87;font-weight:bold">&#34;open_issues_count&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">,</span>
-        <span style="color:#204a87;font-weight:bold">&#34;closed_issues_count&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#0000cf;font-weight:bold">2</span><span style="color:#000;font-weight:bold">,</span>
-        <span style="color:#204a87;font-weight:bold">&#34;open_merge_requests_count&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">,</span>
-        <span style="color:#204a87;font-weight:bold">&#34;subscribed&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">false</span>
-    <span style="color:#000;font-weight:bold">},</span>
-    <span style="color:#000;font-weight:bold">{</span>
-        <span style="color:#204a87;font-weight:bold">&#34;name&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;#AWS&#34;</span><span style="color:#000;font-weight:bold">,</span>
-        <span style="color:#204a87;font-weight:bold">&#34;color&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;#0033cc&#34;</span><span style="color:#000;font-weight:bold">,</span>
-        <span style="color:#204a87;font-weight:bold">&#34;description&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">null</span><span style="color:#000;font-weight:bold">,</span>
-        <span style="color:#204a87;font-weight:bold">&#34;open_issues_count&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#0000cf;font-weight:bold">8</span><span style="color:#000;font-weight:bold">,</span>
-        <span style="color:#204a87;font-weight:bold">&#34;closed_issues_count&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#0000cf;font-weight:bold">2</span><span style="color:#000;font-weight:bold">,</span>
-        <span style="color:#204a87;font-weight:bold">&#34;open_merge_requests_count&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">,</span>
-        <span style="color:#204a87;font-weight:bold">&#34;subscribed&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">false</span>
-    <span style="color:#000;font-weight:bold">},</span>
-    <span style="color:#000;font-weight:bold">{</span>
-        <span style="color:#204a87;font-weight:bold">&#34;name&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;#Bug&#34;</span><span style="color:#000;font-weight:bold">,</span>
-        <span style="color:#204a87;font-weight:bold">&#34;color&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;#428bca&#34;</span><span style="color:#000;font-weight:bold">,</span>
-        <span style="color:#204a87;font-weight:bold">&#34;description&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">null</span><span style="color:#000;font-weight:bold">,</span>
-        <span style="color:#204a87;font-weight:bold">&#34;open_issues_count&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#0000cf;font-weight:bold">2</span><span style="color:#000;font-weight:bold">,</span>
-        <span style="color:#204a87;font-weight:bold">&#34;closed_issues_count&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#0000cf;font-weight:bold">27</span><span style="color:#000;font-weight:bold">,</span>
-        <span style="color:#204a87;font-weight:bold">&#34;open_merge_requests_count&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">,</span>
-        <span style="color:#204a87;font-weight:bold">&#34;subscribed&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">false</span>
-    <span style="color:#000;font-weight:bold">},</span>
-    <span style="color:#a40000">....</span></code></pre></div>
-<p>More documentation is available <a href="https://github.com/gitlabhq/gitlabhq/tree/master/doc/api">here</a></p>
-
-      
-    </div>
-    
-    <div class="post">
-      <h1 class="post-title">
-        <a href="http://abhipandey.com/2016/06/protobuf-on-docker/">Protobuf on Docker</a>
-      </h1>
-      <span class="post-date">Jun 28, 2016  &middot; <a href="http://abhipandey.com/2016/06/protobuf-on-docker/#disqus_thread">Comments</a>
-      
-      <br/>
-      <a class="a_cat" href="http://abhipandey.com/categories/code">code</a><a class="a_cat" href="http://abhipandey.com/categories/continuous-delivery">continuous delivery</a><a class="a_cat" href="http://abhipandey.com/categories/tips">tips</a>
-        
-      <a class="a_tag" href="http://abhipandey.com/tags/python">python</a><a class="a_tag" href="http://abhipandey.com/tags/c">c</a><a class="a_tag" href="http://abhipandey.com/tags/docker">docker</a>
-    
-      </span>
-      
-      
-
-<p>Found it really strange that nobody had mentioned on their blog how to
-compile <code>Protobuf</code> in python with <strong>C++</strong> implementation.</p>
-
-<p>I had been having a lot of trouble with the compilation of python protobuf.
-After struggling with it for a few months on and off I decided to give <strong><code>Docker</code></strong>
- a try as I realized that my own Fedora OS may be the one having troubles.
- Thought of starting with <strong>Ubuntu</strong> Docker as I&rsquo;ve had success with it earlier
- with such compilation scripts. Luckily it all worked out successfully again
- for protobuf.</p>
-
-<p>Then I tried Docker for <strong>Centos 7 and Fedora 23</strong>, both of which had not
- been working for me in any shape.</p>
-
-<p>The source code of the <strong>Dockerfiles</strong> are available on Github here:</p>
-
-<p><a href="https://github.com/abhi1010/protobuf-on-docker">github/abhi1010/protobuf-on-docker</a></p>
-
-<p>We are running all the steps through the docker image so that the steps can be replicated
- with any <a href="https://github.com/google/protobuf/releases">protobuf source code release</a>.</p>
-
-<p>Here&rsquo;s what we will be doing:</p>
-
-<ol>
-<li>Create <code>protoc</code> compiler by compiling C++ files</li>
-<li>Compile <a href="https://github.com/google/protobuf/tree/master/python#c-implementation">C++ implementation for <code>python</code></a>
-using the just created <code>protoc</code></li>
-</ol>
-
-<p>Dockerfiles are available for the following Operating Systems:</p>
-
-<ul>
-<li><a href="https://github.com/abhi1010/protobuf-on-docker/blob/master/centos-7.1/Dockerfile">Centos 7</a></li>
-<li><a href="https://github.com/abhi1010/protobuf-on-docker/blob/master/fedora-23/Dockerfile">Fedora 23</a></li>
-<li><a href="https://github.com/abhi1010/protobuf-on-docker/blob/master/ubuntu-15/Dockerfile">Ubuntu 15</a></li>
-</ul>
-
-<h2 id="where-to-find-the-files-inside-the-docker-images">Where to find the files inside the Docker images</h2>
-
-<ul>
-<li><code>protoc</code> compiler is available at <code>/ws/protoc-3.2</code> folder inside the images</li>
-<li><code>python</code> version (compiled from c++) is available at <code>/ws/protobuf-3.0.0-beta-3.2/python/dist/</code></li>
-</ul>
-
-<p>You can copy out the files using the following commands:</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#000">id</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#204a87;font-weight:bold">$(</span>sudo docker create &lt;image_name&gt;<span style="color:#204a87;font-weight:bold">)</span>
-sudo docker cp <span style="color:#000">$id</span>:/ws/protoc-3.2 ./
-sudo docker cp <span style="color:#000">$id</span>:/ws/protobuf-3.0.0-beta-3.2/python/dist/*.gz ./</code></pre></div>
-<p>In case you get an error like the following, <em>remove</em> <code>*.gz</code> from the cp command:</p>
-
-<pre><code>zsh: no matches found: e7c8a9102e1cd07b4c471c331bc4deba2222278eb22be1e79ecaa14e914ed654:/ws/protobuf-3.0.0-beta-3.2/python/dist/*.gz
-</code></pre>
-
-<p>Your second cp command then becomes:</p>
-
-<pre><code>sudo docker cp $id:/ws/protobuf-3.0.0-beta-3.2/python/dist/ ./
-</code></pre>
-
-<p>Once done, you can remove the created container with the following command:</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo docker rm -v <span style="color:#000">$id</span></code></pre></div>
-<p>Just remember to change the rights as the files will belong to <code>root</code> by default.
-You can do that with the following commands:</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo chown -R &lt;USERNAME&gt;:&lt;USERNAME&gt; *</code></pre></div>
-      
-    </div>
-    
-    <div class="post">
-      <h1 class="post-title">
-        <a href="http://abhipandey.com/2016/06/using-todo-in-fedora/">Using TODO in Fedora</a>
-      </h1>
-      <span class="post-date">Jun 22, 2016  &middot; <a href="http://abhipandey.com/2016/06/using-todo-in-fedora/#disqus_thread">Comments</a>
-      
-      <br/>
-      <a class="a_cat" href="http://abhipandey.com/categories/code">code</a><a class="a_cat" href="http://abhipandey.com/categories/tips">tips</a>
-        
-      <a class="a_tag" href="http://abhipandey.com/tags/bash">bash</a><a class="a_tag" href="http://abhipandey.com/tags/tips">tips</a><a class="a_tag" href="http://abhipandey.com/tags/python">python</a>
-    
-      </span>
-      
-      
-
-<p>I recently started using Fedora for work and had to manage a lot of tasks on various projects.
-The list was big enough and there&rsquo;s no proper support for Evernote in linux, my trusty todo list manager
-or ToDo list manager by AbstractSpoon. Decided to try post-it notes but my list was changing on an
-ad-hoc basis. Finally came across an <a href="https://extensions.gnome.org/extension/570/todotxt/">extension Todo.txt</a>.</p>
-
-<p>Turned out this was just what I was looking for. I started putting all of my tasks in it, with proper categorization.
-Behind the scenes it is an extremely simple app which has only two files, both saved in <code>~/.local/share/todo.txt/</code> folder.</p>
-
-<ul>
-<li>done.txt</li>
-<li>todo.txt</li>
-</ul>
-
-<p>The tasks are initially put as simple text in <strong>todo.txt</strong> and are moved to <strong>done.txt</strong> once marked complete.
-It is extremely useful that todo.txt app has UI as well as the files which are user friendly.</p>
-
-<h2 id="finding-tasks-completed-in-the-last-week">Finding tasks completed in the last week</h2>
-
-<p>During weekly meetings I found it difficult to mention all the tasks that
-I had been working on for the whole of the previous week. Thinking about todo
-tasks, I thought of using a bash script to print out the tasks from the last
- 8 days. After all, the files did contain a whole long list of tasks.</p>
-
-<p>Here was the idea that I had in mind:</p>
-
-<ul>
-<li>Read <strong>done.txt</strong> and <strong>todo.txt</strong></li>
-<li>Highlight the tasks differently from both files so it&rsquo;s easy to
-see what has been completed already
-
-<ul>
-<li>Chose green color for done and red for todo</li>
-</ul></li>
-<li>Highlight the categories differently - chose yellow</li>
-<li>Show all the tasks completed in the last 8 days
-
-<ul>
-<li>Also provide the option to chose any number of days</li>
-<li>Helps on those days when I wanna see more than 8 days</li>
-</ul></li>
-<li>Show all the tasks in todo</li>
-</ul>
-
-<p>Here&rsquo;s the script for that:</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">todos<span style="color:#ce5c00;font-weight:bold">()</span>
-<span style="color:#ce5c00;font-weight:bold">{</span>
-    <span style="color:#000">TODOFILE</span><span style="color:#ce5c00;font-weight:bold">=</span>~/.local/share/todo.txt/todo.txt
-    <span style="color:#000">DONEFILE</span><span style="color:#ce5c00;font-weight:bold">=</span>~/.local/share/todo.txt/done.txt
-    <span style="color:#8f5902;font-style:italic"># echo $TODOFILE</span>
-    <span style="color:#8f5902;font-style:italic"># echo $DONEFILE &#34;\n&#34;</span>
-
-    lastXdays<span style="color:#ce5c00;font-weight:bold">()</span>
-    <span style="color:#ce5c00;font-weight:bold">{</span>
-        search<span style="color:#ce5c00;font-weight:bold">()</span>•
-        <span style="color:#ce5c00;font-weight:bold">{</span>
-            <span style="color:#000">DAY</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#000">$1</span>
-            cat <span style="color:#000">$TODOFILE</span> <span style="color:#000;font-weight:bold">|</span> <span style="color:#000">GREP_COLOR</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;1;31&#34;</span> grep --color<span style="color:#ce5c00;font-weight:bold">=</span>always <span style="color:#4e9a06">&#39; [a-Z[].*&#39;</span> <span style="color:#000;font-weight:bold">|</span> <span style="color:#000">GREP_COLOR</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;3;33&#34;</span> grep --color<span style="color:#ce5c00;font-weight:bold">=</span>always  <span style="color:#4e9a06">&#34;\+.*&#34;</span>
-            egrep <span style="color:#204a87;font-weight:bold">$(</span>date <span style="color:#4e9a06">&#39;+%Y-%m-%d&#39;</span> --date<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#000">$DAY</span><span style="color:#4e9a06">&#39; days ago&#39;</span><span style="color:#204a87;font-weight:bold">)</span> <span style="color:#000">$DONEFILE</span> <span style="color:#000;font-weight:bold">|</span> <span style="color:#000">GREP_COLOR</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;1;32&#34;</span> grep --color<span style="color:#ce5c00;font-weight:bold">=</span>always <span style="color:#4e9a06">&#39; [a-Z].*&#39;</span> <span style="color:#000;font-weight:bold">|</span> <span style="color:#000">GREP_COLOR</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;03;33&#34;</span> grep --color<span style="color:#ce5c00;font-weight:bold">=</span>always  <span style="color:#4e9a06">&#34;\+.*&#34;</span>
-        <span style="color:#ce5c00;font-weight:bold">}</span>
-        <span style="color:#000">END</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#000">$1</span>
-        <span style="color:#204a87;font-weight:bold">for</span> i in <span style="color:#204a87;font-weight:bold">$(</span>seq <span style="color:#0000cf;font-weight:bold">0</span> <span style="color:#000">$END</span><span style="color:#204a87;font-weight:bold">)</span>
-            <span style="color:#204a87;font-weight:bold">do</span>
-                search <span style="color:#000">$i</span>
-            <span style="color:#204a87;font-weight:bold">done</span>
-
-    <span style="color:#ce5c00;font-weight:bold">}</span>
-    <span style="color:#8f5902;font-style:italic"># First arg, if given, or default value of 8</span>
-    <span style="color:#000">DAYS</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">${</span><span style="color:#000">1</span><span style="color:#204a87;font-weight:bold">:-</span><span style="color:#000">8</span><span style="color:#4e9a06">}</span>
-    lastXdays <span style="color:#000">$DAYS</span> <span style="color:#000;font-weight:bold">|</span> sort -u
-<span style="color:#ce5c00;font-weight:bold">}</span></code></pre></div>
-<p>Now, when I run this command, it gives me the following:</p>
-
-<figure>
-    <img src="/images/todo-in-fedora.png"
-         alt="My TODOs"/> <figcaption>
-            <p>My TODOs</p>
-        </figcaption>
-</figure>
-
-
-<h2 id="sharing-the-tasks">Sharing the tasks</h2>
-
-<p>I work with different teams which means sharing with them the latest updates
-on different days of the week. I used to run my <code>todos</code> command on bash
-before going for the meeting but I realized this was getting very mundane and
-I was spending a lot of time remembering the tasks I had done.</p>
-
-<p>I decided to make it easy by sharing the tasks with the rest of the team
-automatically. Enter <code>crontab</code> and <em>python&rsquo;s</em> <code>invoke</code>.</p>
-
-<p>Here are the steps we will need:</p>
-
-<ol>
-<li>Setup cronjob</li>
-<li>Cron job will call upon a bash script</li>
-<li>Bash script will call <em>python</em>&rsquo;s invoke
-
-<ul>
-<li>Here we call upon a bash script to provide us the results of <code>todos</code>
-in bash and then use that to send an email based on the <code>--mailgroup</code></li>
-</ul></li>
-<li>Simply taking the output of <code>todos</code> in <em>bash</em> will give us a lot of
-unreadable characters. Especially the ones where we try and color code
-the response so it&rsquo;s easy on the eyes - <strong>3;33</strong></li>
-<li>You can install <code>aha</code> to convert the ANSI terminal colors to html color
-codes. This way when we mail the contents to team members, it will display
-properly.</li>
-</ol>
-
-<h3 id="crontab">crontab</h3>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#0000cf;font-weight:bold">45</span> <span style="color:#0000cf;font-weight:bold">09</span> * * <span style="color:#0000cf;font-weight:bold">1</span> /usr/bin/bash /PATH_TO_BASH_SCRIPT/crons.sh --mailgroup<span style="color:#ce5c00;font-weight:bold">=</span>&lt;TEAM_MAIL&gt;</code></pre></div>
-<h3 id="crons-sh">crons.sh</h3>
-
-<p>The <code>crons.sh</code> itself is really simple, which calls upon the <code>invoke</code> task:</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#8f5902;font-style:italic"># ----- crons.sh --------</span>
-<span style="color:#8f5902;font-style:italic"># Activate the virtual env</span>
-<span style="color:#204a87">source</span> ~/code/venvs/ve_opt/bin/activate
-
-<span style="color:#8f5902;font-style:italic"># Go to the directory containing the invoke script</span>
-<span style="color:#204a87">cd</span> ~/code/scripts/
-
-<span style="color:#8f5902;font-style:italic"># Run the invoke, pass the cmd line params, as is (which means mailgroup)</span>
-inv share_todos <span style="color:#000">$*</span></code></pre></div>
-<h3 id="tasks-py">tasks.py</h3>
-
-<p>Now it is time for contents of <code>invoke</code>&rsquo;s <strong>tasks.py</strong>.
-We want to ensure that the font is big enough.</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#5c35cc;font-weight:bold">@task</span>
-<span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">share_todos</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">mailgroup</span><span style="color:#000;font-weight:bold">):</span>
-    <span style="color:#000">process_out</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">subprocess</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">check_output</span><span style="color:#000;font-weight:bold">([</span><span style="color:#4e9a06">&#39;/FULL_PATH_TO/_htmltodos.sh&#39;</span><span style="color:#000;font-weight:bold">])</span>\
-        <span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">replace</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#39;&lt;body&gt;&#39;</span><span style="color:#000;font-weight:bold">,</span>
-                 <span style="color:#4e9a06">&#39;&lt;body style=&#34;font-weight:900; font-size:1.3em;&#34;&gt;&#39;</span><span style="color:#000;font-weight:bold">)</span>
-    <span style="color:#000">mail</span><span style="color:#000;font-weight:bold">(</span>
-        <span style="color:#000">process_out</span><span style="color:#000;font-weight:bold">,</span>
-        <span style="color:#4e9a06">&#34;My todos @ {}&#34;</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">format</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">datetime</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">datetime</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">now</span><span style="color:#000;font-weight:bold">()</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">strftime</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#39;</span><span style="color:#4e9a06">%c</span><span style="color:#4e9a06">&#39;</span><span style="color:#000;font-weight:bold">)),</span>
-        <span style="color:#000">mailgroup</span></code></pre></div>
-<h3 id="htmltodos-sh">_htmltodos.sh</h3>
-
-<p>We will use <code>aha</code> to convert the ANSI terminal colors to html color codes.
-Also, we will replace some color codes that <code>aha</code> creates because
-it is not really nice looking.</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#8f5902;font-style:italic">#!/usr/bin/bash
-</span><span style="color:#8f5902;font-style:italic"></span><span style="color:#204a87">source</span> ~/.bashrc
-
-todos <span style="color:#000;font-weight:bold">|</span> /usr/local/bin/aha <span style="color:#000;font-weight:bold">|</span> sed -e <span style="color:#4e9a06">&#39;s/color:olive/color:DeepSkyBlue; font-style:italic;/g&#39;</span> -e <span style="color:#4e9a06">&#39;s/color:green;/color:LimeGreen;/g&#39;</span> -e <span style="color:#4e9a06">&#39;s/&lt;pre&gt;/&lt;pre style=&#34;color:gray;&#34;&gt;/g&#39;</span>
-<span style="color:#204a87">exit</span> <span style="color:#0000cf;font-weight:bold">0</span></code></pre></div>
-<h3 id="the-result">The result</h3>
-
-<figure>
-    <img src="/images/todo-in-email.png"
-         alt="The email look"/> <figcaption>
-            <p>The email look</p>
-        </figcaption>
-</figure>
-
-
-      
-    </div>
-    
-    <div class="post">
-      <h1 class="post-title">
-        <a href="http://abhipandey.com/2016/05/getting-list-of-issues-from-jira-under-current-sprint/">Getting list of Issues from JIRA under current sprint</a>
-      </h1>
-      <span class="post-date">May 13, 2016  &middot; <a href="http://abhipandey.com/2016/05/getting-list-of-issues-from-jira-under-current-sprint/#disqus_thread">Comments</a>
-      
-      <br/>
-      <a class="a_cat" href="http://abhipandey.com/categories/code">code</a><a class="a_cat" href="http://abhipandey.com/categories/tips">tips</a>
-        
-      <a class="a_tag" href="http://abhipandey.com/tags/jira">jira</a><a class="a_tag" href="http://abhipandey.com/tags/python">python</a>
-    
-      </span>
-      
-      
-
-<p>When you are working on <em>Agile Boards in JIRA</em>, you may want to retrieve
-all the issues related to a particular board or the sprint.
-Usually you&rsquo;d find issues in progress under the dashboard of the sprint itself.</p>
-
-<p><em>Python JIRA</em> allows you only a few options:</p>
-
-<ul>
-<li><a href="https://jira.readthedocs.io/en/latest/api.html#jira.JIRA.incompleted_issues">incompleted issues</a></li>
-<li><a href="https://jira.readthedocs.io/en/latest/api.html#jira.JIRA.completed_issues">completed issues</a></li>
-<li><a href="https://jira.readthedocs.io/en/latest/api.html#jira.JIRA.removed_issues">removed issues</a></li>
-</ul>
-
-<p>As you will also notice from <a href="https://jira.readthedocs.io/en/latest/api.html#jira.JIRA.sprints">jira docs</a>
-the <code>sprints</code> function in there only provides you sprints.</p>
-
-<p>What it fails to provide is the issues under the sprint
-for which work through a different subquery under the hood.</p>
-
-<p>The code here intends to provide a full list of all the issues, based on
-a sprint name - complete or incomplete - that belong to a given sprint name.
-You can modify the code easily to suit your needs.</p>
-
-<h2 id="requirements">Requirements</h2>
-
-<p>First things first, you need to install jira through <code>pypi</code> for the code.</p>
-
-<pre><code>pip install jira
-</code></pre>
-
-<h2 id="the-code">The code</h2>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#204a87;font-weight:bold">from</span> <span style="color:#000">jira.resources</span> <span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000">Issue</span>
-<span style="color:#204a87;font-weight:bold">from</span> <span style="color:#000">jira.client</span> <span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000">JIRA</span>
-
-<span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">sprints</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">username</span><span style="color:#000;font-weight:bold">,</span> 
-            <span style="color:#000">ldp_password</span><span style="color:#000;font-weight:bold">,</span>
-            <span style="color:#000">sprint_name</span><span style="color:#000;font-weight:bold">,</span>
-            <span style="color:#000">type_of_issues_to_pull</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#000;font-weight:bold">[</span>
-                  <span style="color:#4e9a06">&#39;completedIssues&#39;</span><span style="color:#000;font-weight:bold">,</span> 
-                  <span style="color:#4e9a06">&#39;incompletedIssues&#39;</span><span style="color:#000;font-weight:bold">,</span>
-                  <span style="color:#4e9a06">&#39;issuesNotCompletedInCurrentSprint&#39;</span><span style="color:#000;font-weight:bold">,</span>
-                  <span style="color:#4e9a06">&#39;issuesCompletedInAnotherSprint&#39;</span><span style="color:#000;font-weight:bold">]):</span>
-    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">sprint_issues</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">cls</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">board_id</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">sprint_id</span><span style="color:#000;font-weight:bold">):</span>
-        <span style="color:#000">r_json</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#3465a4">cls</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">_get_json</span><span style="color:#000;font-weight:bold">(</span>
-            <span style="color:#4e9a06">&#39;rapid/charts/sprintreport?rapidViewId=</span><span style="color:#4e9a06">%s</span><span style="color:#4e9a06">&amp;sprintId=</span><span style="color:#4e9a06">%s</span><span style="color:#4e9a06">&#39;</span> <span style="color:#ce5c00;font-weight:bold">%</span> <span style="color:#000;font-weight:bold">(</span>
-                <span style="color:#000">board_id</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">sprint_id</span><span style="color:#000;font-weight:bold">),</span>
-            <span style="color:#000">base</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#3465a4">cls</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">AGILE_BASE_URL</span><span style="color:#000;font-weight:bold">)</span>
-
-        <span style="color:#000">issues</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">[]</span>
-        <span style="color:#204a87;font-weight:bold">for</span> <span style="color:#000">t</span> <span style="color:#204a87;font-weight:bold">in</span> <span style="color:#000">type_of_issues_to_pull</span><span style="color:#000;font-weight:bold">:</span>
-            <span style="color:#204a87;font-weight:bold">if</span> <span style="color:#000">t</span> <span style="color:#204a87;font-weight:bold">in</span> <span style="color:#000">r_json</span><span style="color:#000;font-weight:bold">[</span><span style="color:#4e9a06">&#39;contents&#39;</span><span style="color:#000;font-weight:bold">]:</span>
-                <span style="color:#000">issues</span> <span style="color:#ce5c00;font-weight:bold">+=</span> <span style="color:#000;font-weight:bold">[</span><span style="color:#000">Issue</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">cls</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">_options</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#3465a4">cls</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">_session</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">raw_issues_json</span><span style="color:#000;font-weight:bold">)</span>
-                           <span style="color:#204a87;font-weight:bold">for</span> <span style="color:#000">raw_issues_json</span> <span style="color:#204a87;font-weight:bold">in</span>
-                           <span style="color:#000">r_json</span><span style="color:#000;font-weight:bold">[</span><span style="color:#4e9a06">&#39;contents&#39;</span><span style="color:#000;font-weight:bold">][</span><span style="color:#000">t</span><span style="color:#000;font-weight:bold">]]</span>
-        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000;font-weight:bold">{</span><span style="color:#000">x</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">key</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000">x</span> <span style="color:#204a87;font-weight:bold">for</span> <span style="color:#000">x</span> <span style="color:#204a87;font-weight:bold">in</span> <span style="color:#000">issues</span><span style="color:#000;font-weight:bold">}</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">values</span><span style="color:#000;font-weight:bold">()</span>
-
-    <span style="color:#000">fmt_full</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#4e9a06">&#39;Sprint: {} </span><span style="color:#4e9a06">\n\n</span><span style="color:#4e9a06">Issues:{}&#39;</span>
-    <span style="color:#000">fmt_issues</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#4e9a06">&#39;</span><span style="color:#4e9a06">\n</span><span style="color:#4e9a06">- {}: {}&#39;</span>
-    <span style="color:#000">issues_str</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#4e9a06">&#39;&#39;</span>
-    <span style="color:#000">milestone_str</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#4e9a06">&#39;&#39;</span>
-
-    <span style="color:#000">options</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">{</span>
-        <span style="color:#4e9a06">&#39;server&#39;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#4e9a06">&#39;http://jira/&#39;</span><span style="color:#000;font-weight:bold">,</span>
-        <span style="color:#4e9a06">&#39;verify&#39;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#3465a4">True</span><span style="color:#000;font-weight:bold">,</span>
-        <span style="color:#4e9a06">&#39;basic_auth&#39;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000">username</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">ldp_password</span><span style="color:#000;font-weight:bold">),</span>
-    <span style="color:#000;font-weight:bold">}</span>
-    <span style="color:#000">gh</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">JIRA</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">options</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#000">options</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">basic_auth</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">username</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">ldp_password</span><span style="color:#000;font-weight:bold">))</span>
-
-    <span style="color:#8f5902;font-style:italic"># Get all boards viewable by anonymous users.</span>
-    <span style="color:#000">boards</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">gh</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">boards</span><span style="color:#000;font-weight:bold">()</span>
-    <span style="color:#000">board</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">[</span><span style="color:#000">b</span> <span style="color:#204a87;font-weight:bold">for</span> <span style="color:#000">b</span> <span style="color:#204a87;font-weight:bold">in</span> <span style="color:#000">boards</span> <span style="color:#204a87;font-weight:bold">if</span> <span style="color:#000">b</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">name</span> <span style="color:#ce5c00;font-weight:bold">==</span> <span style="color:#000">sprint_name</span><span style="color:#000;font-weight:bold">][</span><span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">]</span>
-
-    <span style="color:#000">sprints</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">gh</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">sprints</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">board</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#204a87">id</span><span style="color:#000;font-weight:bold">)</span>
-
-    <span style="color:#204a87;font-weight:bold">for</span> <span style="color:#000">sprint</span> <span style="color:#204a87;font-weight:bold">in</span> <span style="color:#204a87">sorted</span><span style="color:#000;font-weight:bold">([</span><span style="color:#000">s</span> <span style="color:#204a87;font-weight:bold">for</span> <span style="color:#000">s</span> <span style="color:#204a87;font-weight:bold">in</span> <span style="color:#000">sprints</span>
-                   <span style="color:#204a87;font-weight:bold">if</span> <span style="color:#000">s</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">raw</span><span style="color:#000;font-weight:bold">[</span><span style="color:#4e9a06">u</span><span style="color:#4e9a06">&#39;state&#39;</span><span style="color:#000;font-weight:bold">]</span> <span style="color:#ce5c00;font-weight:bold">==</span> <span style="color:#4e9a06">u</span><span style="color:#4e9a06">&#39;ACTIVE&#39;</span><span style="color:#000;font-weight:bold">],</span>
-                <span style="color:#000">key</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#204a87;font-weight:bold">lambda</span> <span style="color:#000">x</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000">x</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">raw</span><span style="color:#000;font-weight:bold">[</span><span style="color:#4e9a06">u</span><span style="color:#4e9a06">&#39;sequence&#39;</span><span style="color:#000;font-weight:bold">]):</span>
-        <span style="color:#000">milestone_str</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#204a87">str</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">sprint</span><span style="color:#000;font-weight:bold">)</span>
-        <span style="color:#000">issues</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">sprint_issues</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">gh</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">board</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#204a87">id</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">sprint</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#204a87">id</span><span style="color:#000;font-weight:bold">)</span>
-        <span style="color:#204a87;font-weight:bold">for</span> <span style="color:#000">issue</span> <span style="color:#204a87;font-weight:bold">in</span> <span style="color:#000">issues</span><span style="color:#000;font-weight:bold">:</span>
-            <span style="color:#000">issues_str</span> <span style="color:#ce5c00;font-weight:bold">+=</span> <span style="color:#000">fmt_issues</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">format</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">issue</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">key</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">issue</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">summary</span><span style="color:#000;font-weight:bold">)</span>
-
-    <span style="color:#000">result</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">fmt_full</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">format</span><span style="color:#000;font-weight:bold">(</span>
-        <span style="color:#000">milestone_str</span><span style="color:#000;font-weight:bold">,</span>
-        <span style="color:#000">issues_str</span>
-    <span style="color:#000;font-weight:bold">)</span>
-    <span style="color:#204a87;font-weight:bold">print</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">result</span><span style="color:#000;font-weight:bold">)</span>
-    <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000">result</span></code></pre></div>
-<p>You can call the function with the following command:</p>
-
-<pre><code>sprints(&lt;username&gt;, &lt;password&gt;, &lt;sprint_name&gt;)
-</code></pre>
-
-<p>You will get results that are similar to the following:</p>
-
-<blockquote>
-<pre><code>Sprint: SPRINT_NAME
-
-Issues:
-- PROJECT-437: Description of the issue
-- PROJECT-447: Description of the issue
-</code></pre>
-</blockquote>
-
-      
-    </div>
-    
-    <div class="post">
-      <h1 class="post-title">
-        <a href="http://abhipandey.com/2016/03/getopt-vs-getopts/">getopt vs getopts</a>
-      </h1>
-      <span class="post-date">Mar 18, 2016  &middot; <a href="http://abhipandey.com/2016/03/getopt-vs-getopts/#disqus_thread">Comments</a>
-      
-      <br/>
-      <a class="a_cat" href="http://abhipandey.com/categories/code">code</a>
-        
-      <a class="a_tag" href="http://abhipandey.com/tags/bash">bash</a>
-    
-      </span>
-      
-      
-
-<p>Should you use <code>getopt</code> or <code>getopts</code> in your bash scripts?</p>
-
-<p>The answer can be a bit tricky but mostly straight forward.</p>
-
-<h2 id="getopt">getopt</h2>
-
-<p>Generally, try to stay away from <strong>getopt</strong> for the following reasons:</p>
-
-<ul>
-<li>External utility</li>
-<li>Traditional versions can&rsquo;t handle empty argument strings, or arguments with embedded whitespace</li>
-<li>For the loops to work perfectly, you must provide the values in the same sequence as the for loop itself; which is
-very hard to control</li>
-<li>Mostly a way to standardize the parameters</li>
-</ul>
-
-<p>The only time I could think of using <em>getopt</em> is when I really want to use a long variable name and there&rsquo;s just a single one.</p>
-
-<p>Here&rsquo;a a sample for <em>getopt</em></p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#8f5902;font-style:italic">#!/bin/bash
-</span><span style="color:#8f5902;font-style:italic"></span>
-<span style="color:#8f5902;font-style:italic">#Check the number of arguments. If none are passed, print help and exit.</span>
-<span style="color:#000">NUMARGS</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#000">$#</span>
-<span style="color:#8f5902;font-style:italic"># echo -e \\n&#34;Number of arguments: $NUMARGS&#34;</span>
-<span style="color:#204a87;font-weight:bold">if</span> <span style="color:#ce5c00;font-weight:bold">[</span> <span style="color:#000">$NUMARGS</span> -eq <span style="color:#0000cf;font-weight:bold">0</span> <span style="color:#ce5c00;font-weight:bold">]</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#204a87;font-weight:bold">then</span>
-  HELP
-<span style="color:#204a87;font-weight:bold">fi</span>
-
-<span style="color:#000">OPTS</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">`</span>getopt -o vhns: --long verbose,dry-run,help,stack-size: -n <span style="color:#4e9a06">&#39;parse-options&#39;</span> -- <span style="color:#4e9a06">&#34;</span><span style="color:#000">$@</span><span style="color:#4e9a06">&#34;</span><span style="color:#4e9a06">`</span>
-
-<span style="color:#204a87">eval</span> <span style="color:#204a87">set</span> -- <span style="color:#4e9a06">&#34;</span><span style="color:#000">$OPTS</span><span style="color:#4e9a06">&#34;</span>
-
-<span style="color:#204a87;font-weight:bold">while</span> getopt dir:,env: FLAG<span style="color:#000;font-weight:bold">;</span> <span style="color:#204a87;font-weight:bold">do</span>
-  <span style="color:#204a87;font-weight:bold">case</span> <span style="color:#000">$FLAG</span> in
-    -dir<span style="color:#ce5c00;font-weight:bold">)</span>
-      <span style="color:#000">DIR</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#000">$OPTARG</span>
-      <span style="color:#204a87">echo</span> <span style="color:#4e9a06">&#34;-dir used: </span><span style="color:#000">$OPTARG</span><span style="color:#4e9a06">&#34;</span>
-      <span style="color:#000;font-weight:bold">;;</span>
-    -env<span style="color:#ce5c00;font-weight:bold">)</span>
-      <span style="color:#000">PYENV</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#000">$OPTARG</span>
-      <span style="color:#204a87">echo</span> <span style="color:#4e9a06">&#34;-env used: </span><span style="color:#000">$OPTARG</span><span style="color:#4e9a06">&#34;</span>
-      <span style="color:#000;font-weight:bold">;;</span>
-    h<span style="color:#ce5c00;font-weight:bold">)</span>  <span style="color:#8f5902;font-style:italic">#show help</span>
-      HELP
-      <span style="color:#000;font-weight:bold">;;</span>
-    <span style="color:#4e9a06">\?</span><span style="color:#ce5c00;font-weight:bold">)</span> <span style="color:#8f5902;font-style:italic">#unrecognized option - show help</span>
-      <span style="color:#204a87">echo</span> -e <span style="color:#4e9a06">\\</span>n<span style="color:#4e9a06">&#34;Option -</span><span style="color:#4e9a06">${</span><span style="color:#000">BOLD</span><span style="color:#4e9a06">}</span><span style="color:#000">$OPTARG</span><span style="color:#4e9a06">${</span><span style="color:#000">NORM</span><span style="color:#4e9a06">}</span><span style="color:#4e9a06"> not allowed.&#34;</span>
-      HELP
-      <span style="color:#000;font-weight:bold">;;</span>
-  <span style="color:#204a87;font-weight:bold">esac</span>
-<span style="color:#204a87;font-weight:bold">done</span>
-
-<span style="color:#204a87">shift</span> <span style="color:#204a87;font-weight:bold">$((</span>OPTIND-1<span style="color:#204a87;font-weight:bold">))</span>  <span style="color:#8f5902;font-style:italic">#This tells getopts to move on to the next argument.</span></code></pre></div>
-<h2 id="getopts">getopts</h2>
-
-<p>Whereas, <strong>getopts</strong> is:</p>
-
-<ul>
-<li>Portable and works in any POSIX shell</li>
-<li>Lenient with usage of &ldquo;-a -b&rdquo; as well as &ldquo;-ab&rdquo;</li>
-<li>Understands &ldquo;&ndash;&rdquo; as the option terminator</li>
-</ul>
-
-<p>Here&rsquo;s a sample for <em>getopts</em></p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#000">SCRIPT</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">`</span>basename <span style="color:#4e9a06">${</span><span style="color:#000">BASH_SOURCE</span><span style="color:#000;font-weight:bold">[0]</span><span style="color:#4e9a06">}</span><span style="color:#4e9a06">`</span>
-
-<span style="color:#8f5902;font-style:italic">## Let&#39;s do some admin work to find out the variables to be used here</span>
-<span style="color:#000">BOLD</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#39;\e[1;31m&#39;</span>         <span style="color:#8f5902;font-style:italic"># Bold Red</span>
-<span style="color:#000">REV</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#39;\e[1;32m&#39;</span>       <span style="color:#8f5902;font-style:italic"># Bold Green</span>
-
-<span style="color:#8f5902;font-style:italic">#Help function</span>
-<span style="color:#204a87;font-weight:bold">function</span> HELP <span style="color:#ce5c00;font-weight:bold">{</span>
-  <span style="color:#204a87">echo</span> -e <span style="color:#4e9a06">&#34;</span><span style="color:#4e9a06">${</span><span style="color:#000">REV</span><span style="color:#4e9a06">}</span><span style="color:#4e9a06">Basic usage:</span><span style="color:#4e9a06">${</span><span style="color:#000">OFF</span><span style="color:#4e9a06">}</span><span style="color:#4e9a06"> </span><span style="color:#4e9a06">${</span><span style="color:#000">BOLD</span><span style="color:#4e9a06">}</span><span style="color:#000">$SCRIPT</span><span style="color:#4e9a06"> -d helloworld </span><span style="color:#4e9a06">${</span><span style="color:#000">OFF</span><span style="color:#4e9a06">}</span><span style="color:#4e9a06">&#34;</span><span style="color:#4e9a06">\\</span>n
-  <span style="color:#204a87">echo</span> -e <span style="color:#4e9a06">&#34;</span><span style="color:#4e9a06">${</span><span style="color:#000">REV</span><span style="color:#4e9a06">}</span><span style="color:#4e9a06">The following switches are recognized. </span><span style="color:#000">$OFF</span><span style="color:#4e9a06"> &#34;</span>
-  <span style="color:#204a87">echo</span> -e <span style="color:#4e9a06">&#34;</span><span style="color:#4e9a06">${</span><span style="color:#000">REV</span><span style="color:#4e9a06">}</span><span style="color:#4e9a06">-p </span><span style="color:#4e9a06">${</span><span style="color:#000">OFF</span><span style="color:#4e9a06">}</span><span style="color:#4e9a06">  --Sets the environment to use for installing python </span><span style="color:#4e9a06">${</span><span style="color:#000">OFF</span><span style="color:#4e9a06">}</span><span style="color:#4e9a06">. Default is </span><span style="color:#4e9a06">${</span><span style="color:#000">BOLD</span><span style="color:#4e9a06">}</span><span style="color:#4e9a06"> /usr/bin </span><span style="color:#4e9a06">${</span><span style="color:#000">OFF</span><span style="color:#4e9a06">}</span><span style="color:#4e9a06">&#34;</span>
-  <span style="color:#204a87">echo</span> -e <span style="color:#4e9a06">&#34;</span><span style="color:#4e9a06">${</span><span style="color:#000">REV</span><span style="color:#4e9a06">}</span><span style="color:#4e9a06">-d </span><span style="color:#4e9a06">${</span><span style="color:#000">OFF</span><span style="color:#4e9a06">}</span><span style="color:#4e9a06">  --Sets the directory whose virtualenv is to be setup. Default is </span><span style="color:#4e9a06">${</span><span style="color:#000">BOLD</span><span style="color:#4e9a06">}</span><span style="color:#4e9a06"> local folder (.) </span><span style="color:#4e9a06">${</span><span style="color:#000">OFF</span><span style="color:#4e9a06">}</span><span style="color:#4e9a06">&#34;</span>
-  <span style="color:#204a87">echo</span> -e <span style="color:#4e9a06">&#34;</span><span style="color:#4e9a06">${</span><span style="color:#000">REV</span><span style="color:#4e9a06">}</span><span style="color:#4e9a06">-v </span><span style="color:#4e9a06">${</span><span style="color:#000">OFF</span><span style="color:#4e9a06">}</span><span style="color:#4e9a06">  --Sets the python version that you want to install. Default is </span><span style="color:#4e9a06">${</span><span style="color:#000">BOLD</span><span style="color:#4e9a06">}</span><span style="color:#4e9a06"> 2.7 </span><span style="color:#4e9a06">${</span><span style="color:#000">OFF</span><span style="color:#4e9a06">}</span><span style="color:#4e9a06">&#34;</span>
-  <span style="color:#204a87">echo</span> -e <span style="color:#4e9a06">&#34;</span><span style="color:#4e9a06">${</span><span style="color:#000">REV</span><span style="color:#4e9a06">}</span><span style="color:#4e9a06">-h</span><span style="color:#4e9a06">${</span><span style="color:#000">OFF</span><span style="color:#4e9a06">}</span><span style="color:#4e9a06">  --Displays this help message. No further functions are performed.&#34;</span><span style="color:#4e9a06">\\</span>n
-  <span style="color:#204a87">echo</span> -e <span style="color:#4e9a06">&#34;Example: </span><span style="color:#4e9a06">${</span><span style="color:#000">BOLD</span><span style="color:#4e9a06">}</span><span style="color:#000">$SCRIPT</span><span style="color:#4e9a06"> -d helloworld -p /opt/py27env/bin -v 2.7 </span><span style="color:#4e9a06">${</span><span style="color:#000">OFF</span><span style="color:#4e9a06">}</span><span style="color:#4e9a06">&#34;</span><span style="color:#4e9a06">\\</span>n
-  <span style="color:#204a87">exit</span> <span style="color:#0000cf;font-weight:bold">1</span>
-<span style="color:#ce5c00;font-weight:bold">}</span>
-
-<span style="color:#000">PYENV</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#39;/usr/bin&#39;</span>
-<span style="color:#000">DIR</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#39;.&#39;</span>
-<span style="color:#000">VERSION</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#39;2.7&#39;</span>
-
-<span style="color:#8f5902;font-style:italic"># In case you wanted to check what variables were passed</span>
-<span style="color:#8f5902;font-style:italic"># echo &#34;flags = $*&#34;</span>
-
-<span style="color:#204a87;font-weight:bold">while</span> <span style="color:#204a87">getopts</span> p:d:v:h FLAG<span style="color:#000;font-weight:bold">;</span> <span style="color:#204a87;font-weight:bold">do</span>
-  <span style="color:#204a87;font-weight:bold">case</span> <span style="color:#000">$FLAG</span> in
-    d<span style="color:#ce5c00;font-weight:bold">)</span>
-      <span style="color:#000">DIR</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#000">$OPTARG</span>
-      <span style="color:#000;font-weight:bold">;;</span>
-    p<span style="color:#ce5c00;font-weight:bold">)</span>
-      <span style="color:#000">PYENV</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#000">$OPTARG</span>
-      <span style="color:#000;font-weight:bold">;;</span>
-    v<span style="color:#ce5c00;font-weight:bold">)</span>
-      <span style="color:#000">VERSION</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#000">$OPTARG</span>
-      <span style="color:#000;font-weight:bold">;;</span>
-    h<span style="color:#ce5c00;font-weight:bold">)</span>
-      HELP
-      <span style="color:#000;font-weight:bold">;;</span>
-    <span style="color:#4e9a06">\?</span><span style="color:#ce5c00;font-weight:bold">)</span> <span style="color:#8f5902;font-style:italic">#unrecognized option - show help</span>
-      <span style="color:#204a87">echo</span> -e <span style="color:#4e9a06">\\</span>n<span style="color:#4e9a06">&#34;Option -</span><span style="color:#4e9a06">${</span><span style="color:#000">BOLD</span><span style="color:#4e9a06">}</span><span style="color:#000">$OPTARG</span><span style="color:#4e9a06">${</span><span style="color:#000">OFF</span><span style="color:#4e9a06">}</span><span style="color:#4e9a06"> not allowed.&#34;</span>
-      HELP
-      <span style="color:#000;font-weight:bold">;;</span>
-  <span style="color:#204a87;font-weight:bold">esac</span>
-<span style="color:#204a87;font-weight:bold">done</span></code></pre></div>
-<h2 id="what-if-i-really-wanted-long-options-with-getopts">What if I really wanted long options with <em>getopts</em>?</h2>
-
-<p><em>getopts</em> function can be used to parse long options by putting a dash character followed by a colon into the OPTSPEC.
-Sharing <a href="http://stackoverflow.com/a/7680682/142650">the solution from this link</a>.</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#8f5902;font-style:italic">#!/usr/bin/env bash 
-</span><span style="color:#8f5902;font-style:italic"></span><span style="color:#000">OPTSPEC</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;:hv-:&#34;</span>
-<span style="color:#204a87;font-weight:bold">while</span> <span style="color:#204a87">getopts</span> <span style="color:#4e9a06">&#34;</span><span style="color:#000">$OPTSPEC</span><span style="color:#4e9a06">&#34;</span> optchar<span style="color:#000;font-weight:bold">;</span> <span style="color:#204a87;font-weight:bold">do</span>
-    <span style="color:#204a87;font-weight:bold">case</span> <span style="color:#4e9a06">&#34;</span><span style="color:#4e9a06">${</span><span style="color:#000">optchar</span><span style="color:#4e9a06">}</span><span style="color:#4e9a06">&#34;</span> in
-        -<span style="color:#ce5c00;font-weight:bold">)</span>
-            <span style="color:#204a87;font-weight:bold">case</span> <span style="color:#4e9a06">&#34;</span><span style="color:#4e9a06">${</span><span style="color:#000">OPTARG</span><span style="color:#4e9a06">}</span><span style="color:#4e9a06">&#34;</span> in
-                loglevel<span style="color:#ce5c00;font-weight:bold">)</span>
-                    <span style="color:#000">val</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;</span><span style="color:#4e9a06">${</span><span style="color:#000;font-weight:bold">!OPTIND</span><span style="color:#4e9a06">}</span><span style="color:#4e9a06">&#34;</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#000">OPTIND</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#204a87;font-weight:bold">$((</span> <span style="color:#000">$OPTIND</span> <span style="color:#ce5c00;font-weight:bold">+</span> <span style="color:#0000cf;font-weight:bold">1</span> <span style="color:#204a87;font-weight:bold">))</span>
-                    <span style="color:#204a87">echo</span> <span style="color:#4e9a06">&#34;Parsing option: &#39;--</span><span style="color:#4e9a06">${</span><span style="color:#000">OPTARG</span><span style="color:#4e9a06">}</span><span style="color:#4e9a06">&#39;, value: &#39;</span><span style="color:#4e9a06">${</span><span style="color:#000">val</span><span style="color:#4e9a06">}</span><span style="color:#4e9a06">&#39;&#34;</span> &gt;<span style="color:#000;font-weight:bold">&amp;</span><span style="color:#0000cf;font-weight:bold">2</span><span style="color:#000;font-weight:bold">;</span>
-                    <span style="color:#000;font-weight:bold">;;</span>
-                <span style="color:#000">loglevel</span><span style="color:#ce5c00;font-weight:bold">=</span>*<span style="color:#ce5c00;font-weight:bold">)</span>
-                    <span style="color:#000">val</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">${</span><span style="color:#000">OPTARG</span><span style="color:#000;font-weight:bold">#*=</span><span style="color:#4e9a06">}</span>
-                    <span style="color:#000">opt</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">${</span><span style="color:#000">OPTARG</span><span style="color:#000;font-weight:bold">%=</span><span style="color:#000">$val</span><span style="color:#4e9a06">}</span>
-                    <span style="color:#204a87">echo</span> <span style="color:#4e9a06">&#34;Parsing option: &#39;--</span><span style="color:#4e9a06">${</span><span style="color:#000">opt</span><span style="color:#4e9a06">}</span><span style="color:#4e9a06">&#39;, value: &#39;</span><span style="color:#4e9a06">${</span><span style="color:#000">val</span><span style="color:#4e9a06">}</span><span style="color:#4e9a06">&#39;&#34;</span> &gt;<span style="color:#000;font-weight:bold">&amp;</span><span style="color:#0000cf;font-weight:bold">2</span>
-                    <span style="color:#000;font-weight:bold">;;</span>
-                *<span style="color:#ce5c00;font-weight:bold">)</span>
-                    <span style="color:#204a87;font-weight:bold">if</span> <span style="color:#ce5c00;font-weight:bold">[</span> <span style="color:#4e9a06">&#34;</span><span style="color:#000">$OPTERR</span><span style="color:#4e9a06">&#34;</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#0000cf;font-weight:bold">1</span> <span style="color:#ce5c00;font-weight:bold">]</span> <span style="color:#ce5c00;font-weight:bold">&amp;&amp;</span> <span style="color:#ce5c00;font-weight:bold">[</span> <span style="color:#4e9a06">&#34;</span><span style="color:#4e9a06">${</span><span style="color:#000">OPTSPEC</span><span style="color:#000;font-weight:bold">:</span><span style="color:#000">0</span><span style="color:#000;font-weight:bold">:</span><span style="color:#000">1</span><span style="color:#4e9a06">}</span><span style="color:#4e9a06">&#34;</span> !<span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#4e9a06">&#34;:&#34;</span> <span style="color:#ce5c00;font-weight:bold">]</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#204a87;font-weight:bold">then</span>
-                        <span style="color:#204a87">echo</span> <span style="color:#4e9a06">&#34;Unknown option --</span><span style="color:#4e9a06">${</span><span style="color:#000">OPTARG</span><span style="color:#4e9a06">}</span><span style="color:#4e9a06">&#34;</span> &gt;<span style="color:#000;font-weight:bold">&amp;</span><span style="color:#0000cf;font-weight:bold">2</span>
-                    <span style="color:#204a87;font-weight:bold">fi</span>
-                    <span style="color:#000;font-weight:bold">;;</span>
-            <span style="color:#204a87;font-weight:bold">esac</span><span style="color:#000;font-weight:bold">;;</span>
-        h<span style="color:#ce5c00;font-weight:bold">)</span>
-            <span style="color:#204a87">echo</span> <span style="color:#4e9a06">&#34;usage: </span><span style="color:#000">$0</span><span style="color:#4e9a06"> [-v] [--loglevel[=]&lt;value&gt;]&#34;</span> &gt;<span style="color:#000;font-weight:bold">&amp;</span><span style="color:#0000cf;font-weight:bold">2</span>
-            <span style="color:#204a87">exit</span> <span style="color:#0000cf;font-weight:bold">2</span>
-            <span style="color:#000;font-weight:bold">;;</span>
-        v<span style="color:#ce5c00;font-weight:bold">)</span>
-            <span style="color:#204a87">echo</span> <span style="color:#4e9a06">&#34;Parsing option: &#39;-</span><span style="color:#4e9a06">${</span><span style="color:#000">optchar</span><span style="color:#4e9a06">}</span><span style="color:#4e9a06">&#39;&#34;</span> &gt;<span style="color:#000;font-weight:bold">&amp;</span><span style="color:#0000cf;font-weight:bold">2</span>
-            <span style="color:#000;font-weight:bold">;;</span>
-        *<span style="color:#ce5c00;font-weight:bold">)</span>
-            <span style="color:#204a87;font-weight:bold">if</span> <span style="color:#ce5c00;font-weight:bold">[</span> <span style="color:#4e9a06">&#34;</span><span style="color:#000">$OPTERR</span><span style="color:#4e9a06">&#34;</span> !<span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#0000cf;font-weight:bold">1</span> <span style="color:#ce5c00;font-weight:bold">]</span> <span style="color:#ce5c00;font-weight:bold">||</span> <span style="color:#ce5c00;font-weight:bold">[</span> <span style="color:#4e9a06">&#34;</span><span style="color:#4e9a06">${</span><span style="color:#000">OPTSPEC</span><span style="color:#000;font-weight:bold">:</span><span style="color:#000">0</span><span style="color:#000;font-weight:bold">:</span><span style="color:#000">1</span><span style="color:#4e9a06">}</span><span style="color:#4e9a06">&#34;</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#4e9a06">&#34;:&#34;</span> <span style="color:#ce5c00;font-weight:bold">]</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#204a87;font-weight:bold">then</span>
-                <span style="color:#204a87">echo</span> <span style="color:#4e9a06">&#34;Non-option argument: &#39;-</span><span style="color:#4e9a06">${</span><span style="color:#000">OPTARG</span><span style="color:#4e9a06">}</span><span style="color:#4e9a06">&#39;&#34;</span> &gt;<span style="color:#000;font-weight:bold">&amp;</span><span style="color:#0000cf;font-weight:bold">2</span>
-            <span style="color:#204a87;font-weight:bold">fi</span>
-            <span style="color:#000;font-weight:bold">;;</span>
-    <span style="color:#204a87;font-weight:bold">esac</span>
-<span style="color:#204a87;font-weight:bold">done</span></code></pre></div>
-      
-    </div>
-    
-    <div class="post">
-      <h1 class="post-title">
-        <a href="http://abhipandey.com/2016/02/color-your-process-listings/">Color your process listings</a>
-      </h1>
-      <span class="post-date">Feb 9, 2016  &middot; <a href="http://abhipandey.com/2016/02/color-your-process-listings/#disqus_thread">Comments</a>
-      
-      <br/>
-      <a class="a_cat" href="http://abhipandey.com/categories/code">code</a>
-        
-      <a class="a_tag" href="http://abhipandey.com/tags/bash">bash</a>
-    
-      </span>
-      
-      <p>Many a times I am grepping for a process that is running on a prod server with lots of different configuration
-parameters. However, since there are so many of them, it is very difficult to view a particular parameter itself
-and find out what value was assigned to it. I wanted to make it easier on the eyes and decided to color code the
-parameters and separate them out from the values.
-Here&rsquo;s the bash function I pulled out.</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">colorme<span style="color:#ce5c00;font-weight:bold">()</span>
-<span style="color:#ce5c00;font-weight:bold">{</span>
-  gawk <span style="color:#4e9a06">&#39;BEGIN {RS=&#34; --| -&#34;; }{print $0}&#39;</span> <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>  <span style="color:#000;font-weight:bold">|</span> sed -e <span style="color:#4e9a06">&#39;s/\([[:alpha:]]\+\)=/\1 /g&#39;</span> <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>  <span style="color:#000;font-weight:bold">|</span> gawk <span style="color:#4e9a06">&#39;BEGIN    {printf &#34;-----------------\n&#34; ; }
-</span><span style="color:#4e9a06">            {
-</span><span style="color:#4e9a06">                if (NF &gt; 2) printf &#34;\n\033[41;5;1m%s\033[0m\n&#34;, $NF ;
-</span><span style="color:#4e9a06">                printf &#34;\033[40;38;5;82m  %30s  \033[38;5;198m %s \033[0m \n&#34;, $1, $2
-</span><span style="color:#4e9a06">            }&#39;</span>
-<span style="color:#ce5c00;font-weight:bold">}</span></code></pre></div>
-<p>The idea is as follows:</p>
-
-<ul>
-<li>Have a bash function that can be piped onto any command; perhaps <code>ps -ef</code></li>
-<li>Paragraph style viewing for each process</li>
-<li>Break down every parameter into separate lines using <code>gawk</code></li>
-<li>Use <code>sed</code> to convert config params in the <code>--rate=10</code> into something like <code>rate 10</code>, just like others</li>
-<li>Use <code>gawk</code> again to add colors on every pair of <code>key value</code> line</li>
-<li>Keys are right aligned, green in color and values are right aligned, red in color so it&rsquo;s very easy to view</li>
-</ul>
-
-<p>Here is a sample command I wanted to test out.</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">/opt/py27env/bin/python manage.py main-service-name --daemonize <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>    --alias-svc<span style="color:#ce5c00;font-weight:bold">=</span>mainsvc01 --application-id<span style="color:#ce5c00;font-weight:bold">=</span>app03/mainsvc01 --monitoring-service-name<span style="color:#ce5c00;font-weight:bold">=</span>mainsvc01 <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>    --log-level<span style="color:#ce5c00;font-weight:bold">=</span>DEBUG --solace-session-prop-host<span style="color:#ce5c00;font-weight:bold">=</span>server.prod --solace-session-prop-username<span style="color:#ce5c00;font-weight:bold">=</span>testing <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>    --solace-session-prop-password<span style="color:#ce5c00;font-weight:bold">=</span>testing --solace-session-prop-vpn<span style="color:#ce5c00;font-weight:bold">=</span>testing <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>    --solace-session-prop-cache-name<span style="color:#ce5c00;font-weight:bold">=</span>test_dc <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>    --rate<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#0000cf;font-weight:bold">10</span></code></pre></div>
-<p>Here is the result from my tests:
-<figure>
-    <img src="/images/bash_process_color_coding_1.png"
-         alt="Color coded process listing"/> <figcaption>
-            <p>Color coded process listing</p>
-        </figcaption>
-</figure>
-</p>
-
-      
-    </div>
-    
-    <div class="post">
-      <h1 class="post-title">
-        <a href="http://abhipandey.com/2016/02/how-to-setup-a-local-pypi-mirror/">How to setup a local pypi mirror</a>
-      </h1>
-      <span class="post-date">Feb 4, 2016  &middot; <a href="http://abhipandey.com/2016/02/how-to-setup-a-local-pypi-mirror/#disqus_thread">Comments</a>
-      
-      <br/>
-      <a class="a_cat" href="http://abhipandey.com/categories/code">code</a>
-        
-      <a class="a_tag" href="http://abhipandey.com/tags/pip">pip</a><a class="a_tag" href="http://abhipandey.com/tags/python">python</a>
-    
-      </span>
-      
-      <p>It is quite easy to set up a local pypi server.</p>
-
-<p>Some details can be found <a href="https://pip.pypa.io/en/latest/user_guide/#installing-from-local-packages">here</a>.
-You can also use <a href="http://doc.devpi.net/latest/quickstart-pypimirror.html">devpi</a> if you prefer but it
-seems overly complicated for a job that is easily achieved by pip.</p>
-
-<p>Let&rsquo;s look at how to use <code>pip</code> for local installation.
-Firstly, it is possible to install all requirements beforehand in a separate directory.
- We can use the following commands:</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">pip install --download DIR -r requirements.txt</code></pre></div>
-<p>If you prefer wheel, then use the following:</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">pip wheel --wheel-dir DIR -r requirements.txt</code></pre></div>
-<p>Now, when we want to install from this given directory <code>DIR</code>, then
-the following command can help:</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">pip install --no-index --find-links<span style="color:#ce5c00;font-weight:bold">=</span>DIR -r requirements.txt</code></pre></div>
-<p>If you are using these in a current setup and you feel it still slows you down then the reason would be
-one of the first few commands where the request is still going to the internet.
-If you want to speed up the whole process then perhaps you need to send out a request to the internet
-only if a new package is available in the requirements.txt file otherwise you can skip that part altogether,
-just leading onto <code>pip install --no-index</code></p>
-
-<p>This will make your installation a flash.</p>
-
-<p>One quick and dirty way to maintain a local copy of requirements.txt file and figure out on every commit of code change
-in the project, whether a new requirement has been added to that list. In that case, install it + update your local copy.</p>
-
-<p>Here&rsquo;s a sample code to put all changes in a single line that you can feed into <code>pip install</code></p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sdiff -s /tmp/1 /tmp/2 <span style="color:#000;font-weight:bold">|</span> sed -e <span style="color:#4e9a06">&#39;s/&lt;//g&#39;</span> <span style="color:#000;font-weight:bold">|</span> awk <span style="color:#4e9a06">&#39;BEGIN {ORS=&#34; &#34;} {print $1}&#39;</span></code></pre></div>
-<p>Breaking it down:</p>
-
-<ul>
-<li><code>sdiff</code> checks if there are any new changes</li>
-<li><code>sed</code> ensures that you only get the relevant characters, not <code>&lt;</code> or <code>&gt;</code>
-
-<ul>
-<li>If you want you can put an <code>egrep</code> before <code>sed</code> to get only one side of the changes</li>
-</ul></li>
-<li><code>awk</code> puts all the lines together into a space separated values that can be fed into <code>pip install</code></li>
-</ul>
-
-      
-    </div>
-    
     
 
 <ul class="pagination">
-    
-    <li class="page-item">
-        <a href="/" class="page-link" aria-label="First"><span aria-hidden="true">&laquo;&laquo;</span></a>
-    </li>
-    
-    <li class="page-item disabled">
-    <a href="" class="page-link" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
-    </li>
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    <li class="page-item active"><a class="page-link" href="/">1</a></li>
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    <li class="page-item"><a class="page-link" href="/page/2/">2</a></li>
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    <li class="page-item"><a class="page-link" href="/page/3/">3</a></li>
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    <li class="page-item disabled"><span aria-hidden="true">&nbsp;&hellip;&nbsp;</span></li>
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    <li class="page-item"><a class="page-link" href="/page/7/">7</a></li>
-    
-    
-    <li class="page-item">
-    <a href="/page/2/" class="page-link" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
-    </li>
-    
-    <li class="page-item">
-        <a href="/page/7/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
-    </li>
-    
+  
+  
+  <li class="page-item active">
+    <a class="page-link" href="/">
+      1
+    </a>
+  </li>
+  
+  <li class="page-item">
+    <a class="page-link" href="/page/2/">
+      2
+    </a>
+  </li>
+  
+  <li class="page-item">
+    <a class="page-link" href="/page/3/">
+      3
+    </a>
+  </li>
+  
+  <li class="page-item">
+    <a class="page-link" href="/page/4/">
+      4
+    </a>
+  </li>
+  
+  
+  <li class="page-item">
+    <a class="page-link" href="/page/2/">
+      <svg class="icon icon-arrow-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>arrow-right</title><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+    </a>
+  </li>
+  
 </ul>
 
-  </div>
-</div>
 
 
-<script type="text/javascript">
-var disqus_shortname = "abhi1010";
-(function () {
-    var s = document.createElement('script'); s.async = true;
-    s.type = 'text/javascript';
-    s.src = '//' + disqus_shortname + '.disqus.com/count.js';
-    (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
-}());
-</script>
+  </article>
 
-
-</body>
+    </main>
+  </body>
 </html>
-

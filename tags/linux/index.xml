@@ -1,26 +1,19 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Linux on Coders Digest</title>
     <link>http://abhipandey.com/tags/linux/</link>
     <description>Recent content in Linux on Coders Digest</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 07 Jul 2016 23:26:44 +0800</lastBuildDate>
-    
-	<atom:link href="http://abhipandey.com/tags/linux/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <atom:link href="http://abhipandey.com/tags/linux/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Systemd tutorial</title>
       <link>http://abhipandey.com/2016/07/systemd-tutorial/</link>
       <pubDate>Thu, 07 Jul 2016 23:26:44 +0800</pubDate>
-      
       <guid>http://abhipandey.com/2016/07/systemd-tutorial/</guid>
-      <description>Systemd usually requires two files:
- service file timer file  Service files Here you provide the details you&amp;rsquo;d use to
- Start/stop a service Define the type of service  Can be simple, forking, oneshot, dbus, notify or idle  How to kill the service Ability to restart Path for starting up Timeout for the service startup or shutdown  Service is usually made up of 3 sections:</description>
+      <description>&lt;p&gt;&lt;code&gt;Systemd&lt;/code&gt; usually requires two files:&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;service file&lt;/li&gt;&#xA;&lt;li&gt;timer file&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;h2 id=&#34;service-files&#34;&gt;Service files&lt;/h2&gt;&#xA;&lt;p&gt;Here you provide the details you&amp;rsquo;d use to&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Start/stop a service&lt;/li&gt;&#xA;&lt;li&gt;Define the type of service&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Can be &lt;em&gt;simple&lt;/em&gt;, &lt;em&gt;forking&lt;/em&gt;, &lt;em&gt;oneshot&lt;/em&gt;, &lt;em&gt;dbus&lt;/em&gt;, &lt;em&gt;notify&lt;/em&gt; or &lt;em&gt;idle&lt;/em&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;How to kill the service&lt;/li&gt;&#xA;&lt;li&gt;Ability to restart&lt;/li&gt;&#xA;&lt;li&gt;Path for starting up&lt;/li&gt;&#xA;&lt;li&gt;Timeout for the service startup or shutdown&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Service is usually made up of 3 sections:&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Unit&lt;/li&gt;&#xA;&lt;li&gt;Service&lt;/li&gt;&#xA;&lt;li&gt;Install&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Usually prefer &lt;code&gt;multi-user.target&lt;/code&gt; for your installation&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;One example is as follows:&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

@@ -1,247 +1,190 @@
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
-<head>
-  <link href="http://gmpg.org/xfn/11" rel="profile">
-  <meta http-equiv="content-type" content="text/html; charset=utf-8">
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-
-  <title>Creating Custom Web Controls &middot; Abhishek Pandey</title>
-
-  
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
-  <link rel="stylesheet" href="http://abhipandey.com/css/poole.css?ref=abc124">
-  <link rel="stylesheet" href="http://abhipandey.com/css/hyde.css?ref=abc124">
-  <link rel="stylesheet" href="http://abhipandey.com/css/poole-overrides.css?ref=abc124">
-  <link rel="stylesheet" href="http://abhipandey.com/css/hyde-overrides.css?ref=abc124">
-  <link rel="stylesheet" href="http://abhipandey.com/css/hyde-a.css?ref=abc124">
-  <link rel="stylesheet" href="http://abhipandey.com/css/custom-additions.css?ref=abc124">
-  
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
-  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-
-  
-  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://abhipandey.com/touch-icon-144-precomposed.png?ref=abc124">
-  <link href="http://abhipandey.com/favicon.png?ref=abc124" rel="icon">
-
-  
-  
-  
-  
-
-  <meta name="description" content="How to create custom web controls">
-  <meta name="keywords" content="custom web controls,asp.net,C#">
-  
-  
-  <script>
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-      ga('create', 'UA-68135443-1', 'auto');
-      ga('send', 'pageview');
-  </script>
-
-</head>
-<body class="theme-base-aa">
-<div class="sidebar">
-  <div class="container sidebar-sticky">
-    <div class="sidebar-about">
-      
-      <h1><a href="http://abhipandey.com/">Coder&rsquo;s Digest</a></h1>
-      <a href="http://abhipandey.com/"><p>Abhishek Pandey</p></a>
-    </div>
-
-    <ul class="sidebar-nav">
-      
-      <li class="sidebar-nav-item"><a href="http://abhipandey.com/post/">Posts</a></li>
-      
-      <li class="sidebar-nav-item"><a href="http://abhipandey.com/tags/">Tags</a></li>
-      
-      <li class="sidebar-nav-item"><a href="http://abhipandey.com/categories/">Categories</a></li>
-      
-      <li class="sidebar-nav-item"><a href="http://abhipandey.com/about/">About</a></li>
-      
-    </ul>
-
-    <ul class="sidebar-nav">
-      <li class="sidebar-nav-item">
-      
-      
-      
-      
-      
-      
-      
-      
-      </li>
-    </ul>
-
+<!doctype html>
+<html lang="en-us">
+  <head>
+    <title>Creating Custom Web Controls // Coders Digest</title>
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.145.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Abhishek Pandey" />
+    <meta name="description" content="How to create custom web controls" />
+    <link rel="stylesheet" href="/css/main.min.5b1fcc8902588589c4767187402a3c29f8b8d7a6fdef6d9f8f77045bb0d14fee.css" />
     
 
-  </div>
-</div>
+    
+    
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Creating Custom Web Controls">
+  <meta name="twitter:description" content="How to create custom web controls">
+
+    <meta property="og:url" content="http://abhipandey.com/2008/03/creating-custom-web-controls/">
+  <meta property="og:site_name" content="Coders Digest">
+  <meta property="og:title" content="Creating Custom Web Controls">
+  <meta property="og:description" content="How to create custom web controls">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2008-03-08T22:30:00+00:00">
+    <meta property="article:modified_time" content="2008-03-08T22:30:00+00:00">
+    <meta property="article:tag" content="C-Sharp">
 
 
-<div class="content container">
-  <div class="post">
-    <h1>Creating Custom Web Controls</h1>
-    <span class="post-date">Mar 8, 2008  &middot; <a href="http://abhipandey.com/2008/03/creating-custom-web-controls/#disqus_thread">Comments</a>
-    
-    <br/>
-    
-          <a class="a_cat" href="http://abhipandey.com/categories/code">code</a>
-      
-      
-        <a class="a_tag" href="http://abhipandey.com/tags/c-sharp">c-sharp</a>
-      
-
-    
-    </span>
-      <div id="_toc" class="toc">
+  </head>
+  <body>
+    <header class="app-header">
+      <a href="/"><img class="app-header-avatar" src="/space-2.jpg" alt="Abhishek Pandey" /></a>
+      <span class="app-header-title">Coders Digest</span>
+      <nav class="app-header-menu">
+          <a class="app-header-menu-item" href="/post/">Posts</a>
+             - 
+          
+          <a class="app-header-menu-item" href="/tags/">Tags</a>
+             - 
+          
+          <a class="app-header-menu-item" href="/categories/">Categories</a>
+             - 
+          
+          <a class="app-header-menu-item" href="/about/">About</a>
+      </nav>
+      <p>Abhishek Pandey</p>
+      <div class="app-header-social">
+        
+          <a href="https://github.com/abhi1010" target="_blank" rel="noreferrer noopener me">
+            <svg class="icon icon-brand-github" viewBox="0 0 24 24" fill="currentColor"><title>GitHub</title><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+          </a>
+        
+          <a href="https://www.linkedin.com/in/apandey10/" target="_blank" rel="noreferrer noopener me">
+            <svg class="icon icon-brand-linkedin" viewBox="0 0 24 24" fill="currentColor"><title>LinkedIn</title><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </a>
         
       </div>
-    <p>How do you extend a control? Let&rsquo;s figure it out.</p>
-
+    </header>
+    <main class="app-container">
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">Creating Custom Web Controls</h1>
+      <div class="post-meta">
+        <div>
+          <svg class="icon icon-calendar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>calendar</title><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+          Mar 8, 2008
+        </div>
+        <div>
+          <svg class="icon icon-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>clock</title><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+          5 min read
+        </div>
+        <div>
+          <svg class="icon icon-tag" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>tag</title><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
+              <a class="tag" href="/tags/c-sharp/">C-Sharp</a>
+        </div>
+      </div>
+    </header>
+    <div class="post-content">
+      <p>How do you extend a control? Let&rsquo;s figure it out.</p>
 <p><strong>Why would you want to extend existing controls?</strong></p>
-
 <p>Because some functionality may not exist exactly as you may need it. For example, let&rsquo;s take up ImageButton control example. It is a great control but it falls short when it comes to real world scenario. Mostly websites do a hover image clickable button where the text or background color of the button changes once you hover your mouse over it.</p>
-
 <p><strong>How to Extend?</strong></p>
-
 <p>_I assume that you use C# code but there is not going to be any difference even if you wanted to do in VB.Net. _</p>
-
 <p>Create a project for creating custom web control library. It automatically includes a C# class that says something like</p>
-
 <pre><code>&lt;span style=&quot;color:#0000ff;&quot;&gt;public&lt;/span&gt; &lt;span style=&quot;color:#0000ff;&quot;&gt;class&lt;/span&gt; WebCustomControl1 : WebControl
 </code></pre>
-
 <p>Now ask yourself, what do you want to extend? A GridView? Replace WebControl with GridView. Let&rsquo;s follow our example with Hover Image Button Control. If you recall .Net already has ImageButton control that accepts one url for the image to be shown for that button, let&rsquo;s extend that one to include two Images rather than just one. In that case I would replace WebControl with ImageButton since I am going to extend ImageButton control. Let&rsquo;s call it HoverImageButton. Hence, the line changes to some thing like this:</p>
-
 <pre><code>&lt;span style=&quot;color:#0000ff;&quot;&gt;public&lt;/span&gt; &lt;span style=&quot;color:#0000ff;&quot;&gt;class&lt;/span&gt; HoverImageButton : ImageButton
 </code></pre>
-
 <p>The class also includes a property called Text for you so that you can see that and figure out how to use properties in custom web controls. It also includes attributes that start off just before the property itself. It is used by Visual Studio for showing this property on Properties pane. It is definitely a very useful feature.</p>
-
 <p>You can change this property to anything you like. Since we are creating a HoverImageButton control we want a property to save another url for the hover image&rsquo;s source. Let&rsquo;s change Text to &ldquo;ImageHoverUrl&rdquo;. ImageButton already has a property called &ldquo;ImageUrl&rdquo; and it belongs to &ldquo;Appearance&rdquo; group in Visual Studio Properties window. Notice the similarity in &ldquo;ImageHoverUrl&rdquo; and ImageUrl so that they appear together in Properties window. Sometimes, little deeds go a long way.</p>
-
 <p><strong>Writing JS file</strong></p>
-
 <p>Now let&rsquo;s add a javascript file to the project. Add one function called &ldquo;ShowImageHoverButton()&rdquo; that takes in two parameters, the control&rsquo;s id and the new image to be shown for that control. The control image&rsquo;s source is changed everytime when this function is called. We can call this function on mouse out and on mouse over events.</p>
-
 <p>That&rsquo;s all you need to do for this control.</p>
-
 <p><strong>Linking JS and Custom Control them together</strong></p>
-
 <p>This is a very simple process. You have the javascript file and you know for sure that the control will be loaded into the webpage, so you need a mechanism inside the control so that you can tell that &ldquo;hey, include this javascript file whenever you have this control on a page&rdquo;.</p>
-
 <p>This is how you do that.</p>
-
-<script type="text/javascript" src="http://gist.github.com/bfb075b6787d2616fde6.js"></script>
-
+<script
+  src="https://gist.github.com/bfb075b6787d2616fde6/.js"></script>
 <p>Please note that the name of the javascript file is &ldquo;HoverImageButtonJS.js&rdquo;. ExtendedControls is the name of the project/assembly that I have created for this custom web control.</p>
-
 <p>How to assign javascript functions to the control?</p>
-
 <p>Now the next problem is how would you tell the control that call this javscript function function on &ldquo;mouseover&rdquo;? We use OnInit function for this process. We override the function and make use of the control&rsquo;s Attributes property.</p>
-
 <p>What is Attributes property for anyway? Well, it adds any extra &ldquo;property&rdquo; or &ldquo;style&rdquo; that you may want to add to the control when it is rendered to the client.</p>
-
 <p>Let&rsquo;s see how that&rsquo;s done.</p>
-
-<script type="text/javascript" src="http://gist.github.com/d0b66ef7b0f076e88042.js"></script>
-
+<script
+  src="https://gist.github.com/d0b66ef7b0f076e88042/.js"></script>
 <p>Over here, I have told the class to include <code>&quot;onmouseover=ShowImageHoverButton(this, 'IMAGE_SOURCE')&quot;</code> as a property.</p>
-
 <p>This is how it is rendered on the client browser:</p>
-
-<script type="text/javascript" src="http://gist.github.com/6df972bf94b736545419.js"></script>
-
+<script
+  src="https://gist.github.com/6df972bf94b736545419/.js"></script>
 <p><strong>Add the javascript file also to the AssemblyInfo.cs class</strong></p>
-
 <p>For the control library to properly include the js file, you have to add the js file in AssemblyInfo.cs class as well. This is how it is done:</p>
-
 <pre><code>[assembly: WebResource(&lt;span style=&quot;color:#006080;&quot;&gt;&quot;ExtendedControls.HoverImageButtonJS.js&quot;&lt;/span&gt;, &lt;span style=&quot;color:#006080;&quot;&gt;&quot;text/javascript&quot;&lt;/span&gt;)]
 </code></pre>
-
 <p><strong>Test Drive!</strong></p>
-
 <p>That&rsquo;s all. A few simple steps and your control is ready to be tested. Still, let&rsquo;s not rush and see the steps required:</p>
-
 <ul>
-<li><p>Add this control&rsquo;s library to any web project.</p></li>
-
-<li><p>Register the dll on web.config. This makes the control available automatically on all the pages.</p></li>
+<li>
+<p>Add this control&rsquo;s library to any web project.</p>
+</li>
+<li>
+<p>Register the dll on web.config. This makes the control available automatically on all the pages.</p>
+</li>
 </ul>
-
-<script type="text/javascript" src="http://gist.github.com/88222d3f94911fbec6f4.js"></script>
-
+<script
+  src="https://gist.github.com/88222d3f94911fbec6f4/.js"></script>
 <ul>
 <li>Go to the design view of any page. Open up the Toolbox pane and you will automatically see the name appear &ldquo;HoverImageButton&rdquo;. Double click and you are ready to go!!</li>
 </ul>
-
 <p><strong>Easy as it may sound but it may not be that smooth a ride for you.</strong></p>
-
 <p>Just take care of few pointers and you should be fine. Here they go:</p>
-
 <ul>
-<li><p>The JScript file that you have added sometimes doesn&rsquo;t get linked properly to the control. Right click on the js file and check it&rsquo;s properties. It&rsquo;s compile action should be &ldquo;Embed Content&rdquo; rather than anything else. That way everytime you compile this control, this js file gets &ldquo;embedded&rdquo; into the control&rsquo;s library.</p></li>
-
-<li><p>Take care of the naming convention for the js file.</p>
-
+<li>
+<p>The JScript file that you have added sometimes doesn&rsquo;t get linked properly to the control. Right click on the js file and check it&rsquo;s properties. It&rsquo;s compile action should be &ldquo;Embed Content&rdquo; rather than anything else. That way everytime you compile this control, this js file gets &ldquo;embedded&rdquo; into the control&rsquo;s library.</p>
+</li>
+<li>
+<p>Take care of the naming convention for the js file.</p>
 <ul>
-<li>If your control&rsquo;s namespace is ExtendedControls, then while &ldquo;Registering&rdquo; it in the control&rsquo;s class you should give the JS file&rsquo;s name as &ldquo;ExtendedControls.CustomControl_JS.js&rdquo; where &ldquo;CustomControl_JS.js&rdquo; is the name of the javascript file. Basically, another shortcut to learn it is whatever is the name of the project/assembly that you are creating, you have to append that name before the file name. **Follow this logic strictly, otherwise you will be left high and dry. **
-
-<br />
-
-<br /></li>
-</ul></li>
-
-<li><p>You should also remember to register this name inside AssemblyInfo.cs class (&ldquo;ExtendedControls.CustomControl_JS.js&rdquo; as per our example here).</p></li>
-
-<li><p>If you want Visual Studio Design support then remember to add the attributes that define where can you see the custom properties of this control in the &ldquo;Properties&rdquo; pane.</p></li>
-
-<li><p>Whenever you are putting your code files inside some folder, try to keep the JS files in the root folder.</p>
-
+<li>If your control&rsquo;s namespace is ExtendedControls, then while &ldquo;Registering&rdquo; it in the control&rsquo;s class you should give the JS file&rsquo;s name as &ldquo;ExtendedControls.CustomControl_JS.js&rdquo; where &ldquo;CustomControl_JS.js&rdquo; is the name of the javascript file. Basically, another shortcut to learn it is whatever is the name of the project/assembly that you are creating, you have to append that name before the file name. **Follow this logic strictly, otherwise you will be left high and dry. **</li>
+</ul>
+</li>
+<li>
+<p>You should also remember to register this name inside AssemblyInfo.cs class (&ldquo;ExtendedControls.CustomControl_JS.js&rdquo; as per our example here).</p>
+</li>
+<li>
+<p>If you want Visual Studio Design support then remember to add the attributes that define where can you see the custom properties of this control in the &ldquo;Properties&rdquo; pane.</p>
+</li>
+<li>
+<p>Whenever you are putting your code files inside some folder, try to keep the JS files in the root folder.</p>
 <ul>
 <li>When I tried putting them inside the folder it did not work, i took them out to the root folder and it worked instantly. I have not tried changing the JS file names but I am sure you can figure out some solution.</li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <p><strong>Here&rsquo;s all the code in case somebody needs it:</strong></p>
+<script
+  src="https://gist.github.com/135e9bbf44f3d9a53cb8/.js"></script>
 
-<script type="text/javascript" src="http://gist.github.com/135e9bbf44f3d9a53cb8.js"></script>
-
-  </div>
-  <div id="disqus_thread"></div>
-</div>
-
-
-<script type="text/javascript">
-var disqus_shortname = "abhi1010";
-(function () {
-    var s = document.createElement('script'); s.async = true;
-    s.type = 'text/javascript';
-    s.src = '//' + disqus_shortname + '.disqus.com/count.js';
-    (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
-}());
-</script>
-
-
-
-<script type="text/javascript">
-    var disqus_shortname = "abhi1010";
+    </div>
+    <div class="post-footer">
+      <div id="disqus_thread"></div>
+<script>
+    window.disqus_config = function () {
+    
+    
+    
+    };
     (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "abhi1010" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
     })();
 </script>
-<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+  </article>
 
-
-</body>
+    </main>
+  </body>
 </html>
-

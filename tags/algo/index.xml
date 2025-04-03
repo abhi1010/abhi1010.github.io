@@ -1,136 +1,89 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Algo on Coders Digest</title>
     <link>http://abhipandey.com/tags/algo/</link>
     <description>Recent content in Algo on Coders Digest</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 09 Jun 2014 15:02:07 +0000</lastBuildDate>
-    
-	<atom:link href="http://abhipandey.com/tags/algo/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <atom:link href="http://abhipandey.com/tags/algo/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Partition Linked List around a Value X</title>
       <link>http://abhipandey.com/2014/06/partition-linked-list-around-a-value-x/</link>
       <pubDate>Mon, 09 Jun 2014 15:02:07 +0000</pubDate>
-      
       <guid>http://abhipandey.com/2014/06/partition-linked-list-around-a-value-x/</guid>
-      <description>How do you partition a list around a value x, such that all nodes less than x come before all nodes greater than or equal to x?
-Well, there are some solutions possible. The solution, I came up with, is a bit convoluted but let me tell the idea behind it. You want to track the following:
- Two pointers to remember the beginning of the lower and higher series each</description>
+      <description>&lt;p&gt;How do you partition a list around a value x, such that all nodes less than x come before all nodes greater than or equal to x?&lt;/p&gt;&#xA;&lt;p&gt;Well, there are some solutions possible. The solution, I came up with, is a bit convoluted but let me tell the idea behind it. You want to track the following:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;Two pointers to remember the beginning of the &lt;em&gt;lower&lt;/em&gt; and &lt;em&gt;higher&lt;/em&gt; series each&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Find the Kth to Last Element of a Singly Linked List</title>
       <link>http://abhipandey.com/2014/06/find-the-kth-to-last-element-of-a-singly-linked-list/</link>
       <pubDate>Sun, 08 Jun 2014 07:49:47 +0000</pubDate>
-      
       <guid>http://abhipandey.com/2014/06/find-the-kth-to-last-element-of-a-singly-linked-list/</guid>
-      <description>It is possible to a recursive solutions but I will use a simple runner logic. Recursive solutions are usually less optimal.
-Note here that, in our logic K=1 would return the last element in the linked list. Similarly, K=2 would return the second last element.
-The suggested solution here is to use two pointers:
- One pointer will first travel K items into the list Once that is done, both the pointers start travelling together, one item at a time They keep travelling until the end of linked list is found In that situation, the first pointer is at the end of the list, but the second pointer would have only reached till Kth element - this is what you want  Let&amp;rsquo;s have a look at the code:</description>
+      <description>&lt;p&gt;It is possible to a recursive solutions but I will use a simple runner logic. Recursive solutions are usually less optimal.&lt;/p&gt;&#xA;&lt;p&gt;Note here that, in our logic K=1 would return the last element in the linked list. Similarly, K=2 would return the second last element.&lt;/p&gt;&#xA;&lt;p&gt;The suggested solution here is to use two pointers:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;One pointer will first travel K items into the list&lt;/li&gt;&#xA;&lt;li&gt;Once that is done, both the pointers start travelling together, one item at a time&lt;/li&gt;&#xA;&lt;li&gt;They keep travelling until the end of linked list is found&lt;/li&gt;&#xA;&lt;li&gt;In that situation, the first pointer is at the end of the list, but the second pointer would have only reached till Kth element - this is what you want&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Let&amp;rsquo;s have a look at the code:&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Removing Duplicates from Linked List</title>
       <link>http://abhipandey.com/2014/06/removing-duplicates-from-linked-list/</link>
       <pubDate>Sat, 07 Jun 2014 16:50:12 +0000</pubDate>
-      
       <guid>http://abhipandey.com/2014/06/removing-duplicates-from-linked-list/</guid>
-      <description>Duplicates can be removed in many ways:
- Create a new Linked List containing only unique items
- Iterate through the Linked List and keep removing items that are being repeated
-  The internal structure itself for the algo can either be map or set based. When using map the Node itself can be saved thereby making your life easier if you are creating a new Linked List. However sets can be very useful if we are just iterating through the Linked List and simply deleting items that are being repetetive.</description>
+      <description>&lt;p&gt;Duplicates can be removed in many ways:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;Create a new Linked List containing only unique items&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;Iterate through the Linked List and keep removing items that are being repeated&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;The internal structure itself for the algo can either be map or set based. When using map the Node itself can be saved thereby making your life easier if you are creating a new Linked List. However sets can be very useful if we are just iterating through the Linked List and simply deleting items that are being repetetive. This is also a great spacesaver. Hence we decided to go down this path.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Deleting a Node from Singly Linked List</title>
       <link>http://abhipandey.com/2014/06/deleting-a-node-from-singly-linked-list/</link>
       <pubDate>Sat, 07 Jun 2014 10:49:17 +0000</pubDate>
-      
       <guid>http://abhipandey.com/2014/06/deleting-a-node-from-singly-linked-list/</guid>
-      <description>Deleting a Node from Singly Linked List is rather straight forward.
- You have to know the head first of all
- Start by checking the head if that&amp;rsquo;s the one you are looking for
- Keep moving forward and checking - always check for null pointers everywhere
-  Before we talk about the code, let&amp;rsquo;s see how Linked List is setup.  Now, below is the code for it&amp;hellip;.</description>
+      <description>&lt;p&gt;Deleting a Node from Singly Linked List is rather straight forward.&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;You have to know the head first of all&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;Start by checking the head if that&amp;rsquo;s the one you are looking for&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;Keep moving forward and checking - always check for null pointers everywhere&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Before we talk about the code, let&amp;rsquo;s see how Linked List is setup.&lt;/p&gt;&#xA;&lt;script&#xA;  src=&#34;https://gist.github.com/33be440bf1012773b7e1/.js&#34;&gt;&lt;/script&gt;&#xA;&lt;p&gt;Now, below is the code for it&amp;hellip;.&lt;/p&gt;&#xA;&lt;script&#xA;  src=&#34;https://gist.github.com/bf9dbb193b4ff84ba3af/.js&#34;&gt;&lt;/script&gt;&#xA;&lt;h3 id=&#34;code&#34;&gt;Code&lt;/h3&gt;&#xA;&lt;p&gt;As usual the code is available &lt;a href=&#34;https://github.com/abhi1010/Algorithms/blob/master/Algo_codes/Node.cpp&#34;&gt;here&lt;/a&gt;:&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Heap Sort vs Merge Sort vs Insertion Sort vs Radix Sort vs Counting Sort vs Quick Sort</title>
       <link>http://abhipandey.com/2014/03/heap-sort-vs-merge-sort-vs-insertion-sort-vs-radix-sort-vs-counting-sort-vs-quick-sort/</link>
       <pubDate>Wed, 19 Mar 2014 05:42:00 +0000</pubDate>
-      
       <guid>http://abhipandey.com/2014/03/heap-sort-vs-merge-sort-vs-insertion-sort-vs-radix-sort-vs-counting-sort-vs-quick-sort/</guid>
-      <description>I had written about sorting algorithms (Tag: Sorting) with details about what to look out for along with their code snippets but I wanted a do a quick comparison of all the algos together to see how do they perform when the same set of input is provided to them. Hence I started working on a simple implementation for each one of them. I have now put together all of them in a single project on GitHub.</description>
+      <description>&lt;p&gt;I had written about sorting algorithms (Tag: &lt;a href=&#34;http://codersdigest.wordpress.com/tag/sorting/&#34;&gt;Sorting&lt;/a&gt;) with details about what to look out for along with their code snippets but I wanted a do a quick comparison of all the algos together to see how do they perform when the same set of input is provided to them. Hence I started working on a simple implementation for each one of them. I have now put together all of them in a single project on GitHub. I ensured that they all have the same set of procedures during their run. Some of the items I wanted to ensure was:&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Heap Sort</title>
       <link>http://abhipandey.com/2012/10/heap-sort/</link>
       <pubDate>Wed, 17 Oct 2012 14:15:00 +0000</pubDate>
-      
       <guid>http://abhipandey.com/2012/10/heap-sort/</guid>
-      <description>Heap Sort algo has the following properties:
- The top element (root) is always the next in order
- This allows you to remove one element at a time (the root) and ensure that you are pulling out items in a sorted order
- Always takes O(n*log(n)) time - worst case or best case
-  Pros and cons to both   Simple implementations require additional space to hold heap of size n</description>
+      <description>&lt;p&gt;Heap Sort algo has the following properties:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;The top element (root) is always the next in order&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;This allows you to remove one element at a time (the root) and ensure that you are pulling out items in a sorted order&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;Always takes O(n*log(n)) time - worst case or best case&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;pre&gt;&lt;code&gt;* Pros and cons to both&#xA;&lt;/code&gt;&lt;/pre&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;Simple implementations require additional space to hold heap of size n&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;pre&gt;&lt;code&gt;* Hence space requirement is double of array size n&#xA;&#xA;&#xA;* Not included in big-O notation so something to keep in mind&#xA;&lt;/code&gt;&lt;/pre&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;Not a stable sort&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Merge Sort</title>
       <link>http://abhipandey.com/2012/10/merge-sort/</link>
       <pubDate>Sat, 06 Oct 2012 14:26:00 +0000</pubDate>
-      
       <guid>http://abhipandey.com/2012/10/merge-sort/</guid>
-      <description>Merge Sort
- Complexity is O(n log n) Needs more space to merge - proportional to the size of the array Stable Sort * Preserves the order of equal elements Merge Sort does about 39% lower comparisons, in worst case, compared to Quicksort&amp;rsquo;s average case The algo almost always behaves in the same way; taking relatively the same amount of time, whether sorted or unsorted arrays   Testing Notes  Started testing the algo with two versions.</description>
+      <description>&lt;p&gt;Merge Sort&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Complexity is O(n log n)&lt;/li&gt;&#xA;&lt;li&gt;Needs more space to merge - proportional to the size of the array&lt;/li&gt;&#xA;&lt;li&gt;Stable Sort&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;pre&gt;&lt;code&gt;* Preserves the order of equal elements&#xA;&lt;/code&gt;&lt;/pre&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;Merge Sort does about 39% lower comparisons, in worst case, compared to Quicksort&amp;rsquo;s average case&lt;/li&gt;&#xA;&lt;li&gt;The algo almost always behaves in the same way; taking relatively the same amount of time, whether sorted or unsorted arrays&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;testing-notes&#34;&gt;Testing Notes&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Started testing the algo with two versions.&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;pre&gt;&lt;code&gt;* First version creates two temporary arrays&#xA;&lt;/code&gt;&lt;/pre&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;First version creates only one temporary array&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;The sole difference between them is the one that makes second implementation better&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;code&#34;&gt;Code&lt;/h2&gt;&#xA;&lt;p&gt;As usual the &lt;a href=&#34;https://github.com/abhi1010/Algorithms/blob/master/Algo_codes/MergeSort.cpp&#34;&gt;code&lt;/a&gt; is available here:&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Quick Sort</title>
       <link>http://abhipandey.com/2012/09/quick-sort/</link>
       <pubDate>Sat, 22 Sep 2012 14:24:00 +0000</pubDate>
-      
       <guid>http://abhipandey.com/2012/09/quick-sort/</guid>
-      <description>Quick Sort is an efficient divide and conquer algorithm performed in two phases - partition and sorting phase.
-Here are few pointers to remember about Quick Sort:
- Partitioning places all the elements less than the pivot in the left part of the array and greater elements in the right part Pivot element stays in its place After partitioning no element moves to the other side, of the pivot * This allows you to sort the elements, to the left or right of the pivot, independent of the other side Complexity is O(n log n) Often fast for small arrays with a few distinct values, repeated many times It is a conquer-and-divide algo; with most of the work happening during partitioning phase If you had to choose the optimum pivot then it should the median of the given array Not a stable sort  Testing Notes  Currently we have only one version of the code.</description>
+      <description>&lt;p&gt;Quick Sort is an efficient divide and conquer algorithm performed in two phases - partition and sorting phase.&lt;/p&gt;&#xA;&lt;p&gt;Here are few pointers to remember about Quick Sort:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Partitioning places all the elements less than the pivot in the left part of the array and greater elements in the right part&lt;/li&gt;&#xA;&lt;li&gt;Pivot element stays in its place&lt;/li&gt;&#xA;&lt;li&gt;After partitioning no element moves to the other side, of the pivot&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;pre&gt;&lt;code&gt;* This allows you to sort the elements, to the left or right of the pivot, independent of the other side&#xA;&lt;/code&gt;&lt;/pre&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;Complexity is O(n log n)&lt;/li&gt;&#xA;&lt;li&gt;Often fast for small arrays with a few distinct values, repeated many times&lt;/li&gt;&#xA;&lt;li&gt;It is a conquer-and-divide algo; with most of the work happening during partitioning phase&lt;/li&gt;&#xA;&lt;li&gt;If you had to choose the optimum pivot then it should the median of the given array&lt;/li&gt;&#xA;&lt;li&gt;Not a stable sort&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;testing-notes&#34;&gt;Testing Notes&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Currently we have only one version of the code. We may try to do another version that is not recursive because putting the functions on stack will take up some memory and time&lt;/li&gt;&#xA;&lt;li&gt;Another version could be trying to use the pivot from the middle and then compare how do the random numbers compare against the sorted numbers&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;code&#34;&gt;Code&lt;/h2&gt;&#xA;&lt;p&gt;As usual the &lt;a href=&#34;https://github.com/abhi1010/Algorithms/blob/master/Algo_codes/QuickSort.cpp&#34;&gt;code&lt;/a&gt; is available here:&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Insertion Sort</title>
       <link>http://abhipandey.com/2012/09/insertion-sort/</link>
       <pubDate>Mon, 17 Sep 2012 16:00:00 +0000</pubDate>
-      
       <guid>http://abhipandey.com/2012/09/insertion-sort/</guid>
-      <description>Insertion Sort has the following properties:
- It works by moving elements one at a time Works really well for small data sets Consider going with this when the input data may already be sorted or partially sorted The may not have to move the elements around, thereby saving precious cycles Stable sort Keeps the original order of elements with equal values  Testing Notes  Had a very interesting time testing my code.</description>
+      <description>&lt;p&gt;Insertion Sort has the following properties:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;It works by moving elements one at a time&lt;/li&gt;&#xA;&lt;li&gt;Works really well for small data sets&lt;/li&gt;&#xA;&lt;li&gt;Consider going with this when the input data may already be sorted or partially sorted&lt;/li&gt;&#xA;&lt;li&gt;The may not have to move the elements around, thereby saving precious cycles&lt;/li&gt;&#xA;&lt;li&gt;Stable sort&lt;/li&gt;&#xA;&lt;li&gt;Keeps the original order of elements with equal values&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;testing-notes&#34;&gt;Testing Notes&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Had a very interesting time testing my code. I knew that swapping takes time. std::swap takes particularly longer. I disabled that from the beginning itself&lt;/li&gt;&#xA;&lt;li&gt;Even more interesting was how I thought of fixing my code which was running slowly&lt;/li&gt;&#xA;&lt;li&gt;Initially even running an array of size 1K was taking about 4s so I just made a minor change to remove &amp;ldquo;&amp;ndash; insertIndex ;&amp;rdquo; altogether and do the calculation in the previous line itself. That did the trick. Otherwise the code was taking hours and hours for 1M array size so I had to stop running it.&lt;/li&gt;&#xA;&lt;li&gt;I even tried improving the code a bit futher by ensuring that I do not call insertIndex-1 many a times but that didn&amp;rsquo;t really help - in fact made it worse again&lt;/li&gt;&#xA;&lt;li&gt;Sorted runs will run much faster because there&amp;rsquo;s no work to be done in those cases&lt;/li&gt;&#xA;&lt;li&gt;Would be a nice algo to use if your data is mostly sorted&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;code&#34;&gt;Code&lt;/h2&gt;&#xA;&lt;p&gt;As usual the &lt;a href=&#34;https://github.com/abhi1010/Algorithms/blob/master/Algo_codes/InsertionSort.cpp&#34;&gt;code&lt;/a&gt; is available here:&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Radix Sort</title>
       <link>http://abhipandey.com/2012/09/radix-sort/</link>
       <pubDate>Thu, 13 Sep 2012 10:37:00 +0000</pubDate>
-      
       <guid>http://abhipandey.com/2012/09/radix-sort/</guid>
-      <description>It is a non-comparative integer sorting algorithm. It sorts data by grouping keys by the individual digits which share the same significant position and value. Think Tens, Hundreds, Thousands etc. Some pointers about Radix Sort:
- Even though it is an integer sorting algorithm, it is not restricted just to integers. Integers can also represent strings of characters Two types of radix sort are:  LSD (Least Significant Digit): Short keys come before long keys MSD (Most Significant Digit) Sorting: Lexicographic Order.</description>
+      <description>&lt;p&gt;It is a non-comparative &lt;em&gt;integer&lt;/em&gt; sorting algorithm. It sorts data by grouping keys by the individual digits which share the same significant position and value. Think &lt;em&gt;Tens, Hundreds, Thousands&lt;/em&gt; etc. Some pointers about Radix Sort:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Even though it is an integer sorting algorithm, it is not restricted just to integers. Integers can also represent strings of characters&lt;/li&gt;&#xA;&lt;li&gt;Two types of radix sort are:&#xA;&lt;ul&gt;&#xA;&lt;li&gt;LSD (Least Significant Digit): Short keys come before long keys&lt;/li&gt;&#xA;&lt;li&gt;MSD (Most Significant Digit) Sorting: Lexicographic Order. Better for strings.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;Uses Counting Sort as Sub Routine (which takes extra memory)&#xA;&lt;ul&gt;&#xA;&lt;li&gt;If memory is not really a concern, forget about this issue&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;Radix Sort, with at most d digits, takes O(d*(n+b)) time where b is the base&lt;/li&gt;&#xA;&lt;li&gt;Use Radix Sort over Counting Sort when the numbers range from 1 to n-square for example.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;&lt;strong&gt;Numbers&lt;/strong&gt;&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Counting Sort</title>
       <link>http://abhipandey.com/2012/09/counting-sort/</link>
       <pubDate>Tue, 11 Sep 2012 10:03:00 +0000</pubDate>
-      
       <guid>http://abhipandey.com/2012/09/counting-sort/</guid>
-      <description>Counting Sort is an integer sorting algorithm. It is not very famous when somebody talks about sorting algorithms but it is great when sorting integers. In fact, many a times it may even beat other Sorting Algorithms. The highlight of Counting Sort is that it creates a bucket array (to keep track of frequency of numbers) whose size is the maximum element in the provided array.
-We are looking to compare most of the sorting algorithms to find out which one performs better under different circumstances.</description>
+      <description>&lt;p&gt;Counting Sort is an integer sorting algorithm. It is not very famous when somebody talks about sorting algorithms but it is great when sorting integers. In fact, many a times it may even beat other Sorting Algorithms. The highlight of Counting Sort is that it creates a bucket array (to keep track of frequency of numbers) whose size is the maximum element in the provided array.&lt;/p&gt;&#xA;&lt;p&gt;We are looking to compare most of the sorting algorithms to find out which one performs better under different circumstances. One of the ways is to compare the complexity for each algorithm. The other way is to compare how well they perform based on the input they are all provided. I will post my code on Github but will start with Counting Sort here.&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

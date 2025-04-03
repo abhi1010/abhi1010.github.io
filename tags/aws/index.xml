@@ -1,86 +1,61 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Aws on Coders Digest</title>
     <link>http://abhipandey.com/tags/aws/</link>
     <description>Recent content in Aws on Coders Digest</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 04 Nov 2015 07:49:00 +0000</lastBuildDate>
-    
-	<atom:link href="http://abhipandey.com/tags/aws/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <atom:link href="http://abhipandey.com/tags/aws/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Lambda Basics with Python using Github Webhooks or API Gateway</title>
       <link>http://abhipandey.com/2015/11/lambda-basics-with-python-using-github-webhooks-or-api-gateway/</link>
       <pubDate>Wed, 04 Nov 2015 07:49:00 +0000</pubDate>
-      
       <guid>http://abhipandey.com/2015/11/lambda-basics-with-python-using-github-webhooks-or-api-gateway/</guid>
-      <description>I recently needed to call a command whenever there was a push on my Github repo. Since this was related to AWS tasks, I figured aws lambda is a good candidate. Here I will talk about the steps I took to enable all of this using aws lambda, python. As a side note, I will also elaborate on using API gateway to call upon the lambda itself.
-In a nutshell, what I will talk about:</description>
+      <description>&lt;p&gt;I recently needed to call a command whenever there was a push on my Github repo.&#xA;Since this was related to AWS tasks, I figured &lt;code&gt;aws lambda&lt;/code&gt; is a good candidate.&#xA;Here I will talk about the steps I took to enable all of this using aws lambda, python.&#xA;As a side note, I will also elaborate on using API gateway to call upon the lambda itself.&lt;/p&gt;&#xA;&lt;p&gt;In a nutshell, what I will talk about:&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Setting up custom domain with Github Pages</title>
       <link>http://abhipandey.com/2015/10/setting-up-custom-domain-with-github-pages/</link>
       <pubDate>Sat, 24 Oct 2015 14:59:18 -0400</pubDate>
-      
       <guid>http://abhipandey.com/2015/10/setting-up-custom-domain-with-github-pages/</guid>
-      <description>Let&amp;rsquo;s take the example of my domain itself abhipandey.com that I want to serve from abhi1010.github.io. We will need to do it in two steps:
- Setup CNAME on github  So that github knows about your domain  Setup A record on AWS Route 53  So that domain can be registered   Change CNAME If we want to tell github about the domain name, it is rather simple: create a CNAME file with the content being the name of the domain itself Do note here that the default redirect of your domain will be the value in your CNAME file.</description>
+      <description>&lt;p&gt;Let&amp;rsquo;s take the example of my domain itself &lt;code&gt;abhipandey.com&lt;/code&gt; that I want to serve from &lt;code&gt;abhi1010.github.io&lt;/code&gt;.&#xA;We will need to do it in two steps:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Setup CNAME on github&#xA;&lt;ul&gt;&#xA;&lt;li&gt;So that github knows about your domain&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;Setup &lt;strong&gt;A&lt;/strong&gt; record on AWS Route 53&#xA;&lt;ul&gt;&#xA;&lt;li&gt;So that domain can be registered&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h1 id=&#34;change-cname&#34;&gt;Change CNAME&lt;/h1&gt;&#xA;&lt;p&gt;If we want to tell github about the domain name, it is rather simple: &lt;em&gt;create a CNAME file with the content being&#xA;the name of the domain itself&lt;/em&gt;&#xA;Do &lt;em&gt;note&lt;/em&gt; here that the default redirect of your domain will be the value in your CNAME file.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Forceful Docker Container cleanup on Elastic Beanstalk</title>
       <link>http://abhipandey.com/2015/10/forceful-docker-container-cleanup-on-elastic-beanstalk/</link>
       <pubDate>Wed, 07 Oct 2015 14:59:18 -0400</pubDate>
-      
       <guid>http://abhipandey.com/2015/10/forceful-docker-container-cleanup-on-elastic-beanstalk/</guid>
-      <description>Note: If you are not sure of what you are doing here, don&amp;rsquo;t touch it. This is all sensitive stuff and a minor mistake can bring down your production.
-Sometimes, because of so many deployments happening and sharing volumes between dockers instances, the space runs out on production server.
-I found some ways to fix this but the most brutal way to leave the orphaned directories behind forever is to remove them.</description>
+      <description>&lt;p&gt;&lt;em&gt;&lt;strong&gt;&lt;code&gt;Note&lt;/code&gt;&lt;/strong&gt;&lt;/em&gt;: &lt;em&gt;&lt;em&gt;If you are not sure of what you are doing here, don&amp;rsquo;t touch it.&#xA;This is all sensitive stuff and a minor mistake can bring down your production.&lt;/em&gt;&lt;/em&gt;&lt;/p&gt;&#xA;&lt;p&gt;Sometimes, because of so many deployments happening and sharing volumes between dockers instances, the space runs out on production server.&lt;/p&gt;&#xA;&lt;p&gt;I found some ways to fix this but the most brutal way to leave the orphaned directories behind forever is to remove them.&#xA;Such sadistic directories can be found at &lt;code&gt;/var/lib/docker/vfs/&lt;/code&gt;.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Automated Git Mirror With GitHub or Gitlab or Bitbucket</title>
       <link>http://abhipandey.com/2015/09/automated-git-mirror-with-github-or-gitlab-or-bitbucket/</link>
       <pubDate>Sun, 27 Sep 2015 13:30:10 +0800</pubDate>
-      
       <guid>http://abhipandey.com/2015/09/automated-git-mirror-with-github-or-gitlab-or-bitbucket/</guid>
-      <description>Experience with Gitlab CI   Git Mirror from Gitlab to Bitbucket using Gitlab CI
-  Had to move from BitBucket to Gitlab; which is really great, btw. However, there was one tiny issue here - Gitlab was not supported by Shippable. As you may know already Shippable is a hosted cloud platform that provides hosted continuous integration. We use it in our current setup to do a full testing and deployment onto AWS Elastic Beanstalk.</description>
+      <description>&lt;h1 id=&#34;experience-with-gitlab-ci&#34;&gt;Experience with Gitlab CI&lt;/h1&gt;&#xA;&lt;figure&gt;&lt;img src=&#34;http://abhipandey.com/images/git_mirror_with_gitlab__ci.png&#34;&#xA;    alt=&#34;Git Mirror from Gitlab to Bitbucket using Gitlab CI&#34;&gt;&lt;figcaption&gt;&#xA;      &lt;p&gt;Git Mirror from Gitlab to Bitbucket using Gitlab CI&lt;/p&gt;&#xA;    &lt;/figcaption&gt;&#xA;&lt;/figure&gt;&#xA;&#xA;&lt;p&gt;Had to move from &lt;code&gt;BitBucket&lt;/code&gt; to &lt;code&gt;Gitlab&lt;/code&gt;; which is really great, btw. However, there was one tiny issue here - &lt;code&gt;Gitlab&lt;/code&gt; was not supported by &lt;code&gt;Shippable&lt;/code&gt;.&#xA;As you may know already &lt;code&gt;Shippable&lt;/code&gt; is a hosted cloud platform that provides hosted continuous integration.&#xA;We use it in our current setup to do a full testing and deployment onto &lt;code&gt;AWS Elastic Beanstalk&lt;/code&gt;.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Elastic Beanstalk Deployment Automation</title>
       <link>http://abhipandey.com/2015/09/elastic-beanstalk-deployment-automation/</link>
       <pubDate>Fri, 04 Sep 2015 00:17:10 +0800</pubDate>
-      
       <guid>http://abhipandey.com/2015/09/elastic-beanstalk-deployment-automation/</guid>
-      <description>We are going to talk about a setup where all you need to do it commit your code and all the rest of the steps from unit tests to deployment can be taken care of by some externally hosted cloud platform that provides continuous integration. In my case, it is going to be Shippable that I am using as a sample but you can use almost anything like TravisCI or codeship, for example.</description>
+      <description>&lt;p&gt;We are going to talk about a setup where &lt;strong&gt;all you need to do it &lt;em&gt;commit&lt;/em&gt; your code and all the rest of the steps from unit tests to deployment can be taken care of by some externally hosted cloud platform that provides continuous integration.&lt;/strong&gt;&#xA;In my case, it is going to be &lt;code&gt;Shippable&lt;/code&gt; that I am using as a sample but you can use almost anything like &lt;code&gt;TravisCI&lt;/code&gt; or &lt;code&gt;codeship&lt;/code&gt;, for example.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Sharing folders on Beanstalk Docker</title>
       <link>http://abhipandey.com/2015/08/sharing-folders-on-beanstalk-docker/</link>
       <pubDate>Fri, 14 Aug 2015 00:19:51 +0800</pubDate>
-      
       <guid>http://abhipandey.com/2015/08/sharing-folders-on-beanstalk-docker/</guid>
-      <description>It is very easy to setup volume sharing in docker. You ideally want the following folders to be shared when a new docker is initialized for you:
- /var/log so that you can keep track of logs nginx specific folders because you will have two instances of nginx running - one on docker and another on EC2. This allows you to share logs  Also read this post for related info  your personal workspace or anything that you&amp;rsquo;d like to share  Here&amp;rsquo;s how you&amp;rsquo;d do it.</description>
+      <description>&lt;p&gt;It is very easy to setup volume sharing in &lt;code&gt;docker&lt;/code&gt;. You ideally want the following folders to be shared when a new &lt;code&gt;docker&lt;/code&gt; is initialized for you:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;code&gt;/var/log&lt;/code&gt; so that you can keep track of logs&lt;/li&gt;&#xA;&lt;li&gt;&lt;code&gt;nginx&lt;/code&gt; specific folders because you will have two instances of &lt;code&gt;nginx&lt;/code&gt; running - one on &lt;code&gt;docker&lt;/code&gt; and another on &lt;code&gt;EC2&lt;/code&gt;. This allows you to share logs&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Also read &lt;a href=&#34;http://abhipandey.com/2015/09/nginx-upload-limits-on-beanstalk-docker/&#34;&gt;this post&lt;/a&gt; for related info&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;your personal workspace or anything that you&amp;rsquo;d like to share&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Here&amp;rsquo;s how you&amp;rsquo;d do it. The keyword is &lt;code&gt;VOLUME&lt;/code&gt;&amp;hellip; in your &lt;code&gt;Dockerfile&lt;/code&gt;&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Docker Container cleanup on Elastic Beanstalk</title>
       <link>http://abhipandey.com/2015/08/docker-container-cleanup-on-elastic-beanstalk/</link>
       <pubDate>Fri, 07 Aug 2015 14:59:18 -0400</pubDate>
-      
       <guid>http://abhipandey.com/2015/08/docker-container-cleanup-on-elastic-beanstalk/</guid>
-      <description>Sometimes you may notice that old containers are not cleaned up from Beanstalk environment. This may be due to your container still running as a ghost on the background. One way to find out about this is to quickly look into your /var/lib/docker/vfs/dir directory whether it has too many folders.
-Next, find out what container processes you have going on. [root@ip dir]# docker ps -a
-You might see something like this:</description>
+      <description>&lt;p&gt;Sometimes you may notice that old containers are not cleaned up from Beanstalk environment. This may be due to your container still running as a ghost on the background. One way to find out about this is to quickly look into your&#xA;&lt;code&gt;/var/lib/docker/vfs/dir&lt;/code&gt; directory whether it has too many folders.&lt;/p&gt;&#xA;&lt;p&gt;Next, find out what container processes you have going on.&#xA;&lt;code&gt;[root@ip dir]# docker ps -a&lt;/code&gt;&lt;/p&gt;&#xA;&lt;p&gt;You might see something like this:&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

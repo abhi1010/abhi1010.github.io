@@ -1,25 +1,19 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Wiki on Coders Digest</title>
     <link>http://abhipandey.com/tags/wiki/</link>
     <description>Recent content in Wiki on Coders Digest</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 07 Aug 2015 14:59:18 -0400</lastBuildDate>
-    
-	<atom:link href="http://abhipandey.com/tags/wiki/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <atom:link href="http://abhipandey.com/tags/wiki/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Convert GitHub Wiki to Static Site with themes</title>
       <link>http://abhipandey.com/2015/08/convert-github-wiki-to-static-site-with-themes/</link>
       <pubDate>Fri, 07 Aug 2015 14:59:18 -0400</pubDate>
-      
       <guid>http://abhipandey.com/2015/08/convert-github-wiki-to-static-site-with-themes/</guid>
-      <description>I recently wanted to setup a wiki so that I could convert it into a static html site with a proper themes. What could be a possible use case for such a requirement:
- Manage the documentation of a product internally through git but publish it for clients/world through static site Convert the uncolored wiki to a themed version Allow serving of the wiki through web application frameworks like Django  It may allow you to have authentication system as a first step hurdle to stop everybody from giving access   Anyways, I went about the whole process and decided to jot down everything.</description>
+      <description>&lt;p&gt;I recently wanted to setup a wiki so that I could convert it into a static html site with a proper themes.&#xA;What could be a possible use case for such a requirement:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Manage the documentation of a product internally through &lt;code&gt;git&lt;/code&gt; but publish it for clients/world through static site&lt;/li&gt;&#xA;&lt;li&gt;Convert the uncolored wiki to a themed version&lt;/li&gt;&#xA;&lt;li&gt;Allow serving of the wiki through web application frameworks like &lt;code&gt;Django&lt;/code&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;It may allow you to have authentication system as a first step hurdle to stop everybody from giving access&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Anyways, I went about the whole process and decided to jot down everything. Here I am taking &lt;a href=&#34;https://github.com/mbostock/d3/wiki&#34;&gt;D3 Wiki&lt;/a&gt; as an example&#xA;which I will be converting into a static site. Let&amp;rsquo;s begin.&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

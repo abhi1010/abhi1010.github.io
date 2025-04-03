@@ -1,27 +1,19 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Django on Coders Digest</title>
     <link>http://abhipandey.com/tags/django/</link>
     <description>Recent content in Django on Coders Digest</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 04 Sep 2015 00:11:51 +0800</lastBuildDate>
-    
-	<atom:link href="http://abhipandey.com/tags/django/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <atom:link href="http://abhipandey.com/tags/django/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Updating Django Source with Docker Deployments</title>
       <link>http://abhipandey.com/2015/09/updating-django-source-with-docker-deployments/</link>
       <pubDate>Fri, 04 Sep 2015 00:11:51 +0800</pubDate>
-      
       <guid>http://abhipandey.com/2015/09/updating-django-source-with-docker-deployments/</guid>
-      <description>While deploying docker multiple times, you may not want to copy over your Django source code every time you do a deployment.
-Setting up supervisord Luckily there is an easy way to manage this. Since you are working with Django, there is a good chance that you are also managing the processes (like uwsgi) with supervisord.
-Here are some of the steps that you can take with supervisord
- Set up a new process in supervisord Do not allow it to autorestart since it will be a one-shot process Call another script in any format to update the source code  As an example, I use bash to update my source code through git   Here&amp;rsquo;s a sample code:</description>
+      <description>&lt;p&gt;While deploying docker multiple times, you may not want to copy over your &lt;code&gt;Django&lt;/code&gt; source code every time you do a deployment.&lt;/p&gt;&#xA;&lt;h1 id=&#34;setting-up-supervisord&#34;&gt;Setting up &lt;code&gt;supervisord&lt;/code&gt;&lt;/h1&gt;&#xA;&lt;p&gt;Luckily there is an easy way to manage this. Since you are working with &lt;code&gt;Django&lt;/code&gt;, there is a good chance that you are also managing the processes (like &lt;code&gt;uwsgi&lt;/code&gt;) with &lt;code&gt;supervisord&lt;/code&gt;.&lt;/p&gt;&#xA;&lt;p&gt;Here are some of the steps that you can take with &lt;code&gt;supervisord&lt;/code&gt;&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Set up a new process in &lt;code&gt;supervisord&lt;/code&gt;&lt;/li&gt;&#xA;&lt;li&gt;Do not allow it to &lt;em&gt;&lt;code&gt;autorestart&lt;/code&gt;&lt;/em&gt; since it will be a one-shot process&lt;/li&gt;&#xA;&lt;li&gt;Call another script in any format to update the source code&#xA;&lt;ul&gt;&#xA;&lt;li&gt;As an example, I use &lt;code&gt;bash&lt;/code&gt; to update my source code through &lt;code&gt;git&lt;/code&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Here&amp;rsquo;s a sample code:&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

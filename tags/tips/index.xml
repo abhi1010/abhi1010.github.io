@@ -1,56 +1,40 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tips on Coders Digest</title>
     <link>http://abhipandey.com/tags/tips/</link>
     <description>Recent content in Tips on Coders Digest</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 13 Nov 2016 00:33:29 +0800</lastBuildDate>
-    
-	<atom:link href="http://abhipandey.com/tags/tips/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <atom:link href="http://abhipandey.com/tags/tips/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Adding launcher shortcut in Fedora</title>
       <link>http://abhipandey.com/2016/11/adding-launcher-shortcut-in-fedora/</link>
       <pubDate>Sun, 13 Nov 2016 00:33:29 +0800</pubDate>
-      
       <guid>http://abhipandey.com/2016/11/adding-launcher-shortcut-in-fedora/</guid>
-      <description>Many apps do not come pre-built in rpm format for Fedora so you&amp;rsquo;d have to download the tar file for it. To run the app, you would have to go to the saved folder and then either double cilck or run the command through command line. By default, that app won&amp;rsquo;t be accessible through the Super key&amp;rsquo;s universal search or as a regular application in *Show Applications.
-Fortunately, there&amp;rsquo;s a way around and it is an easy one.</description>
+      <description>&lt;p&gt;Many apps do not come pre-built in rpm format for Fedora so you&amp;rsquo;d have to download the &lt;strong&gt;tar&lt;/strong&gt; file for it.&#xA;To run the app, you would have to go to the saved folder and then either double cilck or run the command through&#xA;command line. By default, that app won&amp;rsquo;t be accessible through the &lt;code&gt;Super&lt;/code&gt; key&amp;rsquo;s universal search or&#xA;as a regular application in *&lt;strong&gt;Show Applications&lt;/strong&gt;.&lt;/p&gt;&#xA;&lt;p&gt;Fortunately, there&amp;rsquo;s a way around and it is an easy one.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Running invoke from other folders</title>
       <link>http://abhipandey.com/2016/11/running-invoke-from-other-folders/</link>
       <pubDate>Sun, 13 Nov 2016 00:33:29 +0800</pubDate>
-      
       <guid>http://abhipandey.com/2016/11/running-invoke-from-other-folders/</guid>
-      <description>While working on big projects, sometimes, you have invoke tasks lying around in different places. It wouldn&amp;rsquo;t make sense to merge them together but rather help each other out as and when needed.
-One such way for this would be to search for invoke tasks from other folders and run them directly when they can be used.
-I had to go for this approach for a monolithic repo where multiple projects were being built in mostly similar style with minor modifications.</description>
+      <description>&lt;p&gt;While working on big projects, sometimes, you have &lt;code&gt;invoke&lt;/code&gt; tasks lying around&#xA;in different places. It wouldn&amp;rsquo;t make sense to merge them together&#xA;but rather help each other out as and when needed.&lt;/p&gt;&#xA;&lt;p&gt;One such way for this would be to search for invoke tasks from other folders&#xA;and run them directly when they can be used.&lt;/p&gt;&#xA;&lt;p&gt;I had to go for this approach for a monolithic repo where multiple projects&#xA;were being built in mostly similar style with minor modifications.&#xA;All of them would have the same set of commands along with same style of running those commands.&#xA;I didn&amp;rsquo;t want to set up the same &lt;code&gt;invoke&lt;/code&gt; task for all individual projects but rather&#xA;a common set of tasks that could be re-used by each one of them.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Using TODO in Fedora</title>
       <link>http://abhipandey.com/2016/06/using-todo-in-fedora/</link>
       <pubDate>Wed, 22 Jun 2016 21:17:56 +0800</pubDate>
-      
       <guid>http://abhipandey.com/2016/06/using-todo-in-fedora/</guid>
-      <description>I recently started using Fedora for work and had to manage a lot of tasks on various projects. The list was big enough and there&amp;rsquo;s no proper support for Evernote in linux, my trusty todo list manager or ToDo list manager by AbstractSpoon. Decided to try post-it notes but my list was changing on an ad-hoc basis. Finally came across an extension Todo.txt.
-Turned out this was just what I was looking for.</description>
+      <description>&lt;p&gt;I recently started using Fedora for work and had to manage a lot of tasks on various projects.&#xA;The list was big enough and there&amp;rsquo;s no proper support for Evernote in linux, my trusty todo list manager&#xA;or ToDo list manager by AbstractSpoon. Decided to try post-it notes but my list was changing on an&#xA;ad-hoc basis. Finally came across an &lt;a href=&#34;https://extensions.gnome.org/extension/570/todotxt/&#34;&gt;extension Todo.txt&lt;/a&gt;.&lt;/p&gt;&#xA;&lt;p&gt;Turned out this was just what I was looking for. I started putting all of my tasks in it, with proper categorization.&#xA;Behind the scenes it is an extremely simple app which has only two files, both saved in &lt;code&gt;~/.local/share/todo.txt/&lt;/code&gt; folder.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Setting up your VIM... Your style</title>
       <link>http://abhipandey.com/2014/05/setting-up-your-vim...-your-style/</link>
       <pubDate>Mon, 19 May 2014 15:51:51 +0000</pubDate>
-      
       <guid>http://abhipandey.com/2014/05/setting-up-your-vim...-your-style/</guid>
-      <description>Writing code using VIM can be a bit overwhelming but it helps creating a few shortcuts there to make your life easier. Here I will discuss a few.
- First of all, it is always a good idea to set up your tabs and spaces Set up shortcuts for:  Toggling of Auto-Indent while pasting source text; very useful in code (F2 in my provided script) Toggling of Auto-Scroll of Split windows (F3 in my provided script) Macro for Folding functions within the source code (@q in my provided script) Smart case search - based on whether the input is in caps or not Toggling of Mouse Usage in VIM window - to allow quick selection of text (F12 in my provided script)   Please see the provided script below to have a look.</description>
+      <description>&lt;p&gt;Writing code using VIM can be a bit overwhelming but it helps creating a few shortcuts there to make your life easier. Here I will discuss a few.&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;First of all, it is always a good idea to set up your tabs and spaces&lt;/li&gt;&#xA;&lt;li&gt;Set up shortcuts for:&lt;/li&gt;&#xA;&lt;li&gt;&lt;code&gt;Toggling of Auto-Indent&lt;/code&gt; while pasting source text; very useful in code (&lt;em&gt;F2&lt;/em&gt; in my provided script)&lt;/li&gt;&#xA;&lt;li&gt;&lt;code&gt;Toggling of Auto-Scroll&lt;/code&gt; of Split windows (&lt;em&gt;F3&lt;/em&gt; in my provided script)&lt;/li&gt;&#xA;&lt;li&gt;&lt;code&gt;Macro for Folding functions&lt;/code&gt; within the source code (&lt;em&gt;&lt;em&gt;@q&lt;/em&gt;&lt;/em&gt; in my provided script)&lt;/li&gt;&#xA;&lt;li&gt;&lt;code&gt;Smart case search&lt;/code&gt; - based on whether the input is in caps or not&lt;/li&gt;&#xA;&lt;li&gt;&lt;code&gt;Toggling of Mouse Usage&lt;/code&gt; in VIM window - to allow quick selection of text (&lt;em&gt;F12&lt;/em&gt; in my provided script)&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Please see the provided script below to have a look.&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

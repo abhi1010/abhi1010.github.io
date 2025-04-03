@@ -1,27 +1,19 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Zsh on Coders Digest</title>
     <link>http://abhipandey.com/tags/zsh/</link>
     <description>Recent content in Zsh on Coders Digest</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 28 Sep 2015 08:46:09 +0800</lastBuildDate>
-    
-	<atom:link href="http://abhipandey.com/tags/zsh/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <atom:link href="http://abhipandey.com/tags/zsh/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Powerline for zsh</title>
       <link>http://abhipandey.com/2015/09/powerline-for-zsh/</link>
       <pubDate>Mon, 28 Sep 2015 08:46:09 +0800</pubDate>
-      
       <guid>http://abhipandey.com/2015/09/powerline-for-zsh/</guid>
-      <description>Powerline
-  I was having a lot of trouble getting powerline to work on my mac machine. No matter what I tried, I was getting errors like the following:
-.oh-my-zsh/themes/powerline.zsh-theme:100: character not in range Finally got it to work after multiple attempts on bash and zsh.
-All I had to do was set LC_ALL to en_US.UTF-8. It would set all the locales to en_US.UTF-8 which would allow powerline fonts work properly.</description>
+      <description>&lt;figure&gt;&lt;img src=&#34;http://abhipandey.com/images/powerline-for-zsh.png&#34;&#xA;    alt=&#34;Powerline&#34;&gt;&lt;figcaption&gt;&#xA;      &lt;p&gt;Powerline&lt;/p&gt;&#xA;    &lt;/figcaption&gt;&#xA;&lt;/figure&gt;&#xA;&#xA;&lt;p&gt;I was having a lot of trouble getting &lt;a href=&#34;https://github.com/carlcarl/powerline-zsh&#34;&gt;&lt;em&gt;powerline&lt;/em&gt;&lt;/a&gt; to work on my mac machine.&#xA;No matter what I tried, I was getting errors like the following:&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-console&#34; data-lang=&#34;console&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    .oh-my-zsh/themes/powerline.zsh-theme:100: character not in range&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&#xA;&lt;p&gt;Finally got it to work after multiple attempts on &lt;code&gt;bash&lt;/code&gt; and &lt;code&gt;zsh&lt;/code&gt;.&lt;/p&gt;&#xA;&lt;p&gt;All I had to do was set &lt;code&gt;LC_ALL&lt;/code&gt; to &lt;strong&gt;en_US.UTF-8&lt;/strong&gt;. It would set all the locales to &lt;code&gt;en_US.UTF-8&lt;/code&gt; which&#xA;would allow &lt;code&gt;powerline&lt;/code&gt; fonts work properly.&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

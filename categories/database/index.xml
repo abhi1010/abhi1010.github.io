@@ -1,54 +1,33 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Database on Coders Digest</title>
     <link>http://abhipandey.com/categories/database/</link>
     <description>Recent content in Database on Coders Digest</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 22 Sep 2013 08:48:00 +0000</lastBuildDate>
-    
-	<atom:link href="http://abhipandey.com/categories/database/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <atom:link href="http://abhipandey.com/categories/database/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Oracle SQL Queries</title>
       <link>http://abhipandey.com/2013/09/oracle-sql-queries/</link>
       <pubDate>Sun, 22 Sep 2013 08:48:00 +0000</pubDate>
-      
       <guid>http://abhipandey.com/2013/09/oracle-sql-queries/</guid>
-      <description>Recently I found myself in a situation where I had to view all the tables in the Oracle Server.
-I did some digging and came up with these helpful queries.
-   Query Remarks     Select * from All_Tables View all the tables in the Oracle Server   Select * from all_Views View all the views in the Oracle Server   DESC table View all the columns of a given table.</description>
+      <description>&lt;p&gt;Recently I found myself in a situation where I had to view all the tables in the Oracle Server.&lt;/p&gt;&#xA;&lt;p&gt;I did some digging and came up with these helpful queries.&lt;/p&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th&gt;Query&lt;/th&gt;&#xA;          &lt;th&gt;Remarks&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Select * from All_Tables&lt;/td&gt;&#xA;          &lt;td&gt;View all the tables in the Oracle Server&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Select * from all_Views&lt;/td&gt;&#xA;          &lt;td&gt;View all the views in the Oracle Server&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;DESC table&lt;/td&gt;&#xA;          &lt;td&gt;View all the columns of a given table. This function is used instead of the previous one mostly, but when this one doesn&amp;rsquo;t work make sure you try the other one - I bet it will work.&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;p&gt;Here&amp;rsquo;s a short code for viewing all the columns of a given table.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Talk to my... Flash?</title>
       <link>http://abhipandey.com/2008/03/talk-to-my...-flash/</link>
       <pubDate>Mon, 03 Mar 2008 04:58:00 +0000</pubDate>
-      
       <guid>http://abhipandey.com/2008/03/talk-to-my...-flash/</guid>
-      <description>According to normal acceptable behaviour it is not possible to let flash talk to the computer, be it on desktop or web browser.
-There are always ways around a problem and there&amp;rsquo;s one in this case as well.
-Windows Forms
-If you wanted to access .net functions on windows form then probably a good way to do that would be through ShockWaveFlashObjects library. It wraps all the functions that are available in ShockWave Objects and makes them available to you in .</description>
+      <description>&lt;p&gt;According to normal acceptable behaviour it is not possible to let flash talk to the computer, be it on desktop or web browser.&lt;/p&gt;&#xA;&lt;p&gt;There are always ways around a problem and there&amp;rsquo;s one in this case as well.&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;Windows Forms&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;p&gt;If you wanted to access .net functions on windows form then probably a good way to do that would be through &lt;code&gt;ShockWaveFlashObjects&lt;/code&gt; library. It wraps all the functions that are available in ShockWave Objects and makes them available to you in .Net type safe way.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Membership and Profiler in ASP.NET</title>
       <link>http://abhipandey.com/2008/02/membership-and-profiler-in-asp.net/</link>
       <pubDate>Wed, 06 Feb 2008 19:34:00 +0000</pubDate>
-      
       <guid>http://abhipandey.com/2008/02/membership-and-profiler-in-asp.net/</guid>
-      <description>Whenever you are using Sql Membership and Profiler classes - Trying to generate reports make sure your query&amp;rsquo;s WHERE clause is using &amp;ldquo;indexed&amp;rdquo; column names at least.
-Let&amp;rsquo;s look at some of the more used tables. The index of some of the tables is given below:
-Table: aspnet_membership
- Clustered Index = ApplicationID, LoweredEmail
- NonClustered = UserID
-  Table: aspnet_users
- Clustered Index = ApplicationID, LoweredUserName
- NonClustered Index = ApplicationID, LastActivityDate</description>
+      <description>&lt;p&gt;Whenever you are using Sql Membership and Profiler classes -&#xA;Trying to generate reports make sure your query&amp;rsquo;s WHERE clause is using &amp;ldquo;indexed&amp;rdquo; column names at least.&lt;/p&gt;&#xA;&lt;p&gt;Let&amp;rsquo;s look at some of the more used tables. The index of some of the tables is given below:&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;Table: aspnet_membership&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;Clustered Index = &lt;code&gt;ApplicationID&lt;/code&gt;, &lt;code&gt;LoweredEmail&lt;/code&gt;&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;NonClustered = UserID&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;&lt;strong&gt;Table: aspnet_users&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;Clustered Index = &lt;code&gt;ApplicationID&lt;/code&gt;, &lt;code&gt;LoweredUserName&lt;/code&gt;&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;NonClustered Index = &lt;code&gt;ApplicationID&lt;/code&gt;, &lt;code&gt;LastActivityDate&lt;/code&gt;&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;Primary Key = &lt;code&gt;UserID &lt;/code&gt;&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

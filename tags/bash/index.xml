@@ -1,142 +1,96 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Bash on Coders Digest</title>
     <link>http://abhipandey.com/tags/bash/</link>
     <description>Recent content in Bash on Coders Digest</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 13 Nov 2016 00:33:29 +0800</lastBuildDate>
-    
-	<atom:link href="http://abhipandey.com/tags/bash/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <atom:link href="http://abhipandey.com/tags/bash/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Adding launcher shortcut in Fedora</title>
       <link>http://abhipandey.com/2016/11/adding-launcher-shortcut-in-fedora/</link>
       <pubDate>Sun, 13 Nov 2016 00:33:29 +0800</pubDate>
-      
       <guid>http://abhipandey.com/2016/11/adding-launcher-shortcut-in-fedora/</guid>
-      <description>Many apps do not come pre-built in rpm format for Fedora so you&amp;rsquo;d have to download the tar file for it. To run the app, you would have to go to the saved folder and then either double cilck or run the command through command line. By default, that app won&amp;rsquo;t be accessible through the Super key&amp;rsquo;s universal search or as a regular application in *Show Applications.
-Fortunately, there&amp;rsquo;s a way around and it is an easy one.</description>
+      <description>&lt;p&gt;Many apps do not come pre-built in rpm format for Fedora so you&amp;rsquo;d have to download the &lt;strong&gt;tar&lt;/strong&gt; file for it.&#xA;To run the app, you would have to go to the saved folder and then either double cilck or run the command through&#xA;command line. By default, that app won&amp;rsquo;t be accessible through the &lt;code&gt;Super&lt;/code&gt; key&amp;rsquo;s universal search or&#xA;as a regular application in *&lt;strong&gt;Show Applications&lt;/strong&gt;.&lt;/p&gt;&#xA;&lt;p&gt;Fortunately, there&amp;rsquo;s a way around and it is an easy one.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Systemd tutorial</title>
       <link>http://abhipandey.com/2016/07/systemd-tutorial/</link>
       <pubDate>Thu, 07 Jul 2016 23:26:44 +0800</pubDate>
-      
       <guid>http://abhipandey.com/2016/07/systemd-tutorial/</guid>
-      <description>Systemd usually requires two files:
- service file timer file  Service files Here you provide the details you&amp;rsquo;d use to
- Start/stop a service Define the type of service  Can be simple, forking, oneshot, dbus, notify or idle  How to kill the service Ability to restart Path for starting up Timeout for the service startup or shutdown  Service is usually made up of 3 sections:</description>
+      <description>&lt;p&gt;&lt;code&gt;Systemd&lt;/code&gt; usually requires two files:&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;service file&lt;/li&gt;&#xA;&lt;li&gt;timer file&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;h2 id=&#34;service-files&#34;&gt;Service files&lt;/h2&gt;&#xA;&lt;p&gt;Here you provide the details you&amp;rsquo;d use to&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Start/stop a service&lt;/li&gt;&#xA;&lt;li&gt;Define the type of service&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Can be &lt;em&gt;simple&lt;/em&gt;, &lt;em&gt;forking&lt;/em&gt;, &lt;em&gt;oneshot&lt;/em&gt;, &lt;em&gt;dbus&lt;/em&gt;, &lt;em&gt;notify&lt;/em&gt; or &lt;em&gt;idle&lt;/em&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;How to kill the service&lt;/li&gt;&#xA;&lt;li&gt;Ability to restart&lt;/li&gt;&#xA;&lt;li&gt;Path for starting up&lt;/li&gt;&#xA;&lt;li&gt;Timeout for the service startup or shutdown&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Service is usually made up of 3 sections:&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Unit&lt;/li&gt;&#xA;&lt;li&gt;Service&lt;/li&gt;&#xA;&lt;li&gt;Install&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Usually prefer &lt;code&gt;multi-user.target&lt;/code&gt; for your installation&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;One example is as follows:&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Using TODO in Fedora</title>
       <link>http://abhipandey.com/2016/06/using-todo-in-fedora/</link>
       <pubDate>Wed, 22 Jun 2016 21:17:56 +0800</pubDate>
-      
       <guid>http://abhipandey.com/2016/06/using-todo-in-fedora/</guid>
-      <description>I recently started using Fedora for work and had to manage a lot of tasks on various projects. The list was big enough and there&amp;rsquo;s no proper support for Evernote in linux, my trusty todo list manager or ToDo list manager by AbstractSpoon. Decided to try post-it notes but my list was changing on an ad-hoc basis. Finally came across an extension Todo.txt.
-Turned out this was just what I was looking for.</description>
+      <description>&lt;p&gt;I recently started using Fedora for work and had to manage a lot of tasks on various projects.&#xA;The list was big enough and there&amp;rsquo;s no proper support for Evernote in linux, my trusty todo list manager&#xA;or ToDo list manager by AbstractSpoon. Decided to try post-it notes but my list was changing on an&#xA;ad-hoc basis. Finally came across an &lt;a href=&#34;https://extensions.gnome.org/extension/570/todotxt/&#34;&gt;extension Todo.txt&lt;/a&gt;.&lt;/p&gt;&#xA;&lt;p&gt;Turned out this was just what I was looking for. I started putting all of my tasks in it, with proper categorization.&#xA;Behind the scenes it is an extremely simple app which has only two files, both saved in &lt;code&gt;~/.local/share/todo.txt/&lt;/code&gt; folder.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>getopt vs getopts</title>
       <link>http://abhipandey.com/2016/03/getopt-vs-getopts/</link>
       <pubDate>Fri, 18 Mar 2016 20:20:21 +0800</pubDate>
-      
       <guid>http://abhipandey.com/2016/03/getopt-vs-getopts/</guid>
-      <description>Should you use getopt or getopts in your bash scripts?
-The answer can be a bit tricky but mostly straight forward.
-getopt Generally, try to stay away from getopt for the following reasons:
- External utility Traditional versions can&amp;rsquo;t handle empty argument strings, or arguments with embedded whitespace For the loops to work perfectly, you must provide the values in the same sequence as the for loop itself; which is very hard to control Mostly a way to standardize the parameters  The only time I could think of using getopt is when I really want to use a long variable name and there&amp;rsquo;s just a single one.</description>
+      <description>&lt;p&gt;Should you use &lt;code&gt;getopt&lt;/code&gt; or &lt;code&gt;getopts&lt;/code&gt; in your bash scripts?&lt;/p&gt;&#xA;&lt;p&gt;The answer can be a bit tricky but mostly straight forward.&lt;/p&gt;&#xA;&lt;h2 id=&#34;getopt&#34;&gt;getopt&lt;/h2&gt;&#xA;&lt;p&gt;Generally, try to stay away from &lt;strong&gt;getopt&lt;/strong&gt; for the following reasons:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;External utility&lt;/li&gt;&#xA;&lt;li&gt;Traditional versions can&amp;rsquo;t handle empty argument strings, or arguments with embedded whitespace&lt;/li&gt;&#xA;&lt;li&gt;For the loops to work perfectly, you must provide the values in the same sequence as the for loop itself; which is&#xA;very hard to control&lt;/li&gt;&#xA;&lt;li&gt;Mostly a way to standardize the parameters&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;The only time I could think of using &lt;em&gt;getopt&lt;/em&gt; is when I really want to use a long variable name and there&amp;rsquo;s just a single one.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Color your process listings</title>
       <link>http://abhipandey.com/2016/02/color-your-process-listings/</link>
       <pubDate>Tue, 09 Feb 2016 17:00:59 +0800</pubDate>
-      
       <guid>http://abhipandey.com/2016/02/color-your-process-listings/</guid>
-      <description>Many a times I am grepping for a process that is running on a prod server with lots of different configuration parameters. However, since there are so many of them, it is very difficult to view a particular parameter itself and find out what value was assigned to it. I wanted to make it easier on the eyes and decided to color code the parameters and separate them out from the values.</description>
+      <description>&lt;p&gt;Many a times I am grepping for a process that is running on a prod server with lots of different configuration&#xA;parameters. However, since there are so many of them, it is very difficult to view a particular parameter itself&#xA;and find out what value was assigned to it. I wanted to make it easier on the eyes and decided to color code the&#xA;parameters and separate them out from the values.&#xA;Here&amp;rsquo;s the bash function I pulled out.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Powerline for zsh</title>
       <link>http://abhipandey.com/2015/09/powerline-for-zsh/</link>
       <pubDate>Mon, 28 Sep 2015 08:46:09 +0800</pubDate>
-      
       <guid>http://abhipandey.com/2015/09/powerline-for-zsh/</guid>
-      <description>Powerline
-  I was having a lot of trouble getting powerline to work on my mac machine. No matter what I tried, I was getting errors like the following:
-.oh-my-zsh/themes/powerline.zsh-theme:100: character not in range Finally got it to work after multiple attempts on bash and zsh.
-All I had to do was set LC_ALL to en_US.UTF-8. It would set all the locales to en_US.UTF-8 which would allow powerline fonts work properly.</description>
+      <description>&lt;figure&gt;&lt;img src=&#34;http://abhipandey.com/images/powerline-for-zsh.png&#34;&#xA;    alt=&#34;Powerline&#34;&gt;&lt;figcaption&gt;&#xA;      &lt;p&gt;Powerline&lt;/p&gt;&#xA;    &lt;/figcaption&gt;&#xA;&lt;/figure&gt;&#xA;&#xA;&lt;p&gt;I was having a lot of trouble getting &lt;a href=&#34;https://github.com/carlcarl/powerline-zsh&#34;&gt;&lt;em&gt;powerline&lt;/em&gt;&lt;/a&gt; to work on my mac machine.&#xA;No matter what I tried, I was getting errors like the following:&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-console&#34; data-lang=&#34;console&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    .oh-my-zsh/themes/powerline.zsh-theme:100: character not in range&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&#xA;&lt;p&gt;Finally got it to work after multiple attempts on &lt;code&gt;bash&lt;/code&gt; and &lt;code&gt;zsh&lt;/code&gt;.&lt;/p&gt;&#xA;&lt;p&gt;All I had to do was set &lt;code&gt;LC_ALL&lt;/code&gt; to &lt;strong&gt;en_US.UTF-8&lt;/strong&gt;. It would set all the locales to &lt;code&gt;en_US.UTF-8&lt;/code&gt; which&#xA;would allow &lt;code&gt;powerline&lt;/code&gt; fonts work properly.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Git LOC Stats by Time Range</title>
       <link>http://abhipandey.com/2015/09/git-loc-stats-by-time-range/</link>
       <pubDate>Thu, 17 Sep 2015 11:06:06 +0800</pubDate>
-      
       <guid>http://abhipandey.com/2015/09/git-loc-stats-by-time-range/</guid>
-      <description>Recently had an interest in seeing how many LOC were committed to the code base over a particular period of time. After some tinkering around, mainly to find out the correct format for time ranges, decided to use the following bash script for finding coding stats. Following sample is to find out lines added or removed during the year 2014.
-$ git log --after=&amp;#34;2014-1-1&amp;#34; --before=&amp;#34;2014-12-31&amp;#34; --pretty=tformat: --numstat | awk &amp;#39;{ if ( $2 !</description>
+      <description>&lt;p&gt;Recently had an interest in seeing how many LOC were committed to the code base over a particular period of&#xA;time. After some tinkering around, mainly to find out the correct format for time ranges, decided to use the following bash script for finding coding stats.&#xA;Following sample is to find out lines added or removed during the year 2014.&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;$ git log --after&lt;span style=&#34;color:#000&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#c41a16&#34;&gt;&amp;#34;2014-1-1&amp;#34;&lt;/span&gt; --before&lt;span style=&#34;color:#000&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#c41a16&#34;&gt;&amp;#34;2014-12-31&amp;#34;&lt;/span&gt; --pretty&lt;span style=&#34;color:#000&#34;&gt;=&lt;/span&gt;tformat: --numstat &#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    | awk &lt;span style=&#34;color:#c41a16&#34;&gt;&amp;#39;{ if ( $2 != 0 &amp;amp;&amp;amp; $1 != 0 ) print $0 }&amp;#39;&lt;/span&gt; &#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    | gawk &lt;span style=&#34;color:#c41a16&#34;&gt;&amp;#39;{ add += $1; subs += $2; loc += $1 - $2 } END { printf &amp;#34;Added lines: %s Removed lines: %s Total # of lines: %s\n&amp;#34;, add, subs, loc }&amp;#39;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&#xA;&lt;p&gt;The result will be as follows:&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Setting up your VIM... Your style</title>
       <link>http://abhipandey.com/2014/05/setting-up-your-vim...-your-style/</link>
       <pubDate>Mon, 19 May 2014 15:51:51 +0000</pubDate>
-      
       <guid>http://abhipandey.com/2014/05/setting-up-your-vim...-your-style/</guid>
-      <description>Writing code using VIM can be a bit overwhelming but it helps creating a few shortcuts there to make your life easier. Here I will discuss a few.
- First of all, it is always a good idea to set up your tabs and spaces Set up shortcuts for:  Toggling of Auto-Indent while pasting source text; very useful in code (F2 in my provided script) Toggling of Auto-Scroll of Split windows (F3 in my provided script) Macro for Folding functions within the source code (@q in my provided script) Smart case search - based on whether the input is in caps or not Toggling of Mouse Usage in VIM window - to allow quick selection of text (F12 in my provided script)   Please see the provided script below to have a look.</description>
+      <description>&lt;p&gt;Writing code using VIM can be a bit overwhelming but it helps creating a few shortcuts there to make your life easier. Here I will discuss a few.&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;First of all, it is always a good idea to set up your tabs and spaces&lt;/li&gt;&#xA;&lt;li&gt;Set up shortcuts for:&lt;/li&gt;&#xA;&lt;li&gt;&lt;code&gt;Toggling of Auto-Indent&lt;/code&gt; while pasting source text; very useful in code (&lt;em&gt;F2&lt;/em&gt; in my provided script)&lt;/li&gt;&#xA;&lt;li&gt;&lt;code&gt;Toggling of Auto-Scroll&lt;/code&gt; of Split windows (&lt;em&gt;F3&lt;/em&gt; in my provided script)&lt;/li&gt;&#xA;&lt;li&gt;&lt;code&gt;Macro for Folding functions&lt;/code&gt; within the source code (&lt;em&gt;&lt;em&gt;@q&lt;/em&gt;&lt;/em&gt; in my provided script)&lt;/li&gt;&#xA;&lt;li&gt;&lt;code&gt;Smart case search&lt;/code&gt; - based on whether the input is in caps or not&lt;/li&gt;&#xA;&lt;li&gt;&lt;code&gt;Toggling of Mouse Usage&lt;/code&gt; in VIM window - to allow quick selection of text (&lt;em&gt;F12&lt;/em&gt; in my provided script)&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Please see the provided script below to have a look.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Getting a group of lines from a file</title>
       <link>http://abhipandey.com/2014/05/getting-a-group-of-lines-from-a-file/</link>
       <pubDate>Mon, 19 May 2014 09:45:57 +0000</pubDate>
-      
       <guid>http://abhipandey.com/2014/05/getting-a-group-of-lines-from-a-file/</guid>
-      <description>I&amp;rsquo;ve had this need quite a few times to pull out a section of logs that would begin with a particular line and end with another. grep is not exactly useful there because it only prints out sections based on line counters (using -A/B/C) lines based on a single search pattern.
-I came up with a script that can run at almost same speeds using grep/cat/awk. awk is used to decide whether the end of the section has been reached or not.</description>
+      <description>&lt;p&gt;I&amp;rsquo;ve had this need quite a few times to pull out a section of logs that would begin with a particular line and end with another. grep is not exactly useful there because it only prints out sections based on line counters (using -A/B/C) lines based on a single search pattern.&lt;/p&gt;&#xA;&lt;p&gt;I came up with a script that can run at almost same speeds using &lt;code&gt;grep/cat/awk&lt;/code&gt;. &lt;code&gt;awk&lt;/code&gt; is used to decide whether the end of the section has been reached or not. Some features of the script are:&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Global Search in VIM</title>
       <link>http://abhipandey.com/2014/02/global-search-in-vim/</link>
       <pubDate>Tue, 11 Feb 2014 14:56:00 +0000</pubDate>
-      
       <guid>http://abhipandey.com/2014/02/global-search-in-vim/</guid>
-      <description>You must be knowing about regular VIM search
-%s/SEARCH/REPLACE/CMD  However, sometimes you do not want to replace something but just see all instances of the a word or phrase. In such cases, global search is really useful when on vim. The syntax is simpler than normal search-replace:
-:[range]g[lobal]/{pattern}/[cmd]  This will show all instances of the &amp;ldquo;SEARCH&amp;rdquo; term within the VIM window. There&amp;rsquo;s another version of the same command which is as follows:</description>
+      <description>&lt;p&gt;You must be knowing about regular VIM search&lt;/p&gt;&#xA;&lt;pre&gt;&lt;code&gt;%s/SEARCH/REPLACE/CMD&#xA;&lt;/code&gt;&lt;/pre&gt;&#xA;&lt;p&gt;However, sometimes you do not want to replace something but just see all instances of the a word or phrase. In such cases, global search is really useful when on vim. The syntax is simpler than normal search-replace:&lt;/p&gt;&#xA;&lt;pre&gt;&lt;code&gt;:[range]g[lobal]/{pattern}/[cmd]&#xA;&lt;/code&gt;&lt;/pre&gt;&#xA;&lt;p&gt;This will show all instances of the &amp;ldquo;SEARCH&amp;rdquo; term within the VIM window. There&amp;rsquo;s another version of the same command which is as follows:&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>CVS Cheat Sheet</title>
       <link>http://abhipandey.com/2013/07/cvs-cheat-sheet/</link>
       <pubDate>Wed, 03 Jul 2013 07:28:00 +0000</pubDate>
-      
       <guid>http://abhipandey.com/2013/07/cvs-cheat-sheet/</guid>
-      <description>I&amp;rsquo;ve worked on CVS for a long time now and figured out that I&amp;rsquo;d save a lot of time if I started writing alias or functions for the numerous tasks that I did on them. I will put down some of them here so you may benefit from them.
-Silently update and inform about the status of the files (recursive)
-cvs -q -n update  Same as earlier but will only do so for the current folder</description>
+      <description>&lt;p&gt;I&amp;rsquo;ve worked on CVS for a long time now and figured out that I&amp;rsquo;d save a lot of time if I started writing alias or functions for the numerous tasks that I did on them. I will put down some of them here so you may benefit from them.&lt;/p&gt;&#xA;&lt;p&gt;&lt;em&gt;Silently update and inform about the status of the files (recursive)&lt;/em&gt;&lt;/p&gt;&#xA;&lt;pre&gt;&lt;code&gt;cvs -q -n update&#xA;&lt;/code&gt;&lt;/pre&gt;&#xA;&lt;p&gt;&lt;em&gt;Same as earlier but will only do so for the current folder&lt;/em&gt;&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Change Putty Window Title</title>
       <link>http://abhipandey.com/2013/04/change-putty-window-title/</link>
       <pubDate>Thu, 25 Apr 2013 07:02:00 +0000</pubDate>
-      
       <guid>http://abhipandey.com/2013/04/change-putty-window-title/</guid>
-      <description>How to modify the Putty window title to a specific string?
-By default, you&amp;rsquo;d like to have the window title to give you the full path to the folder you are working from (working directory). PROMPT_COMMANDwill help you with that.
-However, if you have too many windows where you are on the same folder then it may become confusing. To set your own title you&amp;rsquo;d like to use the title() function provided here.</description>
+      <description>&lt;p&gt;How to modify the Putty window title to a specific string?&lt;/p&gt;&#xA;&lt;p&gt;By default, you&amp;rsquo;d like to have the window title to give you the full path to the folder you are working from (working directory). &lt;code&gt;PROMPT_COMMAND&lt;/code&gt;will help you with that.&lt;/p&gt;&#xA;&lt;p&gt;However, if you have too many windows where you are on the same folder then it may become confusing. To set your own title you&amp;rsquo;d like to use the &lt;code&gt;title()&lt;/code&gt; function provided here. It sets the name to whatever you say.&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

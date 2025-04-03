@@ -1,26 +1,19 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Jira on Coders Digest</title>
     <link>http://abhipandey.com/tags/jira/</link>
     <description>Recent content in Jira on Coders Digest</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 13 May 2016 21:17:56 +0800</lastBuildDate>
-    
-	<atom:link href="http://abhipandey.com/tags/jira/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <atom:link href="http://abhipandey.com/tags/jira/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Getting list of Issues from JIRA under current sprint</title>
       <link>http://abhipandey.com/2016/05/getting-list-of-issues-from-jira-under-current-sprint/</link>
       <pubDate>Fri, 13 May 2016 21:17:56 +0800</pubDate>
-      
       <guid>http://abhipandey.com/2016/05/getting-list-of-issues-from-jira-under-current-sprint/</guid>
-      <description>When you are working on Agile Boards in JIRA, you may want to retrieve all the issues related to a particular board or the sprint. Usually you&amp;rsquo;d find issues in progress under the dashboard of the sprint itself.
-Python JIRA allows you only a few options:
- incompleted issues completed issues removed issues  As you will also notice from jira docs the sprints function in there only provides you sprints.</description>
+      <description>&lt;p&gt;When you are working on &lt;em&gt;Agile Boards in JIRA&lt;/em&gt;, you may want to retrieve&#xA;all the issues related to a particular board or the sprint.&#xA;Usually you&amp;rsquo;d find issues in progress under the dashboard of the sprint itself.&lt;/p&gt;&#xA;&lt;p&gt;&lt;em&gt;Python JIRA&lt;/em&gt; allows you only a few options:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://jira.readthedocs.io/en/latest/api.html#jira.JIRA.incompleted_issues&#34;&gt;incompleted issues&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://jira.readthedocs.io/en/latest/api.html#jira.JIRA.completed_issues&#34;&gt;completed issues&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://jira.readthedocs.io/en/latest/api.html#jira.JIRA.removed_issues&#34;&gt;removed issues&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;As you will also notice from &lt;a href=&#34;https://jira.readthedocs.io/en/latest/api.html#jira.JIRA.sprints&#34;&gt;jira docs&lt;/a&gt;&#xA;the &lt;code&gt;sprints&lt;/code&gt; function in there only provides you sprints.&lt;/p&gt;&#xA;&lt;p&gt;What it fails to provide is the issues under the sprint&#xA;for which work through a different subquery under the hood.&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

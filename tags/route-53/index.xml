@@ -1,25 +1,19 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Route 53 on Coders Digest</title>
     <link>http://abhipandey.com/tags/route-53/</link>
     <description>Recent content in Route 53 on Coders Digest</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 24 Oct 2015 14:59:18 -0400</lastBuildDate>
-    
-	<atom:link href="http://abhipandey.com/tags/route-53/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <atom:link href="http://abhipandey.com/tags/route-53/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Setting up custom domain with Github Pages</title>
       <link>http://abhipandey.com/2015/10/setting-up-custom-domain-with-github-pages/</link>
       <pubDate>Sat, 24 Oct 2015 14:59:18 -0400</pubDate>
-      
       <guid>http://abhipandey.com/2015/10/setting-up-custom-domain-with-github-pages/</guid>
-      <description>Let&amp;rsquo;s take the example of my domain itself abhipandey.com that I want to serve from abhi1010.github.io. We will need to do it in two steps:
- Setup CNAME on github  So that github knows about your domain  Setup A record on AWS Route 53  So that domain can be registered   Change CNAME If we want to tell github about the domain name, it is rather simple: create a CNAME file with the content being the name of the domain itself Do note here that the default redirect of your domain will be the value in your CNAME file.</description>
+      <description>&lt;p&gt;Let&amp;rsquo;s take the example of my domain itself &lt;code&gt;abhipandey.com&lt;/code&gt; that I want to serve from &lt;code&gt;abhi1010.github.io&lt;/code&gt;.&#xA;We will need to do it in two steps:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Setup CNAME on github&#xA;&lt;ul&gt;&#xA;&lt;li&gt;So that github knows about your domain&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;Setup &lt;strong&gt;A&lt;/strong&gt; record on AWS Route 53&#xA;&lt;ul&gt;&#xA;&lt;li&gt;So that domain can be registered&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h1 id=&#34;change-cname&#34;&gt;Change CNAME&lt;/h1&gt;&#xA;&lt;p&gt;If we want to tell github about the domain name, it is rather simple: &lt;em&gt;create a CNAME file with the content being&#xA;the name of the domain itself&lt;/em&gt;&#xA;Do &lt;em&gt;note&lt;/em&gt; here that the default redirect of your domain will be the value in your CNAME file.&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

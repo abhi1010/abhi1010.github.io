@@ -1,25 +1,19 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Hugo on Coders Digest</title>
     <link>http://abhipandey.com/tags/hugo/</link>
     <description>Recent content in Hugo on Coders Digest</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 15 Sep 2015 11:14:38 +0800</lastBuildDate>
-    
-	<atom:link href="http://abhipandey.com/tags/hugo/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <atom:link href="http://abhipandey.com/tags/hugo/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Moving To Hugo</title>
       <link>http://abhipandey.com/2015/09/moving-to-hugo/</link>
       <pubDate>Tue, 15 Sep 2015 11:14:38 +0800</pubDate>
-      
       <guid>http://abhipandey.com/2015/09/moving-to-hugo/</guid>
-      <description>Create your own blog
-  My blogging experience started with blogspot. It was great until I realized that I needed something that was responsive. The layout looked nice on 1024x768 but with the new generation of screens it started to look narrow. I hated the look of the website when it seemed that I was wasting a lot of white space on the web pages. I moved to wordpress.</description>
+      <description>&lt;figure&gt;&lt;img src=&#34;http://abhipandey.com/images/moving_to_hugo__demo.png&#34;&#xA;    alt=&#34;Create your own blog&#34;&gt;&lt;figcaption&gt;&#xA;      &lt;p&gt;Create your own blog&lt;/p&gt;&#xA;    &lt;/figcaption&gt;&#xA;&lt;/figure&gt;&#xA;&#xA;&lt;p&gt;My blogging experience started with &lt;code&gt;blogspot&lt;/code&gt;. It was great until I realized that I needed something that was responsive.&#xA;The layout looked nice on 1024x768 but with the new generation of screens it started to look narrow.&#xA;I hated the look of the website when it seemed that I was wasting a lot of white space on the web pages.&#xA;I moved to &lt;code&gt;wordpress.com&lt;/code&gt; to give that a try when they started their responsive themes.&#xA;The website looked great after a lot of customization but after writing some posts there,&#xA;I realized that I had to &lt;strong&gt;micro-manage&lt;/strong&gt; a lot of styling every time I was writing some new section, like special blocks or tables.&#xA;The post writing was fun only for a short while. The enthusiasm died down pretty soon.&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

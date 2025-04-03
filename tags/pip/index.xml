@@ -1,27 +1,19 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Pip on Coders Digest</title>
     <link>http://abhipandey.com/tags/pip/</link>
     <description>Recent content in Pip on Coders Digest</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 04 Feb 2016 15:02:07 +0000</lastBuildDate>
-    
-	<atom:link href="http://abhipandey.com/tags/pip/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <atom:link href="http://abhipandey.com/tags/pip/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>How to setup a local pypi mirror</title>
       <link>http://abhipandey.com/2016/02/how-to-setup-a-local-pypi-mirror/</link>
       <pubDate>Thu, 04 Feb 2016 15:02:07 +0000</pubDate>
-      
       <guid>http://abhipandey.com/2016/02/how-to-setup-a-local-pypi-mirror/</guid>
-      <description>It is quite easy to set up a local pypi server.
-Some details can be found here. You can also use devpi if you prefer but it seems overly complicated for a job that is easily achieved by pip.
-Let&amp;rsquo;s look at how to use pip for local installation. Firstly, it is possible to install all requirements beforehand in a separate directory. We can use the following commands:
-pip install --download DIR -r requirements.</description>
+      <description>&lt;p&gt;It is quite easy to set up a local pypi server.&lt;/p&gt;&#xA;&lt;p&gt;Some details can be found &lt;a href=&#34;https://pip.pypa.io/en/latest/user_guide/#installing-from-local-packages&#34;&gt;here&lt;/a&gt;.&#xA;You can also use &lt;a href=&#34;http://doc.devpi.net/latest/quickstart-pypimirror.html&#34;&gt;devpi&lt;/a&gt; if you prefer but it&#xA;seems overly complicated for a job that is easily achieved by pip.&lt;/p&gt;&#xA;&lt;p&gt;Let&amp;rsquo;s look at how to use &lt;code&gt;pip&lt;/code&gt; for local installation.&#xA;Firstly, it is possible to install all requirements beforehand in a separate directory.&#xA;We can use the following commands:&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;pip install --download DIR -r requirements.txt&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;If you prefer wheel, then use the following:&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

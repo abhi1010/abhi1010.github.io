@@ -1,617 +1,368 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
-<head>
-	<meta name="generator" content="Hugo 0.54-DEV" />
-  <link href="http://gmpg.org/xfn/11" rel="profile">
-  <meta http-equiv="content-type" content="text/html; charset=utf-8">
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-
-  <title>Coders Digest &middot; Abhishek Pandey</title>
-
-  
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
-  <link rel="stylesheet" href="http://abhipandey.com/css/poole.css?ref=abc124">
-  <link rel="stylesheet" href="http://abhipandey.com/css/hyde.css?ref=abc124">
-  <link rel="stylesheet" href="http://abhipandey.com/css/poole-overrides.css?ref=abc124">
-  <link rel="stylesheet" href="http://abhipandey.com/css/hyde-overrides.css?ref=abc124">
-  <link rel="stylesheet" href="http://abhipandey.com/css/hyde-a.css?ref=abc124">
-  <link rel="stylesheet" href="http://abhipandey.com/css/custom-additions.css?ref=abc124">
-  
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
-  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-
-  
-  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://abhipandey.com/touch-icon-144-precomposed.png?ref=abc124">
-  <link href="http://abhipandey.com/favicon.png?ref=abc124" rel="icon">
-
-  
-  
-  
-  <link href="http://abhipandey.com/index.xml" rel="alternate" type="application/rss+xml" title="Coders Digest &middot; Abhishek Pandey" />
-
-  <meta name="description" content="C&#43;&#43;/python/bash code; How to automate and deploy your applications">
-  <meta name="keywords" content="aws,deploy,elastic beanstalk,beanstalk,python,c&#43;&#43;,continuous delivery,tips,code,docker,bash,linux">
-  
-  
-  <script>
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-      ga('create', 'UA-68135443-1', 'auto');
-      ga('send', 'pageview');
-  </script>
-
-</head>
-<body class="theme-base-aa">
-<div class="sidebar">
-  <div class="container sidebar-sticky">
-    <div class="sidebar-about">
-      
-      <h1><a href="http://abhipandey.com/">Coder&rsquo;s Digest</a></h1>
-      <a href="http://abhipandey.com/"><p>Abhishek Pandey</p></a>
-    </div>
-
-    <ul class="sidebar-nav">
-      
-      <li class="sidebar-nav-item"><a href="http://abhipandey.com/post/">Posts</a></li>
-      
-      <li class="sidebar-nav-item"><a href="http://abhipandey.com/tags/">Tags</a></li>
-      
-      <li class="sidebar-nav-item"><a href="http://abhipandey.com/categories/">Categories</a></li>
-      
-      <li class="sidebar-nav-item"><a href="http://abhipandey.com/about/">About</a></li>
-      
-    </ul>
-
-    <ul class="sidebar-nav">
-      <li class="sidebar-nav-item">
-      
-      
-      
-      
-      
-      
-      
-      
-      </li>
-    </ul>
+<html lang="en-us">
+    
+  <head>
+    <link href="https://gmpg.org/xfn/11" rel="profile">
+    
+    <link rel="canonical" href="http://abhipandey.com/">
+    
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<!-- Enable responsiveness on mobile devices -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<meta name="generator" content="Hugo 0.145.0">
 
     
+
+<title>Coders Digest</title>
+
+
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Coders Digest">
+
+<meta property="og:url" content="http://abhipandey.com/">
+  <meta property="og:site_name" content="Coders Digest">
+  <meta property="og:title" content="Coders Digest">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="website">
+
+
+    
+
+
+
+
+
+
+<link rel="stylesheet" href="/scss/triple-hyde.ef937e1c8a424ea6419b858ae4cfbdb5f7e764eb1075e9ac50fa2de759dde8a2.css" integrity="sha256-75N&#43;HIpCTqZBm4WK5M&#43;9tffnZOsQdemsUPot51nd6KI=">
+
+
+<link rel="stylesheet" href="/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
+
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- Icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+    <link rel="shortcut icon" href="/favicon.png">
+    <link rel="alternate" type="application/rss+xml" href="http://abhipandey.com/index.xml" title="Coders Digest" />
+
+    
+
+</head>
+
+
+    <body class=" ">
+    
+<div class="sidebar">
+  <div class="container ">
+    <div class="sidebar-about">
+  <span class="site__title">
+    <a href="http://abhipandey.com/">
+    
+      Coders Digest
+    
+    </a>
+  </span>
+  
+  
+  <p class="site__description">
+    
+  </p>
+</div>
+
+    <div class="collapsible-menu">
+      <input type="checkbox" id="menuToggle">
+      <label for="menuToggle">Coders Digest</label>
+      <div class="menu-content">
+        <div>
+	<ul class="sidebar-nav">
+		 
+		 
+			 
+				<li>
+					<a href="/post/"><i class='fa fa-heart'></i>
+						<span>Posts</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/tags/"><i class='fa fa-road'></i>
+						<span>Tags</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/categories/"><i class='fa fa-road'></i>
+						<span>Categories</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/about/">
+						<span>About</span>
+					</a>
+				</li>
+			 
+		
+	</ul>
+</div>
+
+        <section class="social">
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+</section>
+
+      </div>
+    </div>
+    
+
 
   </div>
 </div>
 
-
-<div class="content container">
-  <div class="posts">
+        <div class="content container">
+            
+  <div class="post-list">
     
     
-    <div class="post">
-      <h1 class="post-title">
-        <a href="http://abhipandey.com/2012/09/counting-sort/">Counting Sort</a>
-      </h1>
-      <span class="post-date">Sep 11, 2012  &middot; <a href="http://abhipandey.com/2012/09/counting-sort/#disqus_thread">Comments</a>
       
-      <br/>
-      <a class="a_cat" href="http://abhipandey.com/categories/code">code</a>
         
-      <a class="a_tag" href="http://abhipandey.com/tags/sorting">sorting</a><a class="a_tag" href="http://abhipandey.com/tags/algo">algo</a><a class="a_tag" href="http://abhipandey.com/tags/c&#43;&#43;">c&#43;&#43;</a>
-    
-      </span>
       
-      <p>Counting Sort is an integer sorting algorithm. It is not very famous when somebody talks about sorting algorithms but it is great when sorting integers. In fact, many a times it may even beat other Sorting Algorithms. The highlight of Counting Sort is that it creates a bucket array (to keep track of frequency of numbers) whose size is the maximum element in the provided array.</p>
-
-<p>We are looking to compare most of the sorting algorithms to find out which one performs better under different circumstances. One of the ways is to compare the complexity for each algorithm. The other way is to compare how well they perform based on the input they are all provided. I will post my code on Github but will start with Counting Sort here.</p>
-
-<p><em>Here are some pointers about Counting Sort:</em></p>
-
-<ul>
-<li><p>Linear sorting algo with O(n+k) when the elements range from 1 to k</p>
-
-<ul>
-<li>On
-
-
-
-
-<br /></li>
-</ul></li>
-
-<li><p>It is really good when the numbers range from 1 to n which means the max between them is not going to be very high</p></li>
-</ul>
-
-<p><strong><em>How do we compare all Sorting Algorithms?</em></strong></p>
-
-<p>We are going to look at the following scenarios across all Sorting Algorithms:</p>
-
-<ul>
-<li><p>10 numbers - Random + Sorted</p></li>
-
-<li><p>1000 numbers (1K) - Random + Sorted</p></li>
-
-<li><p>1,000,000 numbers (1M) - Random + Sorted</p></li>
-
-<li><p>20000 iterations for each one of these scenarios</p></li>
-
-<li><p>For good measure we will look at the average time required to sort 100 numbers in each one of these cases</p>
-
-<ul>
-<li><p>This will allow us to compare all algorithms against each other by looking at the average times</p></li>
-
-<li><p>It means we will be multiplying the results of 10 numbers by 10 (to get the &ldquo;average&rdquo; for 100 numbers) and also</p></li>
-</ul></li>
-</ul>
-
-<!-- more -->
-
-<p><strong>Machine Setup</strong></p>
-
-<p>The setup of my machine is as follows:</p>
-
-<p>| Hardware: x86_64
-| Processor: 16 x Intel&reg; Xeon&reg; E5540 2.53 GHz
-| Compiler: gcc version 4.8.2 (GCC)
-| Redhat Version: Red Hat 5.3</p>
-
-<p><strong>The Source Code</strong></p>
-
-<p>I am trying to do this all together in a single place so that it is easy for anybody to pick up the code, either for their own testing or going through the Sorting Algos. All of the source code for this can be found here:</p>
-
-<p><a href="https://github.com/abhi1010/Algorithms">https://github.com/abhi1010/Algorithms</a></p>
-
-<p><strong>Numbers</strong></p>
-
-<p>Without further ado, let&rsquo;s delve into the numbers for Counting Sorts. Here&rsquo;s the result from the code:
-<table style="text-align:center;background-color:#efefef;width:100%;border-collapse:collapse;border:lightblue solid;" border="1" >
-<tbody >
-<tr ></p>
-
-<p><td style="width:25%;" >
-</td></p>
-
-<p><td style="width:25%;" ><strong># of Items in Array</strong>
-</td></p>
-
-<p><td style="width:25%;" ><strong>Time Taken</strong>
-</td></p>
-
-<p><td style="width:25%;" ><strong>Average for 100 numbers</strong>
-</td>
-</tr>
-<tr ></p>
-
-<p><td rowspan="3" ><strong>Random</strong>
-</td></p>
-
-<p><td >10
-</td></p>
-
-<p><td >0.022982
-</td></p>
-
-<p><td >0.22982
-</td>
-</tr>
-<tr style="background-color:#efefef;color:#008000;" ></p>
-
-<p><td >1K
-</td></p>
-
-<p><td >1.21822
-</td></p>
-
-<p><td >0.121822
-</td>
-</tr>
-<tr ></p>
-
-<p><td >1M
-</td></p>
-
-<p><td >1823.85
-</td></p>
-
-<p><td >0.182385
-</td>
-</tr>
-<tr ></p>
-
-<p><td rowspan="3" ><strong>Sorted</strong>
-</td></p>
-
-<p><td >10
-</td></p>
-
-<p><td >0.026815
-</td></p>
-
-<p><td >0.26815
-</td>
-</tr>
-<tr style="background-color:#efefef;color:#008000;" ></p>
-
-<p><td >1K
-</td></p>
-
-<p><td >1.19146
-</td></p>
-
-<p><td >0.119146
-</td>
-</tr>
-<tr ></p>
-
-<p><td >1M
-</td></p>
-
-<p><td >1612.58
-</td></p>
-
-<p><td >0.161258
-</td>
-</tr>
-</tbody>
-</table></p>
-
-      
-    </div>
-    
-    <div class="post">
-      <h1 class="post-title">
-        <a href="http://abhipandey.com/2008/05/visual-studio-2008-crashes-while-adding-items/">Visual Studio 2008 crashes while adding items</a>
-      </h1>
-      <span class="post-date">May 14, 2008  &middot; <a href="http://abhipandey.com/2008/05/visual-studio-2008-crashes-while-adding-items/#disqus_thread">Comments</a>
-      
-      <br/>
-      <a class="a_cat" href="http://abhipandey.com/categories/code">code</a>
+      <div class="post-list__item">
+        <span class="item__title--big">
+          <a href="/2012/09/counting-sort/" >Counting Sort</a>
+        </span>
+        <span class="item__date">
+          Sep 11, 2012
+        </span>
+        <span >
         
-      <a class="a_tag" href="http://abhipandey.com/tags/c-sharp">c-sharp</a><a class="a_tag" href="http://abhipandey.com/tags/visual-studio">visual studio</a>
-    
-      </span>
-      
-      <p>Had this problem cropping up since months where I was trying to add items to Visual Studio 2008 Toolbox and it kept crashing.</p>
-
-<p>Finally got a work around, you should start it in safe mode. Here&rsquo;s the procedure:</p>
-
-<pre><code>devenv /safemode
-</code></pre>
-
-<p>Then use Choose Items on toolbox and run through each of the tabs. Once you
-accept any exceptions raised on loading controls, you can then open Visual
-Studio normally and add items.</p>
-
-<p>The reason for this has to be pretty simple - I have installed way too many beta/refresh version on Visual Studio 2008, something had to give up. I can&rsquo;t really complain.</p>
-
-      
-    </div>
-    
-    <div class="post">
-      <h1 class="post-title">
-        <a href="http://abhipandey.com/2008/04/google-analytics-swfaddress/">Google Analytics &amp; SWFAddress</a>
-      </h1>
-      <span class="post-date">Apr 6, 2008  &middot; <a href="http://abhipandey.com/2008/04/google-analytics-swfaddress/#disqus_thread">Comments</a>
-      
-      <br/>
-      <a class="a_cat" href="http://abhipandey.com/categories/code">code</a><a class="a_cat" href="http://abhipandey.com/categories/tips">tips</a>
+        Count Sort Implementation
         
-      <a class="a_tag" href="http://abhipandey.com/tags/flash">flash</a>
-    
-      </span>
-      
-      <p>Recently found a bug slash issue with Google Analytics new javscript software (post-urchin v5). I had written the internal documentation for the company standards and somehow when those standards were put into practice, SWFAddress feature of flash stopped working the moment google analytics feature was enabled. Worst of all, the web pages failed to load! To cap it off, the website was working perfectly fine on Firefox 2, 3 and IE 7!! It was having trouble only on IE6.</p>
-
-<p>I tried a lot of ways but none seem to worked. Finally found a blog that remotely talked about SWFAddress!</p>
-
-<p>Well, the problem turns out that SWFAddress uses <code>ExternalInterface.call()</code> instead of <code>getUrl()</code> function internally and they don&rsquo;t go well together if used together.</p>
-
-<p>The solution was simple, since flash is using SWFAddress feature, every <code>getUrl</code> should be replaced with <code>ExternalInterface.call()</code>.
- Needless to say, everything seemed perfect again.</p>
-
-      
-    </div>
-    
-    <div class="post">
-      <h1 class="post-title">
-        <a href="http://abhipandey.com/2008/03/full-trust-on-mapped-drive/">Full Trust on Mapped Drive</a>
-      </h1>
-      <span class="post-date">Mar 31, 2008  &middot; <a href="http://abhipandey.com/2008/03/full-trust-on-mapped-drive/#disqus_thread">Comments</a>
-      
-      <br/>
-      <a class="a_cat" href="http://abhipandey.com/categories/code">code</a><a class="a_cat" href="http://abhipandey.com/categories/tips">tips</a>
+        </span>
         
-      <a class="a_tag" href="http://abhipandey.com/tags/visual-studio">visual studio</a>
-    
-      </span>
-      
-      <p>Sometimes, when opening a web project from another mapped drive (not your own computer&rsquo;s hard disk) Visual Studio may complain something like this:</p>
-
-<pre><code>The project location is not trusted.
-
-Running the application may result in security exceptions when it
-attempts to perform actions which require full trust.
-</code></pre>
-
-<p>The problem here is that .Net does not want to fully adhere to all security policies as your hard disk to this mapped drive as well as it does not know what kind of data it might have. If you want it to fully trust this mapped drive then you will have to use caspol for this purpose. Here&rsquo;s how it is done:</p>
-
-<pre><code>c:\&gt;caspol -q -machine -addgroup 1 -url file://W:/* FullTrust -name &quot;W Drive&quot;
-</code></pre>
-
-<p>Once this new code group is in place, any new .NET processes you start will give any assemblies on the W drive full trust<strong>.</strong></p>
-
-      
-    </div>
-    
-    <div class="post">
-      <h1 class="post-title">
-        <a href="http://abhipandey.com/2008/03/tag-your-namespaces/">Tag your namespaces</a>
-      </h1>
-      <span class="post-date">Mar 31, 2008  &middot; <a href="http://abhipandey.com/2008/03/tag-your-namespaces/#disqus_thread">Comments</a>
-      
-      <br/>
-      <a class="a_cat" href="http://abhipandey.com/categories/code">code</a>
+          ... <a class="read-more-symbol" href="/2012/09/counting-sort/">➦</a>
         
-      <a class="a_tag" href="http://abhipandey.com/tags/c-sharp">c-sharp</a>
-    
-      </span>
-      
-      <p>Recently discovered a nifty little feature on .Net and though of sharing it.</p>
-
-<p>You can tag an assembly by giving it a name and then use this name throughout your class to access the classes inside this namespace.</p>
-
-<pre><code>&lt;span style=&quot;color:#0000ff;&quot;&gt;using&lt;/span&gt; asp=CompanyName.Data;
-</code></pre>
-
-<p>Now all the classes inside CompanyName.Data namespace can be accessed using the name asp (as if it was an instance of the namespace).</p>
-
-<p>One thing to note, however, is that the classes inside this namespace cannot be accessed directly and the word &ldquo;asp&rdquo; has to be used.</p>
-
-<p>Let&rsquo;s see an example to understand it.
-<script type="text/javascript" src="http://gist.github.com/ad4f3fc47ffa870a48f9.js"></script></p>
-
-<p>This function, btw, is going through a namespace called <code>Company.AspFunctions</code> and we give it a tag <code>asp</code> to access all classes under it by its tag instead. Date_Format() fn is a static function inside Conn Class. Basically it takes your &ldquo;asp style&rdquo; datetime strings and returns you the correct date in <code>yyyyMMdd</code> format.</p>
-
-      
-    </div>
-    
-    <div class="post">
-      <h1 class="post-title">
-        <a href="http://abhipandey.com/2008/03/how-to-protect-from-sql-injections-in-asp.net/">How to protect from SQL Injections in ASP.NET</a>
-      </h1>
-      <span class="post-date">Mar 11, 2008  &middot; <a href="http://abhipandey.com/2008/03/how-to-protect-from-sql-injections-in-asp.net/#disqus_thread">Comments</a>
-      
-      <br/>
-      <a class="a_cat" href="http://abhipandey.com/categories/code">code</a>
+        </div>
         
-      <a class="a_tag" href="http://abhipandey.com/tags/sql">sql</a>
-    
-      </span>
+     
       
-      <p>Some good links to figure out how to save your code&rsquo;s ass from being thrashed by SQL Injections</p>
-
-<p><a href="http://msdn2.microsoft.com/en-us/library/ms998271.aspx#paght000002_step2">http://msdn2.microsoft.com/en-us/library/ms998271.aspx#paght000002_step2</a></p>
-
-<p><a href="http://msdn2.microsoft.com/en-us/library/bb355989.aspx#paght000003_step4">http://msdn2.microsoft.com/en-us/library/bb355989.aspx#paght000003_step4</a></p>
-
-      
-    </div>
-    
-    <div class="post">
-      <h1 class="post-title">
-        <a href="http://abhipandey.com/2008/03/creating-custom-web-controls/">Creating Custom Web Controls</a>
-      </h1>
-      <span class="post-date">Mar 8, 2008  &middot; <a href="http://abhipandey.com/2008/03/creating-custom-web-controls/#disqus_thread">Comments</a>
-      
-      <br/>
-      <a class="a_cat" href="http://abhipandey.com/categories/code">code</a>
         
-      <a class="a_tag" href="http://abhipandey.com/tags/c-sharp">c-sharp</a>
-    
-      </span>
       
-      <p>How do you extend a control? Let&rsquo;s figure it out.</p>
-
-<p><strong>Why would you want to extend existing controls?</strong></p>
-
-<p>Because some functionality may not exist exactly as you may need it. For example, let&rsquo;s take up ImageButton control example. It is a great control but it falls short when it comes to real world scenario. Mostly websites do a hover image clickable button where the text or background color of the button changes once you hover your mouse over it.</p>
-
-<p><strong>How to Extend?</strong></p>
-
-<p>_I assume that you use C# code but there is not going to be any difference even if you wanted to do in VB.Net. _</p>
-
-<p>Create a project for creating custom web control library. It automatically includes a C# class that says something like</p>
-
-<pre><code>&lt;span style=&quot;color:#0000ff;&quot;&gt;public&lt;/span&gt; &lt;span style=&quot;color:#0000ff;&quot;&gt;class&lt;/span&gt; WebCustomControl1 : WebControl
-</code></pre>
-
-<p>Now ask yourself, what do you want to extend? A GridView? Replace WebControl with GridView. Let&rsquo;s follow our example with Hover Image Button Control. If you recall .Net already has ImageButton control that accepts one url for the image to be shown for that button, let&rsquo;s extend that one to include two Images rather than just one. In that case I would replace WebControl with ImageButton since I am going to extend ImageButton control. Let&rsquo;s call it HoverImageButton. Hence, the line changes to some thing like this:</p>
-
-<pre><code>&lt;span style=&quot;color:#0000ff;&quot;&gt;public&lt;/span&gt; &lt;span style=&quot;color:#0000ff;&quot;&gt;class&lt;/span&gt; HoverImageButton : ImageButton
-</code></pre>
-
-<p>The class also includes a property called Text for you so that you can see that and figure out how to use properties in custom web controls. It also includes attributes that start off just before the property itself. It is used by Visual Studio for showing this property on Properties pane. It is definitely a very useful feature.</p>
-
-<p>You can change this property to anything you like. Since we are creating a HoverImageButton control we want a property to save another url for the hover image&rsquo;s source. Let&rsquo;s change Text to &ldquo;ImageHoverUrl&rdquo;. ImageButton already has a property called &ldquo;ImageUrl&rdquo; and it belongs to &ldquo;Appearance&rdquo; group in Visual Studio Properties window. Notice the similarity in &ldquo;ImageHoverUrl&rdquo; and ImageUrl so that they appear together in Properties window. Sometimes, little deeds go a long way.</p>
-
-<p><strong>Writing JS file</strong></p>
-
-<p>Now let&rsquo;s add a javascript file to the project. Add one function called &ldquo;ShowImageHoverButton()&rdquo; that takes in two parameters, the control&rsquo;s id and the new image to be shown for that control. The control image&rsquo;s source is changed everytime when this function is called. We can call this function on mouse out and on mouse over events.</p>
-
-<p>That&rsquo;s all you need to do for this control.</p>
-
-<p><strong>Linking JS and Custom Control them together</strong></p>
-
-<p>This is a very simple process. You have the javascript file and you know for sure that the control will be loaded into the webpage, so you need a mechanism inside the control so that you can tell that &ldquo;hey, include this javascript file whenever you have this control on a page&rdquo;.</p>
-
-<p>This is how you do that.</p>
-
-<script type="text/javascript" src="http://gist.github.com/bfb075b6787d2616fde6.js"></script>
-
-<p>Please note that the name of the javascript file is &ldquo;HoverImageButtonJS.js&rdquo;. ExtendedControls is the name of the project/assembly that I have created for this custom web control.</p>
-
-<p>How to assign javascript functions to the control?</p>
-
-<p>Now the next problem is how would you tell the control that call this javscript function function on &ldquo;mouseover&rdquo;? We use OnInit function for this process. We override the function and make use of the control&rsquo;s Attributes property.</p>
-
-<p>What is Attributes property for anyway? Well, it adds any extra &ldquo;property&rdquo; or &ldquo;style&rdquo; that you may want to add to the control when it is rendered to the client.</p>
-
-<p>Let&rsquo;s see how that&rsquo;s done.</p>
-
-<script type="text/javascript" src="http://gist.github.com/d0b66ef7b0f076e88042.js"></script>
-
-<p>Over here, I have told the class to include <code>&quot;onmouseover=ShowImageHoverButton(this, 'IMAGE_SOURCE')&quot;</code> as a property.</p>
-
-<p>This is how it is rendered on the client browser:</p>
-
-<script type="text/javascript" src="http://gist.github.com/6df972bf94b736545419.js"></script>
-
-<p><strong>Add the javascript file also to the AssemblyInfo.cs class</strong></p>
-
-<p>For the control library to properly include the js file, you have to add the js file in AssemblyInfo.cs class as well. This is how it is done:</p>
-
-<pre><code>[assembly: WebResource(&lt;span style=&quot;color:#006080;&quot;&gt;&quot;ExtendedControls.HoverImageButtonJS.js&quot;&lt;/span&gt;, &lt;span style=&quot;color:#006080;&quot;&gt;&quot;text/javascript&quot;&lt;/span&gt;)]
-</code></pre>
-
-<p><strong>Test Drive!</strong></p>
-
-<p>That&rsquo;s all. A few simple steps and your control is ready to be tested. Still, let&rsquo;s not rush and see the steps required:</p>
-
-<ul>
-<li><p>Add this control&rsquo;s library to any web project.</p></li>
-
-<li><p>Register the dll on web.config. This makes the control available automatically on all the pages.</p></li>
-</ul>
-
-<script type="text/javascript" src="http://gist.github.com/88222d3f94911fbec6f4.js"></script>
-
-<ul>
-<li>Go to the design view of any page. Open up the Toolbox pane and you will automatically see the name appear &ldquo;HoverImageButton&rdquo;. Double click and you are ready to go!!</li>
-</ul>
-
-<p><strong>Easy as it may sound but it may not be that smooth a ride for you.</strong></p>
-
-<p>Just take care of few pointers and you should be fine. Here they go:</p>
-
-<ul>
-<li><p>The JScript file that you have added sometimes doesn&rsquo;t get linked properly to the control. Right click on the js file and check it&rsquo;s properties. It&rsquo;s compile action should be &ldquo;Embed Content&rdquo; rather than anything else. That way everytime you compile this control, this js file gets &ldquo;embedded&rdquo; into the control&rsquo;s library.</p></li>
-
-<li><p>Take care of the naming convention for the js file.</p>
-
-<ul>
-<li>If your control&rsquo;s namespace is ExtendedControls, then while &ldquo;Registering&rdquo; it in the control&rsquo;s class you should give the JS file&rsquo;s name as &ldquo;ExtendedControls.CustomControl_JS.js&rdquo; where &ldquo;CustomControl_JS.js&rdquo; is the name of the javascript file. Basically, another shortcut to learn it is whatever is the name of the project/assembly that you are creating, you have to append that name before the file name. **Follow this logic strictly, otherwise you will be left high and dry. **
-
-<br />
-
-<br /></li>
-</ul></li>
-
-<li><p>You should also remember to register this name inside AssemblyInfo.cs class (&ldquo;ExtendedControls.CustomControl_JS.js&rdquo; as per our example here).</p></li>
-
-<li><p>If you want Visual Studio Design support then remember to add the attributes that define where can you see the custom properties of this control in the &ldquo;Properties&rdquo; pane.</p></li>
-
-<li><p>Whenever you are putting your code files inside some folder, try to keep the JS files in the root folder.</p>
-
-<ul>
-<li>When I tried putting them inside the folder it did not work, i took them out to the root folder and it worked instantly. I have not tried changing the JS file names but I am sure you can figure out some solution.</li>
-</ul></li>
-</ul>
-
-<p><strong>Here&rsquo;s all the code in case somebody needs it:</strong></p>
-
-<script type="text/javascript" src="http://gist.github.com/135e9bbf44f3d9a53cb8.js"></script>
-
-      
-    </div>
-    
-    <div class="post">
-      <h1 class="post-title">
-        <a href="http://abhipandey.com/2008/03/stringbuilder-vs-string-joins/">StringBuilder vs String joins</a>
-      </h1>
-      <span class="post-date">Mar 8, 2008  &middot; <a href="http://abhipandey.com/2008/03/stringbuilder-vs-string-joins/#disqus_thread">Comments</a>
-      
-      <br/>
-      <a class="a_cat" href="http://abhipandey.com/categories/code">code</a>
+      <div class="post-list__item">
+        <span class="item__title--big">
+          <a href="/2008/05/visual-studio-2008-crashes-while-adding-items/" >Visual Studio 2008 crashes while adding items</a>
+        </span>
+        <span class="item__date">
+          May 14, 2008
+        </span>
+        <span >
         
-      <a class="a_tag" href="http://abhipandey.com/tags/c-sharp">c-sharp</a>
-    
-      </span>
-      
-      <p>For those who do not want to waste their time, here&rsquo;s the gist for this whole article:
-<em>StringBuilder performs better but you should try to use it when there&rsquo;s lot of concatenation involved (normally more than 7 joins - start thinking about StringBuilder.</em></p>
-
-<p>Let&rsquo;s move on for the lesser mortals. There has been a lot of debate about using StringBuilder instead of adding string like</p>
-
-<pre><code>&lt;span style=&quot;color:#606060;&quot;&gt;   1:&lt;/span&gt; strVariable += &lt;span style=&quot;color:#006080;&quot;&gt;&quot; Add this string to my variable string&quot;&lt;/span&gt;;
-</code></pre>
-
-<p>What&rsquo;s the darn difference?</p>
-
-<p>If you remember your schooling concepts string objects are fixed, their values cannot be changed. So, how can you change the value of a string? Well, you do NOT change the value, you change the object altogether! Every time you assign a value a new object of type string is created with the given value and is returned to you. hence, you discard the old string and actually come up with a new string.</p>
-
-<p>On the other hand, when you use StringBuilder, it is the same object, that you are working on. It keeps appending to the same object and the heap is not changed. Then why don&rsquo;t you use it always? Because there are &ldquo;appending&rdquo; costs. Everytime you append something, it is checked against the buffer and if it falls short of space needed, a new buffer is allocated. Let&rsquo;s see how that works inside the dll:</p>
-
-<p>How about some proof?</p>
-
-<p>Fortunately somebody did the hard work for all of us and actually came up with the statistics. You can find all of that over here:</p>
-
-<p><a href="http://209.85.175.104/search?q=cache:k9R6UE-q2nMJ:www.heikniemi.net/hc/archives/000124.html+http://www.heikniemi.net/hc/archives/000124.html&amp;hl=en&amp;ct=clnk&amp;cd=1&amp;gl=sg&amp;client=firefox-a">http://www.heikniemi.net/hc/archives/000124.html</a></p>
-
-      
-    </div>
-    
-    <div class="post">
-      <h1 class="post-title">
-        <a href="http://abhipandey.com/2008/03/blogs-i-like/">Blogs I like</a>
-      </h1>
-      <span class="post-date">Mar 8, 2008  &middot; <a href="http://abhipandey.com/2008/03/blogs-i-like/#disqus_thread">Comments</a>
-      
-      <br/>
-      <a class="a_cat" href="http://abhipandey.com/categories/code">code</a>
+        How to fix visual studio crashes when adding items
         
-      <a class="a_tag" href="http://abhipandey.com/tags/c-sharp">c-sharp</a><a class="a_tag" href="http://abhipandey.com/tags/sql">sql</a>
-    
-      </span>
-      
-      <p>Two blogs i really like and follow many a times are:</p>
-
-<p><a href="SqlAuthority.com">SqlAuthority.com</a> - Excellent blog for Sql Server 2005. The guy has a very in-depth knowledge of Sql Server and I appreciate the way</p>
-
-<p><a href="http://weblogs.asp.net/scottgu">Scott&rsquo;s Blog</a> - Another great blog where Scott Guthrie talks quite a bit about ASP.NET and tells the latest details coming in from Microsoft.</p>
-
-<p>Just today I found another interesting blog. This guy talks about the interesting aspects in programming.</p>
-
-<p><a href="http://blogs.msdn.com/ericlippert/default.aspx">http://blogs.msdn.com/ericlippert/default.aspx</a></p>
-
-<p><a href="http://blogs.msdn.com/brada/">http://blogs.msdn.com/brada/</a></p>
-
-<p>Following is an interesting link that talks about a lot of topics.</p>
-
-<p><a href="http://weblogs.asp.net/scottgu/archive/2008/01/24/jan-24th-links-asp-net-asp-net-ajax-visual-studio-net-iis.aspx">http://weblogs.asp.net/scottgu/archive/2008/01/24/jan-24th-links-asp-net-asp-net-ajax-visual-studio-net-iis.aspx</a></p>
-
-      
-    </div>
-    
-    <div class="post">
-      <h1 class="post-title">
-        <a href="http://abhipandey.com/2008/03/recursively-read-directories-and-list-all-files-under-it/">Recursively read directories and list all files under it</a>
-      </h1>
-      <span class="post-date">Mar 4, 2008  &middot; <a href="http://abhipandey.com/2008/03/recursively-read-directories-and-list-all-files-under-it/#disqus_thread">Comments</a>
-      
-      <br/>
-      <a class="a_cat" href="http://abhipandey.com/categories/code">code</a>
+        </span>
         
-      <a class="a_tag" href="http://abhipandey.com/tags/c-sharp">c-sharp</a>
-    
-      </span>
+          ... <a class="read-more-symbol" href="/2008/05/visual-studio-2008-crashes-while-adding-items/">➦</a>
+        
+        </div>
+        
+     
       
-      <script type="text/javascript" src="http://gist.github.com/a1bcc60b383a0bc72d5f.js"></script>
-
+        
       
-    </div>
-    
-    
+      <div class="post-list__item">
+        <span class="item__title--big">
+          <a href="/2008/04/google-analytics-swfaddress/" >Google Analytics &amp; SWFAddress</a>
+        </span>
+        <span class="item__date">
+          Apr 06, 2008
+        </span>
+        <span >
+        
+        Using swfaddress in flash for google analytics
+        
+        </span>
+        
+          ... <a class="read-more-symbol" href="/2008/04/google-analytics-swfaddress/">➦</a>
+        
+        </div>
+        
+     
+      
+        
+      
+      <div class="post-list__item">
+        <span class="item__title--big">
+          <a href="/2008/03/full-trust-on-mapped-drive/" >Full Trust on Mapped Drive</a>
+        </span>
+        <span class="item__date">
+          Mar 31, 2008
+        </span>
+        <span >
+        
+        How to have full trust on a mapped drive
+        
+        </span>
+        
+          ... <a class="read-more-symbol" href="/2008/03/full-trust-on-mapped-drive/">➦</a>
+        
+        </div>
+        
+     
+      
+        
+      
+      <div class="post-list__item">
+        <span class="item__title--big">
+          <a href="/2008/03/tag-your-namespaces/" >Tag your namespaces</a>
+        </span>
+        <span class="item__date">
+          Mar 31, 2008
+        </span>
+        <span >
+        
+        How to tag your namespaces in C#
+        
+        </span>
+        
+          ... <a class="read-more-symbol" href="/2008/03/tag-your-namespaces/">➦</a>
+        
+        </div>
+        
+     
+      
+        
+      
+      <div class="post-list__item">
+        <span class="item__title--big">
+          <a href="/2008/03/how-to-protect-from-sql-injections-in-asp.net/" >How to protect from SQL Injections in ASP.NET</a>
+        </span>
+        <span class="item__date">
+          Mar 11, 2008
+        </span>
+        <span >
+        
+        How to avoid sql injections
+        
+        </span>
+        
+        </div>
+        
+     
+      
+        
+      
+      <div class="post-list__item">
+        <span class="item__title--big">
+          <a href="/2008/03/creating-custom-web-controls/" >Creating Custom Web Controls</a>
+        </span>
+        <span class="item__date">
+          Mar 08, 2008
+        </span>
+        <span >
+        
+        How to create custom web controls
+        
+        </span>
+        
+          ... <a class="read-more-symbol" href="/2008/03/creating-custom-web-controls/">➦</a>
+        
+        </div>
+        
+     
+      
+        
+      
+      <div class="post-list__item">
+        <span class="item__title--big">
+          <a href="/2008/03/stringbuilder-vs-string-joins/" >StringBuilder vs String joins</a>
+        </span>
+        <span class="item__date">
+          Mar 08, 2008
+        </span>
+        <span >
+        
+        Stringbuilder vs String joins
+        
+        </span>
+        
+          ... <a class="read-more-symbol" href="/2008/03/stringbuilder-vs-string-joins/">➦</a>
+        
+        </div>
+        
+     
+      
+        
+      
+      <div class="post-list__item">
+        <span class="item__title--big">
+          <a href="/2008/03/blogs-i-like/" >Blogs I like</a>
+        </span>
+        <span class="item__date">
+          Mar 08, 2008
+        </span>
+        <span >
+        
+        Blogs I like
+        
+        </span>
+        
+          ... <a class="read-more-symbol" href="/2008/03/blogs-i-like/">➦</a>
+        
+        </div>
+        
+     
+      
+        
+      
+      <div class="post-list__item">
+        <span class="item__title--big">
+          <a href="/2008/03/recursively-read-directories-and-list-all-files-under-it/" >Recursively read directories and list all files under it</a>
+        </span>
+        <span class="item__date">
+          Mar 04, 2008
+        </span>
+        <span >
+        
+        How to read directories recursively and list all files under it
+        
+        </span>
+        
+        </div>
+        
+     
+  </div>
+  
 
 <ul class="pagination">
     
@@ -711,21 +462,10 @@ attempts to perform actions which require full trust.
     
 </ul>
 
-  </div>
-</div>
 
+        </div>
+        
+  
 
-<script type="text/javascript">
-var disqus_shortname = "abhi1010";
-(function () {
-    var s = document.createElement('script'); s.async = true;
-    s.type = 'text/javascript';
-    s.src = '//' + disqus_shortname + '.disqus.com/count.js';
-    (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
-}());
-</script>
-
-
-</body>
+    </body>
 </html>
-

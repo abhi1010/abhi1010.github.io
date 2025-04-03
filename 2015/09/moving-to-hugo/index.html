@@ -1,165 +1,117 @@
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
-<head>
-  <link href="http://gmpg.org/xfn/11" rel="profile">
-  <meta http-equiv="content-type" content="text/html; charset=utf-8">
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-
-  <title>Moving To Hugo &middot; Abhishek Pandey</title>
-
-  
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
-  <link rel="stylesheet" href="http://abhipandey.com/css/poole.css?ref=abc124">
-  <link rel="stylesheet" href="http://abhipandey.com/css/hyde.css?ref=abc124">
-  <link rel="stylesheet" href="http://abhipandey.com/css/poole-overrides.css?ref=abc124">
-  <link rel="stylesheet" href="http://abhipandey.com/css/hyde-overrides.css?ref=abc124">
-  <link rel="stylesheet" href="http://abhipandey.com/css/hyde-a.css?ref=abc124">
-  <link rel="stylesheet" href="http://abhipandey.com/css/custom-additions.css?ref=abc124">
-  
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
-  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-
-  
-  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://abhipandey.com/touch-icon-144-precomposed.png?ref=abc124">
-  <link href="http://abhipandey.com/favicon.png?ref=abc124" rel="icon">
-
-  
-  
-  
-  
-
-  <meta name="description" content="How to move to hugo and automate deployment">
-  <meta name="keywords" content="hugo,gohugo,automate,deployment">
-  
-  
-  <script>
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-      ga('create', 'UA-68135443-1', 'auto');
-      ga('send', 'pageview');
-  </script>
-
-</head>
-<body class="theme-base-aa">
-<div class="sidebar">
-  <div class="container sidebar-sticky">
-    <div class="sidebar-about">
-      
-      <h1><a href="http://abhipandey.com/">Coder&rsquo;s Digest</a></h1>
-      <a href="http://abhipandey.com/"><p>Abhishek Pandey</p></a>
-    </div>
-
-    <ul class="sidebar-nav">
-      
-      <li class="sidebar-nav-item"><a href="http://abhipandey.com/post/">Posts</a></li>
-      
-      <li class="sidebar-nav-item"><a href="http://abhipandey.com/tags/">Tags</a></li>
-      
-      <li class="sidebar-nav-item"><a href="http://abhipandey.com/categories/">Categories</a></li>
-      
-      <li class="sidebar-nav-item"><a href="http://abhipandey.com/about/">About</a></li>
-      
-    </ul>
-
-    <ul class="sidebar-nav">
-      <li class="sidebar-nav-item">
-      
-      
-      
-      
-      
-      
-      
-      
-      </li>
-    </ul>
-
+<!doctype html>
+<html lang="en-us">
+  <head>
+    <title>Moving To Hugo // Coders Digest</title>
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.145.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Abhishek Pandey" />
+    <meta name="description" content="How to move to hugo and automate deployment" />
+    <link rel="stylesheet" href="/css/main.min.5b1fcc8902588589c4767187402a3c29f8b8d7a6fdef6d9f8f77045bb0d14fee.css" />
     
 
-  </div>
-</div>
+    
+    
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Moving To Hugo">
+  <meta name="twitter:description" content="How to move to hugo and automate deployment">
+
+    <meta property="og:url" content="http://abhipandey.com/2015/09/moving-to-hugo/">
+  <meta property="og:site_name" content="Coders Digest">
+  <meta property="og:title" content="Moving To Hugo">
+  <meta property="og:description" content="How to move to hugo and automate deployment">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2015-09-15T11:14:38+08:00">
+    <meta property="article:modified_time" content="2015-09-15T11:14:38+08:00">
+    <meta property="article:tag" content="Hugo">
 
 
-<div class="content container">
-  <div class="post">
-    <h1>Moving To Hugo</h1>
-    <span class="post-date">Sep 15, 2015  &middot; <a href="http://abhipandey.com/2015/09/moving-to-hugo/#disqus_thread">Comments</a>
-    
-    <br/>
-    
-          <a class="a_cat" href="http://abhipandey.com/categories/code">code</a>
-      
-      
-        <a class="a_tag" href="http://abhipandey.com/tags/hugo">hugo</a>
-      
-
-    
-    </span>
-      <div id="_toc" class="toc">
-        <nav id="TableOfContents">
-<ul>
-<li><a href="#options">Options</a></li>
-<li><a href="#installing-hugo">Installing hugo</a></li>
-<li><a href="#exporting-wordpress">Exporting wordpress</a></li>
-<li><a href="#using-hugo">Using hugo</a>
-<ul>
-<li><a href="#setup">Setup</a></li>
-<li><a href="#theme">Theme</a></li>
-<li><a href="#folder-structure">Folder structure</a></li>
-<li><a href="#config">Config</a></li>
-<li><a href="#run-hugo">Run hugo</a></li>
-<li><a href="#final-look">Final look</a></li>
-<li><a href="#going-further">Going further</a></li>
-<li><a href="#hosting-your-blog">Hosting your blog</a></li>
-</ul></li>
-<li><a href="#automating-your-blog-generation">Automating your blog generation</a></li>
-</ul>
-</nav>
+  </head>
+  <body>
+    <header class="app-header">
+      <a href="/"><img class="app-header-avatar" src="/space-2.jpg" alt="Abhishek Pandey" /></a>
+      <span class="app-header-title">Coders Digest</span>
+      <nav class="app-header-menu">
+          <a class="app-header-menu-item" href="/post/">Posts</a>
+             - 
+          
+          <a class="app-header-menu-item" href="/tags/">Tags</a>
+             - 
+          
+          <a class="app-header-menu-item" href="/categories/">Categories</a>
+             - 
+          
+          <a class="app-header-menu-item" href="/about/">About</a>
+      </nav>
+      <p>Abhishek Pandey</p>
+      <div class="app-header-social">
+        
+          <a href="https://github.com/abhi1010" target="_blank" rel="noreferrer noopener me">
+            <svg class="icon icon-brand-github" viewBox="0 0 24 24" fill="currentColor"><title>GitHub</title><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+          </a>
+        
+          <a href="https://www.linkedin.com/in/apandey10/" target="_blank" rel="noreferrer noopener me">
+            <svg class="icon icon-brand-linkedin" viewBox="0 0 24 24" fill="currentColor"><title>LinkedIn</title><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </a>
+        
       </div>
-    
-
-<figure>
-    <img src="/images/moving_to_hugo__demo.png"
-         alt="Create your own blog"/> <figcaption>
-            <p>Create your own blog</p>
-        </figcaption>
+    </header>
+    <main class="app-container">
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">Moving To Hugo</h1>
+      <div class="post-meta">
+        <div>
+          <svg class="icon icon-calendar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>calendar</title><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+          Sep 15, 2015
+        </div>
+        <div>
+          <svg class="icon icon-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>clock</title><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+          8 min read
+        </div>
+        <div>
+          <svg class="icon icon-tag" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>tag</title><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
+              <a class="tag" href="/tags/hugo/">Hugo</a>
+        </div>
+      </div>
+    </header>
+    <div class="post-content">
+      <figure><img src="/images/moving_to_hugo__demo.png"
+    alt="Create your own blog"><figcaption>
+      <p>Create your own blog</p>
+    </figcaption>
 </figure>
-
 
 <p>My blogging experience started with <code>blogspot</code>. It was great until I realized that I needed something that was responsive.
 The layout looked nice on 1024x768 but with the new generation of screens it started to look narrow.
 I hated the look of the website when it seemed that I was wasting a lot of white space on the web pages.
- I moved to <code>wordpress.com</code> to give that a try when they started their responsive themes.
- The website looked great after a lot of customization but after writing some posts there,
- I realized that I had to <strong>micro-manage</strong> a lot of styling every time I was writing some new section, like special blocks or tables.
- The post writing was fun only for a short while. The enthusiasm died down pretty soon.</p>
-
+I moved to <code>wordpress.com</code> to give that a try when they started their responsive themes.
+The website looked great after a lot of customization but after writing some posts there,
+I realized that I had to <strong>micro-manage</strong> a lot of styling every time I was writing some new section, like special blocks or tables.
+The post writing was fun only for a short while. The enthusiasm died down pretty soon.</p>
 <h1 id="options">Options</h1>
-
 <p>I stopped blogging for a while for such reasons. Eventually I heard about <code>Jekyll</code> and was again motivated to try it.
- However, since I had also moved from <code>C++</code> to <code>Python</code> I figured there&rsquo;s bound to be something that&rsquo;s gonna be related to <code>Python</code>
- so that I can quickly jump in and navigate my way into the code base should there be a need (and who doesn&rsquo;t find reason to do that?).
- <code>Jekyll</code> was <code>ruby</code> based and that was holding me back a bit.
- During my research I found out three options:</p>
-
+However, since I had also moved from <code>C++</code> to <code>Python</code> I figured there&rsquo;s bound to be something that&rsquo;s gonna be related to <code>Python</code>
+so that I can quickly jump in and navigate my way into the code base should there be a need (and who doesn&rsquo;t find reason to do that?).
+<code>Jekyll</code> was <code>ruby</code> based and that was holding me back a bit.
+During my research I found out three options:</p>
 <ul>
 <li><code>Jekyll</code>
-
 <ul>
 <li>A lot of mileage but based on <code>ruby</code></li>
-</ul></li>
+</ul>
+</li>
 <li><code>Pelican</code>
-
 <ul>
 <li>During my testing everything was great about it. Even setting up themes was extremely easy. Anything I tried, worked at my first try.</li>
 <li>The biggest drawback against <code>pelican</code> and <code>jekyll</code> was that the bigger the number of posts get the longer it takes for compilation to take place</li>
-</ul></li>
+</ul>
+</li>
 <li><code>Hugo</code>
-
 <ul>
 <li>Was deemed to have the best build times of 1ms per page</li>
 <li>Extremely easy setup with <code>livereload</code></li>
@@ -167,312 +119,257 @@ I hated the look of the website when it seemed that I was wasting a lot of white
 <code>livereload</code> is a killer feature as it means you don&rsquo;t have to keep on rebuilding your site every time you want to view how the contents affect your site.
 It was also extremely easy to make theme changes and see them in action, straight away. We will see details of this, later.</li>
 <li>Was already using <code>pelican</code> but decided to give <code>hugo</code> a weekend and see it from there. I am glad I did.</li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <h1 id="installing-hugo">Installing hugo</h1>
-
 <p>Running it on mac, installation was pretty straightforward using <code>brew</code></p>
-
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">brew install hugo</code></pre></div>
-
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>brew install hugo</span></span></code></pre></div>
 <p>I wanted to setup <code>Pygments</code> as well for code scripts as well.
 I knew that I would be presenting a lot of code on my site and one of my main problems with site like wordpress was that
 I had to manage a lot of styling for code sections which was not fun.
 So I decided to install <code>Pygments</code> on default <code>python</code> by doing:</p>
-
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">pip install Pygments</code></pre></div>
-
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>pip install Pygments</span></span></code></pre></div>
 <h1 id="exporting-wordpress">Exporting wordpress</h1>
-
 <p>Since I wanted to move all of my wordpress content into hugo I really needed to export everything from wordpress.
 I found this link on wordpress to export all of the contents out into xml file.</p>
-
 <p><a href="https://wordpress.com/wp-admin/export.php?type=export">https://wordpress.com/wp-admin/export.php?type=export</a></p>
-
 <p>The next task was to convert the xml file into markdown files so that <code>hugo</code> could use them. However, I had already converted
 some of my files earlier while working on <code>pelican</code>. Once I started using them I realized that my contents were not looking as expecting when I was iterating through
- various themes. Sometimes things looked okay and other times not. I figured it <em>must be something to do with how markdown was laid down from the xml file</em> because
-  the tags and categories were missing. I double checked the wordpress xml file but it contained the tags and categories that I was looking for.
-  It was time to start digging again.</p>
-
+various themes. Sometimes things looked okay and other times not. I figured it <em>must be something to do with how markdown was laid down from the xml file</em> because
+the tags and categories were missing. I double checked the wordpress xml file but it contained the tags and categories that I was looking for.
+It was time to start digging again.</p>
 <p>I came across <a href="https://github.com/thomasf/exitwp">exitwp</a> which needed a bit of setup, but I was willing to give it a try.
 Here&rsquo;s what I did:
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git clone https://github.com/thomasf/exitwp
-<span style="color:#204a87">cd</span> exitwp
-
-cp wordpress.2015-08-23.xml wordpress-xml/
-
-
-<span style="color:#8f5902;font-style:italic"># install dependencies</span>
-pip install --upgrade -r pip_requirements.txt
-
-<span style="color:#8f5902;font-style:italic"># Run cmd with path to xml (optional if you have only one file)</span>
-exitwp.py wordpress-xml/wordpress.2015-08-23.xml</code></pre></div></p>
-
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git clone https://github.com/thomasf/exitwp
+</span></span><span style="display:flex;"><span><span style="color:#a90d91">cd</span> exitwp
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>cp wordpress.2015-08-23.xml wordpress-xml/
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#177500"># install dependencies</span>
+</span></span><span style="display:flex;"><span>pip install --upgrade -r pip_requirements.txt
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#177500"># Run cmd with path to xml (optional if you have only one file)</span>
+</span></span><span style="display:flex;"><span>exitwp.py wordpress-xml/wordpress.2015-08-23.xml</span></span></code></pre></div></p>
 <p>This creates a folder <code>build/jekyll/OLD_WORDPRESS_URL/</code> with the contents inside it. Here&rsquo;s my sample</p>
-
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ tree
-.
-<span style="color:#000;font-weight:bold">|</span>-- _posts
-<span style="color:#000;font-weight:bold">|</span>   <span style="color:#000;font-weight:bold">|</span>-- <span style="color:#0000cf;font-weight:bold">2007</span>-10-26-use-of-yield-statement.markdown
-<span style="color:#000;font-weight:bold">|</span>   <span style="color:#000;font-weight:bold">|</span>-- <span style="color:#0000cf;font-weight:bold">2007</span>-11-23-dynamically-increase-label-size-autosize.markdown
-<span style="color:#000;font-weight:bold">|</span>   <span style="color:#000;font-weight:bold">|</span>-- <span style="color:#0000cf;font-weight:bold">2007</span>-12-12-book-review-head-first-design-patterns.markdown
-<span style="color:#8f5902;font-style:italic"># ...............</span>
-<span style="color:#000;font-weight:bold">|</span>   <span style="color:#4e9a06">`</span>-- <span style="color:#0000cf;font-weight:bold">2015</span>-08-07-docker-container-cleanup-on-elastic-beanstalk.markdown
-<span style="color:#4e9a06">`</span>-- about
-    <span style="color:#4e9a06">`</span>-- index.markdown
-
-<span style="color:#0000cf;font-weight:bold">2</span> directories, <span style="color:#0000cf;font-weight:bold">42</span> files</code></pre></div>
-
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ tree
+</span></span><span style="display:flex;"><span>.
+</span></span><span style="display:flex;"><span>|-- _posts
+</span></span><span style="display:flex;"><span>|   |-- 2007-10-26-use-of-yield-statement.markdown
+</span></span><span style="display:flex;"><span>|   |-- 2007-11-23-dynamically-increase-label-size-autosize.markdown
+</span></span><span style="display:flex;"><span>|   |-- 2007-12-12-book-review-head-first-design-patterns.markdown
+</span></span><span style="display:flex;"><span><span style="color:#177500"># ...............</span>
+</span></span><span style="display:flex;"><span>|   <span style="color:#c41a16">`</span>-- 2015-08-07-docker-container-cleanup-on-elastic-beanstalk.markdown
+</span></span><span style="display:flex;"><span><span style="color:#c41a16">`</span>-- about
+</span></span><span style="display:flex;"><span>    <span style="color:#c41a16">`</span>-- index.markdown
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#1c01ce">2</span> directories, <span style="color:#1c01ce">42</span> files</span></span></code></pre></div>
 <p>You are ready to test with <code>hugo</code> now.</p>
-
 <h1 id="using-hugo">Using hugo</h1>
-
 <p>Now that we have made some markdown files, we just want to see how it looks like on default <code>hugo</code> setup.</p>
-
 <p><code>hugo</code> documentation mentions says that all you need to do is call it with your input files.
 The idea would be to start a new folder, copy your markdowns there. Here&rsquo;s what we need:</p>
-
 <h2 id="setup">Setup</h2>
-
 <ul>
 <li><code>config.toml</code> file for all the configuration that will be used by <code>hugo</code> to build the site</li>
 <li>Markdown to be put in <code>content</code> folder</li>
 <li><code>themes/{THEME_NAME}</code> folder container the actual theme in <code>{THEME_NAME}</code> folder</li>
 </ul>
-
 <p>Other minor things to note here:</p>
-
 <ul>
 <li>Output html files are put in <code>public</code> folder.
-
 <ul>
 <li>It is usually a good idea to keep separate folders for testing and production otherwise you may inadvertently commit your dev test pages (thanks to <code>livereload</code></li>
-</ul></li>
+</ul>
+</li>
 <li>I have seen hugo to complain quite a lot if you have your static files within <code>themes/{THEME}/static</code> folder
-
 <ul>
-<li>You can get around it in two ways.</li>
+<li>You can get around it in two ways.
+<ul>
 <li>Create a symbolic link from within your blogging folder by calling <code>ln -s themes/hyde-x/static static</code></li>
 <li>Copy the <code>static</code> folder as is in to the main folder location, as is by calling <code>cp -r themes/hyde-x/static/ ./</code>. However, do this <em>only</em> if you don&rsquo;t intend to mkae any changes</li>
-</ul></li>
 </ul>
-
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"> mkdir my_blog
- <span style="color:#204a87">cd</span> my_blog
- mkdir content
- cp -r /PATH_TO/exitwp/build/jekyll/codersdigest.wordpress.com/* ./content/
- </code></pre></div>
-
+</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>mkdir my_blog
+</span></span><span style="display:flex;"><span><span style="color:#a90d91">cd</span> my_blog
+</span></span><span style="display:flex;"><span>mkdir content
+</span></span><span style="display:flex;"><span>cp -r /PATH_TO/exitwp/build/jekyll/codersdigest.wordpress.com/* ./content/</span></span></code></pre></div>
 <h2 id="theme">Theme</h2>
-
 <p>Let&rsquo;s start with a simple theme <a href="https://github.com/zyro/hyde-x">hyde-x</a></p>
-
 <p>Here&rsquo;s how to install it.
- <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"> mkdir themes/
- <span style="color:#204a87">cd</span> themes/
- git clone https://github.com/zyro/hyde-x
- </code></pre></div></p>
-
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>mkdir themes/
+</span></span><span style="display:flex;"><span><span style="color:#a90d91">cd</span> themes/
+</span></span><span style="display:flex;"><span>git clone https://github.com/zyro/hyde-x</span></span></code></pre></div></p>
 <h2 id="folder-structure">Folder structure</h2>
-
 <p>Here&rsquo;s how the folders look now. Use this for comparison.</p>
-
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">tree -L <span style="color:#0000cf;font-weight:bold">2</span>
-.
-<span style="color:#000;font-weight:bold">|</span>-- config.toml
-<span style="color:#000;font-weight:bold">|</span>-- content
-<span style="color:#000;font-weight:bold">|</span>   <span style="color:#000;font-weight:bold">|</span>-- _posts
-<span style="color:#000;font-weight:bold">|</span>   <span style="color:#4e9a06">`</span>-- about
-<span style="color:#000;font-weight:bold">|</span>-- public
-<span style="color:#000;font-weight:bold">|</span>   <span style="color:#000;font-weight:bold">|</span>-- <span style="color:#0000cf;font-weight:bold">404</span>.html
-<span style="color:#000;font-weight:bold">|</span>   <span style="color:#000;font-weight:bold">|</span>-- _posts
-<span style="color:#000;font-weight:bold">|</span>   <span style="color:#000;font-weight:bold">|</span>-- about
-<span style="color:#000;font-weight:bold">|</span>   <span style="color:#000;font-weight:bold">|</span>-- categories
-<span style="color:#000;font-weight:bold">|</span>   <span style="color:#000;font-weight:bold">|</span>-- css
-<span style="color:#000;font-weight:bold">|</span>   <span style="color:#000;font-weight:bold">|</span>-- favicon.png
-<span style="color:#000;font-weight:bold">|</span>   <span style="color:#000;font-weight:bold">|</span>-- index.html
-<span style="color:#000;font-weight:bold">|</span>   <span style="color:#000;font-weight:bold">|</span>-- index.xml
-<span style="color:#000;font-weight:bold">|</span>   <span style="color:#000;font-weight:bold">|</span>-- js
-<span style="color:#000;font-weight:bold">|</span>   <span style="color:#000;font-weight:bold">|</span>-- page
-<span style="color:#000;font-weight:bold">|</span>   <span style="color:#000;font-weight:bold">|</span>-- sitemap.xml
-<span style="color:#000;font-weight:bold">|</span>   <span style="color:#000;font-weight:bold">|</span>-- tags
-<span style="color:#000;font-weight:bold">|</span>   <span style="color:#4e9a06">`</span>-- touch-icon-144-precomposed.png
-<span style="color:#000;font-weight:bold">|</span>-- static
-<span style="color:#000;font-weight:bold">|</span>   <span style="color:#000;font-weight:bold">|</span>-- css
-<span style="color:#000;font-weight:bold">|</span>   <span style="color:#000;font-weight:bold">|</span>-- favicon.png
-<span style="color:#000;font-weight:bold">|</span>   <span style="color:#000;font-weight:bold">|</span>-- js
-<span style="color:#000;font-weight:bold">|</span>   <span style="color:#4e9a06">`</span>-- touch-icon-144-precomposed.png
-<span style="color:#4e9a06">`</span>-- themes
-    <span style="color:#4e9a06">`</span>-- hyde-x</code></pre></div>
-
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>tree -L <span style="color:#1c01ce">2</span>
+</span></span><span style="display:flex;"><span>.
+</span></span><span style="display:flex;"><span>|-- config.toml
+</span></span><span style="display:flex;"><span>|-- content
+</span></span><span style="display:flex;"><span>|   |-- _posts
+</span></span><span style="display:flex;"><span>|   <span style="color:#c41a16">`</span>-- about
+</span></span><span style="display:flex;"><span>|-- public
+</span></span><span style="display:flex;"><span>|   |-- 404.html
+</span></span><span style="display:flex;"><span>|   |-- _posts
+</span></span><span style="display:flex;"><span>|   |-- about
+</span></span><span style="display:flex;"><span>|   |-- categories
+</span></span><span style="display:flex;"><span>|   |-- css
+</span></span><span style="display:flex;"><span>|   |-- favicon.png
+</span></span><span style="display:flex;"><span>|   |-- index.html
+</span></span><span style="display:flex;"><span>|   |-- index.xml
+</span></span><span style="display:flex;"><span>|   |-- js
+</span></span><span style="display:flex;"><span>|   |-- page
+</span></span><span style="display:flex;"><span>|   |-- sitemap.xml
+</span></span><span style="display:flex;"><span>|   |-- tags
+</span></span><span style="display:flex;"><span>|   <span style="color:#c41a16">`</span>-- touch-icon-144-precomposed.png
+</span></span><span style="display:flex;"><span>|-- static
+</span></span><span style="display:flex;"><span>|   |-- css
+</span></span><span style="display:flex;"><span>|   |-- favicon.png
+</span></span><span style="display:flex;"><span>|   |-- js
+</span></span><span style="display:flex;"><span>|   <span style="color:#c41a16">`</span>-- touch-icon-144-precomposed.png
+</span></span><span style="display:flex;"><span><span style="color:#c41a16">`</span>-- themes
+</span></span><span style="display:flex;"><span>    <span style="color:#c41a16">`</span>-- hyde-x</span></span></code></pre></div>
 <h2 id="config">Config</h2>
-
 <p>Your config file could be as follows. Do note that I am also trying to build a menu for myself on the sidebar for better tracking.
 It can be found under <code>[[menu.</code></p>
-
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">baseurl<span style="color:#f8f8f8;text-decoration:underline"> </span>=<span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;your_github_url&#34;</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span>languageCode<span style="color:#f8f8f8;text-decoration:underline"> </span>=<span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;en-us&#34;</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span>title<span style="color:#f8f8f8;text-decoration:underline"> </span>=<span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;title&#34;</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span>contentdir<span style="color:#f8f8f8;text-decoration:underline"> </span>=<span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;content&#34;</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span>layoutdir<span style="color:#f8f8f8;text-decoration:underline"> </span>=<span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;layouts&#34;</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span>publishdir<span style="color:#f8f8f8;text-decoration:underline"> </span>=<span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;public&#34;</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span>theme<span style="color:#f8f8f8;text-decoration:underline"> </span>=<span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;hyde-x&#34;</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span>pygmentsstyle<span style="color:#f8f8f8;text-decoration:underline"> </span>=<span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;native&#34;</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span>pygmentsuseclasses<span style="color:#f8f8f8;text-decoration:underline"> </span>=<span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#204a87;font-weight:bold">false</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#000;font-weight:bold">[</span>author<span style="color:#000;font-weight:bold">]</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">    </span>name<span style="color:#f8f8f8;text-decoration:underline"> </span>=<span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;your name&#34;</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#000;font-weight:bold">[</span>permalinks<span style="color:#000;font-weight:bold">]</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#8f5902;font-style:italic"># Change the permalink format for the &#39;post&#39; content type.</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#8f5902;font-style:italic"># This defines how your folder is structured</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">    </span>post<span style="color:#f8f8f8;text-decoration:underline"> </span>=<span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;/:year/:month/:title/&#34;</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#000;font-weight:bold">[</span>taxonomies<span style="color:#000;font-weight:bold">]</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#8f5902;font-style:italic"># I wanted to use tags and categories</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">    </span>category<span style="color:#f8f8f8;text-decoration:underline"> </span>=<span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;categories&#34;</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">    </span>tag<span style="color:#f8f8f8;text-decoration:underline"> </span>=<span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;tags&#34;</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#000;font-weight:bold">[[</span>menu.main<span style="color:#000;font-weight:bold">]]</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">    </span>name<span style="color:#f8f8f8;text-decoration:underline"> </span>=<span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;Posts&#34;</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">    </span>pre<span style="color:#f8f8f8;text-decoration:underline"> </span>=<span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;&lt;i class=&#39;fa fa-heart&#39;&gt;&lt;/i&gt;&#34;</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">    </span>weight<span style="color:#f8f8f8;text-decoration:underline"> </span>=<span style="color:#f8f8f8;text-decoration:underline"> </span>-<span style="color:#0000cf;font-weight:bold">110</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">    </span>identifier<span style="color:#f8f8f8;text-decoration:underline"> </span>=<span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;posts&#34;</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">    </span>url<span style="color:#f8f8f8;text-decoration:underline"> </span>=<span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;/post/&#34;</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#000;font-weight:bold">[[</span>menu.main<span style="color:#000;font-weight:bold">]]</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">    </span>name<span style="color:#f8f8f8;text-decoration:underline"> </span>=<span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;Tags&#34;</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">    </span>pre<span style="color:#f8f8f8;text-decoration:underline"> </span>=<span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;&lt;i class=&#39;fa fa-road&#39;&gt;&lt;/i&gt;&#34;</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">    </span>weight<span style="color:#f8f8f8;text-decoration:underline"> </span>=<span style="color:#f8f8f8;text-decoration:underline"> </span>-<span style="color:#0000cf;font-weight:bold">109</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">    </span>url<span style="color:#f8f8f8;text-decoration:underline"> </span>=<span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;/tags/&#34;</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#000;font-weight:bold">[[</span>menu.main<span style="color:#000;font-weight:bold">]]</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">    </span>name<span style="color:#f8f8f8;text-decoration:underline"> </span>=<span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;Categories&#34;</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">    </span>pre<span style="color:#f8f8f8;text-decoration:underline"> </span>=<span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;&lt;i class=&#39;fa fa-road&#39;&gt;&lt;/i&gt;&#34;</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">    </span>weight<span style="color:#f8f8f8;text-decoration:underline"> </span>=<span style="color:#f8f8f8;text-decoration:underline"> </span>-<span style="color:#0000cf;font-weight:bold">108</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">    </span>url<span style="color:#f8f8f8;text-decoration:underline"> </span>=<span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;/categories/&#34;</span></code></pre></div>
-
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#1c01ce">baseurl = &#34;your_github_url&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#1c01ce">languageCode = &#34;en-us&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#1c01ce">title = &#34;title&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#1c01ce">contentdir = &#34;content&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#1c01ce">layoutdir = &#34;layouts&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#1c01ce">publishdir = &#34;public&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#1c01ce">theme = &#34;hyde-x&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#1c01ce">pygmentsstyle = &#34;native&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#1c01ce">pygmentsuseclasses = false</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>[<span style="color:#1c01ce">author]</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#1c01ce">name = &#34;your name&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>[<span style="color:#1c01ce">permalinks]</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#177500"># Change the permalink format for the &#39;post&#39; content type.</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#177500"># This defines how your folder is structured</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#1c01ce">post = &#34;/:year/:month/:title/&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>[<span style="color:#1c01ce">taxonomies]</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#177500"># I wanted to use tags and categories</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#1c01ce">category = &#34;categories&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#1c01ce">tag = &#34;tags&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>[[<span style="color:#1c01ce">menu.main]]</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#1c01ce">name = &#34;Posts&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#1c01ce">pre = &#34;&lt;i class=&#39;fa fa-heart&#39;&gt;&lt;/i&gt;&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#1c01ce">weight = -110</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#1c01ce">identifier = &#34;posts&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#1c01ce">url = &#34;/post/&#34;</span>
+</span></span><span style="display:flex;"><span>[[<span style="color:#1c01ce">menu.main]]</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#1c01ce">name = &#34;Tags&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#1c01ce">pre = &#34;&lt;i class=&#39;fa fa-road&#39;&gt;&lt;/i&gt;&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#1c01ce">weight = -109</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#1c01ce">url = &#34;/tags/&#34;</span>
+</span></span><span style="display:flex;"><span>[[<span style="color:#1c01ce">menu.main]]</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#1c01ce">name = &#34;Categories&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#1c01ce">pre = &#34;&lt;i class=&#39;fa fa-road&#39;&gt;&lt;/i&gt;&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#1c01ce">weight = -108</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#1c01ce">url = &#34;/categories/&#34;</span></span></span></code></pre></div>
 <h2 id="run-hugo">Run hugo</h2>
-
 <p>Now that we have setup the contents, themes
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ hugo server
-    0 draft content
-    0 future content 
-    42 pages created
-    0 paginator pages created
-    18 tags created
-    6 categories created
-    in 53 ms
-    Serving pages from /Users/your_username/code/githubs/_tmp/_del/public
-    Web Server is available at http://127.0.0.1:1313/
-    Press Ctrl+C to stop</code></pre></div></p>
-
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>$ hugo server
+</span></span><span style="display:flex;"><span>    0 draft content
+</span></span><span style="display:flex;"><span>    0 future content
+</span></span><span style="display:flex;"><span>    42 pages created
+</span></span><span style="display:flex;"><span>    0 paginator pages created
+</span></span><span style="display:flex;"><span>    18 tags created
+</span></span><span style="display:flex;"><span>    6 categories created
+</span></span><span style="display:flex;"><span>    in 53 ms
+</span></span><span style="display:flex;"><span>    Serving pages from /Users/your_username/code/githubs/_tmp/_del/public
+</span></span><span style="display:flex;"><span>    Web Server is available at http://127.0.0.1:1313/
+</span></span><span style="display:flex;"><span>    Press Ctrl+C to stop
+</span></span></code></pre></div></p>
 <h2 id="final-look">Final look</h2>
-
 <p>You&rsquo;re done. How does it look?!</p>
-
-<figure>
-    <img src="/images/moving_to_hugo__blog_sample.png"
-         alt="Your sidebar"/> <figcaption>
-            <p>Your sidebar</p>
-        </figcaption>
+<figure><img src="/images/moving_to_hugo__blog_sample.png"
+    alt="Your sidebar"><figcaption>
+      <p>Your sidebar</p>
+    </figcaption>
 </figure>
 
-
 <h2 id="going-further">Going further</h2>
-
 <p>This is only the beginning. There are still a few loose ends to tie up.</p>
-
 <ul>
 <li>Are you happy enough with the theme?
-
 <ul>
 <li>If not, you can always try <a href="http://gohugo.io/themes/installing/">more themes</a></li>
-</ul></li>
+</ul>
+</li>
 <li>What about code highlighting? Would you like more changes?
-
 <ul>
 <li><code>hyde-x</code> also provides it&rsquo;s own version of highlighting through css files. You can use <a href="https://github.com/zyro/hyde-x#tips"><code>params</code> to control that</a></li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <p>I wasn&rsquo;t happy with the code highlights as well the default layout the themes were providing. I created my own adaptation of <code>hyde-x</code> called <a href="https://github.com/abhi1010/hyde-a"><code>hyde-a</code></a>
 Some changes I made were:</p>
-
 <ul>
 <li>Tags and Categories didn&rsquo;t have their own proper <code>listing</code> or <code>single</code> templates</li>
 <li>Every time you clicked on a tag/category, the list of all articles related to that term was also not shown properly</li>
-<li>Post listing only included title and date. I was looking for related tag and category for each post</li>
+<li>Post listing only pincluded title and date. I was looking for related tag and category for each post</li>
 </ul>
-
 <p>I fixed all of those with <a href="https://github.com/abhi1010/hyde-a"><code>hyde-a</code></a></p>
-
 <h2 id="hosting-your-blog">Hosting your blog</h2>
-
 <p>Now that we have created the blog, how about hosting it?
 We have use a free service like <a href="https://pages.github.com/">GitHub Pages</a>
 Once we commit your html pages (the <code>output</code>) onto github on a different repo it will show up directly on <code>github.io</code> as well.
-There are some concepts that you want to know. Learn some at [octopress])(<a href="http://octopress.org/docs/deploying/github/">http://octopress.org/docs/deploying/github/</a>).</p>
-
+There are some concepts that you want to know. Learn some at [octopress])(<a href="http://octopress.org/docs/deploying/github/)">http://octopress.org/docs/deploying/github/)</a>.</p>
 <p>Create your own repo using the following logic:</p>
-
 <ul>
 <li>You must use the <code>username.github.io</code> naming scheme.</li>
 <li>Content from the master branch will be used to build and publish your GitHub Pages site.</li>
 </ul>
-
 <h1 id="automating-your-blog-generation">Automating your blog generation</h1>
-
 <p>Now that our blog is generated, we need to automate the process of creating the html from the markdown.
 If we have to commit to two repo - for markdown as well html pages, I feel like is too much of work.</p>
-
 <p>I did some work with <code>shippable</code> and started automatically creating the html pages through it.</p>
-
 <p>I have created another article about it while taking Elastic Beanstalk as the subject. The same applies for <code>hugo</code> though. You can find it here:</p>
-
 <p><strong><a href="http://abhipandey.com/2015/09/elastic-beanstalk-deployment-automation/">Elastic Beanstalk Deployment Automation</a></strong></p>
-
 <p>Once you have done it, all you need to do is:</p>
-
 <ul>
 <li>Locally write your markdown files</li>
 <li>Test using <code>hugo server -w</code> to use <code>livereload</code></li>
 <li>Commit your markdown</li>
 </ul>
-
 <p><code>Shippable</code> will pick it up from there. It will download the theme and create the html files.
 It will also commit to the <code>GitHub Pages</code> for you and the site will be live automatically!</p>
 
-  </div>
-  <div id="disqus_thread"></div>
-</div>
-
-
-<script type="text/javascript">
-var disqus_shortname = "abhi1010";
-(function () {
-    var s = document.createElement('script'); s.async = true;
-    s.type = 'text/javascript';
-    s.src = '//' + disqus_shortname + '.disqus.com/count.js';
-    (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
-}());
-</script>
-
-
-
-<script type="text/javascript">
-    var disqus_shortname = "abhi1010";
+    </div>
+    <div class="post-footer">
+      <div id="disqus_thread"></div>
+<script>
+    window.disqus_config = function () {
+    
+    
+    
+    };
     (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "abhi1010" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
     })();
 </script>
-<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+  </article>
 
-
-</body>
+    </main>
+  </body>
 </html>
-

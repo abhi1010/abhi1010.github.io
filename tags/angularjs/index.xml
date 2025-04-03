@@ -1,25 +1,19 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Angularjs on Coders Digest</title>
     <link>http://abhipandey.com/tags/angularjs/</link>
     <description>Recent content in Angularjs on Coders Digest</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 03 Jan 2016 23:26:53 +0800</lastBuildDate>
-    
-	<atom:link href="http://abhipandey.com/tags/angularjs/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <atom:link href="http://abhipandey.com/tags/angularjs/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>AngularJS 2.0 building blocks explained</title>
       <link>http://abhipandey.com/2016/01/angularjs-2.0-building-blocks-explained/</link>
       <pubDate>Sun, 03 Jan 2016 23:26:53 +0800</pubDate>
-      
       <guid>http://abhipandey.com/2016/01/angularjs-2.0-building-blocks-explained/</guid>
-      <description>Let&amp;rsquo;s explain the eight building blocks of any Angular 2 app:
- Module Component Template Metadata Data Binding Directive Service Dependency Injection  Module  Optional feature Useful if you are using TypeScript which allows you to use interface or classes export class AppComponent is like saying that this class is going to be public Use relative file paths for importing modules  Component class is something you&amp;rsquo;d export from a module.</description>
+      <description>&lt;p&gt;Let&amp;rsquo;s explain the eight building blocks of any Angular 2 app:&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Module&lt;/li&gt;&#xA;&lt;li&gt;Component&lt;/li&gt;&#xA;&lt;li&gt;Template&lt;/li&gt;&#xA;&lt;li&gt;Metadata&lt;/li&gt;&#xA;&lt;li&gt;Data Binding&lt;/li&gt;&#xA;&lt;li&gt;Directive&lt;/li&gt;&#xA;&lt;li&gt;Service&lt;/li&gt;&#xA;&lt;li&gt;Dependency Injection&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;h1 id=&#34;module&#34;&gt;Module&lt;/h1&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Optional feature&lt;/li&gt;&#xA;&lt;li&gt;Useful if you are using TypeScript which allows you to use &lt;code&gt;interface&lt;/code&gt; or &lt;code&gt;classes&lt;/code&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;code&gt;export class AppComponent&lt;/code&gt; is like saying that this class is going to be public&lt;/li&gt;&#xA;&lt;li&gt;Use relative file paths for importing modules&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Component class is something you&amp;rsquo;d export from a module.&lt;/p&gt;&#xA;&lt;h1 id=&#34;component&#34;&gt;Component&lt;/h1&gt;&#xA;&lt;p&gt;Components controls Views&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>
