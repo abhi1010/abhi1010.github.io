@@ -6,20 +6,62 @@
     <description>Recent content in Tags on Coders Digest</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 13 Nov 2016 00:33:29 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 02 Sep 2024 10:30:00 +0800</lastBuildDate>
     <atom:link href="http://abhipandey.com/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Bash</title>
-      <link>http://abhipandey.com/tags/bash/</link>
-      <pubDate>Sun, 13 Nov 2016 00:33:29 +0800</pubDate>
-      <guid>http://abhipandey.com/tags/bash/</guid>
+      <title>Finance</title>
+      <link>http://abhipandey.com/tags/finance/</link>
+      <pubDate>Mon, 02 Sep 2024 10:30:00 +0800</pubDate>
+      <guid>http://abhipandey.com/tags/finance/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Options</title>
+      <link>http://abhipandey.com/tags/options/</link>
+      <pubDate>Mon, 02 Sep 2024 10:30:00 +0800</pubDate>
+      <guid>http://abhipandey.com/tags/options/</guid>
       <description></description>
     </item>
     <item>
       <title>Python</title>
       <link>http://abhipandey.com/tags/python/</link>
-      <pubDate>Sun, 13 Nov 2016 00:33:29 +0800</pubDate>
+      <pubDate>Mon, 02 Sep 2024 10:30:00 +0800</pubDate>
       <guid>http://abhipandey.com/tags/python/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Tastytrade</title>
+      <link>http://abhipandey.com/tags/tastytrade/</link>
+      <pubDate>Mon, 02 Sep 2024 10:30:00 +0800</pubDate>
+      <guid>http://abhipandey.com/tags/tastytrade/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Trading</title>
+      <link>http://abhipandey.com/tags/trading/</link>
+      <pubDate>Mon, 02 Sep 2024 10:30:00 +0800</pubDate>
+      <guid>http://abhipandey.com/tags/trading/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Automation</title>
+      <link>http://abhipandey.com/tags/automation/</link>
+      <pubDate>Sun, 01 Sep 2024 09:00:00 +0800</pubDate>
+      <guid>http://abhipandey.com/tags/automation/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Strategy</title>
+      <link>http://abhipandey.com/tags/strategy/</link>
+      <pubDate>Sat, 02 Sep 2023 00:33:29 +0800</pubDate>
+      <guid>http://abhipandey.com/tags/strategy/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Bash</title>
+      <link>http://abhipandey.com/tags/bash/</link>
+      <pubDate>Sun, 13 Nov 2016 00:33:29 +0800</pubDate>
+      <guid>http://abhipandey.com/tags/bash/</guid>
       <description></description>
     </item>
     <item>

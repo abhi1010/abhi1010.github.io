@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Finance on Coders Digest</title>
+    <link>http://abhipandey.com/tags/finance/</link>
+    <description>Recent content in Finance on Coders Digest</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 02 Sep 2024 10:30:00 +0800</lastBuildDate>
+    <atom:link href="http://abhipandey.com/tags/finance/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Understanding Iron Condor Screener with TastyTrade API</title>
+      <link>http://abhipandey.com/2024/09/understanding-iron-condor-screener-with-tastytrade-api/</link>
+      <pubDate>Mon, 02 Sep 2024 10:30:00 +0800</pubDate>
+      <guid>http://abhipandey.com/2024/09/understanding-iron-condor-screener-with-tastytrade-api/</guid>
+      <description>&lt;h1 id=&#34;understanding-iron-condor-screener-with-tastytrade-api&#34;&gt;Understanding Iron Condor Screener with TastyTrade API&lt;/h1&gt;&#xA;&lt;p&gt;In this blog post, I&amp;rsquo;ll break down a Python program that screens for iron condor options trading opportunities using the TastyTrade API. The code retrieves options data, calculates metrics for iron condor spreads, and ranks the results to find potentially profitable trades.&lt;/p&gt;&#xA;&lt;h2 id=&#34;what-is-an-iron-condor&#34;&gt;What is an Iron Condor?&lt;/h2&gt;&#xA;&lt;p&gt;Before diving into the code, let&amp;rsquo;s quickly review what an iron condor is. It&amp;rsquo;s an options trading strategy that involves:&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Automating Your Trading with TastyTrade&#39;s API</title>
+      <link>http://abhipandey.com/2024/09/automating-your-trading-with-tastytrades-api/</link>
+      <pubDate>Sun, 01 Sep 2024 09:00:00 +0800</pubDate>
+      <guid>http://abhipandey.com/2024/09/automating-your-trading-with-tastytrades-api/</guid>
+      <description>&lt;h1 id=&#34;automating-your-trading-with-tastytrades-api&#34;&gt;Automating Your Trading with TastyTrade&amp;rsquo;s API&lt;/h1&gt;&#xA;&lt;p&gt;In today&amp;rsquo;s fast-paced trading environment, automation can give you a significant edge. I&amp;rsquo;ve been working on a Python project that leverages the TastyTrade API to streamline various trading operations, from monitoring positions to setting automatic stop losses. In this post, I&amp;rsquo;ll walk through this integration and how it can help optimize your trading workflow.&lt;/p&gt;&#xA;&lt;h2 id=&#34;what-this-integration-does&#34;&gt;What This Integration Does&lt;/h2&gt;&#xA;&lt;p&gt;This Python library acts as a wrapper around TastyTrade&amp;rsquo;s API, making it easy to:&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Options on Coders Digest</title>
+    <link>http://abhipandey.com/tags/options/</link>
+    <description>Recent content in Options on Coders Digest</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 02 Sep 2024 10:30:00 +0800</lastBuildDate>
+    <atom:link href="http://abhipandey.com/tags/options/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Understanding Iron Condor Screener with TastyTrade API</title>
+      <link>http://abhipandey.com/2024/09/understanding-iron-condor-screener-with-tastytrade-api/</link>
+      <pubDate>Mon, 02 Sep 2024 10:30:00 +0800</pubDate>
+      <guid>http://abhipandey.com/2024/09/understanding-iron-condor-screener-with-tastytrade-api/</guid>
+      <description>&lt;h1 id=&#34;understanding-iron-condor-screener-with-tastytrade-api&#34;&gt;Understanding Iron Condor Screener with TastyTrade API&lt;/h1&gt;&#xA;&lt;p&gt;In this blog post, I&amp;rsquo;ll break down a Python program that screens for iron condor options trading opportunities using the TastyTrade API. The code retrieves options data, calculates metrics for iron condor spreads, and ranks the results to find potentially profitable trades.&lt;/p&gt;&#xA;&lt;h2 id=&#34;what-is-an-iron-condor&#34;&gt;What is an Iron Condor?&lt;/h2&gt;&#xA;&lt;p&gt;Before diving into the code, let&amp;rsquo;s quickly review what an iron condor is. It&amp;rsquo;s an options trading strategy that involves:&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

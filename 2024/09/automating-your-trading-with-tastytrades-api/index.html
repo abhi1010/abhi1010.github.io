@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="en-us">
+  <head>
+    <title>Automating Your Trading with TastyTrade&#39;s API // Coders Digest</title>
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.145.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Abhishek Pandey" />
+    <meta name="description" content="Automating trading operations with TastyTrade&#39;s API" />
+    <link rel="stylesheet" href="/css/main.min.5b1fcc8902588589c4767187402a3c29f8b8d7a6fdef6d9f8f77045bb0d14fee.css" />
+    
+
+    
+    
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Automating Your Trading with TastyTrade&#39;s API">
+  <meta name="twitter:description" content="Automating trading operations with TastyTrade&#39;s API">
+
+    <meta property="og:url" content="http://abhipandey.com/2024/09/automating-your-trading-with-tastytrades-api/">
+  <meta property="og:site_name" content="Coders Digest">
+  <meta property="og:title" content="Automating Your Trading with TastyTrade&#39;s API">
+  <meta property="og:description" content="Automating trading operations with TastyTrade&#39;s API">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2024-09-01T09:00:00+08:00">
+    <meta property="article:modified_time" content="2024-09-01T09:00:00+08:00">
+    <meta property="article:tag" content="Python">
+    <meta property="article:tag" content="Trading">
+    <meta property="article:tag" content="Automation">
+    <meta property="article:tag" content="Finance">
+
+
+  </head>
+  <body>
+    <header class="app-header">
+      <a href="/"><img class="app-header-avatar" src="/space-2.jpg" alt="Abhishek Pandey" /></a>
+      <span class="app-header-title">Coders Digest</span>
+      <nav class="app-header-menu">
+          <a class="app-header-menu-item" href="/post/">Posts</a>
+             - 
+          
+          <a class="app-header-menu-item" href="/tags/">Tags</a>
+             - 
+          
+          <a class="app-header-menu-item" href="/categories/">Categories</a>
+             - 
+          
+          <a class="app-header-menu-item" href="/about/">About</a>
+      </nav>
+      <p>Abhishek Pandey</p>
+      <div class="app-header-social">
+        
+          <a href="https://github.com/abhi1010" target="_blank" rel="noreferrer noopener me">
+            <svg class="icon icon-brand-github" viewBox="0 0 24 24" fill="currentColor"><title>GitHub</title><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+          </a>
+        
+          <a href="https://www.linkedin.com/in/apandey10/" target="_blank" rel="noreferrer noopener me">
+            <svg class="icon icon-brand-linkedin" viewBox="0 0 24 24" fill="currentColor"><title>LinkedIn</title><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </a>
+        
+      </div>
+    </header>
+    <main class="app-container">
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">Automating Your Trading with TastyTrade&#39;s API</h1>
+      <div class="post-meta">
+        <div>
+          <svg class="icon icon-calendar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>calendar</title><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+          Sep 1, 2024
+        </div>
+        <div>
+          <svg class="icon icon-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>clock</title><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+          4 min read
+        </div>
+        <div>
+          <svg class="icon icon-tag" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>tag</title><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
+              <a class="tag" href="/tags/python/">Python</a>
+              <a class="tag" href="/tags/trading/">Trading</a>
+              <a class="tag" href="/tags/automation/">Automation</a>
+              <a class="tag" href="/tags/finance/">Finance</a>
+        </div>
+      </div>
+    </header>
+    <div class="post-content">
+      <h1 id="automating-your-trading-with-tastytrades-api">Automating Your Trading with TastyTrade&rsquo;s API</h1>
+<p>In today&rsquo;s fast-paced trading environment, automation can give you a significant edge. I&rsquo;ve been working on a Python project that leverages the TastyTrade API to streamline various trading operations, from monitoring positions to setting automatic stop losses. In this post, I&rsquo;ll walk through this integration and how it can help optimize your trading workflow.</p>
+<h2 id="what-this-integration-does">What This Integration Does</h2>
+<p>This Python library acts as a wrapper around TastyTrade&rsquo;s API, making it easy to:</p>
+<ul>
+<li>Authenticate securely with your TastyTrade account</li>
+<li>Monitor your current positions</li>
+<li>View account balances</li>
+<li>Place orders programmatically</li>
+<li>Set automated stop-loss orders</li>
+<li>Track open orders</li>
+<li>Work with watchlists</li>
+</ul>
+<h2 id="the-building-blocks">The Building Blocks</h2>
+<h3 id="authentication--session-management">Authentication &amp; Session Management</h3>
+<p>The code handles secure authentication with the TastyTrade platform:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#a90d91">def</span> <span style="color:#000">get_session</span>(<span style="color:#000">username</span>, <span style="color:#000">password</span>):
+</span></span><span style="display:flex;"><span>  <span style="color:#a90d91">if</span> <span style="color:#000">token_is_recent</span>(<span style="color:#000">TOKEN_PATH</span>):
+</span></span><span style="display:flex;"><span>    <span style="color:#000">remember_token</span> <span style="color:#000">=</span> <span style="color:#000">load_token</span>(<span style="color:#000">TOKEN_PATH</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#000">logger</span><span style="color:#000">.</span><span style="color:#000">info</span>(<span style="color:#c41a16">f</span><span style="color:#c41a16">&#39;Loading the existing token: </span><span style="color:#c41a16">{</span><span style="color:#000">remember_token</span><span style="color:#c41a16">}</span><span style="color:#c41a16">&#39;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#177500"># delete the token as well after one time use</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000">os</span><span style="color:#000">.</span><span style="color:#000">remove</span>(<span style="color:#000">TOKEN_PATH</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#a90d91">return</span> <span style="color:#000">Session</span>(<span style="color:#000">username</span>, <span style="color:#000">remember_token</span><span style="color:#000">=</span><span style="color:#000">remember_token</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#a90d91">else</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#000">session</span> <span style="color:#000">=</span> <span style="color:#000">Session</span>(<span style="color:#000">username</span>, <span style="color:#000">password</span>, <span style="color:#000">remember_me</span><span style="color:#000">=</span><span style="color:#a90d91">True</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#000">logger</span><span style="color:#000">.</span><span style="color:#000">info</span>(
+</span></span><span style="display:flex;"><span>        <span style="color:#c41a16">f</span><span style="color:#c41a16">&#39;Saving the new token into: </span><span style="color:#c41a16">{</span><span style="color:#000">TOKEN_PATH</span><span style="color:#c41a16">}</span><span style="color:#c41a16">. val=</span><span style="color:#c41a16">{</span><span style="color:#000">session</span><span style="color:#000">.</span><span style="color:#000">remember_token</span><span style="color:#c41a16">}</span><span style="color:#c41a16">&#39;</span>
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>    <span style="color:#000">save_token</span>(<span style="color:#000">session</span><span style="color:#000">.</span><span style="color:#000">remember_token</span>, <span style="color:#000">TOKEN_PATH</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#a90d91">return</span> <span style="color:#000">session</span>
+</span></span></code></pre></div><p>This elegant approach caches authentication tokens locally to minimize login requests, improving both security and performance.</p>
+<h3 id="position-tracking">Position Tracking</h3>
+<p>The core <code>TastyBite</code> class provides easy access to account positions:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#a90d91">def</span> <span style="color:#000">get_positions</span>(<span style="color:#5b269a">self</span>, <span style="color:#000">index</span><span style="color:#000">=</span><span style="color:#1c01ce">0</span>):
+</span></span><span style="display:flex;"><span>  <span style="color:#000">account_idx</span> <span style="color:#000">=</span> <span style="color:#5b269a">self</span><span style="color:#000">.</span><span style="color:#000">get_accounts</span>()[<span style="color:#000">index</span>]
+</span></span><span style="display:flex;"><span>  <span style="color:#000">positions</span> <span style="color:#000">=</span> <span style="color:#000">account_idx</span><span style="color:#000">.</span><span style="color:#000">get_positions</span>(<span style="color:#5b269a">self</span><span style="color:#000">.</span><span style="color:#000">session</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#a90d91">return</span> <span style="color:#000">positions</span>
+</span></span></code></pre></div><h3 id="automated-stop-loss-setting">Automated Stop Loss Setting</h3>
+<p>One of the most powerful features is the ability to automatically set stop losses for positions that don&rsquo;t yet have them:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#a90d91">def</span> <span style="color:#000">set_stop_loss_for_equities</span>(<span style="color:#5b269a">self</span>,
+</span></span><span style="display:flex;"><span>                              <span style="color:#000">positions</span>,
+</span></span><span style="display:flex;"><span>                              <span style="color:#000">stop_loss_threshold</span><span style="color:#000">=</span><span style="color:#1c01ce">0.08</span>,
+</span></span><span style="display:flex;"><span>                              <span style="color:#000">dry_run</span><span style="color:#000">=</span><span style="color:#a90d91">True</span>):
+</span></span><span style="display:flex;"><span>  <span style="color:#a90d91">for</span> <span style="color:#000">position</span> <span style="color:#000">in</span> <span style="color:#000">positions</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#000">symbol</span> <span style="color:#000">=</span> <span style="color:#000">position</span><span style="color:#000">.</span><span style="color:#000">underlying_symbol</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#177500"># Calculate stop-loss price</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000">stop_loss_price</span> <span style="color:#000">=</span> <span style="color:#000">position</span><span style="color:#000">.</span><span style="color:#000">average_open_price</span> <span style="color:#000">*</span> <span style="color:#000">decimal</span><span style="color:#000">.</span><span style="color:#000">Decimal</span>(
+</span></span><span style="display:flex;"><span>        <span style="color:#1c01ce">1</span> <span style="color:#000">-</span> <span style="color:#000">stop_loss_threshold</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#000">stop_loss_price</span> <span style="color:#000">=</span> <span style="color:#a90d91">round</span>(<span style="color:#000">stop_loss_price</span>, <span style="color:#1c01ce">2</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#177500"># ... [order creation and placement code]</span>
+</span></span></code></pre></div><p>This function loops through positions without stop losses and creates appropriate STOP orders with a configurable threshold (default 8% below purchase price).</p>
+<h2 id="rich-data-visualization">Rich Data Visualization</h2>
+<p>The integration also includes utilities for visualizing your positions in a clear, tabular format:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#a90d91">def</span> <span style="color:#000">create_rich_table</span>(<span style="color:#000">positions</span>):
+</span></span><span style="display:flex;"><span>  <span style="color:#000">table</span> <span style="color:#000">=</span> <span style="color:#000">Table</span>(<span style="color:#000">title</span><span style="color:#000">=</span><span style="color:#c41a16">&#34;Equity Positions&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#000">columns</span> <span style="color:#000">=</span> [
+</span></span><span style="display:flex;"><span>      <span style="color:#c41a16">&#34;Symbol&#34;</span>, <span style="color:#c41a16">&#34;Type&#34;</span>, <span style="color:#c41a16">&#34;Quantity&#34;</span>, <span style="color:#c41a16">&#34;Direction&#34;</span>, <span style="color:#c41a16">&#34;Close Price&#34;</span>, <span style="color:#c41a16">&#34;Open Price&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#c41a16">&#34;Realized Day Gain&#34;</span>, <span style="color:#c41a16">&#34;Expires At&#34;</span>
+</span></span><span style="display:flex;"><span>  ]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a90d91">for</span> <span style="color:#000">column</span> <span style="color:#000">in</span> <span style="color:#000">columns</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#000">table</span><span style="color:#000">.</span><span style="color:#000">add_column</span>(<span style="color:#000">column</span>, <span style="color:#000">justify</span><span style="color:#000">=</span><span style="color:#c41a16">&#34;right&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#177500"># ... [code that populates the table with position data]</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a90d91">return</span> <span style="color:#000">table</span>
+</span></span></code></pre></div><p>This produces beautiful, formatted tables like:</p>
+<pre tabindex="0"><code>=== Equity Positions ===
+┌────────┬──────┬──────────┬───────────┬─────────────┬────────────┬───────────────────┬────────────────┐
+│ Symbol │ Type │ Quantity │ Direction │ Close Price │ Open Price │ Realized Day Gain │ Expires At     │
+├────────┼──────┼──────────┼───────────┼─────────────┼────────────┼───────────────────┼────────────────┤
+│ AAPL   │ EQUITY│ 100      │ Long      │ $198.45     │ $186.75    │ $0.00            │ N/A            │
+│ SPY    │ EQUITY│ 50       │ Long      │ $456.32     │ $450.10    │ $0.00            │ N/A            │
+│ TSLA   │ EQUITY│ 25       │ Long      │ $215.65     │ $220.33    │ $0.00            │ N/A            │
+└────────┴──────┴──────────┴───────────┴─────────────┴────────────┴───────────────────┴────────────────┘
+</code></pre><h2 id="order-management">Order Management</h2>
+<p>The code also makes it easy to view and filter open orders:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#a90d91">def</span> <span style="color:#000">get_filtered_orders</span>(<span style="color:#5b269a">self</span>, <span style="color:#000">instrument_types</span><span style="color:#000">=</span><span style="color:#a90d91">None</span>, <span style="color:#000">order_types</span><span style="color:#000">=</span><span style="color:#a90d91">None</span>):
+</span></span><span style="display:flex;"><span>  <span style="color:#000">open_orders</span> <span style="color:#000">=</span> <span style="color:#5b269a">self</span><span style="color:#000">.</span><span style="color:#000">tasty_bite</span><span style="color:#000">.</span><span style="color:#000">get_orders</span>()
+</span></span><span style="display:flex;"><span>  <span style="color:#000">filtered_orders</span> <span style="color:#000">=</span> []
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a90d91">for</span> <span style="color:#000">order</span> <span style="color:#000">in</span> <span style="color:#000">open_orders</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#000">include_order</span> <span style="color:#000">=</span> <span style="color:#000">order</span><span style="color:#000">.</span><span style="color:#000">status</span> <span style="color:#000">not</span> <span style="color:#000">in</span> [
+</span></span><span style="display:flex;"><span>        <span style="color:#000">TT_Order</span><span style="color:#000">.</span><span style="color:#000">OrderStatus</span><span style="color:#000">.</span><span style="color:#000">REJECTED</span>, <span style="color:#000">TT_Order</span><span style="color:#000">.</span><span style="color:#000">OrderStatus</span><span style="color:#000">.</span><span style="color:#000">CANCELLED</span>
+</span></span><span style="display:flex;"><span>    ]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a90d91">if</span> <span style="color:#000">instrument_types</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#000">include_order</span> <span style="color:#000">=</span> <span style="color:#000">include_order</span> <span style="color:#000">and</span> <span style="color:#000">order</span><span style="color:#000">.</span><span style="color:#000">underlying_instrument_type</span> <span style="color:#000">in</span> <span style="color:#000">instrument_types</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a90d91">if</span> <span style="color:#000">order_types</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#000">include_order</span> <span style="color:#000">=</span> <span style="color:#000">include_order</span> <span style="color:#000">and</span> <span style="color:#000">order</span><span style="color:#000">.</span><span style="color:#000">order_type</span> <span style="color:#000">in</span> <span style="color:#000">order_types</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a90d91">if</span> <span style="color:#000">include_order</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#000">filtered_orders</span><span style="color:#000">.</span><span style="color:#000">append</span>(<span style="color:#000">order</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a90d91">return</span> <span style="color:#000">filtered_orders</span>
+</span></span></code></pre></div><p>This allows you to easily filter for specific order types like stop losses or pending limit orders.</p>
+<h2 id="practical-use-cases">Practical Use Cases</h2>
+<h3 id="1-risk-management-automation">1. Risk Management Automation</h3>
+<p>The standout feature for me has been automating stop loss placement. By running a simple script daily:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#000">tasty_utils</span> <span style="color:#000">=</span> <span style="color:#000">TastyUtilities</span>()
+</span></span><span style="display:flex;"><span><span style="color:#000">positions_without_sl</span> <span style="color:#000">=</span> <span style="color:#000">tasty_utils</span><span style="color:#000">.</span><span style="color:#000">get_equity_positions_without_sl</span>()
+</span></span><span style="display:flex;"><span><span style="color:#000">tasty_utils</span><span style="color:#000">.</span><span style="color:#000">set_stop_loss_for_equities</span>(<span style="color:#000">positions_without_sl</span>)
+</span></span></code></pre></div><p>This ensures all positions get proper stop losses, eliminating the risk of forgetting this crucial risk management step.</p>
+<h3 id="2-portfolio-monitoring">2. Portfolio Monitoring</h3>
+<p>The data visualization capabilities make it easy to get a quick snapshot of your positions:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#000">tasty_utils</span> <span style="color:#000">=</span> <span style="color:#000">TastyUtilities</span>()
+</span></span><span style="display:flex;"><span><span style="color:#000">tasty_utils</span><span style="color:#000">.</span><span style="color:#000">print_positions</span>()
+</span></span></code></pre></div><h3 id="3-programmatic-order-placement">3. Programmatic Order Placement</h3>
+<p>The <code>place_order</code> method makes it simple to execute trades programmatically:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#000">tasty_utils</span><span style="color:#000">.</span><span style="color:#000">place_order</span>(
+</span></span><span style="display:flex;"><span>    <span style="color:#000">ticker</span><span style="color:#000">=</span><span style="color:#c41a16">&#34;AAPL&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#000">price</span><span style="color:#000">=</span><span style="color:#1c01ce">190.50</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#000">qty</span><span style="color:#000">=</span><span style="color:#1c01ce">10</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#000">action</span><span style="color:#000">=</span><span style="color:#000">TT_Order</span><span style="color:#000">.</span><span style="color:#000">OrderAction</span><span style="color:#000">.</span><span style="color:#000">BUY_TO_OPEN</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#000">dry_run</span><span style="color:#000">=</span><span style="color:#a90d91">False</span>
+</span></span><span style="display:flex;"><span>)
+</span></span></code></pre></div><h2 id="setting-up-your-own-integration">Setting Up Your Own Integration</h2>
+<p>To use this integration:</p>
+<ol>
+<li>
+<p>Install the required packages:</p>
+<pre tabindex="0"><code>pip install tastytrade pandas rich
+</code></pre></li>
+<li>
+<p>Set up environment variables for authentication:</p>
+<pre tabindex="0"><code>export TASTY_USERNAME=&#34;your_username&#34;
+export TASTY_KEY=&#34;encrypted_key&#34;
+export TASTY_TOKEN=&#34;encrypted_token&#34;
+export TASTY_ACCOUNT_UNIQUE_ID=&#34;your_account_id&#34;
+</code></pre></li>
+<li>
+<p>Create a utility script that imports and uses the functionality you need.</p>
+</li>
+</ol>
+<h2 id="final-thoughts">Final Thoughts</h2>
+<p>Trading automation doesn&rsquo;t need to mean creating complex algorithmic strategies. Even simple automations like this integration can significantly improve your trading efficiency and risk management. The code is modular and well-structured, making it easy to extend with your own custom functionality.</p>
+<p>Whether you&rsquo;re looking to automate stop losses, monitor positions, or simply have programmatic access to your TastyTrade account, this integration provides a solid foundation to build upon.</p>
+<p>What automation would you like to add to your trading workflow? Let me know in the comments!</p>
+<hr>
+<p><em>Note: Always test any trading automation in dry-run mode first, and be cautious when deploying automated tools that can place real orders. This code includes a <code>dry_run</code> parameter on order functions that should be set to <code>True</code> until you&rsquo;re confident in its behavior.</em></p>
+
+    </div>
+    <div class="post-footer">
+      <div id="disqus_thread"></div>
+<script>
+    window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "abhi1010" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+  </article>
+
+    </main>
+  </body>
+</html>

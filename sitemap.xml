@@ -2,31 +2,64 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>http://abhipandey.com/categories/</loc>
+    <lastmod>2024-09-02T10:30:00+08:00</lastmod>
+  </url><url>
+    <loc>http://abhipandey.com/</loc>
+    <lastmod>2024-09-02T10:30:00+08:00</lastmod>
+  </url><url>
+    <loc>http://abhipandey.com/categories/finance/</loc>
+    <lastmod>2024-09-02T10:30:00+08:00</lastmod>
+  </url><url>
+    <loc>http://abhipandey.com/tags/finance/</loc>
+    <lastmod>2024-09-02T10:30:00+08:00</lastmod>
+  </url><url>
+    <loc>http://abhipandey.com/tags/options/</loc>
+    <lastmod>2024-09-02T10:30:00+08:00</lastmod>
+  </url><url>
+    <loc>http://abhipandey.com/post/</loc>
+    <lastmod>2024-09-02T10:30:00+08:00</lastmod>
+  </url><url>
+    <loc>http://abhipandey.com/tags/python/</loc>
+    <lastmod>2024-09-02T10:30:00+08:00</lastmod>
+  </url><url>
+    <loc>http://abhipandey.com/tags/</loc>
+    <lastmod>2024-09-02T10:30:00+08:00</lastmod>
+  </url><url>
+    <loc>http://abhipandey.com/tags/tastytrade/</loc>
+    <lastmod>2024-09-02T10:30:00+08:00</lastmod>
+  </url><url>
+    <loc>http://abhipandey.com/tags/trading/</loc>
+    <lastmod>2024-09-02T10:30:00+08:00</lastmod>
+  </url><url>
+    <loc>http://abhipandey.com/2024/09/understanding-iron-condor-screener-with-tastytrade-api/</loc>
+    <lastmod>2024-09-02T10:30:00+08:00</lastmod>
+  </url><url>
+    <loc>http://abhipandey.com/2024/09/automating-your-trading-with-tastytrades-api/</loc>
+    <lastmod>2024-09-01T09:00:00+08:00</lastmod>
+  </url><url>
+    <loc>http://abhipandey.com/tags/automation/</loc>
+    <lastmod>2024-09-01T09:00:00+08:00</lastmod>
+  </url><url>
+    <loc>http://abhipandey.com/categories/code/</loc>
+    <lastmod>2024-09-01T09:00:00+08:00</lastmod>
+  </url><url>
+    <loc>http://abhipandey.com/tags/strategy/</loc>
+    <lastmod>2023-09-02T00:33:29+08:00</lastmod>
+  </url><url>
+    <loc>http://abhipandey.com/categories/trading/</loc>
+    <lastmod>2023-09-02T00:33:29+08:00</lastmod>
+  </url><url>
+    <loc>http://abhipandey.com/2023/09/upgrading-from-dual-momentum/</loc>
+    <lastmod>2023-09-02T00:33:29+08:00</lastmod>
+  </url><url>
     <loc>http://abhipandey.com/2016/11/adding-launcher-shortcut-in-fedora/</loc>
     <lastmod>2016-11-13T00:33:29+08:00</lastmod>
   </url><url>
     <loc>http://abhipandey.com/tags/bash/</loc>
     <lastmod>2016-11-13T00:33:29+08:00</lastmod>
   </url><url>
-    <loc>http://abhipandey.com/categories/</loc>
-    <lastmod>2016-11-13T00:33:29+08:00</lastmod>
-  </url><url>
-    <loc>http://abhipandey.com/categories/code/</loc>
-    <lastmod>2016-11-13T00:33:29+08:00</lastmod>
-  </url><url>
-    <loc>http://abhipandey.com/</loc>
-    <lastmod>2016-11-13T00:33:29+08:00</lastmod>
-  </url><url>
-    <loc>http://abhipandey.com/post/</loc>
-    <lastmod>2016-11-13T00:33:29+08:00</lastmod>
-  </url><url>
-    <loc>http://abhipandey.com/tags/python/</loc>
-    <lastmod>2016-11-13T00:33:29+08:00</lastmod>
-  </url><url>
     <loc>http://abhipandey.com/2016/11/running-invoke-from-other-folders/</loc>
-    <lastmod>2016-11-13T00:33:29+08:00</lastmod>
-  </url><url>
-    <loc>http://abhipandey.com/tags/</loc>
     <lastmod>2016-11-13T00:33:29+08:00</lastmod>
   </url><url>
     <loc>http://abhipandey.com/tags/tips/</loc>
