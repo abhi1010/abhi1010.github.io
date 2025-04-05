@@ -2,56 +2,107 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>http://abhipandey.com/tags/automation/</loc>
+    <lastmod>2023-11-14T09:30:00+08:00</lastmod>
+  </url><url>
     <loc>http://abhipandey.com/categories/</loc>
-    <lastmod>2024-09-02T10:30:00+08:00</lastmod>
+    <lastmod>2023-11-14T09:30:00+08:00</lastmod>
+  </url><url>
+    <loc>http://abhipandey.com/tags/ccxt/</loc>
+    <lastmod>2023-11-14T09:30:00+08:00</lastmod>
   </url><url>
     <loc>http://abhipandey.com/</loc>
-    <lastmod>2024-09-02T10:30:00+08:00</lastmod>
+    <lastmod>2023-11-14T09:30:00+08:00</lastmod>
+  </url><url>
+    <loc>http://abhipandey.com/categories/crypto/</loc>
+    <lastmod>2023-11-14T09:30:00+08:00</lastmod>
+  </url><url>
+    <loc>http://abhipandey.com/2023/11/crypto-volume-selector-building-a-data-driven-tool-for-cryptocurrency-trading/</loc>
+    <lastmod>2023-11-14T09:30:00+08:00</lastmod>
+  </url><url>
+    <loc>http://abhipandey.com/tags/cryptocurrency/</loc>
+    <lastmod>2023-11-14T09:30:00+08:00</lastmod>
+  </url><url>
+    <loc>http://abhipandey.com/tags/data-analysis/</loc>
+    <lastmod>2023-11-14T09:30:00+08:00</lastmod>
   </url><url>
     <loc>http://abhipandey.com/categories/finance/</loc>
-    <lastmod>2024-09-02T10:30:00+08:00</lastmod>
+    <lastmod>2023-11-14T09:30:00+08:00</lastmod>
   </url><url>
-    <loc>http://abhipandey.com/tags/finance/</loc>
-    <lastmod>2024-09-02T10:30:00+08:00</lastmod>
+    <loc>http://abhipandey.com/tags/kucoin/</loc>
+    <lastmod>2023-11-14T09:30:00+08:00</lastmod>
   </url><url>
-    <loc>http://abhipandey.com/tags/options/</loc>
-    <lastmod>2024-09-02T10:30:00+08:00</lastmod>
+    <loc>http://abhipandey.com/tags/liquidity/</loc>
+    <lastmod>2023-11-14T09:30:00+08:00</lastmod>
+  </url><url>
+    <loc>http://abhipandey.com/tags/market-data/</loc>
+    <lastmod>2023-11-14T09:30:00+08:00</lastmod>
   </url><url>
     <loc>http://abhipandey.com/post/</loc>
-    <lastmod>2024-09-02T10:30:00+08:00</lastmod>
+    <lastmod>2023-11-14T09:30:00+08:00</lastmod>
   </url><url>
     <loc>http://abhipandey.com/tags/python/</loc>
-    <lastmod>2024-09-02T10:30:00+08:00</lastmod>
+    <lastmod>2023-11-14T09:30:00+08:00</lastmod>
   </url><url>
     <loc>http://abhipandey.com/tags/</loc>
-    <lastmod>2024-09-02T10:30:00+08:00</lastmod>
-  </url><url>
-    <loc>http://abhipandey.com/tags/tastytrade/</loc>
-    <lastmod>2024-09-02T10:30:00+08:00</lastmod>
+    <lastmod>2023-11-14T09:30:00+08:00</lastmod>
   </url><url>
     <loc>http://abhipandey.com/tags/trading/</loc>
-    <lastmod>2024-09-02T10:30:00+08:00</lastmod>
+    <lastmod>2023-11-14T09:30:00+08:00</lastmod>
   </url><url>
-    <loc>http://abhipandey.com/2024/09/understanding-iron-condor-screener-with-tastytrade-api/</loc>
-    <lastmod>2024-09-02T10:30:00+08:00</lastmod>
+    <loc>http://abhipandey.com/tags/trading-volume/</loc>
+    <lastmod>2023-11-14T09:30:00+08:00</lastmod>
   </url><url>
-    <loc>http://abhipandey.com/2024/09/automating-your-trading-with-tastytrades-api/</loc>
-    <lastmod>2024-09-01T09:00:00+08:00</lastmod>
+    <loc>http://abhipandey.com/tags/finance/</loc>
+    <lastmod>2023-09-02T10:30:00+08:00</lastmod>
   </url><url>
-    <loc>http://abhipandey.com/tags/automation/</loc>
-    <lastmod>2024-09-01T09:00:00+08:00</lastmod>
+    <loc>http://abhipandey.com/tags/options/</loc>
+    <lastmod>2023-09-02T10:30:00+08:00</lastmod>
+  </url><url>
+    <loc>http://abhipandey.com/tags/tastytrade/</loc>
+    <lastmod>2023-09-02T10:30:00+08:00</lastmod>
+  </url><url>
+    <loc>http://abhipandey.com/2023/09/understanding-iron-condor-screener-with-tastytrade-api/</loc>
+    <lastmod>2023-09-02T10:30:00+08:00</lastmod>
+  </url><url>
+    <loc>http://abhipandey.com/2023/09/automating-your-trading-with-tastytrades-api/</loc>
+    <lastmod>2023-09-01T09:00:00+08:00</lastmod>
   </url><url>
     <loc>http://abhipandey.com/categories/code/</loc>
-    <lastmod>2024-09-01T09:00:00+08:00</lastmod>
+    <lastmod>2023-09-01T09:00:00+08:00</lastmod>
   </url><url>
     <loc>http://abhipandey.com/tags/strategy/</loc>
-    <lastmod>2023-09-02T00:33:29+08:00</lastmod>
+    <lastmod>2023-03-11T00:33:29+08:00</lastmod>
   </url><url>
-    <loc>http://abhipandey.com/categories/trading/</loc>
-    <lastmod>2023-09-02T00:33:29+08:00</lastmod>
+    <loc>http://abhipandey.com/2023/03/upgrading-from-dual-momentum/</loc>
+    <lastmod>2023-03-11T00:33:29+08:00</lastmod>
   </url><url>
-    <loc>http://abhipandey.com/2023/09/upgrading-from-dual-momentum/</loc>
-    <lastmod>2023-09-02T00:33:29+08:00</lastmod>
+    <loc>http://abhipandey.com/tags/api/</loc>
+    <lastmod>2023-02-27T09:30:00+08:00</lastmod>
+  </url><url>
+    <loc>http://abhipandey.com/tags/data/</loc>
+    <lastmod>2023-02-27T09:30:00+08:00</lastmod>
+  </url><url>
+    <loc>http://abhipandey.com/2023/02/seamless-data-flow-using-google-sheets-api-with-pandas-dataframes/</loc>
+    <lastmod>2023-02-27T09:30:00+08:00</lastmod>
+  </url><url>
+    <loc>http://abhipandey.com/tags/debugging/</loc>
+    <lastmod>2019-09-02T09:30:00+08:00</lastmod>
+  </url><url>
+    <loc>http://abhipandey.com/2019/09/effective-log-management-in-python-a-deep-dive-into-the-get_logger-function/</loc>
+    <lastmod>2019-09-02T09:30:00+08:00</lastmod>
+  </url><url>
+    <loc>http://abhipandey.com/tags/logging/</loc>
+    <lastmod>2019-09-02T09:30:00+08:00</lastmod>
+  </url><url>
+    <loc>http://abhipandey.com/tags/file-operations/</loc>
+    <lastmod>2018-05-20T09:30:00+08:00</lastmod>
+  </url><url>
+    <loc>http://abhipandey.com/2018/05/mastering-file-operations-in-python-a-deep-dive-into-a-practical-utils-module/</loc>
+    <lastmod>2018-05-20T09:30:00+08:00</lastmod>
+  </url><url>
+    <loc>http://abhipandey.com/tags/utilities/</loc>
+    <lastmod>2018-05-20T09:30:00+08:00</lastmod>
   </url><url>
     <loc>http://abhipandey.com/2016/11/adding-launcher-shortcut-in-fedora/</loc>
     <lastmod>2016-11-13T00:33:29+08:00</lastmod>

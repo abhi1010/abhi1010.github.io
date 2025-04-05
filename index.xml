@@ -6,28 +6,56 @@
     <description>Recent content on Coders Digest</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 02 Sep 2024 10:30:00 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 14 Nov 2023 09:30:00 +0800</lastBuildDate>
     <atom:link href="http://abhipandey.com/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Crypto Volume Selector: Building a Data-Driven Tool for Cryptocurrency Trading</title>
+      <link>http://abhipandey.com/2023/11/crypto-volume-selector-building-a-data-driven-tool-for-cryptocurrency-trading/</link>
+      <pubDate>Tue, 14 Nov 2023 09:30:00 +0800</pubDate>
+      <guid>http://abhipandey.com/2023/11/crypto-volume-selector-building-a-data-driven-tool-for-cryptocurrency-trading/</guid>
+      <description>&lt;p&gt;In the fast-paced world of cryptocurrency trading, making informed decisions based on market data is crucial. Today, I want to share a Python tool I&amp;rsquo;ve built that helps select cryptocurrencies based on their trading volume - a key metric that can indicate market interest and liquidity.&lt;/p&gt;&#xA;&lt;h2 id=&#34;why-trading-volume-matters&#34;&gt;Why Trading Volume Matters&lt;/h2&gt;&#xA;&lt;p&gt;Trading volume is one of the most important metrics when selecting cryptocurrencies for trading strategies. High volume typically indicates:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Better liquidity (easier to enter and exit positions)&lt;/li&gt;&#xA;&lt;li&gt;More market interest&lt;/li&gt;&#xA;&lt;li&gt;Potentially lower slippage&lt;/li&gt;&#xA;&lt;li&gt;More reliable technical indicators&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Volume, combined with price information, gives us the trading value - a measure of the total money flowing through a particular trading pair. This is often a more reliable indicator than just looking at price or volume in isolation.&lt;/p&gt;</description>
+    </item>
+    <item>
       <title>Understanding Iron Condor Screener with TastyTrade API</title>
-      <link>http://abhipandey.com/2024/09/understanding-iron-condor-screener-with-tastytrade-api/</link>
-      <pubDate>Mon, 02 Sep 2024 10:30:00 +0800</pubDate>
-      <guid>http://abhipandey.com/2024/09/understanding-iron-condor-screener-with-tastytrade-api/</guid>
+      <link>http://abhipandey.com/2023/09/understanding-iron-condor-screener-with-tastytrade-api/</link>
+      <pubDate>Sat, 02 Sep 2023 10:30:00 +0800</pubDate>
+      <guid>http://abhipandey.com/2023/09/understanding-iron-condor-screener-with-tastytrade-api/</guid>
       <description>&lt;h1 id=&#34;understanding-iron-condor-screener-with-tastytrade-api&#34;&gt;Understanding Iron Condor Screener with TastyTrade API&lt;/h1&gt;&#xA;&lt;p&gt;In this blog post, I&amp;rsquo;ll break down a Python program that screens for iron condor options trading opportunities using the TastyTrade API. The code retrieves options data, calculates metrics for iron condor spreads, and ranks the results to find potentially profitable trades.&lt;/p&gt;&#xA;&lt;h2 id=&#34;what-is-an-iron-condor&#34;&gt;What is an Iron Condor?&lt;/h2&gt;&#xA;&lt;p&gt;Before diving into the code, let&amp;rsquo;s quickly review what an iron condor is. It&amp;rsquo;s an options trading strategy that involves:&lt;/p&gt;</description>
     </item>
     <item>
       <title>Automating Your Trading with TastyTrade&#39;s API</title>
-      <link>http://abhipandey.com/2024/09/automating-your-trading-with-tastytrades-api/</link>
-      <pubDate>Sun, 01 Sep 2024 09:00:00 +0800</pubDate>
-      <guid>http://abhipandey.com/2024/09/automating-your-trading-with-tastytrades-api/</guid>
+      <link>http://abhipandey.com/2023/09/automating-your-trading-with-tastytrades-api/</link>
+      <pubDate>Fri, 01 Sep 2023 09:00:00 +0800</pubDate>
+      <guid>http://abhipandey.com/2023/09/automating-your-trading-with-tastytrades-api/</guid>
       <description>&lt;h1 id=&#34;automating-your-trading-with-tastytrades-api&#34;&gt;Automating Your Trading with TastyTrade&amp;rsquo;s API&lt;/h1&gt;&#xA;&lt;p&gt;In today&amp;rsquo;s fast-paced trading environment, automation can give you a significant edge. I&amp;rsquo;ve been working on a Python project that leverages the TastyTrade API to streamline various trading operations, from monitoring positions to setting automatic stop losses. In this post, I&amp;rsquo;ll walk through this integration and how it can help optimize your trading workflow.&lt;/p&gt;&#xA;&lt;h2 id=&#34;what-this-integration-does&#34;&gt;What This Integration Does&lt;/h2&gt;&#xA;&lt;p&gt;This Python library acts as a wrapper around TastyTrade&amp;rsquo;s API, making it easy to:&lt;/p&gt;</description>
     </item>
     <item>
       <title>Upgrading from dual momentum</title>
-      <link>http://abhipandey.com/2023/09/upgrading-from-dual-momentum/</link>
-      <pubDate>Sat, 02 Sep 2023 00:33:29 +0800</pubDate>
-      <guid>http://abhipandey.com/2023/09/upgrading-from-dual-momentum/</guid>
-      <description>&lt;p&gt;You might have heard of dual momentum. However, the concept is old. I was looking at ways of&#xA;comparing multiple tickers, not just 2.&lt;/p&gt;&#xA;&lt;p&gt;I decided to try triple momentum. It is a very simple strategy.&lt;/p&gt;&#xA;&lt;figure&gt;&lt;img src=&#34;http://abhipandey.com/images/triple-momentum.png&#34;&#xA;    alt=&#34;Triple momentum&#34;&gt;&lt;figcaption&gt;&#xA;      &lt;p&gt;Triple momentum&lt;/p&gt;&#xA;    &lt;/figcaption&gt;&#xA;&lt;/figure&gt;&#xA;&#xA;&lt;p&gt;I will showcase it here.&lt;/p&gt;</description>
+      <link>http://abhipandey.com/2023/03/upgrading-from-dual-momentum/</link>
+      <pubDate>Sat, 11 Mar 2023 00:33:29 +0800</pubDate>
+      <guid>http://abhipandey.com/2023/03/upgrading-from-dual-momentum/</guid>
+      <description>&lt;p&gt;In the world of algorithmic trading, momentum strategies hold a special place for their simplicity and effectiveness. Today, I want to share a Python implementation of a &amp;ldquo;Triple Momentum&amp;rdquo; strategy that I&amp;rsquo;ve been working with. This approach allows you to dynamically switch between three different assets based on their relative momentum.&lt;/p&gt;&#xA;&lt;h2 id=&#34;what-is-momentum-trading&#34;&gt;What is Momentum Trading?&lt;/h2&gt;&#xA;&lt;p&gt;Before diving into the code, let&amp;rsquo;s briefly understand what momentum trading is. The core idea is simple: assets that have performed well recently tend to continue performing well in the near future. By measuring and comparing the momentum of different assets, we can allocate our capital to the one showing the strongest trend.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Seamless Data Flow: Using Google Sheets API with pandas DataFrames</title>
+      <link>http://abhipandey.com/2023/02/seamless-data-flow-using-google-sheets-api-with-pandas-dataframes/</link>
+      <pubDate>Mon, 27 Feb 2023 09:30:00 +0800</pubDate>
+      <guid>http://abhipandey.com/2023/02/seamless-data-flow-using-google-sheets-api-with-pandas-dataframes/</guid>
+      <description>&lt;p&gt;Working with data often means juggling between different platforms and formats. Google Sheets is a powerful collaborative tool, but its real potential emerges when you can programmatically access and manipulate your spreadsheet data. In this post, I&amp;rsquo;ll walk through how to create a robust integration between Google Sheets and pandas DataFrames in Python.&lt;/p&gt;&#xA;&lt;h2 id=&#34;why-connect-google-sheets-with-pandas&#34;&gt;Why Connect Google Sheets with pandas?&lt;/h2&gt;&#xA;&lt;p&gt;Before diving into the code, let&amp;rsquo;s consider why this combination is so powerful:&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Effective Log Management in Python: A Deep Dive into the get_logger Function</title>
+      <link>http://abhipandey.com/2019/09/effective-log-management-in-python-a-deep-dive-into-the-get_logger-function/</link>
+      <pubDate>Mon, 02 Sep 2019 09:30:00 +0800</pubDate>
+      <guid>http://abhipandey.com/2019/09/effective-log-management-in-python-a-deep-dive-into-the-get_logger-function/</guid>
+      <description>&lt;p&gt;Effective logging is a critical yet often overlooked aspect of application development. A well-implemented logging system can mean the difference between hours of frustrating debugging and a quick resolution when issues arise. In this post, I&amp;rsquo;ll walk through a powerful custom logging utility function called &lt;code&gt;get_logger&lt;/code&gt; that provides flexible, configurable logging capabilities for Python applications.&lt;/p&gt;&#xA;&lt;h2 id=&#34;understanding-the-get_logger-function&#34;&gt;Understanding the &lt;code&gt;get_logger&lt;/code&gt; Function&lt;/h2&gt;&#xA;&lt;p&gt;The &lt;code&gt;get_logger&lt;/code&gt; function creates a configured logger with console output and rotating file storage. Let&amp;rsquo;s break down what it does and how to use it effectively:&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Mastering File Operations in Python: A Deep Dive into a Practical Utils Module</title>
+      <link>http://abhipandey.com/2018/05/mastering-file-operations-in-python-a-deep-dive-into-a-practical-utils-module/</link>
+      <pubDate>Sun, 20 May 2018 09:30:00 +0800</pubDate>
+      <guid>http://abhipandey.com/2018/05/mastering-file-operations-in-python-a-deep-dive-into-a-practical-utils-module/</guid>
+      <description>&lt;p&gt;File operations are the bread and butter of many Python applications. Whether you&amp;rsquo;re working with data processing, automation, or building robust applications, having a reliable set of utilities to handle files can save you countless hours of development time.&lt;/p&gt;&#xA;&lt;p&gt;In this post, I&amp;rsquo;ll explore a versatile file utilities module that I&amp;rsquo;ve been refining for various projects. This collection of functions demonstrates practical approaches to common file operation tasks that you might encounter in your day-to-day development.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Adding launcher shortcut in Fedora</title>

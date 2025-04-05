@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Utilities on Coders Digest</title>
+    <link>http://abhipandey.com/tags/utilities/</link>
+    <description>Recent content in Utilities on Coders Digest</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 20 May 2018 09:30:00 +0800</lastBuildDate>
+    <atom:link href="http://abhipandey.com/tags/utilities/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Mastering File Operations in Python: A Deep Dive into a Practical Utils Module</title>
+      <link>http://abhipandey.com/2018/05/mastering-file-operations-in-python-a-deep-dive-into-a-practical-utils-module/</link>
+      <pubDate>Sun, 20 May 2018 09:30:00 +0800</pubDate>
+      <guid>http://abhipandey.com/2018/05/mastering-file-operations-in-python-a-deep-dive-into-a-practical-utils-module/</guid>
+      <description>&lt;p&gt;File operations are the bread and butter of many Python applications. Whether you&amp;rsquo;re working with data processing, automation, or building robust applications, having a reliable set of utilities to handle files can save you countless hours of development time.&lt;/p&gt;&#xA;&lt;p&gt;In this post, I&amp;rsquo;ll explore a versatile file utilities module that I&amp;rsquo;ve been refining for various projects. This collection of functions demonstrates practical approaches to common file operation tasks that you might encounter in your day-to-day development.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

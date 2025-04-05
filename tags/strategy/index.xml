@@ -6,14 +6,14 @@
     <description>Recent content in Strategy on Coders Digest</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 02 Sep 2023 00:33:29 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 11 Mar 2023 00:33:29 +0800</lastBuildDate>
     <atom:link href="http://abhipandey.com/tags/strategy/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Upgrading from dual momentum</title>
-      <link>http://abhipandey.com/2023/09/upgrading-from-dual-momentum/</link>
-      <pubDate>Sat, 02 Sep 2023 00:33:29 +0800</pubDate>
-      <guid>http://abhipandey.com/2023/09/upgrading-from-dual-momentum/</guid>
-      <description>&lt;p&gt;You might have heard of dual momentum. However, the concept is old. I was looking at ways of&#xA;comparing multiple tickers, not just 2.&lt;/p&gt;&#xA;&lt;p&gt;I decided to try triple momentum. It is a very simple strategy.&lt;/p&gt;&#xA;&lt;figure&gt;&lt;img src=&#34;http://abhipandey.com/images/triple-momentum.png&#34;&#xA;    alt=&#34;Triple momentum&#34;&gt;&lt;figcaption&gt;&#xA;      &lt;p&gt;Triple momentum&lt;/p&gt;&#xA;    &lt;/figcaption&gt;&#xA;&lt;/figure&gt;&#xA;&#xA;&lt;p&gt;I will showcase it here.&lt;/p&gt;</description>
+      <link>http://abhipandey.com/2023/03/upgrading-from-dual-momentum/</link>
+      <pubDate>Sat, 11 Mar 2023 00:33:29 +0800</pubDate>
+      <guid>http://abhipandey.com/2023/03/upgrading-from-dual-momentum/</guid>
+      <description>&lt;p&gt;In the world of algorithmic trading, momentum strategies hold a special place for their simplicity and effectiveness. Today, I want to share a Python implementation of a &amp;ldquo;Triple Momentum&amp;rdquo; strategy that I&amp;rsquo;ve been working with. This approach allows you to dynamically switch between three different assets based on their relative momentum.&lt;/p&gt;&#xA;&lt;h2 id=&#34;what-is-momentum-trading&#34;&gt;What is Momentum Trading?&lt;/h2&gt;&#xA;&lt;p&gt;Before diving into the code, let&amp;rsquo;s briefly understand what momentum trading is. The core idea is simple: assets that have performed well recently tend to continue performing well in the near future. By measuring and comparing the momentum of different assets, we can allocate our capital to the one showing the strongest trend.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

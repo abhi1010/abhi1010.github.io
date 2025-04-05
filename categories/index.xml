@@ -6,27 +6,27 @@
     <description>Recent content in Categories on Coders Digest</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 02 Sep 2024 10:30:00 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 14 Nov 2023 09:30:00 +0800</lastBuildDate>
     <atom:link href="http://abhipandey.com/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Crypto</title>
+      <link>http://abhipandey.com/categories/crypto/</link>
+      <pubDate>Tue, 14 Nov 2023 09:30:00 +0800</pubDate>
+      <guid>http://abhipandey.com/categories/crypto/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Finance</title>
       <link>http://abhipandey.com/categories/finance/</link>
-      <pubDate>Mon, 02 Sep 2024 10:30:00 +0800</pubDate>
+      <pubDate>Tue, 14 Nov 2023 09:30:00 +0800</pubDate>
       <guid>http://abhipandey.com/categories/finance/</guid>
       <description></description>
     </item>
     <item>
       <title>Code</title>
       <link>http://abhipandey.com/categories/code/</link>
-      <pubDate>Sun, 01 Sep 2024 09:00:00 +0800</pubDate>
+      <pubDate>Fri, 01 Sep 2023 09:00:00 +0800</pubDate>
       <guid>http://abhipandey.com/categories/code/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Trading</title>
-      <link>http://abhipandey.com/categories/trading/</link>
-      <pubDate>Sat, 02 Sep 2023 00:33:29 +0800</pubDate>
-      <guid>http://abhipandey.com/categories/trading/</guid>
       <description></description>
     </item>
     <item>

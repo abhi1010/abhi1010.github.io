@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Liquidity on Coders Digest</title>
+    <link>http://abhipandey.com/tags/liquidity/</link>
+    <description>Recent content in Liquidity on Coders Digest</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 14 Nov 2023 09:30:00 +0800</lastBuildDate>
+    <atom:link href="http://abhipandey.com/tags/liquidity/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Crypto Volume Selector: Building a Data-Driven Tool for Cryptocurrency Trading</title>
+      <link>http://abhipandey.com/2023/11/crypto-volume-selector-building-a-data-driven-tool-for-cryptocurrency-trading/</link>
+      <pubDate>Tue, 14 Nov 2023 09:30:00 +0800</pubDate>
+      <guid>http://abhipandey.com/2023/11/crypto-volume-selector-building-a-data-driven-tool-for-cryptocurrency-trading/</guid>
+      <description>&lt;p&gt;In the fast-paced world of cryptocurrency trading, making informed decisions based on market data is crucial. Today, I want to share a Python tool I&amp;rsquo;ve built that helps select cryptocurrencies based on their trading volume - a key metric that can indicate market interest and liquidity.&lt;/p&gt;&#xA;&lt;h2 id=&#34;why-trading-volume-matters&#34;&gt;Why Trading Volume Matters&lt;/h2&gt;&#xA;&lt;p&gt;Trading volume is one of the most important metrics when selecting cryptocurrencies for trading strategies. High volume typically indicates:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Better liquidity (easier to enter and exit positions)&lt;/li&gt;&#xA;&lt;li&gt;More market interest&lt;/li&gt;&#xA;&lt;li&gt;Potentially lower slippage&lt;/li&gt;&#xA;&lt;li&gt;More reliable technical indicators&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Volume, combined with price information, gives us the trading value - a measure of the total money flowing through a particular trading pair. This is often a more reliable indicator than just looking at price or volume in isolation.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

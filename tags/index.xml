@@ -6,55 +6,146 @@
     <description>Recent content in Tags on Coders Digest</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 02 Sep 2024 10:30:00 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 14 Nov 2023 09:30:00 +0800</lastBuildDate>
     <atom:link href="http://abhipandey.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Automation</title>
+      <link>http://abhipandey.com/tags/automation/</link>
+      <pubDate>Tue, 14 Nov 2023 09:30:00 +0800</pubDate>
+      <guid>http://abhipandey.com/tags/automation/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>CCXT</title>
+      <link>http://abhipandey.com/tags/ccxt/</link>
+      <pubDate>Tue, 14 Nov 2023 09:30:00 +0800</pubDate>
+      <guid>http://abhipandey.com/tags/ccxt/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Cryptocurrency</title>
+      <link>http://abhipandey.com/tags/cryptocurrency/</link>
+      <pubDate>Tue, 14 Nov 2023 09:30:00 +0800</pubDate>
+      <guid>http://abhipandey.com/tags/cryptocurrency/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Data-Analysis</title>
+      <link>http://abhipandey.com/tags/data-analysis/</link>
+      <pubDate>Tue, 14 Nov 2023 09:30:00 +0800</pubDate>
+      <guid>http://abhipandey.com/tags/data-analysis/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>KuCoin</title>
+      <link>http://abhipandey.com/tags/kucoin/</link>
+      <pubDate>Tue, 14 Nov 2023 09:30:00 +0800</pubDate>
+      <guid>http://abhipandey.com/tags/kucoin/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Liquidity</title>
+      <link>http://abhipandey.com/tags/liquidity/</link>
+      <pubDate>Tue, 14 Nov 2023 09:30:00 +0800</pubDate>
+      <guid>http://abhipandey.com/tags/liquidity/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Market-Data</title>
+      <link>http://abhipandey.com/tags/market-data/</link>
+      <pubDate>Tue, 14 Nov 2023 09:30:00 +0800</pubDate>
+      <guid>http://abhipandey.com/tags/market-data/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Python</title>
+      <link>http://abhipandey.com/tags/python/</link>
+      <pubDate>Tue, 14 Nov 2023 09:30:00 +0800</pubDate>
+      <guid>http://abhipandey.com/tags/python/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Trading</title>
+      <link>http://abhipandey.com/tags/trading/</link>
+      <pubDate>Tue, 14 Nov 2023 09:30:00 +0800</pubDate>
+      <guid>http://abhipandey.com/tags/trading/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Trading-Volume</title>
+      <link>http://abhipandey.com/tags/trading-volume/</link>
+      <pubDate>Tue, 14 Nov 2023 09:30:00 +0800</pubDate>
+      <guid>http://abhipandey.com/tags/trading-volume/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Finance</title>
       <link>http://abhipandey.com/tags/finance/</link>
-      <pubDate>Mon, 02 Sep 2024 10:30:00 +0800</pubDate>
+      <pubDate>Sat, 02 Sep 2023 10:30:00 +0800</pubDate>
       <guid>http://abhipandey.com/tags/finance/</guid>
       <description></description>
     </item>
     <item>
       <title>Options</title>
       <link>http://abhipandey.com/tags/options/</link>
-      <pubDate>Mon, 02 Sep 2024 10:30:00 +0800</pubDate>
+      <pubDate>Sat, 02 Sep 2023 10:30:00 +0800</pubDate>
       <guid>http://abhipandey.com/tags/options/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Python</title>
-      <link>http://abhipandey.com/tags/python/</link>
-      <pubDate>Mon, 02 Sep 2024 10:30:00 +0800</pubDate>
-      <guid>http://abhipandey.com/tags/python/</guid>
       <description></description>
     </item>
     <item>
       <title>Tastytrade</title>
       <link>http://abhipandey.com/tags/tastytrade/</link>
-      <pubDate>Mon, 02 Sep 2024 10:30:00 +0800</pubDate>
+      <pubDate>Sat, 02 Sep 2023 10:30:00 +0800</pubDate>
       <guid>http://abhipandey.com/tags/tastytrade/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Trading</title>
-      <link>http://abhipandey.com/tags/trading/</link>
-      <pubDate>Mon, 02 Sep 2024 10:30:00 +0800</pubDate>
-      <guid>http://abhipandey.com/tags/trading/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Automation</title>
-      <link>http://abhipandey.com/tags/automation/</link>
-      <pubDate>Sun, 01 Sep 2024 09:00:00 +0800</pubDate>
-      <guid>http://abhipandey.com/tags/automation/</guid>
       <description></description>
     </item>
     <item>
       <title>Strategy</title>
       <link>http://abhipandey.com/tags/strategy/</link>
-      <pubDate>Sat, 02 Sep 2023 00:33:29 +0800</pubDate>
+      <pubDate>Sat, 11 Mar 2023 00:33:29 +0800</pubDate>
       <guid>http://abhipandey.com/tags/strategy/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Api</title>
+      <link>http://abhipandey.com/tags/api/</link>
+      <pubDate>Mon, 27 Feb 2023 09:30:00 +0800</pubDate>
+      <guid>http://abhipandey.com/tags/api/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Data</title>
+      <link>http://abhipandey.com/tags/data/</link>
+      <pubDate>Mon, 27 Feb 2023 09:30:00 +0800</pubDate>
+      <guid>http://abhipandey.com/tags/data/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Debugging</title>
+      <link>http://abhipandey.com/tags/debugging/</link>
+      <pubDate>Mon, 02 Sep 2019 09:30:00 +0800</pubDate>
+      <guid>http://abhipandey.com/tags/debugging/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Logging</title>
+      <link>http://abhipandey.com/tags/logging/</link>
+      <pubDate>Mon, 02 Sep 2019 09:30:00 +0800</pubDate>
+      <guid>http://abhipandey.com/tags/logging/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>File-Operations</title>
+      <link>http://abhipandey.com/tags/file-operations/</link>
+      <pubDate>Sun, 20 May 2018 09:30:00 +0800</pubDate>
+      <guid>http://abhipandey.com/tags/file-operations/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Utilities</title>
+      <link>http://abhipandey.com/tags/utilities/</link>
+      <pubDate>Sun, 20 May 2018 09:30:00 +0800</pubDate>
+      <guid>http://abhipandey.com/tags/utilities/</guid>
       <description></description>
     </item>
     <item>

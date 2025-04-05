@@ -1,0 +1,358 @@
+<!doctype html>
+<html lang="en-us">
+  <head>
+    <title>Understanding Iron Condor Screener with TastyTrade API // Coders Digest</title>
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.145.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Abhishek Pandey" />
+    <meta name="description" content="Building an Iron Condor Options Screener with TastyTrade API" />
+    <link rel="stylesheet" href="/css/main.min.5b1fcc8902588589c4767187402a3c29f8b8d7a6fdef6d9f8f77045bb0d14fee.css" />
+    
+
+    
+    
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Understanding Iron Condor Screener with TastyTrade API">
+  <meta name="twitter:description" content="Building an Iron Condor Options Screener with TastyTrade API">
+
+    <meta property="og:url" content="http://abhipandey.com/2023/09/understanding-iron-condor-screener-with-tastytrade-api/">
+  <meta property="og:site_name" content="Coders Digest">
+  <meta property="og:title" content="Understanding Iron Condor Screener with TastyTrade API">
+  <meta property="og:description" content="Building an Iron Condor Options Screener with TastyTrade API">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2023-09-02T10:30:00+08:00">
+    <meta property="article:modified_time" content="2023-09-02T10:30:00+08:00">
+    <meta property="article:tag" content="Python">
+    <meta property="article:tag" content="Finance">
+    <meta property="article:tag" content="Options">
+    <meta property="article:tag" content="Tastytrade">
+    <meta property="article:tag" content="Trading">
+
+
+  </head>
+  <body>
+    <header class="app-header">
+      <a href="/"><img class="app-header-avatar" src="/space-2.jpg" alt="Abhishek Pandey" /></a>
+      <span class="app-header-title">Coders Digest</span>
+      <nav class="app-header-menu">
+          <a class="app-header-menu-item" href="/post/">Posts</a>
+             - 
+          
+          <a class="app-header-menu-item" href="/tags/">Tags</a>
+             - 
+          
+          <a class="app-header-menu-item" href="/categories/">Categories</a>
+             - 
+          
+          <a class="app-header-menu-item" href="/about/">About</a>
+      </nav>
+      <p>Abhishek Pandey</p>
+      <div class="app-header-social">
+        
+          <a href="https://github.com/abhi1010" target="_blank" rel="noreferrer noopener me">
+            <svg class="icon icon-brand-github" viewBox="0 0 24 24" fill="currentColor"><title>GitHub</title><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+          </a>
+        
+          <a href="https://www.linkedin.com/in/apandey10/" target="_blank" rel="noreferrer noopener me">
+            <svg class="icon icon-brand-linkedin" viewBox="0 0 24 24" fill="currentColor"><title>LinkedIn</title><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </a>
+        
+      </div>
+    </header>
+    <main class="app-container">
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">Understanding Iron Condor Screener with TastyTrade API</h1>
+      <div class="post-meta">
+        <div>
+          <svg class="icon icon-calendar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>calendar</title><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+          Sep 2, 2023
+        </div>
+        <div>
+          <svg class="icon icon-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>clock</title><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+          6 min read
+        </div>
+        <div>
+          <svg class="icon icon-tag" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>tag</title><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
+              <a class="tag" href="/tags/python/">Python</a>
+              <a class="tag" href="/tags/finance/">Finance</a>
+              <a class="tag" href="/tags/options/">Options</a>
+              <a class="tag" href="/tags/tastytrade/">Tastytrade</a>
+              <a class="tag" href="/tags/trading/">Trading</a>
+        </div>
+      </div>
+    </header>
+    <div class="post-content">
+      <h1 id="understanding-iron-condor-screener-with-tastytrade-api">Understanding Iron Condor Screener with TastyTrade API</h1>
+<p>In this blog post, I&rsquo;ll break down a Python program that screens for iron condor options trading opportunities using the TastyTrade API. The code retrieves options data, calculates metrics for iron condor spreads, and ranks the results to find potentially profitable trades.</p>
+<h2 id="what-is-an-iron-condor">What is an Iron Condor?</h2>
+<p>Before diving into the code, let&rsquo;s quickly review what an iron condor is. It&rsquo;s an options trading strategy that involves:</p>
+<ol>
+<li>Selling an out-of-the-money put</li>
+<li>Buying a further out-of-the-money put</li>
+<li>Selling an out-of-the-money call</li>
+<li>Buying a further out-of-the-money call</li>
+</ol>
+<p>All options typically have the same expiration date. Iron condors are market-neutral strategies that profit when the underlying asset stays within a certain price range.</p>
+<h2 id="key-components-of-the-code">Key Components of the Code</h2>
+<h3 id="1-the-liveprices-class">1. The <code>LivePrices</code> Class</h3>
+<p>This class is central to the program. It manages live market data by:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#000">@dataclass</span>
+</span></span><span style="display:flex;"><span><span style="color:#a90d91">class</span> <span style="color:#3f6e75">LivePrices</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#000">quotes</span>: <span style="color:#000">Dict</span>[<span style="color:#a90d91">str</span>, <span style="color:#000">Quote</span>] <span style="color:#000">=</span> <span style="color:#000">field</span>(<span style="color:#000">default_factory</span><span style="color:#000">=</span><span style="color:#a90d91">dict</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#000">greeks</span>: <span style="color:#000">Dict</span>[<span style="color:#a90d91">str</span>, <span style="color:#000">Greeks</span>] <span style="color:#000">=</span> <span style="color:#000">field</span>(<span style="color:#000">default_factory</span><span style="color:#000">=</span><span style="color:#a90d91">dict</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#000">streamer</span>: <span style="color:#000">DXLinkStreamer</span> <span style="color:#000">=</span> <span style="color:#a90d91">None</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#000">puts</span>: <span style="color:#000">Dict</span>[<span style="color:#a90d91">str</span>, <span style="color:#000">List</span>[<span style="color:#000">Option</span>]] <span style="color:#000">=</span> <span style="color:#000">field</span>(<span style="color:#000">default_factory</span><span style="color:#000">=</span><span style="color:#a90d91">dict</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#000">calls</span>: <span style="color:#000">Dict</span>[<span style="color:#a90d91">str</span>, <span style="color:#000">List</span>[<span style="color:#000">Option</span>]] <span style="color:#000">=</span> <span style="color:#000">field</span>(<span style="color:#000">default_factory</span><span style="color:#000">=</span><span style="color:#a90d91">dict</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#000">tickers</span>: <span style="color:#000">List</span>[<span style="color:#a90d91">str</span>] <span style="color:#000">=</span> <span style="color:#000">field</span>(<span style="color:#000">default_factory</span><span style="color:#000">=</span><span style="color:#a90d91">list</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#000">pickle_file</span>: <span style="color:#a90d91">str</span> <span style="color:#000">=</span> <span style="color:#c41a16">&#34;data/greeks_data.pickle&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#000">_update_task</span>: <span style="color:#000">asyncio</span><span style="color:#000">.</span><span style="color:#000">Task</span> <span style="color:#000">=</span> <span style="color:#a90d91">None</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#000">subscription_items</span>: <span style="color:#000">List</span>[<span style="color:#a90d91">str</span>] <span style="color:#000">=</span> <span style="color:#000">field</span>(<span style="color:#000">default_factory</span><span style="color:#000">=</span><span style="color:#a90d91">list</span>)
+</span></span></code></pre></div><p>The class connects to TastyTrade&rsquo;s DXLinkStreamer to get real-time data on options. It stores:</p>
+<ul>
+<li>Options quotes (bid/ask prices)</li>
+<li>Options Greeks (delta, gamma, theta)</li>
+<li>Call and put options for selected tickers</li>
+</ul>
+<h3 id="2-data-collection-pipeline">2. Data Collection Pipeline</h3>
+<p>The code follows a specific pipeline to collect and process options data:</p>
+<ol>
+<li>
+<p><strong>Initialize the streamer</strong>:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#a90d91">async</span> <span style="color:#a90d91">def</span> <span style="color:#000">_initialize_streamer</span>(<span style="color:#5b269a">self</span>, <span style="color:#000">session</span>: <span style="color:#000">Session</span>):
+</span></span><span style="display:flex;"><span>  <span style="color:#5b269a">self</span><span style="color:#000">.</span><span style="color:#000">streamer</span> <span style="color:#000">=</span> <span style="color:#a90d91">await</span> <span style="color:#000">DXLinkStreamer</span><span style="color:#000">.</span><span style="color:#000">create</span>(<span style="color:#000">session</span>)
+</span></span></code></pre></div></li>
+<li>
+<p><strong>Get option chains for tickers</strong>:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#a90d91">def</span> <span style="color:#000">_get_option_chain</span>(<span style="color:#5b269a">self</span>, <span style="color:#000">session</span>: <span style="color:#000">Session</span>, <span style="color:#000">symbol</span>: <span style="color:#a90d91">str</span>):
+</span></span><span style="display:flex;"><span>  <span style="color:#000">chains</span> <span style="color:#000">=</span> <span style="color:#a90d91">None</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a90d91">try</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#000">chains</span> <span style="color:#000">=</span> <span style="color:#000">get_option_chain</span>(<span style="color:#000">session</span>, <span style="color:#000">symbol</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#a90d91">except</span> <span style="color:#000">Exception</span> <span style="color:#a90d91">as</span> <span style="color:#000">e</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#000">logger</span><span style="color:#000">.</span><span style="color:#000">error</span>(<span style="color:#c41a16">f</span><span style="color:#c41a16">&#39;Exception : </span><span style="color:#c41a16">{</span><span style="color:#a90d91">str</span>(<span style="color:#000">e</span>)<span style="color:#c41a16">}</span><span style="color:#c41a16">&#39;</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#a90d91">return</span> <span style="color:#000">chains</span>
+</span></span></code></pre></div></li>
+<li>
+<p><strong>Filter options by expiration date</strong>:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#a90d91">def</span> <span style="color:#000">_filter_options_by_expiration</span>(<span style="color:#5b269a">self</span>, <span style="color:#000">symbol</span>, <span style="color:#000">chain</span>, <span style="color:#000">expiration</span>: <span style="color:#000">date</span>):
+</span></span><span style="display:flex;"><span>  <span style="color:#000">closest_expiry</span> <span style="color:#000">=</span> <span style="color:#000">get_closest_expiry</span>(<span style="color:#000">symbol</span>, <span style="color:#000">chain</span>, <span style="color:#000">expiration</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#000">logger</span><span style="color:#000">.</span><span style="color:#000">info</span>(<span style="color:#c41a16">f</span><span style="color:#c41a16">&#39;[</span><span style="color:#c41a16">{</span><span style="color:#000">symbol</span><span style="color:#c41a16">}</span><span style="color:#c41a16">]:: closest_expiry = </span><span style="color:#c41a16">{</span><span style="color:#000">closest_expiry</span><span style="color:#c41a16">}</span><span style="color:#c41a16">&#39;</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#c41a16">f</span><span style="color:#c41a16">&#39; all chains = </span><span style="color:#c41a16">{</span><span style="color:#000">chain</span><span style="color:#c41a16">}</span><span style="color:#c41a16">&#39;</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#a90d91">return</span> [<span style="color:#000">o</span> <span style="color:#a90d91">for</span> <span style="color:#000">o</span> <span style="color:#000">in</span> <span style="color:#000">chain</span>[<span style="color:#000">closest_expiry</span>]]
+</span></span></code></pre></div></li>
+<li>
+<p><strong>Subscribe to data streams</strong>:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#a90d91">async</span> <span style="color:#a90d91">def</span> <span style="color:#000">_subscribe_to_event</span>(<span style="color:#5b269a">self</span>, <span style="color:#000">streamer_symbols</span>: <span style="color:#000">List</span>[<span style="color:#a90d91">str</span>],
+</span></span><span style="display:flex;"><span>                              <span style="color:#000">event_greeks_or_quotes</span>: <span style="color:#000">EventType</span>):
+</span></span><span style="display:flex;"><span>  <span style="color:#000">logger</span><span style="color:#000">.</span><span style="color:#000">info</span>(
+</span></span><span style="display:flex;"><span>      <span style="color:#c41a16">f</span><span style="color:#c41a16">&#39;About to subscribe </span><span style="color:#c41a16">{</span><span style="color:#000">event_greeks_or_quotes</span><span style="color:#c41a16">}</span><span style="color:#c41a16"> to: </span><span style="color:#c41a16">{</span><span style="color:#000">streamer_symbols</span><span style="color:#c41a16">}</span><span style="color:#c41a16"> for greeks&#39;</span>
+</span></span><span style="display:flex;"><span>  )
+</span></span><span style="display:flex;"><span>  <span style="color:#5b269a">self</span><span style="color:#000">.</span><span style="color:#000">subscription_items</span><span style="color:#000">.</span><span style="color:#000">append</span>(<span style="color:#000">streamer_symbols</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#a90d91">await</span> <span style="color:#5b269a">self</span><span style="color:#000">.</span><span style="color:#000">streamer</span><span style="color:#000">.</span><span style="color:#000">subscribe</span>(<span style="color:#000">event_greeks_or_quotes</span>, <span style="color:#000">streamer_symbols</span>)
+</span></span></code></pre></div></li>
+</ol>
+<h3 id="3-converting-greeks-to-option-holders">3. Converting Greeks to Option Holders</h3>
+<p>The <code>convert_greeks_to_optionholders</code> function transforms the raw Greek data into a standardized format:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#a90d91">def</span> <span style="color:#000">convert_greeks_to_optionholders</span>(<span style="color:#000">greeks_list</span>, <span style="color:#000">tasty_monthly</span>):
+</span></span><span style="display:flex;"><span>  <span style="color:#000">option_holders</span> <span style="color:#000">=</span> []
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#177500"># Regex pattern to match the eventSymbol format</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#000">pattern</span> <span style="color:#000">=</span> <span style="color:#c41a16">r</span><span style="color:#c41a16">&#34;\.(\w+)(\d</span><span style="color:#c41a16">{6}</span><span style="color:#c41a16">)([CP])(\d+(?:\.\d+)?)&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a90d91">for</span> <span style="color:#000">greek</span> <span style="color:#000">in</span> <span style="color:#000">greeks_list</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#000">option_holder</span> <span style="color:#000">=</span> <span style="color:#000">option_utils</span><span style="color:#000">.</span><span style="color:#000">OptionHolder</span>()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#177500"># Extract ticker, strike, expiry, and option type from the eventSymbol</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#177500"># ...</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#177500"># Set other attributes from the Greeks object</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000">option_holder</span><span style="color:#000">.</span><span style="color:#000">IV</span> <span style="color:#000">=</span> <span style="color:#a90d91">float</span>(<span style="color:#000">greek</span><span style="color:#000">.</span><span style="color:#000">volatility</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#000">option_holder</span><span style="color:#000">.</span><span style="color:#000">Theta</span> <span style="color:#000">=</span> <span style="color:#a90d91">float</span>(<span style="color:#000">greek</span><span style="color:#000">.</span><span style="color:#000">theta</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#000">option_holder</span><span style="color:#000">.</span><span style="color:#000">Delta</span> <span style="color:#000">=</span> <span style="color:#a90d91">float</span>(<span style="color:#000">greek</span><span style="color:#000">.</span><span style="color:#000">delta</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#000">option_holder</span><span style="color:#000">.</span><span style="color:#000">Gamma</span> <span style="color:#000">=</span> <span style="color:#a90d91">float</span>(<span style="color:#000">greek</span><span style="color:#000">.</span><span style="color:#000">gamma</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#177500"># ...</span>
+</span></span></code></pre></div><p>This standardization makes it easier to perform calculations and comparisons across different options.</p>
+<h3 id="4-finding-iron-condor-candidates">4. Finding Iron Condor Candidates</h3>
+<p>The core of the iron condor screening is in the <code>update_options_with_bid_ask_from_tasty</code> function:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#a90d91">async</span> <span style="color:#a90d91">def</span> <span style="color:#000">update_options_with_bid_ask_from_tasty</span>(<span style="color:#000">session</span>, <span style="color:#000">tasty_monthly_expiry</span>,
+</span></span><span style="display:flex;"><span>                                               <span style="color:#000">ticker</span>, <span style="color:#000">option_holders_list</span>,
+</span></span><span style="display:flex;"><span>                                               <span style="color:#000">use_pickle</span>):
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#000">call_to_sell</span>, <span style="color:#000">call_to_buy</span>, <span style="color:#000">put_to_sell</span>, <span style="color:#000">put_to_buy</span> <span style="color:#000">=</span> <span style="color:#000">yf_option_ic</span><span style="color:#000">.</span><span style="color:#000">get_calls_and_puts_for_ic</span>(
+</span></span><span style="display:flex;"><span>      <span style="color:#000">option_holders_list</span>, <span style="color:#000">ticker</span>, <span style="color:#000">delta_for_search</span><span style="color:#000">=</span><span style="color:#1c01ce">0.2</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a90d91">if</span> <span style="color:#000">call_to_sell</span> <span style="color:#000">is</span> <span style="color:#a90d91">None</span> <span style="color:#000">or</span> <span style="color:#000">call_to_buy</span> <span style="color:#000">is</span> <span style="color:#a90d91">None</span> <span style="color:#000">or</span> <span style="color:#000">put_to_sell</span> <span style="color:#000">is</span> <span style="color:#a90d91">None</span> <span style="color:#000">or</span> <span style="color:#000">put_to_buy</span> <span style="color:#000">is</span> <span style="color:#a90d91">None</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#000">logger</span><span style="color:#000">.</span><span style="color:#000">info</span>(<span style="color:#c41a16">f</span><span style="color:#c41a16">&#39;[</span><span style="color:#c41a16">{</span><span style="color:#000">ticker</span><span style="color:#c41a16">}</span><span style="color:#c41a16">]:: Missing call or put with delta of 50 for IC&#39;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#a90d91">return</span> <span style="color:#a90d91">False</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#177500"># ...</span>
+</span></span></code></pre></div><p>This function:</p>
+<ol>
+<li>Finds suitable calls and puts for an iron condor based on delta values</li>
+<li>Gets real-time bid/ask quotes for those options</li>
+<li>Updates the option holders with live price data</li>
+</ol>
+<p>The <code>delta_for_search=0.2</code> parameter is particularly important - it looks for options with approximately 0.2 delta (or -0.2 for puts), which typically have around a 20% chance of expiring in-the-money.</p>
+<h3 id="5-calculating-iron-condor-metrics">5. Calculating Iron Condor Metrics</h3>
+<p>The actual iron condor calculations happen in external functions called from the main code:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#a90d91">if</span> <span style="color:#000">options_updated_successfully</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#000">yf_option_ic</span><span style="color:#000">.</span><span style="color:#000">get_iron_condor_credit</span>(<span style="color:#000">option_holders_list</span>,
+</span></span><span style="display:flex;"><span>                                      <span style="color:#000">ticker</span>,
+</span></span><span style="display:flex;"><span>                                      <span style="color:#000">delta_for_search</span><span style="color:#000">=</span><span style="color:#1c01ce">0.2</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#000">all_ticker_options_dict</span>[<span style="color:#000">ticker</span>] <span style="color:#000">=</span> <span style="color:#000">option_holders_list</span>
+</span></span><span style="display:flex;"><span><span style="color:#a90d91">else</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#000">logger</span><span style="color:#000">.</span><span style="color:#000">info</span>(<span style="color:#c41a16">f</span><span style="color:#c41a16">&#39;Some issues with </span><span style="color:#c41a16">{</span><span style="color:#000">ticker</span><span style="color:#c41a16">}</span><span style="color:#c41a16">. Skipping IC calculation&#39;</span>)
+</span></span></code></pre></div><p>And then:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#000">iron_condor_data</span> <span style="color:#000">=</span> <span style="color:#000">yf_option_ic</span><span style="color:#000">.</span><span style="color:#000">generate_iron_condor_stats</span>(
+</span></span><span style="display:flex;"><span>    <span style="color:#000">all_ticker_options_dict</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#000">yf_option_ic</span><span style="color:#000">.</span><span style="color:#000">tabulate_ic_data</span>(<span style="color:#000">iron_condor_data</span>, <span style="color:#000">liq_ticker_metrics</span>)
+</span></span></code></pre></div><p>These functions (imported from <code>yf_option_ic</code> module) handle:</p>
+<ul>
+<li>Calculating the credit received for the iron condor</li>
+<li>Determining the maximum risk</li>
+<li>Computing risk/reward ratios</li>
+<li>Calculating probability of profit</li>
+<li>Generating a ranked table of iron condor opportunities</li>
+</ul>
+<h3 id="6-asynchronous-execution">6. Asynchronous Execution</h3>
+<p>The code leverages Python&rsquo;s async features extensively, allowing it to:</p>
+<ul>
+<li>Stream multiple data feeds simultaneously</li>
+<li>Process multiple tickers in batches</li>
+<li>Handle timeouts and cleanup gracefully</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#a90d91">async</span> <span style="color:#a90d91">def</span> <span style="color:#000">run_main</span>():
+</span></span><span style="display:flex;"><span>  <span style="color:#177500"># ...</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#000">loop</span> <span style="color:#000">=</span> <span style="color:#000">asyncio</span><span style="color:#000">.</span><span style="color:#000">get_running_loop</span>()
+</span></span><span style="display:flex;"><span>  <span style="color:#000">loop</span><span style="color:#000">.</span><span style="color:#000">add_signal_handler</span>(<span style="color:#000">signal</span><span style="color:#000">.</span><span style="color:#000">SIGINT</span>, <span style="color:#000">handle_sigint</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#177500"># ...</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a90d91">try</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#a90d91">await</span> <span style="color:#000">main</span>(<span style="color:#000">session</span>, <span style="color:#000">args</span><span style="color:#000">.</span><span style="color:#000">use_pickle</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#a90d91">except</span> <span style="color:#000">asyncio</span><span style="color:#000">.</span><span style="color:#000">CancelledError</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#000">logger</span><span style="color:#000">.</span><span style="color:#000">info</span>(<span style="color:#c41a16">&#34;Main task cancelled&#34;</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#a90d91">finally</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#000">logger</span><span style="color:#000">.</span><span style="color:#000">info</span>(<span style="color:#c41a16">&#34;Cleanup complete&#34;</span>)
+</span></span></code></pre></div><h3 id="7-iron-condor-findings">7. Iron Condor findings</h3>
+<p>Here&rsquo;s a sample result while finding out the potential tickers to trade with high IVR.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>Filtered List of tickers with BPE &lt; <span style="color:#1c01ce">350</span> or RR &gt; 1:
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Ticker      Credit    Max Loss     RR     BPE    IVP    IVR
+</span></span><span style="display:flex;"><span>--------  --------  ----------  -----  ------  -----  -----
+</span></span><span style="display:flex;"><span>BITX          0.73        0.27   2.77   26.50   0.46   0.47
+</span></span><span style="display:flex;"><span>GBTC          0.92        0.08  12.33    7.50   0.54   0.60
+</span></span><span style="display:flex;"><span>UVXY          0.47        0.53   0.87   53.50   0.65   0.22
+</span></span><span style="display:flex;"><span>XLG           0.40        0.60   0.67   60.00   0.52   0.40
+</span></span><span style="display:flex;"><span>IBB           0.38        0.62   0.60   62.50   0.77   0.46
+</span></span><span style="display:flex;"><span>XLB           0.37        0.63   0.59   63.00   0.54   0.28
+</span></span><span style="display:flex;"><span>AMZN          1.83        3.17   0.58  316.50   0.87   0.57
+</span></span><span style="display:flex;"><span>XOP           0.37        0.63   0.57   63.50   0.60   0.23
+</span></span><span style="display:flex;"><span>CFLT          0.35        0.65   0.54   65.00   0.90   0.80
+</span></span><span style="display:flex;"><span>EWW           0.35        0.65   0.54   65.00   0.55   0.27
+</span></span><span style="display:flex;"><span>IWM           0.35        0.65   0.54   65.00   0.74   0.51
+</span></span><span style="display:flex;"><span>MAT           0.35        0.65   0.54   65.00   0.95   0.67
+</span></span><span style="display:flex;"><span>XLK           1.75        3.25   0.54  325.50   0.58   0.21
+</span></span><span style="display:flex;"><span>AMD           1.71        3.29   0.52  328.50   0.82   0.67
+</span></span><span style="display:flex;"><span>PINS          0.34        0.66   0.52   66.00   0.92   0.78
+</span></span><span style="display:flex;"><span>TLT           0.34        0.66   0.52   66.00   0.80   0.52
+</span></span><span style="display:flex;"><span>VUG           1.67        3.33   0.50  332.50   0.60   0.28
+</span></span><span style="display:flex;"><span>PLTR          1.63        3.37   0.49  336.50   0.93   0.58
+</span></span><span style="display:flex;"><span>SNAP          0.33        0.67   0.49   67.00   0.91   0.76
+</span></span><span style="display:flex;"><span>AAXJ          0.32        0.68   0.48   67.50   0.17   0.24
+</span></span><span style="display:flex;"><span>GDX           0.32        0.68   0.48   67.50   0.07   0.28
+</span></span><span style="display:flex;"><span>GLD           0.33        0.67   0.48   67.50   0.45   0.50
+</span></span><span style="display:flex;"><span>IJR           0.32        0.68   0.48   67.50   0.61   0.23
+</span></span><span style="display:flex;"><span>PYPL          0.81        1.69   0.48  169.00   0.90   0.57
+</span></span><span style="display:flex;"><span>RSP           0.32        0.68   0.48   67.50   0.55   0.35
+</span></span><span style="display:flex;"><span>XLC           0.33        0.67   0.48   67.50   0.78   0.50
+</span></span><span style="display:flex;"><span>XLI           0.32        0.68   0.48   67.50   0.54   0.42
+</span></span><span style="display:flex;"><span>XME           0.32        0.68   0.48   67.50   0.51   0.29
+</span></span><span style="display:flex;"><span>ALK           0.80        1.70   0.47  170.00   0.91   0.72
+</span></span><span style="display:flex;"><span>EEM           0.16        0.34   0.47   34.00   0.52   0.24
+</span></span><span style="display:flex;"><span>QQQ           1.59        3.41   0.47  341.00   0.77   0.38
+</span></span><span style="display:flex;"><span>XLY           1.61        3.39   0.47  339.00   0.77   0.34
+</span></span><span style="display:flex;"><span>ARKK          0.32        0.68   0.46   68.50   0.73   0.41
+</span></span><span style="display:flex;"><span>GOOGL         1.54        3.46   0.45  346.00   0.95   0.54
+</span></span><span style="display:flex;"><span>GOOG          1.53        3.47   0.44  347.50   0.95   0.59
+</span></span><span style="display:flex;"><span>XLV           0.30        0.70   0.44   69.50   0.56   0.28
+</span></span><span style="display:flex;"><span>ARKG          0.30        0.70   0.43   70.00   0.93   0.54
+</span></span><span style="display:flex;"><span>VSAT          0.30        0.70   0.43   70.00   0.89   0.65
+</span></span><span style="display:flex;"><span>XLP           0.30        0.70   0.43   70.00   0.38   0.23
+</span></span><span style="display:flex;"><span>XLE           0.29        0.71   0.42   70.50   0.69   0.33
+</span></span><span style="display:flex;"><span>INTC          0.29        0.71   0.41   71.00   0.95   0.58
+</span></span><span style="display:flex;"><span>SYY           0.70        1.80   0.39  180.00   0.91   0.71
+</span></span><span style="display:flex;"><span>UBER          0.70        1.80   0.39  180.50   0.82   0.53
+</span></span><span style="display:flex;"><span>XLU           0.28        0.72   0.39   72.00   0.46   0.34
+</span></span><span style="display:flex;"><span>XLF           0.27        0.73   0.36   73.50   0.82   0.31
+</span></span></code></pre></div><h2 id="key-insights-from-the-code">Key Insights from the Code</h2>
+<ol>
+<li>
+<p><strong>Delta-Based Selection</strong>: The code uses delta as a primary metric for selecting options, targeting approximately 0.2 delta options for both calls and puts.</p>
+</li>
+<li>
+<p><strong>Monthly Expiration Focus</strong>: It specifically targets monthly options expirations using helpers like <code>get_tasty_monthly()</code>.</p>
+</li>
+<li>
+<p><strong>Batch Processing</strong>: The code processes tickers in small batches (<code>sub_group_size</code>) to manage API limits and memory usage.</p>
+</li>
+<li>
+<p><strong>Data Persistence</strong>: The code allows for caching results with pickle files to avoid repeated API calls during development/testing.</p>
+</li>
+<li>
+<p><strong>Error Handling</strong>: The code has robust error handling to skip tickers with missing or problematic data.</p>
+</li>
+</ol>
+<h2 id="potential-improvements">Potential Improvements</h2>
+<p>Looking at the code, a few potential improvements could be:</p>
+<ol>
+<li>
+<p><strong>Parallel Processing</strong>: The code processes ticker groups sequentially. Using more parallel processing could speed things up.</p>
+</li>
+<li>
+<p><strong>Configurable Delta Values</strong>: Making the delta target (currently hardcoded at 0.2) a command-line parameter would increase flexibility.</p>
+</li>
+<li>
+<p><strong>Risk Management Parameters</strong>: Adding more configurable risk parameters like maximum acceptable loss could help filter results.</p>
+</li>
+<li>
+<p><strong>Persistent Database</strong>: Using a database instead of pickle files would better support historical analysis.</p>
+</li>
+</ol>
+<h2 id="conclusion">Conclusion</h2>
+<p>This code represents a sophisticated options screening tool that leverages the TastyTrade API to find potentially profitable iron condor opportunities. It combines real-time market data, options Greeks analysis, and automated filtering to identify high-probability setups.</p>
+<p>The asynchronous design allows it to efficiently process multiple tickers, making it practical for scanning the entire market for trade opportunities. For options traders looking to find iron condor candidates, this tool provides a data-driven approach to identify trades with favorable risk/reward characteristics.</p>
+
+    </div>
+    <div class="post-footer">
+      <div id="disqus_thread"></div>
+<script>
+    window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "abhi1010" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+  </article>
+
+    </main>
+  </body>
+</html>

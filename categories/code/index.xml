@@ -6,14 +6,35 @@
     <description>Recent content in Code on Coders Digest</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 01 Sep 2024 09:00:00 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 01 Sep 2023 09:00:00 +0800</lastBuildDate>
     <atom:link href="http://abhipandey.com/categories/code/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Automating Your Trading with TastyTrade&#39;s API</title>
-      <link>http://abhipandey.com/2024/09/automating-your-trading-with-tastytrades-api/</link>
-      <pubDate>Sun, 01 Sep 2024 09:00:00 +0800</pubDate>
-      <guid>http://abhipandey.com/2024/09/automating-your-trading-with-tastytrades-api/</guid>
+      <link>http://abhipandey.com/2023/09/automating-your-trading-with-tastytrades-api/</link>
+      <pubDate>Fri, 01 Sep 2023 09:00:00 +0800</pubDate>
+      <guid>http://abhipandey.com/2023/09/automating-your-trading-with-tastytrades-api/</guid>
       <description>&lt;h1 id=&#34;automating-your-trading-with-tastytrades-api&#34;&gt;Automating Your Trading with TastyTrade&amp;rsquo;s API&lt;/h1&gt;&#xA;&lt;p&gt;In today&amp;rsquo;s fast-paced trading environment, automation can give you a significant edge. I&amp;rsquo;ve been working on a Python project that leverages the TastyTrade API to streamline various trading operations, from monitoring positions to setting automatic stop losses. In this post, I&amp;rsquo;ll walk through this integration and how it can help optimize your trading workflow.&lt;/p&gt;&#xA;&lt;h2 id=&#34;what-this-integration-does&#34;&gt;What This Integration Does&lt;/h2&gt;&#xA;&lt;p&gt;This Python library acts as a wrapper around TastyTrade&amp;rsquo;s API, making it easy to:&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Seamless Data Flow: Using Google Sheets API with pandas DataFrames</title>
+      <link>http://abhipandey.com/2023/02/seamless-data-flow-using-google-sheets-api-with-pandas-dataframes/</link>
+      <pubDate>Mon, 27 Feb 2023 09:30:00 +0800</pubDate>
+      <guid>http://abhipandey.com/2023/02/seamless-data-flow-using-google-sheets-api-with-pandas-dataframes/</guid>
+      <description>&lt;p&gt;Working with data often means juggling between different platforms and formats. Google Sheets is a powerful collaborative tool, but its real potential emerges when you can programmatically access and manipulate your spreadsheet data. In this post, I&amp;rsquo;ll walk through how to create a robust integration between Google Sheets and pandas DataFrames in Python.&lt;/p&gt;&#xA;&lt;h2 id=&#34;why-connect-google-sheets-with-pandas&#34;&gt;Why Connect Google Sheets with pandas?&lt;/h2&gt;&#xA;&lt;p&gt;Before diving into the code, let&amp;rsquo;s consider why this combination is so powerful:&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Effective Log Management in Python: A Deep Dive into the get_logger Function</title>
+      <link>http://abhipandey.com/2019/09/effective-log-management-in-python-a-deep-dive-into-the-get_logger-function/</link>
+      <pubDate>Mon, 02 Sep 2019 09:30:00 +0800</pubDate>
+      <guid>http://abhipandey.com/2019/09/effective-log-management-in-python-a-deep-dive-into-the-get_logger-function/</guid>
+      <description>&lt;p&gt;Effective logging is a critical yet often overlooked aspect of application development. A well-implemented logging system can mean the difference between hours of frustrating debugging and a quick resolution when issues arise. In this post, I&amp;rsquo;ll walk through a powerful custom logging utility function called &lt;code&gt;get_logger&lt;/code&gt; that provides flexible, configurable logging capabilities for Python applications.&lt;/p&gt;&#xA;&lt;h2 id=&#34;understanding-the-get_logger-function&#34;&gt;Understanding the &lt;code&gt;get_logger&lt;/code&gt; Function&lt;/h2&gt;&#xA;&lt;p&gt;The &lt;code&gt;get_logger&lt;/code&gt; function creates a configured logger with console output and rotating file storage. Let&amp;rsquo;s break down what it does and how to use it effectively:&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Mastering File Operations in Python: A Deep Dive into a Practical Utils Module</title>
+      <link>http://abhipandey.com/2018/05/mastering-file-operations-in-python-a-deep-dive-into-a-practical-utils-module/</link>
+      <pubDate>Sun, 20 May 2018 09:30:00 +0800</pubDate>
+      <guid>http://abhipandey.com/2018/05/mastering-file-operations-in-python-a-deep-dive-into-a-practical-utils-module/</guid>
+      <description>&lt;p&gt;File operations are the bread and butter of many Python applications. Whether you&amp;rsquo;re working with data processing, automation, or building robust applications, having a reliable set of utilities to handle files can save you countless hours of development time.&lt;/p&gt;&#xA;&lt;p&gt;In this post, I&amp;rsquo;ll explore a versatile file utilities module that I&amp;rsquo;ve been refining for various projects. This collection of functions demonstrates practical approaches to common file operation tasks that you might encounter in your day-to-day development.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Adding launcher shortcut in Fedora</title>

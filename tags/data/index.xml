@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Data on Coders Digest</title>
+    <link>http://abhipandey.com/tags/data/</link>
+    <description>Recent content in Data on Coders Digest</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 27 Feb 2023 09:30:00 +0800</lastBuildDate>
+    <atom:link href="http://abhipandey.com/tags/data/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Seamless Data Flow: Using Google Sheets API with pandas DataFrames</title>
+      <link>http://abhipandey.com/2023/02/seamless-data-flow-using-google-sheets-api-with-pandas-dataframes/</link>
+      <pubDate>Mon, 27 Feb 2023 09:30:00 +0800</pubDate>
+      <guid>http://abhipandey.com/2023/02/seamless-data-flow-using-google-sheets-api-with-pandas-dataframes/</guid>
+      <description>&lt;p&gt;Working with data often means juggling between different platforms and formats. Google Sheets is a powerful collaborative tool, but its real potential emerges when you can programmatically access and manipulate your spreadsheet data. In this post, I&amp;rsquo;ll walk through how to create a robust integration between Google Sheets and pandas DataFrames in Python.&lt;/p&gt;&#xA;&lt;h2 id=&#34;why-connect-google-sheets-with-pandas&#34;&gt;Why Connect Google Sheets with pandas?&lt;/h2&gt;&#xA;&lt;p&gt;Before diving into the code, let&amp;rsquo;s consider why this combination is so powerful:&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
