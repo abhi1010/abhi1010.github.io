@@ -99,19 +99,16 @@
 <p><strong>Linking JS and Custom Control them together</strong></p>
 <p>This is a very simple process. You have the javascript file and you know for sure that the control will be loaded into the webpage, so you need a mechanism inside the control so that you can tell that &ldquo;hey, include this javascript file whenever you have this control on a page&rdquo;.</p>
 <p>This is how you do that.</p>
-<script
-  src="https://gist.github.com/bfb075b6787d2616fde6/.js"></script>
+<script src="https://gist.github.com/bfb075b6787d2616fde6/.js"></script>
 <p>Please note that the name of the javascript file is &ldquo;HoverImageButtonJS.js&rdquo;. ExtendedControls is the name of the project/assembly that I have created for this custom web control.</p>
 <p>How to assign javascript functions to the control?</p>
 <p>Now the next problem is how would you tell the control that call this javscript function function on &ldquo;mouseover&rdquo;? We use OnInit function for this process. We override the function and make use of the control&rsquo;s Attributes property.</p>
 <p>What is Attributes property for anyway? Well, it adds any extra &ldquo;property&rdquo; or &ldquo;style&rdquo; that you may want to add to the control when it is rendered to the client.</p>
 <p>Let&rsquo;s see how that&rsquo;s done.</p>
-<script
-  src="https://gist.github.com/d0b66ef7b0f076e88042/.js"></script>
+<script src="https://gist.github.com/d0b66ef7b0f076e88042/.js"></script>
 <p>Over here, I have told the class to include <code>&quot;onmouseover=ShowImageHoverButton(this, 'IMAGE_SOURCE')&quot;</code> as a property.</p>
 <p>This is how it is rendered on the client browser:</p>
-<script
-  src="https://gist.github.com/6df972bf94b736545419/.js"></script>
+<script src="https://gist.github.com/6df972bf94b736545419/.js"></script>
 <p><strong>Add the javascript file also to the AssemblyInfo.cs class</strong></p>
 <p>For the control library to properly include the js file, you have to add the js file in AssemblyInfo.cs class as well. This is how it is done:</p>
 <pre><code>[assembly: WebResource(&lt;span style=&quot;color:#006080;&quot;&gt;&quot;ExtendedControls.HoverImageButtonJS.js&quot;&lt;/span&gt;, &lt;span style=&quot;color:#006080;&quot;&gt;&quot;text/javascript&quot;&lt;/span&gt;)]
@@ -126,8 +123,7 @@
 <p>Register the dll on web.config. This makes the control available automatically on all the pages.</p>
 </li>
 </ul>
-<script
-  src="https://gist.github.com/88222d3f94911fbec6f4/.js"></script>
+<script src="https://gist.github.com/88222d3f94911fbec6f4/.js"></script>
 <ul>
 <li>Go to the design view of any page. Open up the Toolbox pane and you will automatically see the name appear &ldquo;HoverImageButton&rdquo;. Double click and you are ready to go!!</li>
 </ul>
@@ -157,8 +153,7 @@
 </li>
 </ul>
 <p><strong>Here&rsquo;s all the code in case somebody needs it:</strong></p>
-<script
-  src="https://gist.github.com/135e9bbf44f3d9a53cb8/.js"></script>
+<script src="https://gist.github.com/135e9bbf44f3d9a53cb8/.js"></script>
 
     </div>
     <div class="post-footer">

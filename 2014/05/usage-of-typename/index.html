@@ -81,8 +81,7 @@
     </header>
     <div class="post-content">
       <p>What is wrong with the following code?</p>
-<script
-  src="https://gist.github.com/0bd5e4d910e4d8a7672e/.js"></script>
+<script src="https://gist.github.com/0bd5e4d910e4d8a7672e/.js"></script>
 <p>The issue is very simple but hard to notice. If you try to compile this, you will get the following errors:</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>    main.cpp:24:5: error: need &#39;typename&#39; before &#39;OuterStruct&lt;T2&gt;::InnerStruct&#39; because &#39;OuterStruct&lt;T2&gt;&#39; is a dependent scope
 </span></span><span style="display:flex;"><span>    OuterStruct&lt;T2&gt;::InnerStruct mUsingInner;

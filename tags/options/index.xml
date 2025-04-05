@@ -6,8 +6,15 @@
     <description>Recent content in Options on Coders Digest</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 02 Sep 2023 10:30:00 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 13 Oct 2024 00:33:29 +0800</lastBuildDate>
     <atom:link href="http://abhipandey.com/tags/options/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Building an Options Volatility Visualization Tool</title>
+      <link>http://abhipandey.com/2024/10/building-an-options-volatility-visualization-tool/</link>
+      <pubDate>Sun, 13 Oct 2024 00:33:29 +0800</pubDate>
+      <guid>http://abhipandey.com/2024/10/building-an-options-volatility-visualization-tool/</guid>
+      <description>&lt;p&gt;In the world of financial trading, understanding options volatility is crucial for making informed decisions. In this post, I&amp;rsquo;ll break down a Python script that visualizes options volatility for various market ETFs and indices. This tool leverages the &lt;code&gt;volvisualizer&lt;/code&gt; library to generate insightful volatility charts and skew reports that can help traders identify market sentiment and potential opportunities.&lt;/p&gt;&#xA;&lt;h2 id=&#34;why-volatility-visualization-matters&#34;&gt;Why Volatility Visualization Matters&lt;/h2&gt;&#xA;&lt;p&gt;Before diving into the code, let&amp;rsquo;s understand why visualizing options volatility is so important:&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Understanding Iron Condor Screener with TastyTrade API</title>
       <link>http://abhipandey.com/2023/09/understanding-iron-condor-screener-with-tastytrade-api/</link>

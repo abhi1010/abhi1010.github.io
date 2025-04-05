@@ -2,16 +2,40 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>http://abhipandey.com/2024/10/building-an-options-volatility-visualization-tool/</loc>
+    <lastmod>2024-10-13T00:33:29+08:00</lastmod>
+  </url><url>
+    <loc>http://abhipandey.com/categories/</loc>
+    <lastmod>2024-10-13T00:33:29+08:00</lastmod>
+  </url><url>
+    <loc>http://abhipandey.com/</loc>
+    <lastmod>2024-10-13T00:33:29+08:00</lastmod>
+  </url><url>
+    <loc>http://abhipandey.com/categories/finance/</loc>
+    <lastmod>2024-10-13T00:33:29+08:00</lastmod>
+  </url><url>
+    <loc>http://abhipandey.com/tags/options/</loc>
+    <lastmod>2024-10-13T00:33:29+08:00</lastmod>
+  </url><url>
+    <loc>http://abhipandey.com/post/</loc>
+    <lastmod>2024-10-13T00:33:29+08:00</lastmod>
+  </url><url>
+    <loc>http://abhipandey.com/tags/python/</loc>
+    <lastmod>2024-10-13T00:33:29+08:00</lastmod>
+  </url><url>
+    <loc>http://abhipandey.com/tags/</loc>
+    <lastmod>2024-10-13T00:33:29+08:00</lastmod>
+  </url><url>
+    <loc>http://abhipandey.com/categories/trading/</loc>
+    <lastmod>2024-10-13T00:33:29+08:00</lastmod>
+  </url><url>
+    <loc>http://abhipandey.com/tags/visualization/</loc>
+    <lastmod>2024-10-13T00:33:29+08:00</lastmod>
+  </url><url>
     <loc>http://abhipandey.com/tags/automation/</loc>
     <lastmod>2023-11-14T09:30:00+08:00</lastmod>
   </url><url>
-    <loc>http://abhipandey.com/categories/</loc>
-    <lastmod>2023-11-14T09:30:00+08:00</lastmod>
-  </url><url>
     <loc>http://abhipandey.com/tags/ccxt/</loc>
-    <lastmod>2023-11-14T09:30:00+08:00</lastmod>
-  </url><url>
-    <loc>http://abhipandey.com/</loc>
     <lastmod>2023-11-14T09:30:00+08:00</lastmod>
   </url><url>
     <loc>http://abhipandey.com/categories/crypto/</loc>
@@ -26,9 +50,6 @@
     <loc>http://abhipandey.com/tags/data-analysis/</loc>
     <lastmod>2023-11-14T09:30:00+08:00</lastmod>
   </url><url>
-    <loc>http://abhipandey.com/categories/finance/</loc>
-    <lastmod>2023-11-14T09:30:00+08:00</lastmod>
-  </url><url>
     <loc>http://abhipandey.com/tags/kucoin/</loc>
     <lastmod>2023-11-14T09:30:00+08:00</lastmod>
   </url><url>
@@ -38,15 +59,6 @@
     <loc>http://abhipandey.com/tags/market-data/</loc>
     <lastmod>2023-11-14T09:30:00+08:00</lastmod>
   </url><url>
-    <loc>http://abhipandey.com/post/</loc>
-    <lastmod>2023-11-14T09:30:00+08:00</lastmod>
-  </url><url>
-    <loc>http://abhipandey.com/tags/python/</loc>
-    <lastmod>2023-11-14T09:30:00+08:00</lastmod>
-  </url><url>
-    <loc>http://abhipandey.com/tags/</loc>
-    <lastmod>2023-11-14T09:30:00+08:00</lastmod>
-  </url><url>
     <loc>http://abhipandey.com/tags/trading/</loc>
     <lastmod>2023-11-14T09:30:00+08:00</lastmod>
   </url><url>
@@ -54,9 +66,6 @@
     <lastmod>2023-11-14T09:30:00+08:00</lastmod>
   </url><url>
     <loc>http://abhipandey.com/tags/finance/</loc>
-    <lastmod>2023-09-02T10:30:00+08:00</lastmod>
-  </url><url>
-    <loc>http://abhipandey.com/tags/options/</loc>
     <lastmod>2023-09-02T10:30:00+08:00</lastmod>
   </url><url>
     <loc>http://abhipandey.com/tags/tastytrade/</loc>
