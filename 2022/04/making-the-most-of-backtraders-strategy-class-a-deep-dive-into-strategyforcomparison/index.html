@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="en-us">
+  <head>
+    <title>Making the Most of Backtrader&#39;s Strategy Class: A Deep Dive into StrategyForComparison // Coders Digest</title>
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.145.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Abhishek Pandey" />
+    <meta name="description" content="Understanding Backtrader&#39;s StrategyForComparison: A Comprehensive Guide to Building Flexible Trading Systems" />
+    <link rel="stylesheet" href="/css/main.min.58870b33cfa6dce1b278c72b9b679817c33b90ef77a568ade9f2cd2acf27700f.css" />
+    
+
+    
+    
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Making the Most of Backtrader&#39;s Strategy Class: A Deep Dive into StrategyForComparison">
+  <meta name="twitter:description" content="Understanding Backtrader&#39;s StrategyForComparison: A Comprehensive Guide to Building Flexible Trading Systems">
+
+    <meta property="og:url" content="http://abhipandey.com/2022/04/making-the-most-of-backtraders-strategy-class-a-deep-dive-into-strategyforcomparison/">
+  <meta property="og:site_name" content="Coders Digest">
+  <meta property="og:title" content="Making the Most of Backtrader&#39;s Strategy Class: A Deep Dive into StrategyForComparison">
+  <meta property="og:description" content="Understanding Backtrader&#39;s StrategyForComparison: A Comprehensive Guide to Building Flexible Trading Systems">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2022-04-06T00:00:00+08:00">
+    <meta property="article:modified_time" content="2022-04-06T00:00:00+08:00">
+    <meta property="article:tag" content="Python">
+    <meta property="article:tag" content="Backtrader">
+    <meta property="article:tag" content="Algorithmic-Trading">
+    <meta property="article:tag" content="Trading-Strategies">
+    <meta property="article:tag" content="Technical-Analysis">
+    <meta property="article:tag" content="Risk-Management">
+
+
+  </head>
+  <body>
+    <header class="app-header">
+      <a href="/"><img class="app-header-avatar" src="/space-2.jpg" alt="Abhishek Pandey" /></a>
+      <span class="app-header-title">Coders Digest</span>
+      <nav class="app-header-menu">
+          <a class="app-header-menu-item" href="/post/">Posts</a>
+             - 
+          
+          <a class="app-header-menu-item" href="/tags/">Tags</a>
+             - 
+          
+          <a class="app-header-menu-item" href="/categories/">Categories</a>
+             - 
+          
+          <a class="app-header-menu-item" href="/about/">About</a>
+      </nav>
+      <p>Abhishek Pandey</p>
+      <div class="app-header-social">
+        
+          <a href="https://github.com/abhi1010" target="_blank" rel="noreferrer noopener me">
+            <svg class="icon icon-brand-github" viewBox="0 0 24 24" fill="currentColor"><title>GitHub</title><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+          </a>
+        
+          <a href="https://www.linkedin.com/in/apandey10/" target="_blank" rel="noreferrer noopener me">
+            <svg class="icon icon-brand-linkedin" viewBox="0 0 24 24" fill="currentColor"><title>LinkedIn</title><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </a>
+        
+      </div>
+    </header>
+    <main class="app-container">
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">Making the Most of Backtrader&#39;s Strategy Class: A Deep Dive into StrategyForComparison</h1>
+      <div class="post-meta">
+        <div>
+          <svg class="icon icon-calendar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>calendar</title><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+          Apr 6, 2022
+        </div>
+        <div>
+          <svg class="icon icon-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>clock</title><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+          5 min read
+        </div>
+        <div>
+          <svg class="icon icon-tag" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>tag</title><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
+              <a class="tag" href="/tags/python/">Python</a>
+              <a class="tag" href="/tags/backtrader/">Backtrader</a>
+              <a class="tag" href="/tags/algorithmic-trading/">Algorithmic-Trading</a>
+              <a class="tag" href="/tags/trading-strategies/">Trading-Strategies</a>
+              <a class="tag" href="/tags/technical-analysis/">Technical-Analysis</a>
+              <a class="tag" href="/tags/risk-management/">Risk-Management</a>
+        </div>
+      </div>
+    </header>
+    <div class="post-content">
+      <p>If you&rsquo;re serious about algorithmic trading and backtesting in Python, you&rsquo;ve likely encountered Backtrader - an excellent framework that gives you the freedom to test trading strategies with historical data. Today, I want to walk through a comprehensive strategy implementation I&rsquo;ve been working with called <code>StrategyForComparison</code>. This strategy showcases many of Backtrader&rsquo;s powerful features while implementing a flexible trading approach with various risk management options.</p>
+<h2 id="understanding-the-core-strategy">Understanding the Core Strategy</h2>
+<p><code>StrategyForComparison</code> is designed to be a flexible trading framework with multiple configurable components. At its core, it:</p>
+<ol>
+<li>Uses ATR (Average True Range) for volatility-based position sizing</li>
+<li>Can filter trades based on relative strength</li>
+<li>Offers multiple order management approaches including trailing stops and bracket orders</li>
+<li>Implements various risk management techniques</li>
+</ol>
+<p>Let&rsquo;s break down each component to understand how they can be used in your own trading systems.</p>
+<h2 id="position-sizing-and-cash-management">Position Sizing and Cash Management</h2>
+<p>The strategy offers two approaches to position sizing:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f00">def</span> <span style="color:#ff0">buy_by_size</span>(self):
+</span></span><span style="display:flex;"><span>    <span style="color:#f00">if</span> self.fixed_sizing:
+</span></span><span style="display:flex;"><span>        amount_to_invest = min(self.broker.cash * <span style="color:#f60">0.85</span>, self.initial_broker_cash)
+</span></span><span style="display:flex;"><span>    <span style="color:#f00">else</span>:
+</span></span><span style="display:flex;"><span>        amount_to_invest = self.broker.cash * <span style="color:#f60">0.85</span>
+</span></span></code></pre></div><p>This gives you two options:</p>
+<ul>
+<li><strong>Fixed sizing</strong>: Uses a consistent amount for each trade (capped at 85% of initial broker cash)</li>
+<li><strong>Proportional sizing</strong>: Always uses 85% of the current available cash</li>
+</ul>
+<p>This feature is particularly useful when testing different position sizing methods. Fixed sizing helps isolate strategy performance from compounding effects, while proportional sizing allows your account to naturally compound over time.</p>
+<h2 id="order-management-options">Order Management Options</h2>
+<p>One of the most powerful aspects of this strategy is its flexible order management system. It offers three main approaches:</p>
+<h3 id="1-trail-orders">1. Trail Orders</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f00">if</span> self.enable_trails:
+</span></span><span style="display:flex;"><span>    buy_order = self.buy(size=size, transmit=<span style="color:#f00">False</span>, exectype=bt.Order.Market)
+</span></span><span style="display:flex;"><span>    trail_amount = px * self.trail_percent
+</span></span><span style="display:flex;"><span>    self.trail_order = self.sell(
+</span></span><span style="display:flex;"><span>        exectype=bt.Order.StopTrail,
+</span></span><span style="display:flex;"><span>        trailamount=trail_amount,
+</span></span><span style="display:flex;"><span>        size=size,
+</span></span><span style="display:flex;"><span>        parent=buy_order)
+</span></span></code></pre></div><p>This creates a trailing stop that follows the price up as it moves in your favor, helping to lock in profits while allowing winners to run.</p>
+<h3 id="2-bracket-orders">2. Bracket Orders</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f00">elif</span> self.use_bracket:
+</span></span><span style="display:flex;"><span>    validity = datetime.timedelta(self.validity_days)
+</span></span><span style="display:flex;"><span>    bracket_validity = datetime.timedelta(self.bracket_validity_days)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    buy_order = self.buy_bracket(
+</span></span><span style="display:flex;"><span>        size=size,
+</span></span><span style="display:flex;"><span>        price=px,
+</span></span><span style="display:flex;"><span>        valid=validity,
+</span></span><span style="display:flex;"><span>        stopprice=self.get_bracket_stop_price(),
+</span></span><span style="display:flex;"><span>        stopargs=dict(valid=bracket_validity),
+</span></span><span style="display:flex;"><span>        limitprice=self.get_bracket_limit_price(),
+</span></span><span style="display:flex;"><span>        limitargs=dict(valid=bracket_validity),
+</span></span><span style="display:flex;"><span>    )
+</span></span></code></pre></div><p>Bracket orders automatically set both a take-profit and stop-loss level when entering a position, creating a complete trade management system in a single order.</p>
+<h3 id="3-standard-orders-with-optional-stop-loss">3. Standard Orders with Optional Stop Loss</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f00">else</span>:
+</span></span><span style="display:flex;"><span>    buy_order = self.buy(size=size, exectype=bt.Order.Market)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f00">if</span> self.stop_loss:
+</span></span><span style="display:flex;"><span>        stop_price = px * (<span style="color:#f60">1.0</span> - self.stop_loss)
+</span></span><span style="display:flex;"><span>        self.stop_order = self.sell(
+</span></span><span style="display:flex;"><span>            exectype=bt.Order.Stop, size=size, price=stop_price)
+</span></span></code></pre></div><p>This offers a simpler approach with a market entry and optional stop loss.</p>
+<h2 id="relative-strength-filtering">Relative Strength Filtering</h2>
+<p>The strategy can filter trades based on relative strength, which is a popular method for finding strong performers:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f00">def</span> <span style="color:#ff0">is_relative_strength_valid</span>(self):
+</span></span><span style="display:flex;"><span>    <span style="color:#f00">if</span> self.filter_by_relative_strength:
+</span></span><span style="display:flex;"><span>        dt_str = self.get_curr_date_str()
+</span></span><span style="display:flex;"><span>        px_close = self.data.close
+</span></span><span style="display:flex;"><span>        rs_val = self.get_rs()
+</span></span><span style="display:flex;"><span>        logger.info(<span style="color:#87ceeb">f</span><span style="color:#87ceeb">&#34;Buying 00 &lt;</span><span style="color:#87ceeb">{</span>dt_str<span style="color:#87ceeb">}</span><span style="color:#87ceeb">&gt;; at: </span><span style="color:#87ceeb">{</span>px_close<span style="color:#87ceeb">}</span><span style="color:#87ceeb">; rs_val=</span><span style="color:#87ceeb">{</span>rs_val<span style="color:#87ceeb">}</span><span style="color:#87ceeb">&#34;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#f00">return</span> rs_val &gt; <span style="color:#f60">0</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f00">return</span> <span style="color:#f00">True</span>
+</span></span></code></pre></div><p>This allows you to only take trades when the relative strength indicator is positive, potentially improving your win rate by focusing on stronger performers.</p>
+<h2 id="practical-use-cases">Practical Use Cases</h2>
+<h3 id="1-testing-different-exit-strategies">1. Testing Different Exit Strategies</h3>
+<p>By toggling between trailing stops and bracket orders, you can compare which exit strategy works best for your trading approach:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>strategy = StrategyForComparison(
+</span></span><span style="display:flex;"><span>    enable_trails=<span style="color:#f00">True</span>,  <span style="color:#0f0"># Use trailing stops</span>
+</span></span><span style="display:flex;"><span>    use_bracket=<span style="color:#f00">False</span>,   <span style="color:#0f0"># Don&#39;t use bracket orders</span>
+</span></span><span style="display:flex;"><span>    trail_percent=<span style="color:#f60">0.1</span>    <span style="color:#0f0"># 10% trailing stop</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#0f0"># vs</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>strategy = StrategyForComparison(
+</span></span><span style="display:flex;"><span>    enable_trails=<span style="color:#f00">False</span>,
+</span></span><span style="display:flex;"><span>    use_bracket=<span style="color:#f00">True</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#0f0"># ATR-based stop and limit prices will be used</span>
+</span></span><span style="display:flex;"><span>)
+</span></span></code></pre></div><h3 id="2-comparing-position-sizing-methods">2. Comparing Position Sizing Methods</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#0f0"># Fixed position sizing</span>
+</span></span><span style="display:flex;"><span>strategy = StrategyForComparison(
+</span></span><span style="display:flex;"><span>    fixed_sizing=<span style="color:#f00">True</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#0f0"># vs</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#0f0"># Proportional position sizing</span>
+</span></span><span style="display:flex;"><span>strategy = StrategyForComparison(
+</span></span><span style="display:flex;"><span>    fixed_sizing=<span style="color:#f00">False</span>
+</span></span><span style="display:flex;"><span>)
+</span></span></code></pre></div><h3 id="3-evaluating-relative-strength-as-a-filter">3. Evaluating Relative Strength as a Filter</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#0f0"># With RS filter</span>
+</span></span><span style="display:flex;"><span>strategy = StrategyForComparison(
+</span></span><span style="display:flex;"><span>    filter_by_relative_strength=<span style="color:#f00">True</span>,
+</span></span><span style="display:flex;"><span>    relative_strength_offset=<span style="color:#f60">55</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#0f0"># vs</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#0f0"># Without RS filter</span>
+</span></span><span style="display:flex;"><span>strategy = StrategyForComparison(
+</span></span><span style="display:flex;"><span>    filter_by_relative_strength=<span style="color:#f00">False</span>
+</span></span><span style="display:flex;"><span>)
+</span></span></code></pre></div><h3 id="4-risk-management-experimentation">4. Risk Management Experimentation</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#0f0"># With fixed stop loss</span>
+</span></span><span style="display:flex;"><span>strategy = StrategyForComparison(
+</span></span><span style="display:flex;"><span>    enable_trails=<span style="color:#f00">False</span>,
+</span></span><span style="display:flex;"><span>    use_bracket=<span style="color:#f00">False</span>,
+</span></span><span style="display:flex;"><span>    stop_loss=<span style="color:#f60">0.05</span>  <span style="color:#0f0"># 5% stop loss</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#0f0"># vs</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#0f0"># With ATR-based brackets</span>
+</span></span><span style="display:flex;"><span>strategy = StrategyForComparison(
+</span></span><span style="display:flex;"><span>    use_bracket=<span style="color:#f00">True</span>
+</span></span><span style="display:flex;"><span>)
+</span></span></code></pre></div><h2 id="advanced-features">Advanced Features</h2>
+<h3 id="order-state-management">Order State Management</h3>
+<p>The strategy carefully tracks order states to prevent overlapping buy/sell signals:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f00">def</span> <span style="color:#ff0">are_orders_in_flight</span>(self):
+</span></span><span style="display:flex;"><span>    <span style="color:#f00">if</span> self.sell_in_progress or self.buy_in_progress:
+</span></span><span style="display:flex;"><span>        logger.info(
+</span></span><span style="display:flex;"><span>            <span style="color:#87ceeb">f</span><span style="color:#87ceeb">&#39;&lt;</span><span style="color:#87ceeb">{</span>self.counter<span style="color:#87ceeb">}</span><span style="color:#87ceeb">&gt;: &lt;</span><span style="color:#87ceeb">{</span>self.data.datetime.datetime(<span style="color:#f60">0</span>)<span style="color:#87ceeb">}</span><span style="color:#87ceeb">&gt;: Buy/Sell in progress &#39;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#87ceeb">f</span><span style="color:#87ceeb">&#39;; IsBuy=</span><span style="color:#87ceeb">{</span>self.buy_in_progress<span style="color:#87ceeb">}</span><span style="color:#87ceeb">; IsSell=</span><span style="color:#87ceeb">{</span>self.sell_in_progress<span style="color:#87ceeb">}</span><span style="color:#87ceeb">&#39;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#f00">return</span> <span style="color:#f00">True</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f00">return</span> <span style="color:#f00">False</span>
+</span></span></code></pre></div><p>This is crucial for preventing multiple conflicting orders that could cause issues in live trading.</p>
+<h3 id="extensibility-points">Extensibility Points</h3>
+<p>The strategy has several methods designed for subclassing and extension:</p>
+<ul>
+<li><code>can_buy()</code> - Override to add custom buy conditions</li>
+<li><code>can_sell()</code> - Override to add custom sell conditions</li>
+<li><code>get_bracket_limit_price()</code> - Customize take-profit levels</li>
+<li><code>get_bracket_stop_price()</code> - Customize stop-loss levels</li>
+</ul>
+<h2 id="implementation-tips">Implementation Tips</h2>
+<p>When using this strategy, consider these tips:</p>
+<ol>
+<li><strong>Logging Configuration</strong>: The strategy has extensive logging - adjust the logger level to control verbosity</li>
+<li><strong>Parameter Tuning</strong>: Many parameters can be optimized - consider using Backtrader&rsquo;s built-in optimization features</li>
+<li><strong>Indicator Integration</strong>: While this strategy uses ATR, it can be extended with additional indicators</li>
+<li><strong>Relative Strength Data</strong>: Ensure your RS data files are properly formatted and located in the expected directory</li>
+</ol>
+<h2 id="conclusion">Conclusion</h2>
+<p>The <code>StrategyForComparison</code> class demonstrates how to build a flexible, robust trading strategy framework in Backtrader. By combining various order types, position sizing methods, and filtering techniques, it provides a solid foundation for systematic trading experimentation.</p>
+<p>Whether you&rsquo;re just getting started with algorithmic trading or looking to enhance your existing strategies, this code provides valuable patterns and techniques to incorporate into your own trading systems.</p>
+<p>Remember that backtesting is just the first step - always paper trade and rigorously validate your strategies before deploying them with real capital. Happy trading!</p>
+<h2 id="update">Update</h2>
+<p>I&rsquo;ve open-sourced the whole repo at <a href="https://github.com/abhi1010/backtrader-strategies-compendium">abhi1010/backtrader-strategies-compendium</a>.</p>
+<hr>
+<p><em>Disclaimer: This code and analysis are provided for educational purposes only. Always conduct your own analysis and risk management when implementing trading strategies.</em></p>
+
+    </div>
+    <div class="post-footer">
+      <div id="disqus_thread"></div>
+<script>
+    window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "abhi1010" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+  </article>
+
+    </main>
+  </body>
+</html>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Algorithmic-Trading on Coders Digest</title>
+    <link>http://abhipandey.com/tags/algorithmic-trading/</link>
+    <description>Recent content in Algorithmic-Trading on Coders Digest</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 11 Apr 2022 00:00:00 +0800</lastBuildDate>
+    <atom:link href="http://abhipandey.com/tags/algorithmic-trading/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Building Robust Trading Strategies with a Python Backtesting Framework</title>
+      <link>http://abhipandey.com/2022/04/building-robust-trading-strategies-with-a-python-backtesting-framework/</link>
+      <pubDate>Mon, 11 Apr 2022 00:00:00 +0800</pubDate>
+      <guid>http://abhipandey.com/2022/04/building-robust-trading-strategies-with-a-python-backtesting-framework/</guid>
+      <description>&lt;p&gt;A few days ago we saw how to build a simple backtesting framework for algorithmic trading using the &lt;code&gt;backtrader&lt;/code&gt; Python library.&#xA;I showcased a special class called &lt;code&gt;StrategyForComparison&lt;/code&gt; that allowed for a flexible trading approach with various risk management options.&#xA;Now let&amp;rsquo;s see how you&amp;rsquo;d utilize it in &lt;code&gt;backtest.py&lt;/code&gt; code.&lt;/p&gt;&#xA;&lt;p&gt;I&amp;rsquo;ll walk through a powerful backtesting framework I&amp;rsquo;ve been using that offers comprehensive testing capabilities for algorithmic trading strategies, with code examples to help you understand how it all works.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Making the Most of Backtrader&#39;s Strategy Class: A Deep Dive into StrategyForComparison</title>
+      <link>http://abhipandey.com/2022/04/making-the-most-of-backtraders-strategy-class-a-deep-dive-into-strategyforcomparison/</link>
+      <pubDate>Wed, 06 Apr 2022 00:00:00 +0800</pubDate>
+      <guid>http://abhipandey.com/2022/04/making-the-most-of-backtraders-strategy-class-a-deep-dive-into-strategyforcomparison/</guid>
+      <description>&lt;p&gt;If you&amp;rsquo;re serious about algorithmic trading and backtesting in Python, you&amp;rsquo;ve likely encountered Backtrader - an excellent framework that gives you the freedom to test trading strategies with historical data. Today, I want to walk through a comprehensive strategy implementation I&amp;rsquo;ve been working with called &lt;code&gt;StrategyForComparison&lt;/code&gt;. This strategy showcases many of Backtrader&amp;rsquo;s powerful features while implementing a flexible trading approach with various risk management options.&lt;/p&gt;&#xA;&lt;h2 id=&#34;understanding-the-core-strategy&#34;&gt;Understanding the Core Strategy&lt;/h2&gt;&#xA;&lt;p&gt;&lt;code&gt;StrategyForComparison&lt;/code&gt; is designed to be a flexible trading framework with multiple configurable components. At its core, it:&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

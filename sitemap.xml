@@ -26,9 +26,6 @@
     <loc>http://abhipandey.com/tags/</loc>
     <lastmod>2024-10-13T00:33:29+08:00</lastmod>
   </url><url>
-    <loc>http://abhipandey.com/categories/trading/</loc>
-    <lastmod>2024-10-13T00:33:29+08:00</lastmod>
-  </url><url>
     <loc>http://abhipandey.com/tags/visualization/</loc>
     <lastmod>2024-10-13T00:33:29+08:00</lastmod>
   </url><url>
@@ -97,6 +94,27 @@
   </url><url>
     <loc>http://abhipandey.com/2023/01/mastering-automated-trading-with-python-and-the-dhan-api/</loc>
     <lastmod>2023-01-28T14:30:00+08:00</lastmod>
+  </url><url>
+    <loc>http://abhipandey.com/tags/algorithmic-trading/</loc>
+    <lastmod>2022-04-11T00:00:00+08:00</lastmod>
+  </url><url>
+    <loc>http://abhipandey.com/tags/backtrader/</loc>
+    <lastmod>2022-04-11T00:00:00+08:00</lastmod>
+  </url><url>
+    <loc>http://abhipandey.com/2022/04/building-robust-trading-strategies-with-a-python-backtesting-framework/</loc>
+    <lastmod>2022-04-11T00:00:00+08:00</lastmod>
+  </url><url>
+    <loc>http://abhipandey.com/tags/risk-management/</loc>
+    <lastmod>2022-04-11T00:00:00+08:00</lastmod>
+  </url><url>
+    <loc>http://abhipandey.com/tags/technical-analysis/</loc>
+    <lastmod>2022-04-11T00:00:00+08:00</lastmod>
+  </url><url>
+    <loc>http://abhipandey.com/tags/trading-strategies/</loc>
+    <lastmod>2022-04-11T00:00:00+08:00</lastmod>
+  </url><url>
+    <loc>http://abhipandey.com/2022/04/making-the-most-of-backtraders-strategy-class-a-deep-dive-into-strategyforcomparison/</loc>
+    <lastmod>2022-04-06T00:00:00+08:00</lastmod>
   </url><url>
     <loc>http://abhipandey.com/tags/debugging/</loc>
     <lastmod>2019-09-02T09:30:00+08:00</lastmod>

@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="en-us">
+  <head>
+    <title>Building Robust Trading Strategies with a Python Backtesting Framework // Coders Digest</title>
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.145.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Abhishek Pandey" />
+    <meta name="description" content="Building Robust Trading Strategies with a Python Backtesting Framework" />
+    <link rel="stylesheet" href="/css/main.min.58870b33cfa6dce1b278c72b9b679817c33b90ef77a568ade9f2cd2acf27700f.css" />
+    
+
+    
+    
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Building Robust Trading Strategies with a Python Backtesting Framework">
+  <meta name="twitter:description" content="Building Robust Trading Strategies with a Python Backtesting Framework">
+
+    <meta property="og:url" content="http://abhipandey.com/2022/04/building-robust-trading-strategies-with-a-python-backtesting-framework/">
+  <meta property="og:site_name" content="Coders Digest">
+  <meta property="og:title" content="Building Robust Trading Strategies with a Python Backtesting Framework">
+  <meta property="og:description" content="Building Robust Trading Strategies with a Python Backtesting Framework">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2022-04-11T00:00:00+08:00">
+    <meta property="article:modified_time" content="2022-04-11T00:00:00+08:00">
+    <meta property="article:tag" content="Python">
+    <meta property="article:tag" content="Backtrader">
+    <meta property="article:tag" content="Algorithmic-Trading">
+    <meta property="article:tag" content="Trading-Strategies">
+    <meta property="article:tag" content="Technical-Analysis">
+    <meta property="article:tag" content="Risk-Management">
+
+
+  </head>
+  <body>
+    <header class="app-header">
+      <a href="/"><img class="app-header-avatar" src="/space-2.jpg" alt="Abhishek Pandey" /></a>
+      <span class="app-header-title">Coders Digest</span>
+      <nav class="app-header-menu">
+          <a class="app-header-menu-item" href="/post/">Posts</a>
+             - 
+          
+          <a class="app-header-menu-item" href="/tags/">Tags</a>
+             - 
+          
+          <a class="app-header-menu-item" href="/categories/">Categories</a>
+             - 
+          
+          <a class="app-header-menu-item" href="/about/">About</a>
+      </nav>
+      <p>Abhishek Pandey</p>
+      <div class="app-header-social">
+        
+          <a href="https://github.com/abhi1010" target="_blank" rel="noreferrer noopener me">
+            <svg class="icon icon-brand-github" viewBox="0 0 24 24" fill="currentColor"><title>GitHub</title><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+          </a>
+        
+          <a href="https://www.linkedin.com/in/apandey10/" target="_blank" rel="noreferrer noopener me">
+            <svg class="icon icon-brand-linkedin" viewBox="0 0 24 24" fill="currentColor"><title>LinkedIn</title><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </a>
+        
+      </div>
+    </header>
+    <main class="app-container">
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">Building Robust Trading Strategies with a Python Backtesting Framework</h1>
+      <div class="post-meta">
+        <div>
+          <svg class="icon icon-calendar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>calendar</title><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+          Apr 11, 2022
+        </div>
+        <div>
+          <svg class="icon icon-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>clock</title><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+          6 min read
+        </div>
+        <div>
+          <svg class="icon icon-tag" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>tag</title><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
+              <a class="tag" href="/tags/python/">Python</a>
+              <a class="tag" href="/tags/backtrader/">Backtrader</a>
+              <a class="tag" href="/tags/algorithmic-trading/">Algorithmic-Trading</a>
+              <a class="tag" href="/tags/trading-strategies/">Trading-Strategies</a>
+              <a class="tag" href="/tags/technical-analysis/">Technical-Analysis</a>
+              <a class="tag" href="/tags/risk-management/">Risk-Management</a>
+        </div>
+      </div>
+    </header>
+    <div class="post-content">
+      <p>A few days ago we saw how to build a simple backtesting framework for algorithmic trading using the <code>backtrader</code> Python library.
+I showcased a special class called <code>StrategyForComparison</code> that allowed for a flexible trading approach with various risk management options.
+Now let&rsquo;s see how you&rsquo;d utilize it in <code>backtest.py</code> code.</p>
+<p>I&rsquo;ll walk through a powerful backtesting framework I&rsquo;ve been using that offers comprehensive testing capabilities for algorithmic trading strategies, with code examples to help you understand how it all works.</p>
+<h2 id="what-is-this-backtesting-framework">What is This Backtesting Framework?</h2>
+<p>At its core, this framework leverages the popular <code>backtrader</code> Python library alongside other essential packages like <code>pandas</code>, <code>quantstats</code>, and various technical analysis tools. Let&rsquo;s look at the main components:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f00">import</span> backtrader <span style="color:#f00">as</span> bt
+</span></span><span style="display:flex;"><span><span style="color:#f00">import</span> backtrader.analyzers <span style="color:#f00">as</span> btanalyzers
+</span></span><span style="display:flex;"><span><span style="color:#f00">import</span> pandas <span style="color:#f00">as</span> pd
+</span></span><span style="display:flex;"><span><span style="color:#f00">import</span> quantstats
+</span></span><span style="display:flex;"><span><span style="color:#f00">import</span> inflect
+</span></span></code></pre></div><h2 id="key-features-that-make-this-framework-valuable">Key Features That Make This Framework Valuable</h2>
+<h3 id="1-strategy-ecosystem">1. Strategy Ecosystem</h3>
+<p>The framework includes over 25 trading strategies, all organized in a central dictionary for easy selection:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>_STRATEGIES = {
+</span></span><span style="display:flex;"><span>    <span style="color:#87ceeb">&#39;bb&#39;</span>: BollingerAndRsi,
+</span></span><span style="display:flex;"><span>    <span style="color:#87ceeb">&#39;bb_fib&#39;</span>: BollingerBands_Fib_Strategy,
+</span></span><span style="display:flex;"><span>    <span style="color:#87ceeb">&#39;cpr&#39;</span>: CprSingleTimeframe,
+</span></span><span style="display:flex;"><span>    <span style="color:#87ceeb">&#39;golden_cross&#39;</span>: GoldenCross,
+</span></span><span style="display:flex;"><span>    <span style="color:#87ceeb">&#39;ichimoku&#39;</span>: Ichimoku,
+</span></span><span style="display:flex;"><span>    <span style="color:#87ceeb">&#39;mean_reversion&#39;</span>: MeanReversion,
+</span></span><span style="display:flex;"><span>    <span style="color:#87ceeb">&#39;vwap&#39;</span>: VWAP_RSI,
+</span></span><span style="display:flex;"><span>    <span style="color:#0f0"># Many more strategies available...</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>This makes it incredibly simple to test different approaches - just change the strategy parameter when executing the script.</p>
+<h3 id="2-command-line-interface-with-argument-parsing">2. Command-Line Interface with Argument Parsing</h3>
+<p>The framework uses <code>argparse</code> to provide a flexible command-line interface:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f00">def</span> <span style="color:#ff0">parse_args</span>():
+</span></span><span style="display:flex;"><span>  parser = argparse.ArgumentParser(description=<span style="color:#87ceeb">&#39;Backtest Runner&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  parser.add_argument(<span style="color:#87ceeb">&#39;--interval&#39;</span>, <span style="color:#87ceeb">&#39;-i&#39;</span>, default=<span style="color:#87ceeb">&#39;1d&#39;</span>)
+</span></span><span style="display:flex;"><span>  parser.add_argument(<span style="color:#87ceeb">&#39;--fromyear&#39;</span>, <span style="color:#87ceeb">&#39;-f&#39;</span>, default=<span style="color:#f60">2000</span>, help=<span style="color:#87ceeb">&#39;Starting date in YYYY format&#39;</span>)
+</span></span><span style="display:flex;"><span>  parser.add_argument(<span style="color:#87ceeb">&#39;--toyear&#39;</span>, <span style="color:#87ceeb">&#39;-t&#39;</span>, default=<span style="color:#f60">2021</span>, help=<span style="color:#87ceeb">&#39;Starting date in YYYY format&#39;</span>)
+</span></span><span style="display:flex;"><span>  parser.add_argument(<span style="color:#87ceeb">&#39;--cash&#39;</span>, default=<span style="color:#f60">100000</span>, type=int, help=<span style="color:#87ceeb">&#39;Starting Cash&#39;</span>)
+</span></span><span style="display:flex;"><span>  parser.add_argument(<span style="color:#87ceeb">&#39;--comm&#39;</span>, default=<span style="color:#f60">0</span>, type=float, help=<span style="color:#87ceeb">&#39;Commission for operation&#39;</span>)
+</span></span><span style="display:flex;"><span>  parser.add_argument(<span style="color:#87ceeb">&#39;--plot&#39;</span>, <span style="color:#87ceeb">&#39;-p&#39;</span>, action=<span style="color:#87ceeb">&#39;store_true&#39;</span>, help=<span style="color:#87ceeb">&#39;Plot the read data&#39;</span>)
+</span></span><span style="display:flex;"><span>  parser.add_argument(<span style="color:#87ceeb">&#34;-sym&#34;</span>, <span style="color:#87ceeb">&#39;--symbols&#39;</span>, nargs=<span style="color:#87ceeb">&#39;+&#39;</span>, help=<span style="color:#87ceeb">&#39;&lt;Required&gt; Set flag&#39;</span>, default=[<span style="color:#87ceeb">&#39;AAPL&#39;</span>])
+</span></span><span style="display:flex;"><span>  parser.add_argument(<span style="color:#87ceeb">&#34;-s&#34;</span>, <span style="color:#87ceeb">&#34;--strategy&#34;</span>, help=<span style="color:#87ceeb">&#34;which strategy to run&#34;</span>, type=str)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#0f0"># More arguments available...</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f00">return</span> parser.parse_args()
+</span></span></code></pre></div><p>This allows for extensive customization of your backtests from a single command line.</p>
+<h3 id="3-fractional-position-sizing">3. Fractional Position Sizing</h3>
+<p>Unlike many basic frameworks, this one supports fractional position sizing, which is essential for realistic testing:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f00">class</span> CommInfoFractional(bt.CommissionInfo):
+</span></span><span style="display:flex;"><span>  <span style="color:#f00">def</span> <span style="color:#ff0">getsize</span>(self, price, cash):
+</span></span><span style="display:flex;"><span>    <span style="color:#87ceeb">&#39;&#39;&#39;Returns fractional size for cash operation @price&#39;&#39;&#39;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f00">return</span> self.p.leverage * (cash / price)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#0f0"># Later in the code:</span>
+</span></span><span style="display:flex;"><span>cerebro.broker.addcommissioninfo(CommInfoFractional(commission=args.comm))
+</span></span></code></pre></div><h3 id="4-comprehensive-analysis-with-multiple-analyzers">4. Comprehensive Analysis with Multiple Analyzers</h3>
+<p>The framework adds a battery of analyzers to evaluate strategy performance:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f00">def</span> <span style="color:#ff0">add_analyzers</span>(cerebro):
+</span></span><span style="display:flex;"><span>  <span style="color:#0f0"># Add analyzers</span>
+</span></span><span style="display:flex;"><span>  cerebro.addanalyzer(btanalyzers.SharpeRatio, _name=<span style="color:#87ceeb">&#39;mysharpe&#39;</span>)
+</span></span><span style="display:flex;"><span>  cerebro.addanalyzer(btanalyzers.Returns, _name=<span style="color:#87ceeb">&#39;myreturn&#39;</span>)
+</span></span><span style="display:flex;"><span>  cerebro.addanalyzer(btanalyzers.DrawDown, _name=<span style="color:#87ceeb">&#39;mydrawdown&#39;</span>)
+</span></span><span style="display:flex;"><span>  cerebro.addanalyzer(btanalyzers.Transactions, _name=<span style="color:#87ceeb">&#39;mytransactions&#39;</span>)
+</span></span><span style="display:flex;"><span>  cerebro.addanalyzer(btanalyzers.TradeAnalyzer, _name=<span style="color:#87ceeb">&#39;myanalyzer&#39;</span>)
+</span></span><span style="display:flex;"><span>  cerebro.addanalyzer(btanalyzers.SQN, _name=<span style="color:#87ceeb">&#39;mysqn&#39;</span>)
+</span></span><span style="display:flex;"><span>  cerebro.addanalyzer(bt.analyzers.PyFolio, _name=<span style="color:#87ceeb">&#39;pyfolio&#39;</span>)
+</span></span></code></pre></div><h3 id="5-detailed-transaction-logging">5. Detailed Transaction Logging</h3>
+<p>Every trade is meticulously logged with all relevant details:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f00">def</span> <span style="color:#ff0">show_transactions</span>(backtest, interval):
+</span></span><span style="display:flex;"><span>  logger.info(<span style="color:#87ceeb">&#34;*** Transactions ***&#34;</span>)
+</span></span><span style="display:flex;"><span>  analysis = backtest.analyzers.mytransactions.get_analysis()
+</span></span><span style="display:flex;"><span>  <span style="color:#f00">for</span> key in backtest.analyzers.mytransactions.get_analysis().keys():
+</span></span><span style="display:flex;"><span>    ticker_analysis = backtest.analyzers.mytransactions.get_analysis()[key][<span style="color:#f60">0</span>]
+</span></span><span style="display:flex;"><span>    side_text_s = [<span style="color:#87ceeb">&#34;Buy &#34;</span> <span style="color:#f00">if</span> x &lt; <span style="color:#f60">0</span> <span style="color:#f00">else</span> <span style="color:#87ceeb">&#34;Sell&#34;</span> <span style="color:#f00">for</span> x in [ticker_analysis[<span style="color:#f60">4</span>]]][<span style="color:#f60">0</span>]
+</span></span><span style="display:flex;"><span>    side_sign = <span style="color:#87ceeb">&#39; &#39;</span> <span style="color:#f00">if</span> <span style="color:#87ceeb">&#39;Buy&#39;</span> in side_text_s <span style="color:#f00">else</span> <span style="color:#87ceeb">&#39;&#39;</span>
+</span></span><span style="display:flex;"><span>    date_s = _get_date(key, interval)
+</span></span><span style="display:flex;"><span>    logger.info(
+</span></span><span style="display:flex;"><span>        <span style="color:#87ceeb">f</span><span style="color:#87ceeb">&#39;Symbol:</span><span style="color:#87ceeb">{</span>ticker_analysis[<span style="color:#f60">3</span>]<span style="color:#87ceeb">}</span><span style="color:#87ceeb">; &#39;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#87ceeb">f</span><span style="color:#87ceeb">&#39;Date: </span><span style="color:#87ceeb">{</span>date_s<span style="color:#87ceeb">}</span><span style="color:#87ceeb">; &#39;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#87ceeb">f</span><span style="color:#87ceeb">&#39;Price: </span><span style="color:#87ceeb">{</span>ticker_analysis[<span style="color:#f60">1</span>]<span style="color:#87ceeb">:</span><span style="color:#87ceeb">5.2f</span><span style="color:#87ceeb">}</span><span style="color:#87ceeb">; &#39;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#87ceeb">f</span><span style="color:#87ceeb">&#39;Type: </span><span style="color:#87ceeb">{</span>side_text_s<span style="color:#87ceeb">}</span><span style="color:#87ceeb">; &#39;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#87ceeb">f</span><span style="color:#87ceeb">&#39;# Shares:</span><span style="color:#87ceeb">{</span>side_sign<span style="color:#87ceeb">}</span><span style="color:#87ceeb"> </span><span style="color:#87ceeb">{</span>ticker_analysis[<span style="color:#f60">0</span>]<span style="color:#87ceeb">:</span><span style="color:#87ceeb">.2f</span><span style="color:#87ceeb">}</span><span style="color:#87ceeb">&#39;</span>)
+</span></span></code></pre></div><h3 id="6-enhanced-analytics-with-quantstats-integration">6. Enhanced Analytics with QuantStats Integration</h3>
+<p>The framework creates beautiful HTML reports using the QuantStats library:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f00">def</span> <span style="color:#ff0">create_quant_stats</span>(backtest_finished, strategy, output_file_name, interval, symbols):
+</span></span><span style="display:flex;"><span>  strat = backtest_finished[<span style="color:#f60">0</span>]
+</span></span><span style="display:flex;"><span>  portfolio_stats = strat.analyzers.getbyname(<span style="color:#87ceeb">&#39;pyfolio&#39;</span>)
+</span></span><span style="display:flex;"><span>  returns, positions, transactions, gross_lev = portfolio_stats.get_pf_items()
+</span></span><span style="display:flex;"><span>  returns.index = returns.index.tz_convert(<span style="color:#f00">None</span>)
+</span></span><span style="display:flex;"><span>  metrics = quantstats.reports.metrics(returns, mode=<span style="color:#87ceeb">&#39;full&#39;</span>, display=<span style="color:#f00">False</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#0f0"># Save metrics to tracking system</span>
+</span></span><span style="display:flex;"><span>  algo_metrics = metrics[<span style="color:#87ceeb">&#39;Strategy&#39;</span>]
+</span></span><span style="display:flex;"><span>  algo_metrics[<span style="color:#87ceeb">&#39;Symbol&#39;</span>] = symbols
+</span></span><span style="display:flex;"><span>  algo_metrics[<span style="color:#87ceeb">&#39;Algo&#39;</span>] = strategy
+</span></span><span style="display:flex;"><span>  algo_metrics[<span style="color:#87ceeb">&#39;Timeframe&#39;</span>] = interval
+</span></span><span style="display:flex;"><span>  tracker.save_df(algo_metrics)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#0f0"># Generate HTML report</span>
+</span></span><span style="display:flex;"><span>  quantstats.reports.html(
+</span></span><span style="display:flex;"><span>      returns,
+</span></span><span style="display:flex;"><span>      output=output_file_name,
+</span></span><span style="display:flex;"><span>      download_filename=output_file_name,
+</span></span><span style="display:flex;"><span>      title=strategy)
+</span></span></code></pre></div><h2 id="a-practical-example-running-the-framework">A Practical Example: Running the Framework</h2>
+<p>Let&rsquo;s say I want to test a Golden Cross strategy (50-day/200-day MA crossover) on Apple stock from 2018-2023 with $10,000 initial capital:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>python backtest_runner.py --strategy golden_cross --symbols AAPL --fromyear <span style="color:#f60">2018</span> --toyear <span style="color:#f60">2023</span> --cash <span style="color:#f60">10000</span> --analysis --quant
+</span></span></code></pre></div><p>Under the hood, here&rsquo;s what happens in the <code>runstrategy()</code> function:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f00">def</span> <span style="color:#ff0">runstrategy</span>():
+</span></span><span style="display:flex;"><span>  start = time.time()
+</span></span><span style="display:flex;"><span>  args = parse_args()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#0f0"># Create directories for reports</span>
+</span></span><span style="display:flex;"><span>  os.makedirs(os.path.join(_REPORTS_DIR, args.strategy), exist_ok=<span style="color:#f00">True</span>)
+</span></span><span style="display:flex;"><span>  os.makedirs(os.path.join(_TRADES_DIR, args.strategy), exist_ok=<span style="color:#f00">True</span>)
+</span></span><span style="display:flex;"><span>  os.makedirs(os.path.join(_TRANSACTIONS_DIR, args.strategy), exist_ok=<span style="color:#f00">True</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#0f0"># Set up logging</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#0f0"># ...</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#0f0"># Create cerebro engine</span>
+</span></span><span style="display:flex;"><span>  cerebro = bt.Cerebro(cheat_on_open=args.cheat_on_open)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#0f0"># Add strategy</span>
+</span></span><span style="display:flex;"><span>  STRATEGY = [_STRATEGIES[args.strategy]]
+</span></span><span style="display:flex;"><span>  <span style="color:#f00">for</span> strategy in STRATEGY:
+</span></span><span style="display:flex;"><span>    cerebro.addstrategy(strategy)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  add_analyzers(cerebro)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#0f0"># Get stock data</span>
+</span></span><span style="display:flex;"><span>  stock_data_dict = data_reader.get_stock_data(
+</span></span><span style="display:flex;"><span>      args.symbols, args.fromyear, args.toyear, args.interval, args.data_style,
+</span></span><span style="display:flex;"><span>      args.data_dir, args.timezone)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#0f0"># Add data to cerebro</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f00">for</span> stock in stock_data_dict:
+</span></span><span style="display:flex;"><span>    cerebro.adddata(stock_data_dict[stock], stock)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#0f0"># Set starting cash and commission model</span>
+</span></span><span style="display:flex;"><span>  cerebro.broker.setcash(args.cash)
+</span></span><span style="display:flex;"><span>  cerebro.broker.addcommissioninfo(CommInfoFractional(commission=args.comm))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#0f0"># Run backtest</span>
+</span></span><span style="display:flex;"><span>  backtest_finished = cerebro.run()
+</span></span><span style="display:flex;"><span>  backtest = backtest_finished[<span style="color:#f60">0</span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#0f0"># Generate reports</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f00">if</span> args.report:
+</span></span><span style="display:flex;"><span>    create_report_csv(cerebro, backtest, args.strategy)
+</span></span><span style="display:flex;"><span>    create_transactions_csv(cerebro, backtest, args.interval, args.strategy)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f00">if</span> args.quant:
+</span></span><span style="display:flex;"><span>    symbols = <span style="color:#87ceeb">&#39;_&#39;</span>.join(args.symbols)
+</span></span><span style="display:flex;"><span>    output_file_name = os.path.join(
+</span></span><span style="display:flex;"><span>        _REPORTS_DIR, args.strategy,
+</span></span><span style="display:flex;"><span>        <span style="color:#87ceeb">f</span><span style="color:#87ceeb">&#39;quantstats-</span><span style="color:#87ceeb">{</span>args.strategy<span style="color:#87ceeb">}</span><span style="color:#87ceeb">-</span><span style="color:#87ceeb">{</span>symbols<span style="color:#87ceeb">}</span><span style="color:#87ceeb">-</span><span style="color:#87ceeb">{</span>args.interval<span style="color:#87ceeb">}</span><span style="color:#87ceeb">.html&#39;</span>)
+</span></span><span style="display:flex;"><span>    create_quant_stats(
+</span></span><span style="display:flex;"><span>        backtest_finished, args.strategy, output_file_name, args.interval,
+</span></span><span style="display:flex;"><span>        symbols)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#0f0"># Display results</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f00">if</span> args.analysis:
+</span></span><span style="display:flex;"><span>    show_results(cerebro, backtest, beginning_cash)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f00">if</span> args.plot:
+</span></span><span style="display:flex;"><span>    cerebro.plot(iplot=<span style="color:#f00">False</span>)
+</span></span></code></pre></div><h2 id="output-analysis-understanding-the-results">Output Analysis: Understanding the Results</h2>
+<p>The framework generates comprehensive performance metrics:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f00">def</span> <span style="color:#ff0">show_results</span>(cerebro, backtest, beginning_cash):
+</span></span><span style="display:flex;"><span>  analysis = backtest.analyzers.myanalyzer.get_analysis()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#0f0"># Calculate performance metrics</span>
+</span></span><span style="display:flex;"><span>  portfolio_value = cerebro.broker.getvalue()
+</span></span><span style="display:flex;"><span>  roi = (int)((portfolio_value - beginning_cash) * <span style="color:#f60">100</span> / beginning_cash)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  logger.info(<span style="color:#87ceeb">f</span><span style="color:#87ceeb">&#39;Final Portfolio Value: </span><span style="color:#87ceeb">{</span>show_numbers(portfolio_value)<span style="color:#87ceeb">}</span><span style="color:#87ceeb">&#39;</span>)
+</span></span><span style="display:flex;"><span>  logger.info(<span style="color:#87ceeb">f</span><span style="color:#87ceeb">&#39;ROI = </span><span style="color:#87ceeb">{</span>roi_s<span style="color:#87ceeb">}</span><span style="color:#87ceeb"> %&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#0f0"># Show win/loss statistics</span>
+</span></span><span style="display:flex;"><span>  logger.info(<span style="color:#87ceeb">f</span><span style="color:#87ceeb">&#34;Number of winners: </span><span style="color:#87ceeb">{</span>analysis[<span style="color:#87ceeb">&#39;won&#39;</span>][<span style="color:#87ceeb">&#39;total&#39;</span>]<span style="color:#87ceeb">}</span><span style="color:#87ceeb">&#34;</span>)
+</span></span><span style="display:flex;"><span>  logger.info(<span style="color:#87ceeb">f</span><span style="color:#87ceeb">&#34;Total profit - winners: </span><span style="color:#87ceeb">{</span>show_numbers(analysis[<span style="color:#87ceeb">&#39;won&#39;</span>][<span style="color:#87ceeb">&#39;pnl&#39;</span>][<span style="color:#87ceeb">&#39;total&#39;</span>])<span style="color:#87ceeb">}</span><span style="color:#87ceeb">&#34;</span>)
+</span></span><span style="display:flex;"><span>  logger.info(<span style="color:#87ceeb">f</span><span style="color:#87ceeb">&#34;Number of losers: </span><span style="color:#87ceeb">{</span>analysis[<span style="color:#87ceeb">&#39;lost&#39;</span>][<span style="color:#87ceeb">&#39;total&#39;</span>]<span style="color:#87ceeb">}</span><span style="color:#87ceeb">&#34;</span>)
+</span></span><span style="display:flex;"><span>  logger.info(<span style="color:#87ceeb">f</span><span style="color:#87ceeb">&#34;Total loss - losers: </span><span style="color:#87ceeb">{</span>show_numbers(analysis[<span style="color:#87ceeb">&#39;lost&#39;</span>][<span style="color:#87ceeb">&#39;pnl&#39;</span>][<span style="color:#87ceeb">&#39;total&#39;</span>])<span style="color:#87ceeb">}</span><span style="color:#87ceeb">&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#0f0"># Calculate accuracy</span>
+</span></span><span style="display:flex;"><span>  total_accuracy = (analysis[<span style="color:#87ceeb">&#39;won&#39;</span>][<span style="color:#87ceeb">&#39;total&#39;</span>] /
+</span></span><span style="display:flex;"><span>      (analysis[<span style="color:#87ceeb">&#39;won&#39;</span>][<span style="color:#87ceeb">&#39;total&#39;</span>] + analysis[<span style="color:#87ceeb">&#39;lost&#39;</span>][<span style="color:#87ceeb">&#39;total&#39;</span>])) * <span style="color:#f60">100</span>
+</span></span><span style="display:flex;"><span>  logger.info(<span style="color:#87ceeb">f</span><span style="color:#87ceeb">&#34;Total accuracy: </span><span style="color:#87ceeb">{</span>total_accuracy<span style="color:#87ceeb">}</span><span style="color:#87ceeb">&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#0f0"># Show key metrics</span>
+</span></span><span style="display:flex;"><span>  logger.info(<span style="color:#87ceeb">f</span><span style="color:#87ceeb">&#34;Sharpe Ratio: </span><span style="color:#87ceeb">{</span>backtest.analyzers.mysharpe.get_analysis()[<span style="color:#87ceeb">&#39;sharperatio&#39;</span>]<span style="color:#87ceeb">}</span><span style="color:#87ceeb">&#34;</span>)
+</span></span><span style="display:flex;"><span>  logger.info(<span style="color:#87ceeb">f</span><span style="color:#87ceeb">&#34;Max drawdown (pct): </span><span style="color:#87ceeb">{</span>_get_analysis_value(<span style="color:#87ceeb">&#39;mydrawdown&#39;</span>, <span style="color:#87ceeb">&#39;max&#39;</span>)[<span style="color:#87ceeb">&#39;drawdown&#39;</span>]<span style="color:#87ceeb">:</span><span style="color:#87ceeb">.2f</span><span style="color:#87ceeb">}</span><span style="color:#87ceeb">&#34;</span>)
+</span></span><span style="display:flex;"><span>  logger.info(<span style="color:#87ceeb">f</span><span style="color:#87ceeb">&#34;SQN: </span><span style="color:#87ceeb">{</span>_get_analysis_value(<span style="color:#87ceeb">&#39;mysqn&#39;</span>, <span style="color:#87ceeb">&#39;sqn&#39;</span>)<span style="color:#87ceeb">:</span><span style="color:#87ceeb">.3f</span><span style="color:#87ceeb">}</span><span style="color:#87ceeb">&#34;</span>)
+</span></span></code></pre></div><h2 id="why-this-framework-matters">Why This Framework Matters</h2>
+<h3 id="for-individual-traders">For Individual Traders</h3>
+<p>With just a few lines of code, you can test sophisticated strategies:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#0f0"># Test multiple strategies on a single stock</span>
+</span></span><span style="display:flex;"><span>python backtest_runner.py --strategy golden_cross --symbols AAPL --quant
+</span></span><span style="display:flex;"><span>python backtest_runner.py --strategy rsimacd --symbols AAPL --quant
+</span></span><span style="display:flex;"><span>python backtest_runner.py --strategy supertrend --symbols AAPL --quant
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#0f0"># Compare the HTML reports to determine the best approach</span>
+</span></span></code></pre></div><h3 id="for-quants-and-researchers">For Quants and Researchers</h3>
+<p>The framework makes it easy to implement custom strategies. All you need to do is:</p>
+<ol>
+<li>Create a new strategy class that inherits from <code>bt.Strategy</code></li>
+<li>Add it to the <code>_STRATEGIES</code> dictionary</li>
+<li>Run your backtest</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#0f0"># Add to strategies directory, then add to _STRATEGIES dictionary:</span>
+</span></span><span style="display:flex;"><span>_STRATEGIES[<span style="color:#87ceeb">&#39;my_custom_strategy&#39;</span>] = MyCustomStrategy
+</span></span></code></pre></div><h3 id="for-teams">For Teams</h3>
+<p>The CSV exports create a standardized format for sharing results:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f00">def</span> <span style="color:#ff0">create_report_csv</span>(cerebro, backtest, strategy):
+</span></span><span style="display:flex;"><span>  <span style="color:#0f0"># ...</span>
+</span></span><span style="display:flex;"><span>  trades = []
+</span></span><span style="display:flex;"><span>  trade_column = [
+</span></span><span style="display:flex;"><span>      <span style="color:#87ceeb">&#39;symbol&#39;</span>, <span style="color:#87ceeb">&#39;buy_date&#39;</span>, <span style="color:#87ceeb">&#39;buy_price&#39;</span>, <span style="color:#87ceeb">&#39;sell_date&#39;</span>, <span style="color:#87ceeb">&#39;sell_price&#39;</span>, <span style="color:#87ceeb">&#39;size&#39;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#87ceeb">&#39;profit&#39;</span>, <span style="color:#87ceeb">&#39;profit_pct&#39;</span>
+</span></span><span style="display:flex;"><span>  ]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#0f0"># Extract trade data</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#0f0"># ...</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#0f0"># Write to CSV</span>
+</span></span><span style="display:flex;"><span>  report_csv_name = os.path.join(
+</span></span><span style="display:flex;"><span>      _TRADES_DIR, strategy, <span style="color:#87ceeb">f</span><span style="color:#87ceeb">&#39;trades-</span><span style="color:#87ceeb">{</span>symbol<span style="color:#87ceeb">}</span><span style="color:#87ceeb">.csv&#39;</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#f00">with</span> open(report_csv_name, <span style="color:#87ceeb">&#39;wt&#39;</span>) <span style="color:#f00">as</span> f:
+</span></span><span style="display:flex;"><span>    f.write(<span style="color:#87ceeb">&#39;,&#39;</span>.join(trade_column) + <span style="color:#87ceeb">&#39;</span><span style="color:#87ceeb">\n</span><span style="color:#87ceeb">&#39;</span>)
+</span></span><span style="display:flex;"><span>    f.write(<span style="color:#87ceeb">&#39;</span><span style="color:#87ceeb">\n</span><span style="color:#87ceeb">&#39;</span>.join(trades))
+</span></span><span style="display:flex;"><span>    f.write(<span style="color:#87ceeb">&#39;</span><span style="color:#87ceeb">\n</span><span style="color:#87ceeb">&#39;</span>)
+</span></span></code></pre></div><h2 id="conclusion">Conclusion</h2>
+<p>This backtesting framework represents a significant time-saver for anyone serious about algorithmic trading. The code examples shared above demonstrate how accessible yet powerful this system is, combining the strengths of <code>backtrader</code> with enhanced reporting through <code>quantstats</code>.</p>
+<p>Whether you&rsquo;re a casual trader exploring technical indicators or a professional quant developing proprietary algorithms, this framework provides the foundation needed to thoroughly validate trading approaches before committing real capital.</p>
+<p>In future posts, I&rsquo;ll dive deeper into specific strategies and show how to extend this framework with custom indicators and risk management techniques.</p>
+<p>Happy trading!</p>
+<h2 id="update">Update</h2>
+<p>I&rsquo;ve open-sourced the whole repo at <a href="https://github.com/abhi1010/backtrader-strategies-compendium">abhi1010/backtrader-strategies-compendium</a>.</p>
+<hr>
+<p><em>Disclaimer: This code and analysis are provided for educational purposes only. Always conduct your own analysis and risk management when implementing trading strategies.</em></p>
+
+    </div>
+    <div class="post-footer">
+      <div id="disqus_thread"></div>
+<script>
+    window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "abhi1010" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+  </article>
+
+    </main>
+  </body>
+</html>
