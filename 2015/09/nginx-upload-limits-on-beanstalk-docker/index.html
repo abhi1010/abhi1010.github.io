@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="author" content="Abhishek Pandey" />
     <meta name="description" content="How to modify nginx settings on aws beanstalk docker" />
-    <link rel="stylesheet" href="/css/main.min.51f3efdcc017a8960f507421fb803e2abeb64e9e18c517404c94ef605e8ce8aa.css" />
+    <link rel="stylesheet" href="/css/main.min.3fabd88a6b1988deec4988ebf6c9df8b45b30a933ac9db6bfd68596e780921ab.css" />
     
 
     
@@ -88,11 +88,11 @@
 <p>As you may know already, <code>beanstalk</code> creates an <code>EC2</code> instance to manage the <code>docker</code> environment.<br>
 Since <code>EC2</code> needs to manage the <code>docker</code> environment and serve the web interface as well, it does so by having another <code>nginx</code> instance to serve the <code>nginx</code> within <code>docker</code>.
 Hence, if you had to modify the <code>nginx</code> settings to allow bigger uploads, <strong>you&rsquo;d have to modify the settings for <code>nginx</code> on both - <code>docker</code> as well as <code>EC2</code></strong>.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>    <span style="color:#177500"># max upload size</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#000">client_max_body_size</span> <span style="color:#1c01ce">10</span><span style="color:#000">M</span>;   <span style="color:#177500"># adjust to your liking</span></span></span></code></pre></div>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>    <span style="color:#0f0"># max upload size</span>
+</span></span><span style="display:flex;"><span>    client_max_body_size <span style="color:#f60">10</span>M;   <span style="color:#0f0"># adjust to your liking</span></span></span></code></pre></div>
 <p>Also, if you don&rsquo;t want to have any limit at all for uploads, then just change the <code>client_max_body_size</code> to 0.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>    <span style="color:#177500"># max upload size</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#000">client_max_body_size</span> <span style="color:#1c01ce">0</span>;</span></span></code></pre></div>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>    <span style="color:#0f0"># max upload size</span>
+</span></span><span style="display:flex;"><span>    client_max_body_size <span style="color:#f60">0</span>;</span></span></code></pre></div>
 
     </div>
     <div class="post-footer">

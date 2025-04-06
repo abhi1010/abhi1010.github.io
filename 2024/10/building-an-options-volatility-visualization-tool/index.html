@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="author" content="Abhishek Pandey" />
     <meta name="description" content="Options Volatility Visualization with Python: Understanding Market Sentiment" />
-    <link rel="stylesheet" href="/css/main.min.51f3efdcc017a8960f507421fb803e2abeb64e9e18c517404c94ef605e8ce8aa.css" />
+    <link rel="stylesheet" href="/css/main.min.3fabd88a6b1988deec4988ebf6c9df8b45b30a933ac9db6bfd68596e780921ab.css" />
     
 
     
@@ -96,65 +96,65 @@
 </ol>
 <h2 id="the-code-explained">The Code Explained</h2>
 <p>Let&rsquo;s analyze our volatility visualization script:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#a90d91">import</span> <span style="color:#000">os</span>
-</span></span><span style="display:flex;"><span><span style="color:#a90d91">import</span> <span style="color:#000">sys</span>
-</span></span><span style="display:flex;"><span><span style="color:#a90d91">import</span> <span style="color:#000">datetime</span>
-</span></span><span style="display:flex;"><span><span style="color:#a90d91">import</span> <span style="color:#000">argparse</span>
-</span></span><span style="display:flex;"><span><span style="color:#a90d91">import</span> <span style="color:#000">logging</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f00">import</span> os
+</span></span><span style="display:flex;"><span><span style="color:#f00">import</span> sys
+</span></span><span style="display:flex;"><span><span style="color:#f00">import</span> datetime
+</span></span><span style="display:flex;"><span><span style="color:#f00">import</span> argparse
+</span></span><span style="display:flex;"><span><span style="color:#f00">import</span> logging
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#a90d91">import</span> <span style="color:#000">volvisualizer.volatility</span> <span style="color:#a90d91">as</span> <span style="color:#000">vol</span>
+</span></span><span style="display:flex;"><span><span style="color:#f00">import</span> volvisualizer.volatility <span style="color:#f00">as</span> vol
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#a90d91">from</span> <span style="color:#000">trading.common</span> <span style="color:#a90d91">import</span> <span style="color:#000">utils</span>
+</span></span><span style="display:flex;"><span><span style="color:#f00">from</span> trading.common <span style="color:#f00">import</span> utils
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#000">logger</span> <span style="color:#000">=</span> <span style="color:#000">utils</span><span style="color:#000">.</span><span style="color:#000">get_logger</span>(<span style="color:#c41a16">&#39;option_vizualizer&#39;</span>)
+</span></span><span style="display:flex;"><span>logger = utils.get_logger(<span style="color:#87ceeb">&#39;option_vizualizer&#39;</span>)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#177500"># change logging of volatility to none</span>
-</span></span><span style="display:flex;"><span><span style="color:#000">logging</span><span style="color:#000">.</span><span style="color:#000">getLogger</span>(<span style="color:#c41a16">&#39;volatility&#39;</span>)<span style="color:#000">.</span><span style="color:#000">setLevel</span>(<span style="color:#000">logging</span><span style="color:#000">.</span><span style="color:#000">ERROR</span>)
+</span></span><span style="display:flex;"><span><span style="color:#0f0"># change logging of volatility to none</span>
+</span></span><span style="display:flex;"><span>logging.getLogger(<span style="color:#87ceeb">&#39;volatility&#39;</span>).setLevel(logging.ERROR)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#177500"># Ref: https://github.com/GBERESEARCH/volvisualizer/blob/master/notebooks/Implied%20Volatility%20-%20SPX%20Walkthrough.ipynb</span>
+</span></span><span style="display:flex;"><span><span style="color:#0f0"># Ref: https://github.com/GBERESEARCH/volvisualizer/blob/master/notebooks/Implied%20Volatility%20-%20SPX%20Walkthrough.ipynb</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#000">TICKERS_TO_VIZUALIZER</span> <span style="color:#000">=</span> [<span style="color:#c41a16">&#39;SPX&#39;</span>, <span style="color:#c41a16">&#39;IWM&#39;</span>, <span style="color:#c41a16">&#39;RSP&#39;</span>, <span style="color:#c41a16">&#39;QQQ&#39;</span>, <span style="color:#c41a16">&#39;GLD&#39;</span>, <span style="color:#c41a16">&#39;TLT&#39;</span>]
+</span></span><span style="display:flex;"><span>TICKERS_TO_VIZUALIZER = [<span style="color:#87ceeb">&#39;SPX&#39;</span>, <span style="color:#87ceeb">&#39;IWM&#39;</span>, <span style="color:#87ceeb">&#39;RSP&#39;</span>, <span style="color:#87ceeb">&#39;QQQ&#39;</span>, <span style="color:#87ceeb">&#39;GLD&#39;</span>, <span style="color:#87ceeb">&#39;TLT&#39;</span>]
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#c41a16">&#39;&#39;&#39;
-</span></span></span><span style="display:flex;"><span><span style="color:#c41a16">Usage:
-</span></span></span><span style="display:flex;"><span><span style="color:#c41a16">
-</span></span></span><span style="display:flex;"><span><span style="color:#c41a16">python trading/reports/options_vizualizer.py --tickers SPX
-</span></span></span><span style="display:flex;"><span><span style="color:#c41a16">python trading/reports/options_vizualizer.py --tickers IWM
-</span></span></span><span style="display:flex;"><span><span style="color:#c41a16">python trading/reports/options_vizualizer.py --tickers RSP
-</span></span></span><span style="display:flex;"><span><span style="color:#c41a16">python trading/reports/options_vizualizer.py --tickers QQQ
-</span></span></span><span style="display:flex;"><span><span style="color:#c41a16">python trading/reports/options_vizualizer.py --tickers GLD
-</span></span></span><span style="display:flex;"><span><span style="color:#c41a16">python trading/reports/options_vizualizer.py --tickers TLT
-</span></span></span><span style="display:flex;"><span><span style="color:#c41a16">python trading/reports/options_vizualizer.py --tickers SPY QQQ GDX IJR TLT USO
-</span></span></span><span style="display:flex;"><span><span style="color:#c41a16">
-</span></span></span><span style="display:flex;"><span><span style="color:#c41a16">&#39;&#39;&#39;</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#a90d91">def</span> <span style="color:#000">get_args</span>():
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#000">parser</span> <span style="color:#000">=</span> <span style="color:#000">argparse</span><span style="color:#000">.</span><span style="color:#000">ArgumentParser</span>(
-</span></span><span style="display:flex;"><span>      <span style="color:#000">formatter_class</span><span style="color:#000">=</span><span style="color:#000">argparse</span><span style="color:#000">.</span><span style="color:#000">ArgumentDefaultsHelpFormatter</span>)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#177500"># add args for tickers, if empty, change tickers to TICKERS_TO_VIZUALIZER</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#000">parser</span><span style="color:#000">.</span><span style="color:#000">add_argument</span>(
-</span></span><span style="display:flex;"><span>      <span style="color:#c41a16">&#39;--tickers&#39;</span>, <span style="color:#c41a16">&#39;-t&#39;</span>, <span style="color:#000">nargs</span><span style="color:#000">=</span><span style="color:#c41a16">&#39;+&#39;</span>, <span style="color:#000">default</span><span style="color:#000">=</span><span style="color:#000">TICKERS_TO_VIZUALIZER</span>)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#000">args</span> <span style="color:#000">=</span> <span style="color:#000">parser</span><span style="color:#000">.</span><span style="color:#000">parse_args</span>()
-</span></span><span style="display:flex;"><span>  <span style="color:#a90d91">return</span> <span style="color:#000">args</span>
+</span></span><span style="display:flex;"><span><span style="color:#87ceeb">&#39;&#39;&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#87ceeb">Usage:
+</span></span></span><span style="display:flex;"><span><span style="color:#87ceeb">
+</span></span></span><span style="display:flex;"><span><span style="color:#87ceeb">python trading/reports/options_vizualizer.py --tickers SPX
+</span></span></span><span style="display:flex;"><span><span style="color:#87ceeb">python trading/reports/options_vizualizer.py --tickers IWM
+</span></span></span><span style="display:flex;"><span><span style="color:#87ceeb">python trading/reports/options_vizualizer.py --tickers RSP
+</span></span></span><span style="display:flex;"><span><span style="color:#87ceeb">python trading/reports/options_vizualizer.py --tickers QQQ
+</span></span></span><span style="display:flex;"><span><span style="color:#87ceeb">python trading/reports/options_vizualizer.py --tickers GLD
+</span></span></span><span style="display:flex;"><span><span style="color:#87ceeb">python trading/reports/options_vizualizer.py --tickers TLT
+</span></span></span><span style="display:flex;"><span><span style="color:#87ceeb">python trading/reports/options_vizualizer.py --tickers SPY QQQ GDX IJR TLT USO
+</span></span></span><span style="display:flex;"><span><span style="color:#87ceeb">
+</span></span></span><span style="display:flex;"><span><span style="color:#87ceeb">&#39;&#39;&#39;</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#a90d91">def</span> <span style="color:#000">main</span>():
-</span></span><span style="display:flex;"><span>  <span style="color:#000">args</span> <span style="color:#000">=</span> <span style="color:#000">get_args</span>()
-</span></span><span style="display:flex;"><span>  <span style="color:#000">logger</span><span style="color:#000">.</span><span style="color:#000">info</span>(<span style="color:#c41a16">f</span><span style="color:#c41a16">&#39;args = </span><span style="color:#c41a16">{</span><span style="color:#000">args</span><span style="color:#c41a16">}</span><span style="color:#c41a16">&#39;</span>)
-</span></span><span style="display:flex;"><span>  <span style="color:#a90d91">for</span> <span style="color:#000">ticker</span> <span style="color:#000">in</span> <span style="color:#000">args</span><span style="color:#000">.</span><span style="color:#000">tickers</span>:
-</span></span><span style="display:flex;"><span>    <span style="color:#000">logger</span><span style="color:#000">.</span><span style="color:#000">info</span>(<span style="color:#c41a16">f</span><span style="color:#c41a16">&#39;Running for </span><span style="color:#c41a16">{</span><span style="color:#000">ticker</span><span style="color:#c41a16">}</span><span style="color:#c41a16">&#39;</span>)
-</span></span><span style="display:flex;"><span>    <span style="color:#000">imp</span> <span style="color:#000">=</span> <span style="color:#000">vol</span><span style="color:#000">.</span><span style="color:#000">Volatility</span>(<span style="color:#000">ticker</span><span style="color:#000">=</span><span style="color:#000">ticker</span>)
-</span></span><span style="display:flex;"><span>    <span style="color:#000">imp</span><span style="color:#000">.</span><span style="color:#000">linegraph</span>(<span style="color:#000">save_image</span><span style="color:#000">=</span><span style="color:#a90d91">True</span>, <span style="color:#000">image_folder</span><span style="color:#000">=</span><span style="color:#c41a16">&#39;data/images&#39;</span>, <span style="color:#000">show_graph</span><span style="color:#000">=</span><span style="color:#a90d91">True</span>)
-</span></span><span style="display:flex;"><span>    <span style="color:#000">imp</span><span style="color:#000">.</span><span style="color:#000">skewreport</span>(<span style="color:#000">direction</span><span style="color:#000">=</span><span style="color:#c41a16">&#39;full&#39;</span>)
-</span></span><span style="display:flex;"><span>    <span style="color:#000">logger</span><span style="color:#000">.</span><span style="color:#000">info</span>(<span style="color:#c41a16">f</span><span style="color:#c41a16">&#39;saved for </span><span style="color:#c41a16">{</span><span style="color:#000">ticker</span><span style="color:#c41a16">}</span><span style="color:#c41a16">&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#f00">def</span> <span style="color:#ff0">get_args</span>():
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  parser = argparse.ArgumentParser(
+</span></span><span style="display:flex;"><span>      formatter_class=argparse.ArgumentDefaultsHelpFormatter)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#0f0"># add args for tickers, if empty, change tickers to TICKERS_TO_VIZUALIZER</span>
+</span></span><span style="display:flex;"><span>  parser.add_argument(
+</span></span><span style="display:flex;"><span>      <span style="color:#87ceeb">&#39;--tickers&#39;</span>, <span style="color:#87ceeb">&#39;-t&#39;</span>, nargs=<span style="color:#87ceeb">&#39;+&#39;</span>, default=TICKERS_TO_VIZUALIZER)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  args = parser.parse_args()
+</span></span><span style="display:flex;"><span>  <span style="color:#f00">return</span> args
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#a90d91">if</span> <span style="color:#000">__name__</span> <span style="color:#000">==</span> <span style="color:#c41a16">&#39;__main__&#39;</span>:
-</span></span><span style="display:flex;"><span>  <span style="color:#000">main</span>()
+</span></span><span style="display:flex;"><span><span style="color:#f00">def</span> <span style="color:#ff0">main</span>():
+</span></span><span style="display:flex;"><span>  args = get_args()
+</span></span><span style="display:flex;"><span>  logger.info(<span style="color:#87ceeb">f</span><span style="color:#87ceeb">&#39;args = </span><span style="color:#87ceeb">{</span>args<span style="color:#87ceeb">}</span><span style="color:#87ceeb">&#39;</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#f00">for</span> ticker in args.tickers:
+</span></span><span style="display:flex;"><span>    logger.info(<span style="color:#87ceeb">f</span><span style="color:#87ceeb">&#39;Running for </span><span style="color:#87ceeb">{</span>ticker<span style="color:#87ceeb">}</span><span style="color:#87ceeb">&#39;</span>)
+</span></span><span style="display:flex;"><span>    imp = vol.Volatility(ticker=ticker)
+</span></span><span style="display:flex;"><span>    imp.linegraph(save_image=<span style="color:#f00">True</span>, image_folder=<span style="color:#87ceeb">&#39;data/images&#39;</span>, show_graph=<span style="color:#f00">True</span>)
+</span></span><span style="display:flex;"><span>    imp.skewreport(direction=<span style="color:#87ceeb">&#39;full&#39;</span>)
+</span></span><span style="display:flex;"><span>    logger.info(<span style="color:#87ceeb">f</span><span style="color:#87ceeb">&#39;saved for </span><span style="color:#87ceeb">{</span>ticker<span style="color:#87ceeb">}</span><span style="color:#87ceeb">&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f00">if</span> __name__ == <span style="color:#87ceeb">&#39;__main__&#39;</span>:
+</span></span><span style="display:flex;"><span>  main()
 </span></span></code></pre></div><h3 id="key-components">Key Components</h3>
 <ol>
 <li>
@@ -206,20 +206,21 @@
 <ol>
 <li>
 <p><strong>Analyzing a single ticker:</strong></p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>python trading/reports/options_vizualizer.py --tickers SPX
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>python trading/reports/options_vizualizer.py --tickers SPX
 </span></span></code></pre></div></li>
 <li>
 <p><strong>Analyzing multiple tickers:</strong></p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>python trading/reports/options_vizualizer.py --tickers SPY QQQ GDX IJR TLT USO
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>python trading/reports/options_vizualizer.py --tickers SPY QQQ GDX IJR TLT USO
 </span></span></code></pre></div></li>
 <li>
 <p><strong>Using default tickers:</strong></p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>python trading/reports/options_vizualizer.py
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>python trading/reports/options_vizualizer.py
 </span></span></code></pre></div></li>
 </ol>
 <h2 id="a-full-sample">A full sample</h2>
 <p>You can find a full example below</p>
-<script src="https://gist.github.com/abhi1010/c3858502a751a38d93cef772c15da9ef.js"></script>
+<script dark-style="true"
+  src="https://gist.github.com/abhi1010/c3858502a751a38d93cef772c15da9ef.js"></script>
 <h2 id="enhancing-the-tool">Enhancing the Tool</h2>
 <p>Here are some potential improvements to consider:</p>
 <ol>

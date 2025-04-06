@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="author" content="Abhishek Pandey" />
     <meta name="description" content="How to update django source code on docker" />
-    <link rel="stylesheet" href="/css/main.min.51f3efdcc017a8960f507421fb803e2abeb64e9e18c517404c94ef605e8ce8aa.css" />
+    <link rel="stylesheet" href="/css/main.min.3fabd88a6b1988deec4988ebf6c9df8b45b30a933ac9db6bfd68596e780921ab.css" />
     
 
     
@@ -102,12 +102,12 @@
 </li>
 </ul>
 <p>Here&rsquo;s a sample code:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>    <span style="color:#000">[</span>program:source-updater<span style="color:#000">]</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#000">redirect_stderr</span> <span style="color:#000">=</span> <span style="color:#a90d91">true</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#000">stdout_logfile</span> <span style="color:#000">=</span> /shared/source_code_updater.log
-</span></span><span style="display:flex;"><span>    <span style="color:#000">directory</span> <span style="color:#000">=</span> /ws/
-</span></span><span style="display:flex;"><span>    <span style="color:#a90d91">command</span> <span style="color:#000">=</span> /ws/source_code_updater.sh
-</span></span><span style="display:flex;"><span>    <span style="color:#000">autorestart</span><span style="color:#000">=</span>False</span></span></code></pre></div>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>    [program:source-updater]
+</span></span><span style="display:flex;"><span>    <span style="color:#eedd82">redirect_stderr</span> = true
+</span></span><span style="display:flex;"><span>    <span style="color:#eedd82">stdout_logfile</span> = /shared/source_code_updater.log
+</span></span><span style="display:flex;"><span>    <span style="color:#eedd82">directory</span> = /ws/
+</span></span><span style="display:flex;"><span>    command = /ws/source_code_updater.sh
+</span></span><span style="display:flex;"><span>    <span style="color:#eedd82">autorestart</span>=False</span></span></code></pre></div>
 <h1 id="updating-the-source-code">Updating the source code</h1>
 <p>Few things are important to note in a <code>docker</code> deployment:</p>
 <ul>
@@ -120,16 +120,16 @@
 <li>This way even if you have made 10 commits while fixing a bug and are still in the process of fixing it, you know it won&rsquo;t go to <code>docker</code> deployment</li>
 </ul>
 <p>With that idea, do a checkout and update the source code according to specific tag:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>    git checkout -f tags/your_tag_name
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>    git checkout -f tags/your_tag_name
 </span></span><span style="display:flex;"><span>    git pull origin tags/your_tag_name</span></span></code></pre></div>
 <h1 id="telling-uwsgi-about-the-updated-source-code">Telling <code>uwsgi</code> about the updated source code</h1>
 <p>Once you have updated your source code, you need to re-load the project onto <code>uwsgi</code> so that <code>nginx</code> or <code>apache</code> can pick it up.
 The simplest way to achieve it using the config parameter of <code>uwsgi</code>: <code>--touch-reload</code>. It will <em>reload uWSGI if the specified file is modified/touched</em></p>
 <p>Just remember to setup <code>supervisord</code> in your <code>Dockerfile</code> with this config parameter.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#000">[</span>program:app-uwsgi<span style="color:#000">]</span>
-</span></span><span style="display:flex;"><span><span style="color:#000">redirect_stderr</span> <span style="color:#000">=</span> <span style="color:#a90d91">true</span>
-</span></span><span style="display:flex;"><span><span style="color:#000">stdout_logfile</span> <span style="color:#000">=</span> /var/shared/_uwsgi.log
-</span></span><span style="display:flex;"><span><span style="color:#a90d91">command</span> <span style="color:#000">=</span> /ws/ve_envs/rwv2/bin/uwsgi --touch-reload<span style="color:#000">=</span>/ws/wsgi.ini --ini /ws/wsgi.ini</span></span></code></pre></div>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>[program:app-uwsgi]
+</span></span><span style="display:flex;"><span><span style="color:#eedd82">redirect_stderr</span> = true
+</span></span><span style="display:flex;"><span><span style="color:#eedd82">stdout_logfile</span> = /var/shared/_uwsgi.log
+</span></span><span style="display:flex;"><span>command = /ws/ve_envs/rwv2/bin/uwsgi --touch-reload=/ws/wsgi.ini --ini /ws/wsgi.ini</span></span></code></pre></div>
 <p>You can choose any file. I choose <code>uwsgi.ini</code> because the contents never really need to change in it.</p>
 
     </div>

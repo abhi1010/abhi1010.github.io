@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="author" content="Abhishek Pandey" />
     <meta name="description" content="How to allow multiple projects to use their own separate pythong virtual environments" />
-    <link rel="stylesheet" href="/css/main.min.51f3efdcc017a8960f507421fb803e2abeb64e9e18c517404c94ef605e8ce8aa.css" />
+    <link rel="stylesheet" href="/css/main.min.3fabd88a6b1988deec4988ebf6c9df8b45b30a933ac9db6bfd68596e780921ab.css" />
     
 
     
@@ -96,9 +96,9 @@ However, all that is required here is to know that python automatically picks up
 </code></pre>
 <p>Similarly, other projects can be set up in the same way.</p>
 <p>For example, for running <code>uwsgi</code> I provide the full path for python as follows:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#000">[</span>program:appName<span style="color:#000">]</span>
-</span></span><span style="display:flex;"><span><span style="color:#000">stdout_logfile</span> <span style="color:#000">=</span> /var/shared/_uwsgi.log
-</span></span><span style="display:flex;"><span><span style="color:#a90d91">command</span> <span style="color:#000">=</span> /ws/ve_envs/project/bin/uwsgi --touch-reload<span style="color:#000">=</span>/ws/wsgi.ini --ini /ws/wsgi.ini</span></span></code></pre></div>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>[program:appName]
+</span></span><span style="display:flex;"><span><span style="color:#eedd82">stdout_logfile</span> = /var/shared/_uwsgi.log
+</span></span><span style="display:flex;"><span>command = /ws/ve_envs/project/bin/uwsgi --touch-reload=/ws/wsgi.ini --ini /ws/wsgi.ini</span></span></code></pre></div>
 <p>You might want to read about <code>--touch-reload</code> in my <a href="http://abhipandey.com/2015/09/updating-django-source-with-docker-deployments/">other post.</a></p>
 
     </div>

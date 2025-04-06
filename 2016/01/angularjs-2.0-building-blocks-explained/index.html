@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="author" content="Abhishek Pandey" />
     <meta name="description" content="AngularJS 2.0 building blocks explained" />
-    <link rel="stylesheet" href="/css/main.min.51f3efdcc017a8960f507421fb803e2abeb64e9e18c517404c94ef605e8ce8aa.css" />
+    <link rel="stylesheet" href="/css/main.min.3fabd88a6b1988deec4988ebf6c9df8b45b30a933ac9db6bfd68596e780921ab.css" />
     
 
     
@@ -119,10 +119,10 @@
 </ul>
 <h1 id="data-binding">Data Binding</h1>
 <p>Following are the four possible ways of data binding:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#000">div</span>&gt;{{hero.name}}&lt;/<span style="color:#000">div</span>&gt;
-</span></span><span style="display:flex;"><span>&lt;<span style="color:#000">hero-detail</span> <span style="color:#000">[</span><span style="color:#836c28">hero</span><span style="color:#000">]=&#34;</span><span style="color:#836c28">selectedHero</span><span style="color:#000">&#34;</span>&gt;&lt;/<span style="color:#000">hero-detail</span>&gt;
-</span></span><span style="display:flex;"><span>&lt;<span style="color:#000">div</span> <span style="color:#000">(</span><span style="color:#836c28">click</span><span style="color:#000">)=&#34;</span><span style="color:#836c28">selectHero</span><span style="color:#000">(</span><span style="color:#836c28">hero</span><span style="color:#000">)&#34;</span>&gt;&lt;/<span style="color:#000">div</span>&gt;
-</span></span><span style="display:flex;"><span>&lt;<span style="color:#000">input</span> <span style="color:#000">[(</span><span style="color:#836c28">ngModel</span><span style="color:#000">)]=&#34;</span><span style="color:#836c28">hero</span><span style="color:#000">.</span><span style="color:#836c28">name</span><span style="color:#000">&#34;</span>&gt;
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;div&gt;{{hero.name}}&lt;/div&gt;
+</span></span><span style="display:flex;"><span>&lt;hero-detail [hero]=&#34;selectedHero&#34;&gt;&lt;/hero-detail&gt;
+</span></span><span style="display:flex;"><span>&lt;div (click)=&#34;selectHero(hero)&#34;&gt;&lt;/div&gt;
+</span></span><span style="display:flex;"><span>&lt;input [(ngModel)]=&#34;hero.name&#34;&gt;
 </span></span></code></pre></div><ol>
 <li>The &ldquo;interpolation&rdquo; displays the component&rsquo;s hero.name property value within the <!-- raw HTML omitted --> tags</li>
 <li>The <code>[hero]</code> property binding passes the <code>selectedHero</code> from the parent <code>HeroListComponent</code> to the hero property of the child <code>HeroDetailComponent</code></li>
@@ -138,7 +138,7 @@ Two other examples are:</p>
 </ol>
 <p><strong>Example:</strong></p>
 <p>The <code>ngModel</code> directive, which implements two-way data binding, is an example of an attribute directive.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#000">input</span> <span style="color:#000">[(</span><span style="color:#836c28">ngModel</span><span style="color:#000">)]=&#34;</span><span style="color:#836c28">hero</span><span style="color:#000">.</span><span style="color:#836c28">name</span><span style="color:#000">&#34;</span>&gt;
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;input [(ngModel)]=&#34;hero.name&#34;&gt;
 </span></span></code></pre></div><p><strong>Other examples:</strong> ngSwitch, ngStyle, ngClass</p>
 <h1 id="service">Service</h1>
 <p>It can be any value, function or feature that works well.</p>

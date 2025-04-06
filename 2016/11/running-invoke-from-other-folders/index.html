@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="author" content="Abhishek Pandey" />
     <meta name="description" content="Running invoke from other folders" />
-    <link rel="stylesheet" href="/css/main.min.51f3efdcc017a8960f507421fb803e2abeb64e9e18c517404c94ef605e8ce8aa.css" />
+    <link rel="stylesheet" href="/css/main.min.3fabd88a6b1988deec4988ebf6c9df8b45b30a933ac9db6bfd68596e780921ab.css" />
     
 
     
@@ -108,33 +108,33 @@ override the default command in it&rsquo;s own style</li>
 <li>If no, then the default version is to run</li>
 </ul>
 <p><em>Here&rsquo;s the simplilfied version of the code.</em></p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#a90d91">import</span> <span style="color:#000">subproces</span>
-</span></span><span style="display:flex;"><span><span style="color:#a90d91">import</span> <span style="color:#000">os</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f00">import</span> subproces
+</span></span><span style="display:flex;"><span><span style="color:#f00">import</span> os
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#000">@contextmanager</span>
-</span></span><span style="display:flex;"><span><span style="color:#a90d91">def</span> <span style="color:#000">cd</span>(<span style="color:#000">path</span>):
-</span></span><span style="display:flex;"><span>    <span style="color:#000">old</span> <span style="color:#000">=</span> <span style="color:#000">os</span><span style="color:#000">.</span><span style="color:#000">getcwd</span>()
-</span></span><span style="display:flex;"><span>    <span style="color:#000">os</span><span style="color:#000">.</span><span style="color:#000">chdir</span>(<span style="color:#000">path</span>)
-</span></span><span style="display:flex;"><span>    <span style="color:#a90d91">try</span>:
-</span></span><span style="display:flex;"><span>        <span style="color:#a90d91">yield</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#a90d91">finally</span>:
-</span></span><span style="display:flex;"><span>        <span style="color:#000">os</span><span style="color:#000">.</span><span style="color:#000">chdir</span>(<span style="color:#000">old</span>)
+</span></span><span style="display:flex;"><span>@contextmanager
+</span></span><span style="display:flex;"><span><span style="color:#f00">def</span> <span style="color:#ff0">cd</span>(path):
+</span></span><span style="display:flex;"><span>    old = os.getcwd()
+</span></span><span style="display:flex;"><span>    os.chdir(path)
+</span></span><span style="display:flex;"><span>    <span style="color:#f00">try</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f00">yield</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f00">finally</span>:
+</span></span><span style="display:flex;"><span>        os.chdir(old)
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#000">@task</span>
-</span></span><span style="display:flex;"><span><span style="color:#a90d91">def</span> <span style="color:#000">build</span>():
-</span></span><span style="display:flex;"><span>    <span style="color:#000">folder_to_run_the_command_on</span> <span style="color:#000">=</span> <span style="color:#c41a16">&#39;/home/folder&#39;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#a90d91">with</span> <span style="color:#000">cd</span>(<span style="color:#000">folder_to_run_the_command_on</span>):
-</span></span><span style="display:flex;"><span>        <span style="color:#a90d91">print</span>(<span style="color:#c41a16">&#39;Finding tasks...&#39;</span>)
-</span></span><span style="display:flex;"><span>        <span style="color:#177500"># List all the possible commands that you can run on that folder</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#000">res</span> <span style="color:#000">=</span> <span style="color:#000">subprocess</span><span style="color:#000">.</span><span style="color:#000">check_output</span>([<span style="color:#c41a16">&#39;invoke&#39;</span>, <span style="color:#c41a16">&#39;-l&#39;</span>])
-</span></span><span style="display:flex;"><span>        <span style="color:#177500"># does it contain this command that we need to run?</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#a90d91">if</span> <span style="color:#c41a16">&#39;build&#39;</span>  <span style="color:#000">in</span> <span style="color:#000">res</span>:
-</span></span><span style="display:flex;"><span>            <span style="color:#a90d91">print</span>(<span style="color:#c41a16">&#39;Found the build command in &#34;</span><span style="color:#c41a16">{}</span><span style="color:#c41a16">&#34; folder&#39;</span><span style="color:#000">.</span><span style="color:#000">format</span>(<span style="color:#000">folder_to_run_the_command_on</span>)
-</span></span><span style="display:flex;"><span>            <span style="color:#000">run</span>(<span style="color:#c41a16">&#39;invoke build&#39;</span>)
-</span></span><span style="display:flex;"><span>        <span style="color:#a90d91">else</span>:
-</span></span><span style="display:flex;"><span>            <span style="color:#177500"># we need to run the generic version of build command</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#000">build_internal</span>()
+</span></span><span style="display:flex;"><span>@task
+</span></span><span style="display:flex;"><span><span style="color:#f00">def</span> <span style="color:#ff0">build</span>():
+</span></span><span style="display:flex;"><span>    folder_to_run_the_command_on = <span style="color:#87ceeb">&#39;/home/folder&#39;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f00">with</span> cd(folder_to_run_the_command_on):
+</span></span><span style="display:flex;"><span>        print(<span style="color:#87ceeb">&#39;Finding tasks...&#39;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#0f0"># List all the possible commands that you can run on that folder</span>
+</span></span><span style="display:flex;"><span>        res = subprocess.check_output([<span style="color:#87ceeb">&#39;invoke&#39;</span>, <span style="color:#87ceeb">&#39;-l&#39;</span>])
+</span></span><span style="display:flex;"><span>        <span style="color:#0f0"># does it contain this command that we need to run?</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f00">if</span> <span style="color:#87ceeb">&#39;build&#39;</span>  in res:
+</span></span><span style="display:flex;"><span>            print(<span style="color:#87ceeb">&#39;Found the build command in &#34;</span><span style="color:#87ceeb">{}</span><span style="color:#87ceeb">&#34; folder&#39;</span>.format(folder_to_run_the_command_on)
+</span></span><span style="display:flex;"><span>            run(<span style="color:#87ceeb">&#39;invoke build&#39;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#f00">else</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#0f0"># we need to run the generic version of build command</span>
+</span></span><span style="display:flex;"><span>            build_internal()
 </span></span></code></pre></div>
     </div>
     <div class="post-footer">

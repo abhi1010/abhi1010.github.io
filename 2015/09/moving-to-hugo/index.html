@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="author" content="Abhishek Pandey" />
     <meta name="description" content="How to move to hugo and automate deployment" />
-    <link rel="stylesheet" href="/css/main.min.51f3efdcc017a8960f507421fb803e2abeb64e9e18c517404c94ef605e8ce8aa.css" />
+    <link rel="stylesheet" href="/css/main.min.3fabd88a6b1988deec4988ebf6c9df8b45b30a933ac9db6bfd68596e780921ab.css" />
     
 
     
@@ -124,12 +124,12 @@ It was also extremely easy to make theme changes and see them in action, straigh
 </ul>
 <h1 id="installing-hugo">Installing hugo</h1>
 <p>Running it on mac, installation was pretty straightforward using <code>brew</code></p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>brew install hugo</span></span></code></pre></div>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>brew install hugo</span></span></code></pre></div>
 <p>I wanted to setup <code>Pygments</code> as well for code scripts as well.
 I knew that I would be presenting a lot of code on my site and one of my main problems with site like wordpress was that
 I had to manage a lot of styling for code sections which was not fun.
 So I decided to install <code>Pygments</code> on default <code>python</code> by doing:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>pip install Pygments</span></span></code></pre></div>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>pip install Pygments</span></span></code></pre></div>
 <h1 id="exporting-wordpress">Exporting wordpress</h1>
 <p>Since I wanted to move all of my wordpress content into hugo I really needed to export everything from wordpress.
 I found this link on wordpress to export all of the contents out into xml file.</p>
@@ -141,30 +141,30 @@ the tags and categories were missing. I double checked the wordpress xml file bu
 It was time to start digging again.</p>
 <p>I came across <a href="https://github.com/thomasf/exitwp">exitwp</a> which needed a bit of setup, but I was willing to give it a try.
 Here&rsquo;s what I did:
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git clone https://github.com/thomasf/exitwp
-</span></span><span style="display:flex;"><span><span style="color:#a90d91">cd</span> exitwp
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git clone https://github.com/thomasf/exitwp
+</span></span><span style="display:flex;"><span>cd exitwp
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>cp wordpress.2015-08-23.xml wordpress-xml/
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#177500"># install dependencies</span>
+</span></span><span style="display:flex;"><span><span style="color:#0f0"># install dependencies</span>
 </span></span><span style="display:flex;"><span>pip install --upgrade -r pip_requirements.txt
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#177500"># Run cmd with path to xml (optional if you have only one file)</span>
+</span></span><span style="display:flex;"><span><span style="color:#0f0"># Run cmd with path to xml (optional if you have only one file)</span>
 </span></span><span style="display:flex;"><span>exitwp.py wordpress-xml/wordpress.2015-08-23.xml</span></span></code></pre></div></p>
 <p>This creates a folder <code>build/jekyll/OLD_WORDPRESS_URL/</code> with the contents inside it. Here&rsquo;s my sample</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ tree
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ tree
 </span></span><span style="display:flex;"><span>.
 </span></span><span style="display:flex;"><span>|-- _posts
 </span></span><span style="display:flex;"><span>|   |-- 2007-10-26-use-of-yield-statement.markdown
 </span></span><span style="display:flex;"><span>|   |-- 2007-11-23-dynamically-increase-label-size-autosize.markdown
 </span></span><span style="display:flex;"><span>|   |-- 2007-12-12-book-review-head-first-design-patterns.markdown
-</span></span><span style="display:flex;"><span><span style="color:#177500"># ...............</span>
-</span></span><span style="display:flex;"><span>|   <span style="color:#c41a16">`</span>-- 2015-08-07-docker-container-cleanup-on-elastic-beanstalk.markdown
-</span></span><span style="display:flex;"><span><span style="color:#c41a16">`</span>-- about
-</span></span><span style="display:flex;"><span>    <span style="color:#c41a16">`</span>-- index.markdown
+</span></span><span style="display:flex;"><span><span style="color:#0f0"># ...............</span>
+</span></span><span style="display:flex;"><span>|   <span style="color:#87ceeb">`</span>-- 2015-08-07-docker-container-cleanup-on-elastic-beanstalk.markdown
+</span></span><span style="display:flex;"><span><span style="color:#87ceeb">`</span>-- about
+</span></span><span style="display:flex;"><span>    <span style="color:#87ceeb">`</span>-- index.markdown
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#1c01ce">2</span> directories, <span style="color:#1c01ce">42</span> files</span></span></code></pre></div>
+</span></span><span style="display:flex;"><span><span style="color:#f60">2</span> directories, <span style="color:#f60">42</span> files</span></span></code></pre></div>
 <p>You are ready to test with <code>hugo</code> now.</p>
 <h1 id="using-hugo">Using hugo</h1>
 <p>Now that we have made some markdown files, we just want to see how it looks like on default <code>hugo</code> setup.</p>
@@ -194,24 +194,24 @@ The idea would be to start a new folder, copy your markdowns there. Here&rsquo;s
 </ul>
 </li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>mkdir my_blog
-</span></span><span style="display:flex;"><span><span style="color:#a90d91">cd</span> my_blog
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>mkdir my_blog
+</span></span><span style="display:flex;"><span>cd my_blog
 </span></span><span style="display:flex;"><span>mkdir content
 </span></span><span style="display:flex;"><span>cp -r /PATH_TO/exitwp/build/jekyll/codersdigest.wordpress.com/* ./content/</span></span></code></pre></div>
 <h2 id="theme">Theme</h2>
 <p>Let&rsquo;s start with a simple theme <a href="https://github.com/zyro/hyde-x">hyde-x</a></p>
 <p>Here&rsquo;s how to install it.
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>mkdir themes/
-</span></span><span style="display:flex;"><span><span style="color:#a90d91">cd</span> themes/
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>mkdir themes/
+</span></span><span style="display:flex;"><span>cd themes/
 </span></span><span style="display:flex;"><span>git clone https://github.com/zyro/hyde-x</span></span></code></pre></div></p>
 <h2 id="folder-structure">Folder structure</h2>
 <p>Here&rsquo;s how the folders look now. Use this for comparison.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>tree -L <span style="color:#1c01ce">2</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>tree -L <span style="color:#f60">2</span>
 </span></span><span style="display:flex;"><span>.
 </span></span><span style="display:flex;"><span>|-- config.toml
 </span></span><span style="display:flex;"><span>|-- content
 </span></span><span style="display:flex;"><span>|   |-- _posts
-</span></span><span style="display:flex;"><span>|   <span style="color:#c41a16">`</span>-- about
+</span></span><span style="display:flex;"><span>|   <span style="color:#87ceeb">`</span>-- about
 </span></span><span style="display:flex;"><span>|-- public
 </span></span><span style="display:flex;"><span>|   |-- 404.html
 </span></span><span style="display:flex;"><span>|   |-- _posts
@@ -225,60 +225,60 @@ The idea would be to start a new folder, copy your markdowns there. Here&rsquo;s
 </span></span><span style="display:flex;"><span>|   |-- page
 </span></span><span style="display:flex;"><span>|   |-- sitemap.xml
 </span></span><span style="display:flex;"><span>|   |-- tags
-</span></span><span style="display:flex;"><span>|   <span style="color:#c41a16">`</span>-- touch-icon-144-precomposed.png
+</span></span><span style="display:flex;"><span>|   <span style="color:#87ceeb">`</span>-- touch-icon-144-precomposed.png
 </span></span><span style="display:flex;"><span>|-- static
 </span></span><span style="display:flex;"><span>|   |-- css
 </span></span><span style="display:flex;"><span>|   |-- favicon.png
 </span></span><span style="display:flex;"><span>|   |-- js
-</span></span><span style="display:flex;"><span>|   <span style="color:#c41a16">`</span>-- touch-icon-144-precomposed.png
-</span></span><span style="display:flex;"><span><span style="color:#c41a16">`</span>-- themes
-</span></span><span style="display:flex;"><span>    <span style="color:#c41a16">`</span>-- hyde-x</span></span></code></pre></div>
+</span></span><span style="display:flex;"><span>|   <span style="color:#87ceeb">`</span>-- touch-icon-144-precomposed.png
+</span></span><span style="display:flex;"><span><span style="color:#87ceeb">`</span>-- themes
+</span></span><span style="display:flex;"><span>    <span style="color:#87ceeb">`</span>-- hyde-x</span></span></code></pre></div>
 <h2 id="config">Config</h2>
 <p>Your config file could be as follows. Do note that I am also trying to build a menu for myself on the sidebar for better tracking.
 It can be found under <code>[[menu.</code></p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#1c01ce">baseurl = &#34;your_github_url&#34;</span>
-</span></span><span style="display:flex;"><span><span style="color:#1c01ce">languageCode = &#34;en-us&#34;</span>
-</span></span><span style="display:flex;"><span><span style="color:#1c01ce">title = &#34;title&#34;</span>
-</span></span><span style="display:flex;"><span><span style="color:#1c01ce">contentdir = &#34;content&#34;</span>
-</span></span><span style="display:flex;"><span><span style="color:#1c01ce">layoutdir = &#34;layouts&#34;</span>
-</span></span><span style="display:flex;"><span><span style="color:#1c01ce">publishdir = &#34;public&#34;</span>
-</span></span><span style="display:flex;"><span><span style="color:#1c01ce">theme = &#34;hyde-x&#34;</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span>baseurl = &#34;your_github_url&#34;
+</span></span><span style="display:flex;"><span>languageCode = &#34;en-us&#34;
+</span></span><span style="display:flex;"><span>title = &#34;title&#34;
+</span></span><span style="display:flex;"><span>contentdir = &#34;content&#34;
+</span></span><span style="display:flex;"><span>layoutdir = &#34;layouts&#34;
+</span></span><span style="display:flex;"><span>publishdir = &#34;public&#34;
+</span></span><span style="display:flex;"><span>theme = &#34;hyde-x&#34;
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#1c01ce">pygmentsstyle = &#34;native&#34;</span>
-</span></span><span style="display:flex;"><span><span style="color:#1c01ce">pygmentsuseclasses = false</span>
+</span></span><span style="display:flex;"><span>pygmentsstyle = &#34;native&#34;
+</span></span><span style="display:flex;"><span>pygmentsuseclasses = false
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>[<span style="color:#1c01ce">author]</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#1c01ce">name = &#34;your name&#34;</span>
+</span></span><span style="display:flex;"><span>[author]
+</span></span><span style="display:flex;"><span>    name = &#34;your name&#34;
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>[<span style="color:#1c01ce">permalinks]</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#177500"># Change the permalink format for the &#39;post&#39; content type.</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#177500"># This defines how your folder is structured</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#1c01ce">post = &#34;/:year/:month/:title/&#34;</span>
+</span></span><span style="display:flex;"><span>[permalinks]
+</span></span><span style="display:flex;"><span>    <span style="color:#0f0"># Change the permalink format for the &#39;post&#39; content type.</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#0f0"># This defines how your folder is structured</span>
+</span></span><span style="display:flex;"><span>    post = &#34;/:year/:month/:title/&#34;
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>[<span style="color:#1c01ce">taxonomies]</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#177500"># I wanted to use tags and categories</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#1c01ce">category = &#34;categories&#34;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#1c01ce">tag = &#34;tags&#34;</span>
+</span></span><span style="display:flex;"><span>[taxonomies]
+</span></span><span style="display:flex;"><span>    <span style="color:#0f0"># I wanted to use tags and categories</span>
+</span></span><span style="display:flex;"><span>    category = &#34;categories&#34;
+</span></span><span style="display:flex;"><span>    tag = &#34;tags&#34;
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>[[<span style="color:#1c01ce">menu.main]]</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#1c01ce">name = &#34;Posts&#34;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#1c01ce">pre = &#34;&lt;i class=&#39;fa fa-heart&#39;&gt;&lt;/i&gt;&#34;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#1c01ce">weight = -110</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#1c01ce">identifier = &#34;posts&#34;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#1c01ce">url = &#34;/post/&#34;</span>
-</span></span><span style="display:flex;"><span>[[<span style="color:#1c01ce">menu.main]]</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#1c01ce">name = &#34;Tags&#34;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#1c01ce">pre = &#34;&lt;i class=&#39;fa fa-road&#39;&gt;&lt;/i&gt;&#34;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#1c01ce">weight = -109</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#1c01ce">url = &#34;/tags/&#34;</span>
-</span></span><span style="display:flex;"><span>[[<span style="color:#1c01ce">menu.main]]</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#1c01ce">name = &#34;Categories&#34;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#1c01ce">pre = &#34;&lt;i class=&#39;fa fa-road&#39;&gt;&lt;/i&gt;&#34;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#1c01ce">weight = -108</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#1c01ce">url = &#34;/categories/&#34;</span></span></span></code></pre></div>
+</span></span><span style="display:flex;"><span>[[menu.main]]
+</span></span><span style="display:flex;"><span>    name = &#34;Posts&#34;
+</span></span><span style="display:flex;"><span>    pre = &#34;&lt;i class=&#39;fa fa-heart&#39;&gt;&lt;/i&gt;&#34;
+</span></span><span style="display:flex;"><span>    weight = -110
+</span></span><span style="display:flex;"><span>    identifier = &#34;posts&#34;
+</span></span><span style="display:flex;"><span>    url = &#34;/post/&#34;
+</span></span><span style="display:flex;"><span>[[menu.main]]
+</span></span><span style="display:flex;"><span>    name = &#34;Tags&#34;
+</span></span><span style="display:flex;"><span>    pre = &#34;&lt;i class=&#39;fa fa-road&#39;&gt;&lt;/i&gt;&#34;
+</span></span><span style="display:flex;"><span>    weight = -109
+</span></span><span style="display:flex;"><span>    url = &#34;/tags/&#34;
+</span></span><span style="display:flex;"><span>[[menu.main]]
+</span></span><span style="display:flex;"><span>    name = &#34;Categories&#34;
+</span></span><span style="display:flex;"><span>    pre = &#34;&lt;i class=&#39;fa fa-road&#39;&gt;&lt;/i&gt;&#34;
+</span></span><span style="display:flex;"><span>    weight = -108
+</span></span><span style="display:flex;"><span>    url = &#34;/categories/&#34;</span></span></code></pre></div>
 <h2 id="run-hugo">Run hugo</h2>
 <p>Now that we have setup the contents, themes
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>$ hugo server
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>$ hugo server
 </span></span><span style="display:flex;"><span>    0 draft content
 </span></span><span style="display:flex;"><span>    0 future content
 </span></span><span style="display:flex;"><span>    42 pages created

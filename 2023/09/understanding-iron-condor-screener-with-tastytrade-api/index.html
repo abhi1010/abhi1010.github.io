@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="author" content="Abhishek Pandey" />
     <meta name="description" content="Building an Iron Condor Options Screener with TastyTrade API" />
-    <link rel="stylesheet" href="/css/main.min.51f3efdcc017a8960f507421fb803e2abeb64e9e18c517404c94ef605e8ce8aa.css" />
+    <link rel="stylesheet" href="/css/main.min.3fabd88a6b1988deec4988ebf6c9df8b45b30a933ac9db6bfd68596e780921ab.css" />
     
 
     
@@ -101,17 +101,17 @@
 <h2 id="key-components-of-the-code">Key Components of the Code</h2>
 <h3 id="1-the-liveprices-class">1. The <code>LivePrices</code> Class</h3>
 <p>This class is central to the program. It manages live market data by:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#000">@dataclass</span>
-</span></span><span style="display:flex;"><span><span style="color:#a90d91">class</span> <span style="color:#3f6e75">LivePrices</span>:
-</span></span><span style="display:flex;"><span>  <span style="color:#000">quotes</span>: <span style="color:#000">Dict</span>[<span style="color:#a90d91">str</span>, <span style="color:#000">Quote</span>] <span style="color:#000">=</span> <span style="color:#000">field</span>(<span style="color:#000">default_factory</span><span style="color:#000">=</span><span style="color:#a90d91">dict</span>)
-</span></span><span style="display:flex;"><span>  <span style="color:#000">greeks</span>: <span style="color:#000">Dict</span>[<span style="color:#a90d91">str</span>, <span style="color:#000">Greeks</span>] <span style="color:#000">=</span> <span style="color:#000">field</span>(<span style="color:#000">default_factory</span><span style="color:#000">=</span><span style="color:#a90d91">dict</span>)
-</span></span><span style="display:flex;"><span>  <span style="color:#000">streamer</span>: <span style="color:#000">DXLinkStreamer</span> <span style="color:#000">=</span> <span style="color:#a90d91">None</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#000">puts</span>: <span style="color:#000">Dict</span>[<span style="color:#a90d91">str</span>, <span style="color:#000">List</span>[<span style="color:#000">Option</span>]] <span style="color:#000">=</span> <span style="color:#000">field</span>(<span style="color:#000">default_factory</span><span style="color:#000">=</span><span style="color:#a90d91">dict</span>)
-</span></span><span style="display:flex;"><span>  <span style="color:#000">calls</span>: <span style="color:#000">Dict</span>[<span style="color:#a90d91">str</span>, <span style="color:#000">List</span>[<span style="color:#000">Option</span>]] <span style="color:#000">=</span> <span style="color:#000">field</span>(<span style="color:#000">default_factory</span><span style="color:#000">=</span><span style="color:#a90d91">dict</span>)
-</span></span><span style="display:flex;"><span>  <span style="color:#000">tickers</span>: <span style="color:#000">List</span>[<span style="color:#a90d91">str</span>] <span style="color:#000">=</span> <span style="color:#000">field</span>(<span style="color:#000">default_factory</span><span style="color:#000">=</span><span style="color:#a90d91">list</span>)
-</span></span><span style="display:flex;"><span>  <span style="color:#000">pickle_file</span>: <span style="color:#a90d91">str</span> <span style="color:#000">=</span> <span style="color:#c41a16">&#34;data/greeks_data.pickle&#34;</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#000">_update_task</span>: <span style="color:#000">asyncio</span><span style="color:#000">.</span><span style="color:#000">Task</span> <span style="color:#000">=</span> <span style="color:#a90d91">None</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#000">subscription_items</span>: <span style="color:#000">List</span>[<span style="color:#a90d91">str</span>] <span style="color:#000">=</span> <span style="color:#000">field</span>(<span style="color:#000">default_factory</span><span style="color:#000">=</span><span style="color:#a90d91">list</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>@dataclass
+</span></span><span style="display:flex;"><span><span style="color:#f00">class</span> LivePrices:
+</span></span><span style="display:flex;"><span>  quotes: Dict[str, Quote] = field(default_factory=dict)
+</span></span><span style="display:flex;"><span>  greeks: Dict[str, Greeks] = field(default_factory=dict)
+</span></span><span style="display:flex;"><span>  streamer: DXLinkStreamer = <span style="color:#f00">None</span>
+</span></span><span style="display:flex;"><span>  puts: Dict[str, List[Option]] = field(default_factory=dict)
+</span></span><span style="display:flex;"><span>  calls: Dict[str, List[Option]] = field(default_factory=dict)
+</span></span><span style="display:flex;"><span>  tickers: List[str] = field(default_factory=list)
+</span></span><span style="display:flex;"><span>  pickle_file: str = <span style="color:#87ceeb">&#34;data/greeks_data.pickle&#34;</span>
+</span></span><span style="display:flex;"><span>  _update_task: asyncio.Task = <span style="color:#f00">None</span>
+</span></span><span style="display:flex;"><span>  subscription_items: List[str] = field(default_factory=list)
 </span></span></code></pre></div><p>The class connects to TastyTrade&rsquo;s DXLinkStreamer to get real-time data on options. It stores:</p>
 <ul>
 <li>Options quotes (bid/ask prices)</li>
@@ -123,74 +123,74 @@
 <ol>
 <li>
 <p><strong>Initialize the streamer</strong>:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#a90d91">async</span> <span style="color:#a90d91">def</span> <span style="color:#000">_initialize_streamer</span>(<span style="color:#5b269a">self</span>, <span style="color:#000">session</span>: <span style="color:#000">Session</span>):
-</span></span><span style="display:flex;"><span>  <span style="color:#5b269a">self</span><span style="color:#000">.</span><span style="color:#000">streamer</span> <span style="color:#000">=</span> <span style="color:#a90d91">await</span> <span style="color:#000">DXLinkStreamer</span><span style="color:#000">.</span><span style="color:#000">create</span>(<span style="color:#000">session</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f00">async</span> <span style="color:#f00">def</span> <span style="color:#ff0">_initialize_streamer</span>(self, session: Session):
+</span></span><span style="display:flex;"><span>  self.streamer = <span style="color:#f00">await</span> DXLinkStreamer.create(session)
 </span></span></code></pre></div></li>
 <li>
 <p><strong>Get option chains for tickers</strong>:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#a90d91">def</span> <span style="color:#000">_get_option_chain</span>(<span style="color:#5b269a">self</span>, <span style="color:#000">session</span>: <span style="color:#000">Session</span>, <span style="color:#000">symbol</span>: <span style="color:#a90d91">str</span>):
-</span></span><span style="display:flex;"><span>  <span style="color:#000">chains</span> <span style="color:#000">=</span> <span style="color:#a90d91">None</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#a90d91">try</span>:
-</span></span><span style="display:flex;"><span>    <span style="color:#000">chains</span> <span style="color:#000">=</span> <span style="color:#000">get_option_chain</span>(<span style="color:#000">session</span>, <span style="color:#000">symbol</span>)
-</span></span><span style="display:flex;"><span>  <span style="color:#a90d91">except</span> <span style="color:#000">Exception</span> <span style="color:#a90d91">as</span> <span style="color:#000">e</span>:
-</span></span><span style="display:flex;"><span>    <span style="color:#000">logger</span><span style="color:#000">.</span><span style="color:#000">error</span>(<span style="color:#c41a16">f</span><span style="color:#c41a16">&#39;Exception : </span><span style="color:#c41a16">{</span><span style="color:#a90d91">str</span>(<span style="color:#000">e</span>)<span style="color:#c41a16">}</span><span style="color:#c41a16">&#39;</span>)
-</span></span><span style="display:flex;"><span>  <span style="color:#a90d91">return</span> <span style="color:#000">chains</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f00">def</span> <span style="color:#ff0">_get_option_chain</span>(self, session: Session, symbol: str):
+</span></span><span style="display:flex;"><span>  chains = <span style="color:#f00">None</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f00">try</span>:
+</span></span><span style="display:flex;"><span>    chains = get_option_chain(session, symbol)
+</span></span><span style="display:flex;"><span>  <span style="color:#f00">except</span> Exception <span style="color:#f00">as</span> e:
+</span></span><span style="display:flex;"><span>    logger.error(<span style="color:#87ceeb">f</span><span style="color:#87ceeb">&#39;Exception : </span><span style="color:#87ceeb">{</span>str(e)<span style="color:#87ceeb">}</span><span style="color:#87ceeb">&#39;</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#f00">return</span> chains
 </span></span></code></pre></div></li>
 <li>
 <p><strong>Filter options by expiration date</strong>:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#a90d91">def</span> <span style="color:#000">_filter_options_by_expiration</span>(<span style="color:#5b269a">self</span>, <span style="color:#000">symbol</span>, <span style="color:#000">chain</span>, <span style="color:#000">expiration</span>: <span style="color:#000">date</span>):
-</span></span><span style="display:flex;"><span>  <span style="color:#000">closest_expiry</span> <span style="color:#000">=</span> <span style="color:#000">get_closest_expiry</span>(<span style="color:#000">symbol</span>, <span style="color:#000">chain</span>, <span style="color:#000">expiration</span>)
-</span></span><span style="display:flex;"><span>  <span style="color:#000">logger</span><span style="color:#000">.</span><span style="color:#000">info</span>(<span style="color:#c41a16">f</span><span style="color:#c41a16">&#39;[</span><span style="color:#c41a16">{</span><span style="color:#000">symbol</span><span style="color:#c41a16">}</span><span style="color:#c41a16">]:: closest_expiry = </span><span style="color:#c41a16">{</span><span style="color:#000">closest_expiry</span><span style="color:#c41a16">}</span><span style="color:#c41a16">&#39;</span>
-</span></span><span style="display:flex;"><span>              <span style="color:#c41a16">f</span><span style="color:#c41a16">&#39; all chains = </span><span style="color:#c41a16">{</span><span style="color:#000">chain</span><span style="color:#c41a16">}</span><span style="color:#c41a16">&#39;</span>)
-</span></span><span style="display:flex;"><span>  <span style="color:#a90d91">return</span> [<span style="color:#000">o</span> <span style="color:#a90d91">for</span> <span style="color:#000">o</span> <span style="color:#000">in</span> <span style="color:#000">chain</span>[<span style="color:#000">closest_expiry</span>]]
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f00">def</span> <span style="color:#ff0">_filter_options_by_expiration</span>(self, symbol, chain, expiration: date):
+</span></span><span style="display:flex;"><span>  closest_expiry = get_closest_expiry(symbol, chain, expiration)
+</span></span><span style="display:flex;"><span>  logger.info(<span style="color:#87ceeb">f</span><span style="color:#87ceeb">&#39;[</span><span style="color:#87ceeb">{</span>symbol<span style="color:#87ceeb">}</span><span style="color:#87ceeb">]:: closest_expiry = </span><span style="color:#87ceeb">{</span>closest_expiry<span style="color:#87ceeb">}</span><span style="color:#87ceeb">&#39;</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#87ceeb">f</span><span style="color:#87ceeb">&#39; all chains = </span><span style="color:#87ceeb">{</span>chain<span style="color:#87ceeb">}</span><span style="color:#87ceeb">&#39;</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#f00">return</span> [o <span style="color:#f00">for</span> o in chain[closest_expiry]]
 </span></span></code></pre></div></li>
 <li>
 <p><strong>Subscribe to data streams</strong>:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#a90d91">async</span> <span style="color:#a90d91">def</span> <span style="color:#000">_subscribe_to_event</span>(<span style="color:#5b269a">self</span>, <span style="color:#000">streamer_symbols</span>: <span style="color:#000">List</span>[<span style="color:#a90d91">str</span>],
-</span></span><span style="display:flex;"><span>                              <span style="color:#000">event_greeks_or_quotes</span>: <span style="color:#000">EventType</span>):
-</span></span><span style="display:flex;"><span>  <span style="color:#000">logger</span><span style="color:#000">.</span><span style="color:#000">info</span>(
-</span></span><span style="display:flex;"><span>      <span style="color:#c41a16">f</span><span style="color:#c41a16">&#39;About to subscribe </span><span style="color:#c41a16">{</span><span style="color:#000">event_greeks_or_quotes</span><span style="color:#c41a16">}</span><span style="color:#c41a16"> to: </span><span style="color:#c41a16">{</span><span style="color:#000">streamer_symbols</span><span style="color:#c41a16">}</span><span style="color:#c41a16"> for greeks&#39;</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f00">async</span> <span style="color:#f00">def</span> <span style="color:#ff0">_subscribe_to_event</span>(self, streamer_symbols: List[str],
+</span></span><span style="display:flex;"><span>                              event_greeks_or_quotes: EventType):
+</span></span><span style="display:flex;"><span>  logger.info(
+</span></span><span style="display:flex;"><span>      <span style="color:#87ceeb">f</span><span style="color:#87ceeb">&#39;About to subscribe </span><span style="color:#87ceeb">{</span>event_greeks_or_quotes<span style="color:#87ceeb">}</span><span style="color:#87ceeb"> to: </span><span style="color:#87ceeb">{</span>streamer_symbols<span style="color:#87ceeb">}</span><span style="color:#87ceeb"> for greeks&#39;</span>
 </span></span><span style="display:flex;"><span>  )
-</span></span><span style="display:flex;"><span>  <span style="color:#5b269a">self</span><span style="color:#000">.</span><span style="color:#000">subscription_items</span><span style="color:#000">.</span><span style="color:#000">append</span>(<span style="color:#000">streamer_symbols</span>)
-</span></span><span style="display:flex;"><span>  <span style="color:#a90d91">await</span> <span style="color:#5b269a">self</span><span style="color:#000">.</span><span style="color:#000">streamer</span><span style="color:#000">.</span><span style="color:#000">subscribe</span>(<span style="color:#000">event_greeks_or_quotes</span>, <span style="color:#000">streamer_symbols</span>)
+</span></span><span style="display:flex;"><span>  self.subscription_items.append(streamer_symbols)
+</span></span><span style="display:flex;"><span>  <span style="color:#f00">await</span> self.streamer.subscribe(event_greeks_or_quotes, streamer_symbols)
 </span></span></code></pre></div></li>
 </ol>
 <h3 id="3-converting-greeks-to-option-holders">3. Converting Greeks to Option Holders</h3>
 <p>The <code>convert_greeks_to_optionholders</code> function transforms the raw Greek data into a standardized format:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#a90d91">def</span> <span style="color:#000">convert_greeks_to_optionholders</span>(<span style="color:#000">greeks_list</span>, <span style="color:#000">tasty_monthly</span>):
-</span></span><span style="display:flex;"><span>  <span style="color:#000">option_holders</span> <span style="color:#000">=</span> []
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f00">def</span> <span style="color:#ff0">convert_greeks_to_optionholders</span>(greeks_list, tasty_monthly):
+</span></span><span style="display:flex;"><span>  option_holders = []
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#177500"># Regex pattern to match the eventSymbol format</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#000">pattern</span> <span style="color:#000">=</span> <span style="color:#c41a16">r</span><span style="color:#c41a16">&#34;\.(\w+)(\d</span><span style="color:#c41a16">{6}</span><span style="color:#c41a16">)([CP])(\d+(?:\.\d+)?)&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#0f0"># Regex pattern to match the eventSymbol format</span>
+</span></span><span style="display:flex;"><span>  pattern = <span style="color:#87ceeb">r</span><span style="color:#87ceeb">&#34;\.(\w+)(\d</span><span style="color:#87ceeb">{6}</span><span style="color:#87ceeb">)([CP])(\d+(?:\.\d+)?)&#34;</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#a90d91">for</span> <span style="color:#000">greek</span> <span style="color:#000">in</span> <span style="color:#000">greeks_list</span>:
-</span></span><span style="display:flex;"><span>    <span style="color:#000">option_holder</span> <span style="color:#000">=</span> <span style="color:#000">option_utils</span><span style="color:#000">.</span><span style="color:#000">OptionHolder</span>()
+</span></span><span style="display:flex;"><span>  <span style="color:#f00">for</span> greek in greeks_list:
+</span></span><span style="display:flex;"><span>    option_holder = option_utils.OptionHolder()
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#177500"># Extract ticker, strike, expiry, and option type from the eventSymbol</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#177500"># ...</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#0f0"># Extract ticker, strike, expiry, and option type from the eventSymbol</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#0f0"># ...</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#177500"># Set other attributes from the Greeks object</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#000">option_holder</span><span style="color:#000">.</span><span style="color:#000">IV</span> <span style="color:#000">=</span> <span style="color:#a90d91">float</span>(<span style="color:#000">greek</span><span style="color:#000">.</span><span style="color:#000">volatility</span>)
-</span></span><span style="display:flex;"><span>    <span style="color:#000">option_holder</span><span style="color:#000">.</span><span style="color:#000">Theta</span> <span style="color:#000">=</span> <span style="color:#a90d91">float</span>(<span style="color:#000">greek</span><span style="color:#000">.</span><span style="color:#000">theta</span>)
-</span></span><span style="display:flex;"><span>    <span style="color:#000">option_holder</span><span style="color:#000">.</span><span style="color:#000">Delta</span> <span style="color:#000">=</span> <span style="color:#a90d91">float</span>(<span style="color:#000">greek</span><span style="color:#000">.</span><span style="color:#000">delta</span>)
-</span></span><span style="display:flex;"><span>    <span style="color:#000">option_holder</span><span style="color:#000">.</span><span style="color:#000">Gamma</span> <span style="color:#000">=</span> <span style="color:#a90d91">float</span>(<span style="color:#000">greek</span><span style="color:#000">.</span><span style="color:#000">gamma</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#0f0"># Set other attributes from the Greeks object</span>
+</span></span><span style="display:flex;"><span>    option_holder.IV = float(greek.volatility)
+</span></span><span style="display:flex;"><span>    option_holder.Theta = float(greek.theta)
+</span></span><span style="display:flex;"><span>    option_holder.Delta = float(greek.delta)
+</span></span><span style="display:flex;"><span>    option_holder.Gamma = float(greek.gamma)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#177500"># ...</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#0f0"># ...</span>
 </span></span></code></pre></div><p>This standardization makes it easier to perform calculations and comparisons across different options.</p>
 <h3 id="4-finding-iron-condor-candidates">4. Finding Iron Condor Candidates</h3>
 <p>The core of the iron condor screening is in the <code>update_options_with_bid_ask_from_tasty</code> function:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#a90d91">async</span> <span style="color:#a90d91">def</span> <span style="color:#000">update_options_with_bid_ask_from_tasty</span>(<span style="color:#000">session</span>, <span style="color:#000">tasty_monthly_expiry</span>,
-</span></span><span style="display:flex;"><span>                                               <span style="color:#000">ticker</span>, <span style="color:#000">option_holders_list</span>,
-</span></span><span style="display:flex;"><span>                                               <span style="color:#000">use_pickle</span>):
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f00">async</span> <span style="color:#f00">def</span> <span style="color:#ff0">update_options_with_bid_ask_from_tasty</span>(session, tasty_monthly_expiry,
+</span></span><span style="display:flex;"><span>                                               ticker, option_holders_list,
+</span></span><span style="display:flex;"><span>                                               use_pickle):
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#000">call_to_sell</span>, <span style="color:#000">call_to_buy</span>, <span style="color:#000">put_to_sell</span>, <span style="color:#000">put_to_buy</span> <span style="color:#000">=</span> <span style="color:#000">yf_option_ic</span><span style="color:#000">.</span><span style="color:#000">get_calls_and_puts_for_ic</span>(
-</span></span><span style="display:flex;"><span>      <span style="color:#000">option_holders_list</span>, <span style="color:#000">ticker</span>, <span style="color:#000">delta_for_search</span><span style="color:#000">=</span><span style="color:#1c01ce">0.2</span>)
+</span></span><span style="display:flex;"><span>  call_to_sell, call_to_buy, put_to_sell, put_to_buy = yf_option_ic.get_calls_and_puts_for_ic(
+</span></span><span style="display:flex;"><span>      option_holders_list, ticker, delta_for_search=<span style="color:#f60">0.2</span>)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#a90d91">if</span> <span style="color:#000">call_to_sell</span> <span style="color:#000">is</span> <span style="color:#a90d91">None</span> <span style="color:#000">or</span> <span style="color:#000">call_to_buy</span> <span style="color:#000">is</span> <span style="color:#a90d91">None</span> <span style="color:#000">or</span> <span style="color:#000">put_to_sell</span> <span style="color:#000">is</span> <span style="color:#a90d91">None</span> <span style="color:#000">or</span> <span style="color:#000">put_to_buy</span> <span style="color:#000">is</span> <span style="color:#a90d91">None</span>:
-</span></span><span style="display:flex;"><span>    <span style="color:#000">logger</span><span style="color:#000">.</span><span style="color:#000">info</span>(<span style="color:#c41a16">f</span><span style="color:#c41a16">&#39;[</span><span style="color:#c41a16">{</span><span style="color:#000">ticker</span><span style="color:#c41a16">}</span><span style="color:#c41a16">]:: Missing call or put with delta of 50 for IC&#39;</span>)
-</span></span><span style="display:flex;"><span>    <span style="color:#a90d91">return</span> <span style="color:#a90d91">False</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f00">if</span> call_to_sell is <span style="color:#f00">None</span> or call_to_buy is <span style="color:#f00">None</span> or put_to_sell is <span style="color:#f00">None</span> or put_to_buy is <span style="color:#f00">None</span>:
+</span></span><span style="display:flex;"><span>    logger.info(<span style="color:#87ceeb">f</span><span style="color:#87ceeb">&#39;[</span><span style="color:#87ceeb">{</span>ticker<span style="color:#87ceeb">}</span><span style="color:#87ceeb">]:: Missing call or put with delta of 50 for IC&#39;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#f00">return</span> <span style="color:#f00">False</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#177500"># ...</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#0f0"># ...</span>
 </span></span></code></pre></div><p>This function:</p>
 <ol>
 <li>Finds suitable calls and puts for an iron condor based on delta values</li>
@@ -200,18 +200,18 @@
 <p>The <code>delta_for_search=0.2</code> parameter is particularly important - it looks for options with approximately 0.2 delta (or -0.2 for puts), which typically have around a 20% chance of expiring in-the-money.</p>
 <h3 id="5-calculating-iron-condor-metrics">5. Calculating Iron Condor Metrics</h3>
 <p>The actual iron condor calculations happen in external functions called from the main code:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#a90d91">if</span> <span style="color:#000">options_updated_successfully</span>:
-</span></span><span style="display:flex;"><span>  <span style="color:#000">yf_option_ic</span><span style="color:#000">.</span><span style="color:#000">get_iron_condor_credit</span>(<span style="color:#000">option_holders_list</span>,
-</span></span><span style="display:flex;"><span>                                      <span style="color:#000">ticker</span>,
-</span></span><span style="display:flex;"><span>                                      <span style="color:#000">delta_for_search</span><span style="color:#000">=</span><span style="color:#1c01ce">0.2</span>)
-</span></span><span style="display:flex;"><span>  <span style="color:#000">all_ticker_options_dict</span>[<span style="color:#000">ticker</span>] <span style="color:#000">=</span> <span style="color:#000">option_holders_list</span>
-</span></span><span style="display:flex;"><span><span style="color:#a90d91">else</span>:
-</span></span><span style="display:flex;"><span>  <span style="color:#000">logger</span><span style="color:#000">.</span><span style="color:#000">info</span>(<span style="color:#c41a16">f</span><span style="color:#c41a16">&#39;Some issues with </span><span style="color:#c41a16">{</span><span style="color:#000">ticker</span><span style="color:#c41a16">}</span><span style="color:#c41a16">. Skipping IC calculation&#39;</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f00">if</span> options_updated_successfully:
+</span></span><span style="display:flex;"><span>  yf_option_ic.get_iron_condor_credit(option_holders_list,
+</span></span><span style="display:flex;"><span>                                      ticker,
+</span></span><span style="display:flex;"><span>                                      delta_for_search=<span style="color:#f60">0.2</span>)
+</span></span><span style="display:flex;"><span>  all_ticker_options_dict[ticker] = option_holders_list
+</span></span><span style="display:flex;"><span><span style="color:#f00">else</span>:
+</span></span><span style="display:flex;"><span>  logger.info(<span style="color:#87ceeb">f</span><span style="color:#87ceeb">&#39;Some issues with </span><span style="color:#87ceeb">{</span>ticker<span style="color:#87ceeb">}</span><span style="color:#87ceeb">. Skipping IC calculation&#39;</span>)
 </span></span></code></pre></div><p>And then:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#000">iron_condor_data</span> <span style="color:#000">=</span> <span style="color:#000">yf_option_ic</span><span style="color:#000">.</span><span style="color:#000">generate_iron_condor_stats</span>(
-</span></span><span style="display:flex;"><span>    <span style="color:#000">all_ticker_options_dict</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>iron_condor_data = yf_option_ic.generate_iron_condor_stats(
+</span></span><span style="display:flex;"><span>    all_ticker_options_dict)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#000">yf_option_ic</span><span style="color:#000">.</span><span style="color:#000">tabulate_ic_data</span>(<span style="color:#000">iron_condor_data</span>, <span style="color:#000">liq_ticker_metrics</span>)
+</span></span><span style="display:flex;"><span>yf_option_ic.tabulate_ic_data(iron_condor_data, liq_ticker_metrics)
 </span></span></code></pre></div><p>These functions (imported from <code>yf_option_ic</code> module) handle:</p>
 <ul>
 <li>Calculating the credit received for the iron condor</li>
@@ -227,20 +227,20 @@
 <li>Process multiple tickers in batches</li>
 <li>Handle timeouts and cleanup gracefully</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#a90d91">async</span> <span style="color:#a90d91">def</span> <span style="color:#000">run_main</span>():
-</span></span><span style="display:flex;"><span>  <span style="color:#177500"># ...</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#000">loop</span> <span style="color:#000">=</span> <span style="color:#000">asyncio</span><span style="color:#000">.</span><span style="color:#000">get_running_loop</span>()
-</span></span><span style="display:flex;"><span>  <span style="color:#000">loop</span><span style="color:#000">.</span><span style="color:#000">add_signal_handler</span>(<span style="color:#000">signal</span><span style="color:#000">.</span><span style="color:#000">SIGINT</span>, <span style="color:#000">handle_sigint</span>)
-</span></span><span style="display:flex;"><span>  <span style="color:#177500"># ...</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#a90d91">try</span>:
-</span></span><span style="display:flex;"><span>    <span style="color:#a90d91">await</span> <span style="color:#000">main</span>(<span style="color:#000">session</span>, <span style="color:#000">args</span><span style="color:#000">.</span><span style="color:#000">use_pickle</span>)
-</span></span><span style="display:flex;"><span>  <span style="color:#a90d91">except</span> <span style="color:#000">asyncio</span><span style="color:#000">.</span><span style="color:#000">CancelledError</span>:
-</span></span><span style="display:flex;"><span>    <span style="color:#000">logger</span><span style="color:#000">.</span><span style="color:#000">info</span>(<span style="color:#c41a16">&#34;Main task cancelled&#34;</span>)
-</span></span><span style="display:flex;"><span>  <span style="color:#a90d91">finally</span>:
-</span></span><span style="display:flex;"><span>    <span style="color:#000">logger</span><span style="color:#000">.</span><span style="color:#000">info</span>(<span style="color:#c41a16">&#34;Cleanup complete&#34;</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f00">async</span> <span style="color:#f00">def</span> <span style="color:#ff0">run_main</span>():
+</span></span><span style="display:flex;"><span>  <span style="color:#0f0"># ...</span>
+</span></span><span style="display:flex;"><span>  loop = asyncio.get_running_loop()
+</span></span><span style="display:flex;"><span>  loop.add_signal_handler(signal.SIGINT, handle_sigint)
+</span></span><span style="display:flex;"><span>  <span style="color:#0f0"># ...</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f00">try</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f00">await</span> main(session, args.use_pickle)
+</span></span><span style="display:flex;"><span>  <span style="color:#f00">except</span> asyncio.CancelledError:
+</span></span><span style="display:flex;"><span>    logger.info(<span style="color:#87ceeb">&#34;Main task cancelled&#34;</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#f00">finally</span>:
+</span></span><span style="display:flex;"><span>    logger.info(<span style="color:#87ceeb">&#34;Cleanup complete&#34;</span>)
 </span></span></code></pre></div><h3 id="7-iron-condor-findings">7. Iron Condor findings</h3>
 <p>Here&rsquo;s a sample result while finding out the potential tickers to trade with high IVR.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>Filtered List of tickers with BPE &lt; <span style="color:#1c01ce">350</span> or RR &gt; 1:
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>Filtered List of tickers with BPE &lt; <span style="color:#f60">350</span> or RR &gt; 1:
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>Ticker      Credit    Max Loss     RR     BPE    IVP    IVR
 </span></span><span style="display:flex;"><span>--------  --------  ----------  -----  ------  -----  -----

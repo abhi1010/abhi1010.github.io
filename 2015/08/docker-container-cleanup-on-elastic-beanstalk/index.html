@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="author" content="Abhishek Pandey" />
     <meta name="description" content="How to remove directories orphaned by docker on elastic beanstalk" />
-    <link rel="stylesheet" href="/css/main.min.51f3efdcc017a8960f507421fb803e2abeb64e9e18c517404c94ef605e8ce8aa.css" />
+    <link rel="stylesheet" href="/css/main.min.3fabd88a6b1988deec4988ebf6c9df8b45b30a933ac9db6bfd68596e780921ab.css" />
     
 
     
@@ -89,17 +89,17 @@
 <p>Next, find out what container processes you have going on.
 <code>[root@ip dir]# docker ps -a</code></p>
 <p>You might see something like this:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>    CONTAINER ID        IMAGE                              COMMAND             CREATED             STATUS              PORTS               NAMES
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>    CONTAINER ID        IMAGE                              COMMAND             CREATED             STATUS              PORTS               NAMES
 </span></span><span style="display:flex;"><span>    1611e5ebe2c0        aws_beanstalk/staging-app:latest   &#34;supervisord -n&#34;    About an hour ago                                           boring_galileo
 </span></span><span style="display:flex;"><span>    e59d0dd8bba1        aws_beanstalk/staging-app:latest   &#34;supervisord -n&#34;    About an hour ago                                           desperate_yalow
 </span></span><span style="display:flex;"><span>    3844d0e18c47        aws_beanstalk/staging-app:latest   &#34;supervisord -n&#34;    2 hours ago         Up 8 minutes        80/tcp              pensive_jang
 </span></span></code></pre></div>
 <p>Ideally, we want to &ldquo;forcibly remove&rdquo; all images (and hence the folders from <code>/var/lib/docker/vfs/dir</code> directory) that are not in use anymore.
 Just run the following to test whether it works:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>    docker rmi -f `docker images -aq`
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>    docker rmi -f `docker images -aq`
 </span></span></code></pre></div>
 <p>You might run into trouble where docker says that all those images already have a container that is running them. This means those container are orphaned but not killed as we thought them to be. Let&rsquo;s remove the shared volumes if any, for each one of them.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>    docker rm -fv `docker ps -aq` 
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>    docker rm -fv `docker ps -aq` 
 </span></span></code></pre></div>
 <p>This will</p>
 <ul>
@@ -107,7 +107,7 @@ Just run the following to test whether it works:</p>
 <li>unlink the volumes</li>
 </ul>
 <p>You should see a lot more space now on your beanstalk instance.
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>    [root@ip dir]# df -h
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>    [root@ip dir]# df -h
 </span></span><span style="display:flex;"><span>    Filesystem      Size  Used Avail Use% Mounted on
 </span></span><span style="display:flex;"><span>    /dev/xvda1      7.8G  1.8G  5.9G  24% /
 </span></span><span style="display:flex;"><span>    devtmpfs        490M   96K  490M   1% /dev

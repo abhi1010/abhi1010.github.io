@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="author" content="Abhishek Pandey" />
     <meta name="description" content="Use getopt or getopts" />
-    <link rel="stylesheet" href="/css/main.min.51f3efdcc017a8960f507421fb803e2abeb64e9e18c517404c94ef605e8ce8aa.css" />
+    <link rel="stylesheet" href="/css/main.min.3fabd88a6b1988deec4988ebf6c9df8b45b30a933ac9db6bfd68596e780921ab.css" />
     
 
     
@@ -93,40 +93,40 @@ very hard to control</li>
 </ul>
 <p>The only time I could think of using <em>getopt</em> is when I really want to use a long variable name and there&rsquo;s just a single one.</p>
 <p>Here&rsquo;a a sample for <em>getopt</em></p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#633820">#!/bin/bash
-</span></span></span><span style="display:flex;"><span><span style="color:#633820"></span>
-</span></span><span style="display:flex;"><span><span style="color:#177500">#Check the number of arguments. If none are passed, print help and exit.</span>
-</span></span><span style="display:flex;"><span><span style="color:#000">NUMARGS</span><span style="color:#000">=</span><span style="color:#000">$#</span>
-</span></span><span style="display:flex;"><span><span style="color:#177500"># echo -e \\n&#34;Number of arguments: $NUMARGS&#34;</span>
-</span></span><span style="display:flex;"><span><span style="color:#a90d91">if</span> <span style="color:#000">[</span> <span style="color:#000">$NUMARGS</span> -eq <span style="color:#1c01ce">0</span> <span style="color:#000">]</span>; <span style="color:#a90d91">then</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#e5e5e5">#!/bin/bash
+</span></span></span><span style="display:flex;"><span><span style="color:#e5e5e5"></span>
+</span></span><span style="display:flex;"><span><span style="color:#0f0">#Check the number of arguments. If none are passed, print help and exit.</span>
+</span></span><span style="display:flex;"><span><span style="color:#eedd82">NUMARGS</span>=<span style="color:#eedd82">$#</span>
+</span></span><span style="display:flex;"><span><span style="color:#0f0"># echo -e \\n&#34;Number of arguments: $NUMARGS&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f00">if</span> [ <span style="color:#eedd82">$NUMARGS</span> -eq <span style="color:#f60">0</span> ]; <span style="color:#f00">then</span>
 </span></span><span style="display:flex;"><span>  HELP
-</span></span><span style="display:flex;"><span><span style="color:#a90d91">fi</span>
+</span></span><span style="display:flex;"><span><span style="color:#f00">fi</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#000">OPTS</span><span style="color:#000">=</span><span style="color:#c41a16">`</span>getopt -o vhns: --long verbose,dry-run,help,stack-size: -n <span style="color:#c41a16">&#39;parse-options&#39;</span> -- <span style="color:#c41a16">&#34;</span><span style="color:#000">$@</span><span style="color:#c41a16">&#34;</span><span style="color:#c41a16">`</span>
+</span></span><span style="display:flex;"><span><span style="color:#eedd82">OPTS</span>=<span style="color:#87ceeb">`</span>getopt -o vhns: --long verbose,dry-run,help,stack-size: -n <span style="color:#87ceeb">&#39;parse-options&#39;</span> -- <span style="color:#87ceeb">&#34;</span><span style="color:#eedd82">$@</span><span style="color:#87ceeb">&#34;</span><span style="color:#87ceeb">`</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#a90d91">eval</span> <span style="color:#a90d91">set</span> -- <span style="color:#c41a16">&#34;</span><span style="color:#000">$OPTS</span><span style="color:#c41a16">&#34;</span>
+</span></span><span style="display:flex;"><span>eval set -- <span style="color:#87ceeb">&#34;</span><span style="color:#eedd82">$OPTS</span><span style="color:#87ceeb">&#34;</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#a90d91">while</span> getopt dir:,env: FLAG; <span style="color:#a90d91">do</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#a90d91">case</span> <span style="color:#000">$FLAG</span> in
-</span></span><span style="display:flex;"><span>    -dir<span style="color:#000">)</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#000">DIR</span><span style="color:#000">=</span><span style="color:#000">$OPTARG</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#a90d91">echo</span> <span style="color:#c41a16">&#34;-dir used: </span><span style="color:#000">$OPTARG</span><span style="color:#c41a16">&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f00">while</span> getopt dir:,env: FLAG; <span style="color:#f00">do</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f00">case</span> <span style="color:#eedd82">$FLAG</span> in
+</span></span><span style="display:flex;"><span>    -dir)
+</span></span><span style="display:flex;"><span>      <span style="color:#eedd82">DIR</span>=<span style="color:#eedd82">$OPTARG</span>
+</span></span><span style="display:flex;"><span>      echo <span style="color:#87ceeb">&#34;-dir used: </span><span style="color:#eedd82">$OPTARG</span><span style="color:#87ceeb">&#34;</span>
 </span></span><span style="display:flex;"><span>      ;;
-</span></span><span style="display:flex;"><span>    -env<span style="color:#000">)</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#000">PYENV</span><span style="color:#000">=</span><span style="color:#000">$OPTARG</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#a90d91">echo</span> <span style="color:#c41a16">&#34;-env used: </span><span style="color:#000">$OPTARG</span><span style="color:#c41a16">&#34;</span>
+</span></span><span style="display:flex;"><span>    -env)
+</span></span><span style="display:flex;"><span>      <span style="color:#eedd82">PYENV</span>=<span style="color:#eedd82">$OPTARG</span>
+</span></span><span style="display:flex;"><span>      echo <span style="color:#87ceeb">&#34;-env used: </span><span style="color:#eedd82">$OPTARG</span><span style="color:#87ceeb">&#34;</span>
 </span></span><span style="display:flex;"><span>      ;;
-</span></span><span style="display:flex;"><span>    h<span style="color:#000">)</span>  <span style="color:#177500">#show help</span>
+</span></span><span style="display:flex;"><span>    h)  <span style="color:#0f0">#show help</span>
 </span></span><span style="display:flex;"><span>      HELP
 </span></span><span style="display:flex;"><span>      ;;
-</span></span><span style="display:flex;"><span>    <span style="color:#c41a16">\?</span><span style="color:#000">)</span> <span style="color:#177500">#unrecognized option - show help</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#a90d91">echo</span> -e <span style="color:#c41a16">\\</span>n<span style="color:#c41a16">&#34;Option -</span><span style="color:#c41a16">${</span><span style="color:#000">BOLD</span><span style="color:#c41a16">}</span><span style="color:#000">$OPTARG</span><span style="color:#c41a16">${</span><span style="color:#000">NORM</span><span style="color:#c41a16">}</span><span style="color:#c41a16"> not allowed.&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#87ceeb">\?</span>) <span style="color:#0f0">#unrecognized option - show help</span>
+</span></span><span style="display:flex;"><span>      echo -e <span style="color:#87ceeb">\\</span>n<span style="color:#87ceeb">&#34;Option -</span><span style="color:#87ceeb">${</span><span style="color:#eedd82">BOLD</span><span style="color:#87ceeb">}</span><span style="color:#eedd82">$OPTARG</span><span style="color:#87ceeb">${</span><span style="color:#eedd82">NORM</span><span style="color:#87ceeb">}</span><span style="color:#87ceeb"> not allowed.&#34;</span>
 </span></span><span style="display:flex;"><span>      HELP
 </span></span><span style="display:flex;"><span>      ;;
-</span></span><span style="display:flex;"><span>  <span style="color:#a90d91">esac</span>
-</span></span><span style="display:flex;"><span><span style="color:#a90d91">done</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f00">esac</span>
+</span></span><span style="display:flex;"><span><span style="color:#f00">done</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#a90d91">shift</span> <span style="color:#a90d91">$((</span>OPTIND-1<span style="color:#a90d91">))</span>  <span style="color:#177500">#This tells getopts to move on to the next argument.</span>
+</span></span><span style="display:flex;"><span>shift <span style="color:#f00">$((</span>OPTIND-1<span style="color:#f00">))</span>  <span style="color:#0f0">#This tells getopts to move on to the next argument.</span>
 </span></span></code></pre></div><h2 id="getopts">getopts</h2>
 <p>Whereas, <strong>getopts</strong> is:</p>
 <ul>
@@ -135,90 +135,90 @@ very hard to control</li>
 <li>Understands &ldquo;&ndash;&rdquo; as the option terminator</li>
 </ul>
 <p>Here&rsquo;s a sample for <em>getopts</em></p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#000">SCRIPT</span><span style="color:#000">=</span><span style="color:#c41a16">`</span>basename <span style="color:#c41a16">${</span><span style="color:#000">BASH_SOURCE</span>[0]<span style="color:#c41a16">}</span><span style="color:#c41a16">`</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#eedd82">SCRIPT</span>=<span style="color:#87ceeb">`</span>basename <span style="color:#87ceeb">${</span><span style="color:#eedd82">BASH_SOURCE</span>[0]<span style="color:#87ceeb">}</span><span style="color:#87ceeb">`</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#177500">## Let&#39;s do some admin work to find out the variables to be used here</span>
-</span></span><span style="display:flex;"><span><span style="color:#000">BOLD</span><span style="color:#000">=</span><span style="color:#c41a16">&#39;\e[1;31m&#39;</span>         <span style="color:#177500"># Bold Red</span>
-</span></span><span style="display:flex;"><span><span style="color:#000">REV</span><span style="color:#000">=</span><span style="color:#c41a16">&#39;\e[1;32m&#39;</span>       <span style="color:#177500"># Bold Green</span>
+</span></span><span style="display:flex;"><span><span style="color:#0f0">## Let&#39;s do some admin work to find out the variables to be used here</span>
+</span></span><span style="display:flex;"><span><span style="color:#eedd82">BOLD</span>=<span style="color:#87ceeb">&#39;\e[1;31m&#39;</span>         <span style="color:#0f0"># Bold Red</span>
+</span></span><span style="display:flex;"><span><span style="color:#eedd82">REV</span>=<span style="color:#87ceeb">&#39;\e[1;32m&#39;</span>       <span style="color:#0f0"># Bold Green</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#177500">#Help function</span>
-</span></span><span style="display:flex;"><span><span style="color:#a90d91">function</span> HELP <span style="color:#000">{</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#a90d91">echo</span> -e <span style="color:#c41a16">&#34;</span><span style="color:#c41a16">${</span><span style="color:#000">REV</span><span style="color:#c41a16">}</span><span style="color:#c41a16">Basic usage:</span><span style="color:#c41a16">${</span><span style="color:#000">OFF</span><span style="color:#c41a16">}</span><span style="color:#c41a16"> </span><span style="color:#c41a16">${</span><span style="color:#000">BOLD</span><span style="color:#c41a16">}</span><span style="color:#000">$SCRIPT</span><span style="color:#c41a16"> -d helloworld </span><span style="color:#c41a16">${</span><span style="color:#000">OFF</span><span style="color:#c41a16">}</span><span style="color:#c41a16">&#34;</span><span style="color:#c41a16">\\</span>n
-</span></span><span style="display:flex;"><span>  <span style="color:#a90d91">echo</span> -e <span style="color:#c41a16">&#34;</span><span style="color:#c41a16">${</span><span style="color:#000">REV</span><span style="color:#c41a16">}</span><span style="color:#c41a16">The following switches are recognized. </span><span style="color:#000">$OFF</span><span style="color:#c41a16"> &#34;</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#a90d91">echo</span> -e <span style="color:#c41a16">&#34;</span><span style="color:#c41a16">${</span><span style="color:#000">REV</span><span style="color:#c41a16">}</span><span style="color:#c41a16">-p </span><span style="color:#c41a16">${</span><span style="color:#000">OFF</span><span style="color:#c41a16">}</span><span style="color:#c41a16">  --Sets the environment to use for installing python </span><span style="color:#c41a16">${</span><span style="color:#000">OFF</span><span style="color:#c41a16">}</span><span style="color:#c41a16">. Default is </span><span style="color:#c41a16">${</span><span style="color:#000">BOLD</span><span style="color:#c41a16">}</span><span style="color:#c41a16"> /usr/bin </span><span style="color:#c41a16">${</span><span style="color:#000">OFF</span><span style="color:#c41a16">}</span><span style="color:#c41a16">&#34;</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#a90d91">echo</span> -e <span style="color:#c41a16">&#34;</span><span style="color:#c41a16">${</span><span style="color:#000">REV</span><span style="color:#c41a16">}</span><span style="color:#c41a16">-d </span><span style="color:#c41a16">${</span><span style="color:#000">OFF</span><span style="color:#c41a16">}</span><span style="color:#c41a16">  --Sets the directory whose virtualenv is to be setup. Default is </span><span style="color:#c41a16">${</span><span style="color:#000">BOLD</span><span style="color:#c41a16">}</span><span style="color:#c41a16"> local folder (.) </span><span style="color:#c41a16">${</span><span style="color:#000">OFF</span><span style="color:#c41a16">}</span><span style="color:#c41a16">&#34;</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#a90d91">echo</span> -e <span style="color:#c41a16">&#34;</span><span style="color:#c41a16">${</span><span style="color:#000">REV</span><span style="color:#c41a16">}</span><span style="color:#c41a16">-v </span><span style="color:#c41a16">${</span><span style="color:#000">OFF</span><span style="color:#c41a16">}</span><span style="color:#c41a16">  --Sets the python version that you want to install. Default is </span><span style="color:#c41a16">${</span><span style="color:#000">BOLD</span><span style="color:#c41a16">}</span><span style="color:#c41a16"> 2.7 </span><span style="color:#c41a16">${</span><span style="color:#000">OFF</span><span style="color:#c41a16">}</span><span style="color:#c41a16">&#34;</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#a90d91">echo</span> -e <span style="color:#c41a16">&#34;</span><span style="color:#c41a16">${</span><span style="color:#000">REV</span><span style="color:#c41a16">}</span><span style="color:#c41a16">-h</span><span style="color:#c41a16">${</span><span style="color:#000">OFF</span><span style="color:#c41a16">}</span><span style="color:#c41a16">  --Displays this help message. No further functions are performed.&#34;</span><span style="color:#c41a16">\\</span>n
-</span></span><span style="display:flex;"><span>  <span style="color:#a90d91">echo</span> -e <span style="color:#c41a16">&#34;Example: </span><span style="color:#c41a16">${</span><span style="color:#000">BOLD</span><span style="color:#c41a16">}</span><span style="color:#000">$SCRIPT</span><span style="color:#c41a16"> -d helloworld -p /opt/py27env/bin -v 2.7 </span><span style="color:#c41a16">${</span><span style="color:#000">OFF</span><span style="color:#c41a16">}</span><span style="color:#c41a16">&#34;</span><span style="color:#c41a16">\\</span>n
-</span></span><span style="display:flex;"><span>  <span style="color:#a90d91">exit</span> <span style="color:#1c01ce">1</span>
-</span></span><span style="display:flex;"><span><span style="color:#000">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#0f0">#Help function</span>
+</span></span><span style="display:flex;"><span><span style="color:#f00">function</span> HELP {
+</span></span><span style="display:flex;"><span>  echo -e <span style="color:#87ceeb">&#34;</span><span style="color:#87ceeb">${</span><span style="color:#eedd82">REV</span><span style="color:#87ceeb">}</span><span style="color:#87ceeb">Basic usage:</span><span style="color:#87ceeb">${</span><span style="color:#eedd82">OFF</span><span style="color:#87ceeb">}</span><span style="color:#87ceeb"> </span><span style="color:#87ceeb">${</span><span style="color:#eedd82">BOLD</span><span style="color:#87ceeb">}</span><span style="color:#eedd82">$SCRIPT</span><span style="color:#87ceeb"> -d helloworld </span><span style="color:#87ceeb">${</span><span style="color:#eedd82">OFF</span><span style="color:#87ceeb">}</span><span style="color:#87ceeb">&#34;</span><span style="color:#87ceeb">\\</span>n
+</span></span><span style="display:flex;"><span>  echo -e <span style="color:#87ceeb">&#34;</span><span style="color:#87ceeb">${</span><span style="color:#eedd82">REV</span><span style="color:#87ceeb">}</span><span style="color:#87ceeb">The following switches are recognized. </span><span style="color:#eedd82">$OFF</span><span style="color:#87ceeb"> &#34;</span>
+</span></span><span style="display:flex;"><span>  echo -e <span style="color:#87ceeb">&#34;</span><span style="color:#87ceeb">${</span><span style="color:#eedd82">REV</span><span style="color:#87ceeb">}</span><span style="color:#87ceeb">-p </span><span style="color:#87ceeb">${</span><span style="color:#eedd82">OFF</span><span style="color:#87ceeb">}</span><span style="color:#87ceeb">  --Sets the environment to use for installing python </span><span style="color:#87ceeb">${</span><span style="color:#eedd82">OFF</span><span style="color:#87ceeb">}</span><span style="color:#87ceeb">. Default is </span><span style="color:#87ceeb">${</span><span style="color:#eedd82">BOLD</span><span style="color:#87ceeb">}</span><span style="color:#87ceeb"> /usr/bin </span><span style="color:#87ceeb">${</span><span style="color:#eedd82">OFF</span><span style="color:#87ceeb">}</span><span style="color:#87ceeb">&#34;</span>
+</span></span><span style="display:flex;"><span>  echo -e <span style="color:#87ceeb">&#34;</span><span style="color:#87ceeb">${</span><span style="color:#eedd82">REV</span><span style="color:#87ceeb">}</span><span style="color:#87ceeb">-d </span><span style="color:#87ceeb">${</span><span style="color:#eedd82">OFF</span><span style="color:#87ceeb">}</span><span style="color:#87ceeb">  --Sets the directory whose virtualenv is to be setup. Default is </span><span style="color:#87ceeb">${</span><span style="color:#eedd82">BOLD</span><span style="color:#87ceeb">}</span><span style="color:#87ceeb"> local folder (.) </span><span style="color:#87ceeb">${</span><span style="color:#eedd82">OFF</span><span style="color:#87ceeb">}</span><span style="color:#87ceeb">&#34;</span>
+</span></span><span style="display:flex;"><span>  echo -e <span style="color:#87ceeb">&#34;</span><span style="color:#87ceeb">${</span><span style="color:#eedd82">REV</span><span style="color:#87ceeb">}</span><span style="color:#87ceeb">-v </span><span style="color:#87ceeb">${</span><span style="color:#eedd82">OFF</span><span style="color:#87ceeb">}</span><span style="color:#87ceeb">  --Sets the python version that you want to install. Default is </span><span style="color:#87ceeb">${</span><span style="color:#eedd82">BOLD</span><span style="color:#87ceeb">}</span><span style="color:#87ceeb"> 2.7 </span><span style="color:#87ceeb">${</span><span style="color:#eedd82">OFF</span><span style="color:#87ceeb">}</span><span style="color:#87ceeb">&#34;</span>
+</span></span><span style="display:flex;"><span>  echo -e <span style="color:#87ceeb">&#34;</span><span style="color:#87ceeb">${</span><span style="color:#eedd82">REV</span><span style="color:#87ceeb">}</span><span style="color:#87ceeb">-h</span><span style="color:#87ceeb">${</span><span style="color:#eedd82">OFF</span><span style="color:#87ceeb">}</span><span style="color:#87ceeb">  --Displays this help message. No further functions are performed.&#34;</span><span style="color:#87ceeb">\\</span>n
+</span></span><span style="display:flex;"><span>  echo -e <span style="color:#87ceeb">&#34;Example: </span><span style="color:#87ceeb">${</span><span style="color:#eedd82">BOLD</span><span style="color:#87ceeb">}</span><span style="color:#eedd82">$SCRIPT</span><span style="color:#87ceeb"> -d helloworld -p /opt/py27env/bin -v 2.7 </span><span style="color:#87ceeb">${</span><span style="color:#eedd82">OFF</span><span style="color:#87ceeb">}</span><span style="color:#87ceeb">&#34;</span><span style="color:#87ceeb">\\</span>n
+</span></span><span style="display:flex;"><span>  exit <span style="color:#f60">1</span>
+</span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#000">PYENV</span><span style="color:#000">=</span><span style="color:#c41a16">&#39;/usr/bin&#39;</span>
-</span></span><span style="display:flex;"><span><span style="color:#000">DIR</span><span style="color:#000">=</span><span style="color:#c41a16">&#39;.&#39;</span>
-</span></span><span style="display:flex;"><span><span style="color:#000">VERSION</span><span style="color:#000">=</span><span style="color:#c41a16">&#39;2.7&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#eedd82">PYENV</span>=<span style="color:#87ceeb">&#39;/usr/bin&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#eedd82">DIR</span>=<span style="color:#87ceeb">&#39;.&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#eedd82">VERSION</span>=<span style="color:#87ceeb">&#39;2.7&#39;</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#177500"># In case you wanted to check what variables were passed</span>
-</span></span><span style="display:flex;"><span><span style="color:#177500"># echo &#34;flags = $*&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#0f0"># In case you wanted to check what variables were passed</span>
+</span></span><span style="display:flex;"><span><span style="color:#0f0"># echo &#34;flags = $*&#34;</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#a90d91">while</span> <span style="color:#a90d91">getopts</span> p:d:v:h FLAG; <span style="color:#a90d91">do</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#a90d91">case</span> <span style="color:#000">$FLAG</span> in
-</span></span><span style="display:flex;"><span>    d<span style="color:#000">)</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#000">DIR</span><span style="color:#000">=</span><span style="color:#000">$OPTARG</span>
+</span></span><span style="display:flex;"><span><span style="color:#f00">while</span> getopts p:d:v:h FLAG; <span style="color:#f00">do</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f00">case</span> <span style="color:#eedd82">$FLAG</span> in
+</span></span><span style="display:flex;"><span>    d)
+</span></span><span style="display:flex;"><span>      <span style="color:#eedd82">DIR</span>=<span style="color:#eedd82">$OPTARG</span>
 </span></span><span style="display:flex;"><span>      ;;
-</span></span><span style="display:flex;"><span>    p<span style="color:#000">)</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#000">PYENV</span><span style="color:#000">=</span><span style="color:#000">$OPTARG</span>
+</span></span><span style="display:flex;"><span>    p)
+</span></span><span style="display:flex;"><span>      <span style="color:#eedd82">PYENV</span>=<span style="color:#eedd82">$OPTARG</span>
 </span></span><span style="display:flex;"><span>      ;;
-</span></span><span style="display:flex;"><span>    v<span style="color:#000">)</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#000">VERSION</span><span style="color:#000">=</span><span style="color:#000">$OPTARG</span>
+</span></span><span style="display:flex;"><span>    v)
+</span></span><span style="display:flex;"><span>      <span style="color:#eedd82">VERSION</span>=<span style="color:#eedd82">$OPTARG</span>
 </span></span><span style="display:flex;"><span>      ;;
-</span></span><span style="display:flex;"><span>    h<span style="color:#000">)</span>
+</span></span><span style="display:flex;"><span>    h)
 </span></span><span style="display:flex;"><span>      HELP
 </span></span><span style="display:flex;"><span>      ;;
-</span></span><span style="display:flex;"><span>    <span style="color:#c41a16">\?</span><span style="color:#000">)</span> <span style="color:#177500">#unrecognized option - show help</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#a90d91">echo</span> -e <span style="color:#c41a16">\\</span>n<span style="color:#c41a16">&#34;Option -</span><span style="color:#c41a16">${</span><span style="color:#000">BOLD</span><span style="color:#c41a16">}</span><span style="color:#000">$OPTARG</span><span style="color:#c41a16">${</span><span style="color:#000">OFF</span><span style="color:#c41a16">}</span><span style="color:#c41a16"> not allowed.&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#87ceeb">\?</span>) <span style="color:#0f0">#unrecognized option - show help</span>
+</span></span><span style="display:flex;"><span>      echo -e <span style="color:#87ceeb">\\</span>n<span style="color:#87ceeb">&#34;Option -</span><span style="color:#87ceeb">${</span><span style="color:#eedd82">BOLD</span><span style="color:#87ceeb">}</span><span style="color:#eedd82">$OPTARG</span><span style="color:#87ceeb">${</span><span style="color:#eedd82">OFF</span><span style="color:#87ceeb">}</span><span style="color:#87ceeb"> not allowed.&#34;</span>
 </span></span><span style="display:flex;"><span>      HELP
 </span></span><span style="display:flex;"><span>      ;;
-</span></span><span style="display:flex;"><span>  <span style="color:#a90d91">esac</span>
-</span></span><span style="display:flex;"><span><span style="color:#a90d91">done</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f00">esac</span>
+</span></span><span style="display:flex;"><span><span style="color:#f00">done</span>
 </span></span></code></pre></div><h2 id="what-if-i-really-wanted-long-options-with-getopts">What if I really wanted long options with <em>getopts</em>?</h2>
 <p><em>getopts</em> function can be used to parse long options by putting a dash character followed by a colon into the OPTSPEC.
 Sharing <a href="http://stackoverflow.com/a/7680682/142650">the solution from this link</a>.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#633820">#!/usr/bin/env bash 
-</span></span></span><span style="display:flex;"><span><span style="color:#633820"></span><span style="color:#000">OPTSPEC</span><span style="color:#000">=</span><span style="color:#c41a16">&#34;:hv-:&#34;</span>
-</span></span><span style="display:flex;"><span><span style="color:#a90d91">while</span> <span style="color:#a90d91">getopts</span> <span style="color:#c41a16">&#34;</span><span style="color:#000">$OPTSPEC</span><span style="color:#c41a16">&#34;</span> optchar; <span style="color:#a90d91">do</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#a90d91">case</span> <span style="color:#c41a16">&#34;</span><span style="color:#c41a16">${</span><span style="color:#000">optchar</span><span style="color:#c41a16">}</span><span style="color:#c41a16">&#34;</span> in
-</span></span><span style="display:flex;"><span>        -<span style="color:#000">)</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#a90d91">case</span> <span style="color:#c41a16">&#34;</span><span style="color:#c41a16">${</span><span style="color:#000">OPTARG</span><span style="color:#c41a16">}</span><span style="color:#c41a16">&#34;</span> in
-</span></span><span style="display:flex;"><span>                loglevel<span style="color:#000">)</span>
-</span></span><span style="display:flex;"><span>                    <span style="color:#000">val</span><span style="color:#000">=</span><span style="color:#c41a16">&#34;</span><span style="color:#c41a16">${</span>!OPTIND<span style="color:#c41a16">}</span><span style="color:#c41a16">&#34;</span>; <span style="color:#000">OPTIND</span><span style="color:#000">=</span><span style="color:#a90d91">$((</span> <span style="color:#000">$OPTIND</span> <span style="color:#000">+</span> <span style="color:#1c01ce">1</span> <span style="color:#a90d91">))</span>
-</span></span><span style="display:flex;"><span>                    <span style="color:#a90d91">echo</span> <span style="color:#c41a16">&#34;Parsing option: &#39;--</span><span style="color:#c41a16">${</span><span style="color:#000">OPTARG</span><span style="color:#c41a16">}</span><span style="color:#c41a16">&#39;, value: &#39;</span><span style="color:#c41a16">${</span><span style="color:#000">val</span><span style="color:#c41a16">}</span><span style="color:#c41a16">&#39;&#34;</span> &gt;&amp;2;
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#e5e5e5">#!/usr/bin/env bash 
+</span></span></span><span style="display:flex;"><span><span style="color:#e5e5e5"></span><span style="color:#eedd82">OPTSPEC</span>=<span style="color:#87ceeb">&#34;:hv-:&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f00">while</span> getopts <span style="color:#87ceeb">&#34;</span><span style="color:#eedd82">$OPTSPEC</span><span style="color:#87ceeb">&#34;</span> optchar; <span style="color:#f00">do</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f00">case</span> <span style="color:#87ceeb">&#34;</span><span style="color:#87ceeb">${</span><span style="color:#eedd82">optchar</span><span style="color:#87ceeb">}</span><span style="color:#87ceeb">&#34;</span> in
+</span></span><span style="display:flex;"><span>        -)
+</span></span><span style="display:flex;"><span>            <span style="color:#f00">case</span> <span style="color:#87ceeb">&#34;</span><span style="color:#87ceeb">${</span><span style="color:#eedd82">OPTARG</span><span style="color:#87ceeb">}</span><span style="color:#87ceeb">&#34;</span> in
+</span></span><span style="display:flex;"><span>                loglevel)
+</span></span><span style="display:flex;"><span>                    <span style="color:#eedd82">val</span>=<span style="color:#87ceeb">&#34;</span><span style="color:#87ceeb">${</span>!OPTIND<span style="color:#87ceeb">}</span><span style="color:#87ceeb">&#34;</span>; <span style="color:#eedd82">OPTIND</span>=<span style="color:#f00">$((</span> <span style="color:#eedd82">$OPTIND</span> + <span style="color:#f60">1</span> <span style="color:#f00">))</span>
+</span></span><span style="display:flex;"><span>                    echo <span style="color:#87ceeb">&#34;Parsing option: &#39;--</span><span style="color:#87ceeb">${</span><span style="color:#eedd82">OPTARG</span><span style="color:#87ceeb">}</span><span style="color:#87ceeb">&#39;, value: &#39;</span><span style="color:#87ceeb">${</span><span style="color:#eedd82">val</span><span style="color:#87ceeb">}</span><span style="color:#87ceeb">&#39;&#34;</span> &gt;&amp;2;
 </span></span><span style="display:flex;"><span>                    ;;
-</span></span><span style="display:flex;"><span>                <span style="color:#000">loglevel</span><span style="color:#000">=</span>*<span style="color:#000">)</span>
-</span></span><span style="display:flex;"><span>                    <span style="color:#000">val</span><span style="color:#000">=</span><span style="color:#c41a16">${</span><span style="color:#000">OPTARG</span>#*=<span style="color:#c41a16">}</span>
-</span></span><span style="display:flex;"><span>                    <span style="color:#000">opt</span><span style="color:#000">=</span><span style="color:#c41a16">${</span><span style="color:#000">OPTARG</span>%=<span style="color:#000">$val</span><span style="color:#c41a16">}</span>
-</span></span><span style="display:flex;"><span>                    <span style="color:#a90d91">echo</span> <span style="color:#c41a16">&#34;Parsing option: &#39;--</span><span style="color:#c41a16">${</span><span style="color:#000">opt</span><span style="color:#c41a16">}</span><span style="color:#c41a16">&#39;, value: &#39;</span><span style="color:#c41a16">${</span><span style="color:#000">val</span><span style="color:#c41a16">}</span><span style="color:#c41a16">&#39;&#34;</span> &gt;&amp;<span style="color:#1c01ce">2</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#eedd82">loglevel</span>=*)
+</span></span><span style="display:flex;"><span>                    <span style="color:#eedd82">val</span>=<span style="color:#87ceeb">${</span><span style="color:#eedd82">OPTARG</span>#*=<span style="color:#87ceeb">}</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#eedd82">opt</span>=<span style="color:#87ceeb">${</span><span style="color:#eedd82">OPTARG</span>%=<span style="color:#eedd82">$val</span><span style="color:#87ceeb">}</span>
+</span></span><span style="display:flex;"><span>                    echo <span style="color:#87ceeb">&#34;Parsing option: &#39;--</span><span style="color:#87ceeb">${</span><span style="color:#eedd82">opt</span><span style="color:#87ceeb">}</span><span style="color:#87ceeb">&#39;, value: &#39;</span><span style="color:#87ceeb">${</span><span style="color:#eedd82">val</span><span style="color:#87ceeb">}</span><span style="color:#87ceeb">&#39;&#34;</span> &gt;&amp;<span style="color:#f60">2</span>
 </span></span><span style="display:flex;"><span>                    ;;
-</span></span><span style="display:flex;"><span>                *<span style="color:#000">)</span>
-</span></span><span style="display:flex;"><span>                    <span style="color:#a90d91">if</span> <span style="color:#000">[</span> <span style="color:#c41a16">&#34;</span><span style="color:#000">$OPTERR</span><span style="color:#c41a16">&#34;</span> <span style="color:#000">=</span> <span style="color:#1c01ce">1</span> <span style="color:#000">]</span> <span style="color:#000">&amp;&amp;</span> <span style="color:#000">[</span> <span style="color:#c41a16">&#34;</span><span style="color:#c41a16">${</span><span style="color:#000">OPTSPEC</span>:<span style="color:#000">0</span>:<span style="color:#000">1</span><span style="color:#c41a16">}</span><span style="color:#c41a16">&#34;</span> !<span style="color:#000">=</span> <span style="color:#c41a16">&#34;:&#34;</span> <span style="color:#000">]</span>; <span style="color:#a90d91">then</span>
-</span></span><span style="display:flex;"><span>                        <span style="color:#a90d91">echo</span> <span style="color:#c41a16">&#34;Unknown option --</span><span style="color:#c41a16">${</span><span style="color:#000">OPTARG</span><span style="color:#c41a16">}</span><span style="color:#c41a16">&#34;</span> &gt;&amp;<span style="color:#1c01ce">2</span>
-</span></span><span style="display:flex;"><span>                    <span style="color:#a90d91">fi</span>
+</span></span><span style="display:flex;"><span>                *)
+</span></span><span style="display:flex;"><span>                    <span style="color:#f00">if</span> [ <span style="color:#87ceeb">&#34;</span><span style="color:#eedd82">$OPTERR</span><span style="color:#87ceeb">&#34;</span> = <span style="color:#f60">1</span> ] &amp;&amp; [ <span style="color:#87ceeb">&#34;</span><span style="color:#87ceeb">${</span><span style="color:#eedd82">OPTSPEC</span>:<span style="color:#eedd82">0</span>:<span style="color:#eedd82">1</span><span style="color:#87ceeb">}</span><span style="color:#87ceeb">&#34;</span> != <span style="color:#87ceeb">&#34;:&#34;</span> ]; <span style="color:#f00">then</span>
+</span></span><span style="display:flex;"><span>                        echo <span style="color:#87ceeb">&#34;Unknown option --</span><span style="color:#87ceeb">${</span><span style="color:#eedd82">OPTARG</span><span style="color:#87ceeb">}</span><span style="color:#87ceeb">&#34;</span> &gt;&amp;<span style="color:#f60">2</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#f00">fi</span>
 </span></span><span style="display:flex;"><span>                    ;;
-</span></span><span style="display:flex;"><span>            <span style="color:#a90d91">esac</span>;;
-</span></span><span style="display:flex;"><span>        h<span style="color:#000">)</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#a90d91">echo</span> <span style="color:#c41a16">&#34;usage: </span><span style="color:#000">$0</span><span style="color:#c41a16"> [-v] [--loglevel[=]&lt;value&gt;]&#34;</span> &gt;&amp;<span style="color:#1c01ce">2</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#a90d91">exit</span> <span style="color:#1c01ce">2</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f00">esac</span>;;
+</span></span><span style="display:flex;"><span>        h)
+</span></span><span style="display:flex;"><span>            echo <span style="color:#87ceeb">&#34;usage: </span><span style="color:#eedd82">$0</span><span style="color:#87ceeb"> [-v] [--loglevel[=]&lt;value&gt;]&#34;</span> &gt;&amp;<span style="color:#f60">2</span>
+</span></span><span style="display:flex;"><span>            exit <span style="color:#f60">2</span>
 </span></span><span style="display:flex;"><span>            ;;
-</span></span><span style="display:flex;"><span>        v<span style="color:#000">)</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#a90d91">echo</span> <span style="color:#c41a16">&#34;Parsing option: &#39;-</span><span style="color:#c41a16">${</span><span style="color:#000">optchar</span><span style="color:#c41a16">}</span><span style="color:#c41a16">&#39;&#34;</span> &gt;&amp;<span style="color:#1c01ce">2</span>
+</span></span><span style="display:flex;"><span>        v)
+</span></span><span style="display:flex;"><span>            echo <span style="color:#87ceeb">&#34;Parsing option: &#39;-</span><span style="color:#87ceeb">${</span><span style="color:#eedd82">optchar</span><span style="color:#87ceeb">}</span><span style="color:#87ceeb">&#39;&#34;</span> &gt;&amp;<span style="color:#f60">2</span>
 </span></span><span style="display:flex;"><span>            ;;
-</span></span><span style="display:flex;"><span>        *<span style="color:#000">)</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#a90d91">if</span> <span style="color:#000">[</span> <span style="color:#c41a16">&#34;</span><span style="color:#000">$OPTERR</span><span style="color:#c41a16">&#34;</span> !<span style="color:#000">=</span> <span style="color:#1c01ce">1</span> <span style="color:#000">]</span> <span style="color:#000">||</span> <span style="color:#000">[</span> <span style="color:#c41a16">&#34;</span><span style="color:#c41a16">${</span><span style="color:#000">OPTSPEC</span>:<span style="color:#000">0</span>:<span style="color:#000">1</span><span style="color:#c41a16">}</span><span style="color:#c41a16">&#34;</span> <span style="color:#000">=</span> <span style="color:#c41a16">&#34;:&#34;</span> <span style="color:#000">]</span>; <span style="color:#a90d91">then</span>
-</span></span><span style="display:flex;"><span>                <span style="color:#a90d91">echo</span> <span style="color:#c41a16">&#34;Non-option argument: &#39;-</span><span style="color:#c41a16">${</span><span style="color:#000">OPTARG</span><span style="color:#c41a16">}</span><span style="color:#c41a16">&#39;&#34;</span> &gt;&amp;<span style="color:#1c01ce">2</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#a90d91">fi</span>
+</span></span><span style="display:flex;"><span>        *)
+</span></span><span style="display:flex;"><span>            <span style="color:#f00">if</span> [ <span style="color:#87ceeb">&#34;</span><span style="color:#eedd82">$OPTERR</span><span style="color:#87ceeb">&#34;</span> != <span style="color:#f60">1</span> ] || [ <span style="color:#87ceeb">&#34;</span><span style="color:#87ceeb">${</span><span style="color:#eedd82">OPTSPEC</span>:<span style="color:#eedd82">0</span>:<span style="color:#eedd82">1</span><span style="color:#87ceeb">}</span><span style="color:#87ceeb">&#34;</span> = <span style="color:#87ceeb">&#34;:&#34;</span> ]; <span style="color:#f00">then</span>
+</span></span><span style="display:flex;"><span>                echo <span style="color:#87ceeb">&#34;Non-option argument: &#39;-</span><span style="color:#87ceeb">${</span><span style="color:#eedd82">OPTARG</span><span style="color:#87ceeb">}</span><span style="color:#87ceeb">&#39;&#34;</span> &gt;&amp;<span style="color:#f60">2</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f00">fi</span>
 </span></span><span style="display:flex;"><span>            ;;
-</span></span><span style="display:flex;"><span>    <span style="color:#a90d91">esac</span>
-</span></span><span style="display:flex;"><span><span style="color:#a90d91">done</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f00">esac</span>
+</span></span><span style="display:flex;"><span><span style="color:#f00">done</span>
 </span></span></code></pre></div>
     </div>
     <div class="post-footer">

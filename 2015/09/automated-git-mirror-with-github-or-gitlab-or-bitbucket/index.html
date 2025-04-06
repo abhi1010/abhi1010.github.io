@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="author" content="Abhishek Pandey" />
     <meta name="description" content="How to automate git mirror" />
-    <link rel="stylesheet" href="/css/main.min.51f3efdcc017a8960f507421fb803e2abeb64e9e18c517404c94ef605e8ce8aa.css" />
+    <link rel="stylesheet" href="/css/main.min.3fabd88a6b1988deec4988ebf6c9df8b45b30a933ac9db6bfd68596e780921ab.css" />
     
 
     
@@ -133,13 +133,13 @@ This would do the following:</p>
 <li>In a way <code>Shippable</code> doesn&rsquo;t need to know anything about <code>Gitlab</code> which is great</li>
 </ul>
 <p>Here&rsquo;s my <em><strong><code>.gitlab-ci.yml</code></strong></em></p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#000">stages</span>:
-</span></span><span style="display:flex;"><span>  - <span style="color:#1c01ce">deploy</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span>stages:
+</span></span><span style="display:flex;"><span>  - deploy
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#000">Git MIRROR</span>:
-</span></span><span style="display:flex;"><span>  <span style="color:#000">stage</span>: <span style="color:#1c01ce">deploy</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#000">script</span>:
-</span></span><span style="display:flex;"><span>    - <span style="color:#1c01ce">git push --mirror https://BITBUCKET_USERNAME:BITBUCKET_PASSWORD@bitbucket.org/group/repo.git</span></span></span></code></pre></div>
+</span></span><span style="display:flex;"><span>Git MIRROR:
+</span></span><span style="display:flex;"><span>  stage: deploy
+</span></span><span style="display:flex;"><span>  script:
+</span></span><span style="display:flex;"><span>    - git push --mirror https://BITBUCKET_USERNAME:BITBUCKET_PASSWORD@bitbucket.org/group/repo.git</span></span></code></pre></div>
 <p><em>Note:</em> Remember to use variables in <code>Gitlab CI</code> to set up your bitbucket username and password.
 <strong>This had to be done</strong> because you can&rsquo;t have any ssh key from <code>Gitlab</code> to add it to <code>Bitbucket</code></p>
 

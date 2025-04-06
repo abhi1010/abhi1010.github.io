@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="author" content="Abhishek Pandey" />
     <meta name="description" content="Triple Momentum Trading Strategy: A Python Implementation" />
-    <link rel="stylesheet" href="/css/main.min.51f3efdcc017a8960f507421fb803e2abeb64e9e18c517404c94ef605e8ce8aa.css" />
+    <link rel="stylesheet" href="/css/main.min.3fabd88a6b1988deec4988ebf6c9df8b45b30a933ac9db6bfd68596e780921ab.css" />
     
 
     
@@ -104,25 +104,25 @@
 </ul>
 <h3 id="calculating-momentum">Calculating Momentum</h3>
 <p>The heart of the strategy lies in how we calculate momentum:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#a90d91">def</span> <span style="color:#000">calc_returns</span>(<span style="color:#000">df</span>, <span style="color:#000">suffix</span><span style="color:#000">=</span><span style="color:#c41a16">&#39;&#39;</span>):
-</span></span><span style="display:flex;"><span>    <span style="color:#000">df</span> <span style="color:#000">=</span> <span style="color:#000">df</span><span style="color:#000">.</span><span style="color:#000">copy</span>()
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f00">def</span> <span style="color:#ff0">calc_returns</span>(df, suffix=<span style="color:#87ceeb">&#39;&#39;</span>):
+</span></span><span style="display:flex;"><span>    df = df.copy()
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#177500"># Rename columns with suffix</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#000">rename_dict</span> <span style="color:#000">=</span> {<span style="color:#000">col</span>: <span style="color:#c41a16">f</span><span style="color:#c41a16">&#34;</span><span style="color:#c41a16">{</span><span style="color:#000">col</span><span style="color:#c41a16">}{</span><span style="color:#000">suffix</span><span style="color:#c41a16">}</span><span style="color:#c41a16">&#34;</span> <span style="color:#a90d91">for</span> <span style="color:#000">col</span> <span style="color:#000">in</span> <span style="color:#000">df</span><span style="color:#000">.</span><span style="color:#000">columns</span>}
-</span></span><span style="display:flex;"><span>    <span style="color:#000">df</span> <span style="color:#000">=</span> <span style="color:#000">df</span><span style="color:#000">.</span><span style="color:#000">rename</span>(<span style="color:#000">columns</span><span style="color:#000">=</span><span style="color:#000">rename_dict</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#0f0"># Rename columns with suffix</span>
+</span></span><span style="display:flex;"><span>    rename_dict = {col: <span style="color:#87ceeb">f</span><span style="color:#87ceeb">&#34;</span><span style="color:#87ceeb">{</span>col<span style="color:#87ceeb">}{</span>suffix<span style="color:#87ceeb">}</span><span style="color:#87ceeb">&#34;</span> <span style="color:#f00">for</span> col in df.columns}
+</span></span><span style="display:flex;"><span>    df = df.rename(columns=rename_dict)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#177500"># Calculate momentum metrics</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#000">returns_col</span> <span style="color:#000">=</span> <span style="color:#c41a16">f</span><span style="color:#c41a16">&#39;returns</span><span style="color:#c41a16">{</span><span style="color:#000">suffix</span><span style="color:#c41a16">}</span><span style="color:#c41a16">&#39;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#000">mean_col</span> <span style="color:#000">=</span> <span style="color:#c41a16">f</span><span style="color:#c41a16">&#39;mean</span><span style="color:#c41a16">{</span><span style="color:#000">suffix</span><span style="color:#c41a16">}</span><span style="color:#c41a16">&#39;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#000">std_col</span> <span style="color:#000">=</span> <span style="color:#c41a16">f</span><span style="color:#c41a16">&#39;std</span><span style="color:#c41a16">{</span><span style="color:#000">suffix</span><span style="color:#c41a16">}</span><span style="color:#c41a16">&#39;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#000">norm_returns_col</span> <span style="color:#000">=</span> <span style="color:#c41a16">f</span><span style="color:#c41a16">&#39;norm_returns</span><span style="color:#c41a16">{</span><span style="color:#000">suffix</span><span style="color:#c41a16">}</span><span style="color:#c41a16">&#39;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#0f0"># Calculate momentum metrics</span>
+</span></span><span style="display:flex;"><span>    returns_col = <span style="color:#87ceeb">f</span><span style="color:#87ceeb">&#39;returns</span><span style="color:#87ceeb">{</span>suffix<span style="color:#87ceeb">}</span><span style="color:#87ceeb">&#39;</span>
+</span></span><span style="display:flex;"><span>    mean_col = <span style="color:#87ceeb">f</span><span style="color:#87ceeb">&#39;mean</span><span style="color:#87ceeb">{</span>suffix<span style="color:#87ceeb">}</span><span style="color:#87ceeb">&#39;</span>
+</span></span><span style="display:flex;"><span>    std_col = <span style="color:#87ceeb">f</span><span style="color:#87ceeb">&#39;std</span><span style="color:#87ceeb">{</span>suffix<span style="color:#87ceeb">}</span><span style="color:#87ceeb">&#39;</span>
+</span></span><span style="display:flex;"><span>    norm_returns_col = <span style="color:#87ceeb">f</span><span style="color:#87ceeb">&#39;norm_returns</span><span style="color:#87ceeb">{</span>suffix<span style="color:#87ceeb">}</span><span style="color:#87ceeb">&#39;</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#000">df</span>[<span style="color:#000">returns_col</span>] <span style="color:#000">=</span> <span style="color:#000">df</span>[<span style="color:#c41a16">f</span><span style="color:#c41a16">&#39;Close</span><span style="color:#c41a16">{</span><span style="color:#000">suffix</span><span style="color:#c41a16">}</span><span style="color:#c41a16">&#39;</span>]<span style="color:#000">.</span><span style="color:#000">pct_change</span>(<span style="color:#1c01ce">21</span>)  <span style="color:#177500"># 21-day returns</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#000">df</span>[<span style="color:#000">mean_col</span>] <span style="color:#000">=</span> <span style="color:#000">df</span>[<span style="color:#000">returns_col</span>]<span style="color:#000">.</span><span style="color:#000">rolling</span>(<span style="color:#1c01ce">4</span>)<span style="color:#000">.</span><span style="color:#000">mean</span>()        <span style="color:#177500"># 4-period average</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#000">df</span>[<span style="color:#000">std_col</span>] <span style="color:#000">=</span> <span style="color:#000">df</span>[<span style="color:#000">mean_col</span>]<span style="color:#000">.</span><span style="color:#000">rolling</span>(<span style="color:#1c01ce">4</span>)<span style="color:#000">.</span><span style="color:#000">std</span>()             <span style="color:#177500"># Standard deviation</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#000">df</span>[<span style="color:#000">norm_returns_col</span>] <span style="color:#000">=</span> <span style="color:#000">df</span>[<span style="color:#000">mean_col</span>] <span style="color:#000">/</span> <span style="color:#000">df</span>[<span style="color:#000">std_col</span>]       <span style="color:#177500"># Normalized returns</span>
+</span></span><span style="display:flex;"><span>    df[returns_col] = df[<span style="color:#87ceeb">f</span><span style="color:#87ceeb">&#39;Close</span><span style="color:#87ceeb">{</span>suffix<span style="color:#87ceeb">}</span><span style="color:#87ceeb">&#39;</span>].pct_change(<span style="color:#f60">21</span>)  <span style="color:#0f0"># 21-day returns</span>
+</span></span><span style="display:flex;"><span>    df[mean_col] = df[returns_col].rolling(<span style="color:#f60">4</span>).mean()        <span style="color:#0f0"># 4-period average</span>
+</span></span><span style="display:flex;"><span>    df[std_col] = df[mean_col].rolling(<span style="color:#f60">4</span>).std()             <span style="color:#0f0"># Standard deviation</span>
+</span></span><span style="display:flex;"><span>    df[norm_returns_col] = df[mean_col] / df[std_col]       <span style="color:#0f0"># Normalized returns</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#a90d91">return</span> <span style="color:#000">df</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f00">return</span> df
 </span></span></code></pre></div><p>The key metrics here are:</p>
 <ol>
 <li>21-day price returns</li>
@@ -133,43 +133,43 @@
 <p>This normalization helps compare assets with different volatility profiles on equal footing.</p>
 <h3 id="determining-the-best-asset">Determining the Best Asset</h3>
 <p>Once we have the normalized returns for each asset, we simply identify which one has the highest value:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#177500"># Calculate highest returns using aligned comparisons</span>
-</span></span><span style="display:flex;"><span><span style="color:#000">df_merged</span>[<span style="color:#c41a16">&#39;norm_returns_first_is_highest&#39;</span>] <span style="color:#000">=</span> ((<span style="color:#000">norm_first</span> <span style="color:#000">&gt;</span> <span style="color:#000">norm_second</span>) <span style="color:#000">&amp;</span>
-</span></span><span style="display:flex;"><span>                                             (<span style="color:#000">norm_first</span> <span style="color:#000">&gt;</span> <span style="color:#000">norm_third</span>))
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#0f0"># Calculate highest returns using aligned comparisons</span>
+</span></span><span style="display:flex;"><span>df_merged[<span style="color:#87ceeb">&#39;norm_returns_first_is_highest&#39;</span>] = ((norm_first &gt; norm_second) &amp;
+</span></span><span style="display:flex;"><span>                                             (norm_first &gt; norm_third))
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#000">df_merged</span>[<span style="color:#c41a16">&#39;norm_returns_second_is_highest&#39;</span>] <span style="color:#000">=</span> ((<span style="color:#000">norm_second</span> <span style="color:#000">&gt;</span> <span style="color:#000">norm_first</span>) <span style="color:#000">&amp;</span>
-</span></span><span style="display:flex;"><span>                                              (<span style="color:#000">norm_second</span> <span style="color:#000">&gt;</span> <span style="color:#000">norm_third</span>))
+</span></span><span style="display:flex;"><span>df_merged[<span style="color:#87ceeb">&#39;norm_returns_second_is_highest&#39;</span>] = ((norm_second &gt; norm_first) &amp;
+</span></span><span style="display:flex;"><span>                                              (norm_second &gt; norm_third))
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#000">df_merged</span>[<span style="color:#c41a16">&#39;norm_returns_third_is_highest&#39;</span>] <span style="color:#000">=</span> ((<span style="color:#000">norm_third</span> <span style="color:#000">&gt;</span> <span style="color:#000">norm_first</span>) <span style="color:#000">&amp;</span>
-</span></span><span style="display:flex;"><span>                                             (<span style="color:#000">norm_third</span> <span style="color:#000">&gt;</span> <span style="color:#000">norm_second</span>))
+</span></span><span style="display:flex;"><span>df_merged[<span style="color:#87ceeb">&#39;norm_returns_third_is_highest&#39;</span>] = ((norm_third &gt; norm_first) &amp;
+</span></span><span style="display:flex;"><span>                                             (norm_third &gt; norm_second))
 </span></span></code></pre></div><h3 id="portfolio-management">Portfolio Management</h3>
 <p>The strategy then calculates portfolio metrics based on the chosen asset:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#177500"># Calculate strategy returns (only one position will be active at a time)</span>
-</span></span><span style="display:flex;"><span><span style="color:#000">df</span>[<span style="color:#c41a16">&#39;strategy_returns&#39;</span>] <span style="color:#000">=</span> (
-</span></span><span style="display:flex;"><span>    <span style="color:#000">df</span>[<span style="color:#c41a16">&#39;first_position&#39;</span>]<span style="color:#000">.</span><span style="color:#000">shift</span>(<span style="color:#1c01ce">1</span>) <span style="color:#000">*</span> <span style="color:#000">df</span>[<span style="color:#c41a16">&#39;first_returns&#39;</span>] <span style="color:#000">+</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#000">df</span>[<span style="color:#c41a16">&#39;second_position&#39;</span>]<span style="color:#000">.</span><span style="color:#000">shift</span>(<span style="color:#1c01ce">1</span>) <span style="color:#000">*</span> <span style="color:#000">df</span>[<span style="color:#c41a16">&#39;second_returns&#39;</span>] <span style="color:#000">+</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#000">df</span>[<span style="color:#c41a16">&#39;third_position&#39;</span>]<span style="color:#000">.</span><span style="color:#000">shift</span>(<span style="color:#1c01ce">1</span>) <span style="color:#000">*</span> <span style="color:#000">df</span>[<span style="color:#c41a16">&#39;third_returns&#39;</span>])
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#0f0"># Calculate strategy returns (only one position will be active at a time)</span>
+</span></span><span style="display:flex;"><span>df[<span style="color:#87ceeb">&#39;strategy_returns&#39;</span>] = (
+</span></span><span style="display:flex;"><span>    df[<span style="color:#87ceeb">&#39;first_position&#39;</span>].shift(<span style="color:#f60">1</span>) * df[<span style="color:#87ceeb">&#39;first_returns&#39;</span>] +
+</span></span><span style="display:flex;"><span>    df[<span style="color:#87ceeb">&#39;second_position&#39;</span>].shift(<span style="color:#f60">1</span>) * df[<span style="color:#87ceeb">&#39;second_returns&#39;</span>] +
+</span></span><span style="display:flex;"><span>    df[<span style="color:#87ceeb">&#39;third_position&#39;</span>].shift(<span style="color:#f60">1</span>) * df[<span style="color:#87ceeb">&#39;third_returns&#39;</span>])
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#000">df</span>[<span style="color:#c41a16">&#39;cumulative_returns&#39;</span>] <span style="color:#000">=</span> (<span style="color:#1c01ce">1</span> <span style="color:#000">+</span> <span style="color:#000">df</span>[<span style="color:#c41a16">&#39;strategy_returns&#39;</span>])<span style="color:#000">.</span><span style="color:#000">cumprod</span>()
-</span></span><span style="display:flex;"><span><span style="color:#000">df</span>[<span style="color:#c41a16">&#39;portfolio_value&#39;</span>] <span style="color:#000">=</span> <span style="color:#000">initial_capital</span> <span style="color:#000">*</span> <span style="color:#000">df</span>[<span style="color:#c41a16">&#39;cumulative_returns&#39;</span>]
+</span></span><span style="display:flex;"><span>df[<span style="color:#87ceeb">&#39;cumulative_returns&#39;</span>] = (<span style="color:#f60">1</span> + df[<span style="color:#87ceeb">&#39;strategy_returns&#39;</span>]).cumprod()
+</span></span><span style="display:flex;"><span>df[<span style="color:#87ceeb">&#39;portfolio_value&#39;</span>] = initial_capital * df[<span style="color:#87ceeb">&#39;cumulative_returns&#39;</span>]
 </span></span></code></pre></div><p>Notice that we use <code>shift(1)</code> to ensure we&rsquo;re making decisions based on previous signals, not current ones, avoiding look-ahead bias.</p>
 <h2 id="running-the-strategy">Running the Strategy</h2>
 <p>You can run the strategy with different asset combinations. For example:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>python trading/strategies/triple_momentum.py <span style="color:#c41a16">\
-</span></span></span><span style="display:flex;"><span><span style="color:#c41a16"></span>  --main-col NIFTY <span style="color:#c41a16">\
-</span></span></span><span style="display:flex;"><span><span style="color:#c41a16"></span>  --main-ticker ^NSEI <span style="color:#c41a16">\
-</span></span></span><span style="display:flex;"><span><span style="color:#c41a16"></span>  --alt-col USDINR <span style="color:#c41a16">\
-</span></span></span><span style="display:flex;"><span><span style="color:#c41a16"></span>  --alt-ticker <span style="color:#000">USDINR</span><span style="color:#000">=</span>X <span style="color:#c41a16">\
-</span></span></span><span style="display:flex;"><span><span style="color:#c41a16"></span>  --third-col GLD <span style="color:#c41a16">\
-</span></span></span><span style="display:flex;"><span><span style="color:#c41a16"></span>  --third-ticker GLD <span style="color:#c41a16">\
-</span></span></span><span style="display:flex;"><span><span style="color:#c41a16"></span>  --output-dir data/triple-momentum <span style="color:#c41a16">\
-</span></span></span><span style="display:flex;"><span><span style="color:#c41a16"></span>  --initial-capital <span style="color:#1c01ce">100000</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>python trading/strategies/triple_momentum.py <span style="color:#87ceeb">\
+</span></span></span><span style="display:flex;"><span><span style="color:#87ceeb"></span>  --main-col NIFTY <span style="color:#87ceeb">\
+</span></span></span><span style="display:flex;"><span><span style="color:#87ceeb"></span>  --main-ticker ^NSEI <span style="color:#87ceeb">\
+</span></span></span><span style="display:flex;"><span><span style="color:#87ceeb"></span>  --alt-col USDINR <span style="color:#87ceeb">\
+</span></span></span><span style="display:flex;"><span><span style="color:#87ceeb"></span>  --alt-ticker <span style="color:#eedd82">USDINR</span>=X <span style="color:#87ceeb">\
+</span></span></span><span style="display:flex;"><span><span style="color:#87ceeb"></span>  --third-col GLD <span style="color:#87ceeb">\
+</span></span></span><span style="display:flex;"><span><span style="color:#87ceeb"></span>  --third-ticker GLD <span style="color:#87ceeb">\
+</span></span></span><span style="display:flex;"><span><span style="color:#87ceeb"></span>  --output-dir data/triple-momentum <span style="color:#87ceeb">\
+</span></span></span><span style="display:flex;"><span><span style="color:#87ceeb"></span>  --initial-capital <span style="color:#f60">100000</span>
 </span></span></code></pre></div><h2 id="results-and-monitoring">Results and Monitoring</h2>
 <p>The code includes functionality to generate notifications about position changes. Here&rsquo;s how the final output looks:</p>
 <pre tabindex="0"><code>Triple Momentum =
 </code></pre><p>Edit: Updated the output to be more readable. Followed by a table showing the prices of the three assets and which one to buy according to the strategy.
 According to this sample below, <code>NIFTY</code> was a good buy on 02-Apr-2025.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>Triple Momentum :
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>Triple Momentum :
 </span></span><span style="display:flex;"><span>               NIFTY  USDINR     GLD     BUY
 </span></span><span style="display:flex;"><span>Date
 </span></span><span style="display:flex;"><span>2024-12-11  24641.80   84.87  250.96   NIFTY

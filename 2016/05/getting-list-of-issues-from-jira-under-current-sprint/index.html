@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="author" content="Abhishek Pandey" />
     <meta name="description" content="Getting all types of issues from JIRA" />
-    <link rel="stylesheet" href="/css/main.min.51f3efdcc017a8960f507421fb803e2abeb64e9e18c517404c94ef605e8ce8aa.css" />
+    <link rel="stylesheet" href="/css/main.min.3fabd88a6b1988deec4988ebf6c9df8b45b30a933ac9db6bfd68596e780921ab.css" />
     
 
     
@@ -103,63 +103,63 @@ You can modify the code easily to suit your needs.</p>
 <pre><code>pip install jira
 </code></pre>
 <h2 id="the-code">The code</h2>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#a90d91">from</span> <span style="color:#000">jira.resources</span> <span style="color:#a90d91">import</span> <span style="color:#000">Issue</span>
-</span></span><span style="display:flex;"><span><span style="color:#a90d91">from</span> <span style="color:#000">jira.client</span> <span style="color:#a90d91">import</span> <span style="color:#000">JIRA</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f00">from</span> jira.resources <span style="color:#f00">import</span> Issue
+</span></span><span style="display:flex;"><span><span style="color:#f00">from</span> jira.client <span style="color:#f00">import</span> JIRA
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#a90d91">def</span> <span style="color:#000">sprints</span>(<span style="color:#000">username</span>, 
-</span></span><span style="display:flex;"><span>            <span style="color:#000">ldp_password</span>,
-</span></span><span style="display:flex;"><span>            <span style="color:#000">sprint_name</span>,
-</span></span><span style="display:flex;"><span>            <span style="color:#000">type_of_issues_to_pull</span><span style="color:#000">=</span>[
-</span></span><span style="display:flex;"><span>                  <span style="color:#c41a16">&#39;completedIssues&#39;</span>, 
-</span></span><span style="display:flex;"><span>                  <span style="color:#c41a16">&#39;incompletedIssues&#39;</span>,
-</span></span><span style="display:flex;"><span>                  <span style="color:#c41a16">&#39;issuesNotCompletedInCurrentSprint&#39;</span>,
-</span></span><span style="display:flex;"><span>                  <span style="color:#c41a16">&#39;issuesCompletedInAnotherSprint&#39;</span>]):
-</span></span><span style="display:flex;"><span>    <span style="color:#a90d91">def</span> <span style="color:#000">sprint_issues</span>(<span style="color:#5b269a">cls</span>, <span style="color:#000">board_id</span>, <span style="color:#000">sprint_id</span>):
-</span></span><span style="display:flex;"><span>        <span style="color:#000">r_json</span> <span style="color:#000">=</span> <span style="color:#5b269a">cls</span><span style="color:#000">.</span><span style="color:#000">_get_json</span>(
-</span></span><span style="display:flex;"><span>            <span style="color:#c41a16">&#39;rapid/charts/sprintreport?rapidViewId=</span><span style="color:#c41a16">%s</span><span style="color:#c41a16">&amp;sprintId=</span><span style="color:#c41a16">%s</span><span style="color:#c41a16">&#39;</span> <span style="color:#000">%</span> (
-</span></span><span style="display:flex;"><span>                <span style="color:#000">board_id</span>, <span style="color:#000">sprint_id</span>),
-</span></span><span style="display:flex;"><span>            <span style="color:#000">base</span><span style="color:#000">=</span><span style="color:#5b269a">cls</span><span style="color:#000">.</span><span style="color:#000">AGILE_BASE_URL</span>)
+</span></span><span style="display:flex;"><span><span style="color:#f00">def</span> <span style="color:#ff0">sprints</span>(username, 
+</span></span><span style="display:flex;"><span>            ldp_password,
+</span></span><span style="display:flex;"><span>            sprint_name,
+</span></span><span style="display:flex;"><span>            type_of_issues_to_pull=[
+</span></span><span style="display:flex;"><span>                  <span style="color:#87ceeb">&#39;completedIssues&#39;</span>, 
+</span></span><span style="display:flex;"><span>                  <span style="color:#87ceeb">&#39;incompletedIssues&#39;</span>,
+</span></span><span style="display:flex;"><span>                  <span style="color:#87ceeb">&#39;issuesNotCompletedInCurrentSprint&#39;</span>,
+</span></span><span style="display:flex;"><span>                  <span style="color:#87ceeb">&#39;issuesCompletedInAnotherSprint&#39;</span>]):
+</span></span><span style="display:flex;"><span>    <span style="color:#f00">def</span> <span style="color:#ff0">sprint_issues</span>(cls, board_id, sprint_id):
+</span></span><span style="display:flex;"><span>        r_json = cls._get_json(
+</span></span><span style="display:flex;"><span>            <span style="color:#87ceeb">&#39;rapid/charts/sprintreport?rapidViewId=</span><span style="color:#87ceeb">%s</span><span style="color:#87ceeb">&amp;sprintId=</span><span style="color:#87ceeb">%s</span><span style="color:#87ceeb">&#39;</span> % (
+</span></span><span style="display:flex;"><span>                board_id, sprint_id),
+</span></span><span style="display:flex;"><span>            base=cls.AGILE_BASE_URL)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        <span style="color:#000">issues</span> <span style="color:#000">=</span> []
-</span></span><span style="display:flex;"><span>        <span style="color:#a90d91">for</span> <span style="color:#000">t</span> <span style="color:#000">in</span> <span style="color:#000">type_of_issues_to_pull</span>:
-</span></span><span style="display:flex;"><span>            <span style="color:#a90d91">if</span> <span style="color:#000">t</span> <span style="color:#000">in</span> <span style="color:#000">r_json</span>[<span style="color:#c41a16">&#39;contents&#39;</span>]:
-</span></span><span style="display:flex;"><span>                <span style="color:#000">issues</span> <span style="color:#000">+=</span> [<span style="color:#000">Issue</span>(<span style="color:#5b269a">cls</span><span style="color:#000">.</span><span style="color:#000">_options</span>, <span style="color:#5b269a">cls</span><span style="color:#000">.</span><span style="color:#000">_session</span>, <span style="color:#000">raw_issues_json</span>)
-</span></span><span style="display:flex;"><span>                           <span style="color:#a90d91">for</span> <span style="color:#000">raw_issues_json</span> <span style="color:#000">in</span>
-</span></span><span style="display:flex;"><span>                           <span style="color:#000">r_json</span>[<span style="color:#c41a16">&#39;contents&#39;</span>][<span style="color:#000">t</span>]]
-</span></span><span style="display:flex;"><span>        <span style="color:#a90d91">return</span> {<span style="color:#000">x</span><span style="color:#000">.</span><span style="color:#000">key</span>: <span style="color:#000">x</span> <span style="color:#a90d91">for</span> <span style="color:#000">x</span> <span style="color:#000">in</span> <span style="color:#000">issues</span>}<span style="color:#000">.</span><span style="color:#000">values</span>()
+</span></span><span style="display:flex;"><span>        issues = []
+</span></span><span style="display:flex;"><span>        <span style="color:#f00">for</span> t in type_of_issues_to_pull:
+</span></span><span style="display:flex;"><span>            <span style="color:#f00">if</span> t in r_json[<span style="color:#87ceeb">&#39;contents&#39;</span>]:
+</span></span><span style="display:flex;"><span>                issues += [Issue(cls._options, cls._session, raw_issues_json)
+</span></span><span style="display:flex;"><span>                           <span style="color:#f00">for</span> raw_issues_json in
+</span></span><span style="display:flex;"><span>                           r_json[<span style="color:#87ceeb">&#39;contents&#39;</span>][t]]
+</span></span><span style="display:flex;"><span>        <span style="color:#f00">return</span> {x.key: x <span style="color:#f00">for</span> x in issues}.values()
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#000">fmt_full</span> <span style="color:#000">=</span> <span style="color:#c41a16">&#39;Sprint: </span><span style="color:#c41a16">{}</span><span style="color:#c41a16"> </span><span style="color:#c41a16">\n\n</span><span style="color:#c41a16">Issues:</span><span style="color:#c41a16">{}</span><span style="color:#c41a16">&#39;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#000">fmt_issues</span> <span style="color:#000">=</span> <span style="color:#c41a16">&#39;</span><span style="color:#c41a16">\n</span><span style="color:#c41a16">- </span><span style="color:#c41a16">{}</span><span style="color:#c41a16">: </span><span style="color:#c41a16">{}</span><span style="color:#c41a16">&#39;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#000">issues_str</span> <span style="color:#000">=</span> <span style="color:#c41a16">&#39;&#39;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#000">milestone_str</span> <span style="color:#000">=</span> <span style="color:#c41a16">&#39;&#39;</span>
+</span></span><span style="display:flex;"><span>    fmt_full = <span style="color:#87ceeb">&#39;Sprint: </span><span style="color:#87ceeb">{}</span><span style="color:#87ceeb"> </span><span style="color:#87ceeb">\n\n</span><span style="color:#87ceeb">Issues:</span><span style="color:#87ceeb">{}</span><span style="color:#87ceeb">&#39;</span>
+</span></span><span style="display:flex;"><span>    fmt_issues = <span style="color:#87ceeb">&#39;</span><span style="color:#87ceeb">\n</span><span style="color:#87ceeb">- </span><span style="color:#87ceeb">{}</span><span style="color:#87ceeb">: </span><span style="color:#87ceeb">{}</span><span style="color:#87ceeb">&#39;</span>
+</span></span><span style="display:flex;"><span>    issues_str = <span style="color:#87ceeb">&#39;&#39;</span>
+</span></span><span style="display:flex;"><span>    milestone_str = <span style="color:#87ceeb">&#39;&#39;</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#000">options</span> <span style="color:#000">=</span> {
-</span></span><span style="display:flex;"><span>        <span style="color:#c41a16">&#39;server&#39;</span>: <span style="color:#c41a16">&#39;http://jira/&#39;</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#c41a16">&#39;verify&#39;</span>: <span style="color:#a90d91">True</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#c41a16">&#39;basic_auth&#39;</span>: (<span style="color:#000">username</span>, <span style="color:#000">ldp_password</span>),
+</span></span><span style="display:flex;"><span>    options = {
+</span></span><span style="display:flex;"><span>        <span style="color:#87ceeb">&#39;server&#39;</span>: <span style="color:#87ceeb">&#39;http://jira/&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#87ceeb">&#39;verify&#39;</span>: <span style="color:#f00">True</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#87ceeb">&#39;basic_auth&#39;</span>: (username, ldp_password),
 </span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>    <span style="color:#000">gh</span> <span style="color:#000">=</span> <span style="color:#000">JIRA</span>(<span style="color:#000">options</span><span style="color:#000">=</span><span style="color:#000">options</span>, <span style="color:#000">basic_auth</span><span style="color:#000">=</span>(<span style="color:#000">username</span>, <span style="color:#000">ldp_password</span>))
+</span></span><span style="display:flex;"><span>    gh = JIRA(options=options, basic_auth=(username, ldp_password))
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#177500"># Get all boards viewable by anonymous users.</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#000">boards</span> <span style="color:#000">=</span> <span style="color:#000">gh</span><span style="color:#000">.</span><span style="color:#000">boards</span>()
-</span></span><span style="display:flex;"><span>    <span style="color:#000">board</span> <span style="color:#000">=</span> [<span style="color:#000">b</span> <span style="color:#a90d91">for</span> <span style="color:#000">b</span> <span style="color:#000">in</span> <span style="color:#000">boards</span> <span style="color:#a90d91">if</span> <span style="color:#000">b</span><span style="color:#000">.</span><span style="color:#000">name</span> <span style="color:#000">==</span> <span style="color:#000">sprint_name</span>][<span style="color:#1c01ce">0</span>]
+</span></span><span style="display:flex;"><span>    <span style="color:#0f0"># Get all boards viewable by anonymous users.</span>
+</span></span><span style="display:flex;"><span>    boards = gh.boards()
+</span></span><span style="display:flex;"><span>    board = [b <span style="color:#f00">for</span> b in boards <span style="color:#f00">if</span> b.name == sprint_name][<span style="color:#f60">0</span>]
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#000">sprints</span> <span style="color:#000">=</span> <span style="color:#000">gh</span><span style="color:#000">.</span><span style="color:#000">sprints</span>(<span style="color:#000">board</span><span style="color:#000">.</span><span style="color:#000">id</span>)
+</span></span><span style="display:flex;"><span>    sprints = gh.sprints(board.id)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#a90d91">for</span> <span style="color:#000">sprint</span> <span style="color:#000">in</span> <span style="color:#a90d91">sorted</span>([<span style="color:#000">s</span> <span style="color:#a90d91">for</span> <span style="color:#000">s</span> <span style="color:#000">in</span> <span style="color:#000">sprints</span>
-</span></span><span style="display:flex;"><span>                   <span style="color:#a90d91">if</span> <span style="color:#000">s</span><span style="color:#000">.</span><span style="color:#000">raw</span>[<span style="color:#c41a16">u</span><span style="color:#c41a16">&#39;state&#39;</span>] <span style="color:#000">==</span> <span style="color:#c41a16">u</span><span style="color:#c41a16">&#39;ACTIVE&#39;</span>],
-</span></span><span style="display:flex;"><span>                <span style="color:#000">key</span> <span style="color:#000">=</span> <span style="color:#a90d91">lambda</span> <span style="color:#000">x</span>: <span style="color:#000">x</span><span style="color:#000">.</span><span style="color:#000">raw</span>[<span style="color:#c41a16">u</span><span style="color:#c41a16">&#39;sequence&#39;</span>]):
-</span></span><span style="display:flex;"><span>        <span style="color:#000">milestone_str</span> <span style="color:#000">=</span> <span style="color:#a90d91">str</span>(<span style="color:#000">sprint</span>)
-</span></span><span style="display:flex;"><span>        <span style="color:#000">issues</span> <span style="color:#000">=</span> <span style="color:#000">sprint_issues</span>(<span style="color:#000">gh</span>, <span style="color:#000">board</span><span style="color:#000">.</span><span style="color:#000">id</span>, <span style="color:#000">sprint</span><span style="color:#000">.</span><span style="color:#000">id</span>)
-</span></span><span style="display:flex;"><span>        <span style="color:#a90d91">for</span> <span style="color:#000">issue</span> <span style="color:#000">in</span> <span style="color:#000">issues</span>:
-</span></span><span style="display:flex;"><span>            <span style="color:#000">issues_str</span> <span style="color:#000">+=</span> <span style="color:#000">fmt_issues</span><span style="color:#000">.</span><span style="color:#000">format</span>(<span style="color:#000">issue</span><span style="color:#000">.</span><span style="color:#000">key</span>, <span style="color:#000">issue</span><span style="color:#000">.</span><span style="color:#000">summary</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#f00">for</span> sprint in sorted([s <span style="color:#f00">for</span> s in sprints
+</span></span><span style="display:flex;"><span>                   <span style="color:#f00">if</span> s.raw[<span style="color:#87ceeb">u</span><span style="color:#87ceeb">&#39;state&#39;</span>] == <span style="color:#87ceeb">u</span><span style="color:#87ceeb">&#39;ACTIVE&#39;</span>],
+</span></span><span style="display:flex;"><span>                key = <span style="color:#f00">lambda</span> x: x.raw[<span style="color:#87ceeb">u</span><span style="color:#87ceeb">&#39;sequence&#39;</span>]):
+</span></span><span style="display:flex;"><span>        milestone_str = str(sprint)
+</span></span><span style="display:flex;"><span>        issues = sprint_issues(gh, board.id, sprint.id)
+</span></span><span style="display:flex;"><span>        <span style="color:#f00">for</span> issue in issues:
+</span></span><span style="display:flex;"><span>            issues_str += fmt_issues.format(issue.key, issue.summary)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#000">result</span> <span style="color:#000">=</span> <span style="color:#000">fmt_full</span><span style="color:#000">.</span><span style="color:#000">format</span>(
-</span></span><span style="display:flex;"><span>        <span style="color:#000">milestone_str</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#000">issues_str</span>
+</span></span><span style="display:flex;"><span>    result = fmt_full.format(
+</span></span><span style="display:flex;"><span>        milestone_str,
+</span></span><span style="display:flex;"><span>        issues_str
 </span></span><span style="display:flex;"><span>    )
-</span></span><span style="display:flex;"><span>    <span style="color:#a90d91">print</span>(<span style="color:#000">result</span>)
-</span></span><span style="display:flex;"><span>    <span style="color:#a90d91">return</span> <span style="color:#000">result</span>
+</span></span><span style="display:flex;"><span>    print(result)
+</span></span><span style="display:flex;"><span>    <span style="color:#f00">return</span> result
 </span></span></code></pre></div><p>You can call the function with the following command:</p>
 <pre><code>sprints(&lt;username&gt;, &lt;password&gt;, &lt;sprint_name&gt;)
 </code></pre>

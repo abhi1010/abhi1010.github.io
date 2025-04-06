@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="author" content="Abhishek Pandey" />
     <meta name="description" content="How to use powerline theme on zsh" />
-    <link rel="stylesheet" href="/css/main.min.51f3efdcc017a8960f507421fb803e2abeb64e9e18c517404c94ef605e8ce8aa.css" />
+    <link rel="stylesheet" href="/css/main.min.3fabd88a6b1988deec4988ebf6c9df8b45b30a933ac9db6bfd68596e780921ab.css" />
     
 
     
@@ -90,25 +90,25 @@
 
 <p>I was having a lot of trouble getting <a href="https://github.com/carlcarl/powerline-zsh"><em>powerline</em></a> to work on my mac machine.
 No matter what I tried, I was getting errors like the following:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>    .oh-my-zsh/themes/powerline.zsh-theme:100: character not in range
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>    .oh-my-zsh/themes/powerline.zsh-theme:100: character not in range
 </span></span></code></pre></div>
 <p>Finally got it to work after multiple attempts on <code>bash</code> and <code>zsh</code>.</p>
 <p>All I had to do was set <code>LC_ALL</code> to <strong>en_US.UTF-8</strong>. It would set all the locales to <code>en_US.UTF-8</code> which
 would allow <code>powerline</code> fonts work properly.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ <span style="color:#a90d91">export</span> <span style="color:#000">LC_ALL</span><span style="color:#000">=</span><span style="color:#c41a16">&#34;en_US.UTF-8&#34;</span>                                                                                                     22:58:06 
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ export <span style="color:#eedd82">LC_ALL</span>=<span style="color:#87ceeb">&#34;en_US.UTF-8&#34;</span>                                                                                                     22:58:06 
 </span></span><span style="display:flex;"><span>$ locale 
-</span></span><span style="display:flex;"><span><span style="color:#000">LANG</span><span style="color:#000">=</span>
-</span></span><span style="display:flex;"><span><span style="color:#000">LC_COLLATE</span><span style="color:#000">=</span><span style="color:#c41a16">&#34;en_US.UTF-8&#34;</span>
-</span></span><span style="display:flex;"><span><span style="color:#000">LC_CTYPE</span><span style="color:#000">=</span><span style="color:#c41a16">&#34;en_US.UTF-8&#34;</span>
-</span></span><span style="display:flex;"><span><span style="color:#000">LC_MESSAGES</span><span style="color:#000">=</span><span style="color:#c41a16">&#34;en_US.UTF-8&#34;</span>
-</span></span><span style="display:flex;"><span><span style="color:#000">LC_MONETARY</span><span style="color:#000">=</span><span style="color:#c41a16">&#34;en_US.UTF-8&#34;</span>
-</span></span><span style="display:flex;"><span><span style="color:#000">LC_NUMERIC</span><span style="color:#000">=</span><span style="color:#c41a16">&#34;en_US.UTF-8&#34;</span>
-</span></span><span style="display:flex;"><span><span style="color:#000">LC_TIME</span><span style="color:#000">=</span><span style="color:#c41a16">&#34;en_US.UTF-8&#34;</span>
-</span></span><span style="display:flex;"><span><span style="color:#000">LC_ALL</span><span style="color:#000">=</span><span style="color:#c41a16">&#34;en_US.UTF-8&#34;</span></span></span></code></pre></div>
+</span></span><span style="display:flex;"><span><span style="color:#eedd82">LANG</span>=
+</span></span><span style="display:flex;"><span><span style="color:#eedd82">LC_COLLATE</span>=<span style="color:#87ceeb">&#34;en_US.UTF-8&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#eedd82">LC_CTYPE</span>=<span style="color:#87ceeb">&#34;en_US.UTF-8&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#eedd82">LC_MESSAGES</span>=<span style="color:#87ceeb">&#34;en_US.UTF-8&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#eedd82">LC_MONETARY</span>=<span style="color:#87ceeb">&#34;en_US.UTF-8&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#eedd82">LC_NUMERIC</span>=<span style="color:#87ceeb">&#34;en_US.UTF-8&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#eedd82">LC_TIME</span>=<span style="color:#87ceeb">&#34;en_US.UTF-8&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#eedd82">LC_ALL</span>=<span style="color:#87ceeb">&#34;en_US.UTF-8&#34;</span></span></span></code></pre></div>
 <p>After this, run the following command to test your fonts again.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#000">LC_CTYPE</span><span style="color:#000">=</span>en_US.UTF-8 <span style="color:#a90d91">echo</span> <span style="color:#c41a16">&#39;\u2603&#39;</span></span></span></code></pre></div>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#eedd82">LC_CTYPE</span>=en_US.UTF-8 echo <span style="color:#87ceeb">&#39;\u2603&#39;</span></span></span></code></pre></div>
 <p>Your command should work with or without <code>LC_CTYPE=en_US.UTF-8</code>. Here&rsquo;s what you expect to see now.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>    ☃</span></span></code></pre></div>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>    ☃</span></span></code></pre></div>
 
     </div>
     <div class="post-footer">

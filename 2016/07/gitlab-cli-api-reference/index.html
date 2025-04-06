@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="author" content="Abhishek Pandey" />
     <meta name="description" content="Gitlab CLI API reference" />
-    <link rel="stylesheet" href="/css/main.min.51f3efdcc017a8960f507421fb803e2abeb64e9e18c517404c94ef605e8ce8aa.css" />
+    <link rel="stylesheet" href="/css/main.min.3fabd88a6b1988deec4988ebf6c9df8b45b30a933ac9db6bfd68596e780921ab.css" />
     
 
     
@@ -91,10 +91,10 @@ both of which have examples here.</p>
 gem install gitlab
 </code></pre>
 <h3 id="configuration">Configuration</h3>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#a90d91">export</span> <span style="color:#000">GITLAB_API_ENDPOINT</span><span style="color:#000">=</span><span style="color:#c41a16">&#39;http://gitlab.com/api/v3&#39;</span>
-</span></span><span style="display:flex;"><span><span style="color:#a90d91">export</span> <span style="color:#000">GITLAB_API_PRIVATE_TOKEN</span><span style="color:#000">=</span><span style="color:#c41a16">&#39;YOUR_TOKEN_&#39;</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>export <span style="color:#eedd82">GITLAB_API_ENDPOINT</span>=<span style="color:#87ceeb">&#39;http://gitlab.com/api/v3&#39;</span>
+</span></span><span style="display:flex;"><span>export <span style="color:#eedd82">GITLAB_API_PRIVATE_TOKEN</span>=<span style="color:#87ceeb">&#39;YOUR_TOKEN_&#39;</span>
 </span></span></code></pre></div><h3 id="available-commands">Available commands</h3>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ gitlab
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ gitlab
 </span></span><span style="display:flex;"><span>+-----------------+
 </span></span><span style="display:flex;"><span>|   Help Topics   |
 </span></span><span style="display:flex;"><span>+-----------------+
@@ -129,44 +129,44 @@ gem install gitlab
 </span></span><span style="display:flex;"><span>| Users           |
 </span></span><span style="display:flex;"><span>+-----------------+
 </span></span></code></pre></div><h3 id="sample-cli-commands">Sample CLI commands</h3>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#177500"># Check the list of Projects</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#0f0"># Check the list of Projects</span>
 </span></span><span style="display:flex;"><span>$ gitlab projects
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#177500"># Based on the response, we know reconwisev2 is ID 487928</span>
-</span></span><span style="display:flex;"><span><span style="color:#177500"># Let&#39;s find out the list of labels in it</span>
-</span></span><span style="display:flex;"><span>$ gitlab labels <span style="color:#1c01ce">487928</span>
+</span></span><span style="display:flex;"><span><span style="color:#0f0"># Based on the response, we know reconwisev2 is ID 487928</span>
+</span></span><span style="display:flex;"><span><span style="color:#0f0"># Let&#39;s find out the list of labels in it</span>
+</span></span><span style="display:flex;"><span>$ gitlab labels <span style="color:#f60">487928</span>
 </span></span><span style="display:flex;"><span>+---------------------+---------+--------------------+--------------+-------------------+---------------------------+------------+
-</span></span><span style="display:flex;"><span>|                                                      Gitlab.labels <span style="color:#1c01ce">487928</span>                                                      |
+</span></span><span style="display:flex;"><span>|                                                      Gitlab.labels <span style="color:#f60">487928</span>                                                      |
 </span></span><span style="display:flex;"><span>+---------------------+---------+--------------------+--------------+-------------------+---------------------------+------------+
 </span></span><span style="display:flex;"><span>| closed_issues_count | color   | description        | name         | open_issues_count | open_merge_requests_count | subscribed |
 </span></span><span style="display:flex;"><span>+---------------------+---------+--------------------+--------------+-------------------+---------------------------+------------+
-</span></span><span style="display:flex;"><span>| <span style="color:#1c01ce">2</span>                   | <span style="color:#177500">#ff0000 | null               | !Blocker     | 0                 | 0                         | false      |</span>
+</span></span><span style="display:flex;"><span>| <span style="color:#f60">2</span>                   | <span style="color:#0f0">#ff0000 | null               | !Blocker     | 0                 | 0                         | false      |</span>
 </span></span><span style="display:flex;"><span>+---------------------+---------+--------------------+--------------+-------------------+---------------------------+------------+
-</span></span><span style="display:flex;"><span>| <span style="color:#1c01ce">2</span>                   | <span style="color:#177500">#0033cc | null               | #AWS         | 8                 | 0                         | false      |</span>
+</span></span><span style="display:flex;"><span>| <span style="color:#f60">2</span>                   | <span style="color:#0f0">#0033cc | null               | #AWS         | 8                 | 0                         | false      |</span>
 </span></span><span style="display:flex;"><span>+---------------------+---------+--------------------+--------------+-------------------+---------------------------+------------+
-</span></span><span style="display:flex;"><span>| <span style="color:#1c01ce">27</span>                  | <span style="color:#177500">#428bca | null               | #Bug         | 2                 | 0                         | false      |</span>
+</span></span><span style="display:flex;"><span>| <span style="color:#f60">27</span>                  | <span style="color:#0f0">#428bca | null               | #Bug         | 2                 | 0                         | false      |</span>
 </span></span><span style="display:flex;"><span>+---------------------+---------+--------------------+--------------+-------------------+---------------------------+------------+
-</span></span><span style="display:flex;"><span>| <span style="color:#1c01ce">3</span>                   | <span style="color:#177500">#0033cc | null               | #Feature     | 29                | 0                         | false      |</span>
+</span></span><span style="display:flex;"><span>| <span style="color:#f60">3</span>                   | <span style="color:#0f0">#0033cc | null               | #Feature     | 29                | 0                         | false      |</span>
 </span></span><span style="display:flex;"><span>+---------------------+---------+--------------------+--------------+-------------------+---------------------------+------------+
-</span></span><span style="display:flex;"><span>| <span style="color:#1c01ce">7</span>                   | <span style="color:#177500">#5843ad | null               | #Improvement | 22                | 0                         | false      |</span>
+</span></span><span style="display:flex;"><span>| <span style="color:#f60">7</span>                   | <span style="color:#0f0">#5843ad | null               | #Improvement | 22                | 0                         | false      |</span>
 </span></span><span style="display:flex;"><span>+---------------------+---------+--------------------+--------------+-------------------+---------------------------+------------+
-</span></span><span style="display:flex;"><span>| <span style="color:#1c01ce">1</span>                   | <span style="color:#177500">#428bca |                    | #Support     | 1                 | 0                         | false      |</span>
+</span></span><span style="display:flex;"><span>| <span style="color:#f60">1</span>                   | <span style="color:#0f0">#428bca |                    | #Support     | 1                 | 0                         | false      |</span>
 </span></span><span style="display:flex;"><span>+---------------------+---------+--------------------+--------------+-------------------+---------------------------+------------+
-</span></span><span style="display:flex;"><span>| <span style="color:#1c01ce">28</span>                  | <span style="color:#177500">#f0ad4e | null               | $GH          | 12                | 0                         | false      |</span>
+</span></span><span style="display:flex;"><span>| <span style="color:#f60">28</span>                  | <span style="color:#0f0">#f0ad4e | null               | $GH          | 12                | 0                         | false      |</span>
 </span></span><span style="display:flex;"><span>+---------------------+---------+--------------------+--------------+-------------------+---------------------------+------------+
-</span></span><span style="display:flex;"><span>| <span style="color:#1c01ce">0</span>                   | <span style="color:#177500">#f0ad4e |                    | $IFAST       | 4                 | 0                         | false      |</span>
+</span></span><span style="display:flex;"><span>| <span style="color:#f60">0</span>                   | <span style="color:#0f0">#f0ad4e |                    | $IFAST       | 4                 | 0                         | false      |</span>
 </span></span><span style="display:flex;"><span>+---------------------+---------+--------------------+--------------+-------------------+---------------------------+------------+
-</span></span><span style="display:flex;"><span>| <span style="color:#1c01ce">25</span>                  | <span style="color:#177500">#ff0000 | null               | 1-Critical   | 7                 | 0                         | false      |</span>
+</span></span><span style="display:flex;"><span>| <span style="color:#f60">25</span>                  | <span style="color:#0f0">#ff0000 | null               | 1-Critical   | 7                 | 0                         | false      |</span>
 </span></span><span style="display:flex;"><span>+---------------------+---------+--------------------+--------------+-------------------+---------------------------+------------+
-</span></span><span style="display:flex;"><span>| <span style="color:#1c01ce">2</span>                   | <span style="color:#177500">#ad4363 | null               | 2-Important  | 20                | 0                         | false      |</span>
+</span></span><span style="display:flex;"><span>| <span style="color:#f60">2</span>                   | <span style="color:#0f0">#ad4363 | null               | 2-Important  | 20                | 0                         | false      |</span>
 </span></span><span style="display:flex;"><span>+---------------------+---------+--------------------+--------------+-------------------+---------------------------+------------+
-</span></span><span style="display:flex;"><span>| <span style="color:#1c01ce">5</span>                   | <span style="color:#177500">#ad4363 | null               | 3-Normal     | 18                | 0                         | false      |</span>
+</span></span><span style="display:flex;"><span>| <span style="color:#f60">5</span>                   | <span style="color:#0f0">#ad4363 | null               | 3-Normal     | 18                | 0                         | false      |</span>
 </span></span><span style="display:flex;"><span>+---------------------+---------+--------------------+--------------+-------------------+---------------------------+------------+
-</span></span><span style="display:flex;"><span>| <span style="color:#1c01ce">2</span>                   | <span style="color:#177500">#d491a5 |                    | 4-Trivial    | 6                 | 0                         | false      |</span>
+</span></span><span style="display:flex;"><span>| <span style="color:#f60">2</span>                   | <span style="color:#0f0">#d491a5 |                    | 4-Trivial    | 6                 | 0                         | false      |</span>
 </span></span><span style="display:flex;"><span>+---------------------+---------+--------------------+--------------+-------------------+---------------------------+------------+
-</span></span><span style="display:flex;"><span>| <span style="color:#1c01ce">0</span>                   | <span style="color:#177500">#a8d695 | null               | ^In-Progress | 3                 | 1                         | false      |</span>
+</span></span><span style="display:flex;"><span>| <span style="color:#f60">0</span>                   | <span style="color:#0f0">#a8d695 | null               | ^In-Progress | 3                 | 1                         | false      |</span>
 </span></span><span style="display:flex;"><span>+---------------------+---------+--------------------+--------------+-------------------+---------------------------+------------+
-</span></span><span style="display:flex;"><span>| <span style="color:#1c01ce">0</span>                   | <span style="color:#177500">#69d100 | Completed/Finished | ^Resolved    | 0                 | 1                         | false      |</span>
+</span></span><span style="display:flex;"><span>| <span style="color:#f60">0</span>                   | <span style="color:#0f0">#69d100 | Completed/Finished | ^Resolved    | 0                 | 1                         | false      |</span>
 </span></span><span style="display:flex;"><span>+---------------------+---------+--------------------+--------------+-------------------+---------------------------+------------+
 </span></span></code></pre></div><h3 id="sample-curl-commands">Sample CURL commands</h3>
 <p><strong>Check the list of Projects</strong></p>
@@ -178,36 +178,36 @@ Let&rsquo;s find out the list of labels in it.</p>
 <pre><code>https://gitlab.com/api/v3/projects/487928/labels/?private_token=YOUR_TOKEN
 </code></pre>
 <p>The response is a bit like this:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>[
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>[
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    {
-</span></span><span style="display:flex;"><span>        <span style="color:#000">&#34;name&#34;</span>: <span style="color:#c41a16">&#34;!Blocker&#34;</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#000">&#34;color&#34;</span>: <span style="color:#c41a16">&#34;#ff0000&#34;</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#000">&#34;description&#34;</span>: <span style="color:#a90d91">null</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#000">&#34;open_issues_count&#34;</span>: <span style="color:#1c01ce">0</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#000">&#34;closed_issues_count&#34;</span>: <span style="color:#1c01ce">2</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#000">&#34;open_merge_requests_count&#34;</span>: <span style="color:#1c01ce">0</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#000">&#34;subscribed&#34;</span>: <span style="color:#a90d91">false</span>
+</span></span><span style="display:flex;"><span>        &#34;name&#34;: <span style="color:#87ceeb">&#34;!Blocker&#34;</span>,
+</span></span><span style="display:flex;"><span>        &#34;color&#34;: <span style="color:#87ceeb">&#34;#ff0000&#34;</span>,
+</span></span><span style="display:flex;"><span>        &#34;description&#34;: <span style="color:#f00">null</span>,
+</span></span><span style="display:flex;"><span>        &#34;open_issues_count&#34;: <span style="color:#f60">0</span>,
+</span></span><span style="display:flex;"><span>        &#34;closed_issues_count&#34;: <span style="color:#f60">2</span>,
+</span></span><span style="display:flex;"><span>        &#34;open_merge_requests_count&#34;: <span style="color:#f60">0</span>,
+</span></span><span style="display:flex;"><span>        &#34;subscribed&#34;: <span style="color:#f00">false</span>
 </span></span><span style="display:flex;"><span>    },
 </span></span><span style="display:flex;"><span>    {
-</span></span><span style="display:flex;"><span>        <span style="color:#000">&#34;name&#34;</span>: <span style="color:#c41a16">&#34;#AWS&#34;</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#000">&#34;color&#34;</span>: <span style="color:#c41a16">&#34;#0033cc&#34;</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#000">&#34;description&#34;</span>: <span style="color:#a90d91">null</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#000">&#34;open_issues_count&#34;</span>: <span style="color:#1c01ce">8</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#000">&#34;closed_issues_count&#34;</span>: <span style="color:#1c01ce">2</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#000">&#34;open_merge_requests_count&#34;</span>: <span style="color:#1c01ce">0</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#000">&#34;subscribed&#34;</span>: <span style="color:#a90d91">false</span>
+</span></span><span style="display:flex;"><span>        &#34;name&#34;: <span style="color:#87ceeb">&#34;#AWS&#34;</span>,
+</span></span><span style="display:flex;"><span>        &#34;color&#34;: <span style="color:#87ceeb">&#34;#0033cc&#34;</span>,
+</span></span><span style="display:flex;"><span>        &#34;description&#34;: <span style="color:#f00">null</span>,
+</span></span><span style="display:flex;"><span>        &#34;open_issues_count&#34;: <span style="color:#f60">8</span>,
+</span></span><span style="display:flex;"><span>        &#34;closed_issues_count&#34;: <span style="color:#f60">2</span>,
+</span></span><span style="display:flex;"><span>        &#34;open_merge_requests_count&#34;: <span style="color:#f60">0</span>,
+</span></span><span style="display:flex;"><span>        &#34;subscribed&#34;: <span style="color:#f00">false</span>
 </span></span><span style="display:flex;"><span>    },
 </span></span><span style="display:flex;"><span>    {
-</span></span><span style="display:flex;"><span>        <span style="color:#000">&#34;name&#34;</span>: <span style="color:#c41a16">&#34;#Bug&#34;</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#000">&#34;color&#34;</span>: <span style="color:#c41a16">&#34;#428bca&#34;</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#000">&#34;description&#34;</span>: <span style="color:#a90d91">null</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#000">&#34;open_issues_count&#34;</span>: <span style="color:#1c01ce">2</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#000">&#34;closed_issues_count&#34;</span>: <span style="color:#1c01ce">27</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#000">&#34;open_merge_requests_count&#34;</span>: <span style="color:#1c01ce">0</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#000">&#34;subscribed&#34;</span>: <span style="color:#a90d91">false</span>
+</span></span><span style="display:flex;"><span>        &#34;name&#34;: <span style="color:#87ceeb">&#34;#Bug&#34;</span>,
+</span></span><span style="display:flex;"><span>        &#34;color&#34;: <span style="color:#87ceeb">&#34;#428bca&#34;</span>,
+</span></span><span style="display:flex;"><span>        &#34;description&#34;: <span style="color:#f00">null</span>,
+</span></span><span style="display:flex;"><span>        &#34;open_issues_count&#34;: <span style="color:#f60">2</span>,
+</span></span><span style="display:flex;"><span>        &#34;closed_issues_count&#34;: <span style="color:#f60">27</span>,
+</span></span><span style="display:flex;"><span>        &#34;open_merge_requests_count&#34;: <span style="color:#f60">0</span>,
+</span></span><span style="display:flex;"><span>        &#34;subscribed&#34;: <span style="color:#f00">false</span>
 </span></span><span style="display:flex;"><span>    },
-</span></span><span style="display:flex;"><span>    <span style="color:#000">....</span>
+</span></span><span style="display:flex;"><span>    ....
 </span></span></code></pre></div><p>More documentation is available <a href="https://github.com/gitlabhq/gitlabhq/tree/master/doc/api">here</a></p>
 
     </div>

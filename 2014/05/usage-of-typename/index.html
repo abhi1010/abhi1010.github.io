@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="author" content="Abhishek Pandey" />
     <meta name="description" content="Typename tutorial" />
-    <link rel="stylesheet" href="/css/main.min.51f3efdcc017a8960f507421fb803e2abeb64e9e18c517404c94ef605e8ce8aa.css" />
+    <link rel="stylesheet" href="/css/main.min.3fabd88a6b1988deec4988ebf6c9df8b45b30a933ac9db6bfd68596e780921ab.css" />
     
 
     
@@ -81,9 +81,10 @@
     </header>
     <div class="post-content">
       <p>What is wrong with the following code?</p>
-<script src="https://gist.github.com/0bd5e4d910e4d8a7672e/.js"></script>
+<script dark-style="true"
+  src="https://gist.github.com/abhi1010/0bd5e4d910e4d8a7672e.js"></script>
 <p>The issue is very simple but hard to notice. If you try to compile this, you will get the following errors:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>    main.cpp:24:5: error: need &#39;typename&#39; before &#39;OuterStruct&lt;T2&gt;::InnerStruct&#39; because &#39;OuterStruct&lt;T2&gt;&#39; is a dependent scope
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>    main.cpp:24:5: error: need &#39;typename&#39; before &#39;OuterStruct&lt;T2&gt;::InnerStruct&#39; because &#39;OuterStruct&lt;T2&gt;&#39; is a dependent scope
 </span></span><span style="display:flex;"><span>    OuterStruct&lt;T2&gt;::InnerStruct mUsingInner;
 </span></span><span style="display:flex;"><span>    ^
 </span></span><span style="display:flex;"><span>    main.cpp: In function &#39;int main(int, char**)&#39;:

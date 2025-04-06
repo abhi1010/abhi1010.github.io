@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="author" content="Abhishek Pandey" />
     <meta name="description" content="Integrating Google Sheets API with pandas DataFrames in Python" />
-    <link rel="stylesheet" href="/css/main.min.51f3efdcc017a8960f507421fb803e2abeb64e9e18c517404c94ef605e8ce8aa.css" />
+    <link rel="stylesheet" href="/css/main.min.3fabd88a6b1988deec4988ebf6c9df8b45b30a933ac9db6bfd68596e780921ab.css" />
     
 
     
@@ -95,169 +95,169 @@
 </ol>
 <h2 id="setting-up-authentication">Setting Up Authentication</h2>
 <p>The first step is authentication. Google uses OAuth 2.0 to allow your application to access its APIs. Here&rsquo;s how to set it up:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#a90d91">import</span> <span style="color:#000">os</span>
-</span></span><span style="display:flex;"><span><span style="color:#a90d91">import</span> <span style="color:#000">pandas</span> <span style="color:#a90d91">as</span> <span style="color:#000">pd</span>
-</span></span><span style="display:flex;"><span><span style="color:#a90d91">from</span> <span style="color:#000">google.oauth2.credentials</span> <span style="color:#a90d91">import</span> <span style="color:#000">Credentials</span>
-</span></span><span style="display:flex;"><span><span style="color:#a90d91">from</span> <span style="color:#000">google_auth_oauthlib.flow</span> <span style="color:#a90d91">import</span> <span style="color:#000">InstalledAppFlow</span>
-</span></span><span style="display:flex;"><span><span style="color:#a90d91">from</span> <span style="color:#000">google.auth.transport.requests</span> <span style="color:#a90d91">import</span> <span style="color:#000">Request</span>
-</span></span><span style="display:flex;"><span><span style="color:#a90d91">from</span> <span style="color:#000">googleapiclient.discovery</span> <span style="color:#a90d91">import</span> <span style="color:#000">build</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f00">import</span> os
+</span></span><span style="display:flex;"><span><span style="color:#f00">import</span> pandas <span style="color:#f00">as</span> pd
+</span></span><span style="display:flex;"><span><span style="color:#f00">from</span> google.oauth2.credentials <span style="color:#f00">import</span> Credentials
+</span></span><span style="display:flex;"><span><span style="color:#f00">from</span> google_auth_oauthlib.flow <span style="color:#f00">import</span> InstalledAppFlow
+</span></span><span style="display:flex;"><span><span style="color:#f00">from</span> google.auth.transport.requests <span style="color:#f00">import</span> Request
+</span></span><span style="display:flex;"><span><span style="color:#f00">from</span> googleapiclient.discovery <span style="color:#f00">import</span> build
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#177500"># Define the scopes</span>
-</span></span><span style="display:flex;"><span><span style="color:#000">SCOPES</span> <span style="color:#000">=</span> [<span style="color:#c41a16">&#39;https://www.googleapis.com/auth/spreadsheets&#39;</span>]
+</span></span><span style="display:flex;"><span><span style="color:#0f0"># Define the scopes</span>
+</span></span><span style="display:flex;"><span>SCOPES = [<span style="color:#87ceeb">&#39;https://www.googleapis.com/auth/spreadsheets&#39;</span>]
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#177500"># Path to your OAuth credentials file</span>
-</span></span><span style="display:flex;"><span><span style="color:#000">SERVICE_ACCOUNT_FILE</span> <span style="color:#000">=</span> <span style="color:#c41a16">&#39;path/to/google-sheets.json&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#0f0"># Path to your OAuth credentials file</span>
+</span></span><span style="display:flex;"><span>SERVICE_ACCOUNT_FILE = <span style="color:#87ceeb">&#39;path/to/google-sheets.json&#39;</span>
 </span></span></code></pre></div><h2 id="creating-a-google-sheets-api-wrapper">Creating a Google Sheets API Wrapper</h2>
 <p>Let&rsquo;s create a class that handles authentication and provides methods for reading and updating spreadsheets:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#a90d91">class</span> <span style="color:#3f6e75">GoogleSheetsApi</span>:
-</span></span><span style="display:flex;"><span>    <span style="color:#a90d91">def</span> <span style="color:#000">__init__</span>(<span style="color:#5b269a">self</span>) <span style="color:#000">-&gt;</span> <span style="color:#a90d91">None</span>:
-</span></span><span style="display:flex;"><span>        <span style="color:#000">creds</span> <span style="color:#000">=</span> <span style="color:#a90d91">None</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f00">class</span> GoogleSheetsApi:
+</span></span><span style="display:flex;"><span>    <span style="color:#f00">def</span> __init__(self) -&gt; <span style="color:#f00">None</span>:
+</span></span><span style="display:flex;"><span>        creds = <span style="color:#f00">None</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        <span style="color:#177500"># Check if we have stored credentials</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#a90d91">if</span> <span style="color:#000">os</span><span style="color:#000">.</span><span style="color:#000">path</span><span style="color:#000">.</span><span style="color:#000">exists</span>(<span style="color:#000">SERVICE_ACCOUNT_FILE</span>):
-</span></span><span style="display:flex;"><span>            <span style="color:#000">creds</span> <span style="color:#000">=</span> <span style="color:#000">Credentials</span><span style="color:#000">.</span><span style="color:#000">from_authorized_user_file</span>(
-</span></span><span style="display:flex;"><span>                <span style="color:#000">SERVICE_ACCOUNT_FILE</span>, <span style="color:#000">SCOPES</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#0f0"># Check if we have stored credentials</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f00">if</span> os.path.exists(SERVICE_ACCOUNT_FILE):
+</span></span><span style="display:flex;"><span>            creds = Credentials.from_authorized_user_file(
+</span></span><span style="display:flex;"><span>                SERVICE_ACCOUNT_FILE, SCOPES)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        <span style="color:#177500"># If no valid credentials available, authenticate</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#a90d91">if</span> <span style="color:#000">not</span> <span style="color:#000">creds</span> <span style="color:#000">or</span> <span style="color:#000">not</span> <span style="color:#000">creds</span><span style="color:#000">.</span><span style="color:#000">valid</span>:
-</span></span><span style="display:flex;"><span>            <span style="color:#a90d91">if</span> <span style="color:#000">creds</span> <span style="color:#000">and</span> <span style="color:#000">creds</span><span style="color:#000">.</span><span style="color:#000">expired</span> <span style="color:#000">and</span> <span style="color:#000">creds</span><span style="color:#000">.</span><span style="color:#000">refresh_token</span>:
-</span></span><span style="display:flex;"><span>                <span style="color:#000">creds</span><span style="color:#000">.</span><span style="color:#000">refresh</span>(<span style="color:#000">Request</span>())
-</span></span><span style="display:flex;"><span>            <span style="color:#a90d91">else</span>:
-</span></span><span style="display:flex;"><span>                <span style="color:#177500"># Path to your OAuth client secrets file</span>
-</span></span><span style="display:flex;"><span>                <span style="color:#000">client_secrets_file</span> <span style="color:#000">=</span> <span style="color:#c41a16">&#39;path/to/client_secrets.json&#39;</span>
-</span></span><span style="display:flex;"><span>                <span style="color:#000">flow</span> <span style="color:#000">=</span> <span style="color:#000">InstalledAppFlow</span><span style="color:#000">.</span><span style="color:#000">from_client_secrets_file</span>(
-</span></span><span style="display:flex;"><span>                    <span style="color:#000">client_secrets_file</span>, <span style="color:#000">SCOPES</span>)
-</span></span><span style="display:flex;"><span>                <span style="color:#000">creds</span> <span style="color:#000">=</span> <span style="color:#000">flow</span><span style="color:#000">.</span><span style="color:#000">run_local_server</span>(<span style="color:#000">port</span><span style="color:#000">=</span><span style="color:#1c01ce">0</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#0f0"># If no valid credentials available, authenticate</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f00">if</span> not creds or not creds.valid:
+</span></span><span style="display:flex;"><span>            <span style="color:#f00">if</span> creds and creds.expired and creds.refresh_token:
+</span></span><span style="display:flex;"><span>                creds.refresh(Request())
+</span></span><span style="display:flex;"><span>            <span style="color:#f00">else</span>:
+</span></span><span style="display:flex;"><span>                <span style="color:#0f0"># Path to your OAuth client secrets file</span>
+</span></span><span style="display:flex;"><span>                client_secrets_file = <span style="color:#87ceeb">&#39;path/to/client_secrets.json&#39;</span>
+</span></span><span style="display:flex;"><span>                flow = InstalledAppFlow.from_client_secrets_file(
+</span></span><span style="display:flex;"><span>                    client_secrets_file, SCOPES)
+</span></span><span style="display:flex;"><span>                creds = flow.run_local_server(port=<span style="color:#f60">0</span>)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>            <span style="color:#177500"># Save credentials for future use</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#a90d91">with</span> <span style="color:#a90d91">open</span>(<span style="color:#000">SERVICE_ACCOUNT_FILE</span>, <span style="color:#c41a16">&#34;w&#34;</span>) <span style="color:#a90d91">as</span> <span style="color:#000">token</span>:
-</span></span><span style="display:flex;"><span>                <span style="color:#000">token</span><span style="color:#000">.</span><span style="color:#000">write</span>(<span style="color:#000">creds</span><span style="color:#000">.</span><span style="color:#000">to_json</span>())
+</span></span><span style="display:flex;"><span>            <span style="color:#0f0"># Save credentials for future use</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f00">with</span> open(SERVICE_ACCOUNT_FILE, <span style="color:#87ceeb">&#34;w&#34;</span>) <span style="color:#f00">as</span> token:
+</span></span><span style="display:flex;"><span>                token.write(creds.to_json())
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        <span style="color:#177500"># Initialize the Sheets API service</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#5b269a">self</span><span style="color:#000">.</span><span style="color:#000">service</span> <span style="color:#000">=</span> <span style="color:#000">build</span>(
-</span></span><span style="display:flex;"><span>            <span style="color:#c41a16">&#39;sheets&#39;</span>, <span style="color:#c41a16">&#39;v4&#39;</span>, <span style="color:#000">credentials</span><span style="color:#000">=</span><span style="color:#000">creds</span>, <span style="color:#000">cache_discovery</span><span style="color:#000">=</span><span style="color:#a90d91">False</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#0f0"># Initialize the Sheets API service</span>
+</span></span><span style="display:flex;"><span>        self.service = build(
+</span></span><span style="display:flex;"><span>            <span style="color:#87ceeb">&#39;sheets&#39;</span>, <span style="color:#87ceeb">&#39;v4&#39;</span>, credentials=creds, cache_discovery=<span style="color:#f00">False</span>)
 </span></span></code></pre></div><h2 id="reading-spreadsheet-data-into-a-dataframe">Reading Spreadsheet Data into a DataFrame</h2>
 <p>Now let&rsquo;s create a method to read spreadsheet data into a pandas DataFrame:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#a90d91">def</span> <span style="color:#000">read_sheet_as_df</span>(<span style="color:#5b269a">self</span>, <span style="color:#000">sheet_id</span>, <span style="color:#000">range_name</span><span style="color:#000">=</span><span style="color:#c41a16">&#39;Sheet1!A1:Z100&#39;</span>):
-</span></span><span style="display:flex;"><span>    <span style="color:#c41a16">&#34;&#34;&#34;
-</span></span></span><span style="display:flex;"><span><span style="color:#c41a16">    Reads Google Sheet data into a pandas DataFrame.
-</span></span></span><span style="display:flex;"><span><span style="color:#c41a16">
-</span></span></span><span style="display:flex;"><span><span style="color:#c41a16">    Args:
-</span></span></span><span style="display:flex;"><span><span style="color:#c41a16">        sheet_id (str): The spreadsheet ID (found in the sheet&#39;s URL)
-</span></span></span><span style="display:flex;"><span><span style="color:#c41a16">        range_name (str): The range to read in A1 notation
-</span></span></span><span style="display:flex;"><span><span style="color:#c41a16">
-</span></span></span><span style="display:flex;"><span><span style="color:#c41a16">    Returns:
-</span></span></span><span style="display:flex;"><span><span style="color:#c41a16">        pandas.DataFrame: DataFrame containing the sheet data
-</span></span></span><span style="display:flex;"><span><span style="color:#c41a16">    &#34;&#34;&#34;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#177500"># Call the Sheets API</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#000">sheet</span> <span style="color:#000">=</span> <span style="color:#5b269a">self</span><span style="color:#000">.</span><span style="color:#000">service</span><span style="color:#000">.</span><span style="color:#000">spreadsheets</span>()
-</span></span><span style="display:flex;"><span>    <span style="color:#000">result</span> <span style="color:#000">=</span> <span style="color:#000">sheet</span><span style="color:#000">.</span><span style="color:#000">values</span>()<span style="color:#000">.</span><span style="color:#000">get</span>(
-</span></span><span style="display:flex;"><span>        <span style="color:#000">spreadsheetId</span><span style="color:#000">=</span><span style="color:#000">sheet_id</span>, <span style="color:#a90d91">range</span><span style="color:#000">=</span><span style="color:#000">range_name</span>)<span style="color:#000">.</span><span style="color:#000">execute</span>()
-</span></span><span style="display:flex;"><span>    <span style="color:#000">values</span> <span style="color:#000">=</span> <span style="color:#000">result</span><span style="color:#000">.</span><span style="color:#000">get</span>(<span style="color:#c41a16">&#39;values&#39;</span>, [])
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f00">def</span> <span style="color:#ff0">read_sheet_as_df</span>(self, sheet_id, range_name=<span style="color:#87ceeb">&#39;Sheet1!A1:Z100&#39;</span>):
+</span></span><span style="display:flex;"><span>    <span style="color:#87ceeb">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#87ceeb">    Reads Google Sheet data into a pandas DataFrame.
+</span></span></span><span style="display:flex;"><span><span style="color:#87ceeb">
+</span></span></span><span style="display:flex;"><span><span style="color:#87ceeb">    Args:
+</span></span></span><span style="display:flex;"><span><span style="color:#87ceeb">        sheet_id (str): The spreadsheet ID (found in the sheet&#39;s URL)
+</span></span></span><span style="display:flex;"><span><span style="color:#87ceeb">        range_name (str): The range to read in A1 notation
+</span></span></span><span style="display:flex;"><span><span style="color:#87ceeb">
+</span></span></span><span style="display:flex;"><span><span style="color:#87ceeb">    Returns:
+</span></span></span><span style="display:flex;"><span><span style="color:#87ceeb">        pandas.DataFrame: DataFrame containing the sheet data
+</span></span></span><span style="display:flex;"><span><span style="color:#87ceeb">    &#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#0f0"># Call the Sheets API</span>
+</span></span><span style="display:flex;"><span>    sheet = self.service.spreadsheets()
+</span></span><span style="display:flex;"><span>    result = sheet.values().get(
+</span></span><span style="display:flex;"><span>        spreadsheetId=sheet_id, range=range_name).execute()
+</span></span><span style="display:flex;"><span>    values = result.get(<span style="color:#87ceeb">&#39;values&#39;</span>, [])
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#177500"># Convert to DataFrame if data is present</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#a90d91">if</span> <span style="color:#000">values</span>:
-</span></span><span style="display:flex;"><span>        <span style="color:#000">df</span> <span style="color:#000">=</span> <span style="color:#000">pd</span><span style="color:#000">.</span><span style="color:#000">DataFrame</span>(<span style="color:#000">values</span>[<span style="color:#1c01ce">1</span>:], <span style="color:#000">columns</span><span style="color:#000">=</span><span style="color:#000">values</span>[<span style="color:#1c01ce">0</span>])
-</span></span><span style="display:flex;"><span>        <span style="color:#a90d91">return</span> <span style="color:#000">df</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#a90d91">else</span>:
-</span></span><span style="display:flex;"><span>        <span style="color:#a90d91">print</span>(<span style="color:#c41a16">&#39;No data found.&#39;</span>)
-</span></span><span style="display:flex;"><span>        <span style="color:#a90d91">return</span> <span style="color:#000">pd</span><span style="color:#000">.</span><span style="color:#000">DataFrame</span>()
+</span></span><span style="display:flex;"><span>    <span style="color:#0f0"># Convert to DataFrame if data is present</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f00">if</span> values:
+</span></span><span style="display:flex;"><span>        df = pd.DataFrame(values[<span style="color:#f60">1</span>:], columns=values[<span style="color:#f60">0</span>])
+</span></span><span style="display:flex;"><span>        <span style="color:#f00">return</span> df
+</span></span><span style="display:flex;"><span>    <span style="color:#f00">else</span>:
+</span></span><span style="display:flex;"><span>        print(<span style="color:#87ceeb">&#39;No data found.&#39;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#f00">return</span> pd.DataFrame()
 </span></span></code></pre></div><h2 id="updating-a-spreadsheet-with-dataframe-data">Updating a Spreadsheet with DataFrame Data</h2>
 <p>Just as important as reading data is being able to write data back to Google Sheets:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#a90d91">def</span> <span style="color:#000">update_sheet_with_df</span>(<span style="color:#5b269a">self</span>, <span style="color:#000">sheet_id</span>, <span style="color:#000">df</span>, <span style="color:#000">range_name</span><span style="color:#000">=</span><span style="color:#c41a16">&#39;Sheet1!A1:Z&#39;</span>):
-</span></span><span style="display:flex;"><span>    <span style="color:#c41a16">&#34;&#34;&#34;
-</span></span></span><span style="display:flex;"><span><span style="color:#c41a16">    Updates a Google Sheet with DataFrame data.
-</span></span></span><span style="display:flex;"><span><span style="color:#c41a16">
-</span></span></span><span style="display:flex;"><span><span style="color:#c41a16">    Args:
-</span></span></span><span style="display:flex;"><span><span style="color:#c41a16">        sheet_id (str): The ID of the Google Sheet to update
-</span></span></span><span style="display:flex;"><span><span style="color:#c41a16">        df (pandas.DataFrame): DataFrame containing the data
-</span></span></span><span style="display:flex;"><span><span style="color:#c41a16">        range_name (str): The range to update in A1 notation
-</span></span></span><span style="display:flex;"><span><span style="color:#c41a16">
-</span></span></span><span style="display:flex;"><span><span style="color:#c41a16">    Returns:
-</span></span></span><span style="display:flex;"><span><span style="color:#c41a16">        bool: True if successful, False otherwise
-</span></span></span><span style="display:flex;"><span><span style="color:#c41a16">    &#34;&#34;&#34;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#a90d91">try</span>:
-</span></span><span style="display:flex;"><span>        <span style="color:#177500"># Convert DataFrame to list of lists (including header)</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#000">values</span> <span style="color:#000">=</span> [<span style="color:#000">df</span><span style="color:#000">.</span><span style="color:#000">columns</span><span style="color:#000">.</span><span style="color:#000">tolist</span>()] <span style="color:#000">+</span> <span style="color:#000">df</span><span style="color:#000">.</span><span style="color:#000">values</span><span style="color:#000">.</span><span style="color:#000">tolist</span>()
-</span></span><span style="display:flex;"><span>        <span style="color:#000">body</span> <span style="color:#000">=</span> {<span style="color:#c41a16">&#39;values&#39;</span>: <span style="color:#000">values</span>}
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f00">def</span> <span style="color:#ff0">update_sheet_with_df</span>(self, sheet_id, df, range_name=<span style="color:#87ceeb">&#39;Sheet1!A1:Z&#39;</span>):
+</span></span><span style="display:flex;"><span>    <span style="color:#87ceeb">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#87ceeb">    Updates a Google Sheet with DataFrame data.
+</span></span></span><span style="display:flex;"><span><span style="color:#87ceeb">
+</span></span></span><span style="display:flex;"><span><span style="color:#87ceeb">    Args:
+</span></span></span><span style="display:flex;"><span><span style="color:#87ceeb">        sheet_id (str): The ID of the Google Sheet to update
+</span></span></span><span style="display:flex;"><span><span style="color:#87ceeb">        df (pandas.DataFrame): DataFrame containing the data
+</span></span></span><span style="display:flex;"><span><span style="color:#87ceeb">        range_name (str): The range to update in A1 notation
+</span></span></span><span style="display:flex;"><span><span style="color:#87ceeb">
+</span></span></span><span style="display:flex;"><span><span style="color:#87ceeb">    Returns:
+</span></span></span><span style="display:flex;"><span><span style="color:#87ceeb">        bool: True if successful, False otherwise
+</span></span></span><span style="display:flex;"><span><span style="color:#87ceeb">    &#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f00">try</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#0f0"># Convert DataFrame to list of lists (including header)</span>
+</span></span><span style="display:flex;"><span>        values = [df.columns.tolist()] + df.values.tolist()
+</span></span><span style="display:flex;"><span>        body = {<span style="color:#87ceeb">&#39;values&#39;</span>: values}
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        <span style="color:#177500"># Update the sheet</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#5b269a">self</span><span style="color:#000">.</span><span style="color:#000">service</span><span style="color:#000">.</span><span style="color:#000">spreadsheets</span>()<span style="color:#000">.</span><span style="color:#000">values</span>()<span style="color:#000">.</span><span style="color:#000">update</span>(
-</span></span><span style="display:flex;"><span>            <span style="color:#000">spreadsheetId</span><span style="color:#000">=</span><span style="color:#000">sheet_id</span>,
-</span></span><span style="display:flex;"><span>            <span style="color:#a90d91">range</span><span style="color:#000">=</span><span style="color:#000">range_name</span>,
-</span></span><span style="display:flex;"><span>            <span style="color:#000">valueInputOption</span><span style="color:#000">=</span><span style="color:#c41a16">&#39;RAW&#39;</span>,
-</span></span><span style="display:flex;"><span>            <span style="color:#000">body</span><span style="color:#000">=</span><span style="color:#000">body</span>)<span style="color:#000">.</span><span style="color:#000">execute</span>()
-</span></span><span style="display:flex;"><span>        <span style="color:#a90d91">return</span> <span style="color:#a90d91">True</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#a90d91">except</span> <span style="color:#000">Exception</span> <span style="color:#a90d91">as</span> <span style="color:#000">e</span>:
-</span></span><span style="display:flex;"><span>        <span style="color:#a90d91">print</span>(<span style="color:#c41a16">f</span><span style="color:#c41a16">&#34;Error updating sheet: </span><span style="color:#c41a16">{</span><span style="color:#a90d91">str</span>(<span style="color:#000">e</span>)<span style="color:#c41a16">}</span><span style="color:#c41a16">&#34;</span>)
-</span></span><span style="display:flex;"><span>        <span style="color:#a90d91">return</span> <span style="color:#a90d91">False</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#0f0"># Update the sheet</span>
+</span></span><span style="display:flex;"><span>        self.service.spreadsheets().values().update(
+</span></span><span style="display:flex;"><span>            spreadsheetId=sheet_id,
+</span></span><span style="display:flex;"><span>            range=range_name,
+</span></span><span style="display:flex;"><span>            valueInputOption=<span style="color:#87ceeb">&#39;RAW&#39;</span>,
+</span></span><span style="display:flex;"><span>            body=body).execute()
+</span></span><span style="display:flex;"><span>        <span style="color:#f00">return</span> <span style="color:#f00">True</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f00">except</span> Exception <span style="color:#f00">as</span> e:
+</span></span><span style="display:flex;"><span>        print(<span style="color:#87ceeb">f</span><span style="color:#87ceeb">&#34;Error updating sheet: </span><span style="color:#87ceeb">{</span>str(e)<span style="color:#87ceeb">}</span><span style="color:#87ceeb">&#34;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#f00">return</span> <span style="color:#f00">False</span>
 </span></span></code></pre></div><h2 id="handling-incremental-updates">Handling Incremental Updates</h2>
 <p>A common scenario is needing to append new data without duplicating existing entries. Here&rsquo;s a method that handles this case:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#a90d91">def</span> <span style="color:#000">append_new_rows</span>(<span style="color:#5b269a">self</span>, <span style="color:#000">sheet_id</span>, <span style="color:#000">df</span>, <span style="color:#000">range_name</span><span style="color:#000">=</span><span style="color:#c41a16">&#39;Sheet1!A1:Z&#39;</span>):
-</span></span><span style="display:flex;"><span>    <span style="color:#c41a16">&#34;&#34;&#34;
-</span></span></span><span style="display:flex;"><span><span style="color:#c41a16">    Appends new rows to a Google Sheet, avoiding duplicates based on the first column.
-</span></span></span><span style="display:flex;"><span><span style="color:#c41a16">
-</span></span></span><span style="display:flex;"><span><span style="color:#c41a16">    Args:
-</span></span></span><span style="display:flex;"><span><span style="color:#c41a16">        sheet_id (str): The ID of the Google Sheet to update
-</span></span></span><span style="display:flex;"><span><span style="color:#c41a16">        df (pandas.DataFrame): DataFrame containing the new data
-</span></span></span><span style="display:flex;"><span><span style="color:#c41a16">        range_name (str): The range in A1 notation
-</span></span></span><span style="display:flex;"><span><span style="color:#c41a16">
-</span></span></span><span style="display:flex;"><span><span style="color:#c41a16">    Returns:
-</span></span></span><span style="display:flex;"><span><span style="color:#c41a16">        bool: True if successful, False otherwise
-</span></span></span><span style="display:flex;"><span><span style="color:#c41a16">    &#34;&#34;&#34;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#a90d91">try</span>:
-</span></span><span style="display:flex;"><span>        <span style="color:#177500"># First, read existing data</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#000">existing_df</span> <span style="color:#000">=</span> <span style="color:#5b269a">self</span><span style="color:#000">.</span><span style="color:#000">read_sheet_as_df</span>(<span style="color:#000">sheet_id</span>, <span style="color:#000">range_name</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f00">def</span> <span style="color:#ff0">append_new_rows</span>(self, sheet_id, df, range_name=<span style="color:#87ceeb">&#39;Sheet1!A1:Z&#39;</span>):
+</span></span><span style="display:flex;"><span>    <span style="color:#87ceeb">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#87ceeb">    Appends new rows to a Google Sheet, avoiding duplicates based on the first column.
+</span></span></span><span style="display:flex;"><span><span style="color:#87ceeb">
+</span></span></span><span style="display:flex;"><span><span style="color:#87ceeb">    Args:
+</span></span></span><span style="display:flex;"><span><span style="color:#87ceeb">        sheet_id (str): The ID of the Google Sheet to update
+</span></span></span><span style="display:flex;"><span><span style="color:#87ceeb">        df (pandas.DataFrame): DataFrame containing the new data
+</span></span></span><span style="display:flex;"><span><span style="color:#87ceeb">        range_name (str): The range in A1 notation
+</span></span></span><span style="display:flex;"><span><span style="color:#87ceeb">
+</span></span></span><span style="display:flex;"><span><span style="color:#87ceeb">    Returns:
+</span></span></span><span style="display:flex;"><span><span style="color:#87ceeb">        bool: True if successful, False otherwise
+</span></span></span><span style="display:flex;"><span><span style="color:#87ceeb">    &#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f00">try</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#0f0"># First, read existing data</span>
+</span></span><span style="display:flex;"><span>        existing_df = self.read_sheet_as_df(sheet_id, range_name)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        <span style="color:#a90d91">if</span> <span style="color:#000">existing_df</span><span style="color:#000">.</span><span style="color:#000">empty</span>:
-</span></span><span style="display:flex;"><span>            <span style="color:#177500"># If sheet is empty, write the entire DataFrame including headers</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#a90d91">return</span> <span style="color:#5b269a">self</span><span style="color:#000">.</span><span style="color:#000">update_sheet_with_df</span>(<span style="color:#000">sheet_id</span>, <span style="color:#000">df</span>, <span style="color:#000">range_name</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#f00">if</span> existing_df.empty:
+</span></span><span style="display:flex;"><span>            <span style="color:#0f0"># If sheet is empty, write the entire DataFrame including headers</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f00">return</span> self.update_sheet_with_df(sheet_id, df, range_name)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        <span style="color:#177500"># Get the name of the first column (key column)</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#000">key_col</span> <span style="color:#000">=</span> <span style="color:#000">existing_df</span><span style="color:#000">.</span><span style="color:#000">columns</span>[<span style="color:#1c01ce">0</span>]
+</span></span><span style="display:flex;"><span>        <span style="color:#0f0"># Get the name of the first column (key column)</span>
+</span></span><span style="display:flex;"><span>        key_col = existing_df.columns[<span style="color:#f60">0</span>]
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        <span style="color:#177500"># Find new rows by comparing key column</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#000">existing_keys</span> <span style="color:#000">=</span> <span style="color:#a90d91">set</span>(<span style="color:#000">existing_df</span>[<span style="color:#000">key_col</span>]<span style="color:#000">.</span><span style="color:#000">astype</span>(<span style="color:#a90d91">str</span>))
-</span></span><span style="display:flex;"><span>        <span style="color:#000">new_rows</span> <span style="color:#000">=</span> <span style="color:#000">df</span>[<span style="color:#000">~</span><span style="color:#000">df</span>[<span style="color:#000">key_col</span>]<span style="color:#000">.</span><span style="color:#000">astype</span>(<span style="color:#a90d91">str</span>)<span style="color:#000">.</span><span style="color:#000">isin</span>(<span style="color:#000">existing_keys</span>)]
+</span></span><span style="display:flex;"><span>        <span style="color:#0f0"># Find new rows by comparing key column</span>
+</span></span><span style="display:flex;"><span>        existing_keys = set(existing_df[key_col].astype(str))
+</span></span><span style="display:flex;"><span>        new_rows = df[~df[key_col].astype(str).isin(existing_keys)]
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        <span style="color:#a90d91">if</span> <span style="color:#000">new_rows</span><span style="color:#000">.</span><span style="color:#000">empty</span>:
-</span></span><span style="display:flex;"><span>            <span style="color:#a90d91">print</span>(<span style="color:#c41a16">&#34;No new data to add.&#34;</span>)
-</span></span><span style="display:flex;"><span>            <span style="color:#a90d91">return</span> <span style="color:#a90d91">True</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f00">if</span> new_rows.empty:
+</span></span><span style="display:flex;"><span>            print(<span style="color:#87ceeb">&#34;No new data to add.&#34;</span>)
+</span></span><span style="display:flex;"><span>            <span style="color:#f00">return</span> <span style="color:#f00">True</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        <span style="color:#177500"># Append new rows to the sheet</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#000">start_row</span> <span style="color:#000">=</span> <span style="color:#a90d91">len</span>(<span style="color:#000">existing_df</span>) <span style="color:#000">+</span> <span style="color:#1c01ce">2</span>  <span style="color:#177500"># +1 for header, +1 for next row</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#000">append_range</span> <span style="color:#000">=</span> <span style="color:#c41a16">f</span><span style="color:#c41a16">&#34;</span><span style="color:#c41a16">{</span><span style="color:#000">range_name</span><span style="color:#000">.</span><span style="color:#000">split</span>(<span style="color:#c41a16">&#39;!&#39;</span>)[<span style="color:#1c01ce">0</span>]<span style="color:#c41a16">}</span><span style="color:#c41a16">!A</span><span style="color:#c41a16">{</span><span style="color:#000">start_row</span><span style="color:#c41a16">}</span><span style="color:#c41a16">&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#0f0"># Append new rows to the sheet</span>
+</span></span><span style="display:flex;"><span>        start_row = len(existing_df) + <span style="color:#f60">2</span>  <span style="color:#0f0"># +1 for header, +1 for next row</span>
+</span></span><span style="display:flex;"><span>        append_range = <span style="color:#87ceeb">f</span><span style="color:#87ceeb">&#34;</span><span style="color:#87ceeb">{</span>range_name.split(<span style="color:#87ceeb">&#39;!&#39;</span>)[<span style="color:#f60">0</span>]<span style="color:#87ceeb">}</span><span style="color:#87ceeb">!A</span><span style="color:#87ceeb">{</span>start_row<span style="color:#87ceeb">}</span><span style="color:#87ceeb">&#34;</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        <span style="color:#000">body</span> <span style="color:#000">=</span> {<span style="color:#c41a16">&#39;values&#39;</span>: <span style="color:#000">new_rows</span><span style="color:#000">.</span><span style="color:#000">values</span><span style="color:#000">.</span><span style="color:#000">tolist</span>()}
+</span></span><span style="display:flex;"><span>        body = {<span style="color:#87ceeb">&#39;values&#39;</span>: new_rows.values.tolist()}
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        <span style="color:#5b269a">self</span><span style="color:#000">.</span><span style="color:#000">service</span><span style="color:#000">.</span><span style="color:#000">spreadsheets</span>()<span style="color:#000">.</span><span style="color:#000">values</span>()<span style="color:#000">.</span><span style="color:#000">append</span>(
-</span></span><span style="display:flex;"><span>            <span style="color:#000">spreadsheetId</span><span style="color:#000">=</span><span style="color:#000">sheet_id</span>,
-</span></span><span style="display:flex;"><span>            <span style="color:#a90d91">range</span><span style="color:#000">=</span><span style="color:#000">append_range</span>,
-</span></span><span style="display:flex;"><span>            <span style="color:#000">valueInputOption</span><span style="color:#000">=</span><span style="color:#c41a16">&#39;RAW&#39;</span>,
-</span></span><span style="display:flex;"><span>            <span style="color:#000">insertDataOption</span><span style="color:#000">=</span><span style="color:#c41a16">&#39;INSERT_ROWS&#39;</span>,
-</span></span><span style="display:flex;"><span>            <span style="color:#000">body</span><span style="color:#000">=</span><span style="color:#000">body</span>)<span style="color:#000">.</span><span style="color:#000">execute</span>()
+</span></span><span style="display:flex;"><span>        self.service.spreadsheets().values().append(
+</span></span><span style="display:flex;"><span>            spreadsheetId=sheet_id,
+</span></span><span style="display:flex;"><span>            range=append_range,
+</span></span><span style="display:flex;"><span>            valueInputOption=<span style="color:#87ceeb">&#39;RAW&#39;</span>,
+</span></span><span style="display:flex;"><span>            insertDataOption=<span style="color:#87ceeb">&#39;INSERT_ROWS&#39;</span>,
+</span></span><span style="display:flex;"><span>            body=body).execute()
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        <span style="color:#a90d91">print</span>(<span style="color:#c41a16">f</span><span style="color:#c41a16">&#34;Added </span><span style="color:#c41a16">{</span><span style="color:#a90d91">len</span>(<span style="color:#000">new_rows</span>)<span style="color:#c41a16">}</span><span style="color:#c41a16"> new rows to the sheet.&#34;</span>)
-</span></span><span style="display:flex;"><span>        <span style="color:#a90d91">return</span> <span style="color:#a90d91">True</span>
+</span></span><span style="display:flex;"><span>        print(<span style="color:#87ceeb">f</span><span style="color:#87ceeb">&#34;Added </span><span style="color:#87ceeb">{</span>len(new_rows)<span style="color:#87ceeb">}</span><span style="color:#87ceeb"> new rows to the sheet.&#34;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#f00">return</span> <span style="color:#f00">True</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#a90d91">except</span> <span style="color:#000">Exception</span> <span style="color:#a90d91">as</span> <span style="color:#000">e</span>:
-</span></span><span style="display:flex;"><span>        <span style="color:#a90d91">print</span>(<span style="color:#c41a16">f</span><span style="color:#c41a16">&#34;Error appending to sheet: </span><span style="color:#c41a16">{</span><span style="color:#a90d91">str</span>(<span style="color:#000">e</span>)<span style="color:#c41a16">}</span><span style="color:#c41a16">&#34;</span>)
-</span></span><span style="display:flex;"><span>        <span style="color:#a90d91">return</span> <span style="color:#a90d91">False</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f00">except</span> Exception <span style="color:#f00">as</span> e:
+</span></span><span style="display:flex;"><span>        print(<span style="color:#87ceeb">f</span><span style="color:#87ceeb">&#34;Error appending to sheet: </span><span style="color:#87ceeb">{</span>str(e)<span style="color:#87ceeb">}</span><span style="color:#87ceeb">&#34;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#f00">return</span> <span style="color:#f00">False</span>
 </span></span></code></pre></div><h2 id="putting-it-all-together">Putting It All Together</h2>
 <p>Here&rsquo;s how you might use this API wrapper in practice:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#177500"># Initialize the API wrapper</span>
-</span></span><span style="display:flex;"><span><span style="color:#000">gsheets</span> <span style="color:#000">=</span> <span style="color:#000">GoogleSheetsApi</span>()
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#0f0"># Initialize the API wrapper</span>
+</span></span><span style="display:flex;"><span>gsheets = GoogleSheetsApi()
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#177500"># Read data from a Google Sheet</span>
-</span></span><span style="display:flex;"><span><span style="color:#000">sheet_id</span> <span style="color:#000">=</span> <span style="color:#c41a16">&#39;1LQDvYuV87AJzgik-jBO9ZO5pjpNXfd5LvSoa9Vy6Knk&#39;</span>  <span style="color:#177500"># Replace with your sheet ID</span>
-</span></span><span style="display:flex;"><span><span style="color:#000">df</span> <span style="color:#000">=</span> <span style="color:#000">gsheets</span><span style="color:#000">.</span><span style="color:#000">read_sheet_as_df</span>(<span style="color:#000">sheet_id</span>, <span style="color:#c41a16">&#39;Raw!A1:D100&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#0f0"># Read data from a Google Sheet</span>
+</span></span><span style="display:flex;"><span>sheet_id = <span style="color:#87ceeb">&#39;1LQDvYuV87AJzgik-jBO9ZO5pjpNXfd5LvSoa9Vy6Knk&#39;</span>  <span style="color:#0f0"># Replace with your sheet ID</span>
+</span></span><span style="display:flex;"><span>df = gsheets.read_sheet_as_df(sheet_id, <span style="color:#87ceeb">&#39;Raw!A1:D100&#39;</span>)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#177500"># Process the data with pandas</span>
-</span></span><span style="display:flex;"><span><span style="color:#000">df</span>[<span style="color:#c41a16">&#39;Value&#39;</span>] <span style="color:#000">=</span> <span style="color:#000">pd</span><span style="color:#000">.</span><span style="color:#000">to_numeric</span>(<span style="color:#000">df</span>[<span style="color:#c41a16">&#39;Value&#39;</span>], <span style="color:#000">errors</span><span style="color:#000">=</span><span style="color:#c41a16">&#39;coerce&#39;</span>)
-</span></span><span style="display:flex;"><span><span style="color:#000">summary_df</span> <span style="color:#000">=</span> <span style="color:#000">df</span><span style="color:#000">.</span><span style="color:#000">groupby</span>(<span style="color:#c41a16">&#39;Category&#39;</span>)<span style="color:#000">.</span><span style="color:#000">agg</span>({<span style="color:#c41a16">&#39;Value&#39;</span>: <span style="color:#c41a16">&#39;sum&#39;</span>})<span style="color:#000">.</span><span style="color:#000">reset_index</span>()
+</span></span><span style="display:flex;"><span><span style="color:#0f0"># Process the data with pandas</span>
+</span></span><span style="display:flex;"><span>df[<span style="color:#87ceeb">&#39;Value&#39;</span>] = pd.to_numeric(df[<span style="color:#87ceeb">&#39;Value&#39;</span>], errors=<span style="color:#87ceeb">&#39;coerce&#39;</span>)
+</span></span><span style="display:flex;"><span>summary_df = df.groupby(<span style="color:#87ceeb">&#39;Category&#39;</span>).agg({<span style="color:#87ceeb">&#39;Value&#39;</span>: <span style="color:#87ceeb">&#39;sum&#39;</span>}).reset_index()
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#177500"># Write the summary back to another sheet in the same spreadsheet</span>
-</span></span><span style="display:flex;"><span><span style="color:#000">gsheets</span><span style="color:#000">.</span><span style="color:#000">update_sheet_with_df</span>(<span style="color:#000">sheet_id</span>, <span style="color:#000">summary_df</span>, <span style="color:#c41a16">&#39;Summary!A1:B10&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#0f0"># Write the summary back to another sheet in the same spreadsheet</span>
+</span></span><span style="display:flex;"><span>gsheets.update_sheet_with_df(sheet_id, summary_df, <span style="color:#87ceeb">&#39;Summary!A1:B10&#39;</span>)
 </span></span></code></pre></div><h2 id="security-best-practices">Security Best Practices</h2>
 <p>When working with the Google Sheets API, it&rsquo;s important to keep security in mind:</p>
 <ol>

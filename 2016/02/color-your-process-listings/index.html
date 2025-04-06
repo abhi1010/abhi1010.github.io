@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="author" content="Abhishek Pandey" />
     <meta name="description" content="How to make your variables stand out from values in bash for processes" />
-    <link rel="stylesheet" href="/css/main.min.51f3efdcc017a8960f507421fb803e2abeb64e9e18c517404c94ef605e8ce8aa.css" />
+    <link rel="stylesheet" href="/css/main.min.3fabd88a6b1988deec4988ebf6c9df8b45b30a933ac9db6bfd68596e780921ab.css" />
     
 
     
@@ -85,16 +85,16 @@ parameters. However, since there are so many of them, it is very difficult to vi
 and find out what value was assigned to it. I wanted to make it easier on the eyes and decided to color code the
 parameters and separate them out from the values.
 Here&rsquo;s the bash function I pulled out.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>colorme<span style="color:#000">()</span>
-</span></span><span style="display:flex;"><span><span style="color:#000">{</span>
-</span></span><span style="display:flex;"><span>  gawk <span style="color:#c41a16">&#39;BEGIN {RS=&#34; --| -&#34;; }{print $0}&#39;</span> <span style="color:#c41a16">\
-</span></span></span><span style="display:flex;"><span><span style="color:#c41a16"></span>  | sed -e <span style="color:#c41a16">&#39;s/\([[:alpha:]]\+\)=/\1 /g&#39;</span> <span style="color:#c41a16">\
-</span></span></span><span style="display:flex;"><span><span style="color:#c41a16"></span>  | gawk <span style="color:#c41a16">&#39;BEGIN    {printf &#34;-----------------\n&#34; ; }
-</span></span></span><span style="display:flex;"><span><span style="color:#c41a16">            {
-</span></span></span><span style="display:flex;"><span><span style="color:#c41a16">                if (NF &gt; 2) printf &#34;\n\033[41;5;1m%s\033[0m\n&#34;, $NF ;
-</span></span></span><span style="display:flex;"><span><span style="color:#c41a16">                printf &#34;\033[40;38;5;82m  %30s  \033[38;5;198m %s \033[0m \n&#34;, $1, $2
-</span></span></span><span style="display:flex;"><span><span style="color:#c41a16">            }&#39;</span>
-</span></span><span style="display:flex;"><span><span style="color:#000">}</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>colorme()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  gawk <span style="color:#87ceeb">&#39;BEGIN {RS=&#34; --| -&#34;; }{print $0}&#39;</span> <span style="color:#87ceeb">\
+</span></span></span><span style="display:flex;"><span><span style="color:#87ceeb"></span>  | sed -e <span style="color:#87ceeb">&#39;s/\([[:alpha:]]\+\)=/\1 /g&#39;</span> <span style="color:#87ceeb">\
+</span></span></span><span style="display:flex;"><span><span style="color:#87ceeb"></span>  | gawk <span style="color:#87ceeb">&#39;BEGIN    {printf &#34;-----------------\n&#34; ; }
+</span></span></span><span style="display:flex;"><span><span style="color:#87ceeb">            {
+</span></span></span><span style="display:flex;"><span><span style="color:#87ceeb">                if (NF &gt; 2) printf &#34;\n\033[41;5;1m%s\033[0m\n&#34;, $NF ;
+</span></span></span><span style="display:flex;"><span><span style="color:#87ceeb">                printf &#34;\033[40;38;5;82m  %30s  \033[38;5;198m %s \033[0m \n&#34;, $1, $2
+</span></span></span><span style="display:flex;"><span><span style="color:#87ceeb">            }&#39;</span>
+</span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>The idea is as follows:</p>
 <ul>
 <li>Have a bash function that can be piped onto any command; perhaps <code>ps -ef</code></li>
@@ -105,12 +105,12 @@ Here&rsquo;s the bash function I pulled out.</p>
 <li>Keys are right aligned, green in color and values are right aligned, red in color so it&rsquo;s very easy to view</li>
 </ul>
 <p>Here is a sample command I wanted to test out.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>/opt/py27env/bin/python manage.py main-service-name --daemonize <span style="color:#c41a16">\
-</span></span></span><span style="display:flex;"><span><span style="color:#c41a16"></span>    --alias-svc<span style="color:#000">=</span>mainsvc01 --application-id<span style="color:#000">=</span>app03/mainsvc01 --monitoring-service-name<span style="color:#000">=</span>mainsvc01 <span style="color:#c41a16">\
-</span></span></span><span style="display:flex;"><span><span style="color:#c41a16"></span>    --log-level<span style="color:#000">=</span>DEBUG --solace-session-prop-host<span style="color:#000">=</span>server.prod --solace-session-prop-username<span style="color:#000">=</span>testing <span style="color:#c41a16">\
-</span></span></span><span style="display:flex;"><span><span style="color:#c41a16"></span>    --solace-session-prop-password<span style="color:#000">=</span>testing --solace-session-prop-vpn<span style="color:#000">=</span>testing <span style="color:#c41a16">\
-</span></span></span><span style="display:flex;"><span><span style="color:#c41a16"></span>    --solace-session-prop-cache-name<span style="color:#000">=</span>test_dc <span style="color:#c41a16">\
-</span></span></span><span style="display:flex;"><span><span style="color:#c41a16"></span>    --rate<span style="color:#000">=</span><span style="color:#1c01ce">10</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>/opt/py27env/bin/python manage.py main-service-name --daemonize <span style="color:#87ceeb">\
+</span></span></span><span style="display:flex;"><span><span style="color:#87ceeb"></span>    --alias-svc=mainsvc01 --application-id=app03/mainsvc01 --monitoring-service-name=mainsvc01 <span style="color:#87ceeb">\
+</span></span></span><span style="display:flex;"><span><span style="color:#87ceeb"></span>    --log-level=DEBUG --solace-session-prop-host=server.prod --solace-session-prop-username=testing <span style="color:#87ceeb">\
+</span></span></span><span style="display:flex;"><span><span style="color:#87ceeb"></span>    --solace-session-prop-password=testing --solace-session-prop-vpn=testing <span style="color:#87ceeb">\
+</span></span></span><span style="display:flex;"><span><span style="color:#87ceeb"></span>    --solace-session-prop-cache-name=test_dc <span style="color:#87ceeb">\
+</span></span></span><span style="display:flex;"><span><span style="color:#87ceeb"></span>    --rate=<span style="color:#f60">10</span>
 </span></span></code></pre></div><p>Here is the result from my tests:
 <figure><img src="/images/bash_process_color_coding_1.png"
     alt="Color coded process listing"><figcaption>

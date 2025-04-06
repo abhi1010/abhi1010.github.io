@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="author" content="Abhishek Pandey" />
     <meta name="description" content="How to manage Python application logs effectively using a custom logger setup" />
-    <link rel="stylesheet" href="/css/main.min.51f3efdcc017a8960f507421fb803e2abeb64e9e18c517404c94ef605e8ce8aa.css" />
+    <link rel="stylesheet" href="/css/main.min.3fabd88a6b1988deec4988ebf6c9df8b45b30a933ac9db6bfd68596e780921ab.css" />
     
 
     
@@ -87,44 +87,44 @@
       <p>Effective logging is a critical yet often overlooked aspect of application development. A well-implemented logging system can mean the difference between hours of frustrating debugging and a quick resolution when issues arise. In this post, I&rsquo;ll walk through a powerful custom logging utility function called <code>get_logger</code> that provides flexible, configurable logging capabilities for Python applications.</p>
 <h2 id="understanding-the-get_logger-function">Understanding the <code>get_logger</code> Function</h2>
 <p>The <code>get_logger</code> function creates a configured logger with console output and rotating file storage. Let&rsquo;s break down what it does and how to use it effectively:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#a90d91">def</span> <span style="color:#000">get_logger</span>(<span style="color:#000">log_name</span><span style="color:#000">=</span><span style="color:#c41a16">&#39;cpr-btc&#39;</span>, <span style="color:#000">should_add_ts</span><span style="color:#000">=</span><span style="color:#a90d91">False</span>, <span style="color:#000">use_rich</span><span style="color:#000">=</span><span style="color:#a90d91">False</span>):
-</span></span><span style="display:flex;"><span>    <span style="color:#000">logger</span> <span style="color:#000">=</span> <span style="color:#000">logging</span><span style="color:#000">.</span><span style="color:#000">getLogger</span>(<span style="color:#c41a16">&#39;root&#39;</span>)
-</span></span><span style="display:flex;"><span>    <span style="color:#a90d91">if</span> <span style="color:#000">not</span> <span style="color:#a90d91">len</span>(<span style="color:#000">logger</span><span style="color:#000">.</span><span style="color:#000">handlers</span>):
-</span></span><span style="display:flex;"><span>        <span style="color:#000">logger</span><span style="color:#000">.</span><span style="color:#000">setLevel</span>(<span style="color:#000">logging</span><span style="color:#000">.</span><span style="color:#000">INFO</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f00">def</span> <span style="color:#ff0">get_logger</span>(log_name=<span style="color:#87ceeb">&#39;cpr-btc&#39;</span>, should_add_ts=<span style="color:#f00">False</span>, use_rich=<span style="color:#f00">False</span>):
+</span></span><span style="display:flex;"><span>    logger = logging.getLogger(<span style="color:#87ceeb">&#39;root&#39;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#f00">if</span> not len(logger.handlers):
+</span></span><span style="display:flex;"><span>        logger.setLevel(logging.INFO)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        <span style="color:#000">formatter</span> <span style="color:#000">=</span> <span style="color:#000">logging</span><span style="color:#000">.</span><span style="color:#000">Formatter</span>(
-</span></span><span style="display:flex;"><span>            <span style="color:#c41a16">&#39;</span><span style="color:#c41a16">%(asctime)s</span><span style="color:#c41a16">, </span><span style="color:#c41a16">%(levelname)s</span><span style="color:#c41a16"> : [</span><span style="color:#c41a16">%(filename)s</span><span style="color:#c41a16">:</span><span style="color:#c41a16">%(lineno)s</span><span style="color:#c41a16"> - </span><span style="color:#c41a16">%(funcName)20s</span><span style="color:#c41a16">() ] - </span><span style="color:#c41a16">%(message)s</span><span style="color:#c41a16">&#39;</span>
+</span></span><span style="display:flex;"><span>        formatter = logging.Formatter(
+</span></span><span style="display:flex;"><span>            <span style="color:#87ceeb">&#39;</span><span style="color:#87ceeb">%(asctime)s</span><span style="color:#87ceeb">, </span><span style="color:#87ceeb">%(levelname)s</span><span style="color:#87ceeb"> : [</span><span style="color:#87ceeb">%(filename)s</span><span style="color:#87ceeb">:</span><span style="color:#87ceeb">%(lineno)s</span><span style="color:#87ceeb"> - </span><span style="color:#87ceeb">%(funcName)20s</span><span style="color:#87ceeb">() ] - </span><span style="color:#87ceeb">%(message)s</span><span style="color:#87ceeb">&#39;</span>
 </span></span><span style="display:flex;"><span>        )
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        <span style="color:#a90d91">if</span> <span style="color:#000">use_rich</span>:
-</span></span><span style="display:flex;"><span>            <span style="color:#000">rich_handler</span> <span style="color:#000">=</span> <span style="color:#000">RichHandler</span>(<span style="color:#000">rich_tracebacks</span><span style="color:#000">=</span><span style="color:#a90d91">True</span>)
-</span></span><span style="display:flex;"><span>            <span style="color:#000">rich_handler</span><span style="color:#000">.</span><span style="color:#000">setLevel</span>(<span style="color:#000">logging</span><span style="color:#000">.</span><span style="color:#000">DEBUG</span>)
-</span></span><span style="display:flex;"><span>            <span style="color:#000">logger</span><span style="color:#000">.</span><span style="color:#000">addHandler</span>(<span style="color:#000">rich_handler</span>)
-</span></span><span style="display:flex;"><span>        <span style="color:#a90d91">else</span>:
-</span></span><span style="display:flex;"><span>            <span style="color:#177500"># Stream handler for printing to console</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#000">stdout_handler</span> <span style="color:#000">=</span> <span style="color:#000">logging</span><span style="color:#000">.</span><span style="color:#000">StreamHandler</span>()
-</span></span><span style="display:flex;"><span>            <span style="color:#000">stdout_handler</span><span style="color:#000">.</span><span style="color:#000">setLevel</span>(<span style="color:#000">logging</span><span style="color:#000">.</span><span style="color:#000">INFO</span>)
-</span></span><span style="display:flex;"><span>            <span style="color:#000">stdout_handler</span><span style="color:#000">.</span><span style="color:#000">setFormatter</span>(<span style="color:#000">formatter</span>)
-</span></span><span style="display:flex;"><span>            <span style="color:#000">logger</span><span style="color:#000">.</span><span style="color:#000">addHandler</span>(<span style="color:#000">stdout_handler</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#f00">if</span> use_rich:
+</span></span><span style="display:flex;"><span>            rich_handler = RichHandler(rich_tracebacks=<span style="color:#f00">True</span>)
+</span></span><span style="display:flex;"><span>            rich_handler.setLevel(logging.DEBUG)
+</span></span><span style="display:flex;"><span>            logger.addHandler(rich_handler)
+</span></span><span style="display:flex;"><span>        <span style="color:#f00">else</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#0f0"># Stream handler for printing to console</span>
+</span></span><span style="display:flex;"><span>            stdout_handler = logging.StreamHandler()
+</span></span><span style="display:flex;"><span>            stdout_handler.setLevel(logging.INFO)
+</span></span><span style="display:flex;"><span>            stdout_handler.setFormatter(formatter)
+</span></span><span style="display:flex;"><span>            logger.addHandler(stdout_handler)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        <span style="color:#000">check_and_create_directory</span>(<span style="color:#000">LOG_DIR</span>)
+</span></span><span style="display:flex;"><span>        check_and_create_directory(LOG_DIR)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        <span style="color:#a90d91">if</span> <span style="color:#000">should_add_ts</span>:
-</span></span><span style="display:flex;"><span>            <span style="color:#000">log_name</span> <span style="color:#000">+=</span> <span style="color:#000">datetime</span><span style="color:#000">.</span><span style="color:#000">datetime</span><span style="color:#000">.</span><span style="color:#000">now</span>()<span style="color:#000">.</span><span style="color:#000">strftime</span>(<span style="color:#c41a16">&#34;__%Y-%m-</span><span style="color:#c41a16">%d</span><span style="color:#c41a16">__%H-%M&#34;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#f00">if</span> should_add_ts:
+</span></span><span style="display:flex;"><span>            log_name += datetime.datetime.now().strftime(<span style="color:#87ceeb">&#34;__%Y-%m-</span><span style="color:#87ceeb">%d</span><span style="color:#87ceeb">__%H-%M&#34;</span>)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        <span style="color:#177500"># Rotating file handler for saving logs to file</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#000">logger_path</span> <span style="color:#000">=</span> <span style="color:#000">os</span><span style="color:#000">.</span><span style="color:#000">path</span><span style="color:#000">.</span><span style="color:#000">join</span>(<span style="color:#000">LOG_DIR</span>, <span style="color:#c41a16">f</span><span style="color:#c41a16">&#39;</span><span style="color:#c41a16">{</span><span style="color:#000">log_name</span><span style="color:#c41a16">}</span><span style="color:#c41a16">.log&#39;</span>)
-</span></span><span style="display:flex;"><span>        <span style="color:#000">file_handler</span> <span style="color:#000">=</span> <span style="color:#000">TimedRotatingFileHandler</span>(<span style="color:#000">filename</span><span style="color:#000">=</span><span style="color:#000">logger_path</span>,
-</span></span><span style="display:flex;"><span>                                                <span style="color:#000">when</span><span style="color:#000">=</span><span style="color:#c41a16">&#39;midnight&#39;</span>,
-</span></span><span style="display:flex;"><span>                                                <span style="color:#000">backupCount</span><span style="color:#000">=</span><span style="color:#1c01ce">10</span>)
-</span></span><span style="display:flex;"><span>        <span style="color:#000">file_handler</span><span style="color:#000">.</span><span style="color:#000">setLevel</span>(<span style="color:#000">logging</span><span style="color:#000">.</span><span style="color:#000">DEBUG</span>)
-</span></span><span style="display:flex;"><span>        <span style="color:#000">file_handler</span><span style="color:#000">.</span><span style="color:#000">setFormatter</span>(<span style="color:#000">formatter</span>)
-</span></span><span style="display:flex;"><span>        <span style="color:#000">logger</span><span style="color:#000">.</span><span style="color:#000">addHandler</span>(<span style="color:#000">file_handler</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#0f0"># Rotating file handler for saving logs to file</span>
+</span></span><span style="display:flex;"><span>        logger_path = os.path.join(LOG_DIR, <span style="color:#87ceeb">f</span><span style="color:#87ceeb">&#39;</span><span style="color:#87ceeb">{</span>log_name<span style="color:#87ceeb">}</span><span style="color:#87ceeb">.log&#39;</span>)
+</span></span><span style="display:flex;"><span>        file_handler = TimedRotatingFileHandler(filename=logger_path,
+</span></span><span style="display:flex;"><span>                                                when=<span style="color:#87ceeb">&#39;midnight&#39;</span>,
+</span></span><span style="display:flex;"><span>                                                backupCount=<span style="color:#f60">10</span>)
+</span></span><span style="display:flex;"><span>        file_handler.setLevel(logging.DEBUG)
+</span></span><span style="display:flex;"><span>        file_handler.setFormatter(formatter)
+</span></span><span style="display:flex;"><span>        logger.addHandler(file_handler)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        <span style="color:#000">logger</span><span style="color:#000">.</span><span style="color:#000">info</span>(<span style="color:#c41a16">f</span><span style="color:#c41a16">&#39;Logger path = </span><span style="color:#c41a16">{</span><span style="color:#000">logger_path</span><span style="color:#c41a16">}</span><span style="color:#c41a16">&#39;</span>)
-</span></span><span style="display:flex;"><span>        <span style="color:#000">print_stack_trace</span>()
+</span></span><span style="display:flex;"><span>        logger.info(<span style="color:#87ceeb">f</span><span style="color:#87ceeb">&#39;Logger path = </span><span style="color:#87ceeb">{</span>logger_path<span style="color:#87ceeb">}</span><span style="color:#87ceeb">&#39;</span>)
+</span></span><span style="display:flex;"><span>        print_stack_trace()
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#a90d91">return</span> <span style="color:#000">logger</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f00">return</span> logger
 </span></span></code></pre></div><h2 id="key-features-of-this-logger">Key Features of This Logger</h2>
 <p>The function creates a logger with several powerful features:</p>
 <ol>
@@ -138,25 +138,25 @@
 <h2 id="how-to-use-this-logger-effectively">How to Use This Logger Effectively</h2>
 <h3 id="basic-usage">Basic Usage</h3>
 <p>The simplest way to use this logger is with default settings:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#000">logger</span> <span style="color:#000">=</span> <span style="color:#000">get_logger</span>()
-</span></span><span style="display:flex;"><span><span style="color:#000">logger</span><span style="color:#000">.</span><span style="color:#000">info</span>(<span style="color:#c41a16">&#34;Application started&#34;</span>)
-</span></span><span style="display:flex;"><span><span style="color:#000">logger</span><span style="color:#000">.</span><span style="color:#000">warning</span>(<span style="color:#c41a16">&#34;Resource usage high&#34;</span>)
-</span></span><span style="display:flex;"><span><span style="color:#000">logger</span><span style="color:#000">.</span><span style="color:#000">error</span>(<span style="color:#c41a16">&#34;Failed to connect to database&#34;</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>logger = get_logger()
+</span></span><span style="display:flex;"><span>logger.info(<span style="color:#87ceeb">&#34;Application started&#34;</span>)
+</span></span><span style="display:flex;"><span>logger.warning(<span style="color:#87ceeb">&#34;Resource usage high&#34;</span>)
+</span></span><span style="display:flex;"><span>logger.error(<span style="color:#87ceeb">&#34;Failed to connect to database&#34;</span>)
 </span></span></code></pre></div><h3 id="with-rich-for-enhanced-console-output">With Rich for Enhanced Console Output</h3>
 <p>For development environments where you want more readable console output:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#000">logger</span> <span style="color:#000">=</span> <span style="color:#000">get_logger</span>(<span style="color:#000">use_rich</span><span style="color:#000">=</span><span style="color:#a90d91">True</span>)
-</span></span><span style="display:flex;"><span><span style="color:#000">logger</span><span style="color:#000">.</span><span style="color:#000">info</span>(<span style="color:#c41a16">&#34;Starting data processing&#34;</span>)
-</span></span><span style="display:flex;"><span><span style="color:#000">logger</span><span style="color:#000">.</span><span style="color:#000">debug</span>(<span style="color:#c41a16">&#34;Processing item 1 of 1000&#34;</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>logger = get_logger(use_rich=<span style="color:#f00">True</span>)
+</span></span><span style="display:flex;"><span>logger.info(<span style="color:#87ceeb">&#34;Starting data processing&#34;</span>)
+</span></span><span style="display:flex;"><span>logger.debug(<span style="color:#87ceeb">&#34;Processing item 1 of 1000&#34;</span>)
 </span></span></code></pre></div><h3 id="session-specific-logs">Session-Specific Logs</h3>
 <p>When debugging a specific issue or running important processes:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#177500"># Creates a timestamped log file like cpr-btc__2019-04-05__14-30.log</span>
-</span></span><span style="display:flex;"><span><span style="color:#000">debug_logger</span> <span style="color:#000">=</span> <span style="color:#000">get_logger</span>(<span style="color:#000">should_add_ts</span><span style="color:#000">=</span><span style="color:#a90d91">True</span>)
-</span></span><span style="display:flex;"><span><span style="color:#000">debug_logger</span><span style="color:#000">.</span><span style="color:#000">info</span>(<span style="color:#c41a16">&#34;Starting critical data migration&#34;</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#0f0"># Creates a timestamped log file like cpr-btc__2019-04-05__14-30.log</span>
+</span></span><span style="display:flex;"><span>debug_logger = get_logger(should_add_ts=<span style="color:#f00">True</span>)
+</span></span><span style="display:flex;"><span>debug_logger.info(<span style="color:#87ceeb">&#34;Starting critical data migration&#34;</span>)
 </span></span></code></pre></div><h3 id="custom-named-logs">Custom Named Logs</h3>
 <p>For different components of your application:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#000">auth_logger</span> <span style="color:#000">=</span> <span style="color:#000">get_logger</span>(<span style="color:#000">log_name</span><span style="color:#000">=</span><span style="color:#c41a16">&#39;authentication&#39;</span>)
-</span></span><span style="display:flex;"><span><span style="color:#000">user_logger</span> <span style="color:#000">=</span> <span style="color:#000">get_logger</span>(<span style="color:#000">log_name</span><span style="color:#000">=</span><span style="color:#c41a16">&#39;user-actions&#39;</span>)
-</span></span><span style="display:flex;"><span><span style="color:#000">data_logger</span> <span style="color:#000">=</span> <span style="color:#000">get_logger</span>(<span style="color:#000">log_name</span><span style="color:#000">=</span><span style="color:#c41a16">&#39;data-processing&#39;</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>auth_logger = get_logger(log_name=<span style="color:#87ceeb">&#39;authentication&#39;</span>)
+</span></span><span style="display:flex;"><span>user_logger = get_logger(log_name=<span style="color:#87ceeb">&#39;user-actions&#39;</span>)
+</span></span><span style="display:flex;"><span>data_logger = get_logger(log_name=<span style="color:#87ceeb">&#39;data-processing&#39;</span>)
 </span></span></code></pre></div><h2 id="best-practices-for-effective-log-management">Best Practices for Effective Log Management</h2>
 <h3 id="1-use-appropriate-log-levels">1. Use Appropriate Log Levels</h3>
 <p>The logger supports different log levels, use them correctly:</p>
@@ -169,34 +169,34 @@
 </ul>
 <h3 id="2-structure-your-log-messages">2. Structure Your Log Messages</h3>
 <p>Keep log messages consistent and informative:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#177500"># Instead of:</span>
-</span></span><span style="display:flex;"><span><span style="color:#000">logger</span><span style="color:#000">.</span><span style="color:#000">info</span>(<span style="color:#c41a16">&#34;Transaction processed&#34;</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#0f0"># Instead of:</span>
+</span></span><span style="display:flex;"><span>logger.info(<span style="color:#87ceeb">&#34;Transaction processed&#34;</span>)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#177500"># Use:</span>
-</span></span><span style="display:flex;"><span><span style="color:#000">logger</span><span style="color:#000">.</span><span style="color:#000">info</span>(<span style="color:#c41a16">f</span><span style="color:#c41a16">&#34;Transaction </span><span style="color:#c41a16">{</span><span style="color:#000">tx_id</span><span style="color:#c41a16">}</span><span style="color:#c41a16"> processed for user </span><span style="color:#c41a16">{</span><span style="color:#000">user_id</span><span style="color:#c41a16">}</span><span style="color:#c41a16">: $</span><span style="color:#c41a16">{</span><span style="color:#000">amount</span><span style="color:#c41a16">}</span><span style="color:#c41a16">&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#0f0"># Use:</span>
+</span></span><span style="display:flex;"><span>logger.info(<span style="color:#87ceeb">f</span><span style="color:#87ceeb">&#34;Transaction </span><span style="color:#87ceeb">{</span>tx_id<span style="color:#87ceeb">}</span><span style="color:#87ceeb"> processed for user </span><span style="color:#87ceeb">{</span>user_id<span style="color:#87ceeb">}</span><span style="color:#87ceeb">: $</span><span style="color:#87ceeb">{</span>amount<span style="color:#87ceeb">}</span><span style="color:#87ceeb">&#34;</span>)
 </span></span></code></pre></div><h3 id="3-include-context-but-avoid-sensitive-data">3. Include Context But Avoid Sensitive Data</h3>
 <p>Include enough context to understand the log entry:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#000">logger</span><span style="color:#000">.</span><span style="color:#000">info</span>(<span style="color:#c41a16">f</span><span style="color:#c41a16">&#34;API request to </span><span style="color:#c41a16">{</span><span style="color:#000">endpoint</span><span style="color:#c41a16">}</span><span style="color:#c41a16"> completed in </span><span style="color:#c41a16">{</span><span style="color:#000">response_time</span><span style="color:#c41a16">}</span><span style="color:#c41a16">ms with status </span><span style="color:#c41a16">{</span><span style="color:#000">status_code</span><span style="color:#c41a16">}</span><span style="color:#c41a16">&#34;</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>logger.info(<span style="color:#87ceeb">f</span><span style="color:#87ceeb">&#34;API request to </span><span style="color:#87ceeb">{</span>endpoint<span style="color:#87ceeb">}</span><span style="color:#87ceeb"> completed in </span><span style="color:#87ceeb">{</span>response_time<span style="color:#87ceeb">}</span><span style="color:#87ceeb">ms with status </span><span style="color:#87ceeb">{</span>status_code<span style="color:#87ceeb">}</span><span style="color:#87ceeb">&#34;</span>)
 </span></span></code></pre></div><p>But avoid logging sensitive information:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#177500"># DON&#39;T do this:</span>
-</span></span><span style="display:flex;"><span><span style="color:#000">logger</span><span style="color:#000">.</span><span style="color:#000">debug</span>(<span style="color:#c41a16">f</span><span style="color:#c41a16">&#34;User login attempt with password </span><span style="color:#c41a16">{</span><span style="color:#000">password</span><span style="color:#c41a16">}</span><span style="color:#c41a16">&#34;</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#0f0"># DON&#39;T do this:</span>
+</span></span><span style="display:flex;"><span>logger.debug(<span style="color:#87ceeb">f</span><span style="color:#87ceeb">&#34;User login attempt with password </span><span style="color:#87ceeb">{</span>password<span style="color:#87ceeb">}</span><span style="color:#87ceeb">&#34;</span>)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#177500"># DO this instead:</span>
-</span></span><span style="display:flex;"><span><span style="color:#000">logger</span><span style="color:#000">.</span><span style="color:#000">debug</span>(<span style="color:#c41a16">f</span><span style="color:#c41a16">&#34;User login attempt for </span><span style="color:#c41a16">{</span><span style="color:#000">username</span><span style="color:#c41a16">}</span><span style="color:#c41a16">&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#0f0"># DO this instead:</span>
+</span></span><span style="display:flex;"><span>logger.debug(<span style="color:#87ceeb">f</span><span style="color:#87ceeb">&#34;User login attempt for </span><span style="color:#87ceeb">{</span>username<span style="color:#87ceeb">}</span><span style="color:#87ceeb">&#34;</span>)
 </span></span></code></pre></div><h3 id="4-set-up-log-monitoring">4. Set Up Log Monitoring</h3>
 <p>Consider setting up monitoring for your log files to catch issues early:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#177500"># Example monitoring setup</span>
-</span></span><span style="display:flex;"><span><span style="color:#a90d91">def</span> <span style="color:#000">check_for_errors</span>():
-</span></span><span style="display:flex;"><span>    <span style="color:#a90d91">with</span> <span style="color:#a90d91">open</span>(<span style="color:#c41a16">f</span><span style="color:#c41a16">&#34;</span><span style="color:#c41a16">{</span><span style="color:#000">LOG_DIR</span><span style="color:#c41a16">}</span><span style="color:#c41a16">/cpr-btc.log&#34;</span>, <span style="color:#c41a16">&#34;r&#34;</span>) <span style="color:#a90d91">as</span> <span style="color:#000">f</span>:
-</span></span><span style="display:flex;"><span>        <span style="color:#a90d91">if</span> <span style="color:#c41a16">&#34;ERROR&#34;</span> <span style="color:#000">in</span> <span style="color:#000">f</span><span style="color:#000">.</span><span style="color:#000">read</span>():
-</span></span><span style="display:flex;"><span>            <span style="color:#000">send_alert</span>(<span style="color:#c41a16">&#34;Errors detected in application log&#34;</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#0f0"># Example monitoring setup</span>
+</span></span><span style="display:flex;"><span><span style="color:#f00">def</span> <span style="color:#ff0">check_for_errors</span>():
+</span></span><span style="display:flex;"><span>    <span style="color:#f00">with</span> open(<span style="color:#87ceeb">f</span><span style="color:#87ceeb">&#34;</span><span style="color:#87ceeb">{</span>LOG_DIR<span style="color:#87ceeb">}</span><span style="color:#87ceeb">/cpr-btc.log&#34;</span>, <span style="color:#87ceeb">&#34;r&#34;</span>) <span style="color:#f00">as</span> f:
+</span></span><span style="display:flex;"><span>        <span style="color:#f00">if</span> <span style="color:#87ceeb">&#34;ERROR&#34;</span> in f.read():
+</span></span><span style="display:flex;"><span>            send_alert(<span style="color:#87ceeb">&#34;Errors detected in application log&#34;</span>)
 </span></span></code></pre></div><h3 id="5-manage-log-rotation">5. Manage Log Rotation</h3>
 <p>Our function already sets up log rotation with <code>TimedRotatingFileHandler</code>, but you can customize it:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#177500"># For more frequent rotation (every hour instead of daily):</span>
-</span></span><span style="display:flex;"><span><span style="color:#000">file_handler</span> <span style="color:#000">=</span> <span style="color:#000">TimedRotatingFileHandler</span>(
-</span></span><span style="display:flex;"><span>    <span style="color:#000">filename</span><span style="color:#000">=</span><span style="color:#000">logger_path</span>,
-</span></span><span style="display:flex;"><span>    <span style="color:#000">when</span><span style="color:#000">=</span><span style="color:#c41a16">&#39;H&#39;</span>,  <span style="color:#177500"># Hourly</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#000">backupCount</span><span style="color:#000">=</span><span style="color:#1c01ce">24</span>  <span style="color:#177500"># Keep 24 hours of logs</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#0f0"># For more frequent rotation (every hour instead of daily):</span>
+</span></span><span style="display:flex;"><span>file_handler = TimedRotatingFileHandler(
+</span></span><span style="display:flex;"><span>    filename=logger_path,
+</span></span><span style="display:flex;"><span>    when=<span style="color:#87ceeb">&#39;H&#39;</span>,  <span style="color:#0f0"># Hourly</span>
+</span></span><span style="display:flex;"><span>    backupCount=<span style="color:#f60">24</span>  <span style="color:#0f0"># Keep 24 hours of logs</span>
 </span></span><span style="display:flex;"><span>)
 </span></span></code></pre></div><h2 id="understanding-the-log-format">Understanding the Log Format</h2>
 <p>The log format used by our function is comprehensive:</p>

@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="author" content="Abhishek Pandey" />
     <meta name="description" content="How to setup a local pypi mirror with quick installation" />
-    <link rel="stylesheet" href="/css/main.min.51f3efdcc017a8960f507421fb803e2abeb64e9e18c517404c94ef605e8ce8aa.css" />
+    <link rel="stylesheet" href="/css/main.min.3fabd88a6b1988deec4988ebf6c9df8b45b30a933ac9db6bfd68596e780921ab.css" />
     
 
     
@@ -89,12 +89,12 @@ seems overly complicated for a job that is easily achieved by pip.</p>
 <p>Let&rsquo;s look at how to use <code>pip</code> for local installation.
 Firstly, it is possible to install all requirements beforehand in a separate directory.
 We can use the following commands:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>pip install --download DIR -r requirements.txt
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>pip install --download DIR -r requirements.txt
 </span></span></code></pre></div><p>If you prefer wheel, then use the following:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>pip wheel --wheel-dir DIR -r requirements.txt
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>pip wheel --wheel-dir DIR -r requirements.txt
 </span></span></code></pre></div><p>Now, when we want to install from this given directory <code>DIR</code>, then
 the following command can help:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>pip install --no-index --find-links<span style="color:#000">=</span>DIR -r requirements.txt
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>pip install --no-index --find-links=DIR -r requirements.txt
 </span></span></code></pre></div><p>If you are using these in a current setup and you feel it still slows you down then the reason would be
 one of the first few commands where the request is still going to the internet.
 If you want to speed up the whole process then perhaps you need to send out a request to the internet
@@ -104,7 +104,7 @@ just leading onto <code>pip install --no-index</code></p>
 <p>One quick and dirty way to maintain a local copy of requirements.txt file and figure out on every commit of code change
 in the project, whether a new requirement has been added to that list. In that case, install it + update your local copy.</p>
 <p>Here&rsquo;s a sample code to put all changes in a single line that you can feed into <code>pip install</code></p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sdiff -s /tmp/1 /tmp/2 | sed -e <span style="color:#c41a16">&#39;s/&lt;//g&#39;</span> | awk <span style="color:#c41a16">&#39;BEGIN {ORS=&#34; &#34;} {print $1}&#39;</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sdiff -s /tmp/1 /tmp/2 | sed -e <span style="color:#87ceeb">&#39;s/&lt;//g&#39;</span> | awk <span style="color:#87ceeb">&#39;BEGIN {ORS=&#34; &#34;} {print $1}&#39;</span>
 </span></span></code></pre></div><p>Breaking it down:</p>
 <ul>
 <li><code>sdiff</code> checks if there are any new changes</li>

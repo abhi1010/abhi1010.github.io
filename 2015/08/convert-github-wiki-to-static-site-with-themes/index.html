@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="author" content="Abhishek Pandey" />
     <meta name="description" content="How to convert any wiki to a static html site using Pelican" />
-    <link rel="stylesheet" href="/css/main.min.51f3efdcc017a8960f507421fb803e2abeb64e9e18c517404c94ef605e8ce8aa.css" />
+    <link rel="stylesheet" href="/css/main.min.3fabd88a6b1988deec4988ebf6c9df8b45b30a933ac9db6bfd68596e780921ab.css" />
     
 
     
@@ -122,63 +122,63 @@ which I will be converting into a static site. Let&rsquo;s begin.</p>
 </ul>
 <h2 id="virtual-environment-with-pelican">Virtual Environment with pelican</h2>
 <p><strong>Setup the virtual environment</strong></p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ virtualenv ve_blog
-</span></span><span style="display:flex;"><span>$ <span style="color:#a90d91">source</span> ve_blog/bin/activate
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ virtualenv ve_blog
+</span></span><span style="display:flex;"><span>$ source ve_blog/bin/activate
 </span></span></code></pre></div><p><strong>Install pelican</strong></p>
 <pre><code>$ pip install pelican
 </code></pre>
 <p><strong>Pelican Quickstart</strong></p>
 <p>Setup pelican using <code>pelican-quickstart</code> so that all files are setup correctly for creating a static site.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ pelican-quickstart
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ pelican-quickstart
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>Welcome to pelican-quickstart v3.6.3.
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>This script will <span style="color:#a90d91">help</span> you create a new Pelican-based website.
+</span></span><span style="display:flex;"><span>This script will help you create a new Pelican-based website.
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>Please answer the following questions so this script can generate the files
 </span></span><span style="display:flex;"><span>needed by Pelican.
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    
-</span></span><span style="display:flex;"><span>&gt; Where <span style="color:#a90d91">do</span> you want to create your new web site? <span style="color:#000">[</span>.<span style="color:#000">]</span> 
+</span></span><span style="display:flex;"><span>&gt; Where <span style="color:#f00">do</span> you want to create your new web site? [.] 
 </span></span><span style="display:flex;"><span>&gt; What will be the title of this web site? D3 WIKI
 </span></span><span style="display:flex;"><span>&gt; Who will be the author of this web site? abhi1010
-</span></span><span style="display:flex;"><span>&gt; What will be the default language of this web site? <span style="color:#000">[</span>en<span style="color:#000">]</span> 
-</span></span><span style="display:flex;"><span>&gt; Do you want to specify a URL prefix? e.g., http://example.com   <span style="color:#000">(</span>Y/n<span style="color:#000">)</span> n
-</span></span><span style="display:flex;"><span>&gt; Do you want to <span style="color:#a90d91">enable</span> article pagination? <span style="color:#000">(</span>Y/n<span style="color:#000">)</span> Y
-</span></span><span style="display:flex;"><span>&gt; How many articles per page <span style="color:#a90d91">do</span> you want? <span style="color:#000">[</span>10<span style="color:#000">]</span> 
-</span></span><span style="display:flex;"><span>&gt; What is your <span style="color:#a90d91">time</span> zone? <span style="color:#000">[</span>Europe/Paris<span style="color:#000">]</span> Asia/Singapore
-</span></span><span style="display:flex;"><span>&gt; Do you want to generate a Fabfile/Makefile to automate generation and publishing? <span style="color:#000">(</span>Y/n<span style="color:#000">)</span> Y
-</span></span><span style="display:flex;"><span>&gt; Do you want an auto-reload &amp; simpleHTTP script to assist with theme and site development? <span style="color:#000">(</span>Y/n<span style="color:#000">)</span> Y
-</span></span><span style="display:flex;"><span>&gt; Do you want to upload your website using FTP? <span style="color:#000">(</span>y/N<span style="color:#000">)</span> N
-</span></span><span style="display:flex;"><span>&gt; Do you want to upload your website using SSH? <span style="color:#000">(</span>y/N<span style="color:#000">)</span> N
-</span></span><span style="display:flex;"><span>&gt; Do you want to upload your website using Dropbox? <span style="color:#000">(</span>y/N<span style="color:#000">)</span> N
-</span></span><span style="display:flex;"><span>&gt; Do you want to upload your website using S3? <span style="color:#000">(</span>y/N<span style="color:#000">)</span> N
-</span></span><span style="display:flex;"><span>&gt; Do you want to upload your website using Rackspace Cloud Files? <span style="color:#000">(</span>y/N<span style="color:#000">)</span> N
-</span></span><span style="display:flex;"><span>&gt; Do you want to upload your website using GitHub Pages? <span style="color:#000">(</span>y/N<span style="color:#000">)</span> N
+</span></span><span style="display:flex;"><span>&gt; What will be the default language of this web site? [en] 
+</span></span><span style="display:flex;"><span>&gt; Do you want to specify a URL prefix? e.g., http://example.com   (Y/n) n
+</span></span><span style="display:flex;"><span>&gt; Do you want to enable article pagination? (Y/n) Y
+</span></span><span style="display:flex;"><span>&gt; How many articles per page <span style="color:#f00">do</span> you want? [10] 
+</span></span><span style="display:flex;"><span>&gt; What is your time zone? [Europe/Paris] Asia/Singapore
+</span></span><span style="display:flex;"><span>&gt; Do you want to generate a Fabfile/Makefile to automate generation and publishing? (Y/n) Y
+</span></span><span style="display:flex;"><span>&gt; Do you want an auto-reload &amp; simpleHTTP script to assist with theme and site development? (Y/n) Y
+</span></span><span style="display:flex;"><span>&gt; Do you want to upload your website using FTP? (y/N) N
+</span></span><span style="display:flex;"><span>&gt; Do you want to upload your website using SSH? (y/N) N
+</span></span><span style="display:flex;"><span>&gt; Do you want to upload your website using Dropbox? (y/N) N
+</span></span><span style="display:flex;"><span>&gt; Do you want to upload your website using S3? (y/N) N
+</span></span><span style="display:flex;"><span>&gt; Do you want to upload your website using Rackspace Cloud Files? (y/N) N
+</span></span><span style="display:flex;"><span>&gt; Do you want to upload your website using GitHub Pages? (y/N) N
 </span></span><span style="display:flex;"><span>Done. Your new project is available at /Users/apandey/code/githubs/d3wiki
 </span></span></code></pre></div><h2 id="get-the-wiki">Get the wiki</h2>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ git clone https://github.com/mbostock/d3.wiki.git
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ git clone https://github.com/mbostock/d3.wiki.git
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>Cloning into <span style="color:#c41a16">&#39;d3.wiki&#39;</span>...
-</span></span><span style="display:flex;"><span>remote: Counting objects: 12026, <span style="color:#a90d91">done</span>.
-</span></span><span style="display:flex;"><span>remote: Compressing objects: 100% <span style="color:#000">(</span>67/67<span style="color:#000">)</span>, <span style="color:#a90d91">done</span>.
-</span></span><span style="display:flex;"><span>remote: Total <span style="color:#1c01ce">12026</span> <span style="color:#000">(</span>delta 607<span style="color:#000">)</span>, reused <span style="color:#1c01ce">552</span> <span style="color:#000">(</span>delta 552<span style="color:#000">)</span>, pack-reused <span style="color:#1c01ce">11407</span>
-</span></span><span style="display:flex;"><span>Receiving objects: 100% <span style="color:#000">(</span>12026/12026<span style="color:#000">)</span>, 9.92 MiB | 1.49 MiB/s, <span style="color:#a90d91">done</span>.
-</span></span><span style="display:flex;"><span>Resolving deltas: 100% <span style="color:#000">(</span>7595/7595<span style="color:#000">)</span>, <span style="color:#a90d91">done</span>.
-</span></span><span style="display:flex;"><span>Checking connectivity... <span style="color:#a90d91">done</span>.
+</span></span><span style="display:flex;"><span>Cloning into <span style="color:#87ceeb">&#39;d3.wiki&#39;</span>...
+</span></span><span style="display:flex;"><span>remote: Counting objects: 12026, <span style="color:#f00">done</span>.
+</span></span><span style="display:flex;"><span>remote: Compressing objects: 100% (67/67), <span style="color:#f00">done</span>.
+</span></span><span style="display:flex;"><span>remote: Total <span style="color:#f60">12026</span> (delta 607), reused <span style="color:#f60">552</span> (delta 552), pack-reused <span style="color:#f60">11407</span>
+</span></span><span style="display:flex;"><span>Receiving objects: 100% (12026/12026), 9.92 MiB | 1.49 MiB/s, <span style="color:#f00">done</span>.
+</span></span><span style="display:flex;"><span>Resolving deltas: 100% (7595/7595), <span style="color:#f00">done</span>.
+</span></span><span style="display:flex;"><span>Checking connectivity... <span style="color:#f00">done</span>.
 </span></span></code></pre></div><p><strong>Setting the wiki as content for pelican</strong></p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ rmdir content
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ rmdir content
 </span></span><span style="display:flex;"><span>$ ln -s dr.wiki content
 </span></span></code></pre></div><h1 id="why-simple-pelican-wont-work-and-what-to-do">Why simple pelican won&rsquo;t work and what to do</h1>
 <p>If you tried to simply call <code>pelican</code> command to build the static site, you will notice a lot of errors like:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>$ fab build
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>RROR: Skipping ./请求.md: could not find information about <span style="color:#c41a16">&#39;NameError: title&#39;</span>
-</span></span><span style="display:flex;"><span>ERROR: Skipping ./过渡.md: could not find information about <span style="color:#c41a16">&#39;NameError: title&#39;</span>
-</span></span><span style="display:flex;"><span>ERROR: Skipping ./选择器.md: could not find information about <span style="color:#c41a16">&#39;NameError: title&#39;</span>
-</span></span><span style="display:flex;"><span>ERROR: Skipping ./选择集.md: could not find information about <span style="color:#c41a16">&#39;NameError: title&#39;</span>
-</span></span><span style="display:flex;"><span>Done: Processed <span style="color:#1c01ce">0</span> articles, <span style="color:#1c01ce">0</span> drafts, <span style="color:#1c01ce">0</span> pages and <span style="color:#1c01ce">0</span> hidden pages in 3.47 seconds.
+</span></span><span style="display:flex;"><span>RROR: Skipping ./请求.md: could not find information about <span style="color:#87ceeb">&#39;NameError: title&#39;</span>
+</span></span><span style="display:flex;"><span>ERROR: Skipping ./过渡.md: could not find information about <span style="color:#87ceeb">&#39;NameError: title&#39;</span>
+</span></span><span style="display:flex;"><span>ERROR: Skipping ./选择器.md: could not find information about <span style="color:#87ceeb">&#39;NameError: title&#39;</span>
+</span></span><span style="display:flex;"><span>ERROR: Skipping ./选择集.md: could not find information about <span style="color:#87ceeb">&#39;NameError: title&#39;</span>
+</span></span><span style="display:flex;"><span>Done: Processed <span style="color:#f60">0</span> articles, <span style="color:#f60">0</span> drafts, <span style="color:#f60">0</span> pages and <span style="color:#f60">0</span> hidden pages in 3.47 seconds.
 </span></span></code></pre></div><p>The problem is that pelican expects some variables to be defined in each <em>markdown</em> file before it can build the static file.
 Some of the variables are:</p>
 <ul>
@@ -232,15 +232,15 @@ It is an easy addition. We will need to add some lines to <code>publishconf.py</
 <li>Tutorials</li>
 <li>Plugins</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#177500"># We don&#39;t want all pages to show up in menu</span>
-</span></span><span style="display:flex;"><span><span style="color:#000">DISPLAY_PAGES_ON_MENU</span> <span style="color:#000">=</span> <span style="color:#a90d91">False</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#0f0"># We don&#39;t want all pages to show up in menu</span>
+</span></span><span style="display:flex;"><span>DISPLAY_PAGES_ON_MENU = <span style="color:#f00">False</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#177500"># Choose the specific pages that should be part of menu</span>
-</span></span><span style="display:flex;"><span><span style="color:#000">MENUITEMS</span> <span style="color:#000">=</span> ( 
-</span></span><span style="display:flex;"><span>    (<span style="color:#c41a16">&#39;HOME&#39;</span>, <span style="color:#c41a16">&#39;/home.html&#39;</span>),
-</span></span><span style="display:flex;"><span>    (<span style="color:#c41a16">&#39;API Reference&#39;</span>, <span style="color:#c41a16">&#39;/API-Reference.html&#39;</span>),
-</span></span><span style="display:flex;"><span>    (<span style="color:#c41a16">&#39;Tutorials&#39;</span>, <span style="color:#c41a16">&#39;/Tutorials.html&#39;</span>),
-</span></span><span style="display:flex;"><span>    (<span style="color:#c41a16">&#39;Plugins&#39;</span>, <span style="color:#c41a16">&#39;/Plugins.html&#39;</span>),
+</span></span><span style="display:flex;"><span><span style="color:#0f0"># Choose the specific pages that should be part of menu</span>
+</span></span><span style="display:flex;"><span>MENUITEMS = ( 
+</span></span><span style="display:flex;"><span>    (<span style="color:#87ceeb">&#39;HOME&#39;</span>, <span style="color:#87ceeb">&#39;/home.html&#39;</span>),
+</span></span><span style="display:flex;"><span>    (<span style="color:#87ceeb">&#39;API Reference&#39;</span>, <span style="color:#87ceeb">&#39;/API-Reference.html&#39;</span>),
+</span></span><span style="display:flex;"><span>    (<span style="color:#87ceeb">&#39;Tutorials&#39;</span>, <span style="color:#87ceeb">&#39;/Tutorials.html&#39;</span>),
+</span></span><span style="display:flex;"><span>    (<span style="color:#87ceeb">&#39;Plugins&#39;</span>, <span style="color:#87ceeb">&#39;/Plugins.html&#39;</span>),
 </span></span><span style="display:flex;"><span>)
 </span></span></code></pre></div><h1 id="choosing-themes">Choosing themes</h1>
 <p>By default, pelican uses its own theme for the static site, but theme can be modified.
