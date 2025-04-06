@@ -51,6 +51,13 @@
       <description>&lt;p&gt;Working with data often means juggling between different platforms and formats. Google Sheets is a powerful collaborative tool, but its real potential emerges when you can programmatically access and manipulate your spreadsheet data. In this post, I&amp;rsquo;ll walk through how to create a robust integration between Google Sheets and pandas DataFrames in Python.&lt;/p&gt;&#xA;&lt;h2 id=&#34;why-connect-google-sheets-with-pandas&#34;&gt;Why Connect Google Sheets with pandas?&lt;/h2&gt;&#xA;&lt;p&gt;Before diving into the code, let&amp;rsquo;s consider why this combination is so powerful:&lt;/p&gt;</description>
     </item>
     <item>
+      <title>Mastering Automated Trading with Python and the Dhan API</title>
+      <link>http://abhipandey.com/2023/01/mastering-automated-trading-with-python-and-the-dhan-api/</link>
+      <pubDate>Sat, 28 Jan 2023 14:30:00 +0800</pubDate>
+      <guid>http://abhipandey.com/2023/01/mastering-automated-trading-with-python-and-the-dhan-api/</guid>
+      <description>&lt;p&gt;In today&amp;rsquo;s fast-paced financial markets, algorithmic trading has become increasingly accessible to retail investors. With the right tools and knowledge, you can automate your trading strategies and execute orders with precision. In this post, I&amp;rsquo;ll walk you through a comprehensive Python implementation for interacting with the Dhan trading platform&amp;rsquo;s API, which enables automated order placement, portfolio tracking, and more.&lt;/p&gt;&#xA;&lt;h2 id=&#34;what-is-dhan&#34;&gt;What is Dhan?&lt;/h2&gt;&#xA;&lt;p&gt;Dhan is an Indian trading platform that provides access to various financial markets through its API. This allows developers and traders to build custom trading applications, automate strategies, and manage portfolios programmatically.&lt;/p&gt;</description>
+    </item>
+    <item>
       <title>Effective Log Management in Python: A Deep Dive into the get_logger Function</title>
       <link>http://abhipandey.com/2019/09/effective-log-management-in-python-a-deep-dive-into-the-get_logger-function/</link>
       <pubDate>Mon, 02 Sep 2019 09:30:00 +0800</pubDate>

@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="en-us">
+  <head>
+    <title>Mastering Automated Trading with Python and the Dhan API // Coders Digest</title>
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.145.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Abhishek Pandey" />
+    <meta name="description" content="A comprehensive guide to automating trades with Python and the Dhan Trading API" />
+    <link rel="stylesheet" href="/css/main.min.58870b33cfa6dce1b278c72b9b679817c33b90ef77a568ade9f2cd2acf27700f.css" />
+    
+
+    
+    
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Mastering Automated Trading with Python and the Dhan API">
+  <meta name="twitter:description" content="A comprehensive guide to automating trades with Python and the Dhan Trading API">
+
+    <meta property="og:url" content="http://abhipandey.com/2023/01/mastering-automated-trading-with-python-and-the-dhan-api/">
+  <meta property="og:site_name" content="Coders Digest">
+  <meta property="og:title" content="Mastering Automated Trading with Python and the Dhan API">
+  <meta property="og:description" content="A comprehensive guide to automating trades with Python and the Dhan Trading API">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2023-01-28T14:30:00+08:00">
+    <meta property="article:modified_time" content="2023-01-28T14:30:00+08:00">
+    <meta property="article:tag" content="Python">
+    <meta property="article:tag" content="Trading">
+    <meta property="article:tag" content="Automation">
+    <meta property="article:tag" content="Api">
+
+
+  </head>
+  <body>
+    <header class="app-header">
+      <a href="/"><img class="app-header-avatar" src="/space-2.jpg" alt="Abhishek Pandey" /></a>
+      <span class="app-header-title">Coders Digest</span>
+      <nav class="app-header-menu">
+          <a class="app-header-menu-item" href="/post/">Posts</a>
+             - 
+          
+          <a class="app-header-menu-item" href="/tags/">Tags</a>
+             - 
+          
+          <a class="app-header-menu-item" href="/categories/">Categories</a>
+             - 
+          
+          <a class="app-header-menu-item" href="/about/">About</a>
+      </nav>
+      <p>Abhishek Pandey</p>
+      <div class="app-header-social">
+        
+          <a href="https://github.com/abhi1010" target="_blank" rel="noreferrer noopener me">
+            <svg class="icon icon-brand-github" viewBox="0 0 24 24" fill="currentColor"><title>GitHub</title><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+          </a>
+        
+          <a href="https://www.linkedin.com/in/apandey10/" target="_blank" rel="noreferrer noopener me">
+            <svg class="icon icon-brand-linkedin" viewBox="0 0 24 24" fill="currentColor"><title>LinkedIn</title><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </a>
+        
+      </div>
+    </header>
+    <main class="app-container">
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">Mastering Automated Trading with Python and the Dhan API</h1>
+      <div class="post-meta">
+        <div>
+          <svg class="icon icon-calendar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>calendar</title><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+          Jan 28, 2023
+        </div>
+        <div>
+          <svg class="icon icon-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>clock</title><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+          5 min read
+        </div>
+        <div>
+          <svg class="icon icon-tag" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>tag</title><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
+              <a class="tag" href="/tags/python/">Python</a>
+              <a class="tag" href="/tags/trading/">Trading</a>
+              <a class="tag" href="/tags/automation/">Automation</a>
+              <a class="tag" href="/tags/api/">Api</a>
+        </div>
+      </div>
+    </header>
+    <div class="post-content">
+      <p>In today&rsquo;s fast-paced financial markets, algorithmic trading has become increasingly accessible to retail investors. With the right tools and knowledge, you can automate your trading strategies and execute orders with precision. In this post, I&rsquo;ll walk you through a comprehensive Python implementation for interacting with the Dhan trading platform&rsquo;s API, which enables automated order placement, portfolio tracking, and more.</p>
+<h2 id="what-is-dhan">What is Dhan?</h2>
+<p>Dhan is an Indian trading platform that provides access to various financial markets through its API. This allows developers and traders to build custom trading applications, automate strategies, and manage portfolios programmatically.</p>
+<h2 id="the-dhantracker-a-python-wrapper-for-the-dhan-api">The DhanTracker: A Python Wrapper for the Dhan API</h2>
+<p>The code showcased here builds a robust Python wrapper around the Dhan API, encapsulating its functionality into an easy-to-use class called <code>DhanTracker</code>. Let&rsquo;s explore the key features of this implementation:</p>
+<h3 id="core-functionality">Core Functionality</h3>
+<ol>
+<li><strong>Authentication and Connection</strong>: The code initializes a connection to the Dhan API using client credentials.</li>
+<li><strong>Order Management</strong>: Place, modify, and cancel orders with various parameters (market/limit, CNC/intraday, etc.).</li>
+<li><strong>Portfolio Tracking</strong>: Retrieve information about current holdings, positions, and order history.</li>
+<li><strong>Trade Analysis</strong>: Access and analyze trade history and performance data.</li>
+<li><strong>After Market Orders (AMO)</strong>: Schedule orders to be executed when the market opens.</li>
+</ol>
+<h3 id="key-components">Key Components</h3>
+<h4 id="1-dhantracker-class">1. DhanTracker Class</h4>
+<p>The central component is the <code>DhanTracker</code> class, which provides methods for interacting with all aspects of the Dhan API:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f00">class</span> DhanTracker:
+</span></span><span style="display:flex;"><span>    <span style="color:#f00">def</span> __init__(self):
+</span></span><span style="display:flex;"><span>        self.dhan = dhanhq(<span style="color:#87ceeb">&#34;client_id&#34;</span>, TOKEN)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#0f0"># Methods for various operations...</span>
+</span></span></code></pre></div><h4 id="2-order-placement">2. Order Placement</h4>
+<p>The class implements functions to place various types of orders:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f00">def</span> <span style="color:#ff0">place_order</span>(
+</span></span><span style="display:flex;"><span>    self,
+</span></span><span style="display:flex;"><span>    security_id,
+</span></span><span style="display:flex;"><span>    qty,
+</span></span><span style="display:flex;"><span>    exchange_segment=dhanhq.NSE,
+</span></span><span style="display:flex;"><span>    transaction_type=dhanhq.BUY,
+</span></span><span style="display:flex;"><span>    quantity=<span style="color:#f60">1</span>,
+</span></span><span style="display:flex;"><span>    order_type=dhanhq.MARKET,
+</span></span><span style="display:flex;"><span>    product_type=dhanhq.CNC,
+</span></span><span style="display:flex;"><span>    after_market_order=<span style="color:#f00">False</span>,
+</span></span><span style="display:flex;"><span>    price=<span style="color:#f60">0</span>,
+</span></span><span style="display:flex;"><span>    trigger_price=<span style="color:#f60">0</span>,
+</span></span><span style="display:flex;"><span>    tag=<span style="color:#f00">None</span>):
+</span></span><span style="display:flex;"><span>    <span style="color:#0f0"># Implementation...</span>
+</span></span></code></pre></div><h4 id="3-position-and-holdings-management">3. Position and Holdings Management</h4>
+<p>There are methods to retrieve current positions and holdings:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f00">def</span> <span style="color:#ff0">get_positions</span>(self):
+</span></span><span style="display:flex;"><span>    positions = self.dhan.get_positions()
+</span></span><span style="display:flex;"><span>    <span style="color:#f00">if</span> positions:
+</span></span><span style="display:flex;"><span>        <span style="color:#f00">return</span> positions[<span style="color:#87ceeb">&#39;data&#39;</span>]
+</span></span><span style="display:flex;"><span>    <span style="color:#f00">else</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f00">return</span> []
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f00">def</span> <span style="color:#ff0">get_holdings</span>(self):
+</span></span><span style="display:flex;"><span>    holdings = self.dhan.get_holdings()
+</span></span><span style="display:flex;"><span>    <span style="color:#f00">if</span> holdings:
+</span></span><span style="display:flex;"><span>        <span style="color:#f00">return</span> holdings[<span style="color:#87ceeb">&#39;data&#39;</span>]
+</span></span><span style="display:flex;"><span>    <span style="color:#f00">else</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f00">return</span> []
+</span></span></code></pre></div><h4 id="4-automated-position-closing">4. Automated Position Closing</h4>
+<p>One particularly useful feature is the ability to automatically close all positions:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f00">def</span> <span style="color:#ff0">close_all_assets</span>(
+</span></span><span style="display:flex;"><span>    self,
+</span></span><span style="display:flex;"><span>    assets,
+</span></span><span style="display:flex;"><span>    asset_tag,
+</span></span><span style="display:flex;"><span>    after_market_order=<span style="color:#f00">True</span>,
+</span></span><span style="display:flex;"><span>    product_type=dhanhq.INTRA,
+</span></span><span style="display:flex;"><span>    dry_run=<span style="color:#f00">True</span>,
+</span></span><span style="display:flex;"><span>    close_column_name=<span style="color:#87ceeb">&#39;availableQty&#39;</span>):
+</span></span><span style="display:flex;"><span>    <span style="color:#0f0"># Implementation...</span>
+</span></span></code></pre></div><h4 id="5-data-normalization">5. Data Normalization</h4>
+<p>The code includes a <code>NormalizeDataFrame</code> class to clean and aggregate the data returned by the API:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f00">class</span> NormalizeDataFrame:
+</span></span><span style="display:flex;"><span>    <span style="color:#f00">def</span> __init__(self, df):
+</span></span><span style="display:flex;"><span>        self.df = df
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f00">def</span> <span style="color:#ff0">normalize_trades_df</span>(self):
+</span></span><span style="display:flex;"><span>        <span style="color:#0f0"># Implementation...</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f00">def</span> <span style="color:#ff0">normalize_trades_df_by_ticker</span>(self):
+</span></span><span style="display:flex;"><span>        <span style="color:#0f0"># Implementation...</span>
+</span></span></code></pre></div><h2 id="utility-functions">Utility Functions</h2>
+<p>Beyond the main classes, there are several utility functions that enhance the functionality:</p>
+<h3 id="1-scrip-management">1. Scrip Management</h3>
+<p>Functions to handle the mapping between security IDs and trading symbols:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f00">def</span> <span style="color:#ff0">get_dhan_scrips_as_dict_id_as_key</span>(exchange_to_use=<span style="color:#87ceeb">&#39;NSE&#39;</span>):
+</span></span><span style="display:flex;"><span>    df = get_all_dhan_scripts(exchange_to_use)
+</span></span><span style="display:flex;"><span>    sem_mapping = dict()
+</span></span><span style="display:flex;"><span>    <span style="color:#f00">for</span> index, row in df.iterrows():
+</span></span><span style="display:flex;"><span>        sem_security_id = row[<span style="color:#87ceeb">&#39;SEM_SMST_SECURITY_ID&#39;</span>]
+</span></span><span style="display:flex;"><span>        sem_trading_symbol = row[<span style="color:#87ceeb">&#39;SEM_TRADING_SYMBOL&#39;</span>]
+</span></span><span style="display:flex;"><span>        sem_mapping[sem_security_id] = sem_trading_symbol
+</span></span><span style="display:flex;"><span>    <span style="color:#f00">return</span> sem_mapping
+</span></span></code></pre></div><h3 id="2-debug-information">2. Debug Information</h3>
+<p>Functions to log and save debug information:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f00">def</span> <span style="color:#ff0">show_debug_info</span>(
+</span></span><span style="display:flex;"><span>    info, txn_type, save_to_file=<span style="color:#f00">False</span>, save_to_db=<span style="color:#f00">False</span>, tag=<span style="color:#87ceeb">&#39;trial&#39;</span>):
+</span></span><span style="display:flex;"><span>    <span style="color:#0f0"># Implementation...</span>
+</span></span></code></pre></div><h3 id="3-command-line-interface">3. Command Line Interface</h3>
+<p>The code includes an argument parser for command line usage:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f00">def</span> <span style="color:#ff0">get_args</span>():
+</span></span><span style="display:flex;"><span>    parser = argparse.ArgumentParser(
+</span></span><span style="display:flex;"><span>        formatter_class=argparse.ArgumentDefaultsHelpFormatter)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    parser.add_argument(
+</span></span><span style="display:flex;"><span>        <span style="color:#87ceeb">&#39;--view&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#87ceeb">&#39;-v&#39;</span>,
+</span></span><span style="display:flex;"><span>        choices=[
+</span></span><span style="display:flex;"><span>            <span style="color:#87ceeb">&#39;orders&#39;</span>, <span style="color:#87ceeb">&#39;positions&#39;</span>, <span style="color:#87ceeb">&#39;holdings&#39;</span>, <span style="color:#87ceeb">&#39;trades&#39;</span>, <span style="color:#87ceeb">&#39;edis&#39;</span>, <span style="color:#87ceeb">&#39;tradebook&#39;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#87ceeb">&#39;test&#39;</span>, <span style="color:#87ceeb">&#39;scrips&#39;</span>
+</span></span><span style="display:flex;"><span>        ],
+</span></span><span style="display:flex;"><span>        default=<span style="color:#87ceeb">&#39;orders&#39;</span>,
+</span></span><span style="display:flex;"><span>        required=<span style="color:#f00">True</span>,
+</span></span><span style="display:flex;"><span>        help=<span style="color:#87ceeb">&#39;What info do you want to view&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#0f0"># More arguments...</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f00">return</span> parser.parse_args()
+</span></span></code></pre></div><h2 id="practical-applications">Practical Applications</h2>
+<p>This code can be used for several practical trading applications:</p>
+<ol>
+<li><strong>Automated Trading Strategies</strong>: Implement algorithms to place orders based on technical indicators or other signals.</li>
+<li><strong>Portfolio Rebalancing</strong>: Automatically adjust your portfolio to maintain desired asset allocations.</li>
+<li><strong>After-Hours Order Scheduling</strong>: Set up orders to be executed when the market opens.</li>
+<li><strong>Trade Monitoring and Analysis</strong>: Track and analyze your trading history and performance.</li>
+<li><strong>Risk Management</strong>: Automatically close positions based on predefined criteria.</li>
+</ol>
+<h2 id="special-features">Special Features</h2>
+<h3 id="1-gainer-based-decision-making">1. Gainer-Based Decision Making</h3>
+<p>The code includes logic to avoid selling stocks that are identified as &ldquo;gainers&rdquo;:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>df_gainers = read_gainers_list()
+</span></span><span style="display:flex;"><span>gainer_tickers = df_gainers[<span style="color:#87ceeb">&#39;ticker&#39;</span>].to_list() <span style="color:#f00">if</span> not df_gainers.empty <span style="color:#f00">else</span> []
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f00">if</span> ticker in gainer_tickers:
+</span></span><span style="display:flex;"><span>    logger.info(<span style="color:#87ceeb">f</span><span style="color:#87ceeb">&#39;Not selling </span><span style="color:#87ceeb">{</span>ticker<span style="color:#87ceeb">}</span><span style="color:#87ceeb"> as it is a Gainer&#39;</span>)
+</span></span><span style="display:flex;"><span>    full_update.append(<span style="color:#87ceeb">f</span><span style="color:#87ceeb">&#39;</span><span style="color:#87ceeb">{</span>ticker<span style="color:#87ceeb">}</span><span style="color:#87ceeb"> - Not selling as it is a Gainer&#39;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#f00">continue</span>
+</span></span></code></pre></div><h3 id="2-selective-position-closing">2. Selective Position Closing</h3>
+<p>The implementation allows for certain tickers to be excluded from automatic closing:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>TICKERS_TO_AVOID_CLOSING = [<span style="color:#87ceeb">&#39;DEEPAKNTR&#39;</span>, <span style="color:#87ceeb">&#39;JUBLFOOD&#39;</span>, <span style="color:#87ceeb">&#39;AUBANK&#39;</span>, <span style="color:#87ceeb">&#39;KANORICHEM&#39;</span>]
+</span></span></code></pre></div><h3 id="3-dry-run-mode">3. Dry Run Mode</h3>
+<p>The code supports a &ldquo;dry run&rdquo; mode that simulates actions without actually executing them:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f00">if</span> not dry_run:
+</span></span><span style="display:flex;"><span>    res = self.place_order(
+</span></span><span style="display:flex;"><span>        security_id,
+</span></span><span style="display:flex;"><span>        qty,
+</span></span><span style="display:flex;"><span>        transaction_type=order_txn_type,
+</span></span><span style="display:flex;"><span>        after_market_order=after_market_order,
+</span></span><span style="display:flex;"><span>        product_type=product_type)
+</span></span><span style="display:flex;"><span>    <span style="color:#0f0"># Process results...</span>
+</span></span><span style="display:flex;"><span><span style="color:#f00">else</span>:
+</span></span><span style="display:flex;"><span>    full_update.append(<span style="color:#87ceeb">f</span><span style="color:#87ceeb">&#39;</span><span style="color:#87ceeb">{</span>ticker<span style="color:#87ceeb">}</span><span style="color:#87ceeb"> - Not placing order as dry_run = </span><span style="color:#87ceeb">{</span>dry_run<span style="color:#87ceeb">}</span><span style="color:#87ceeb">&#39;</span>)
+</span></span></code></pre></div><h2 id="getting-started">Getting Started</h2>
+<p>To use this code for your own trading automation, you&rsquo;ll need:</p>
+<ol>
+<li>A Dhan trading account with API access</li>
+<li>The Dhan API client library (<code>dhanhq</code>)</li>
+<li>Python 3.x with pandas and other dependencies</li>
+</ol>
+<p>Once you have these prerequisites, you can:</p>
+<ol>
+<li>Replace the placeholder authentication credentials</li>
+<li>Customize the trading logic for your specific strategies</li>
+<li>Run the script with appropriate command-line arguments</li>
+</ol>
+<h2 id="conclusion">Conclusion</h2>
+<p>The Python implementation presented here provides a powerful framework for automating trading activities on the Dhan platform. While the code is complex and feature-rich, it&rsquo;s organized in a way that makes it adaptable to various trading strategies and requirements.</p>
+<p>As with any automated trading system, it&rsquo;s important to thoroughly test your implementation with small amounts before deploying it with significant capital. The dry run feature included in the code is particularly useful for this purpose.</p>
+<p>By leveraging this code as a starting point, you can build sophisticated trading systems that execute your strategies with precision and consistency, potentially saving time and reducing emotional decision-making in your trading activities.</p>
+<h2 id="next-steps">Next Steps</h2>
+<p>Consider extending this framework with:</p>
+<ol>
+<li>Machine learning models for predictive trading signals</li>
+<li>Integration with additional data sources for more informed decision-making</li>
+<li>Advanced risk management features</li>
+<li>A web interface for easier monitoring and control</li>
+<li>Notification systems for important events and trade executions</li>
+</ol>
+<p>Happy automated trading!</p>
+
+    </div>
+    <div class="post-footer">
+      <div id="disqus_thread"></div>
+<script>
+    window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "abhi1010" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+  </article>
+
+    </main>
+  </body>
+</html>

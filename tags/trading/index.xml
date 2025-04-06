@@ -29,5 +29,12 @@
       <guid>http://abhipandey.com/2023/09/automating-your-trading-with-tastytrades-api/</guid>
       <description>&lt;p&gt;In today&amp;rsquo;s fast-paced trading environment, automation can give you a significant edge. I&amp;rsquo;ve been working on a Python project that leverages the TastyTrade API to streamline various trading operations, from monitoring positions to setting automatic stop losses. In this post, I&amp;rsquo;ll walk through this integration and how it can help optimize your trading workflow.&lt;/p&gt;&#xA;&lt;h2 id=&#34;what-this-integration-does&#34;&gt;What This Integration Does&lt;/h2&gt;&#xA;&lt;p&gt;This Python library acts as a wrapper around TastyTrade&amp;rsquo;s API, making it easy to:&lt;/p&gt;</description>
     </item>
+    <item>
+      <title>Mastering Automated Trading with Python and the Dhan API</title>
+      <link>http://abhipandey.com/2023/01/mastering-automated-trading-with-python-and-the-dhan-api/</link>
+      <pubDate>Sat, 28 Jan 2023 14:30:00 +0800</pubDate>
+      <guid>http://abhipandey.com/2023/01/mastering-automated-trading-with-python-and-the-dhan-api/</guid>
+      <description>&lt;p&gt;In today&amp;rsquo;s fast-paced financial markets, algorithmic trading has become increasingly accessible to retail investors. With the right tools and knowledge, you can automate your trading strategies and execute orders with precision. In this post, I&amp;rsquo;ll walk you through a comprehensive Python implementation for interacting with the Dhan trading platform&amp;rsquo;s API, which enables automated order placement, portfolio tracking, and more.&lt;/p&gt;&#xA;&lt;h2 id=&#34;what-is-dhan&#34;&gt;What is Dhan?&lt;/h2&gt;&#xA;&lt;p&gt;Dhan is an Indian trading platform that provides access to various financial markets through its API. This allows developers and traders to build custom trading applications, automate strategies, and manage portfolios programmatically.&lt;/p&gt;</description>
+    </item>
   </channel>
 </rss>
