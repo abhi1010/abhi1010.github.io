@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Bash on Coders Digest</title>
+    <title>bash on Coders Digest</title>
     <link>http://abhipandey.com/tags/bash/</link>
-    <description>Recent content in Bash on Coders Digest</description>
+    <description>Recent content in bash on Coders Digest</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 13 Nov 2016 00:33:29 +0800</lastBuildDate>

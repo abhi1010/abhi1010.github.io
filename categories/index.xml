@@ -1,57 +1,57 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Categories on Coders Digest</title>
+    <title>categories on Coders Digest</title>
     <link>http://abhipandey.com/categories/</link>
-    <description>Recent content in Categories on Coders Digest</description>
+    <description>Recent content in categories on Coders Digest</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 13 Oct 2024 00:33:29 +0800</lastBuildDate>
     <atom:link href="http://abhipandey.com/categories/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Finance</title>
+      <title>finance</title>
       <link>http://abhipandey.com/categories/finance/</link>
       <pubDate>Sun, 13 Oct 2024 00:33:29 +0800</pubDate>
       <guid>http://abhipandey.com/categories/finance/</guid>
       <description></description>
     </item>
     <item>
-      <title>Crypto</title>
+      <title>crypto</title>
       <link>http://abhipandey.com/categories/crypto/</link>
       <pubDate>Tue, 14 Nov 2023 09:30:00 +0800</pubDate>
       <guid>http://abhipandey.com/categories/crypto/</guid>
       <description></description>
     </item>
     <item>
-      <title>Code</title>
+      <title>code</title>
       <link>http://abhipandey.com/categories/code/</link>
       <pubDate>Fri, 01 Sep 2023 09:00:00 +0800</pubDate>
       <guid>http://abhipandey.com/categories/code/</guid>
       <description></description>
     </item>
     <item>
-      <title>Continuous Delivery</title>
+      <title>continuous delivery</title>
       <link>http://abhipandey.com/categories/continuous-delivery/</link>
       <pubDate>Thu, 07 Jul 2016 23:26:44 +0800</pubDate>
       <guid>http://abhipandey.com/categories/continuous-delivery/</guid>
       <description></description>
     </item>
     <item>
-      <title>Tips</title>
+      <title>tips</title>
       <link>http://abhipandey.com/categories/tips/</link>
       <pubDate>Thu, 07 Jul 2016 23:26:44 +0800</pubDate>
       <guid>http://abhipandey.com/categories/tips/</guid>
       <description></description>
     </item>
     <item>
-      <title>Database</title>
+      <title>database</title>
       <link>http://abhipandey.com/categories/database/</link>
       <pubDate>Sun, 22 Sep 2013 08:48:00 +0000</pubDate>
       <guid>http://abhipandey.com/categories/database/</guid>
       <description></description>
     </item>
     <item>
-      <title>Design Patterns</title>
+      <title>design patterns</title>
       <link>http://abhipandey.com/categories/design-patterns/</link>
       <pubDate>Wed, 12 Dec 2007 02:31:00 +0000</pubDate>
       <guid>http://abhipandey.com/categories/design-patterns/</guid>
