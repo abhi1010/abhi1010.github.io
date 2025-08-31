@@ -102,7 +102,8 @@
       </div>
     </header>
     <div class="post-content">
-      <p>Effective logging is a critical yet often overlooked aspect of application development. A well-implemented logging system can mean the difference between hours of frustrating debugging and a quick resolution when issues arise. In this post, I&rsquo;ll walk through a powerful custom logging utility function called <code>get_logger</code> that provides flexible, configurable logging capabilities for Python applications.</p>
+      <p><strong>Update: I have provided the full code at <a href="https://github.com/abhi1010/algo-utils/blob/main/trading/common/utils.py">algo-utils::logger.py</a>.</strong></p>
+<p>Effective logging is a critical yet often overlooked aspect of application development. A well-implemented logging system can mean the difference between hours of frustrating debugging and a quick resolution when issues arise. In this post, I&rsquo;ll walk through a powerful custom logging utility function called <code>get_logger</code> that provides flexible, configurable logging capabilities for Python applications.</p>
 <h2 id="understanding-the-get_logger-function">Understanding the <code>get_logger</code> Function</h2>
 <p>The <code>get_logger</code> function creates a configured logger with console output and rotating file storage. Let&rsquo;s break down what it does and how to use it effectively:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f00">def</span> <span style="color:#ff0">get_logger</span>(log_name=<span style="color:#87ceeb">&#39;cpr-btc&#39;</span>, should_add_ts=<span style="color:#f00">False</span>, use_rich=<span style="color:#f00">False</span>):
